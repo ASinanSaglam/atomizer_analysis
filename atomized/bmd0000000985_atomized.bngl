@@ -1,0 +1,77 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/6149699']
+#@BQB_IS:['http://identifiers.org/go/GO:0006898', 'http://identifiers.org/bto/BTO:0000218', 'http://identifiers.org/ncit/C20425']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL2102040001', 'http://identifiers.org/biomodels.db/BIOMD0000000985']
+#@creatorEmail:'kramachandran@ebi.ac.uk'
+#@creatorName:'Ramachandran Kausthubh'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 7 molecules and 9 reactions. The translated model has 7 molecules and 9 rules'
+###
+begin model
+begin parameters
+	k1 81500000.0
+	k_1 0.58
+	ki 0.049
+	k2 0.24
+	f 0.2
+	k1_t 0.02
+	ke 0.7
+	epsilon 0.12
+	delTe 6.5
+	k_2 0
+end parameters
+begin molecule types
+	#^ bqbiol:is ncit:C20425, ncit:C95009
+	#^ bqbiol:hasProperty ncit:C14136
+	Ligand_EGF()
+	#^ bqbiol:is ncit:C17067
+	#^ bqbiol:hasProperty ncit:C14136
+	Internalised_receptors()
+	#^ bqbiol:is ncit:GO:0030132
+	Free_pit_proteins()
+	#^ bqbiol:is go:GO:0030132, go:GO:0043235
+	#^ bqbiol:hasProperty ncit:C19398
+	Receptor_Ligand_Pit_Protein_complex()
+	#^ bqbiol:is ncit:C17067
+	#^ bqbiol:hasProperty ncit:C14136
+	Surface_Receptor_External()
+	#^ bqbiol:is go:GO:0043235
+	Receptor_Ligand_Complex()
+	#^ bqbiol:is ncit:C20425, ncit:C95009
+	#^ bqbiol:hasProperty go:GO:0005622
+	Internalised_Ligand()
+end molecule types
+begin seed species
+	Ligand_EGF() 1.1967559639481821e+38 # 198730648281000.0mol/L * 6.022e23/mol *1.0L #Ligand_EGF #Ligand_EGF
+	Surface_Receptor_External() 4.3960600000000065e+28 #original 73000.0000000001substance/volume #Surface_Receptor_External #Surface_Receptor_External
+	Internalised_receptors() 1.5072463800000001e+28 #original 25029.0substance/volume #Internalised_receptors #Internalised_receptors
+end seed species
+begin observables
+	Species Ligand_EGF Ligand_EGF() #Ligand_EGF
+	Species Surface_Receptor_External Surface_Receptor_External() #Surface_Receptor_External
+	Species Receptor_Ligand_Complex Receptor_Ligand_Complex() #Receptor_Ligand_Complex
+	Species Internalised_receptors Internalised_receptors() #Internalised_receptors
+	Species Receptor_Ligand_Pit_Protein_complex Receptor_Ligand_Pit_Protein_complex() #Receptor_Ligand_Pit_Protein_complex
+	Species Free_pit_proteins Free_pit_proteins() #Free_pit_proteins
+	Species Internalised_Ligand Internalised_Ligand() #Internalised_Ligand
+end observables
+begin functions
+	Surface_receptor_ligand_complex_1000() = 0.001*Receptor_Ligand_Complex
+	Internalised_ligand_1000() = 0.001*Internalised_Ligand
+	ke_t() = ke*(epsilon + (1 - epsilon)*(1 - exp(-time()/delTe)^3))
+	fRate2() = f*k2
+	fRate4() = f*ke_t
+	fRate5() = f*ke_t
+end functions
+begin reaction rules
+	Receptor_Ligand_binding: Surface_Receptor_External() + Ligand_EGF() -> Receptor_Ligand_Complex() k1
+	Receptor_Ligand_dissociation: Receptor_Ligand_Complex() -> Surface_Receptor_External() k_1
+	Receptor_Ligand_Pit_protein_binding: Receptor_Ligand_Complex() + Free_pit_proteins() -> Receptor_Ligand_Pit_Protein_complex() fRate2()
+	Receptor_Ligand_Pit_protein_dissociation: Receptor_Ligand_Pit_Protein_complex() -> Receptor_Ligand_Complex() k_2
+	Receptor_internalisation: Surface_Receptor_External() -> Internalised_receptors() fRate4()
+	Receptor_Ligand_internal_dissociation: Receptor_Ligand_Complex() -> Internalised_receptors() + Internalised_Ligand() fRate5()
+	Receptor_Ligand_internal_Pit_protein_dissociation: Receptor_Ligand_Pit_Protein_complex() -> Internalised_receptors() + Internalised_Ligand() ke_t
+	Ligand_utilisation: Internalised_Ligand() -> 0  k1_t
+	Receptor_externalisation: Internalised_receptors() -> Surface_Receptor_External() ki
+end reaction rules
+end model

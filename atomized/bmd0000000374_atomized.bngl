@@ -1,0 +1,99 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1006230051', 'http://identifiers.org/biomodels.db/BIOMD0000000374']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/7647236']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/3907728']
+#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000783']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0044342', 'http://identifiers.org/go/GO:0061469', 'http://identifiers.org/go/GO:0015278']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@creatorEmail:'ajmera@ebi.ac.uk'
+#@creatorName:'Ajmera Ishan'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 5 molecules and 0 reactions. The translated model has 5 molecules and 5 rules'
+###
+begin model
+begin parameters
+	Cm 6158.0
+	g_K 3900.0
+	lambda_n 1.85
+	g_K_ATP 150.0
+	V_Ca 100.0
+	g_Ca_f 810.0
+	g_Ca_s 510.0
+	g_K_Ca 1200.0
+	kdkca 0.55
+	g_CRAC 75.0
+	Ca_er_bar 3.0
+	kerp 0.1
+	verp 0.24
+	dact 0.1
+	dinh 0.4
+	dip3 0.2
+	perl 0.02
+	lambda_er 250.0
+	sigma_er 5.0
+	k_Ca 0.07
+	gamma 3.607e-06
+	f 0.01
+	V_CRAC 0
+	g_leak 0
+	IP3 0
+end parameters
+begin molecule types
+	ca_er_ca_equations()
+	Ca_i()
+	jm()
+	n()
+	V_membrane()
+end molecule types
+begin seed species
+	n() 0.0005 #n #n
+	jm() 0.25 #jm #jm
+	ca_er_ca_equations() 9.0 #ca_er_ca_equations #Ca_er_Ca_equations
+	Ca_i() 0.11 #Ca_i #Ca_i
+end seed species
+begin observables
+	Species V_membrane V_membrane() #V_membrane
+	Species n n() #n
+	Species jm jm() #jm
+	Species ca_er_ca_equations ca_er_ca_equations() #ca_er_ca_equations
+	Species Ca_i Ca_i() #Ca_i
+end observables
+begin functions
+	i_K_ATP() = g_K_ATP*(V_membrane + 70)
+	m_f_infinity() = 1/(exp(-0.133333333333333*V_membrane - 2.66666666666667) + 1)
+	i_Ca_f() = g_Ca_f*m_f_infinity*(-V_Ca + V_membrane)
+	m_s_infinity() = 1/(exp(-V_membrane/10 - 8/5) + 1)
+	i_Ca_s() = g_Ca_s*m_s_infinity*(1 - jm)*(-V_Ca + V_membrane)
+	i_Ca() = i_Ca_f + i_Ca_s
+	i_K() = g_K*n*(V_membrane + 70)
+	i_leak() = g_leak*(-V_CRAC + V_membrane)
+	r_infinity() = 1/(exp(-Ca_er_bar + ca_er_ca_equations) + 1)
+	i_CRAC() = g_CRAC*r_infinity*(-V_CRAC + V_membrane)
+	i_K_Ca() = Ca_i^5*g_K_Ca*(V_membrane + 70)/(Ca_i^5 + kdkca^5)
+	arRateV_membrane() = (-i_CRAC - i_Ca - i_K - i_K_ATP - i_K_Ca - i_leak)/Cm
+	J_er_leak() = perl*(-Ca_i + ca_er_ca_equations)
+	b_infinity() = IP3/(IP3 + dip3)
+	h_infinity() = 1/(Ca_i/dinh + 1)
+	a_infinity() = 1/(1 + dact/Ca_i)
+	O() = a_infinity^3*b_infinity^3*h_infinity^3
+	J_er_IP3() = O*(-Ca_i + ca_er_ca_equations)
+	J_er_p() = Ca_i^2*verp/(Ca_i^2 + kerp^2)
+	J_er_tot() = J_er_IP3 + J_er_leak - J_er_p
+	J_mem_tot() = -f*(Ca_i*k_Ca + gamma*i_Ca)
+	arRateCa_i() = J_er_tot/lambda_er + J_mem_tot
+	jm_infinity() = 1 - 1/(exp(V_membrane/2 + 53/2) + 1)
+	tau_j() = 1500 + 50000/(exp(-V_membrane/4 - 53/4) + exp(V_membrane/4 + 53/4))
+	arRatejm() = (-jm + jm_infinity)/tau_j
+	n_infinity() = 1/(exp(-V_membrane/6 - 5/2) + 1)
+	tau_n() = 9.09/(exp(V_membrane/6 + 5/2) + 1)
+	arRaten() = lambda_n*(-n + n_infinity)/tau_n
+	arRateCa_er_Ca_equations() = -J_er_tot/(lambda_er*sigma_er)
+	j() = 1 - jm
+end functions
+begin reaction rules
+	0  -> V_membrane() arRateV_membrane #rateLaw
+	0  -> n() arRaten #rateLaw
+	0  -> jm() arRatejm #rateLaw
+	0  -> ca_er_ca_equations() arRateCa_er_Ca_equations #rateLaw
+	0  -> Ca_i() arRateCa_i #rateLaw
+end reaction rules
+end model

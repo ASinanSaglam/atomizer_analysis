@@ -1,0 +1,89 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000816', 'http://identifiers.org/biomodels.db/MODEL1909180001']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:1909', 'http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/efo/0000311', 'http://identifiers.org/efo/0000756', 'http://identifiers.org/bto/BTO:0002014', 'http://identifiers.org/ncit/C62713']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10090']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/30510594']
+#@creatorEmail:'muffet0307@gmail.com'
+#@creatorName:'Ng Szeyi'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 8 molecules and 16 reactions. The translated model has 5 molecules and 16 rules'
+###
+begin model
+begin parameters
+	r 0.3198
+	beta 1.008538
+	k0 2.0
+	c_kill 0.595397
+	delta_I 1.0
+	alpha 3.0
+	delta_V 2.3
+	C_T 1.698362
+	chi_A 1.0
+	chi_D 4.675397
+	delta_T 0.35
+	C_A 0.000517
+	delta_A 0.35
+	delta_D 0.35
+	OV_dose 2.5
+	D0 1.0
+	U_V 0
+	U_D 0
+	TotalcellsN 3.4940098661000002e+22 #original 58.020755substance/volume
+	totaltumorcells 3.4940098661000002e+22 #original 58.020755substance/volume
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf efo:0000311, bto:BTO:0002014
+	#^ bqbiol:isPropertyOf ncit:C25401
+	InfectedCancerCellI(UninfectedTumorCellU~UninfectedTumorCellU~0)
+	#^ bqbiol:isVersionOf ncit:C129906
+	NaiveTcellsA()
+	#^ bqbiol:isVersionOf ncit:C129906
+	#^ bqbiol:isPropertyOf ncit:C64542
+	Tumor_targetingTcellsT()
+	#^ bqbiol:isVersionOf ncit:C12583, bto:BTO:0002042
+	DendriticCellsD()
+	#^ bqbiol:isVersionOf ncit:C14179, ncit:C28373
+	OncolyticAdenovirusV()
+end molecule types
+begin seed species
+	InfectedCancerCellI(UninfectedTumorCellU~UninfectedTumorCellU) 3.4940098661000002e+22 # (58.020755 * 0.001)mol/L * 6.022e23/mol *1.0L #UninfectedTumorCellU #Uninfected_Tumor_Cell_U
+end seed species
+begin observables
+	Species UninfectedTumorCellU InfectedCancerCellI(UninfectedTumorCellU~UninfectedTumorCellU) #Uninfected Tumor Cell U
+	Species InfectedCancerCellI InfectedCancerCellI(UninfectedTumorCellU~0) #Infected Cancer Cell I
+	Species OncolyticAdenovirusV OncolyticAdenovirusV() #Oncolytic Adenovirus V
+	Species Tumor_targetingTcellsT Tumor_targetingTcellsT() #Tumor-targeting T cells T
+	Species NaiveTcellsA NaiveTcellsA() #Naive T cells A
+	Species DendriticCellsD DendriticCellsD() #Dendritic Cells D
+end observables
+begin functions
+	totaltumorcells_ar() = InfectedCancerCellI + UninfectedTumorCellU
+	TotalcellsN_ar() = InfectedCancerCellI + Tumor_targetingTcellsT + UninfectedTumorCellU
+	fRate0() = UninfectedTumorCellU*r
+	fRate1() = Tumor_targetingTcellsT*UninfectedTumorCellU*(InfectedCancerCellI*c_kill + k0)/TotalcellsN_ar
+	fRate2() = OncolyticAdenovirusV*beta/TotalcellsN_ar
+	fRate4() = InfectedCancerCellI*Tumor_targetingTcellsT*(InfectedCancerCellI*c_kill + k0)/TotalcellsN_ar
+	fRate7() = InfectedCancerCellI*alpha*delta_I
+	fRate8() = NaiveTcellsA*chi_A
+	fRate9() = C_A*InfectedCancerCellI
+	fRate10() = C_T*InfectedCancerCellI
+	fRate11() = DendriticCellsD*chi_D
+end functions
+begin reaction rules
+	Tumor_cell_U_exponential_growth: 0  -> InfectedCancerCellI(UninfectedTumorCellU~UninfectedTumorCellU) fRate0()
+	Tumour_cell_U_elimination_reactants_0: 0  -> InfectedCancerCellI(UninfectedTumorCellU~UninfectedTumorCellU) -1*(fRate1()) #Modifiers(Infected_Cancer_Cell_I, Tumor_targeting_T_cells_T, Total_cells_N)
+	Tumor_Cell_U_infection: InfectedCancerCellI(UninfectedTumorCellU~UninfectedTumorCellU) -> InfectedCancerCellI(UninfectedTumorCellU~0) fRate2() #Modifiers(Oncolytic_Adenovirus_V, Total_cells_N)
+	Infected_Tumor_Cell_I_death: InfectedCancerCellI(UninfectedTumorCellU~0) -> 0  delta_I
+	Infected_Tumor_Cell_I_elimination_reactants_0: 0  -> InfectedCancerCellI(UninfectedTumorCellU~0) -1*(fRate4()) #Modifiers(Tumor_targeting_T_cells_T, Total_cells_N)
+	Treatment_with_virus: 0  -> OncolyticAdenovirusV() U_V
+	Natural_decay_of_virus: OncolyticAdenovirusV() -> 0  delta_V
+	Release_of_virus: 0  -> OncolyticAdenovirusV() fRate7() #Modifiers(Infected_Cancer_Cell_I)
+	Activation_of_T_Cells_IL12: 0  -> Tumor_targetingTcellsT() fRate8() #Modifiers(Naive_T_cells_A)
+	Activation_of_naive_T_cells_IL12: 0  -> NaiveTcellsA() fRate9() #Modifiers(Infected_Cancer_Cell_I)
+	Activation_of_T_cells_4_1BBL: 0  -> Tumor_targetingTcellsT() fRate10() #Modifiers(Infected_Cancer_Cell_I)
+	Production_of_T_cells: 0  -> Tumor_targetingTcellsT() fRate11() #Modifiers(Dendritic_Cells_D)
+	natural_death_of_T_cells: Tumor_targetingTcellsT() -> 0  delta_T
+	natural_death_of_naive_T_cells: NaiveTcellsA() -> 0  delta_A
+	Treatment_with_Dendritic_Cells_D: 0  -> DendriticCellsD() U_D
+	natural_decay_of_Dendritic_Cells_D: DendriticCellsD() -> 0  delta_D
+end reaction rules
+end model

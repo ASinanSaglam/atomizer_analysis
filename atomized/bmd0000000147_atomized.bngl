@@ -1,0 +1,210 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL2784772048', 'http://identifiers.org/biomodels.db/BIOMD0000000147']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/17486138']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/BIOMD0000000140', 'http://identifiers.org/biomodels.db/BIOMD0000000139']
+#@BQB_IS_PART_OF:['http://identifiers.org/kegg.pathway/mmu04660']
+#@BQB_IS:['http://identifiers.org/go/GO:0007249']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10090']
+#@creatorEmail:'hdharuri@cds.caltech.edu'
+#@creatorName:'Dharuri Harish'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 24 molecules and 51 reactions. The translated model has 11 molecules and 51 rules'
+###
+begin model
+begin parameters
+	r1_tr2a 0.000185
+	r2_tr3a 0.016800
+	r3_tr1a 0.244800
+	r4_a1 1.350000
+	r4_d1_1 0.075000
+	r5_a4_1 30.000000
+	r5_d4_1 0.000060
+	r6_a4_2 30.000000
+	r6_d4_2 0.000060
+	r7_a7 11.100000
+	r7_d1_2 0.075000
+	r8_a4_3 30.000000
+	r8_d4_3 0.000060
+	r9_deg1_c 0.120000
+	r10_deg1_n 0.120000
+	r11_deg4_n 0.000060
+	r12_deg4_c 0.000060
+	r13_r1 0.072000
+	r14_r4 0.360000
+	r15_tp1a 0.018000
+	r15_tp2a 0.012000
+	r16_k2_a 0.828000
+	r17_k2_b 0.414000
+	r18_tp1b 0.018000
+	r18_tp2b 0.012000
+	r19_r5 0.120000
+	r20_r2 0.024000
+	r21_deg5_c 0.000060
+	r22_deg5_n 0.000060
+	r23_deg2_n 0.180000
+	r24_deg2_c 0.180000
+	r25_a5_3 30.000000
+	r25_d5_3 0.000060
+	r26_a8 2.880000
+	r26_d2_2 0.105000
+	r27_a5_2 30.000000
+	r27_d5_2 0.000060
+	r28_a5_1 30.000000
+	r28_d5_1 0.000060
+	r29_a2 0.360000
+	r29_d2_1 0.105000
+	r30_tr1b 0.244800
+	r31_tr3b 0.016800
+	r32_tr2b 0.000043
+	r33_k1_2 5.400000
+	r33_k1_1 0.004800
+	r34_tr2e 0.000030
+	r35_tr3e 0.016800
+	r36_tr1e 0.244800
+	r37_a3 0.540000
+	r37_d3_1 0.105000
+	r38_a6_1 30.000000
+	r38_d6_1 0.000060
+	r39_a6_2 30.000000
+	r39_d6_2 0.000060
+	r40_a9 4.200000
+	r40_d3_2 0.105000
+	r41_a6_3 30.000000
+	r41_d6_3 0.000060
+	r42_deg3_c 0.180000
+	r43_deg3_n 0.180000
+	r44_deg6_n 0.000060
+	r45_deg6_c 0.000060
+	r46_r3 0.036000
+	r47_r6 0.180000
+	r48_tp1e 0.018000
+	r48_tp2e 0.012000
+	r49_k2_e 0.414000
+	r50_k_IKK_deg 0.000000
+	r51_tr2a_i 1.980000
+end parameters
+begin compartments
+	#volume units: L
+	cytoplasm 3 1.0
+	nucleus 3 1.0
+end compartments
+begin molecule types
+	IkBat()
+	IkBbt()
+	#^ bqbiol:hasPart uniprot:O54910, uniprot:P25799, uniprot:O88351, uniprot:O88522, uniprot:Q60680
+	IkBeIKKNFkB()
+	#^ bqbiol:hasPart uniprot:P25799, uniprot:O88522, uniprot:Q60680, uniprot:O88351, uniprot:Q9Z1E3
+	IkBaIKKNFkB()
+	#^ bqbiol:hasPart uniprot:Q60778, uniprot:P25799, uniprot:O88351, uniprot:O88522, uniprot:Q60680
+	IkBbIKKNFkB()
+	#^ bqbiol:isVersionOf uniprot:P25799
+	NFkB(ikba,ikbb,ikbe,n~N~0)
+	#^ bqbiol:isVersionOf uniprot:O54910
+	IkBe(ikk,n~N~0,nfkb)
+	#^ bqbiol:isVersionOf uniprot:Q60778
+	IkBb(ikk,n~N~0,nfkb)
+	#^ bqbiol:hasPart uniprot:O88351, uniprot:O88522, uniprot:Q60680
+	IKK(ikba,ikbb,ikbe)
+	IkBet()
+	#^ bqbiol:isVersionOf uniprot:Q9Z1E3
+	IkBa(ikk,n~N~0,nfkb)
+end molecule types
+begin seed species
+	@cytoplasm:NFkB(ikba!211,ikbb,ikbe,n~0).IkBa(ikk,n~0,nfkb!211) 3.6132e+16 # (0.06 * 1e-06)mol/L * 6.022e23/mol *1.0L #IkBaNFkB #IkBaNFkB_cytoplasm
+	@cytoplasm:IKK(ikba,ikbb,ikbe) 602200000000000.1 #original 0.001micromole/L #IKK #IKK
+	@cytoplasm:NFkB(ikba,ikbb!212,ikbe,n~0).IkBb(ikk,n~0,nfkb!212) 1.8066e+16 #original 0.03micromole/L #IkBbNFkB #IkBbNFkB_cytoplasm
+	@cytoplasm:NFkB(ikba,ikbb,ikbe!213,n~0).IkBe(ikk,n~0,nfkb!213) 6022000000000000.0 #original 0.01micromole/L #IkBeNFkB #IkBeNFkB_cytoplasm
+end seed species
+begin observables
+	Species IkBat_nucleus @nucleus:IkBat() #IkBat
+	Species IkBa_cytoplasm @cytoplasm:IkBa(ikk,n~0,nfkb) #IkBa
+	Species IkBan_nucleus @nucleus:IkBa(ikk,n~N,nfkb) #IkBan
+	Species IkBaIKK_cytoplasm @cytoplasm:IkBa(ikk!208,n~0,nfkb).IKK(ikba!208,ikbb,ikbe) #IkBaIKK
+	Species IkBaNFkB_cytoplasm @cytoplasm:NFkB(ikba!211,ikbb,ikbe,n~0).IkBa(ikk,n~0,nfkb!211) #IkBaNFkB
+	Species IkBaNFkBn_nucleus @nucleus:NFkB(ikba!211,ikbb,ikbe,n~N).IkBa(ikk,n~0,nfkb!211) #IkBaNFkBn
+	Species IkBaIKKNFkB_cytoplasm @cytoplasm:IkBaIKKNFkB() #IkBaIKKNFkB
+	Species NFkB_cytoplasm @cytoplasm:NFkB(ikba,ikbb,ikbe,n~0) #NFkB
+	Species IKK_cytoplasm @cytoplasm:IKK(ikba,ikbb,ikbe) #IKK
+	Species NFkBn_nucleus @nucleus:NFkB(ikba,ikbb,ikbe,n~N) #NFkBn
+	Species IkBbIKK_cytoplasm @cytoplasm:IkBb(ikk!209,n~0,nfkb).IKK(ikba,ikbb!209,ikbe) #IkBbIKK
+	Species IkBbIKKNFkB_cytoplasm @cytoplasm:IkBbIKKNFkB() #IkBbIKKNFkB
+	Species IkBbNFkBn_nucleus @nucleus:NFkB(ikba,ikbb!212,ikbe,n~N).IkBb(ikk,n~0,nfkb!212) #IkBbNFkBn
+	Species IkBbNFkB_cytoplasm @cytoplasm:NFkB(ikba,ikbb!212,ikbe,n~0).IkBb(ikk,n~0,nfkb!212) #IkBbNFkB
+	Species IkBbn_nucleus @nucleus:IkBb(ikk,n~N,nfkb) #IkBbn
+	Species IkBb_cytoplasm @cytoplasm:IkBb(ikk,n~0,nfkb) #IkBb
+	Species IkBbt_nucleus @nucleus:IkBbt() #IkBbt
+	Species IkBet_nucleus @nucleus:IkBet() #IkBet
+	Species IkBe_cytoplasm @cytoplasm:IkBe(ikk,n~0,nfkb) #IkBe
+	Species IkBen_nucleus @nucleus:IkBe(ikk,n~N,nfkb) #IkBen
+	Species IkBeNFkB_cytoplasm @cytoplasm:NFkB(ikba,ikbb,ikbe!213,n~0).IkBe(ikk,n~0,nfkb!213) #IkBeNFkB
+	Species IkBeNFkBn_nucleus @nucleus:NFkB(ikba,ikbb,ikbe!213,n~N).IkBe(ikk,n~0,nfkb!213) #IkBeNFkBn
+	Species IkBeIKKNFkB_cytoplasm @cytoplasm:IkBeIKKNFkB() #IkBeIKKNFkB
+	Species IkBeIKK_cytoplasm @cytoplasm:IkBe(ikk!210,n~0,nfkb).IKK(ikba,ikbb,ikbe!210) #IkBeIKK
+end observables
+begin functions
+	Total_IkBeps() = IkBeIKKNFkB_cytoplasm + IkBeIKK_cytoplasm + IkBeNFkB_cytoplasm + IkBeNFkBn_nucleus + IkBe_cytoplasm + IkBen_nucleus
+	Total_IkBbeta() = IkBbIKKNFkB_cytoplasm + IkBbIKK_cytoplasm + IkBbNFkB_cytoplasm + IkBbNFkBn_nucleus + IkBb_cytoplasm + IkBbn_nucleus
+	Total_IkBalpha() = IkBaIKKNFkB_cytoplasm + IkBaIKK_cytoplasm + IkBaNFkB_cytoplasm + IkBaNFkBn_nucleus + IkBa_cytoplasm + IkBan_nucleus
+	fRate14() = 0.018
+	fRate14m() = 0.012
+	fRate17() = 0.018
+	fRate17m() = 0.012
+	fRate32() = 5.4
+	fRate32m() = 0.0048
+	fRate47() = 0.018
+	fRate47m() = 0.012
+	fRate50() = 1.98*NFkBn_nucleus^2
+end functions
+begin reaction rules
+	txn_a: 0  -> IkBat()@nucleus r1_tr2a
+	mdeg_a: IkBat()@nucleus -> 0  r2_tr3a
+	tsl_a: IkBat()@nucleus -> IkBat()@nucleus + IkBa(ikk,n~0,nfkb)@cytoplasm r3_tr1a
+	int_ai: IkBa(ikk,n~0,nfkb)@cytoplasm + IKK(ikba,ikbb,ikbe)@cytoplasm <-> IkBa(ikk!208,n~0,nfkb)@cytoplasm.IKK(ikba!208,ikbb,ikbe)@cytoplasm r4_a1,r4_d1_1
+	int_an: IkBa(ikk,n~0,nfkb)@cytoplasm + NFkB(ikba,ikbb,ikbe,n~0)@cytoplasm <-> NFkB(ikba!211,ikbb,ikbe,n~0)@cytoplasm.IkBa(ikk,n~0,nfkb!211)@cytoplasm r5_a4_1,r5_d4_1
+	int_an_n: IkBa(ikk,n~N,nfkb)@nucleus + NFkB(ikba,ikbb,ikbe,n~N)@nucleus <-> NFkB(ikba!211,ikbb,ikbe,n~N)@nucleus.IkBa(ikk,n~0,nfkb!211)@nucleus r6_a4_2,r6_d4_2
+	int_2ani: NFkB(ikba!211,ikbb,ikbe,n~0)@cytoplasm.IkBa(ikk,n~0,nfkb!211)@cytoplasm + IKK(ikba,ikbb,ikbe)@cytoplasm <-> IkBaIKKNFkB()@cytoplasm r7_a7,r7_d1_2
+	int_2ain: IkBa(ikk!208,n~0,nfkb)@cytoplasm.IKK(ikba!208,ikbb,ikbe)@cytoplasm + NFkB(ikba,ikbb,ikbe,n~0)@cytoplasm <-> IkBaIKKNFkB()@cytoplasm r8_a4_3,r8_d4_3
+	deg_a: IkBa(ikk,n~0,nfkb)@cytoplasm -> 0  r9_deg1_c
+	deg_a_n: IkBa(ikk,n~N,nfkb)@nucleus -> 0  r10_deg1_n
+	deg_an_n: NFkB(ikba!211,ikbb,ikbe,n~N)@nucleus.IkBa(ikk,n~0,nfkb!211)@nucleus -> NFkB(ikba,ikbb,ikbe,n~N)@nucleus r11_deg4_n
+	deg_an: NFkB(ikba!211,ikbb,ikbe,n~0)@cytoplasm.IkBa(ikk,n~0,nfkb!211)@cytoplasm -> NFkB(ikba,ikbb,ikbe,n~0)@cytoplasm r12_deg4_c
+	deg_ai: IkBa(ikk!208,n~0,nfkb)@cytoplasm.IKK(ikba!208,ikbb,ikbe)@cytoplasm -> IKK(ikba,ikbb,ikbe)@cytoplasm r13_r1
+	deg_ain: IkBaIKKNFkB()@cytoplasm -> NFkB(ikba,ikbb,ikbe,n~0)@cytoplasm + IKK(ikba,ikbb,ikbe)@cytoplasm r14_r4
+	loc_a: IkBa(ikk,n~0,nfkb)@cytoplasm <-> IkBa(ikk,n~N,nfkb)@nucleus fRate14(),fRate14m()
+	loc_an: NFkB(ikba!211,ikbb,ikbe,n~N)@nucleus.IkBa(ikk,n~0,nfkb!211)@nucleus -> NFkB(ikba!211,ikbb,ikbe,n~0)@cytoplasm.IkBa(ikk,n~0,nfkb!211)@cytoplasm r16_k2_a
+	loc_bn: NFkB(ikba,ikbb!212,ikbe,n~N)@nucleus.IkBb(ikk,n~0,nfkb!212)@nucleus -> NFkB(ikba,ikbb!212,ikbe,n~0)@cytoplasm.IkBb(ikk,n~0,nfkb!212)@cytoplasm r17_k2_b
+	loc_b: IkBb(ikk,n~0,nfkb)@cytoplasm <-> IkBb(ikk,n~N,nfkb)@nucleus fRate17(),fRate17m()
+	deg_bin: IkBbIKKNFkB()@cytoplasm -> NFkB(ikba,ikbb,ikbe,n~0)@cytoplasm + IKK(ikba,ikbb,ikbe)@cytoplasm r19_r5
+	deg_bi: IkBb(ikk!209,n~0,nfkb)@cytoplasm.IKK(ikba,ikbb!209,ikbe)@cytoplasm -> IKK(ikba,ikbb,ikbe)@cytoplasm r20_r2
+	deg_bn: NFkB(ikba,ikbb!212,ikbe,n~0)@cytoplasm.IkBb(ikk,n~0,nfkb!212)@cytoplasm -> NFkB(ikba,ikbb,ikbe,n~0)@cytoplasm r21_deg5_c
+	deg_bn_n: NFkB(ikba,ikbb!212,ikbe,n~N)@nucleus.IkBb(ikk,n~0,nfkb!212)@nucleus -> NFkB(ikba,ikbb,ikbe,n~N)@nucleus r22_deg5_n
+	deg_b_n: IkBb(ikk,n~N,nfkb)@nucleus -> 0  r23_deg2_n
+	deg_b: IkBb(ikk,n~0,nfkb)@cytoplasm -> 0  r24_deg2_c
+	int_2bin: IkBb(ikk!209,n~0,nfkb)@cytoplasm.IKK(ikba,ikbb!209,ikbe)@cytoplasm + NFkB(ikba,ikbb,ikbe,n~0)@cytoplasm <-> IkBbIKKNFkB()@cytoplasm r25_a5_3,r25_d5_3
+	int_2bni: NFkB(ikba,ikbb!212,ikbe,n~0)@cytoplasm.IkBb(ikk,n~0,nfkb!212)@cytoplasm + IKK(ikba,ikbb,ikbe)@cytoplasm <-> IkBbIKKNFkB()@cytoplasm r26_a8,r26_d2_2
+	int_bn_n: IkBb(ikk,n~N,nfkb)@nucleus + NFkB(ikba,ikbb,ikbe,n~N)@nucleus <-> NFkB(ikba,ikbb!212,ikbe,n~N)@nucleus.IkBb(ikk,n~0,nfkb!212)@nucleus r27_a5_2,r27_d5_2
+	int_bn: IkBb(ikk,n~0,nfkb)@cytoplasm + NFkB(ikba,ikbb,ikbe,n~0)@cytoplasm <-> NFkB(ikba,ikbb!212,ikbe,n~0)@cytoplasm.IkBb(ikk,n~0,nfkb!212)@cytoplasm r28_a5_1,r28_d5_1
+	int_bi: IkBb(ikk,n~0,nfkb)@cytoplasm + IKK(ikba,ikbb,ikbe)@cytoplasm <-> IkBb(ikk!209,n~0,nfkb)@cytoplasm.IKK(ikba,ikbb!209,ikbe)@cytoplasm r29_a2,r29_d2_1
+	tsl_b: IkBbt()@nucleus -> IkBbt()@nucleus + IkBb(ikk,n~0,nfkb)@cytoplasm r30_tr1b
+	mdeg_b: IkBbt()@nucleus -> 0  r31_tr3b
+	txn_b: 0  -> IkBbt()@nucleus r32_tr2b
+	loc_n: NFkB(ikba,ikbb,ikbe,n~0)@cytoplasm <-> NFkB(ikba,ikbb,ikbe,n~N)@nucleus fRate32(),fRate32m()
+	txn_e: 0  -> IkBet()@nucleus r34_tr2e
+	mdeg_e: IkBet()@nucleus -> 0  r35_tr3e
+	tsl_e: IkBet()@nucleus -> IkBet()@nucleus + IkBe(ikk,n~0,nfkb)@cytoplasm r36_tr1e
+	int_ei: IkBe(ikk,n~0,nfkb)@cytoplasm + IKK(ikba,ikbb,ikbe)@cytoplasm <-> IkBe(ikk!210,n~0,nfkb)@cytoplasm.IKK(ikba,ikbb,ikbe!210)@cytoplasm r37_a3,r37_d3_1
+	int_en: IkBe(ikk,n~0,nfkb)@cytoplasm + NFkB(ikba,ikbb,ikbe,n~0)@cytoplasm <-> NFkB(ikba,ikbb,ikbe!213,n~0)@cytoplasm.IkBe(ikk,n~0,nfkb!213)@cytoplasm r38_a6_1,r38_d6_1
+	int_en_n: IkBe(ikk,n~N,nfkb)@nucleus + NFkB(ikba,ikbb,ikbe,n~N)@nucleus <-> NFkB(ikba,ikbb,ikbe!213,n~N)@nucleus.IkBe(ikk,n~0,nfkb!213)@nucleus r39_a6_2,r39_d6_2
+	int_2eni: NFkB(ikba,ikbb,ikbe!213,n~0)@cytoplasm.IkBe(ikk,n~0,nfkb!213)@cytoplasm + IKK(ikba,ikbb,ikbe)@cytoplasm <-> IkBeIKKNFkB()@cytoplasm r40_a9,r40_d3_2
+	int_2ein: IkBe(ikk!210,n~0,nfkb)@cytoplasm.IKK(ikba,ikbb,ikbe!210)@cytoplasm + NFkB(ikba,ikbb,ikbe,n~0)@cytoplasm <-> IkBeIKKNFkB()@cytoplasm r41_a6_3,r41_d6_3
+	deg_e: IkBe(ikk,n~0,nfkb)@cytoplasm -> 0  r42_deg3_c
+	deg_e_n: IkBe(ikk,n~N,nfkb)@nucleus -> 0  r43_deg3_n
+	deg_en_n: NFkB(ikba,ikbb,ikbe!213,n~N)@nucleus.IkBe(ikk,n~0,nfkb!213)@nucleus -> NFkB(ikba,ikbb,ikbe,n~N)@nucleus r44_deg6_n
+	deg_en: NFkB(ikba,ikbb,ikbe!213,n~0)@cytoplasm.IkBe(ikk,n~0,nfkb!213)@cytoplasm -> NFkB(ikba,ikbb,ikbe,n~0)@cytoplasm r45_deg6_c
+	deg_ei: IkBe(ikk!210,n~0,nfkb)@cytoplasm.IKK(ikba,ikbb,ikbe!210)@cytoplasm -> IKK(ikba,ikbb,ikbe)@cytoplasm r46_r3
+	deg_ein: IkBeIKKNFkB()@cytoplasm -> NFkB(ikba,ikbb,ikbe,n~0)@cytoplasm + IKK(ikba,ikbb,ikbe)@cytoplasm r47_r6
+	loc_e: IkBe(ikk,n~0,nfkb)@cytoplasm <-> IkBe(ikk,n~N,nfkb)@nucleus fRate47(),fRate47m()
+	loc_en: NFkB(ikba,ikbb,ikbe!213,n~N)@nucleus.IkBe(ikk,n~0,nfkb!213)@nucleus -> NFkB(ikba,ikbb,ikbe!213,n~0)@cytoplasm.IkBe(ikk,n~0,nfkb!213)@cytoplasm r49_k2_e
+	IKK_deg: IKK(ikba,ikbb,ikbe)@cytoplasm -> 0  r50_k_IKK_deg
+	itxn_a: 0  -> IkBat()@nucleus fRate50() #Modifiers(NFkB_nucleus)
+end reaction rules
+end model

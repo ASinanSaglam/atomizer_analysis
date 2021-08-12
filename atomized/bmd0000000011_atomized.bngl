@@ -1,0 +1,123 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL6615234250', 'http://identifiers.org/biomodels.db/BIOMD0000000011']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/10823939']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/6501300', 'http://identifiers.org/biomodels.db/BIOMD0000000009', 'http://identifiers.org/pubmed/6947258']
+#@BQB_IS_HOMOLOG_TO:['http://identifiers.org/reactome/REACT_634']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0000165']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/8355']
+#@creatorEmail:'bshapiro@jpl.nasa.gov'
+#@creatorName:'Shapiro Bruce'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 22 molecules and 30 reactions. The translated model has 7 molecules and 30 rules'
+###
+begin model
+begin parameters
+	r1_a1 1.000000
+	r2_d1 0.400000
+	r3_k1 0.100000
+	r4_a2 0.500000
+	r5_d2 0.500000
+	r6_k2 0.100000
+	r7_a3 3.300000
+	r8_d3 0.420000
+	r9_k3 0.100000
+	r10_a4 10.000000
+	r11_d4 0.800000
+	r12_k4 0.100000
+	r13_a5 3.300000
+	r14_d5 0.400000
+	r15_k5 0.100000
+	r16_a6 10.000000
+	r17_d6 0.800000
+	r18_k6 0.100000
+	r19_a7 20.000000
+	r20_d7 0.600000
+	r21_k7 0.100000
+	r22_a8 5.000000
+	r23_d8 0.400000
+	r24_k8 0.100000
+	r25_a9 20.000000
+	r26_d9 0.600000
+	r27_k9 0.100000
+	r28_a10 5.000000
+	r29_d10 0.400000
+	r30_k10 0.100000
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf interpro:IPR003577
+	RAFK(raf)
+	#^ bqbiol:isVersionOf uniprot:Q05116
+	MEK(_p~_P~0,mapk,mekphosphatase,p~P~0,raf)
+	#^ bqbiol:isVersionOf uniprot:P09560
+	RAF(_p~_P~0,mek,rafk,rafphosphatase)
+	RAFphosphatase(raf)
+	#^ bqbiol:isVersionOf uniprot:P26696
+	MAPK(_p~_P~0,mapkpase,mek,p~P~0)
+	MEKphosphatase(mek)
+	MAPKPase(hosphat~HOSPHAT~0,mapk)
+end molecule types
+begin seed species
+	MAPK(_p~0,mapkpase,mek,p~0) 0.4 #MAPK #MAPK
+	MAPKPase(hosphat~HOSPHAT,mapk) 0.3 #MAPKphosphatase #MAPKPH
+	MEK(_p~0,mapk,mekphosphatase,p~0,raf) 0.2 #MEK #MEK
+	MEKphosphatase(mek) 0.2 #MEKphosphatase #MEKPH
+	RAF(_p~0,mek,rafk,rafphosphatase) 0.3 #RAF #RAF
+	RAFK(raf) 0.2 #RAFK #RAFK
+	RAFphosphatase(raf) 0.3 #RAFphosphatase #RAFPH
+end seed species
+begin observables
+	Species MAPK MAPK(_p~0,mapkpase,mek,p~0) #MAPK
+	Species MAPK_MEK_PP MEK(_p~_P,mapk!16,mekphosphatase,p~P,raf).MAPK(_p~0,mapkpase,mek!16,p~0) #MAPK_MEK-PP
+	Species MAPK_P MAPK(_p~_P,mapkpase,mek,p~0) #MAPK-P
+	Species MAPKphosphatase MAPKPase(hosphat~HOSPHAT,mapk) #MAPK phosphatase
+	Species MAPK_P_MAPKPase MAPK(_p~_P,mapkpase!15,mek,p~0).MAPKPase(hosphat~0,mapk!15) #MAPK-P_MAPKPase
+	Species MAPK_P_MEK_PP MEK(_p~_P,mapk!16,mekphosphatase,p~P,raf).MAPK(_p~_P,mapkpase,mek!16,p~0) #MAPK-P_MEK-PP
+	Species MAPK_PP MAPK(_p~_P,mapkpase,mek,p~P) #MAPK-PP
+	Species MAPK_PP_MAPKPase MAPK(_p~_P,mapkpase!15,mek,p~P).MAPKPase(hosphat~0,mapk!15) #MAPK-PP_MAPKPase
+	Species MEK MEK(_p~0,mapk,mekphosphatase,p~0,raf) #MEK
+	Species MEK_P MEK(_p~_P,mapk,mekphosphatase,p~0,raf) #MEK-P
+	Species MEKphosphatase MEKphosphatase(mek) #MEK phosphatase
+	Species MEK_P_MEKPase MEK(_p~_P,mapk,mekphosphatase!14,p~0,raf).MEKphosphatase(mek!14) #MEK-P_MEKPase
+	Species MEK_PP MEK(_p~_P,mapk,mekphosphatase,p~P,raf) #MEK-PP
+	Species MEK_PP_MEKPase MEK(_p~_P,mapk,mekphosphatase!14,p~P,raf).MEKphosphatase(mek!14) #MEK-PP_MEKPase
+	Species MEK_P_RAF_P MEK(_p~_P,mapk,mekphosphatase,p~0,raf!12).RAF(_p~_P,mek!12,rafk,rafphosphatase) #MEK-P_RAF-P
+	Species MEK_RAF_P MEK(_p~0,mapk,mekphosphatase,p~0,raf!12).RAF(_p~_P,mek!12,rafk,rafphosphatase) #MEK_RAF-P
+	Species RAF RAF(_p~0,mek,rafk,rafphosphatase) #RAF
+	Species RAFK RAFK(raf) #RAFK
+	Species RAF_P RAF(_p~_P,mek,rafk,rafphosphatase) #RAF-P
+	Species RAFphosphatase RAFphosphatase(raf) #RAF phosphatase
+	Species RAF_P_RAFPase RAF(_p~_P,mek,rafk,rafphosphatase!13).RAFphosphatase(raf!13) #RAF-P_RAFPase
+	Species RAF_RAFK RAF(_p~0,mek,rafk!11,rafphosphatase).RAFK(raf!11) #RAF_RAFK
+end observables
+begin reaction rules
+	Reaction1: RAF(_p~0,mek,rafk,rafphosphatase) + RAFK(raf) -> RAF(_p~0,mek,rafk!11,rafphosphatase).RAFK(raf!11) r1_a1
+	Reaction2: RAF(_p~0,mek,rafk!11,rafphosphatase).RAFK(raf!11) -> RAF(_p~0,mek,rafk,rafphosphatase) + RAFK(raf) r2_d1
+	Reaction3: RAF(_p~0,mek,rafk!11,rafphosphatase).RAFK(raf!11) -> RAFK(raf) + RAF(_p~_P,mek,rafk,rafphosphatase) r3_k1
+	Reaction4: RAF(_p~_P,mek,rafk,rafphosphatase) + RAFphosphatase(raf) -> RAF(_p~_P,mek,rafk,rafphosphatase!13).RAFphosphatase(raf!13) r4_a2
+	Reaction5: RAF(_p~_P,mek,rafk,rafphosphatase!13).RAFphosphatase(raf!13) -> RAF(_p~_P,mek,rafk,rafphosphatase) + RAFphosphatase(raf) r5_d2
+	Reaction6: RAF(_p~_P,mek,rafk,rafphosphatase!13).RAFphosphatase(raf!13) -> RAF(_p~0,mek,rafk,rafphosphatase) + RAFphosphatase(raf) r6_k2
+	Reaction7: MEK(_p~0,mapk,mekphosphatase,p~0,raf) + RAF(_p~_P,mek,rafk,rafphosphatase) -> MEK(_p~0,mapk,mekphosphatase,p~0,raf!12).RAF(_p~_P,mek!12,rafk,rafphosphatase) r7_a3
+	Reaction8: MEK(_p~0,mapk,mekphosphatase,p~0,raf!12).RAF(_p~_P,mek!12,rafk,rafphosphatase) -> MEK(_p~0,mapk,mekphosphatase,p~0,raf) + RAF(_p~_P,mek,rafk,rafphosphatase) r8_d3
+	Reaction9: MEK(_p~0,mapk,mekphosphatase,p~0,raf!12).RAF(_p~_P,mek!12,rafk,rafphosphatase) -> MEK(_p~_P,mapk,mekphosphatase,p~0,raf) + RAF(_p~_P,mek,rafk,rafphosphatase) r9_k3
+	Reaction10: MEK(_p~_P,mapk,mekphosphatase,p~0,raf) + MEKphosphatase(mek) -> MEK(_p~_P,mapk,mekphosphatase!14,p~0,raf).MEKphosphatase(mek!14) r10_a4
+	Reaction11: MEK(_p~_P,mapk,mekphosphatase!14,p~0,raf).MEKphosphatase(mek!14) -> MEK(_p~_P,mapk,mekphosphatase,p~0,raf) + MEKphosphatase(mek) r11_d4
+	Reaction12: MEK(_p~_P,mapk,mekphosphatase!14,p~0,raf).MEKphosphatase(mek!14) -> MEK(_p~0,mapk,mekphosphatase,p~0,raf) + MEKphosphatase(mek) r12_k4
+	Reaction13: MEK(_p~_P,mapk,mekphosphatase,p~0,raf) + RAF(_p~_P,mek,rafk,rafphosphatase) -> MEK(_p~_P,mapk,mekphosphatase,p~0,raf!12).RAF(_p~_P,mek!12,rafk,rafphosphatase) r13_a5
+	Reaction14: MEK(_p~_P,mapk,mekphosphatase,p~0,raf!12).RAF(_p~_P,mek!12,rafk,rafphosphatase) -> MEK(_p~_P,mapk,mekphosphatase,p~0,raf) + RAF(_p~_P,mek,rafk,rafphosphatase) r14_d5
+	Reaction15: MEK(_p~_P,mapk,mekphosphatase,p~0,raf!12).RAF(_p~_P,mek!12,rafk,rafphosphatase) -> MEK(_p~_P,mapk,mekphosphatase,p~P,raf) + RAF(_p~_P,mek,rafk,rafphosphatase) r15_k5
+	Reaction16: MEKphosphatase(mek) + MEK(_p~_P,mapk,mekphosphatase,p~P,raf) -> MEK(_p~_P,mapk,mekphosphatase!14,p~P,raf).MEKphosphatase(mek!14) r16_a6
+	Reaction17: MEK(_p~_P,mapk,mekphosphatase!14,p~P,raf).MEKphosphatase(mek!14) -> MEKphosphatase(mek) + MEK(_p~_P,mapk,mekphosphatase,p~P,raf) r17_d6
+	Reaction18: MEK(_p~_P,mapk,mekphosphatase!14,p~P,raf).MEKphosphatase(mek!14) -> MEK(_p~_P,mapk,mekphosphatase,p~0,raf) + MEKphosphatase(mek) r18_k6
+	Reaction19: MAPK(_p~0,mapkpase,mek,p~0) + MEK(_p~_P,mapk,mekphosphatase,p~P,raf) -> MEK(_p~_P,mapk!16,mekphosphatase,p~P,raf).MAPK(_p~0,mapkpase,mek!16,p~0) r19_a7
+	Reaction20: MEK(_p~_P,mapk!16,mekphosphatase,p~P,raf).MAPK(_p~0,mapkpase,mek!16,p~0) -> MAPK(_p~0,mapkpase,mek,p~0) + MEK(_p~_P,mapk,mekphosphatase,p~P,raf) r20_d7
+	Reaction21: MEK(_p~_P,mapk!16,mekphosphatase,p~P,raf).MAPK(_p~0,mapkpase,mek!16,p~0) -> MAPK(_p~_P,mapkpase,mek,p~0) + MEK(_p~_P,mapk,mekphosphatase,p~P,raf) r21_k7
+	Reaction22: MAPK(_p~_P,mapkpase,mek,p~0) + MAPKPase(hosphat~HOSPHAT,mapk) -> MAPK(_p~_P,mapkpase!15,mek,p~0).MAPKPase(hosphat~0,mapk!15) r22_a8
+	Reaction23: MAPK(_p~_P,mapkpase!15,mek,p~0).MAPKPase(hosphat~0,mapk!15) -> MAPK(_p~_P,mapkpase,mek,p~0) + MAPKPase(hosphat~HOSPHAT,mapk) r23_d8
+	Reaction24: MAPK(_p~_P,mapkpase!15,mek,p~0).MAPKPase(hosphat~0,mapk!15) -> MAPK(_p~0,mapkpase,mek,p~0) + MAPKPase(hosphat~HOSPHAT,mapk) r24_k8
+	Reaction25: MAPK(_p~_P,mapkpase,mek,p~0) + MEK(_p~_P,mapk,mekphosphatase,p~P,raf) -> MEK(_p~_P,mapk!16,mekphosphatase,p~P,raf).MAPK(_p~_P,mapkpase,mek!16,p~0) r25_a9
+	Reaction26: MEK(_p~_P,mapk!16,mekphosphatase,p~P,raf).MAPK(_p~_P,mapkpase,mek!16,p~0) -> MAPK(_p~_P,mapkpase,mek,p~0) + MEK(_p~_P,mapk,mekphosphatase,p~P,raf) r26_d9
+	Reaction27: MEK(_p~_P,mapk!16,mekphosphatase,p~P,raf).MAPK(_p~_P,mapkpase,mek!16,p~0) -> MAPK(_p~_P,mapkpase,mek,p~P) + MEK(_p~_P,mapk,mekphosphatase,p~P,raf) r27_k9
+	Reaction28: MAPKPase(hosphat~HOSPHAT,mapk) + MAPK(_p~_P,mapkpase,mek,p~P) -> MAPK(_p~_P,mapkpase!15,mek,p~P).MAPKPase(hosphat~0,mapk!15) r28_a10
+	Reaction29: MAPK(_p~_P,mapkpase!15,mek,p~P).MAPKPase(hosphat~0,mapk!15) -> MAPKPase(hosphat~HOSPHAT,mapk) + MAPK(_p~_P,mapkpase,mek,p~P) r29_d10
+	Reaction30: MAPK(_p~_P,mapkpase!15,mek,p~P).MAPKPase(hosphat~0,mapk!15) -> MAPK(_p~_P,mapkpase,mek,p~0) + MAPKPase(hosphat~HOSPHAT,mapk) r30_k10
+end reaction rules
+end model

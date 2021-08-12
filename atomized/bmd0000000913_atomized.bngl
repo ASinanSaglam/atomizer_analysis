@@ -1,0 +1,105 @@
+###
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/taxonomy/9606', 'http://identifiers.org/biomodels.db/MODEL2001160001']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/biomodels.db/MODEL2001160001', 'http://identifiers.org/doi/10.1142/S0218339008002435']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000913', 'http://identifiers.org/biomodels.db/MODEL2001200003']
+#@creatorEmail:'msharifshohan@ebi.ac.uk'
+#@creatorName:'Sharif Shohan Mohammad Umer'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 6 molecules and 12 reactions. The translated model has 6 molecules and 12 rules'
+###
+begin model
+begin parameters
+	d 5.0
+	s 0.3
+	l 2.0
+	a 0.002
+	b 1.02e-09
+	c1 3.23e-07
+	f 0.0412
+	g 0.025
+	g_I 20000000.0
+	g_T 100000.0
+	h 600.0
+	K_C 0.6
+	K_L 0.6
+	K_N 0.6
+	K_T 0.8
+	m 0.02
+	p 1e-07
+	p_I 0.125
+	p_T 0.6
+	q 3.42e-10
+	r2 3e-11
+	s_1 0.3
+	u 3.0
+	w 0.0002
+	alpha_1 13000.0
+	alpha_2 500000000.0
+	beta 0.012
+	gamma 0.9
+	eta 1.0
+	mu_I 10.0
+	ModelValue_0 (5.0)
+	ModelValue_2 (2.0)
+	ModelValue_1 (0.3)
+	r3_V_L 0.000000
+	r9_V_I 0.000000
+	r11_V_M 0.000000
+end parameters
+begin molecule types
+	#^ bqbiol:hasProperty efo:0000616
+	T()
+	#^ bqbiol:hasProperty ncit:C132890
+	N()
+	#^ bqbiol:isVersionOf bto:BTO:0000289
+	L()
+	#^ bqbiol:hasProperty ncit:C120462
+	C()
+	#^ bqbiol:hasProperty ncit:C191
+	M()
+	#^ bqbiol:isVersionOf uniprot:P60568
+	I()
+end molecule types
+begin seed species
+	T() 6.022e+27 # (10000000.0 * 0.001)mol/L * 6.022e23/mol *1.0L #T #T
+	L() 1.2044e+24 #original 2000.0substance/volume #L #L
+	N() 3.0110000000000003e+26 #original 500000.0substance/volume #N #N
+	C() 2.511174e+31 #original 41700000000.0substance/volume #C #C
+	I() 1.2044e+24 #original 2000.0substance/volume #I #I
+end seed species
+begin observables
+	Species T T() #T
+	Species L L() #L
+	Species N N() #N
+	Species C C() #C
+	Species I I() #I
+	Species M M() #M
+end observables
+begin functions
+	D() = ModelValue_0*(L/T)^ModelValue_2/(ModelValue_1 + (L/T)^ModelValue_2)
+	fRate0() = T*a
+	fRate0m() = T*a*b
+	fRate1() = 1.0*D*T + 1.0*K_T*M*T + 1.0*N*T*c1
+	fRate2() = (1.0*C*T*r2*(I + g_I) + I*L*p_I)/(1.0*I + 1.0*g_I)
+	fRate3() = 1.0*K_L*L*M + 1.0*L^2*u + 1.0*L*T*q + 1.0*L*m
+	fRate4() = (N*T^eta*g + 1.0*alpha_1*(T^eta + h))/(1.0*T^eta + 1.0*h)
+	fRate5() = 1.0*K_N*M*N + 1.0*N*T*p + 1.0*N*f
+	fRate7() = 1.0*C*K_C*M + 1.0*C*beta
+	fRate8() = (I*L*w*(T + g_T) + 1.0*L*T*p_T)/(1.0*T + 1.0*g_T)
+end functions
+begin reaction rules
+	Detection_and_induction_of_tumor_cell_population: 0  <-> T() fRate0(),fRate0m()
+	Elimination_of_tumor_by_the_action_of_immune_response_reactants_0: 0  -> T() -1*(fRate1()) #Modifiers(N, M)
+	Activation_and_transfer_of_tumor_specific_CTL_at_the_site_of_tumor: 0  -> L() fRate2() #Modifiers(C, T, I)
+	Elimination_of_tumor_specific_CLT_reactants_0: 0  -> L() -1*(fRate3()) #Modifiers(T, M)
+	Activation_of_nonspecific_effector_immune_cell_population: 0  -> N() fRate4() #Modifiers(T)
+	Inactivation_and_elimination_of_non_specific_effector_immune_cell_population_reactants_0: 0  -> N() -1*(fRate5()) #Modifiers(T, M)
+	Activation_and_increase_of_circulating_lymphocyte_population: 0  -> C() alpha_2
+	Removal_of_ciruclating_lymphocyte_population_reactants_0: 0  -> C() -1*(fRate7()) #Modifiers(M)
+	Increase_in_IL_2_concentration: 0  -> I() fRate8() #Modifiers(T, L)
+	Decrease_in_IL_2_production: I() -> 0  mu_I
+	Increase_of_chemotherapy_drug_in_the_blood: 0  -> M() r11_V_M
+	Decrease_in_chemotherapy_Drug_in_the_blood: M() -> 0  gamma
+end reaction rules
+end model

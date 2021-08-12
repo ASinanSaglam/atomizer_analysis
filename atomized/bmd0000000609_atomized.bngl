@@ -1,0 +1,59 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1603080000', 'http://identifiers.org/biomodels.db/BIOMD0000000609']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/26348886']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/26966512']
+#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000759']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_HAS_PROPERTY:['urn:miriam:efo:EFO%3A0004228']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:1901554']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 5 molecules and 10 reactions. The translated model has 3 molecules and 10 rules'
+###
+begin model
+begin parameters
+	P0 1.32e-13
+	dG 2.0
+	bG 1.374e-14
+	kGSH 1.6e+18
+	kG 2.99
+	kS 226000000000000.0
+	bS 2.65e-14
+	dS 2.0
+	k450 0.315
+	kN 0.0315
+	kPSH 110.0
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf uniprot:P15559
+	NAPQI(Paracetamol_APAP~Paracetamol_APAP~0,Protein_adducts~Protein_adducts~0)
+	#^ bqbiol:is chebi:CHEBI:17980
+	Sulphate_PAPS()
+	#^ bqbiol:is chebi:CHEBI:16856
+	GSH()
+end molecule types
+begin seed species
+	Sulphate_PAPS() (2.65e-14) / (2.0) #Sulphate__PAPS
+	GSH() (1.374e-14) / (2.0) #GSH
+	NAPQI(Paracetamol_APAP~Paracetamol_APAP,Protein_adducts~0) (1.32e-13) #Paracetamol_APAP
+end seed species
+begin observables
+	Species Sulphate_PAPS Sulphate_PAPS() #Sulphate_PAPS
+	Species GSH GSH() #GSH
+	Species NAPQI NAPQI(Paracetamol_APAP~0,Protein_adducts~0) #NAPQI
+	Species Paracetamol_APAP NAPQI(Paracetamol_APAP~Paracetamol_APAP,Protein_adducts~0) #Paracetamol_APAP
+	Species Protein_adducts NAPQI(Paracetamol_APAP~0,Protein_adducts~Protein_adducts) #Protein_adducts
+end observables
+begin reaction rules
+	reaction_1: NAPQI(Paracetamol_APAP~Paracetamol_APAP,Protein_adducts~0) -> NAPQI(Paracetamol_APAP~0,Protein_adducts~0) k450 #Modifiers(Paracetamol_APAP)
+	R2: NAPQI(Paracetamol_APAP~0,Protein_adducts~0) -> NAPQI(Paracetamol_APAP~Paracetamol_APAP,Protein_adducts~0) kN #Modifiers(NAPQI)
+	R3: NAPQI(Paracetamol_APAP~Paracetamol_APAP,Protein_adducts~0) -> 0  kG #Modifiers(Paracetamol_APAP)
+	R4: NAPQI(Paracetamol_APAP~0,Protein_adducts~0) -> NAPQI(Paracetamol_APAP~0,Protein_adducts~Protein_adducts) kPSH #Modifiers(NAPQI)
+	R5: NAPQI(Paracetamol_APAP~0,Protein_adducts~0) + GSH() -> 0  kGSH #Modifiers(NAPQI, GSH)
+	R6: GSH() -> 0  dG #Modifiers(GSH)
+	R7: 0  -> GSH() bG
+	R8: NAPQI(Paracetamol_APAP~Paracetamol_APAP,Protein_adducts~0) + Sulphate_PAPS() -> 0  kS #Modifiers(Paracetamol_APAP, Sulphate__PAPS)
+	R9: Sulphate_PAPS() -> 0  dS #Modifiers(Sulphate__PAPS)
+	R10: 0  -> Sulphate_PAPS() bS
+end reaction rules
+end model

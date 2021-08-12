@@ -1,0 +1,73 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/25596516']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/go/GO:0002418', 'http://identifiers.org/ncit/C15632', 'http://identifiers.org/efo/0003833']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1908020001', 'http://identifiers.org/biomodels.db/BIOMD0000000775']
+#@creatorEmail:'jm2187@cam.ac.uk'
+#@creatorName:'Men Jinghao'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 4 molecules and 10 reactions. The translated model has 4 molecules and 10 rules'
+###
+begin model
+begin parameters
+	o1 0.0068 #units:unit_0
+	b1 0.018 #units:unit_0
+	p1 4.7e-08 #units:unit_0
+	a1 1.0 #units:unit_1
+	o2 0.012 #units:unit_0
+	b2 0.0018 #units:unit_0
+	p2 4.7e-05 #units:unit_0
+	a2 1.0 #units:unit_1
+	a 2.0 #units:unit_1
+	p3 4.7e-08 #units:unit_0
+	a3 1.0 #units:unit_1
+	fi 100.0 #units:unit_0
+	zeta 0.2 #units:unit_0
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf cl:CL:0000125
+	G()
+	#^ bqbiol:isVersionOf bto:BTO:0000526
+	C()
+	#^ bqbiol:isVersionOf ncit:C15632
+	Q()
+	#^ bqbiol:isVersionOf cl:CL:0000540
+	N()
+end molecule types
+begin seed species
+	G() 5.961780000000001e+20 # (0.99 * 0.001)mol/L * 6.022e23/mol *1.0L #G #G
+	C() 6.022000000000001e+18 #original 0.01substance/volume #C #C
+	N() 5.961780000000001e+20 #original 0.99substance/volume #N #N
+end seed species
+begin observables
+	Species G G() #G
+	Species C C() #C
+	Species N N() #N
+	Species Q Q() #Q
+end observables
+begin functions
+	H() =  if((-gg<0),(0),(if((-gg>0),(1),(0.5))))
+	gg() = NaN
+	fRate0() = G*o1
+	fRate0m() = G*o1
+	fRate1() = C*b1
+	fRate2() = Q*p1/(G + a1)
+	fRate3() = C*o2
+	fRate3m() = C*o2
+	fRate4() = G*b2
+	fRate5() = Q*p2/(C + a2)
+	fRate6() = H*N*a*gg
+	fRate7() = Q*p3/(N + a3)
+end functions
+begin reaction rules
+	gc_growth: 0  <-> G() fRate0(),fRate0m()
+	gc_death: G() -> 0  fRate1() #Modifiers(C)
+	gc_killing: G() -> 0  fRate2() #Modifiers(Q)
+	cc_growth: 0  <-> C() fRate3(),fRate3m()
+	cc_death: C() -> 0  fRate4() #Modifiers(G)
+	cc_killing: C() -> 0  fRate5() #Modifiers(Q)
+	n_increase: 0  -> N() fRate6() #Modifiers(G)
+	n_killing: N() -> 0  fRate7() #Modifiers(Q)
+	chemotherapy: 0  -> Q() fi
+	drug_decay: Q() -> 0  zeta
+end reaction rules
+end model

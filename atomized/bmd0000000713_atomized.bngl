@@ -1,0 +1,57 @@
+###
+#@BQB_IS:['http://identifiers.org/biomodels.db/MODEL1808280002']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/efo/0003047']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606', 'http://identifiers.org/taxonomy/11103']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/29652855']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000713', 'http://identifiers.org/biomodels.db/MODEL1808280002']
+#@creatorEmail:'sarubini.kananathan@hotmail.co.uk'
+#@creatorName:'Kananathan Sarubini'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 3 molecules and 9 reactions. The translated model has 2 molecules and 9 rules'
+###
+begin model
+begin parameters
+	s 0.1178
+	r_T_Tmax 10645.0
+	r_T_d 0.0019927
+	R 30.078
+	D 58.954
+	beta 8.3376e-09
+	pstar 203.96
+	c 17.908
+end parameters
+begin molecule types
+	#^ bqbiol:hasTaxon taxonomy:11103
+	ViralLoad__V__(healthyhepatocytes__t__)
+	#^ bqbiol:isVersionOf bto:BTO:0000575
+	HealthyHepatocytes__T__(viralload__v__)
+end molecule types
+begin seed species
+	HealthyHepatocytes__T__(viralload__v__) 2.0020741200000003e+24 # 3.3246mol/L * 6.022e23/mol *1.0L #HealthyHepatocytes__T__ #T
+	ViralLoad__V__(healthyhepatocytes__t__!2).HealthyHepatocytes__T__(viralload__v__!2) 2.51430544e+29 #original 417520.0mol/volume  #InfectedHepatocytes__I__ #I
+	ViralLoad__V__(healthyhepatocytes__t__) 2.67979e+30 #original 4450000.0mol/volume  #ViralLoad__V__ #V
+end seed species
+begin observables
+	Species HealthyHepatocytes__T__ HealthyHepatocytes__T__(viralload__v__) #Healthy Hepatocytes (T)
+	Species InfectedHepatocytes__I__ ViralLoad__V__(healthyhepatocytes__t__!2).HealthyHepatocytes__T__(viralload__v__!2) #Infected Hepatocytes (I)
+	Species ViralLoad__V__ ViralLoad__V__(healthyhepatocytes__t__) #Viral Load (V)
+end observables
+begin functions
+	fRate0() = InfectedHepatocytes__I__*s
+	fRate1() = HealthyHepatocytes__T__*r_T_Tmax/(HealthyHepatocytes__T__ + InfectedHepatocytes__I__)
+	fRate4() = InfectedHepatocytes__I__*r_T_Tmax/(HealthyHepatocytes__T__*R + HealthyHepatocytes__T__ + InfectedHepatocytes__I__*R + InfectedHepatocytes__I__)
+	fRate5() = r_T_d/(R + 1.0)
+	fRate6() = D*r_T_d
+	fRate7() = InfectedHepatocytes__I__*pstar
+end functions
+begin reaction rules
+	Reaction_1: 0  -> HealthyHepatocytes__T__(viralload__v__) fRate0() #Modifiers(I)
+	Reaction_2: 0  -> HealthyHepatocytes__T__(viralload__v__) fRate1() #Modifiers(I)
+	Reaction_3: HealthyHepatocytes__T__(viralload__v__) -> 0  r_T_d
+	Reaction_4: HealthyHepatocytes__T__(viralload__v__) + ViralLoad__V__(healthyhepatocytes__t__) -> ViralLoad__V__(healthyhepatocytes__t__!2).HealthyHepatocytes__T__(viralload__v__!2) beta
+	Reaction_5: 0  -> ViralLoad__V__(healthyhepatocytes__t__!2).HealthyHepatocytes__T__(viralload__v__!2) fRate4() #Modifiers(T)
+	Reaction_6: ViralLoad__V__(healthyhepatocytes__t__!2).HealthyHepatocytes__T__(viralload__v__!2) -> 0  fRate5()
+	Reaction_7: ViralLoad__V__(healthyhepatocytes__t__!2).HealthyHepatocytes__T__(viralload__v__!2) -> 0  fRate6()
+	Reaction_8: 0  -> ViralLoad__V__(healthyhepatocytes__t__) fRate7() #Modifiers(I)
+	Reaction_9: ViralLoad__V__(healthyhepatocytes__t__) -> 0  c
+end reaction rules
+end model

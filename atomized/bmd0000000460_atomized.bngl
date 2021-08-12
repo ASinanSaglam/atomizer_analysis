@@ -1,0 +1,44 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000460', 'http://identifiers.org/biomodels.db/MODEL1302080000']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/22511268']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/obo.go/GO:0030162']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/1423']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 4 molecules and 3 reactions. The translated model has 2 molecules and 4 rules'
+###
+begin model
+begin parameters
+	kbd 5.8e-09
+	kbs 100.0
+	kbx 8.4e-05
+	kxd 1.2e-13
+	kxs 2e-06
+	kzd 0.052
+	kzs 1.7e-06
+end parameters
+begin molecule types
+	#^ bqbiol:is chebi:CHEBI:35222
+	x(lacz~lacz~0,sigb~sigb~0)
+	#^ bqbiol:is chebi:CHEBI:61448
+	IPTG()
+end molecule types
+begin seed species
+	$IPTG() 6.022e+25 # 100.0mol/L * 6.022e23/mol *1.0L #IPTG #IPTG
+end seed species
+begin observables
+	Species IPTG IPTG() #IPTG
+	Species sigb x(lacz~0,sigb~sigb) #sigb
+	Species lacz x(lacz~lacz,sigb~0) #lacz
+	Species x x(lacz~0,sigb~0) #x
+end observables
+begin functions
+	fRate0() = IPTG*kbs - sigb*(kbd + kbx*x)
+end functions
+begin reaction rules
+	v1_reactants_0: 0  -> IPTG() -1*(fRate0()) #Modifiers(x, IPTG, sigb, x)
+	v1_products_0: 0  -> x(lacz~0,sigb~sigb) fRate0() #Modifiers(x, IPTG, sigb, x)
+	v2: x(lacz~0,sigb~sigb) <-> x(lacz~lacz,sigb~0) kzs,kzd #Modifiers(lacz, sigb)
+	v3: x(lacz~0,sigb~sigb) <-> x(lacz~0,sigb~0) kxs,kxd #Modifiers(sigb, x)
+end reaction rules
+end model

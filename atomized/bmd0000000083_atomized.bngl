@@ -1,0 +1,221 @@
+###
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/MODEL4710748444', 'http://identifiers.org/kegg.pathway/hsa04710', 'http://identifiers.org/biomodels.db/BIOMD0000000021', 'http://identifiers.org/taxonomy/40674', 'http://identifiers.org/go/GO:0042752', 'http://identifiers.org/biomodels.db/BIOMD0000000083']
+#@BQB_HAS_VERSION:['http://identifiers.org/kegg.pathway/hsa04710']
+#@BQB_IS:['http://identifiers.org/biomodels.db/BIOMD0000000083', 'http://identifiers.org/biomodels.db/MODEL4710748444']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0042752']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/40674']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/12775757', 'http://identifiers.org/biomodels.db/BIOMD0000000021']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000083', 'http://identifiers.org/biomodels.db/MODEL4710748444']
+#@creatorEmail:'enuo.he@wolfson.ox.ac.uk'
+#@creatorName:'He Enuo'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 19 molecules and 57 reactions. The translated model has 9 molecules and 57 rules'
+###
+begin model
+begin parameters
+	vmP 2.2
+	kdmp 0.02
+	vsC 2.2
+	vmC 2.0
+	kdmc 0.02
+	vsB 1.8
+	vmB 1.3
+	kdmb 0.02
+	ksP 1.2
+	V1P 9.6
+	V2P 0.6
+	k4 0.4
+	k3 0.8
+	kdn 0.02
+	ksC 3.2
+	V1C 1.2
+	V2C 0.2
+	kdnC 0.02
+	KmB 0.4
+	Kp 1.006
+	Kdp 0.1
+	VdPC 3.4
+	vdCC 1.4
+	Kd 0.3
+	V1PC 2.4
+	V2PC 0.2
+	k2 0.4
+	k1 0.8
+	V3PC 2.4
+	V4PC 0.2
+	k7 1.0
+	k8 0.2
+	vdPCC 1.4
+	vdPCN 1.4
+	ksB 0.32
+	V1B 1.4
+	V2B 0.2
+	k5 0.8
+	k6 0.4
+	vdBC 3.0
+	V3B 1.4
+	V4B 0.4
+	vdBN 3.0
+	vdIN 1.6
+	vsR 1.6
+	KAR 0.6
+	vmR 1.6
+	kmR 0.4
+	kdmr 0.02
+	ksR 1.7
+	k9 0.8
+	k10 0.4
+	vdRC 4.4
+	vdRN 0.8
+	KAP 0.6
+	KAC 0.6
+	KmP 0.3
+	KmC 0.4
+	h 2.0
+	m 2.0
+	n 2.0
+	r1_K 1.000000
+end parameters
+begin molecule types
+	#^ bqbiol:hasVersion uniprot:Q8IV71, uniprot:Q16526
+	Cc(p~P~0,p2~P~0,pc)
+	#^ bqbiol:encodes uniprot:Q6EEZ7
+	#^ bqbiol:isVersionOf chebi:CHEBI:33699
+	Mr()
+	#^ bqbiol:encodes uniprot:O00327
+	#^ bqbiol:isVersionOf chebi:CHEBI:33699
+	Mb()
+	#^ bqbiol:hasVersion uniprot:O00327
+	Bc(Bn~Bn~0,p~P~0,pcn)
+	#^ bqbiol:hasVersion uniprot:O15055, uniprot:O15534, uniprot:P56645
+	Pc(cc,p~P~0)
+	#^ bqbiol:encodes uniprot:P56645, uniprot:O15055, uniprot:O15534
+	#^ bqbiol:isVersionOf chebi:CHEBI:33699
+	Mp()
+	#^ bqbiol:encodes uniprot:Q16526, uniprot:Q8IV71
+	#^ bqbiol:isVersionOf chebi:CHEBI:33699
+	Mc()
+	#^ bqbiol:hasVersion uniprot:Q6EEZ7
+	Rc(Rn~Rn~0)
+	#^ bqbiol:hasPart uniprot:Q8IV71, uniprot:Q16526, uniprot:P56645, uniprot:O15534
+	PCn(bc,p~P~0)
+end molecule types
+begin seed species
+end seed species
+begin observables
+	Species Mb Mb() #Mb
+	Species Bc Bc(Bn~0,p~0,pcn) #Bc
+	Species Bcp Bc(Bn~0,p~P,pcn) #Bcp
+	Species Bn Bc(Bn~Bn,p~0,pcn) #Bn
+	Species Cc Cc(p~0,p2~0,pc) #Cc
+	Species Mc Mc() #Mc
+	Species Ccp Cc(p~P,p2~0,pc) #Ccp
+	Species Mp Mp() #Mp
+	Species Pc Pc(cc,p~0) #Pc
+	Species Pcp Pc(cc,p~P) #Pcp
+	Species PCc Cc(p~0,p2~0,pc!103).Pc(cc!103,p~0) #PCc
+	Species PCcp Cc(p~P,p2~P,pc) #PCcp
+	Species PCn PCn(bc,p~0) #PCn
+	Species Bnp Bc(Bn~Bn,p~P,pcn) #Bnp
+	Species PCnp PCn(bc,p~P) #PCnp
+	Species In Bc(Bn~Bn,p~0,pcn!104).PCn(bc!104,p~0) #In
+	Species Mr Mr() #Mr
+	Species Rc Rc(Rn~0) #Rc
+	Species Rn Rc(Rn~Rn) #Rn
+end observables
+begin functions
+	parameter_0000096() = min(rint(sin(0.261799387791667*time() + 0.001)/2 + 0.5), rint(sin(0.261799387791667*time() + 0.001)/2 + 1))
+	parameter_0000097() = 0.6*parameter_0000096 + 2.4
+	fRate0() = 1.0^m*vsB/(1.0^m + Rn^m)
+	fRate1() = Mb*ksB
+	fRate3() = V1B/(Bc + Kp)
+	fRate5() = Mc*ksC
+	fRate7() = V1C/(Cc + Kp)
+	fRate8() = vdCC/(Ccp + Kd)
+	fRate9() = Bn^n*parameter_0000097/(Bn^n + KAP^n)
+	fRate10() = Mp*ksP
+	fRate11() = VdPC/(Kd + Pcp)
+	fRate12() = V1P/(Kp + Pc)
+	fRate14() = V1PC/(Kp + PCc)
+	fRate15() = vdPCC/(Kd + PCcp)
+	fRate20() = Bn^n*vsC/(Bn^n + KAC^n)
+	fRate21() = V3PC/(Kp + PCn)
+	fRate24() = vmB/(KmB + Mb)
+	fRate25() = vmC/(KmC + Mc)
+	fRate26() = vmP/(KmP + Mp)
+	fRate33() = vdPCN/(Kd + PCnp)
+	fRate35() = vdBC/(Bcp + Kd)
+	fRate36() = V3B/(Bn + Kp)
+	fRate37() = vdBN/(Bnp + Kd)
+	fRate39() = vdIN/(In + Kd)
+	fRate41() = V2B/(Bcp + Kdp)
+	fRate42() = V4B/(Bnp + Kdp)
+	fRate43() = V2C/(Ccp + Kdp)
+	fRate44() = V2P/(Kdp + Pcp)
+	fRate45() = V4PC/(Kdp + PCnp)
+	fRate47() = V2PC/(Kdp + PCcp)
+	fRate48() = Bn^h*vsR/(Bn^h + KAR^h)
+	fRate50() = vmR/(Mr + kmR)
+	fRate51() = Mr*ksR
+	fRate53() = vdRC/(Kd + Rc)
+	fRate55() = vdRN/(Kd + Rn)
+end functions
+begin reaction rules
+	reaction_0: 0  -> Mb() fRate0() #Modifiers(Rn)
+	reaction_1: 0  -> Bc(Bn~0,p~0,pcn) fRate1() #Modifiers(Mb)
+	reaction_2: Mb() -> 0  kdmb
+	reaction_3: Bc(Bn~0,p~0,pcn) -> Bc(Bn~0,p~P,pcn) fRate3()
+	reaction_4: Bc(Bn~0,p~0,pcn) <-> Bc(Bn~Bn,p~0,pcn) k5,k6
+	reaction_5: 0  -> Cc(p~0,p2~0,pc) fRate5() #Modifiers(Mc)
+	reaction_6: Mc() -> 0  kdmc
+	reaction_7: Cc(p~0,p2~0,pc) -> Cc(p~P,p2~0,pc) fRate7()
+	reaction_8: Cc(p~P,p2~0,pc) -> 0  fRate8()
+	reaction_9: 0  -> Mp() fRate9() #Modifiers(Bn)
+	reaction_10: 0  -> Pc(cc,p~0) fRate10() #Modifiers(Mp)
+	reaction_11: Pc(cc,p~P) -> 0  fRate11()
+	reaction_12: Pc(cc,p~0) -> Pc(cc,p~P) fRate12()
+	reaction_13: Cc(p~0,p2~0,pc) + Pc(cc,p~0) <-> Cc(p~0,p2~0,pc!103).Pc(cc!103,p~0) k3,k4
+	reaction_14: Cc(p~0,p2~0,pc!103).Pc(cc!103,p~0) -> Cc(p~P,p2~P,pc) fRate14()
+	reaction_15: Cc(p~P,p2~P,pc) -> 0  fRate15()
+	reaction_16: Cc(p~0,p2~0,pc!103).Pc(cc!103,p~0) <-> PCn(bc,p~0) k1,k2
+	reaction_17: PCn(bc,p~P) -> 0  kdn
+	reaction_18: Bc(Bn~0,p~P,pcn) -> 0  kdn
+	reaction_19: Bc(Bn~Bn,p~P,pcn) -> 0  kdn
+	reaction_20: 0  -> Mc() fRate20() #Modifiers(Bn)
+	reaction_21: PCn(bc,p~0) -> PCn(bc,p~P) fRate21()
+	reaction_22: Mp() -> 0  kdmp
+	reaction_23: PCn(bc,p~0) + Bc(Bn~Bn,p~0,pcn) <-> Bc(Bn~Bn,p~0,pcn!104).PCn(bc!104,p~0) k7,k8
+	reaction_24: Mb() -> 0  fRate24()
+	reaction_25: Mc() -> 0  fRate25()
+	reaction_26: Mp() -> 0  fRate26()
+	reaction_27: Pc(cc,p~0) -> 0  kdn
+	reaction_28: Cc(p~0,p2~0,pc) -> 0  kdnC
+	reaction_29: Pc(cc,p~P) -> 0  kdn
+	reaction_30: Cc(p~P,p2~0,pc) -> 0  kdn
+	reaction_31: Cc(p~P,p2~P,pc) -> 0  kdn
+	reaction_32: Cc(p~0,p2~0,pc!103).Pc(cc!103,p~0) -> 0  kdn
+	reaction_33: PCn(bc,p~P) -> 0  fRate33()
+	reaction_34: Bc(Bn~0,p~0,pcn) -> 0  kdn
+	reaction_35: Bc(Bn~0,p~P,pcn) -> 0  fRate35()
+	reaction_36: Bc(Bn~Bn,p~0,pcn) -> Bc(Bn~Bn,p~P,pcn) fRate36()
+	reaction_37: Bc(Bn~Bn,p~P,pcn) -> 0  fRate37()
+	reaction_38: Bc(Bn~Bn,p~0,pcn!104).PCn(bc!104,p~0) -> 0  kdn
+	reaction_39: Bc(Bn~Bn,p~0,pcn!104).PCn(bc!104,p~0) -> 0  fRate39()
+	reaction_40: Bc(Bn~Bn,p~0,pcn) -> 0  kdn
+	reaction_41: Bc(Bn~0,p~P,pcn) -> Bc(Bn~0,p~0,pcn) fRate41()
+	reaction_42: Bc(Bn~Bn,p~P,pcn) -> Bc(Bn~Bn,p~0,pcn) fRate42()
+	reaction_43: Cc(p~P,p2~0,pc) -> Cc(p~0,p2~0,pc) fRate43()
+	reaction_44: Pc(cc,p~P) -> Pc(cc,p~0) fRate44()
+	reaction_45: PCn(bc,p~P) -> PCn(bc,p~0) fRate45()
+	reaction_46: PCn(bc,p~0) -> 0  kdn
+	reaction_47: Cc(p~P,p2~P,pc) -> Cc(p~0,p2~0,pc!103).Pc(cc!103,p~0) fRate47()
+	reaction_48: 0  -> Mr() fRate48() #Modifiers(Bn)
+	reaction_49: Mr() -> 0  kdmr
+	reaction_50: Mr() -> 0  fRate50()
+	reaction_51: 0  -> Rc(Rn~0) fRate51() #Modifiers(Mr)
+	reaction_52: Rc(Rn~0) <-> Rc(Rn~Rn) k9,k10
+	reaction_53: Rc(Rn~0) -> 0  fRate53()
+	reaction_54: Rc(Rn~0) -> 0  kdn
+	reaction_55: Rc(Rn~Rn) -> 0  fRate55()
+	reaction_56: Rc(Rn~Rn) -> 0  kdn
+end reaction rules
+end model

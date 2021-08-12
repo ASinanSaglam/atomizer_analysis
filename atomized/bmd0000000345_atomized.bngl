@@ -1,0 +1,131 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000345', 'http://identifiers.org/biomodels.db/MODEL1108040000']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/18477391']
+#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000089', 'http://identifiers.org/bto/BTO:0000575']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0005009', 'http://identifiers.org/go/GO:0038016', 'http://identifiers.org/go/GO:1900076']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:9351']
+#@creatorEmail:'ajmera@ebi.ac.uk'
+#@creatorName:'Ajmera Ishan'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 13 molecules and 0 reactions. The translated model has 11 molecules and 11 rules'
+###
+begin model
+begin parameters
+	kins 0.001
+	kins1d 0.0004
+	kins2d 0.04
+	kins1den 0.001925
+	kins2den 0.00385
+	kyd 0.00385
+	kyden 0.00722
+	kyp 0.0231
+	intk1 0.00055
+	intk2 0.0002
+	reck1 0.001533
+	Rtotal 40.0
+	k1ub 0.35
+	k2ub 0.2
+	pansec 0.0016976
+	Kpan 0.5
+	rholiver 1051.0
+	bw 200.0
+	ins 6.022e+25 #original 100.0mol/L
+end parameters
+begin molecule types
+	IRen()
+	R()
+	IR()
+	IRp()
+	I2Ren()
+	Ren()
+	I2Rp()
+	I2R()
+	Rp()
+	RPen()
+	IRPen()
+end molecule types
+begin seed species
+	R() 2.130806414e+25 # 35.3837mol/L * 6.022e23/mol *1.0L #R #R
+	Ren() 2.77993586e+24 #original 4.6163mol/L #Ren #Ren
+end seed species
+begin observables
+	Species R R() #R
+	Species IR IR() #IR
+	Species I2R I2R() #I2R
+	Species Rp Rp() #Rp
+	Species IRp IRp() #IRp
+	Species I2Rp I2Rp() #I2Rp
+	Species Ren Ren() #Ren
+	Species IRen IRen() #IRen
+	Species I2Ren I2Ren() #I2Ren
+	Species RPen RPen() #RPen
+	Species IRPen IRPen() #IRPen
+end observables
+begin functions
+	r3() = -I2R*kins2d + IR*ins*kins
+	mliver() = 0.05*bw
+	vhep() = 0.78*mliver/rholiver
+	vp() = 3.375e-5*bw
+	r4() = -I2Rp*kins2d + IRp*ins*kins
+	r2() = -IRp*kins1d + Rp*ins*kins
+	r1() = -IR*kins1d + R*ins*kins
+	parameter_1() = vhep*(r1 + r2 + r3 + r4)/vp
+	i2() = IRPen*kins1den
+	I2RPen_ar() = -I2R - I2Ren - I2Rp - IR - IRPen - IRen - IRp - R - RPen - Ren - Rp + Rtotal
+	i4() = I2RPen_ar*kins2den
+	i6() = -IRPen*kyden + IRen*kyp
+	f5() = IRp*intk1
+	arRateIRPen() = f5 - i2 + i4 + i6
+	f2() = IR*intk2
+	i3() = I2Ren*kins2den
+	i1() = IRen*kins1den
+	arRateIRen() = f2 - i1 + i3 - i6
+	r6() = IR*kyp - IRp*kyd
+	arRateIRp() = -f5 + r2 - r4 + r6
+	arRateIR() = -f2 + r1 - r3 - r6
+	f4() = -RPen*reck1 + Rp*intk1
+	i5() = RPen*kyden
+	arRateRPen() = f4 + i2 - i5
+	f3() = I2R*intk2
+	i7() = -I2RPen_ar*kyden + I2Ren*kyp
+	arRateI2Ren() = f3 - i3 - i7
+	f1() = R*intk2 - Ren*reck1
+	arRateRen() = f1 + i1 + i5
+	r7() = I2R*kyp - I2Rp*kyd
+	f6() = I2Rp*intk1
+	arRateI2Rp() = -f6 + r4 + r7
+	r5() = Rp*kyd
+	arRateRp() = -f4 - r2 - r5
+	arRateI2R() = -f3 + r3 - r7
+	arRateR() = -f1 - r1 + r5
+	parameter_10() = (I2R + I2RPen_ar + I2Ren + I2Rp)/Rtotal
+	parameter_12() = (I2R + I2Rp)/Rtotal
+	parameter_14() = parameter_10 - parameter_12
+	parameter_11() = (I2R + I2Rp + IR + IRp)/Rtotal
+	parameter_9() = (-R - RPen - Ren - Rp + Rtotal)/Rtotal
+	parameter_13() = -parameter_11 + parameter_9
+	mkidney() = 0.00739130434782609*bw
+	Kkidney() = 2.25e-5*mkidney
+	parameter_2() = Kkidney*ins/vp
+	parameter_7() = 6000*parameter_2*vp/ins
+	parameter_6() = 6000*parameter_1*vp/ins
+	parameter_8() = parameter_6 + parameter_7
+	parameter_5() = 100*parameter_2/(parameter_1 + parameter_2)
+	parameter_4() = 100*parameter_1/(parameter_1 + parameter_2)
+	parameter_3() = parameter_1 + parameter_2
+	vd() = 0.000272*rholiver*vhep
+end functions
+begin reaction rules
+	0  -> R() arRateR #rateLaw
+	0  -> IR() arRateIR #rateLaw
+	0  -> I2R() arRateI2R #rateLaw
+	0  -> Rp() arRateRp #rateLaw
+	0  -> IRp() arRateIRp #rateLaw
+	0  -> I2Rp() arRateI2Rp #rateLaw
+	0  -> Ren() arRateRen #rateLaw
+	0  -> IRen() arRateIRen #rateLaw
+	0  -> I2Ren() arRateI2Ren #rateLaw
+	0  -> RPen() arRateRPen #rateLaw
+	0  -> IRPen() arRateIRPen #rateLaw
+end reaction rules
+end model

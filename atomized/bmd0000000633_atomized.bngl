@@ -1,0 +1,596 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000633', 'http://identifiers.org/biomodels.db/MODEL1603030000']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/26935066']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/go/GO:0010906', 'http://identifiers.org/mamo/MAMO_0000009', 'http://identifiers.org/go/GO:0055085', 'http://identifiers.org/go/GO:0006468']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10116']
+#@creatorEmail:'rgutenk@email.arizona.edu'
+#@creatorName:'Gutenkunst Ryan'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 50 molecules and 35 reactions. The translated model has 30 molecules and 77 rules'
+###
+begin model
+begin parameters
+	Vmm -0.155 #units:V
+	ONE 1.0 #units:dimensionless
+	O5 0.5 #units:dimensionless
+	M1 -1.0 #units:dimensionless
+	O1 0.1 #units:dimensionless
+	F 96490.0 #units:J_per_V_per_mol
+	R 8.3 #units:J_per_K_per_mol
+	T 293.0 #units:K
+	vmax_ald 778000000.0 #units:per_h
+	keq_ald 0.099 #units:mM
+	km_fru16bp_ald 0.004 #units:mM
+	km_gap_ald 0.48 #units:mM
+	km_dhap_ald 0.38 #units:mM
+	vmax_en 19400000000.0 #units:per_h
+	keq_en 1.7 #units:dimensionless
+	km_pg2_en 0.14 #units:mM
+	km_pep_en 0.31 #units:mM
+	vmax_fbp1 29200.0 #units:mM_per_h
+	km_fru16bp_fbp1_native 0.0029 #units:mM
+	ki_fru26bp_fbp1 0.00113 #units:mM
+	n_fbp1 1.26 #units:dimensionless
+	ki_amp_fbp1 0.023 #units:mM
+	n_amp_fbp1 2.43 #units:dimensionless
+	km_fru16bp_fbp1_phospho 0.0019 #units:mM
+	vmax_gapdh 292000000.0 #units:per_h_per_mMmM
+	keq_gapdh 0.0001 #units:per_mM
+	km_nad_gapdh 0.01 #units:mM
+	km_gap_gapdh 0.035
+	km_p_gapdh 3.8 #units:mM
+	km_nadh_gapdh 0.006 #units:mM
+	km_bpg13_gapdh 0.01 #units:mM
+	v0_gk 10500.0 #units:mM_per_h
+	n_gk 1.5 #units:dimensionless
+	ka_glc_gk 15.9 #units:mM
+	f_gk 0.75 #units:dimensionless
+	ki_fru6p_gk 0.005 #units:mM
+	n2_gk 3.7 #units:dimensionless
+	km_glc_gk 9.0 #units:mM
+	km_atp_gk 0.55 #units:mM
+	vmax_glct_er 19400000000.0 #units:per_h
+	km_glc_glct_er 1.37 #units:mM
+	km_glc_er_glct 1.22 #units:mM
+	vmax_glut2 90.9 #units:per_h
+	km_glc_ext_glut2 17.3 #units:mM
+	km_glc_glut2 17.3 #units:mM
+	v0_gp 129.0 #units:mM_per_h
+	store 300.0 #units:mM
+	keq_gp 0.21 #units:per_mM
+	km_glyglc_gp_native 2.5 #units:mM
+	km_p_gp_native 500.0 #units:mM
+	ka_amp_gp_native 0.36 #units:mM
+	ka_amp_glc1p_gp 0.5 #units:mM
+	k0_glc1p_gp 250.0 #units:mM
+	km_glyglc_gp_phospho 1.8 #units:mM
+	km_p_gp_phospho 2.1 #units:mM
+	km_glc1p_gp_phospho 0.7 #units:mM
+	ka_amp_gp_phospho 0.017 #units:mM
+	vmax_g6p_er 457.0 #units:mM_per_h
+	km_glc6p_er_g6p_er 1.84 #units:mM
+	vmax_gpi 1070000000.0 #units:per_h
+	keq_gpi 0.3 #units:dimensionless
+	km_glc6p_gpi 0.055 #units:mM
+	km_fru6p_gpi 0.12 #units:mM
+	vmax_g1pi 77800000.0 #units:per_h
+	keq_g1pi 16.2 #units:dimensionless
+	km_glc6p_g1pi 0.045 #units:mM
+	km_glc1p_g1pi 0.67 #units:mM
+	vmax_g6pt_er 19400000000.0 #units:per_h
+	km_glc6p_g6pt_er 1.12 #units:mM
+	km_glc6p_er_g6pt_er 1.12 #units:mM
+	v0_gs 116.0 #units:mM_per_h
+	kb_udpglc_gs_native 0.2 #units:mM
+	k0_udpglc_gs_native 1.4 #units:mM
+	ka_glc6p_gs_native 0.007 #units:mM
+	kb_udpglc_gs_phospho 0.3 #units:mM
+	k0_udpglc_gs_phospho 32.0 #units:mM
+	ka_glc6p_gs_phospho 0.09 #units:mM
+	vmax_lact 583.0 #units:per_h
+	km_lac_lact 2.42 #units:mM
+	km_lac_ext_lact 2.42 #units:mM
+	vmax_ldh 156000000000.0 #units:per_h_per_mM
+	keq_ldh 9000.0 #units:dimensionless
+	km_lac_ldh 36.0 #units:mM
+	km_nad_ldh 0.11 #units:mM
+	km_pyr_ldh 0.15 #units:mM
+	km_nadh_ldh 0.015 #units:mM
+	km_p_mito_malt 1.41 #units:mM
+	km_mal_malt 0.49 #units:mM
+	km_p_malt 1.41 #units:mM
+	km_mal_mito_malt 0.49 #units:mM
+	vmax_malt 1940.0 #units:per_h_per_mM
+	km_oa_mdh 0.088 #units:mM
+	km_nadh_mdh 0.026 #units:mM
+	km_nad_mdh 0.114 #units:mM
+	km_mal_mdh 1.1 #units:mM
+	keq_mdh 3e-05 #units:dimensionless
+	vmax_mdh 1940000000.0 #units:per_h_per_mM
+	km_oa_mito_mdh_mito 0.017 #units:mM
+	km_nadh_mito_mdh_mito 0.044 #units:mM
+	km_nad_mito_mdh_mito 0.06 #units:mM
+	km_mal_mito_mdh_mito 0.33 #units:mM
+	keq_mdh_mito 3.1e-05 #units:dimensionless
+	vmax_mdh_mito 697000000000.0 #units:per_h_per_mM
+	vmax_ndk_gtp 194000000000.0 #units:per_h_per_mM
+	keq_ndk 1.0 #units:dimensionless
+	km_atp_ndk 1.33 #units:mM
+	km_gdp_ndk 0.031 #units:mM
+	km_adp_ndk 0.042 #units:mM
+	km_gtp_ndk 0.15 #units:mM
+	vmax_ndk_utp 19400000.0 #units:per_h_per_mM
+	km_udp_ndk 0.19 #units:mM
+	km_utp_ndk 16.0 #units:mM
+	vmax_ndk_gtp_mito 19400000.0 #units:per_h_per_mM
+	km_atp_mito_ndk 1.66 #units:mM
+	km_gdp_mito_ndk 0.036 #units:mM
+	km_adp_mito_ndk 0.073 #units:mM
+	km_gtp_mito_ndk 0.15 #units:mM
+	vmax_PC 3590.0 #units:mM_per_h
+	keq_pc 6.55 #units:dimensionless
+	km_atp_mito_pc 0.14 #units:mM
+	km_pyr_mito_pc 0.33 #units:mM
+	km_co2_mito_pc 4.2 #units:mM
+	vmax_pepck 1000000.0 #units:per_h_per_mM
+	keq_pepck 110.0 #units:mM
+	km_oa_pepck 0.024 #units:mM
+	km_gtp_pepck 0.021 #units:mM
+	km_pep_pepck 0.4 #units:mM
+	km_gdp_pepck 0.02 #units:mM
+	km_co2_pepck 1.194 #units:mM
+	vmax_pepck_mito 1410000.0 #units:per_h_per_mM
+	keq_pepck_mito 160.0 #units:mM
+	km_oa_mito_pepck_mito 0.0085 #units:mM
+	km_gtp_mito_pepck_mito 0.022 #units:mM
+	km_pep_mito_pepck_mito 0.4 #units:mM
+	km_gdp_mito_pepck_mito 0.02 #units:mM
+	km_co2_mito_pepck_mito 1.06 #units:mM
+	vmax_pept 194000.0 #units:per_h
+	km_pep_pept 0.1 #units:mM
+	km_pep_mito_pept 0.1 #units:mM
+	vmax_pfk1 76800.0 #units:mM_per_h
+	ni_pfk1 4.0 #units:dimensionless
+	ka_fru26bp_pfk1_km_atp 0.0027 #units:mM
+	k0_atp_pfk1_km_atp 0.2 #units:mM
+	ki0_atp_pfk1 0.7 #units:mM
+	f_fru26bp_pfk1_ki_atp 9.0 #units:dimensionless
+	ka_fru26bp_pfk1_ki_atp 0.54 #units:mM
+	k0_fru6p_pfk1_km_fru6p 1.14 #units:mM
+	ki_atp_pfk1_km_fru6p 0.6 #units:mM
+	ki_cit_pfk1_km_fru6p 3.27 #units:mM
+	f_amp_pfk1_km_fru6p 0.77 #units:dimensionless
+	n_amp_pfk1_km_fru6p 1.84 #units:dimensionless
+	ka_amp_pfk1_km_fru6p 0.1 #units:mM
+	f_p_pfk1_km_fru6p 0.85 #units:dimensionless
+	ka_p_pfk1_km_fru6p 0.69 #units:mM
+	f_fru26bp_pfk1_km_fru6p 0.92 #units:dimensionless
+	n_fru26bp_pfk1_km_fru6p 1.2 #units:dimensionless
+	ka_fru26bp_pfk1_km_fru6p 0.0045 #units:mM
+	n0_pfk1_n_fru6p 3.67 #units:dimensionless
+	n_atp_pfk1_n_fru6p 1.59 #units:dimensionless
+	ki_atp_pfk1_n_fru6p 0.13 #units:mM
+	f_amp_pfk1_n_fru6p 0.4 #units:dimensionless
+	n_amp_pfk1_n_fru6p 2.22 #units:dimensionless
+	ka_amp_pfk1_n_fru6p 0.086 #units:mM
+	f_cit_pfk1_n_fru6p 0.1 #units:dimensionless
+	n_cit_pfk1_n_fru6p 4.0 #units:dimensionless
+	ki_cit_pfk1_n_fru6p 0.18 #units:mM
+	f_p_pfk1_n_fru6p 0.28 #units:dimensionless
+	n_p_pfk1_n_fru6p 4.0 #units:dimensionless
+	ka_p_pfk1_n_fru6p 0.53 #units:mM
+	f_fru26bp_pfk1_n_fru6p 0.37 #units:dimensionless
+	n_fru26bp_pfk1_n_fru6p 4.0 #units:dimensionless
+	ka_fru26bp_pfk1_n_fru6p 0.0021 #units:mM
+	vmax_pfk2 151.0 #units:mM_per_h
+	n_fru6p_pfk2_native 1.3 #units:dimensionless
+	km_fru6p_pfk2_native 0.015 #units:mM
+	km_atp_pfk2_native 0.25 #units:mM
+	n0_pfk2 0.85 #units:dimensionless
+	ki_pep_pfk2 0.25 #units:mM
+	n_fru6p_pfk2_phospho 2.0 #units:dimensionless
+	km_fru6p_pfk2_phospho 0.05 #units:mM
+	km_atp_pfk2_phospho 0.5 #units:mM
+	vmax_fbp2 549.0 #units:mM_per_h
+	km_fru26bp_fbp2_native 0.01 #units:mM
+	ki_fru6p_fbp2_native 0.0035 #units:mM
+	f_fbp2_phospho 1.0 #units:dimensionless
+	km_fru26bp_fbp2_phospho 0.0005 #units:mM
+	ki_fru6p_fbp2_phospho 0.01 #units:mM
+	vmax_pgk 19400000000.0 #units:per_h_per_mM
+	keq_pgk 1830.0 #units:dimensionless
+	km_adp_pgk 0.35 #units:mM
+	km_bpg13_pgk 0.0022 #units:mM
+	km_atp_pgk 0.24 #units:mM
+	km_pg3_pgk 1.65 #units:mM
+	vmax_pgm 19400000000.0 #units:per_h
+	keq_pgm 0.096 #units:dimensionless
+	km_pg3_pgm 0.52 #units:mM
+	km_pg2_pgm 0.24 #units:mM
+	vmax_pk 12800.0 #units:mM_per_h
+	km_pep_pk_native 0.13 #units:mM
+	ki_atp_pk_native 1.0 #units:mM
+	ka_fru16bp_pk_native 0.0078 #units:mM
+	km_adp_pk_native 0.25 #units:mM
+	km_pep_pk_phospho 5.8 #units:mM
+	ki_atp_pk_phospho 0.32 #units:mM
+	ka_fru16bp_pk_phospho 0.0095 #units:mM
+	km_adp_pk_phospho 0.33 #units:mM
+	n_pk_phospho 2.9 #units:dimensionless
+	vmax_pyrmalt 19400.0 #units:per_h_per_mM
+	km_mal_mito_pyrmalt 0.7 #units:mM
+	km_pyr_pyrmalt 0.84 #units:mM
+	km_mal_pyrmalt 0.7 #units:mM
+	km_pyr_mito_pyrmalt 0.84 #units:mM
+	vmax_pyrt 194000000.0 #units:per_h_per_mM
+	km_pyr_pyrt 0.15 #units:mM
+	km_pyr_mito_pyrt 0.15 #units:mM
+	vmax_tpi 194000000.0 #units:per_h
+	keq_tpi 0.04545 #units:dimensionless
+	km_dhap_tpi 0.59 #units:mM
+	km_gap_tpi 0.415 #units:mM
+	vmax_ugt 7780000000.0 #units:per_h_per_mM
+	keq_ugt 0.3122 #units:dimensionless
+	km_utp_ugt 0.2 #units:mM
+	km_glc1p_ugt 0.055 #units:mM
+	km_udpglc_ugt 0.06 #units:mM
+	km_pp_ugt 0.084 #units:mM
+	ins0 3.1e-06 #units:mM
+	n_ins 5.7 #units:dimensionless
+	km_glc_ext_ins 7.7 #units:mM
+	glucagon0 5.06e-07 #units:mM
+	n_glucagon 5.65 #units:dimensionless
+	km_glc_ext_glucagon 4.7 #units:mM
+	glucagonb 4e-08 #units:mM
+	n_ins_gamma 1.75 #units:dimensionless
+	km_ins_gamma 7e-07 #units:mM
+	n_glucagon_gamma 3.6 #units:dimensionless
+	km_glucagon_gamma 8e-08 #units:mM
+	glc_ext 2.4088e+24 # 4.0mol/L * 6.022e23/mol *1.0L
+	glc 2.4088e+24 # 4.0mol/L * 6.022e23/mol *1.0L
+	lac_ext 6.022e+23 #original 1.0mol/L
+	lac 6.022e+23 #original 1.0mol/L
+	cit_cyto 4.5165e+23 #original 0.75mol/L
+	cit 4.5165e+23 #original 0.75mol/L
+	h_cyto 6.022000000000001e+19 #original 0.0001mol/L
+	h 6.022000000000001e+19 #original 0.0001mol/L
+	co2_mito 3.011e+24 #original 5.0mol/L
+	co2 3.011e+24 #original 5.0mol/L
+	p_mito 4.8176e+24 #original 8.0mol/L
+	p 4.8176e+24 #original 8.0mol/L
+	h_h_mito_mito 3.6132000000000004e+19 #original 6e-05mol/L
+	h_h_mito 3.6132000000000004e+19 #original 6e-05mol/L
+	atp_cyto 1.95715e+24 #original 3.25mol/L
+	atp 1.95715e+24 #original 3.25mol/L
+	adp_cyto 3.011e+23 #original 0.5mol/L
+	adp 3.011e+23 #original 0.5mol/L
+	amp_cyto 9.6352e+22 #original 0.16mol/L
+	amp 9.6352e+22 #original 0.16mol/L
+	pp_cyto 4.8176e+21 #original 0.008mol/L
+	pp 4.8176e+21 #original 0.008mol/L
+	p_p_cyto 3.011e+24 #original 5.0mol/L
+	p_p 3.011e+24 #original 5.0mol/L
+	p_er_cyto 3.011e+24 #original 5.0mol/L
+	p_er 3.011e+24 #original 5.0mol/L
+	co2_co2_cyto 3.011e+24 #original 5.0mol/L
+	co2_co2 3.011e+24 #original 5.0mol/L
+	nad_cyto 6.80486e+23 #original 1.13mol/L
+	nad 6.80486e+23 #original 1.13mol/L
+	nadh_cyto 6.022e+20 #original 0.001mol/L
+	nadh 6.022e+20 #original 0.001mol/L
+	atp_atp_mito_mito 1.05385e+25 #original 17.5mol/L
+	atp_atp_mito 1.05385e+25 #original 17.5mol/L
+	adp_adp_mito_mito 4.5165000000000003e+24 #original 7.5mol/L
+	adp_adp_mito 4.5165000000000003e+24 #original 7.5mol/L
+	nadh_nadh_mito_mito 2.4088e+21 #original 0.004mol/L
+	nadh_nadh_mito 2.4088e+21 #original 0.004mol/L
+	nad_nad_mito_mito 2.77012e+22 #original 0.046mol/L
+	nad_nad_mito 2.77012e+22 #original 0.046mol/L
+end parameters
+begin compartments
+	#volume units: L
+	ext 3 1.0
+	cyto 3 1.0
+	er 3 1.0
+	mito 3 1.0
+end compartments
+begin molecule types
+	oa_oa_mito()
+	glc_glc()
+	gtp_gtp_mito()
+	#^ bqbiol:is kegg.compound:C00149, kegg.compound:C00149
+	mal()
+	#^ bqbiol:is kegg.compound:C00035, kegg.compound:C00035
+	gdp()
+	pyr_pyr_mito()
+	#^ bqbiol:is kegg.compound:C00354
+	fru16bp()
+	#^ bqbiol:is kegg.compound:C00197
+	pg3()
+	#^ bqbiol:is kegg.compound:C00075
+	utp()
+	lac_lac()
+	gdp_gdp_mito()
+	#^ bqbiol:is kegg.compound:C00029
+	udpglc()
+	#^ bmbiol:is chebi:CHEBI:89363
+	#^ bqbiol:is urn:miriam:ChEBI:CHEBI:89363
+	bpg13()
+	mal_mal_mito()
+	#^ bqbiol:is kegg.compound:C00092, kegg.compound:C00092
+	glc6p()
+	#^ bqbiol:is kegg.compound:C00015
+	udp()
+	glc6p_glc6p_er()
+	#^ bqbiol:is kegg.compound:C00036, kegg.compound:C00036
+	oa()
+	glc_glc_er()
+	#^ bqbiol:is kegg.compound:C00044, kegg.compound:C00044
+	gtp()
+	#^ bqbiol:is kegg.compound:C00665
+	fru26bp()
+	#^ bqbiol:is kegg.compound:C00103
+	glc1p()
+	#^ bqbiol:is kegg.compound:C00118
+	gap()
+	pep_pep_mito()
+	#^ bqbiol:is kegg.compound:C00022, kegg.compound:C00022
+	pyr()
+	#^ bqbiol:is kegg.compound:C00085
+	fru6p()
+	#^ bqbiol:is kegg.compound:C00631
+	pg2()
+	#^ bqbiol:is kegg.compound:C00369
+	glyglc()
+	#^ bqbiol:is kegg.compound:C00074, kegg.compound:C00074
+	pep()
+	#^ bqbiol:is kegg.compound:C00111
+	dhap()
+end molecule types
+begin seed species
+	@cyto:glc_glc() 2.964366968669653e+24 #original 4.92256221964406mol/L #glc_glc #glc
+	@cyto:glc6p() 1.1437578443085101e+23 #original 0.189929897759633mol/L #glc6p #glc6p
+	@cyto:glc1p() 7.060233606842649e+21 #original 0.0117240677629403mol/L #glc1p #glc1p
+	@cyto:udpglc() 2.0518412100388762e+23 #original 0.34072421289254mol/L #udpglc #udpglc
+	@cyto:glyglc() 1.0618748590684418e+25 #original 17.6332590346802mol/L #glyglc #glyglc
+	@cyto:fru6p() 3.431278138089646e+22 #original 0.0569790458002266mol/L #fru6p #fru6p
+	@cyto:fru16bp() 4.866810744718194e+20 #original 0.000808171827419162mol/L #fru16bp #fru16bp
+	@cyto:fru26bp() 3.2531692400192815e+20 #original 0.000540214088345945mol/L #fru26bp #fru26bp
+	@cyto:gap() 1.1484283195091975e+21 #original 0.00190705466540883mol/L #gap #gap
+	@cyto:dhap() 2.5267765533430663e+22 #original 0.0419590925497022mol/L #dhap #dhap
+	@cyto:bpg13() 6.552277445659823e+20 #original 0.00108805669971103mol/L #bpg13 #bpg13
+	@cyto:pg3() 1.845101499574177e+23 #original 0.306393473858216mol/L #pg3 #pg3
+	@cyto:pg2() 1.7690331334812927e+22 #original 0.029376172923967mol/L #pg2 #pg2
+	@cyto:pep() 3.007357125464267e+22 #original 0.0499395072312233mol/L #pep #pep
+	@cyto:pyr() 5.131642358527111e+22 #original 0.0852149179429942mol/L #pyr #pyr
+	@cyto:oa() 1.46914672818818e+22 #original 0.0243963256092358mol/L #oa #oa
+	@cyto:lac_lac() 4.0875635158415544e+23 #original 0.678771756200856mol/L #lac_lac #lac
+	@cyto:mal() 4.3337721337355465e+23 #original 0.719656614702017mol/L #mal #mal
+	@mito:oa_oa_mito() 2.7986112510039546e+20 #original 0.000464731194122211mol/L #oa_oa_mito #oa_mito
+	@mito:pep_pep_mito() 6.695978077447928e+19 #original 0.000111191930877581mol/L #pep_pep_mito #pep_mito
+	@mito:pyr_pyr_mito() 7.962784507759819e+22 #original 0.132228238255726mol/L #pyr_pyr_mito #pyr_mito
+	@mito:mal_mal_mito() 7.850240762706438e+23 #original 1.30359361718805mol/L #mal_mal_mito #mal_mito
+	@er:glc_glc_er() 2.9643669847744803e+24 #original 4.92256224638738mol/L #glc_glc_er #glc_er
+	@er:glc6p_glc6p_er() 1.143757819312043e+23 #original 0.189929893608775mol/L #glc6p_glc6p_er #glc6p_er
+	@cyto:utp() 4.4845907241148934e+23 #original 0.744701216226319mol/L #utp #utp
+	@cyto:udp() 6.899440601023731e+22 #original 0.114570584540414mol/L #udp #udp
+	@cyto:gtp() 4.17528978438575e+23 #original 0.693339386314472mol/L #gtp #gtp
+	@cyto:gdp() 6.423523695836338e+22 #original 0.106667613680444mol/L #gdp #gdp
+	@mito:gtp_gtp_mito() 3.372294162478798e+23 #original 0.559995709478379mol/L #gtp_gtp_mito #gtp_mito
+	@mito:gdp_gdp_mito() 1.445305837500739e+23 #original 0.240004290518223mol/L #gdp_gdp_mito #gdp_mito
+end seed species
+begin observables
+	Species glc_glc_cyto @cyto:glc_glc() #glc
+	Species glc6p_cyto @cyto:glc6p() #glc6p
+	Species glc1p_cyto @cyto:glc1p() #glc1p
+	Species udpglc_cyto @cyto:udpglc() #udpglc
+	Species glyglc_cyto @cyto:glyglc() #glyglc
+	Species fru6p_cyto @cyto:fru6p() #fru6p
+	Species fru16bp_cyto @cyto:fru16bp() #fru16bp
+	Species fru26bp_cyto @cyto:fru26bp() #fru26bp
+	Species gap_cyto @cyto:gap() #gap
+	Species dhap_cyto @cyto:dhap() #dhap
+	Species bpg13_cyto @cyto:bpg13() #bpg13
+	Species pg3_cyto @cyto:pg3() #pg3
+	Species pg2_cyto @cyto:pg2() #pg2
+	Species pep_cyto @cyto:pep() #pep
+	Species pyr_cyto @cyto:pyr() #pyr
+	Species oa_cyto @cyto:oa() #oa
+	Species lac_lac_cyto @cyto:lac_lac() #lac
+	Species mal_cyto @cyto:mal() #mal
+	Species oa_oa_mito_mito @mito:oa_oa_mito() #oa_mito
+	Species pep_pep_mito_mito @mito:pep_pep_mito() #pep_mito
+	Species pyr_pyr_mito_mito @mito:pyr_pyr_mito() #pyr_mito
+	Species mal_mal_mito_mito @mito:mal_mal_mito() #mal_mito
+	Species glc_glc_er_er @er:glc_glc_er() #glc_er
+	Species glc6p_glc6p_er_er @er:glc6p_glc6p_er() #glc6p_er
+	Species utp_cyto @cyto:utp() #utp
+	Species udp_cyto @cyto:udp() #udp
+	Species gtp_cyto @cyto:gtp() #gtp
+	Species gdp_cyto @cyto:gdp() #gdp
+	Species gtp_gtp_mito_mito @mito:gtp_gtp_mito() #gtp_mito
+	Species gdp_gdp_mito_mito @mito:gdp_gdp_mito() #gdp_mito
+end observables
+begin functions
+	n_fru6p_pfk1() = (ONE - amp_cyto^n_amp_pfk1_n_fru6p*f_amp_pfk1_n_fru6p/(amp_cyto^n_amp_pfk1_n_fru6p + ka_amp_pfk1_n_fru6p^n_amp_pfk1_n_fru6p))*(ONE + cit_cyto^n_cit_pfk1_n_fru6p*f_cit_pfk1_n_fru6p/(cit_cyto^n_cit_pfk1_n_fru6p + ki_cit_pfk1_n_fru6p^n_cit_pfk1_n_fru6p))*(ONE - f_fru26bp_pfk1_n_fru6p*fru26bp_cyto^n_fru26bp_pfk1_n_fru6p/(fru26bp_cyto^n_fru26bp_pfk1_n_fru6p + ka_fru26bp_pfk1_n_fru6p^n_fru26bp_pfk1_n_fru6p))*(ONE - f_p_pfk1_n_fru6p*p_p_cyto^n_p_pfk1_n_fru6p/(ka_p_pfk1_n_fru6p^n_p_pfk1_n_fru6p + p_p_cyto^n_p_pfk1_n_fru6p))*(atp_cyto^n_atp_pfk1_n_fru6p/(atp_cyto^n_atp_pfk1_n_fru6p + ki_atp_pfk1_n_fru6p^n_atp_pfk1_n_fru6p) + n0_pfk1_n_fru6p)
+	ki_atp_pfk1() = ki0_atp_pfk1*(ONE + f_fru26bp_pfk1_ki_atp*fru26bp_cyto/(fru26bp_cyto + ka_fru26bp_pfk1_ki_atp))
+	km_fru6p_pfk1() = k0_fru6p_pfk1_km_fru6p*(ONE + atp_cyto/ki_atp_pfk1_km_fru6p)*(ONE + cit_cyto/ki_cit_pfk1_km_fru6p)*(ONE - amp_cyto^n_amp_pfk1_km_fru6p*f_amp_pfk1_km_fru6p/(amp_cyto^n_amp_pfk1_km_fru6p + ka_amp_pfk1_km_fru6p^n_amp_pfk1_km_fru6p))*(ONE - f_fru26bp_pfk1_km_fru6p*fru26bp_cyto^n_fru26bp_pfk1_km_fru6p/(fru26bp_cyto^n_fru26bp_pfk1_km_fru6p + ka_fru26bp_pfk1_km_fru6p^n_fru26bp_pfk1_km_fru6p))*(ONE - f_p_pfk1_km_fru6p*p_p_cyto/(ka_p_pfk1_km_fru6p + p_p_cyto))
+	km_atp_pfk1() = fru26bp_cyto*k0_atp_pfk1_km_atp/(fru26bp_cyto + ka_fru26bp_pfk1_km_atp)
+	v_PFK1() = atp_cyto*fru6p_cyto^n_fru6p_pfk1*vmax_pfk1*(ONE - atp_cyto^ni_pfk1/(atp_cyto^ni_pfk1 + ki_atp_pfk1^ni_pfk1))/((atp_cyto + km_atp_pfk1)*(fru6p_cyto^n_fru6p_pfk1 + km_fru6p_pfk1^n_fru6p_pfk1))
+	km_udpglc_gs_phospho() = k0_udpglc_gs_phospho*(ONE - glc6p_cyto/(glc6p_cyto + ka_glc6p_gs_phospho)) + kb_udpglc_gs_phospho
+	v_gs_phospho() = udpglc_cyto/(km_udpglc_gs_phospho + udpglc_cyto)
+	km_udpglc_gs_native() = k0_udpglc_gs_native*(ONE - glc6p_cyto/(glc6p_cyto + ka_glc6p_gs_native)) + kb_udpglc_gs_native
+	v_gs_native() = udpglc_cyto/(km_udpglc_gs_native + udpglc_cyto)
+	vmax_gs() = v0_gs*(-glyglc_cyto + store)/(O1*store - glyglc_cyto + store)
+	glucagon() = glucagon0*(ONE - glc_glc_cyto^n_glucagon/(glc_glc_cyto^n_glucagon + km_glc_ext_glucagon^n_glucagon)) + glucagonb
+	ins() = glc_glc_cyto^n_ins*ins0/(glc_glc_cyto^n_ins + km_glc_ext_ins^n_ins)
+	gamma() = O5*(ONE + glucagon^n_glucagon_gamma/(glucagon^n_glucagon_gamma + km_glucagon_gamma^n_glucagon_gamma) - ins^n_ins_gamma/(ins^n_ins_gamma + km_ins_gamma^n_ins_gamma))
+	gamma_gs() = gamma
+	v_GS() = vmax_gs*(gamma_gs*v_gs_phospho + v_gs_native*(ONE - gamma_gs))
+	km_glc1p_gp_native() = k0_glc1p_gp*(ONE - amp_cyto/(amp_cyto + ka_amp_glc1p_gp))
+	vmax_gp_native() = amp_cyto/(km_glyglc_gp_native*km_p_gp_native*(amp_cyto + ka_amp_gp_native))
+	v_gp_native() = vmax_gp_native*(-glc1p_cyto/keq_gp + glyglc_cyto*p_p_cyto)/(glc1p_cyto/km_glc1p_gp_native + (ONE + glyglc_cyto/km_glyglc_gp_native)*(ONE + p_p_cyto/km_p_gp_native))
+	vmax_gp() = glyglc_cyto*v0_gp/store
+	vmax_gp_phospho() = amp_cyto/(km_glyglc_gp_phospho*km_p_gp_phospho*(amp_cyto + ka_amp_gp_phospho))
+	v_gp_phospho() = vmax_gp_phospho*(-glc1p_cyto/keq_gp + glyglc_cyto*p_p_cyto)/(glc1p_cyto/km_glc1p_gp_phospho + (ONE + glyglc_cyto/km_glyglc_gp_phospho)*(ONE + p_p_cyto/km_p_gp_phospho))
+	gamma_gp() = gamma
+	v_GP() = vmax_gp*(gamma_gp*v_gp_phospho + v_gp_native*(ONE - gamma_gp))
+	gamma_pk() = gamma
+	v_pk_native() = adp_cyto*pep_cyto/((adp_cyto + km_adp_pk_native)*(km_pep_pk_native*(ONE + atp_cyto/ki_atp_pk_native)*(ONE - fru16bp_cyto/(fru16bp_cyto + ka_fru16bp_pk_native)) + pep_cyto))
+	v_pk_phospho() = adp_cyto*pep_cyto^n_pk_phospho/((adp_cyto + km_adp_pk_phospho)*(pep_cyto^n_pk_phospho + (km_pep_pk_phospho*(ONE + atp_cyto/ki_atp_pk_phospho)*(ONE - fru16bp_cyto/(fru16bp_cyto + ka_fru16bp_pk_phospho)))^n_pk_phospho))
+	v_PK() = vmax_pk*(gamma_pk*v_pk_phospho + v_pk_native*(ONE - gamma_pk))
+	v_fbp2_phospho() = f_fbp2_phospho*fru26bp_cyto/((ONE + fru6p_cyto/ki_fru6p_fbp2_phospho)*(fru26bp_cyto + km_fru26bp_fbp2_phospho))
+	v_fbp2_native() = fru26bp_cyto/((ONE + fru6p_cyto/ki_fru6p_fbp2_native)*(fru26bp_cyto + km_fru26bp_fbp2_native))
+	gamma_fbp2() = gamma
+	v_FBP2() = vmax_fbp2*(gamma_fbp2*v_fbp2_phospho + v_fbp2_native*(ONE - gamma_fbp2))
+	v_pfk2_phospho() = atp_cyto*fru6p_cyto^n_fru6p_pfk2_phospho*(ONE - n0_pfk2*pep_cyto/(ki_pep_pfk2 + pep_cyto))/((atp_cyto + km_atp_pfk2_phospho)*(fru6p_cyto^n_fru6p_pfk2_phospho + km_fru6p_pfk2_phospho^n_fru6p_pfk2_phospho))
+	gamma_pfk2() = gamma
+	v_pfk2_native() = atp_cyto*fru6p_cyto^n_fru6p_pfk2_native*(ONE - n0_pfk2*pep_cyto/(ki_pep_pfk2 + pep_cyto))/((atp_cyto + km_atp_pfk2_native)*(fru6p_cyto^n_fru6p_pfk2_native + km_fru6p_pfk2_native^n_fru6p_pfk2_native))
+	v_PFK2() = vmax_pfk2*(gamma_pfk2*v_pfk2_phospho + v_pfk2_native*(ONE - gamma_pfk2))
+	v_fbp1_native() = fru16bp_cyto/((ONE + (amp_cyto/ki_amp_fbp1)^n_amp_fbp1)*(ONE + (fru26bp_cyto/ki_fru26bp_fbp1)^n_fbp1)*(fru16bp_cyto + km_fru16bp_fbp1_native))
+	v_fbp1_phospho() = fru16bp_cyto/((ONE + (amp_cyto/ki_amp_fbp1)^n_amp_fbp1)*(ONE + (fru26bp_cyto/ki_fru26bp_fbp1)^n_fbp1)*(fru16bp_cyto + km_fru16bp_fbp1_phospho))
+	gamma_fbp1() = gamma
+	v_FBP1() = vmax_fbp1*(gamma_fbp1*v_fbp1_phospho + v_fbp1_native*(ONE - gamma_fbp1))
+	keq_pept() = exp(F*M1*Vmm/(R*T))
+	v_PEPT() = vmax_pept*(pep_pep_mito_mito - pep_cyto/keq_pept)/(ONE + pep_cyto/km_pep_pept + pep_pep_mito_mito/km_pep_mito_pept)
+	vmax_gk() = glc_glc_cyto^n2_gk*v0_gk*(ONE - f_gk*fru6p_cyto/(fru6p_cyto + ki_fru6p_gk))/(glc_glc_cyto^n2_gk + ka_glc_gk^n2_gk)
+	v_GK() = atp_cyto*glc_glc_cyto^n_gk*vmax_gk/((atp_cyto + km_atp_gk)*(glc_glc_cyto^n_gk + km_glc_gk^n_gk))
+	v_UGT() = vmax_ugt*(glc1p_cyto*utp_cyto - pp_cyto*udpglc_cyto/keq_ugt)/(-ONE + (ONE + glc1p_cyto/km_glc1p_ugt)*(ONE + utp_cyto/km_utp_ugt) + (ONE + pp_cyto/km_pp_ugt)*(ONE + udpglc_cyto/km_udpglc_ugt))
+	v_TPI() = vmax_tpi*(dhap_cyto - gap_cyto/keq_tpi)/(ONE + dhap_cyto/km_dhap_tpi + gap_cyto/km_gap_tpi)
+	v_PyrT() = vmax_pyrt*(h_cyto*pyr_cyto - h_h_mito_mito*pyr_pyr_mito_mito)/(ONE + pyr_cyto/km_pyr_pyrt + pyr_pyr_mito_mito/km_pyr_mito_pyrt)
+	v_PyrMalT() = vmax_pyrmalt*(-mal_cyto*pyr_pyr_mito_mito + mal_mal_mito_mito*pyr_cyto)/(-ONE + (ONE + mal_mal_mito_mito/km_mal_mito_pyrmalt)*(ONE + pyr_cyto/km_pyr_pyrmalt) + (ONE + mal_cyto/km_mal_pyrmalt)*(ONE + pyr_pyr_mito_mito/km_pyr_mito_pyrmalt))
+	v_PGM() = vmax_pgm*(pg3_cyto - pg2_cyto/keq_pgm)/(ONE + pg3_cyto/km_pg3_pgm + pg2_cyto/km_pg2_pgm)
+	v_PGK() = vmax_pgk*(adp_cyto*bpg13_cyto - atp_cyto*pg3_cyto/keq_pgk)/(-ONE + (ONE + adp_cyto/km_adp_pgk)*(ONE + bpg13_cyto/km_bpg13_pgk) + (ONE + atp_cyto/km_atp_pgk)*(ONE + pg3_cyto/km_pg3_pgk))
+	v_PEPCK_mito() = vmax_pepck_mito*(-co2_co2_cyto*gdp_gdp_mito_mito*pep_pep_mito_mito/keq_pepck_mito + gtp_gtp_mito_mito*oa_oa_mito_mito)/(-ONE + (ONE + co2_co2_cyto/km_co2_mito_pepck_mito)*(ONE + gdp_gdp_mito_mito/km_gdp_mito_pepck_mito)*(ONE + pep_pep_mito_mito/km_pep_mito_pepck_mito) + (ONE + gtp_gtp_mito_mito/km_gtp_mito_pepck_mito)*(ONE + oa_oa_mito_mito/km_oa_mito_pepck_mito))
+	v_PEPCK() = vmax_pepck*(-co2_co2_cyto*gdp_cyto*pep_cyto/keq_pepck + gtp_cyto*oa_cyto)/(-ONE + (ONE + co2_co2_cyto/km_co2_pepck)*(ONE + gdp_cyto/km_gdp_pepck)*(ONE + pep_cyto/km_pep_pepck) + (ONE + gtp_cyto/km_gtp_pepck)*(ONE + oa_cyto/km_oa_pepck))
+	v_PC() = vmax_PC*(-adp_adp_mito_mito*oa_oa_mito_mito*p_p_cyto/keq_pc + atp_atp_mito_mito*co2_co2_cyto*pyr_pyr_mito_mito)/((atp_atp_mito_mito + km_atp_mito_pc)*(co2_co2_cyto + km_co2_mito_pc)*(km_pyr_mito_pc + pyr_pyr_mito_mito))
+	v_NDK_GTP_mito() = vmax_ndk_gtp_mito*(-adp_adp_mito_mito*gtp_gtp_mito_mito/keq_ndk + atp_atp_mito_mito*gdp_gdp_mito_mito)/(-ONE + (ONE + adp_adp_mito_mito/km_adp_mito_ndk)*(ONE + gtp_gtp_mito_mito/km_gtp_mito_ndk) + (ONE + atp_atp_mito_mito/km_atp_mito_ndk)*(ONE + gdp_gdp_mito_mito/km_gdp_mito_ndk))
+	v_NDK_UTP() = vmax_ndk_utp*(-adp_cyto*utp_cyto/keq_ndk + atp_cyto*udp_cyto)/(-ONE + (ONE + adp_cyto/km_adp_ndk)*(ONE + utp_cyto/km_utp_ndk) + (ONE + atp_cyto/km_atp_ndk)*(ONE + udp_cyto/km_udp_ndk))
+	v_NDK_GTP() = vmax_ndk_gtp*(-adp_cyto*gtp_cyto/keq_ndk + atp_cyto*gdp_cyto)/(-ONE + (ONE + adp_cyto/km_adp_ndk)*(ONE + gtp_cyto/km_gtp_ndk) + (ONE + atp_cyto/km_atp_ndk)*(ONE + gdp_cyto/km_gdp_ndk))
+	v_MDH_mito() = vmax_mdh_mito*(mal_mal_mito_mito*nad_nad_mito_mito - nadh_nadh_mito_mito*oa_oa_mito_mito/keq_mdh_mito)/(-ONE + (ONE + mal_mal_mito_mito/km_mal_mito_mdh_mito)*(ONE + nad_nad_mito_mito/km_nad_mito_mdh_mito) + (ONE + nadh_nadh_mito_mito/km_nadh_mito_mdh_mito)*(ONE + oa_oa_mito_mito/km_oa_mito_mdh_mito))
+	v_MDH() = vmax_mdh*(mal_cyto*nad_cyto - nadh_cyto*oa_cyto/keq_mdh)/(-ONE + (ONE + mal_cyto/km_mal_mdh)*(ONE + nad_cyto/km_nad_mdh) + (ONE + nadh_cyto/km_nadh_mdh)*(ONE + oa_cyto/km_oa_mdh))
+	v_MALT() = vmax_malt*(-mal_cyto*p_p_cyto + mal_mal_mito_mito*p_p_cyto)/(-ONE + (ONE + mal_cyto/km_mal_malt)*(ONE + p_p_cyto/km_p_mito_malt) + (ONE + mal_mal_mito_mito/km_mal_mito_malt)*(ONE + p_p_cyto/km_p_malt))
+	v_LDH() = vmax_ldh*(nadh_cyto*pyr_cyto - lac_lac_cyto*nad_cyto/keq_ldh)/(-ONE + (ONE + lac_lac_cyto/km_lac_ldh)*(ONE + nad_cyto/km_nad_ldh) + (ONE + nadh_cyto/km_nadh_ldh)*(ONE + pyr_cyto/km_pyr_ldh))
+	v_LACT() = 0
+	v_G6PT_ER() = vmax_g6pt_er*(glc6p_cyto - glc6p_glc6p_er_er)/(ONE + glc6p_cyto/km_glc6p_g6pt_er + glc6p_glc6p_er_er/km_glc6p_er_g6pt_er)
+	v_G1PI() = vmax_g1pi*(glc1p_cyto - glc6p_cyto/keq_g1pi)/(ONE + glc1p_cyto/km_glc1p_g1pi + glc6p_cyto/km_glc6p_g1pi)
+	v_GPI() = vmax_gpi*(-fru6p_cyto/keq_gpi + glc6p_cyto)/(ONE + fru6p_cyto/km_fru6p_gpi + glc6p_cyto/km_glc6p_gpi)
+	v_G6P_ER() = glc6p_glc6p_er_er*vmax_g6p_er/(glc6p_glc6p_er_er + km_glc6p_er_g6p_er)
+	v_GLCT_ER() = vmax_glct_er*(glc_glc_cyto - glc_glc_er_er)/(ONE + glc_glc_cyto/km_glc_glct_er + glc_glc_er_er/km_glc_er_glct)
+	v_GLUT2() = 0
+	v_GAPDH() = vmax_gapdh*(-bpg13_cyto*nadh_cyto/keq_gapdh + gap_cyto*nad_cyto*p_p_cyto)/(-ONE + (ONE + bpg13_cyto/km_bpg13_gapdh)*(ONE + nadh_cyto/km_nadh_gapdh) + (ONE + gap_cyto/km_gap_gapdh)*(ONE + nad_cyto/km_nad_gapdh)*(ONE + p_p_cyto/km_p_gapdh))
+	v_EN() = vmax_en*(pg2_cyto - pep_cyto/keq_en)/(ONE + pg2_cyto/km_pg2_en + pep_cyto/km_pep_en)
+	v_ALD() = vmax_ald*(-dhap_cyto*gap_cyto/keq_ald + fru16bp_cyto)/(fru16bp_cyto/km_fru16bp_ald + (ONE + dhap_cyto/km_dhap_ald)*(ONE + gap_cyto/km_gap_ald))
+	fRate0() = v_ALD
+	fRate1() = v_EN
+	fRate2() = v_FBP1
+	fRate3() = v_GAPDH
+	fRate4() = v_GK
+	fRate5() = v_GLCT_ER
+	fRate7() = v_GP
+	fRate8() = v_G6P_ER
+	fRate9() = v_GPI
+	fRate10() = v_G1PI
+	fRate11() = v_G6PT_ER
+	fRate12() = v_GS
+	fRate14() = v_LDH
+	fRate15() = v_MALT
+	fRate16() = v_MDH
+	fRate17() = v_MDH_mito
+	fRate18() = v_NDK_GTP
+	fRate19() = v_NDK_UTP
+	fRate20() = v_NDK_GTP_mito
+	fRate21() = v_PC
+	fRate22() = v_PEPCK
+	fRate23() = v_PEPCK_mito
+	fRate24() = v_PEPT
+	fRate25() = v_PFK1
+	fRate26() = v_PFK2
+	fRate27() = v_FBP2
+	fRate28() = v_PGK
+	fRate29() = v_PGM
+	fRate30() = v_PK
+	fRate31() = v_PyrMalT
+	fRate32() = v_PyrT
+	fRate33() = v_TPI
+	fRate34() = v_UGT
+end functions
+begin reaction rules
+	ALD_reactants_0: 0  -> fru16bp()@cyto -1*(fRate0())
+	ALD_products_0: 0  -> gap()@cyto fRate0()
+	ALD_products_1: 0  -> dhap()@cyto fRate0()
+	EN_reactants_0: 0  -> pg2()@cyto -1*(fRate1())
+	EN_products_0: 0  -> pep()@cyto fRate1()
+	FBP1_reactants_0: 0  -> fru16bp()@cyto -1*(fRate2())
+	FBP1_products_0: 0  -> fru6p()@cyto fRate2()
+	GAPDH_reactants_0: 0  -> gap()@cyto -1*(fRate3())
+	GAPDH_products_0: 0  -> bpg13()@cyto fRate3()
+	GK_reactants_0: 0  -> glc_glc()@cyto -1*(fRate4())
+	GK_products_0: 0  -> glc6p()@cyto fRate4()
+	GLCT_ER_reactants_0: 0  -> glc_glc()@cyto -1*(fRate5())
+	GLCT_ER_products_0: 0  -> glc_glc_er()@er fRate5()
+	GLUT2: 0  -> glc_glc()@cyto v_GLUT2
+	GP_reactants_0: 0  -> glyglc()@cyto -1*(fRate7())
+	GP_products_0: 0  -> glc1p()@cyto fRate7()
+	G6P_ER_reactants_0: 0  -> glc6p_glc6p_er()@er -1*(fRate8())
+	G6P_ER_products_0: 0  -> glc_glc_er()@er fRate8()
+	GPI_reactants_0: 0  -> glc6p()@cyto -1*(fRate9())
+	GPI_products_0: 0  -> fru6p()@cyto fRate9()
+	G1PI_reactants_0: 0  -> glc1p()@cyto -1*(fRate10())
+	G1PI_products_0: 0  -> glc6p()@cyto fRate10()
+	G6PT_ER_reactants_0: 0  -> glc6p()@cyto -1*(fRate11())
+	G6PT_ER_products_0: 0  -> glc6p_glc6p_er()@er fRate11()
+	GS_reactants_0: 0  -> udpglc()@cyto -1*(fRate12())
+	GS_products_0: 0  -> glyglc()@cyto fRate12()
+	GS_products_1: 0  -> udp()@cyto fRate12()
+	LACT: 0  -> lac_lac()@cyto v_LACT
+	LDH_reactants_0: 0  -> pyr()@cyto -1*(fRate14())
+	LDH_products_0: 0  -> lac_lac()@cyto fRate14()
+	MALT_reactants_0: 0  -> mal_mal_mito()@mito -1*6.0*(fRate15())
+	MALT_products_0: 0  -> mal()@cyto fRate15()
+	MDH_reactants_0: 0  -> mal()@cyto -1*(fRate16())
+	MDH_products_0: 0  -> oa()@cyto fRate16()
+	MDH_mito_reactants_0: 0  -> mal_mal_mito()@mito -1*(fRate17())
+	MDH_mito_products_0: 0  -> oa_oa_mito()@mito fRate17()
+	NDK_GTP_reactants_0: 0  -> gdp()@cyto -1*(fRate18())
+	NDK_GTP_products_0: 0  -> gtp()@cyto fRate18()
+	NDK_UTP_reactants_0: 0  -> udp()@cyto -1*(fRate19())
+	NDK_UTP_products_0: 0  -> utp()@cyto fRate19()
+	NDK_GTP_mito_reactants_0: 0  -> gdp_gdp_mito()@mito -1*(fRate20())
+	NDK_GTP_mito_products_0: 0  -> gtp_gtp_mito()@mito fRate20()
+	PC_reactants_0: 0  -> pyr_pyr_mito()@mito -1*(fRate21())
+	PC_products_0: 0  -> oa_oa_mito()@mito fRate21()
+	PEPCK_reactants_0: 0  -> oa()@cyto -1*(fRate22())
+	PEPCK_reactants_1: 0  -> gtp()@cyto -1*(fRate22())
+	PEPCK_products_0: 0  -> pep()@cyto fRate22()
+	PEPCK_products_1: 0  -> gdp()@cyto fRate22()
+	PEPCK_mito_reactants_0: 0  -> oa_oa_mito()@mito -1*(fRate23())
+	PEPCK_mito_reactants_1: 0  -> gtp_gtp_mito()@mito -1*(fRate23())
+	PEPCK_mito_products_0: 0  -> pep_pep_mito()@mito fRate23()
+	PEPCK_mito_products_1: 0  -> gdp_gdp_mito()@mito fRate23()
+	PEPT_reactants_0: 0  -> pep_pep_mito()@mito -1*6.0*(fRate24())
+	PEPT_products_0: 0  -> pep()@cyto fRate24()
+	PFK1_reactants_0: 0  -> fru6p()@cyto -1*(fRate25())
+	PFK1_products_0: 0  -> fru16bp()@cyto fRate25()
+	PFK2_reactants_0: 0  -> fru6p()@cyto -1*(fRate26())
+	PFK2_products_0: 0  -> fru26bp()@cyto fRate26()
+	FBP2_reactants_0: 0  -> fru26bp()@cyto -1*(fRate27())
+	FBP2_products_0: 0  -> fru6p()@cyto fRate27()
+	PGK_reactants_0: 0  -> bpg13()@cyto -1*(fRate28())
+	PGK_products_0: 0  -> pg3()@cyto fRate28()
+	PGM_reactants_0: 0  -> pg3()@cyto -1*(fRate29())
+	PGM_products_0: 0  -> pg2()@cyto fRate29()
+	PK_reactants_0: 0  -> pep()@cyto -1*(fRate30())
+	PK_products_0: 0  -> pyr()@cyto fRate30()
+	PyrMalT_reactants_0: 0  -> mal_mal_mito()@mito -1*6.0*(fRate31())
+	PyrMalT_reactants_1: 0  -> pyr()@cyto -1*(fRate31())
+	PyrMalT_products_0: 0  -> pyr_pyr_mito()@mito 6.0*fRate31()
+	PyrMalT_products_1: 0  -> mal()@cyto fRate31()
+	PyrT_reactants_0: 0  -> pyr()@cyto -1*(fRate32())
+	PyrT_products_0: 0  -> pyr_pyr_mito()@mito 6.0*fRate32()
+	TPI_reactants_0: 0  -> dhap()@cyto -1*(fRate33())
+	TPI_products_0: 0  -> gap()@cyto fRate33()
+	UGT_reactants_0: 0  -> utp()@cyto -1*(fRate34())
+	UGT_reactants_1: 0  -> glc1p()@cyto -1*(fRate34())
+	UGT_products_0: 0  -> udpglc()@cyto fRate34()
+end reaction rules
+end model

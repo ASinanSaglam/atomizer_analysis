@@ -1,0 +1,48 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1308080005', 'http://identifiers.org/biomodels.db/BIOMD0000000485']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/23862966']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/doi/10.1007/BF01379769']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/131567']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0003824']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 2 molecules and 4 reactions. The translated model has 1 molecules and 7 rules'
+###
+begin model
+begin parameters
+	k1 3.0
+	k2 0.6
+	k3 0.25
+	k4 2.95
+	A 1.0
+	B 2.0
+	V 25.0
+	value 1.0
+end parameters
+begin molecule types
+	X(ES~ES~0)
+end molecule types
+begin seed species
+	X(ES~0) 1.0 #X #X
+	X(ES~ES) 1.0 #ES #ES
+end seed species
+begin observables
+	Species X X(ES~0) #X
+	Species ES X(ES~ES) #ES
+end observables
+begin functions
+	fRate0() = A*X*k1*(X - 1)/V
+	fRate1() = X*k2*(X - 2)*(X - 1)/V^2
+	fRate2() = B*V*k3
+end functions
+begin reaction rules
+	Reaction1_reactants_0: 0  -> X(ES~ES) -1*(fRate0()) #Modifiers(X, X, X)
+	Reaction1_products_0: 0  -> X(ES~0) fRate0() #Modifiers(X, X, X)
+	Reaction2_reactants_0: 0  -> X(ES~0) -1*(fRate1()) #Modifiers(X, X, X)
+	Reaction2_products_0: 0  -> X(ES~ES) fRate1() #Modifiers(X, X, X)
+	Reaction6_reactants_0: 0  -> X(ES~ES) -1*(fRate2())
+	Reaction6_products_0: 0  -> X(ES~0) fRate2()
+	Reaction7: X(ES~0) -> X(ES~ES) k4 #Modifiers(X)
+end reaction rules
+end model

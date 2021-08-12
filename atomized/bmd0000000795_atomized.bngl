@@ -1,0 +1,48 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/21967667']
+#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000141']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/ncit/C20625']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000795', 'http://identifiers.org/biomodels.db/MODEL1908130004']
+#@creatorEmail:'jm2187@cam.ac.uk'
+#@creatorName:'Men Jinghao'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 2 molecules and 6 reactions. The translated model has 2 molecules and 6 rules'
+###
+begin model
+begin parameters
+	b1 0.2 #units:unit_0
+	u1 0.1 #units:unit_0
+	b2 0.8 #units:unit_0
+	u2 0.1 #units:unit_0
+	v 0.1 #units:unit_0
+	k 0.9 #units:unit_0
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf cl:CL:0001064
+	T()
+	#^ bqbiol:isVersionOf cl:CL:0000037
+	H()
+end molecule types
+begin seed species
+	H() 3.011e+20 # (0.5 * 0.001)mol/L * 6.022e23/mol *1.0L #H #H
+	T() 6.022000000000001e+16 #original 0.0001substance/volume  #T #T
+end seed species
+begin observables
+	Species H H() #H
+	Species T T() #T
+end observables
+begin functions
+	fRate0() = H*b2*(-H - T*(1 - v) + 1)
+	fRate2() = T*b1*(-H*(1 - k) - T + 1)
+	fRate4() = H*b2*v
+	fRate5() = T*b1*k
+end functions
+begin reaction rules
+	HSC_growth_products_0: 0  -> H() fRate0() #Modifiers(T)
+	HSC_death: H() -> 0  u2
+	Tumor_growth_products_0: 0  -> T() fRate2() #Modifiers(H)
+	Tumor_death: T() -> 0  u1
+	Tumor_inhibition: T() -> 0  fRate4() #Modifiers(H)
+	HSC_inhibition: H() -> 0  fRate5() #Modifiers(T)
+end reaction rules
+end model

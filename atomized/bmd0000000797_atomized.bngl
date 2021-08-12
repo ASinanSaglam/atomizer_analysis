@@ -1,0 +1,80 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/doi/10.1016/j.amc.2017.11.009']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/go/GO:0002418']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000797', 'http://identifiers.org/biomodels.db/MODEL1908150001']
+#@creatorEmail:'johannes.p.meyer@gmail.com'
+#@creatorName:'Meyer Johannes'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 4 molecules and 12 reactions. The translated model has 4 molecules and 12 rules'
+###
+begin model
+begin parameters
+	r_1 0.514
+	b_1 1.02e-09
+	c_1 0.2
+	a_1 100000.0
+	delta_1 1.1e-10
+	beta_1 0.835
+	alpha_1 1000.0
+	mu_1 0.1
+	delta_2 1e-07
+	beta_2 5.4
+	alpha_2 1000.0
+	mu_2 34.0
+	r_2 0.2822
+	b_2 1e-09
+	delta_3 5.8e-11
+	I_2 0
+	I_1 0
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf cl:CL:0001063
+	x_Tumor_Cells()
+	#^ bqbiol:hasPart uniprot:Q0GK43
+	#^ bqbiol:is ncit:C20464
+	z_Cytokine()
+	#^ bqbiol:isVersionOf ncit:C12801
+	w_Healthy_Tissue()
+	#^ bqbiol:is cl:CL:0000492
+	y_CD4_T_Cells()
+end molecule types
+begin seed species
+	x_Tumor_Cells() 4.076894e+28 # 67700.0mol/L * 6.022e23/mol *1.0L #x_Tumor_Cells #x_Tumor_Cells
+	y_CD4_T_Cells() 6.022e+29 #original 1000000.0substance/L #y_CD4_T_Cells #y_CD4_T_Cells
+	z_Cytokine() 6.022000000000001e+28 #original 100000.0substance/L #z_Cytokine #z_Cytokine
+	w_Healthy_Tissue() 6.022e+32 #original 1000000000.0substance/L #w_Healthy_Tissue #w_Healthy_Tissue
+end seed species
+begin observables
+	Species x_Tumor_Cells x_Tumor_Cells() #x_Tumor_Cells
+	Species y_CD4_T_Cells y_CD4_T_Cells() #y_CD4_T_Cells
+	Species z_Cytokine z_Cytokine() #z_Cytokine
+	Species w_Healthy_Tissue w_Healthy_Tissue() #w_Healthy_Tissue
+end observables
+begin functions
+	Host_Cells_1e8() = w_Healthy_Tissue/100000000
+	Tumor_Cells_1e8() = x_Tumor_Cells/100000000
+	fRate0() = r_1*x_Tumor_Cells
+	fRate0m() = b_1*r_1*x_Tumor_Cells
+	fRate1() = c_1*z_Cytokine/(a_1 + x_Tumor_Cells)
+	fRate2() = delta_1*w_Healthy_Tissue
+	fRate3() = beta_1*x_Tumor_Cells*z_Cytokine/(alpha_1 + x_Tumor_Cells)
+	fRate5() = delta_2*x_Tumor_Cells
+	fRate7() = beta_2*x_Tumor_Cells*y_CD4_T_Cells/(alpha_2 + x_Tumor_Cells)
+	fRate10() = r_2*w_Healthy_Tissue
+	fRate10m() = b_2*r_2*w_Healthy_Tissue
+	fRate11() = delta_3*x_Tumor_Cells
+end functions
+begin reaction rules
+	Tumor_Growth: 0  <-> x_Tumor_Cells() fRate0(),fRate0m()
+	Tumor_Killing_Cytokine: x_Tumor_Cells() -> 0  fRate1() #Modifiers(z_Cytokine)
+	Tumor_Competition_Normal_Cells: x_Tumor_Cells() -> 0  fRate2() #Modifiers(w_Healthy_Tissue)
+	CD4T_Production: 0  -> y_CD4_T_Cells() fRate3() #Modifiers(x_Tumor_Cells, z_Cytokine)
+	CD4T_Natural_Death: y_CD4_T_Cells() -> 0  mu_1
+	CD4T_Depletion: y_CD4_T_Cells() -> 0  fRate5() #Modifiers(x_Tumor_Cells)
+	CD4T_Treatment: 0  -> y_CD4_T_Cells() I_1
+	Cytokine_Production: 0  -> z_Cytokine() fRate7() #Modifiers(x_Tumor_Cells, y_CD4_T_Cells)
+	Cytokine_Decay: z_Cytokine() -> 0  mu_2
+	Cytokine_Treatment: 0  -> z_Cytokine() I_2
+	Normal_Tissue_Growth: 0  <-> w_Healthy_Tissue() fRate10(),fRate10m()
+	Normal_Tissue_Competition_Tumor_Cells: w_Healthy_Tissue() -> 0  fRate11() #Modifiers(x_Tumor_Cells)
+end reaction rules
+end model

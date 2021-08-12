@@ -1,0 +1,130 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000107', 'http://identifiers.org/biomodels.db/MODEL5876465734']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/8126097']
+#@BQB_IS_HOMOLOG_TO:['http://identifiers.org/reactome/REACT_152']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0000278']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/8292']
+#@creatorEmail:'lenov@ebi.ac.uk'
+#@creatorName:'Le Novère Nicolas'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 14 molecules and 23 reactions. The translated model has 8 molecules and 27 rules'
+###
+begin model
+begin parameters
+	total_cdc2 100.0
+	total_cdc25 1.0
+	total_wee1 1.0
+	total_IE 1.0
+	total_UbE 1.0
+	V25_prime 0.1
+	V25_double_prime 2.0
+	Vwee_prime 0.1
+	Vwee_double_prime 1.0
+	V2_prime 0.015
+	V2_double_prime 1.0
+	k1AA 1.0
+	k3 0.01
+	kinh 0.025
+	kcak 0.25
+	ka 0.01
+	K_a 0.1
+	kbPPase 0.125
+	K_b 0.1
+	ke 0.0133
+	K_e 0.3
+	kfPPase 0.1
+	K_f 0.3
+	kg 0.0065
+	K_g 0.01
+	khPPAse 0.087
+	K_h 0.01
+	kc 0.1
+	K_c 0.01
+	kd_anti_IE 0.095
+	K_d 0.01
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf uniprot:P30311
+	cdc25(phosphorylatedcdc25~phosphorylatedcdc25~0)
+	#^ bqbiol:isVersionOf uniprot:P47817
+	wee1(phosphorylatedwee1~phosphorylatedwee1~0)
+	#^ bqbiol:isVersionOf uniprot:P35567
+	cdc2(cyclin)
+	#^ bqbiol:is interpro:IPR015454
+	cyclin(cdc2)
+	#^ bqbiol:hasPart uniprot:P35567, interpro:IPR015454
+	Tyr15phosphorylateddimer(thr161_~THR161_~0)
+	#^ bqbiol:isVersionOf go:GO:0031371, go:GO:0031371
+	ubiquitinconjugatingenzyme(_ube~_UBE~0)
+	intermediaryenzyme(phosphorylatedintermediaryenzyme~phosphorylatedintermediaryenzyme~0)
+	#^ bqbiol:hasPart uniprot:P35567, interpro:IPR015454
+	Thr161phosphorylateddimer__activeMPF__()
+end molecule types
+begin seed species
+	cyclin(cdc2) 6.022000000000001e+16 # (100.0 * 1e-09)mol/L * 6.022e23/mol *1.0L #cyclin #cyclin
+end seed species
+begin observables
+	Species cyclin cyclin(cdc2) #cyclin
+	Species cyclin_cdc2dimer cyclin(cdc2!177).cdc2(cyclin!177) #cyclin-cdc2 dimer
+	Species Thr161phosphorylateddimer__activeMPF__ Thr161phosphorylateddimer__activeMPF__() #Thr161 phosphorylated dimer(active MPF)
+	Species Tyr15phosphorylateddimer Tyr15phosphorylateddimer(thr161_~0) #Tyr15 phosphorylated dimer
+	Species Thr161_Tyr15phosphorylateddimer Tyr15phosphorylateddimer(thr161_~THR161_) #Thr161-Tyr15 phosphorylated dimer
+	Species phosphorylatedcdc25 cdc25(phosphorylatedcdc25~phosphorylatedcdc25) #phosphorylated cdc25
+	Species phosphorylatedwee1 wee1(phosphorylatedwee1~phosphorylatedwee1) #phosphorylated wee1
+	Species phosphorylatedintermediaryenzyme intermediaryenzyme(phosphorylatedintermediaryenzyme~phosphorylatedintermediaryenzyme) #phosphorylated intermediary enzyme
+	Species ubiquitinconjugatingenzyme ubiquitinconjugatingenzyme(_ube~0) #ubiquitin conjugating enzyme
+	Species cdc2 cdc2(cyclin) #cdc2
+	Species cdc25 cdc25(phosphorylatedcdc25~0) #cdc25
+	Species wee1 wee1(phosphorylatedwee1~0) #wee1
+	Species intermediaryenzyme intermediaryenzyme(phosphorylatedintermediaryenzyme~0) #intermediary enzyme
+	Species ubiquitinconjugatingenzyme_UbE ubiquitinconjugatingenzyme(_ube~_UBE) #ubiquitin conjugating enzyme
+end observables
+begin functions
+	Y15P() = Thr161_Tyr15phosphorylateddimer + Tyr15phosphorylateddimer
+	total_cyclin() = Thr161_Tyr15phosphorylateddimer + Thr161phosphorylateddimer__activeMPF__ + Tyr15phosphorylateddimer + cyclin + cyclin_cdc2dimer
+	k2() = V2_double_prime*ubiquitinconjugatingenzyme + V2_prime*(total_UbE - ubiquitinconjugatingenzyme)
+	kwee() = Vwee_double_prime*(-phosphorylatedwee1 + total_wee1) + Vwee_prime*phosphorylatedwee1
+	k25() = V25_double_prime*phosphorylatedcdc25 + V25_prime*(-phosphorylatedcdc25 + total_cdc25)
+	ubiquitinconjugatingenzyme_UbE_ar() = total_UbE - ubiquitinconjugatingenzyme
+	intermediaryenzyme_ar() = -phosphorylatedintermediaryenzyme + total_IE
+	wee1_ar() = -phosphorylatedwee1 + total_wee1
+	cdc25_ar() = -phosphorylatedcdc25 + total_cdc25
+	cdc2_ar() = -Thr161_Tyr15phosphorylateddimer - Thr161phosphorylateddimer__activeMPF__ - Tyr15phosphorylateddimer - cyclin_cdc2dimer + total_cdc2
+	fRate15() = Thr161phosphorylateddimer__activeMPF__*ka*(-phosphorylatedcdc25 + total_cdc25)/(K_a - phosphorylatedcdc25 + total_cdc25)
+	fRate16() = kbPPase/(K_b + phosphorylatedcdc25)
+	fRate17() = Thr161phosphorylateddimer__activeMPF__*ke*(-phosphorylatedwee1 + total_wee1)/(K_e - phosphorylatedwee1 + total_wee1)
+	fRate18() = kfPPase/(K_f + phosphorylatedwee1)
+	fRate19() = Thr161phosphorylateddimer__activeMPF__*kg*(-phosphorylatedintermediaryenzyme + total_IE)/(K_g - phosphorylatedintermediaryenzyme + total_IE)
+	fRate20() = khPPAse/(K_h + phosphorylatedintermediaryenzyme)
+	fRate21() = kc*phosphorylatedintermediaryenzyme*(total_UbE - ubiquitinconjugatingenzyme)/(K_c + total_UbE - ubiquitinconjugatingenzyme)
+	fRate22() = kd_anti_IE/(K_d + ubiquitinconjugatingenzyme)
+end functions
+begin reaction rules
+	R1: 0  -> cyclin(cdc2) k1AA
+	R2: cyclin(cdc2) -> 0  k2
+	R3: cyclin(cdc2) + cdc2(cyclin) -> cyclin(cdc2!177).cdc2(cyclin!177) k3
+	R4: Thr161phosphorylateddimer__activeMPF__() -> cyclin(cdc2!177).cdc2(cyclin!177) kinh
+	R5: cyclin(cdc2!177).cdc2(cyclin!177) -> Tyr15phosphorylateddimer(thr161_~0) kwee
+	R6: cyclin(cdc2!177).cdc2(cyclin!177) -> Thr161phosphorylateddimer__activeMPF__() kcak
+	R7: cyclin(cdc2!177).cdc2(cyclin!177) -> 0  k2
+	R8: Tyr15phosphorylateddimer(thr161_~0) -> cyclin(cdc2!177).cdc2(cyclin!177) k25
+	R9: Tyr15phosphorylateddimer(thr161_~0) -> Tyr15phosphorylateddimer(thr161_~THR161_) kcak
+	R10: Tyr15phosphorylateddimer(thr161_~0) -> 0  k2
+	R11: Tyr15phosphorylateddimer(thr161_~THR161_) -> Tyr15phosphorylateddimer(thr161_~0) kinh
+	R12: Thr161phosphorylateddimer__activeMPF__() -> Tyr15phosphorylateddimer(thr161_~THR161_) kwee #Modifiers(wee1)
+	R13: Tyr15phosphorylateddimer(thr161_~THR161_) -> Thr161phosphorylateddimer__activeMPF__() k25 #Modifiers(cdc25)
+	R14: Tyr15phosphorylateddimer(thr161_~THR161_) -> 0  k2
+	R15: Thr161phosphorylateddimer__activeMPF__() -> 0  k2
+	R17_reactants_0: 0  -> cdc25(phosphorylatedcdc25~0) -1*(fRate15()) #Modifiers(dimer_p)
+	R17_products_0: 0  -> cdc25(phosphorylatedcdc25~phosphorylatedcdc25) fRate15() #Modifiers(dimer_p)
+	R18: cdc25(phosphorylatedcdc25~phosphorylatedcdc25) -> cdc25(phosphorylatedcdc25~0) fRate16()
+	R19_reactants_0: 0  -> wee1(phosphorylatedwee1~0) -1*(fRate17()) #Modifiers(dimer_p)
+	R19_products_0: 0  -> wee1(phosphorylatedwee1~phosphorylatedwee1) fRate17() #Modifiers(dimer_p)
+	R20: wee1(phosphorylatedwee1~phosphorylatedwee1) -> wee1(phosphorylatedwee1~0) fRate18()
+	R21_reactants_0: 0  -> intermediaryenzyme(phosphorylatedintermediaryenzyme~0) -1*(fRate19()) #Modifiers(dimer_p)
+	R21_products_0: 0  -> intermediaryenzyme(phosphorylatedintermediaryenzyme~phosphorylatedintermediaryenzyme) fRate19() #Modifiers(dimer_p)
+	R22: intermediaryenzyme(phosphorylatedintermediaryenzyme~phosphorylatedintermediaryenzyme) -> intermediaryenzyme(phosphorylatedintermediaryenzyme~0) fRate20()
+	R23_reactants_0: 0  -> ubiquitinconjugatingenzyme(_ube~_UBE) -1*(fRate21()) #Modifiers(IE_p)
+	R23_products_0: 0  -> ubiquitinconjugatingenzyme(_ube~0) fRate21() #Modifiers(IE_p)
+	R24: ubiquitinconjugatingenzyme(_ube~0) -> ubiquitinconjugatingenzyme(_ube~_UBE) fRate22()
+end reaction rules
+end model

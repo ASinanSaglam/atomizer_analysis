@@ -13,10 +13,10 @@ from IPython.display import Image, display
 from matplotlib import rcParams
 
 def read_gdat(file):
-    f =open(file)
+    f = open(file)
     # Get column names from first line of file
-    line =f.readline()
-    names =re.split('\s+',(re.sub('#','',line)).strip())
+    line = f.readline()
+    names = re.split('\s+',(re.sub('#','',line)).strip())
     gdat = pd.read_table(f,sep='\s+',header=None,names=names)
     # Set the time as index
     gdat = gdat.set_index("time")

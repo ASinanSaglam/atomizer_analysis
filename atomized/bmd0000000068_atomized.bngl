@@ -1,0 +1,64 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL6624146302', 'http://identifiers.org/biomodels.db/BIOMD0000000068']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/14622248']
+#@BQB_HAS_PART:['http://identifiers.org/kegg.pathway/map00271', 'http://identifiers.org/obo.go/GO:0019283', 'http://identifiers.org/obo.go/GO:0009088', 'http://identifiers.org/kegg.pathway/map00260']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/3702']
+#@creatorEmail:'jls@sun.ac.za'
+#@creatorName:'Snoep Jacky L'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 9 molecules and 3 reactions. The translated model has 6 molecules and 9 rules'
+###
+begin model
+begin parameters
+	S_adenosylmethionine 1.2044e+19 #original 20.0micromole/L
+	Cystathioninegamma_synthase 4.2154e+17 #original 0.7micromole/L
+	Threoninesynthase 3.011e+18 #original 5.0micromole/L
+	r1_V0 1.000000
+	r2_kcat2 30.000000
+	r2_KmCYS 460.000000
+	r2_KmPHSER 2500.000000
+	r2_Ki2 2000.000000
+	r3_Ki3 1000.000000
+end parameters
+begin molecule types
+	#^ bqbiol:is obo.chebi:CHEBI:18367, kegg.compound:C00009
+	Inorganicphosphate()
+	#^ bqbiol:is obo.chebi:CHEBI:16857, kegg.compound:C00188
+	Threonine()
+	#^ bqbiol:is obo.chebi:CHEBI:17561, kegg.compound:C00097
+	Cysteine()
+	#^ bqbiol:is obo.chebi:CHEBI:17482, kegg.compound:C02291
+	Cystathionine()
+	#^ bqbiol:is obo.chebi:CHEBI:15961, kegg.compound:C01102
+	Phosphohomoserine()
+	#^ bqbiol:is obo.chebi:CHEBI:15699, kegg.compound:C00263
+	Homoserine()
+end molecule types
+begin seed species
+	Inorganicphosphate() 6.022e+21 # (10000.0 * 1e-06)mol/L * 6.022e23/mol *1.0L #Inorganicphosphate #Phi
+	Cysteine() 9.033e+18 #original 15.0micromole/L  #Cysteine #Cys
+end seed species
+begin observables
+	Species Phosphohomoserine Phosphohomoserine() #Phosphohomoserine
+	Species Threonine Threonine() #Threonine
+	Species Cystathionine Cystathionine() #Cystathionine
+	Species Homoserine Homoserine() #Homoserine
+	Species Inorganicphosphate Inorganicphosphate() #Inorganic phosphate
+	Species Cysteine Cysteine() #Cysteine
+end observables
+begin functions
+	fRate0() = 1.0
+	fRate1() = 30.0*Cystathioninegamma_synthase*Phosphohomoserine/((1 + 460.0/Cysteine)*(Phosphohomoserine + (1.25*Inorganicphosphate + 2500.0)/(1 + 460.0/Cysteine)))
+	fRate2() = Phosphohomoserine*Threoninesynthase*(0.062*S_adenosylmethionine^2.9/(S_adenosylmethionine^2.9 + 23170.4750059208) + 0.00059)/(0.001*Inorganicphosphate + 1)
+end functions
+begin reaction rules
+	v1_reactants_0: 0  -> Homoserine() -1*(fRate0())
+	v1_products_0: 0  -> Phosphohomoserine() fRate0()
+	vCys_reactants_0: 0  -> Phosphohomoserine() -1*(fRate1()) #Modifiers(CGS)
+	vCys_reactants_1: 0  -> Cysteine() -1*(fRate1()) #Modifiers(CGS)
+	vCys_products_0: 0  -> Cystathionine() fRate1() #Modifiers(CGS)
+	vCys_products_1: 0  -> Inorganicphosphate() fRate1() #Modifiers(CGS)
+	vThr_reactants_0: 0  -> Phosphohomoserine() -1*(fRate2()) #Modifiers(AdoMet, TS)
+	vThr_products_0: 0  -> Threonine() fRate2() #Modifiers(AdoMet, TS)
+	vThr_products_1: 0  -> Inorganicphosphate() fRate2() #Modifiers(AdoMet, TS)
+end reaction rules
+end model

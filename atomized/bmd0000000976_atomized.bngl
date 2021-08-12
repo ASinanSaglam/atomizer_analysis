@@ -1,0 +1,56 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/32834656']
+#@BQB_IS:['http://identifiers.org/doid/DOID:0080600']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606', 'http://identifiers.org/taxonomy/2697049']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000028']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL2011230001', 'http://identifiers.org/biomodels.db/BIOMD0000000976']
+#@creatorEmail:'kramachandran@ebi.ac.uk'
+#@creatorName:'Ramachandran Kausthubh'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 4 molecules and 5 reactions. The translated model has 4 molecules and 7 rules'
+###
+begin model
+begin parameters
+	alpha 0.55
+	gamma_1 0.1
+	gamma_2 0.061
+	tau 2e-09
+	mu 0.02
+	Lockdown_start 19.0
+	Lockdown_end 33.0
+end parameters
+begin molecule types
+	#^ bqbiol:is ido:0000511, ncit:C171133
+	Infected_weak_immune_system()
+	#^ bqbiol:is ido:0000511, ncit:C171133
+	Infected_strong_immune_system()
+	#^ bqbiol:is ncit:0000621
+	Recovered()
+	#^ bqbiol:is ido:0000514, ncit:C171133
+	Susceptible()
+end molecule types
+begin seed species
+	Susceptible() 4.7478179150555975e+31 # 78841214.132441mol/L * 6.022e23/mol *1.0L #Susceptible #Susceptible
+	Infected_strong_immune_system() 3.04737288e+27 #original 5060.4substance/volume  #Infected_strong_immune_system #Infected_strong_immune_system
+	Infected_weak_immune_system() 2.70243272e+27 #original 4487.6substance/volume  #Infected_weak_immune_system #Infected_weak_immune_system
+	Recovered() 2.764098e+27 #original 4590.0substance/volume  #Recovered #Recovered
+end seed species
+begin observables
+	Species Susceptible Susceptible() #Susceptible
+	Species Infected_strong_immune_system Infected_strong_immune_system() #Infected_strong_immune_system
+	Species Infected_weak_immune_system Infected_weak_immune_system() #Infected_weak_immune_system
+	Species Recovered Recovered() #Recovered
+end observables
+begin functions
+	fRate0() = Susceptible*alpha*tau*(Infected_strong_immune_system + Infected_weak_immune_system)
+	fRate1() = Susceptible*tau*(1 - alpha)*(Infected_strong_immune_system + Infected_weak_immune_system)
+end functions
+begin reaction rules
+	Susceptible_to_Infected_I1_reactants_0: 0  -> Susceptible() -1*(fRate0()) #Modifiers(Infected_weak_immune_system)
+	Susceptible_to_Infected_I1_products_0: 0  -> Infected_strong_immune_system() fRate0() #Modifiers(Infected_weak_immune_system)
+	Susceptible_to_Infected_I2_reactants_0: 0  -> Susceptible() -1*(fRate1()) #Modifiers(Infected_strong_immune_system)
+	Susceptible_to_Infected_I2_products_0: 0  -> Infected_weak_immune_system() fRate1() #Modifiers(Infected_strong_immune_system)
+	Infected_I1_to_Recovered: Infected_strong_immune_system() -> Recovered() gamma_1
+	Infected_I2_to_Recovered: Infected_weak_immune_system() -> Recovered() gamma_2
+	Infected_I2_to_Deceased: Infected_weak_immune_system() -> 0  mu
+end reaction rules
+end model

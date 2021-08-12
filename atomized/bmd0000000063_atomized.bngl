@@ -1,0 +1,153 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000063', 'http://identifiers.org/biomodels.db/MODEL6624154196']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/doi/10.1016/0141-0229(90)90033-M']
+#@BQB_IS_HOMOLOG_TO:['http://identifiers.org/reactome/REACT_723']
+#@BQB_IS:['http://identifiers.org/kegg.pathway/sce00010']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0019660']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/4932']
+#@BQB_HAS_PART:['http://identifiers.org/go/GO:0006096']
+#@creatorEmail:'jls@sun.ac.za'
+#@creatorName:'Snoep Jacky L'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 9 molecules and 8 reactions. The translated model has 9 molecules and 20 rules'
+###
+begin model
+begin parameters
+	parameter_4 14.31 #units:mM_per_minute
+	parameter_5 8.25 #units:dimensionless
+	parameter_6 2.0 #units:mM
+	parameter_7 68.5 #units:mM_per_minute
+	r1_Vm1 19.700000
+	r1_Ki1G6P 3.700000
+	r2_Vm2 68.500000
+	r2_Km2Glc 0.110000
+	r2_Km2ATP 0.100000
+	r2_Ks2Glc 0.006200
+	r3_Vm3 14.310000
+	r3_n3 8.250000
+	r3_K3Gly 2.000000
+	r3_Km30 1.000000
+	r3_Km3G6P 1.100000
+	r4_Vm4 31.700000
+	r4_g4R 10.000000
+	r4_K4F6P 1.000000
+	r4_K4ATP 0.060000
+	r4_L40 3342.000000
+	r4_c4AMP 0.019000
+	r4_K4AMP 0.025000
+	r4_c4F6P 0.000500
+	r4_c4ATP 1.000000
+	r4_gT 1.000000
+	r5_Vm5 49.900000
+	r5_K5G3P 0.002500
+	r5_K5NAD 0.180000
+	r5_NAD 1.919390
+	r5_NADH 0.080614
+	r5_K5NADH 0.000300
+	r5_K5ADP 1.500000
+	r5_K5AMP 1.100000
+	r5_K5ATP 2.500000
+	r6_Vm6 3440.000000
+	r6_K6PEP 0.007940
+	r6_K6ADP 5.000000
+	r6_g6R 0.100000
+	r6_q6 1.000000
+	r6_L60 164.084000
+	r6_c6FDP 0.010000
+	r6_K6FDP 0.200000
+	r6_g6T 1.000000
+	r6_c6PEP 0.000159
+	r6_c6ADP 1.000000
+	r6_h6 0.000000
+	r7_Vm7 203.000000
+	r7_K6PEP 0.007940
+	r7_K6ADP 5.000000
+	r7_g6R 0.100000
+	r7_q6 1.000000
+	r7_L60 164.084000
+	r7_c6FDP 0.010000
+	r7_K6FDP 0.200000
+	r7_g6T 1.000000
+	r7_c6PEP 0.000159
+	r7_c6ADP 1.000000
+	r7_h6 0.000000
+	r8_Vm8 25.100000
+end parameters
+begin compartments
+	#volume units: L
+	extracellular 3 1.0 #Extracellular
+	cytoplasm 3 1.0 #Cytoplasm
+end compartments
+begin molecule types
+	#^ bqbiol:is chebi:CHEBI:18021, kegg.compound:C00074
+	Phosphoenolpyruvate()
+	#^ bqbiol:is chebi:CHEBI:17754, kegg.compound:C00116
+	Glycerol()
+	#^ bqbiol:is chebi:CHEBI:17234, kegg.compound:C00293
+	Glucoseinsidethecell()
+	#^ bqbiol:hasPart chebi:CHEBI:28087, chebi:CHEBI:27082, kegg.compound:C00182, kegg.compound:C01083, chebi:CHEBI:28087
+	GlycogenandTrehalose()
+	#^ bqbiol:is chebi:CHEBI:16905, kegg.compound:C00354
+	Fructose1_6_phosphate()
+	#^ bqbiol:is chebi:CHEBI:17234, kegg.compound:C00293
+	Glucoseoutsidethecell()
+	#^ bqbiol:is chebi:CHEBI:16236, kegg.compound:C00469
+	Ethanol()
+	#^ bqbiol:is chebi:CHEBI:17665, kegg.compound:C00668
+	Glucose6_phosphate()
+	#^ bqbiol:is chebi:CHEBI:15422, kegg.compound:C00002
+	ATP()
+end molecule types
+begin seed species
+	@cytoplasm:Glucoseinsidethecell() 2.0775900000000004e+19 # (0.0345 * 0.001)mol/L * 6.022e23/mol *1.0L #Glucoseinsidethecell #Glci
+	@cytoplasm:ATP() 7.16618e+20 #original 1.19millimole/L #ATP #ATP
+	@cytoplasm:Glucose6_phosphate() 6.088242e+20 #original 1.011millimole/L #Glucose6_phosphate #G6P
+	@cytoplasm:Fructose1_6_phosphate() 5.506516800000001e+21 #original 9.144millimole/L #Fructose1_6_phosphate #FDP
+	@cytoplasm:Phosphoenolpyruvate() 5.720900000000001e+18 #original 0.0095millimole/L #Phosphoenolpyruvate #PEP
+	@extracellular:Glucoseoutsidethecell() 6.022e+20 #original 1.0millimole/L #Glucoseoutsidethecell #Glco
+end seed species
+begin observables
+	Species Glucoseinsidethecell_cytoplasm @cytoplasm:Glucoseinsidethecell() #Glucose inside the cell
+	Species ATP_cytoplasm @cytoplasm:ATP() #ATP
+	Species Glucose6_phosphate_cytoplasm @cytoplasm:Glucose6_phosphate() #Glucose 6-phosphate
+	Species Fructose1_6_phosphate_cytoplasm @cytoplasm:Fructose1_6_phosphate() #Fructose 1,6-phosphate
+	Species Phosphoenolpyruvate_cytoplasm @cytoplasm:Phosphoenolpyruvate() #Phosphoenol pyruvate
+	Species Glycerol_cytoplasm @cytoplasm:Glycerol() #Glycerol
+	Species Ethanol_cytoplasm @cytoplasm:Ethanol() #Ethanol
+	Species GlycogenandTrehalose_cytoplasm @cytoplasm:GlycogenandTrehalose() #Glycogen and Trehalose
+	Species Glucoseoutsidethecell_extracellular @extracellular:Glucoseoutsidethecell() #Glucose outside the cell
+end observables
+begin functions
+	VratioVmax() = 1.0*Vhk/parameter_7
+	VappGly() = Glucose6_phosphate_cytoplasm^parameter_5*parameter_4/(Glucose6_phosphate_cytoplasm^parameter_5 + parameter_6^parameter_5)
+	fRate0() = 19.7 - 3.7*Glucose6_phosphate_cytoplasm
+	fRate1() = 68.5/(1 + 0.11/Glucoseinsidethecell_cytoplasm + 0.1/ATP_cytoplasm + 0.00062/(ATP_cytoplasm*Glucoseinsidethecell_cytoplasm))
+	fRate2() = 15.741*Glucose6_phosphate_cytoplasm^8.25/((2.42857142857143 + 1.57142857142857/Glucose6_phosphate_cytoplasm)*(Glucose6_phosphate_cytoplasm^8.25 + 304.437021440697))
+	fRate3() = 95.1*ATP_cytoplasm*Glucose6_phosphate_cytoplasm*(50.0*ATP_cytoplasm*Glucose6_phosphate_cytoplasm + 16.6666666666667*ATP_cytoplasm + 0.3*Glucose6_phosphate_cytoplasm + 1)/(150.0*(ATP_cytoplasm*Glucose6_phosphate_cytoplasm + 0.333333333333333*ATP_cytoplasm + 0.006*Glucose6_phosphate_cytoplasm + 0.02)^2 + 40.9290950071716*(-0.115853658536585*ATP_cytoplasm - 0.115853658536585*(-3*ATP_cytoplasm^2 + 12*ATP_cytoplasm)^0.5 + 1)^2*(0.00015*ATP_cytoplasm*Glucose6_phosphate_cytoplasm + ATP_cytoplasm + 9.0e-6*Glucose6_phosphate_cytoplasm + 0.06)^2/(-0.165289256198347*ATP_cytoplasm - 0.165289256198347*(-3*ATP_cytoplasm^2 + 12*ATP_cytoplasm)^0.5 + 1)^2)
+	fRate4() = 49.9/((0.0937797946222498 + 6.32343088168637/Fructose1_6_phosphate_cytoplasm)*(-0.387878787878788*ATP_cytoplasm - 0.121212121212121*(-3*ATP_cytoplasm^2 + 12*ATP_cytoplasm)^0.5 + 3.72727272727273) + 1 + 0.25/Fructose1_6_phosphate_cytoplasm)
+	fRate5() = 1720.0*Phosphoenolpyruvate_cytoplasm*(-ATP_cytoplasm + (-3*ATP_cytoplasm^2 + 12*ATP_cytoplasm)^0.5)*(-0.01*ATP_cytoplasm + 0.0131267034668991*Phosphoenolpyruvate_cytoplasm*(-ATP_cytoplasm + (-3*ATP_cytoplasm^2 + 12*ATP_cytoplasm)^0.5)*(0.05*Fructose1_6_phosphate_cytoplasm + 1)^2*(-0.1*ATP_cytoplasm + 0.00199999748100045*Phosphoenolpyruvate_cytoplasm*(-ATP_cytoplasm + (-3*ATP_cytoplasm^2 + 12*ATP_cytoplasm)^0.5) + 0.0199999748100045*Phosphoenolpyruvate_cytoplasm + 0.1*(-3*ATP_cytoplasm^2 + 12*ATP_cytoplasm)^0.5 + 1)/(Fructose1_6_phosphate_cytoplasm + 0.2)^2 + 0.125949977706854*Phosphoenolpyruvate_cytoplasm*(-ATP_cytoplasm + (-3*ATP_cytoplasm^2 + 12*ATP_cytoplasm)^0.5) + 12.5949977706854*Phosphoenolpyruvate_cytoplasm + 0.01*(-3*ATP_cytoplasm^2 + 12*ATP_cytoplasm)^0.5 + 0.1)/(0.2822264281429*(0.05*Fructose1_6_phosphate_cytoplasm + 1)^2*(-0.1*ATP_cytoplasm + 0.00199999748100045*Phosphoenolpyruvate_cytoplasm*(-ATP_cytoplasm + (-3*ATP_cytoplasm^2 + 12*ATP_cytoplasm)^0.5) + 0.0199999748100045*Phosphoenolpyruvate_cytoplasm + 0.1*(-3*ATP_cytoplasm^2 + 12*ATP_cytoplasm)^0.5 + 1)^2/(Fructose1_6_phosphate_cytoplasm + 0.2)^2 + 682.130774616248*(-0.000793966*ATP_cytoplasm + 0.01*Phosphoenolpyruvate_cytoplasm*(-ATP_cytoplasm + (-3*ATP_cytoplasm^2 + 12*ATP_cytoplasm)^0.5) + Phosphoenolpyruvate_cytoplasm + 0.000793966*(-3*ATP_cytoplasm^2 + 12*ATP_cytoplasm)^0.5 + 0.00793966)^2)
+	fRate6() = 101.5*Phosphoenolpyruvate_cytoplasm*(-ATP_cytoplasm + (-3*ATP_cytoplasm^2 + 12*ATP_cytoplasm)^0.5)*(-0.01*ATP_cytoplasm + 0.0131267034668991*Phosphoenolpyruvate_cytoplasm*(-ATP_cytoplasm + (-3*ATP_cytoplasm^2 + 12*ATP_cytoplasm)^0.5)*(0.05*Fructose1_6_phosphate_cytoplasm + 1)^2*(-0.1*ATP_cytoplasm + 0.00199999748100045*Phosphoenolpyruvate_cytoplasm*(-ATP_cytoplasm + (-3*ATP_cytoplasm^2 + 12*ATP_cytoplasm)^0.5) + 0.0199999748100045*Phosphoenolpyruvate_cytoplasm + 0.1*(-3*ATP_cytoplasm^2 + 12*ATP_cytoplasm)^0.5 + 1)/(Fructose1_6_phosphate_cytoplasm + 0.2)^2 + 0.125949977706854*Phosphoenolpyruvate_cytoplasm*(-ATP_cytoplasm + (-3*ATP_cytoplasm^2 + 12*ATP_cytoplasm)^0.5) + 12.5949977706854*Phosphoenolpyruvate_cytoplasm + 0.01*(-3*ATP_cytoplasm^2 + 12*ATP_cytoplasm)^0.5 + 0.1)/(0.2822264281429*(0.05*Fructose1_6_phosphate_cytoplasm + 1)^2*(-0.1*ATP_cytoplasm + 0.00199999748100045*Phosphoenolpyruvate_cytoplasm*(-ATP_cytoplasm + (-3*ATP_cytoplasm^2 + 12*ATP_cytoplasm)^0.5) + 0.0199999748100045*Phosphoenolpyruvate_cytoplasm + 0.1*(-3*ATP_cytoplasm^2 + 12*ATP_cytoplasm)^0.5 + 1)^2/(Fructose1_6_phosphate_cytoplasm + 0.2)^2 + 682.130774616248*(-0.000793966*ATP_cytoplasm + 0.01*Phosphoenolpyruvate_cytoplasm*(-ATP_cytoplasm + (-3*ATP_cytoplasm^2 + 12*ATP_cytoplasm)^0.5) + Phosphoenolpyruvate_cytoplasm + 0.000793966*(-3*ATP_cytoplasm^2 + 12*ATP_cytoplasm)^0.5 + 0.00793966)^2)
+end functions
+begin reaction rules
+	Vin_reactants_0: 0  -> Glucoseoutsidethecell()@extracellular -1*(fRate0()) #Modifiers(G6P)
+	Vin_products_0: 0  -> Glucoseinsidethecell()@cytoplasm fRate0() #Modifiers(G6P)
+	Vhk_reactants_0: 0  -> ATP()@cytoplasm -1*(fRate1())
+	Vhk_reactants_1: 0  -> Glucoseinsidethecell()@cytoplasm -1*(fRate1())
+	Vhk_products_0: 0  -> Glucose6_phosphate()@cytoplasm fRate1()
+	Vpol_reactants_0: 0  -> ATP()@cytoplasm -1*(fRate2())
+	Vpol_reactants_1: 0  -> Glucose6_phosphate()@cytoplasm -1*(fRate2())
+	Vpol_products_0: 0  -> GlycogenandTrehalose()@cytoplasm fRate2()
+	Vpfk_reactants_0: 0  -> ATP()@cytoplasm -1*(fRate3())
+	Vpfk_reactants_1: 0  -> Glucose6_phosphate()@cytoplasm -1*(fRate3())
+	Vpfk_products_0: 0  -> Fructose1_6_phosphate()@cytoplasm fRate3()
+	Vgapd_reactants_0: 0  -> Fructose1_6_phosphate()@cytoplasm -1*(fRate4())
+	Vgapd_products_0: 0  -> ATP()@cytoplasm 2.0*fRate4()
+	Vgapd_products_1: 0  -> Phosphoenolpyruvate()@cytoplasm 2.0*fRate4()
+	Vpk_reactants_0: 0  -> Phosphoenolpyruvate()@cytoplasm -1*(fRate5()) #Modifiers(FDP)
+	Vpk_products_0: 0  -> ATP()@cytoplasm fRate5() #Modifiers(FDP)
+	Vpk_products_1: 0  -> Ethanol()@cytoplasm fRate5() #Modifiers(FDP)
+	Vgol_reactants_0: 0  -> Fructose1_6_phosphate()@cytoplasm -1*0.5*(fRate6()) #Modifiers(PEP, ATP)
+	Vgol_products_0: 0  -> Glycerol()@cytoplasm fRate6() #Modifiers(PEP, ATP)
+	Vatpase: ATP()@cytoplasm -> 0  r8_Vm8
+end reaction rules
+end model

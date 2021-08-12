@@ -1,0 +1,192 @@
+###
+#@BQM_UNKNOWN:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0045839']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/559292']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/16713564', 'http://identifiers.org/doi/10.1016/j.cell.2006.03.038']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1809060004', 'http://identifiers.org/biomodels.db/BIOMD0000000953']
+#@creatorEmail:'matt.maire@free.fr'
+#@creatorName:'MAIRE Matthieu'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 27 molecules and 29 reactions. The translated model has 13 molecules and 29 rules'
+###
+begin model
+begin parameters
+	ks_clb2 0.03
+	kd_clb2 0.03
+	kd_clb2_p 0.2
+	kd_clb2_pp 2.0
+	ks_cdc20 0.015
+	kd_cdc20 0.05
+	kd_cdc20_p 2.0
+	kd_cdh 0.01
+	kd_cdh_p 1.0
+	kp_cdh_p 1.0
+	J_cdh 0.0015
+	ks_securin 0.03
+	kd_securin 0.05
+	kd_securin_p 2.0
+	ks_separase 0.001
+	kd_separase 0.004
+	la_securin 500.0
+	ld_securin 1.0
+	kd_p 0.1
+	kd 0.45
+	kp 0.4
+	kp_p 2.0
+	Jnet 0.2
+	l_a_net 500.0
+	l_d_net 1.0
+	ks_polo 0.01
+	kd_polo 0.01
+	kd_polo_p 0.25
+	ka_polo_p 0.5
+	ki_polo 0.1
+	J_polo 0.25
+	ka_tem_p 0.5
+	ki_tem 0.1
+	kitem_p 1.0
+	J_tem1 0.005
+	ka_cdc15 0.02
+	ka_cdc15_p 0.5
+	ki_cdc15_p 0.2
+	J_cdc15 0.2
+	la_men 10.0
+	ld_men 0.01
+	kpp 0.1
+	ki 20.0
+	ka_polo 0
+	ka_tem 0
+	ki_cdc15 0
+	net1p 2.511174e+20 #original 0.417substance/volume
+	cdk 6.003934e+20 #original 0.997substance/volume
+	pp2a 6.022e+20 #original 0.965384615384616substance/volume
+	pp2a_total 6.022e+20 #original 1.0substance/volume
+	cdh1_total 6.022e+20 #original 1.0substance/volume
+	net1_total 6.022e+20 #original 1.0substance/volume
+	tem1_total 6.022e+20 #original 1.0substance/volume
+	cdc15_total 6.022e+20 #original 1.0substance/volume
+	securin 2.119744e+20 #original 0.352substance/volume
+	separase 1.2044e+18 #original 0.00199999999999997substance/volume
+	cdc14_total 3.011e+20 #original 0.5substance/volume
+	Cdc14x2 0 #original 0.03substance/volume
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf uniprot:Q03018
+	separase_total()
+	#^ bqbiol:isHomologTo uniprot:P32562
+	polo()
+	#^ bqbiol:isVersionOf uniprot:P26309
+	cdc20()
+	#^ bqbiol:isHomologTo uniprot:P32562
+	polo_total()
+	#^ bqbiol:isVersionOf uniprot:P38987
+	tem1()
+	#^ bqbiol:isVersionOf uniprot:P47035
+	net1(cdc14)
+	#^ bqbiol:hasPart uniprot:P40316, uniprot:Q03018
+	#^ bqbiol:hasProperty sbo:SBO:0000297
+	securin_separase()
+	#^ bqbiol:isVersionOf uniprot:P53197
+	cdh1()
+	#^ bqbiol:isVersionOf uniprot:P40316
+	securin_total()
+	#^ bqbiol:isVersionOf uniprot:P27636
+	cdc15()
+	men()
+	#^ bqbiol:isVersionOf uniprot:P24869
+	clb2()
+	#^ bqbiol:isVersionOf uniprot:Q00684
+	cdc14(net1)
+end molecule types
+begin seed species
+	clb2() 6.003934e+20 # (0.997 * 0.001)mol/L * 6.022e23/mol *1.0L #clb2 #clb2
+	securin_total() 3.6132e+20 #original 0.6substance/volume #securin_total #securin_total
+	separase_total() 1.5055e+20 #original 0.25substance/volume #separase_total #separase_total
+	securin_separase() 1.493456e+20 #original 0.248substance/volume #securin_separase #securin_separase
+	net1(cdc14) 5.901560000000001e+19 #original 0.098substance/volume #net1 #net1
+	cdc14(net1) 9.033e+18 #original 0.015substance/volume #cdc14 #cdc14
+	net1(cdc14!114).cdc14(net1!114) 2.92067e+20 #original 0.485substance/volume #net1cdc14 #net1cdc14
+	polo_total() 5.961780000000001e+20 #original 0.99substance/volume #polo_total #polo_total
+	men() 4817600000000001.0 #original 8e-06substance/volume #men #men
+	polo() 5.69079e+20 #original 0.945substance/volume #polo #polo
+	tem1() 6.022e+20 #original 1.0substance/volume #tem1 #tem1
+	cdc15() 1.5476540000000002e+19 #original 0.0257substance/volume #cdc15 #cdc15
+end seed species
+begin observables
+	Species clb2 clb2() #clb2
+	Species cdc20 cdc20() #cdc20
+	Species cdh1 cdh1() #cdh1
+	Species securin_total securin_total() #securin_total
+	Species separase_total separase_total() #separase_total
+	Species securin_separase securin_separase() #securin_separase
+	Species net1 net1(cdc14) #net1
+	Species cdc14 cdc14(net1) #cdc14
+	Species net1cdc14 net1(cdc14!114).cdc14(net1!114) #net1cdc14
+	Species polo_total polo_total() #polo_total
+	Species men men() #men
+	Species polo polo() #polo
+	Species tem1 tem1() #tem1
+	Species cdc15 cdc15() #cdc15
+end observables
+begin functions
+	cdc14_ar() = cdc14_total - net1cdc14
+	Cdc14x2_ar() = 2*cdc14_ar
+	separase_ar() = -securin_separase + separase_total
+	pp2a_ar() = pp2a_total*(ki*kpp*separase_ar + 1)/(ki*separase_ar + 1)
+	securin_ar() = -securin_separase + securin_total
+	cdk_ar() = clb2/(Inh + 1)
+	net1p_ar() = -net1 + net1_total - net1cdc14
+	fRate1() = clb2*(cdc20*kd_clb2_p + cdh1*kd_clb2_pp + kd_clb2)
+	fRate3() = cdc20*(cdh1*kd_cdc20_p + kd_cdc20)
+	fRate4() = (-cdh1 + cdh1_total)*(cdc14_ar*kd_cdh_p + kd_cdh)/(J_cdh - cdh1 + cdh1_total)
+	fRate5() = cdk_ar*kp_cdh_p/(J_cdh + cdh1)
+	fRate7() = securin_total*(cdc20*kd_securin_p + kd_securin)
+	fRate10() = la_securin*securin_ar*separase_ar
+	fRate11() = securin_separase*(cdc20*kd_securin_p + kd_securin + kd_separase + ld_securin)
+	fRate12() = net1p_ar*(cdc14_ar*kd_p + kd*pp2a_ar)/(Jnet + net1p_ar)
+	fRate13() = net1*(cdk_ar*kp + kp_p*men)/(Jnet + net1 + net1cdc14)
+	fRate15() = net1cdc14*(cdk_ar*kp + kp_p*men)/(Jnet + net1 + net1cdc14)
+	fRate17() = polo_total*(cdh1*kd_polo_p + kd_polo)
+	fRate18() = (-polo + polo_total)*(cdk_ar*ka_polo_p + ka_polo)/(J_polo - polo + polo_total)
+	fRate19() = ki_polo/(J_polo + polo)
+	fRate20() = polo*(cdh1*kd_polo_p + kd_polo)
+	fRate21() = (ka_tem + ka_tem_p*polo)*(-tem1 + tem1_total)/(J_tem1 - tem1 + tem1_total)
+	fRate22() = tem1*(ki_tem + kitem_p*pp2a_ar)/(J_tem1 + tem1)
+	fRate23() = (-cdc15 + cdc15_total)*(cdc14_ar*ka_cdc15_p + ka_cdc15)/(J_cdc15 - cdc15 + cdc15_total)
+	fRate24() = cdc15*(cdk_ar*ki_cdc15_p + ki_cdc15)/(J_cdc15 + cdc15)
+	fRate25() = la_men*(cdc15 - men)*(-men + tem1)
+	fRate27() = men*(ki_tem + kitem_p*pp2a_ar)/(J_tem1 + tem1)
+	fRate28() = men*(cdk_ar*ki_cdc15_p + ki_cdc15)/(J_cdc15 + cdc15)
+end functions
+begin reaction rules
+	R1_Clb2_synthesis: 0  -> clb2() ks_clb2
+	R2_Clb2_degradation_reactants_0: 0  -> clb2() -1*(fRate1()) #Modifiers(cdc20, cdh1)
+	R3_Cdc20_synthesis: 0  -> cdc20() ks_cdc20
+	R4_Cdc20_degradation_reactants_0: 0  -> cdc20() -1*(fRate3()) #Modifiers(cdh1)
+	R5_Cdh1_activation_products_0: 0  -> cdh1() fRate4() #Modifiers(cdc14, cdh1_total)
+	R6_Cdh1_inactivation: cdh1() -> 0  fRate5() #Modifiers(cdk)
+	R7_Securin_synthesis: 0  -> securin_total() ks_securin
+	R8_Securin_degradation_reactants_0: 0  -> securin_total() -1*(fRate7()) #Modifiers(cdc20)
+	R9_Separase_synthesis: 0  -> separase_total() ks_separase
+	R10_Separase_degradation: separase_total() -> 0  kd_separase
+	R11_Securin_separase_association: 0  -> securin_separase() fRate10() #Modifiers(securin, separase)
+	R12_Securin_separase_dissociation_reactants_0: 0  -> securin_separase() -1*(fRate11()) #Modifiers(cdc20)
+	R13_Net1_dephosphorylation: 0  -> net1(cdc14) fRate12() #Modifiers(cdc14, pp2a, net1p)
+	R14_Net1_phosphorylation_reactants_0: 0  -> net1(cdc14) -1*(fRate13()) #Modifiers(cdk, men, net1cdc14)
+	R15_Net1_Cdc14_association: net1(cdc14) + cdc14(net1) <-> net1(cdc14!114).cdc14(net1!114) l_a_net,l_d_net
+	R16_Net1_Cdc14_dissociation_reactants_0: 0  -> net1(cdc14!114).cdc14(net1!114) -1*(fRate15()) #Modifiers(cdk, men, net1)
+	R17_Polo_synthesis: 0  -> polo_total() ks_polo
+	R18_Polo_degradation_reactants_0: 0  -> polo_total() -1*(fRate17()) #Modifiers(cdh1)
+	R19_Polo_activation_products_0: 0  -> polo() fRate18() #Modifiers(cdk, polo_total)
+	R20_Polo_inactivation: polo() -> 0  fRate19()
+	R21_Polo_inactivation_reactants_0: 0  -> polo() -1*(fRate20()) #Modifiers(cdh1)
+	R22_Tem1_activation_products_0: 0  -> tem1() fRate21() #Modifiers(polo, tem1_total)
+	R23_Tem1_inactivation_reactants_0: 0  -> tem1() -1*(fRate22()) #Modifiers(pp2a)
+	R24_Cdc15_activation_products_0: 0  -> cdc15() fRate23() #Modifiers(cdc14, cdc15_total)
+	R25_Cdc15_inactivation_reactants_0: 0  -> cdc15() -1*(fRate24()) #Modifiers(cdk)
+	R26_MEN_activation_products_0: 0  -> men() fRate25() #Modifiers(tem1, cdc15)
+	R27_MEN: men() -> 0  ld_men
+	R28_MEN_inactivation_reactants_0: 0  -> men() -1*(fRate27()) #Modifiers(pp2a, tem1)
+	R29_MEN_inactivation_reactants_0: 0  -> men() -1*(fRate28()) #Modifiers(cdk, cdc15)
+end reaction rules
+end model

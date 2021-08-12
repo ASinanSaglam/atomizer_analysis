@@ -1,0 +1,102 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL6621395815', 'http://identifiers.org/biomodels.db/BIOMD0000000038']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/10889194']
+#@BQB_IS:['http://identifiers.org/kegg.pathway/eco02060']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0009401', 'http://identifiers.org/go/GO:0010827']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/562']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@creatorEmail:'Harish_Dharuri@kgi.edu'
+#@creatorName:'Dharuri Harish'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 17 molecules and 10 reactions. The translated model has 10 molecules and 10 rules'
+###
+begin model
+begin parameters
+	r1_k1f 1960.000000
+	r1_k1r 480000.000000
+	r2_k2f 108000.000000
+	r2_k2r 294.000000
+	r3_k3f 14000.000000
+	r3_k3r 14000.000000
+	r4_k4f 84000.000000
+	r4_k4r 3360.000000
+	r5_k5f 21960.000000
+	r5_k5r 21960.000000
+	r6_k6f 4392.000000
+	r6_k6r 3384.000000
+	r7_k7f 880.000000
+	r7_k7r 880.000000
+	r8_k8f 2640.000000
+	r8_k8r 960.000000
+	r9_k9f 260.000000
+	r9_k9r 389.000000
+	r10_k10f 4800.000000
+	r10_k10r 0.005400
+end parameters
+begin molecule types
+	#^ bqbiol:is uniprot:P07006
+	HPr(ei,eiia,p~P~0)
+	#^ bqbiol:hasPart uniprot:P08839, kegg.compound:C00074, chebi:CHEBI:18021, chebi:CHEBI:18021, uniprot:P08839, kegg.compound:C00615
+	PyrPI()
+	#^ bqbiol:hasPart chebi:CHEBI:17234, uniprot:P69786, kegg.compound:C00293
+	EIICBPGlc()
+	#^ bqbiol:is chebi:CHEBI:17234, kegg.compound:C00293
+	Glc()
+	#^ bqbiol:is chebi:CHEBI:18021, kegg.compound:C00074
+	PEP()
+	#^ bqbiol:is uniprot:P69786
+	EIICB(eiia,p~P~0)
+	#^ bqbiol:isVersionOf uniprot:P08839
+	EI(hpr,p~P~0)
+	#^ bqbiol:is chebi:CHEBI:15361, kegg.compound:C00022
+	Pyr()
+	#^ bqbiol:is uniprot:P69783
+	EIIA(eiicb,hpr,p~P~0)
+	#^ bqbiol:is chebi:CHEBI:14314, kegg.compound:C00092
+	GlcP()
+end molecule types
+begin seed species
+	EI(hpr,p~0) 1.8066e+18 # (3.0 * 1e-06)mol/L * 6.022e23/mol *1.0L #EI #EI
+	EI(hpr,p~P) 1.2044e+18 #original 2.0micromole (default)/L  #EIP #EIP
+	HPr(ei,eiia,p~0) 1.5055e+19 #original 25.0micromole (default)/L  #HPr #HPr
+	HPr(ei,eiia,p~P) 1.5055e+19 #original 25.0micromole (default)/L  #HPrP #HPrP
+	EIIA(eiicb,hpr,p~0) 1.2044e+19 #original 20.0micromole (default)/L  #EIIA #EIIA
+	EIIA(eiicb,hpr,p~P) 1.2044e+19 #original 20.0micromole (default)/L  #EIIAP #EIIAP
+	EIICB(eiia,p~0) 3.011e+18 #original 5.0micromole (default)/L  #EIICB #EIICB
+	EIICB(eiia,p~P) 3.011e+18 #original 5.0micromole (default)/L  #EIICBP #EIICBP
+	PEP() 1.68616e+21 #original 2800.0micromole (default)/L  #PEP #PEP
+	Pyr() 5.4198e+20 #original 900.0micromole (default)/L  #Pyr #Pyr
+	GlcP() 3.011e+19 #original 50.0micromole (default)/L  #GlcP #GlcP
+	Glc() 3.011e+20 #original 500.0micromole (default)/L  #Glc #Glc
+end seed species
+begin observables
+	Species EI EI(hpr,p~0) #EI
+	Species PyrPI PyrPI() #PyrPI
+	Species EIP EI(hpr,p~P) #EIP
+	Species HPr HPr(ei,eiia,p~0) #HPr
+	Species EIPHPr HPr(ei!55,eiia,p~0).EI(hpr!55,p~P) #EIPHPr
+	Species HPrP HPr(ei,eiia,p~P) #HPrP
+	Species EIIA EIIA(eiicb,hpr,p~0) #EIIA
+	Species HPrPIIA EIIA(eiicb,hpr!56,p~0).HPr(ei,eiia!56,p~P) #HPrPIIA
+	Species EIIAP EIIA(eiicb,hpr,p~P) #EIIAP
+	Species EIICB EIICB(eiia,p~0) #EIICB
+	Species EIIAPIICB EIIA(eiicb!57,hpr,p~P).EIICB(eiia!57,p~0) #EIIAPIICB
+	Species EIICBP EIICB(eiia,p~P) #EIICBP
+	Species EIICBPGlc EIICBPGlc() #EIICBPGlc
+	Species PEP PEP() #PEP
+	Species Pyr Pyr() #Pyr
+	Species GlcP GlcP() #GlcP
+	Species Glc Glc() #Glc
+end observables
+begin reaction rules
+	v1: PEP() + EI(hpr,p~0) <-> PyrPI() r1_k1f,r1_k1r
+	v2: PyrPI() <-> EI(hpr,p~P) + Pyr() r2_k2f,r2_k2r
+	v3: HPr(ei,eiia,p~0) + EI(hpr,p~P) <-> HPr(ei!55,eiia,p~0).EI(hpr!55,p~P) r3_k3f,r3_k3r
+	v4: HPr(ei!55,eiia,p~0).EI(hpr!55,p~P) <-> HPr(ei,eiia,p~P) + EI(hpr,p~0) r4_k4f,r4_k4r
+	v5: HPr(ei,eiia,p~P) + EIIA(eiicb,hpr,p~0) <-> EIIA(eiicb,hpr!56,p~0).HPr(ei,eiia!56,p~P) r5_k5f,r5_k5r
+	v6: EIIA(eiicb,hpr!56,p~0).HPr(ei,eiia!56,p~P) <-> EIIA(eiicb,hpr,p~P) + HPr(ei,eiia,p~0) r6_k6f,r6_k6r
+	v7: EIICB(eiia,p~0) + EIIA(eiicb,hpr,p~P) <-> EIIA(eiicb!57,hpr,p~P).EIICB(eiia!57,p~0) r7_k7f,r7_k7r
+	v8: EIIA(eiicb!57,hpr,p~P).EIICB(eiia!57,p~0) <-> EIICB(eiia,p~P) + EIIA(eiicb,hpr,p~0) r8_k8f,r8_k8r
+	v9: EIICB(eiia,p~P) + Glc() <-> EIICBPGlc() r9_k9f,r9_k9r
+	v10: EIICBPGlc() <-> EIICB(eiia,p~0) + GlcP() r10_k10f,r10_k10r
+end reaction rules
+end model

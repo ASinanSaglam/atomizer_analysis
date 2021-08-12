@@ -1,0 +1,53 @@
+###
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/biomodels.teddy/TEDDY_0000072', 'http://identifiers.org/go/GO:0006536', 'http://identifiers.org/envo/ENVO:00002034', 'http://identifiers.org/taxonomy/1423', 'http://identifiers.org/ncit/C28240', 'urn:miriam:unknown:https://link.springer.com/article/10.1007%2FBF01165134']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/1423']
+#@BQB_IS_DESCRIBED_BY:['urn:miriam:unknown:https://link.springer.com/article/10.1007%2FBF01165134', 'http://identifiers.org/pubmed/32257302']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/biomodels.teddy/TEDDY_0000072', 'http://identifiers.org/go/GO:0006536', 'http://identifiers.org/envo/ENVO:00002034', 'http://identifiers.org/ncit/C28240']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL2004140001', 'http://identifiers.org/biomodels.db/BIOMD0000000932']
+#@creatorEmail:'ahmad.azd@hotmail.com'
+#@creatorName:'Zyoud Ahmad'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 4 molecules and 5 reactions. The translated model has 3 molecules and 5 rules'
+###
+begin model
+begin parameters
+	k1 0.3426
+	k2 5.3
+	k3 4.0
+	k4 2.0
+	k5 2.3
+	GE 30.0
+	b 0.1
+end parameters
+begin molecule types
+	#^ bqbiol:hasProperty sbo:SBO:0000629
+	B()
+	#^ bqbiol:hasProperty chebi:CHEBI:32484, ncit:C25233
+	Gp(Gi~Gi~0)
+	#^ bqbiol:hasProperty chebi:CHEBI:16134
+	A()
+end molecule types
+begin seed species
+	Gp(Gi~0) 6.022e+20 # (1.0 * 0.001)mol/L * 6.022e23/mol *1.0L #Gp #Gp
+	Gp(Gi~Gi) 6.022e+20 #original 1.0substance/L  #Gi #Gi
+	A() 6.022e+20 #original 1.0substance/L  #A #A
+	B() 6.022e+31 #original 100000000000.0substance/L  #B #B
+end seed species
+begin observables
+	Species Gp Gp(Gi~0) #Gp
+	Species Gi Gp(Gi~Gi) #Gi
+	Species A A() #A
+	Species B B() #B
+end observables
+begin functions
+	fRate0() = GE*Gp*k1
+	fRate0m() = 1.0*A*k2
+	fRate4() = A*B*Gp*b
+end functions
+begin reaction rules
+	The_uptake_of_glutamate_and_Consumption_of_glutamate_and_ammonia: 0  <-> Gp(Gi~0) fRate0(),fRate0m() #Modifiers(A)
+	Diffusion_of_glutamate: Gp(Gi~0) -> Gp(Gi~Gi) k4
+	Consumption_of_glutamate_to_produce_ammonia: Gp(Gi~Gi) -> A() k5
+	Diffusion_of_ammonia: A() -> 0  k3
+	The_synthesis_of_biomass_from_ammonia_and_glutamate: 0  -> B() fRate4() #Modifiers(A, Gp)
+end reaction rules
+end model

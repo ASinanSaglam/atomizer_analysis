@@ -1,0 +1,84 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000008', 'http://identifiers.org/biomodels.db/MODEL6614879888']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/9826676']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/BIOMD0000000004', 'http://identifiers.org/biomodels.db/BIOMD0000000003']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0000278']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/8292']
+#@BQB_IS_HOMOLOG_TO:['http://identifiers.org/reactome/REACT_152']
+#@creatorEmail:'bshapiro@jpl.nasa.gov'
+#@creatorName:'Shapiro Bruce'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 5 molecules and 13 reactions. The translated model has 4 molecules and 13 rules'
+###
+begin model
+begin parameters
+	K6 0.3
+	V1p 0.75
+	V3p 0.3
+	r1_vi 0.100000
+	r2_k1 0.500000
+	r2_K5 0.020000
+	r3_kd 0.020000
+	r4_K1 0.100000
+	r5_V2 0.250000
+	r5_K2 0.100000
+	r6_K3 0.200000
+	r7_K4 0.100000
+	r7_V4 0.100000
+	r8_a1 0.050000
+	r9_a2 0.050000
+	r10_alpha 0.100000
+	r10_d1 0.050000
+	r11_kd 0.020000
+	r11_alpha 0.100000
+	r12_vs 0.200000
+	r13_d1 0.050000
+end parameters
+begin molecule types
+	#^ bqbiol:hasVersion uniprot:P35567, uniprot:P24033
+	cdc2k()
+	cyclininhibitor(cyclin)
+	#^ bqbiol:hasProperty go:GO:0008233
+	protease()
+	#^ bqbiol:is interpro:IPR006670
+	cyclin(cyclininhibitor)
+end molecule types
+begin seed species
+	cyclininhibitor(cyclin) 1.0 #cyclininhibitor #Y
+	cyclininhibitor(cyclin!4).cyclin(cyclininhibitor!4) 1.0 #complexinhibitor_cyclin #Z
+end seed species
+begin observables
+	Species cyclin cyclin(cyclininhibitor) #cyclin
+	Species protease protease() #protease
+	Species cdc2k cdc2k() #cdc2k
+	Species cyclininhibitor cyclininhibitor(cyclin) #cyclin inhibitor
+	Species complexinhibitor_cyclin cyclininhibitor(cyclin!4).cyclin(cyclininhibitor!4) #complex inhibitor-cyclin
+end observables
+begin functions
+	V3() = V3p*cdc2k
+	V1() = V1p*cyclin/(K6 + cyclin)
+	fRate1() = 0.5*protease/(cyclin + 0.02)
+	fRate3() = V1/(1.1 - cdc2k)
+	fRate3m() = V1/(1.1 - cdc2k)
+	fRate4() = 0.25/(cdc2k + 0.1)
+	fRate5() = V3/(1.2 - protease)
+	fRate5m() = V3/(1.2 - protease)
+	fRate6() = 0.1/(protease + 0.1)
+	fRate9() = 0.005
+	fRate10() = 0.002
+end functions
+begin reaction rules
+	reaction1: 0  -> cyclin(cyclininhibitor) r1_vi
+	reaction2: cyclin(cyclininhibitor) -> 0  fRate1() #Modifiers(X)
+	reaction3: cyclin(cyclininhibitor) -> 0  r3_kd
+	reaction4: 0  <-> cdc2k() fRate3(),fRate3m()
+	reaction5: cdc2k() -> 0  fRate4()
+	reaction6: 0  <-> protease() fRate5(),fRate5m()
+	reaction7: protease() -> 0  fRate6()
+	reaction8: cyclin(cyclininhibitor) + cyclininhibitor(cyclin) -> cyclininhibitor(cyclin!4).cyclin(cyclininhibitor!4) r8_a1
+	reaction9: cyclininhibitor(cyclin!4).cyclin(cyclininhibitor!4) -> cyclin(cyclininhibitor) + cyclininhibitor(cyclin) r9_a2
+	reaction10: cyclininhibitor(cyclin!4).cyclin(cyclininhibitor!4) -> cyclin(cyclininhibitor) fRate9()
+	reaction11: cyclininhibitor(cyclin!4).cyclin(cyclininhibitor!4) -> cyclininhibitor(cyclin) fRate10()
+	reaction12: 0  -> cyclininhibitor(cyclin) r12_vs
+	reaction13: cyclininhibitor(cyclin) -> 0  r13_d1
+end reaction rules
+end model

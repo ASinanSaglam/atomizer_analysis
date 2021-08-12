@@ -1,0 +1,84 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/29745850']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/ncit/C12551', 'http://identifiers.org/ncit/C3171', 'http://identifiers.org/ncit/C82652']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000898', 'http://identifiers.org/biomodels.db/MODEL1912170002']
+#@creatorEmail:'johannes.p.meyer@gmail.com'
+#@creatorName:'Meyer Johannes'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 5 molecules and 8 reactions. The translated model has 5 molecules and 11 rules'
+###
+begin model
+begin parameters
+	p_10 0.45
+	p_20 0.68
+	p_30 0.8
+	v_10 0.5
+	v_20 0.72
+	v_30 0.7
+	d_1 0.275
+	d_2 0.3
+	g_1 0.03
+	g_2 0.025
+	h_1 0.2
+	h_2 0.11
+	m 1.0
+	n 1.0
+	K_1 1.0
+	K_2 1.0
+end parameters
+begin molecule types
+	#^ bqbiol:hasProperty efo:EFO:0002954
+	#^ bqbiol:isPropertyOf ncit:C41069
+	T_TDLC()
+	#^ bqbiol:is ncit:C41069
+	L_LSC()
+	#^ bqbiol:is ncit:C12551
+	S_HSC()
+	#^ bqbiol:isVersionOf ncit:C12662
+	A_PC()
+	#^ bqbiol:isVersionOf ncit:C12551
+	#^ bqbiol:hasProperty efo:EFO:0002954
+	D_TDSC()
+end molecule types
+begin seed species
+	S_HSC() 6.022e+24 # 10.0mol/L * 6.022e23/mol *1.0L #S_HSC #S_HSC
+	L_LSC() 6.022e+24 #original 10.0substance/L #L_LSC #L_LSC
+end seed species
+begin observables
+	Species S_HSC S_HSC() #S_HSC
+	Species A_PC A_PC() #A_PC
+	Species D_TDSC D_TDSC() #D_TDSC
+	Species L_LSC L_LSC() #L_LSC
+	Species T_TDLC T_TDLC() #T_TDLC
+end observables
+begin functions
+	p_1_D() = p_10/(D_TDSC^n*g_1 + 1)
+	p_2_D() = p_20/(D_TDSC^n*g_2 + 1)
+	Z_2() = A_PC + L_LSC
+	Z_1() = S_HSC
+	v_1_D() = v_10/(D_TDSC^n*h_1 + 1)
+	v_2_D() = v_20/(D_TDSC^n*h_2 + 1)
+	fRate0() = K_1*S_HSC*p_1_D*v_1_D
+	fRate0m() = Z_1*p_1_D*v_1_D
+	fRate1() = S_HSC*v_1_D*(1 - p_1_D)
+	fRate2() = A_PC*K_2*p_2_D*v_2_D
+	fRate2m() = Z_2*p_2_D*v_2_D
+	fRate3() = A_PC*v_2_D*(1 - p_2_D)
+	fRate5() = K_2*L_LSC*p_30*v_30
+	fRate5m() = Z_2*p_30*v_30
+	fRate6() = L_LSC*v_30*(1 - p_30)
+end functions
+begin reaction rules
+	HSC_Self_Renewal: 0  <-> S_HSC() fRate0(),fRate0m()
+	HSC_Differentiation_reactants_0: 0  -> S_HSC() -1*(fRate1())
+	HSC_Differentiation_products_0: 0  -> A_PC() 2.0*fRate1()
+	PC_Self_Renewal: 0  <-> A_PC() fRate2(),fRate2m()
+	PC_Differentiation_reactants_0: 0  -> A_PC() -1*(fRate3())
+	PC_Differentiation_products_0: 0  -> D_TDSC() 2.0*fRate3()
+	TDC_Apoptosis: D_TDSC() -> 0  d_1
+	LSC_Self_Renewal: 0  <-> L_LSC() fRate5(),fRate5m()
+	LSC_Differentiation_reactants_0: 0  -> L_LSC() -1*(fRate6())
+	LSC_Differentiation_products_0: 0  -> T_TDLC() 2.0*fRate6()
+	TDL_Apoptosis: T_TDLC() -> 0  d_2
+end reaction rules
+end model

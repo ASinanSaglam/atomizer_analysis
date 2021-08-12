@@ -1,0 +1,130 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000196', 'http://identifiers.org/biomodels.db/MODEL1502077979']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/16473373']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/11371173']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/2759']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/reactome/REACT_152', 'http://identifiers.org/go/GO:0022402']
+#@creatorEmail:'hdharuri@cds.caltech.edu'
+#@creatorName:'Dharuri Harish'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 11 molecules and 13 reactions. The translated model has 7 molecules and 20 rules'
+###
+begin model
+begin parameters
+	vf 0.215
+	kf 1.0
+	kc 0.05
+	Bc 3.5
+	kd 0.2
+	B2 3.3
+	vM1 0.7
+	a1 1.2
+	Ka 0.5
+	j1 0.01
+	B1 5.0
+	vM1_2 0.55
+	j1_2 0.01
+	vM2 0.41
+	a2 1.0
+	j2 0.01
+	vM2_2 1.0
+	j3 0.01
+	j2_2 0.01
+	vM3 1.0
+	j3_2 0.01
+	vM3_2 1.0
+	B3 1.0
+	vM4 0.7
+	a4 2.0
+	tau 5.0
+	j4 0.01
+	vM4_2 1.0
+	j4_2 0.01
+	mu 0.01
+	a 10.0
+	totcdc25 1.0
+	totwee1 1.0
+	totAPC 1.0
+	c 1.1
+end parameters
+begin molecule types
+	#^ bqbiol:hasVersion uniprot:P06493, uniprot:P14635
+	#^ bqbiol:isVersionOf go:GO:0031387
+	MPF()
+	#^ bqbiol:isHomologTo uniprot:P06493
+	#^ bqbiol:isVersionOf go:GO:0004672
+	freeCDK(cyclin)
+	#^ bqbiol:isHomologTo uniprot:P14635
+	#^ bqbiol:isVersionOf go:GO:0016538
+	cyclin(freecdk)
+	#^ bqbiol:isVersionOf go:GO:0005623
+	cell_mass()
+	#^ bqbiol:isHomologTo uniprot:P04821, uniprot:P30304
+	cdc25(_p~_P~0)
+	#^ bqbiol:isVersionOf go:GO:0005680
+	APC(_p~_P~0)
+	#^ bqbiol:isHomologTo uniprot:P30291
+	Wee1(_p~_P~0)
+end molecule types
+begin seed species
+	cyclin(freecdk) 0.01 #cyclin #x1
+	MPF() 0.1 #MPF #x3
+	Wee1(_p~0) 0.1 #Wee1 #x5
+	APC(_p~_P) 0.1 #APC_P #x6
+	cell_mass() 0.473 #cell_mass #m
+	cdc25(_p~0) 0.9 #cdc25 #y4
+	freeCDK(cyclin!338).cyclin(freecdk!338) 0.2 #Pre_MPF #Pre_MPF
+end seed species
+begin observables
+	Species cyclin cyclin(freecdk) #cyclin
+	Species freeCDK freeCDK(cyclin) #free CDK
+	Species MPF MPF() #MPF
+	Species cdc25_P cdc25(_p~_P) #cdc25_P
+	Species Wee1 Wee1(_p~0) #Wee1
+	Species APC_P APC(_p~_P) #APC_P
+	Species cell_mass cell_mass() #cell_mass
+	Species cdc25 cdc25(_p~0) #cdc25
+	Species Wee1_P Wee1(_p~_P) #Wee1_P
+	Species APC APC(_p~0) #APC
+	Species Pre_MPF freeCDK(cyclin!338).cyclin(freecdk!338) #Pre_MPF
+end observables
+begin functions
+	freeCDK_ar() = -MPF - Pre_MPF + c
+	APC_ar() = -APC_P + totAPC
+	Wee1_P_ar() = -Wee1 + totwee1
+	cdc25_P_ar() = -cdc25 + totcdc25
+	fRate2() = cyclin*(APC_P*Bc + kc)
+	fRate3() = MPF*kd*(APC_P*B2 + 1)
+	fRate4() = Pre_MPF*vM1*(a1*cdc25_P_ar/(Ka + cdc25_P_ar) + 1)/(Pre_MPF + j1)
+	fRate5() = MPF*vM1_2*(B1*Wee1/(Ka + Wee1) + 1)/(MPF + j1_2)
+	fRate6() = vM2*(1 - cdc25_P_ar)*(MPF*a2*cell_mass/(Ka + MPF*cell_mass) + 1)/(-cdc25_P_ar + j2 + 1)
+	fRate7() = vM2_2/(cdc25_P_ar + j2_2)
+	fRate8() = vM3*(1 - Wee1)/(-Wee1 + j3_2 + 1)
+	fRate9() = Wee1*vM3_2*(B3*MPF*cell_mass/(Ka + MPF*cell_mass) + 1)/(Wee1 + j3)
+	fRate10() = vM4*(1 - APC_P)*(a4*cell_mass*delay(MPF, tau)/(Ka + cell_mass*delay(MPF, tau)) + 1)/(-APC_P + j4 + 1)
+	fRate11() = vM4_2/(APC_P + j4_2)
+	fRate12() = cell_mass*mu
+	fRate12m() = cell_mass*mu/a
+end functions
+begin reaction rules
+	cyclinsythesis: 0  -> cyclin(freecdk) vf
+	cyclincdkcomplexformation: cyclin(freecdk) + freeCDK(cyclin) -> freeCDK(cyclin!338).cyclin(freecdk!338) kf
+	cyclindegradation_reactants_0: 0  -> cyclin(freecdk) -1*(fRate2()) #Modifiers(x6)
+	MPFdissociation_reactants_0: 0  -> MPF() -1*(fRate3()) #Modifiers(x6)
+	MPFdissociation_products_0: 0  -> freeCDK(cyclin) fRate3() #Modifiers(x6)
+	PreMPFMPFtransition_reactants_0: 0  -> freeCDK(cyclin!338).cyclin(freecdk!338) -1*(fRate4()) #Modifiers(x4)
+	PreMPFMPFtransition_products_0: 0  -> MPF() fRate4() #Modifiers(x4)
+	MPFPreMPFtransition_reactants_0: 0  -> MPF() -1*(fRate5()) #Modifiers(x5)
+	MPFPreMPFtransition_products_0: 0  -> freeCDK(cyclin!338).cyclin(freecdk!338) fRate5() #Modifiers(x5)
+	cdc25phosphorylation_reactants_0: 0  -> cdc25(_p~0) -1*(fRate6()) #Modifiers(m, x3)
+	cdc25phosphorylation_products_0: 0  -> cdc25(_p~_P) fRate6() #Modifiers(m, x3)
+	cdc25dephosphorylation: cdc25(_p~_P) -> cdc25(_p~0) fRate7()
+	wee1dephosphorylation_reactants_0: 0  -> Wee1(_p~_P) -1*(fRate8())
+	wee1dephosphorylation_products_0: 0  -> Wee1(_p~0) fRate8()
+	wee1phosphorylation_reactants_0: 0  -> Wee1(_p~0) -1*(fRate9()) #Modifiers(x3, m)
+	wee1phosphorylation_products_0: 0  -> Wee1(_p~_P) fRate9() #Modifiers(x3, m)
+	_2_reactants_0: 0  -> APC(_p~0) -1*(fRate10()) #Modifiers(m, x3)
+	_2_products_0: 0  -> APC(_p~_P) fRate10() #Modifiers(m, x3)
+	APCdephosphorylation: APC(_p~_P) -> APC(_p~0) fRate11()
+	cellmass: 0  <-> cell_mass() fRate12(),fRate12m()
+end reaction rules
+end model

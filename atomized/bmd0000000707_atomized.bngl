@@ -1,0 +1,64 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000707', 'http://identifiers.org/biomodels.db/MODEL1006230047']
+#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0002417']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/efo/0000764', 'http://identifiers.org/efo/0000727']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/11676', 'http://identifiers.org/taxonomy/9606']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/12941536']
+#@creatorEmail:'sarubini.kananathan@hotmail.co.uk'
+#@creatorName:'Kananathan Sarubini'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 5 molecules and 10 reactions. The translated model has 4 molecules and 10 rules'
+###
+begin model
+begin parameters
+	d 0.01
+	lamda 2.0
+	beta 0.004
+	a 0.33
+	alpha 0.004
+	b 2.0
+	k 50.0
+	u 2.0
+	c 2000.0
+	q 2.0
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf ncit:C97158, taxonomy:10239
+	RecombinantVirus()
+	#^ bqbiol:is bto:BTO:0002417
+	NormalThcells()
+	#^ bqbiol:isVersionOf taxonomy:11676
+	PathogenVirus()
+	leInfectedThCells(doub~DOUB~0,sing~SING~0)
+end molecule types
+begin seed species
+	NormalThcells() 1.8066e+24 # 3.0mol/L * 6.022e23/mol *1.0L #NormalThcells #Normal_Th_cells
+	PathogenVirus() 8.97278e+25 #original 149.0mol/L  #PathogenVirus #Pathogen_Virus
+	leInfectedThCells(doub~0,sing~SING) 3.6132e+24 #original 6.0mol/L  #SingleInfectedThCells #Single_Infected_Th_Cells
+	RecombinantVirus() 6.022e+23 #original 1.0mol/L  #RecombinantVirus #Recombinant_Virus
+end seed species
+begin observables
+	Species NormalThcells NormalThcells() #Normal Th cells
+	Species PathogenVirus PathogenVirus() #Pathogen Virus
+	Species SingleInfectedThCells leInfectedThCells(doub~0,sing~SING) #Single Infected Th Cells
+	Species RecombinantVirus RecombinantVirus() #Recombinant Virus
+	Species DoubleInfectedThCells leInfectedThCells(doub~DOUB,sing~0) #Double Infected Th Cells
+end observables
+begin functions
+	fRate2() = PathogenVirus*beta
+	fRate4() = RecombinantVirus*alpha
+	fRate5() = SingleInfectedThCells*k
+	fRate7() = DoubleInfectedThCells*c
+end functions
+begin reaction rules
+	Production_of_Normal_cells: 0  -> NormalThcells() lamda
+	Degradation_of_Normal_cells: NormalThcells() -> 0  d
+	Infection_of_Normal_cells_with_Pathogen: NormalThcells() -> leInfectedThCells(doub~0,sing~SING) fRate2() #Modifiers(Pathogen_Virus)
+	Degradation_of_Single_Infected_Cells: leInfectedThCells(doub~0,sing~SING) -> 0  a
+	Infection_of_Single_Infeced_Cells_with_Recombinant_Virus: leInfectedThCells(doub~0,sing~SING) -> leInfectedThCells(doub~DOUB,sing~0) fRate4() #Modifiers(Recombinant_Virus)
+	Release_of_Pathogen: 0  -> PathogenVirus() fRate5() #Modifiers(Single_Infected_Th_Cells)
+	Degradation_of_Double_Infected_Cells: leInfectedThCells(doub~DOUB,sing~0) -> 0  b
+	Release_of_Recombinant_Virus: 0  -> RecombinantVirus() fRate7() #Modifiers(Double_Infected_Th_Cells)
+	Degradation_of_Pathogen_Virus: PathogenVirus() -> 0  u
+	Degradation_of_Recombinant_Virus: RecombinantVirus() -> 0  q
+end reaction rules
+end model

@@ -1,0 +1,88 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000010', 'http://identifiers.org/biomodels.db/MODEL6615119181']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/10712587']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0000165']
+#@BQB_IS_HOMOLOG_TO:['http://identifiers.org/reactome/REACT_634']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/8355']
+#@creatorEmail:'Herbert_Sauro@kgi.edu'
+#@creatorName:'Sauro Herbert'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 8 molecules and 10 reactions. The translated model has 3 molecules and 10 rules'
+###
+begin model
+begin parameters
+	r1_V1 2.500000
+	r1_Ki 9.000000
+	r1_n 1.000000
+	r1_K1 10.000000
+	r2_V2 0.250000
+	r2_KK2 8.000000
+	r3_k3 0.025000
+	r3_KK3 15.000000
+	r4_k4 0.025000
+	r4_KK4 15.000000
+	r5_V5 0.750000
+	r5_KK5 15.000000
+	r6_V6 0.750000
+	r6_KK6 15.000000
+	r7_k7 0.025000
+	r7_KK7 15.000000
+	r8_k8 0.025000
+	r8_KK8 15.000000
+	r9_V9 0.500000
+	r9_KK9 15.000000
+	r10_V10 0.500000
+	r10_KK10 15.000000
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf uniprot:P26696
+	Erk2(_p~_P~0,p~P~0)
+	#^ bqbiol:isVersionOf uniprot:P09560
+	Mos(_p~_P~0)
+	#^ bqbiol:isVersionOf uniprot:Q05116
+	Mek1(_p~_P~0,p~P~0)
+end molecule types
+begin seed species
+	Mos(_p~0) 5.419800000000001e+16 # (90.0 * 1e-09)mol/L * 6.022e23/mol *1.0L #Mos #MKKK
+	Mos(_p~_P) 6022000000000000.0 #original 10.0nanomole/L  #Mos_P #MKKK_P
+	Mek1(_p~0,p~0) 1.6861600000000003e+17 #original 280.0nanomole/L  #Mek1 #MKK
+	Mek1(_p~_P,p~0) 6022000000000000.0 #original 10.0nanomole/L  #Mek1_P #MKK_P
+	Mek1(_p~_P,p~P) 6022000000000000.0 #original 10.0nanomole/L  #Mek1_PP #MKK_PP
+	Erk2(_p~0,p~0) 1.6861600000000003e+17 #original 280.0nanomole/L  #Erk2 #MAPK
+	Erk2(_p~_P,p~0) 6022000000000000.0 #original 10.0nanomole/L  #Erk2_P #MAPK_P
+	Erk2(_p~_P,p~P) 6022000000000000.0 #original 10.0nanomole/L  #Erk2_PP #MAPK_PP
+end seed species
+begin observables
+	Species Mos Mos(_p~0) #Mos
+	Species Mos_P Mos(_p~_P) #Mos-P
+	Species Mek1 Mek1(_p~0,p~0) #Mek1
+	Species Mek1_P Mek1(_p~_P,p~0) #Mek1-P
+	Species Mek1_PP Mek1(_p~_P,p~P) #Mek1-PP
+	Species Erk2 Erk2(_p~0,p~0) #Erk2
+	Species Erk2_P Erk2(_p~_P,p~0) #Erk2-P
+	Species Erk2_PP Erk2(_p~_P,p~P) #Erk2-PP
+end observables
+begin functions
+	fRate0() = 2.5/(0.111111111111111*Erk2_PP^1.0*Mos + 1.11111111111111*Erk2_PP^1.0 + Mos + 10.0)
+	fRate1() = 0.25/(Mos_P + 8.0)
+	fRate2() = 0.025*Mos_P/(Mek1 + 15.0)
+	fRate3() = 0.025*Mos_P/(Mek1_P + 15.0)
+	fRate4() = 0.75/(Mek1_PP + 15.0)
+	fRate5() = 0.75/(Mek1_P + 15.0)
+	fRate6() = 0.025*Mek1_PP/(Erk2 + 15.0)
+	fRate7() = 0.025*Mek1_PP/(Erk2_P + 15.0)
+	fRate8() = 0.5/(Erk2_PP + 15.0)
+	fRate9() = 0.5/(Erk2_P + 15.0)
+end functions
+begin reaction rules
+	J0: Mos(_p~0) -> Mos(_p~_P) fRate0() #Modifiers(MAPK_PP)
+	J1: Mos(_p~_P) -> Mos(_p~0) fRate1()
+	J2: Mek1(_p~0,p~0) -> Mek1(_p~_P,p~0) fRate2() #Modifiers(MKKK_P)
+	J3: Mek1(_p~_P,p~0) -> Mek1(_p~_P,p~P) fRate3() #Modifiers(MKKK_P)
+	J4: Mek1(_p~_P,p~P) -> Mek1(_p~_P,p~0) fRate4()
+	J5: Mek1(_p~_P,p~0) -> Mek1(_p~0,p~0) fRate5()
+	J6: Erk2(_p~0,p~0) -> Erk2(_p~_P,p~0) fRate6() #Modifiers(MKK_PP)
+	J7: Erk2(_p~_P,p~0) -> Erk2(_p~_P,p~P) fRate7() #Modifiers(MKK_PP)
+	J8: Erk2(_p~_P,p~P) -> Erk2(_p~_P,p~0) fRate8()
+	J9: Erk2(_p~_P,p~0) -> Erk2(_p~0,p~0) fRate9()
+end reaction rules
+end model

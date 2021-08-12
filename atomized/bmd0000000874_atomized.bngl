@@ -1,0 +1,63 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/8096155']
+#@BQB_IS:['http://identifiers.org/biomodels.db/MODEL1006230079']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/efo/0000764', 'http://identifiers.org/go/GO:0046718']
+#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0002417']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1006230079', 'http://identifiers.org/biomodels.db/BIOMD0000000874']
+#@creatorEmail:'mcho099@aucklanduni.ac.nz'
+#@creatorName:'Choi Ethan'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 4 molecules and 8 reactions. The translated model has 4 molecules and 8 rules'
+###
+begin model
+begin parameters
+	s 10.0
+	r 0.03
+	T_max 1500.0
+	mu_T 0.02
+	k_1 2.4e-05
+	k_2 0.003
+	mu_b 0.24
+	mu_V 2.4
+	N 1000.0
+end parameters
+begin molecule types
+	#^ bqbiol:hasProperty uniprot:P01730
+	T()
+	V()
+	#^ bqbiol:hasProperty unigene:P01730
+	T_1()
+	#^ bqbiol:hasProperty uniprot:P01730
+	T_2()
+end molecule types
+begin seed species
+	T() 6.0220000000000006e+26 # 1000.0mol/L * 6.022e23/mol *1.0L #T #T
+	V() 6.022e+20 #original 0.001mol/L #V #V
+end seed species
+begin observables
+	Species T T() #T
+	Species T_1 T_1() #T_1
+	Species T_2 T_2() #T_2
+	Species V V() #V
+end observables
+begin functions
+	T_tot() = T + T_1 + T_2
+	fRate0() = 1.0*T*r + s
+	fRate1() = 1.0*T*V*k_1 + 1.0*T*mu_T + 1.0*T*r*(T + T_1 + T_2)/T_max
+	fRate2() = T*V*k_1
+	fRate3() = 1.0*T_1*k_2 + 1.0*T_1*mu_T
+	fRate4() = T_1*k_2
+	fRate6() = N*T_2*mu_b
+	fRate7() = 1.0*T*V*k_1 + 1.0*V*mu_V
+end functions
+begin reaction rules
+	Production_of_CD4__T_cell: 0  -> T() fRate0()
+	Death_of_CD4__T_cell_reactants_0: 0  -> T() -1*(fRate1()) #Modifiers(V, T_1, T_2)
+	Production_of_Latently_infected_T_cell: 0  -> T_1() fRate2() #Modifiers(V, T)
+	Death_of_Latently_infected_T_cell_reactants_0: 0  -> T_1() -1*(fRate3())
+	Production_of_Actively_infected_T_cell: 0  -> T_2() fRate4() #Modifiers(T_1)
+	Death_of_Actively_infected_T_cell: T_2() -> 0  mu_b
+	Production_of_infectious_virus_particle: 0  -> V() fRate6() #Modifiers(T_2)
+	Death_of_infectious_virus_particle_reactants_0: 0  -> V() -1*(fRate7()) #Modifiers(T)
+end reaction rules
+end model

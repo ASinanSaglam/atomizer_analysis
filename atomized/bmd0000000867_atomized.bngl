@@ -1,0 +1,162 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/31681292']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/pr/PR:000003041', 'http://identifiers.org/ncit/C12536', 'http://identifiers.org/ncit/C20214', 'http://identifiers.org/ncit/C17380', 'http://identifiers.org/ncit/C28664', 'http://identifiers.org/ncit/C20517']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1911180002', 'http://identifiers.org/biomodels.db/BIOMD0000000867']
+#@creatorEmail:'johannes.p.meyer@gmail.com'
+#@creatorName:'Meyer Johannes'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 10 molecules and 31 reactions. The translated model has 8 molecules and 32 rules'
+###
+begin model
+begin parameters
+	a2 0.848
+	a3 0.037
+	a11 4.17
+	rho6 0.99
+	K_O2 0.96
+	k1 2e-05
+	k2 0.307
+	k5 75.895
+	k10 421.353
+	k11 0.211
+	k12 0.061
+	k15 0.088
+	kS 0.0009
+	n2 2.0
+	xi28 38.44
+	delta 200.0
+	xi4 15.018
+	xi44 128.022
+	a5 0.211
+	d1 0.062
+	d2 0.848
+	d3 0.919
+	d4 0.623
+	d5 0.196
+	d6 0.301
+	d7 0.914
+	d9 0.934
+	d10 0.935
+	rho3 1.0
+	rho4 0.863
+	k3 0.181
+	k4 76.196
+	k6 25.001
+	k7 2.903
+	k8 0.577
+	k9 0.753
+	k13 12.152
+	k14 16.528
+	kalpha 1.034
+	xi10 8.127
+	phi 0.829
+	alpha1 1.163
+	alpha2 0.386
+	D 1.0
+	Metabolite_9 (0.9)
+	Metabolite_0 (1.0)
+	Metabolite_3 (0.05)
+	Metabolite_5 (0.05)
+	a1 0
+	a7 0
+	a8 0
+	a9 0
+	R 0
+	S3 0
+end parameters
+begin molecule types
+	#^ bqbiol:is ncit:C17380
+	y7_NF_KB()
+	#^ bqbiol:encodes ncit:C20214
+	#^ bqbiol:is ncit:C813
+	y9_HIF_1a_mRNA()
+	#^ bqbiol:is pr:PR:000003041
+	y3_mTOR()
+	#^ bqbiol:is ncit:C28553
+	y5_HIF_1b(y4_hif_1a)
+	#^ bqbiol:is ncit:C20214
+	y4_HIF_1a(y10_HIF_1a_aOH~y10_HIF_1a_aOH~0,y5_hif_1b)
+	#^ bqbiol:is ncit:C41625
+	y2_Akt()
+	#^ bqbiol:is ncit:C20517
+	y1_IL_15()
+	#^ bqbiol:is ncit:C28664
+	y8_STAT3()
+end molecule types
+begin seed species
+	y1_IL_15() 602200000000000.1 # (1.0 * 1e-09)mol/L * 6.022e23/mol *1.0L #y1_IL_15 #y1_IL_15
+	y2_Akt() 602200000000000.1 #original 1.0substance/L #y2_Akt #y2_Akt
+	y3_mTOR() 602200000000000.1 #original 1.0substance/L #y3_mTOR #y3_mTOR
+	y4_HIF_1a(y10_HIF_1a_aOH~0,y5_hif_1b) 30110000000000.008 #original 0.05substance/L #y4_HIF_1a #y4_HIF_1a
+	y5_HIF_1b(y4_hif_1a) 602200000000000.1 #original 1.0substance/L #y5_HIF_1b #y5_HIF_1b
+	y4_HIF_1a(y10_HIF_1a_aOH~0,y5_hif_1b!80).y5_HIF_1b(y4_hif_1a!80) 30110000000000.008 #original 0.05substance/L #y6_HIF_1_Complex #y6_HIF_1_Complex
+	y7_NF_KB() 602200000000000.1 #original 1.0substance/L #y7_NF_KB #y7_NF_KB
+	y8_STAT3() 602200000000000.1 #original 1.0substance/L #y8_STAT3 #y8_STAT3
+	y9_HIF_1a_mRNA() 602200000000000.1 #original 1.0substance/L #y9_HIF_1a_mRNA #y9_HIF_1a_mRNA
+	y4_HIF_1a(y10_HIF_1a_aOH~y10_HIF_1a_aOH,y5_hif_1b) 541980000000000.06 #original 0.9substance/L #y10_HIF_1a_aOH #y10_HIF_1a_aOH
+end seed species
+begin observables
+	Species y1_IL_15 y1_IL_15() #y1_IL-15
+	Species y2_Akt y2_Akt() #y2_Akt
+	Species y3_mTOR y3_mTOR() #y3_mTOR
+	Species y4_HIF_1a y4_HIF_1a(y10_HIF_1a_aOH~0,y5_hif_1b) #y4_HIF-1a
+	Species y5_HIF_1b y5_HIF_1b(y4_hif_1a) #y5_HIF-1b
+	Species y6_HIF_1_Complex y4_HIF_1a(y10_HIF_1a_aOH~0,y5_hif_1b!80).y5_HIF_1b(y4_hif_1a!80) #y6_HIF-1_Complex
+	Species y7_NF_KB y7_NF_KB() #y7_NF-KB
+	Species y8_STAT3 y8_STAT3() #y8_STAT3
+	Species y9_HIF_1a_mRNA y9_HIF_1a_mRNA() #y9_HIF-1a_mRNA
+	Species y10_HIF_1a_aOH y4_HIF_1a(y10_HIF_1a_aOH~y10_HIF_1a_aOH,y5_hif_1b) #y10_HIF-1a-aOH
+end observables
+begin functions
+	HIF_1a_Total_Fold_Change() = (y10_HIF_1a_aOH + y4_HIF_1a + y6_HIF_1_Complex)/(Metabolite_3 + Metabolite_5 + Metabolite_9)
+	IL_15_Fold_Change() = y1_IL_15/Metabolite_0
+	d8() = k8
+	fRate3() = k1*y1_IL_15
+	fRate4() = kS*y8_STAT3^n2/(xi28^n2 + y8_STAT3^n2)
+	fRate6() = alpha1*(1 - R)*(a3 + k2*y2_Akt)/(alpha2*y6_HIF_1_Complex)
+	fRate11() = k7*y1_IL_15
+	fRate12() = k15*y3_mTOR
+	fRate13() = k14*y6_HIF_1_Complex
+	fRate16() = k9*y7_NF_KB
+	fRate17() = k3*y8_STAT3
+	fRate18() = kalpha*y9_HIF_1a_mRNA
+	fRate22() = K_O2*k13*y4_HIF_1a*(a11 + delta*y6_HIF_1_Complex)*(-D*rho6 + 1)/(xi44 + y4_HIF_1a)
+	fRate23() = K_O2*k10*phi*y4_HIF_1a*(-D*rho6 + 1)/(xi4 + y4_HIF_1a)
+	fRate25() = K_O2*k12*y10_HIF_1a_aOH*(a11 + delta*y6_HIF_1_Complex)/(xi10 + y10_HIF_1a_aOH)
+	fRate30() = (-S3*rho3 + 1)*(a8 + k6*y1_IL_15*(-D*rho4 + 1) + k8*y3_mTOR)
+end functions
+begin reaction rules
+	IL_15_External_Regulation: 0  -> y1_IL_15() a1
+	IL_15_Basal_Decay: y1_IL_15() -> 0  d1
+	AKT_Basal_Activation: 0  -> y2_Akt() a2
+	AKT_Activation_IL_15: 0  -> y2_Akt() fRate3() #Modifiers(y1_IL_15)
+	AKT_Activation_STAT3: 0  -> y2_Akt() fRate4() #Modifiers(y8_STAT3)
+	AKT_Decay: y2_Akt() -> 0  d2
+	mTOR_Activation_products_0: 0  -> y3_mTOR() fRate6() #Modifiers(y2_Akt, y6_HIF_1_Complex)
+	mTOR_Decay: y3_mTOR() -> 0  d3
+	STAT3_Decay: y8_STAT3() -> 0  d8
+	NF_KB_Basal_Activation: 0  -> y7_NF_KB() a7
+	NF_KB_Decay: y7_NF_KB() -> 0  d7
+	NF_KB_Activation_IL_15: 0  -> y7_NF_KB() fRate11() #Modifiers(y1_IL_15)
+	NF_KB_Activation_mTOR: 0  -> y7_NF_KB() fRate12() #Modifiers(y3_mTOR)
+	NF_KB_Activation_HIF_1_Complex: 0  -> y7_NF_KB() fRate13() #Modifiers(y6_HIF_1_Complex)
+	HIF_1a_mRNA_Synthesis_Basal: 0  -> y9_HIF_1a_mRNA() a9
+	HIF_1a_mRNA_Degradation: y9_HIF_1a_mRNA() -> 0  d9
+	HIF_1a_mRNA_Regulation_NF_KB: 0  -> y9_HIF_1a_mRNA() fRate16() #Modifiers(y7_NF_KB)
+	HIF_1a_mRNA_Regulation_STAT3: 0  -> y9_HIF_1a_mRNA() fRate17() #Modifiers(y8_STAT3)
+	HIF_1a_Translation: 0  -> y4_HIF_1a(y10_HIF_1a_aOH~0,y5_hif_1b) fRate18() #Modifiers(y9_HIF_1a_mRNA)
+	HIF_1a_Decay: y4_HIF_1a(y10_HIF_1a_aOH~0,y5_hif_1b) -> 0  d4
+	HIF_1a_Association_HIF_1b: y4_HIF_1a(y10_HIF_1a_aOH~0,y5_hif_1b) + y5_HIF_1b(y4_hif_1a) -> y4_HIF_1a(y10_HIF_1a_aOH~0,y5_hif_1b!80).y5_HIF_1b(y4_hif_1a!80) k4
+	HIF_1_Complex_Dissociation: y4_HIF_1a(y10_HIF_1a_aOH~0,y5_hif_1b!80).y5_HIF_1b(y4_hif_1a!80) -> y4_HIF_1a(y10_HIF_1a_aOH~0,y5_hif_1b) + y5_HIF_1b(y4_hif_1a) k5
+	HIF_1a_Hydroxylation_PHD_reactants_0: 0  -> y4_HIF_1a(y10_HIF_1a_aOH~0,y5_hif_1b) -1*(fRate22()) #Modifiers(y6_HIF_1_Complex)
+	HIF_1a_Hydroxylation_FIH_reactants_0: 0  -> y4_HIF_1a(y10_HIF_1a_aOH~0,y5_hif_1b) -1*(fRate23())
+	HIF_1a_Hydroxylation_FIH_products_0: 0  -> y4_HIF_1a(y10_HIF_1a_aOH~y10_HIF_1a_aOH,y5_hif_1b) fRate23()
+	HIF_1a_aOH_Dehydroxylation: y4_HIF_1a(y10_HIF_1a_aOH~y10_HIF_1a_aOH,y5_hif_1b) -> y4_HIF_1a(y10_HIF_1a_aOH~0,y5_hif_1b) k11
+	HIF_1a_aOH_Hydroxylation_PHD_reactants_0: 0  -> y4_HIF_1a(y10_HIF_1a_aOH~y10_HIF_1a_aOH,y5_hif_1b) -1*(fRate25()) #Modifiers(y6_HIF_1_Complex)
+	HIF_1a_aOH_Decay: y4_HIF_1a(y10_HIF_1a_aOH~y10_HIF_1a_aOH,y5_hif_1b) -> 0  d10
+	HIF_1b_Expression_Constitutive: 0  -> y5_HIF_1b(y4_hif_1a) a5
+	HIF_1b_Decay: y5_HIF_1b(y4_hif_1a) -> 0  d5
+	HIF_1_Complex_Decay: y4_HIF_1a(y10_HIF_1a_aOH~0,y5_hif_1b!80).y5_HIF_1b(y4_hif_1a!80) -> 0  d6
+	STAT3_Activation_products_0: 0  -> y8_STAT3() fRate30() #Modifiers(y3_mTOR, y1_IL_15)
+end reaction rules
+end model

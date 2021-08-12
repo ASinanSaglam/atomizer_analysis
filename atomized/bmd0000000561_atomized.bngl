@@ -1,0 +1,34 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1412110000', 'http://identifiers.org/biomodels.db/BIOMD0000000561']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/23232498']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/BIOMD0000000531']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:14330', 'http://identifiers.org/doid/DOID:10652', 'http://identifiers.org/doid/DOID:649']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:1990000']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@creatorEmail:'lloret@ebi.ac.uk'
+#@creatorName:'Lloret i Villas Audald'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 1 molecules and 0 reactions. The translated model has 0 molecules and 0 rules'
+###
+begin model
+begin parameters
+	kb 0.001
+	ka 0.5
+	sigmao 1.0
+	V 1.0
+	C 1.0
+	C_0 2.0
+end parameters
+begin molecule types
+end molecule types
+begin seed species
+end seed species
+begin observables
+end observables
+begin functions
+	gamma() = (-C + C_0)/C
+	deltamt() = C*V*gamma*sigmao
+	Amyloid_ar() = deltamt*(1 - 1/(kb*(exp(ka*time()) - 1) + 1))
+end functions
+begin reaction rules
+end reaction rules
+end model

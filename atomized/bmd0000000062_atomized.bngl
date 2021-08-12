@@ -1,0 +1,58 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL6624111460', 'http://identifiers.org/biomodels.db/BIOMD0000000062']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/12787031']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/11171956']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0000162']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/562']
+#@creatorEmail:'jls@sun.ac.za'
+#@creatorName:'Snoep Jacky L'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 4 molecules and 5 reactions. The translated model has 2 molecules and 5 rules'
+###
+begin model
+begin parameters
+	Tomax 100.0 #units:concentration
+	Tex 0.14 #units:concentration
+	e_val 0.9 #units:concentration
+	f_val 380.0 #units:concentration
+	r1_k1 65.000000
+	r1_ki1 3.530000
+	r1_nH 1.920000
+	r1_Ot 0.003300
+	r2_mu 0.010000
+	r3_k2 25.000000
+	r3_Ki2 810.000000
+	r4_g 25.000000
+	r4_Kg 0.200000
+	r5_mu 0.010000
+end parameters
+begin molecule types
+	#^ bqbiol:is chebi:CHEBI:27897, kegg.compound:C00806
+	Synthesizedtryptophan()
+	#^ bqbiol:is uniprot:P00895
+	Anthranilatesynthase()
+end molecule types
+begin seed species
+end seed species
+begin observables
+	Species Anthranilatesynthase Anthranilatesynthase() #Anthranilate synthase
+	Species Synthesizedtryptophan Synthesizedtryptophan() #Synthesized tryptophan
+end observables
+begin functions
+	exog_Trp_ar() = Tex*Tomax/(Tex*(Synthesizedtryptophan/f_val + 1) + e_val)
+	To_norm() = exog_Trp_ar/82
+	Totaltryptophan_ar() = Synthesizedtryptophan + exog_Trp_ar
+	Tt_norm() = Totaltryptophan_ar/82
+	Ts_norm() = Synthesizedtryptophan/82
+	Enz_norm() = Anthranilatesynthase
+	fRate0() = 2.41632157053072/(Totaltryptophan_ar^1.92 + 11.2649024267166)
+	fRate2() = 20250.0*Anthranilatesynthase/(Totaltryptophan_ar + 810.0)
+	fRate3() = 25.0/(Synthesizedtryptophan + 0.2)
+end functions
+begin reaction rules
+	Enzyme_synthesis: 0  -> Anthranilatesynthase() fRate0() #Modifiers(Tt)
+	Enzyme_dilution: Anthranilatesynthase() -> 0  r2_mu
+	tryptophan_synthesis: 0  -> Synthesizedtryptophan() fRate2() #Modifiers(Enz, Tt)
+	tryptophan_consumption: Synthesizedtryptophan() -> 0  fRate3()
+	tryptophan_dilution: Synthesizedtryptophan() -> 0  r5_mu
+end reaction rules
+end model

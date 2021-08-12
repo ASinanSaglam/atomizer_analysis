@@ -1,0 +1,187 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000055', 'http://identifiers.org/biomodels.db/MODEL0737170531']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/16729048']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/15784272']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0042752']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/3701']
+#@BQB_IS:['http://identifiers.org/kegg.pathway/ath04710']
+#@creatorEmail:'hdharuri@cds.caltech.edu'
+#@creatorName:'Dharuri Harish'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 13 molecules and 32 reactions. The translated model has 9 molecules and 32 rules'
+###
+begin model
+begin parameters
+	q1 2.4514
+	n1 5.1694
+	a 3.3064
+	g1 0.876738488
+	m1 1.5283
+	k1 1.817
+	p1 0.8295
+	r1 16.8363
+	r2 0.1687
+	m2 20.44
+	k2 1.5644
+	m3 3.6888
+	k3 1.2765
+	n2 3.0087
+	b 1.0258
+	g2 0.036805783
+	g3 0.26593318
+	c 1.0258
+	m4 3.8231
+	k4 2.5734
+	p2 4.324
+	r3 0.3166
+	r4 2.1509
+	m5 0.0013
+	m6 3.1741
+	k5 2.7454
+	m7 0.0492
+	m8 4.0424
+	k6 0.4033
+	n3 0.2431
+	d 1.4422
+	g4 0.538811228
+	m9 10.1132
+	k7 6.5585
+	p3 2.147
+	r5 1.0352
+	r6 3.3017
+	m10 0.2179
+	k8 0.6632
+	m11 3.3442
+	k9 17.1111
+	q2 2.40178
+	n4 0.0857
+	n5 0.1649
+	g5 1.17803247
+	g6 0.064455137
+	f 1.0237
+	__e__ 3.6064
+	m12 4.297
+	k10 1.7303
+	p4 0.2485
+	r7 2.2123
+	r8 0.2002
+	m13 0.1347
+	k11 1.8258
+	m14 0.6114
+	k12 1.8066
+	p5 0.5
+	k13 1.2
+	q3 1.0
+	m15 1.2
+	Lmax 1.0
+	CP 24.0
+	dayLength 12.0
+	Lmin 0
+	r2_Fch_0 8.000000
+	r6_Fch_0 8.000000
+end parameters
+begin molecule types
+	LHYproteinin(cytoplasm~CYTOPLASM~0,nucleus~NUCLEUS~0)
+	Yproteinin(cytoplasm~CYTOPLASM~0,nucleus~NUCLEUS~0)
+	TOC1proteinin(cytoplasm~CYTOPLASM~0,nucleus~NUCLEUS~0)
+	#^ bqbiol:isVersionOf chebi:CHEBI:33699, kegg.compound:C00046
+	YmRNA()
+	#^ bqbiol:isVersionOf chebi:CHEBI:33699, kegg.compound:C00046
+	LHYmRNA()
+	#^ bqbiol:isVersionOf chebi:CHEBI:33699, kegg.compound:C00046
+	XmRNA()
+	#^ bqbiol:isVersionOf chebi:CHEBI:33699, kegg.compound:C00046
+	TOC1mRNA()
+	lightsensitiveproteinP()
+	Xproteinin(cytoplasm~CYTOPLASM~0,nucleus~NUCLEUS~0)
+end molecule types
+begin seed species
+	LHYmRNA() 324585800000000.06 # (0.539 * 1e-09)mol/L * 6.022e23/mol *1.0L #LHYmRNA #cLm
+	LHYproteinin(cytoplasm~CYTOPLASM,nucleus~0) 9033000000000.0 #original 0.015nM (default)/L  #LHYproteinincytoplasm #cLc
+	LHYproteinin(cytoplasm~0,nucleus~NUCLEUS) 51488100000000.01 #original 0.0855nM (default)/L  #LHYproteininnucleus #cLn
+	TOC1mRNA() 274603200000000.03 #original 0.456nM (default)/L  #TOC1mRNA #cTm
+	TOC1proteinin(cytoplasm~CYTOPLASM,nucleus~0) 5239140000000000.0 #original 8.7nM (default)/L  #TOC1proteinincytoplasm #cTc
+	TOC1proteinin(cytoplasm~0,nucleus~NUCLEUS) 240880000000000.06 #original 0.4nM (default)/L  #TOC1proteininnucleus #cTn
+	XmRNA() 48176000000000.01 #original 0.08nM (default)/L  #XmRNA #cXm
+	Xproteinin(cytoplasm~CYTOPLASM,nucleus~0) 806948000000000.1 #original 1.34nM (default)/L  #Xproteinincytoplasm #cXc
+	Xproteinin(cytoplasm~0,nucleus~NUCLEUS) 240880000000000.06 #original 0.4nM (default)/L  #Xproteininnucleus #cXn
+	YmRNA() 22281400000000.0 #original 0.037nM (default)/L  #YmRNA #cYm
+	Yproteinin(cytoplasm~CYTOPLASM,nucleus~0) 2408800000000.0005 #original 0.004nM (default)/L  #Yproteinincytoplasm #cYc
+	Yproteinin(cytoplasm~0,nucleus~NUCLEUS) 7828600000000.001 #original 0.013nM (default)/L  #Yproteininnucleus #cYn
+	lightsensitiveproteinP() 502837000000000.0 #original 0.835nM (default)/L  #lightsensitiveproteinP #cPn
+end seed species
+begin observables
+	Species LHYmRNA LHYmRNA() #LHY mRNA
+	Species LHYproteinincytoplasm LHYproteinin(cytoplasm~CYTOPLASM,nucleus~0) #LHY protein in cytoplasm
+	Species LHYproteininnucleus LHYproteinin(cytoplasm~0,nucleus~NUCLEUS) #LHY protein in nucleus
+	Species TOC1mRNA TOC1mRNA() #TOC1 mRNA
+	Species TOC1proteinincytoplasm TOC1proteinin(cytoplasm~CYTOPLASM,nucleus~0) #TOC1 protein in cytoplasm
+	Species TOC1proteininnucleus TOC1proteinin(cytoplasm~0,nucleus~NUCLEUS) #TOC1 protein in nucleus
+	Species XmRNA XmRNA() #X mRNA
+	Species Xproteinincytoplasm Xproteinin(cytoplasm~CYTOPLASM,nucleus~0) #X protein in cytoplasm
+	Species Xproteininnucleus Xproteinin(cytoplasm~0,nucleus~NUCLEUS) #X protein in nucleus
+	Species YmRNA YmRNA() #Y mRNA
+	Species Yproteinincytoplasm Yproteinin(cytoplasm~CYTOPLASM,nucleus~0) #Y protein in cytoplasm
+	Species Yproteininnucleus Yproteinin(cytoplasm~0,nucleus~NUCLEUS) #Y protein in nucleus
+	Species lightsensitiveproteinP lightsensitiveproteinP() #light sensitive protein P
+end observables
+begin functions
+	fRate0() = lightsensitiveproteinP*q1*min(rint(sin(1/1000 + 3.1415926535*time()/dayLength)/2 + 0.5), rint(sin(1/1000 + 3.1415926535*time()/dayLength)/2 + 1))
+	fRate1() = Xproteininnucleus^a*n1/(Xproteininnucleus^a + g1^a)
+	fRate2() = m1/(LHYmRNA + k1)
+	fRate3() = LHYmRNA*p1
+	fRate5() = m2/(LHYproteinincytoplasm + k2)
+	fRate7() = m3/(LHYproteininnucleus + k3)
+	fRate8() = Yproteininnucleus^b*g3^c*n2/(LHYproteininnucleus^c*Yproteininnucleus^b + LHYproteininnucleus^c*g2^b + Yproteininnucleus^b*g3^c + g2^b*g3^c)
+	fRate9() = m4/(TOC1mRNA + k4)
+	fRate10() = TOC1mRNA*p2
+	fRate12() = TOC1proteinincytoplasm*(m5*(1 - min(rint(sin(0.001 + 3.1415926535*time()/dayLength)/2 + 0.5), rint(sin(0.001 + 3.1415926535*time()/dayLength)/2 + 1))) + m6)/(TOC1proteinincytoplasm + k5)
+	fRate14() = TOC1proteininnucleus*(m7*(1 - min(rint(sin(0.001 + 3.1415926535*time()/dayLength)/2 + 0.5), rint(sin(0.001 + 3.1415926535*time()/dayLength)/2 + 1))) + m8)/(TOC1proteininnucleus + k6)
+	fRate15() = TOC1proteininnucleus^d*n3/(TOC1proteininnucleus^d + g4^d)
+	fRate16() = m9/(XmRNA + k7)
+	fRate17() = XmRNA*p3
+	fRate19() = m10/(Xproteinincytoplasm + k8)
+	fRate21() = m11/(Xproteininnucleus + k9)
+	fRate22() = g6^f*(TOC1proteininnucleus^__e__*lightsensitiveproteinP*q2*min(rint(sin((dayLength + 3141.5926535*time())/(1000*dayLength))/2 + 0.5), rint(sin((dayLength + 3141.5926535*time())/(1000*dayLength))/2 + 1)) + g5^__e__*lightsensitiveproteinP*q2*min(rint(sin((dayLength + 3141.5926535*time())/(1000*dayLength))/2 + 0.5), rint(sin((dayLength + 3141.5926535*time())/(1000*dayLength))/2 + 1)) + g5^__e__*n4*min(rint(sin((dayLength + 3141.5926535*time())/(1000*dayLength))/2 + 0.5), rint(sin((dayLength + 3141.5926535*time())/(1000*dayLength))/2 + 1)) + g5^__e__*n5)/(LHYproteininnucleus^f*TOC1proteininnucleus^__e__ + LHYproteininnucleus^f*g5^__e__ + TOC1proteininnucleus^__e__*g6^f + g5^__e__*g6^f)
+	fRate23() = m12/(YmRNA + k10)
+	fRate24() = YmRNA*p4
+	fRate26() = m13/(Yproteinincytoplasm + k11)
+	fRate28() = m14/(Yproteininnucleus + k12)
+	fRate29() = p5*(1 - min(rint(sin(0.001 + 3.1415926535*time()/dayLength)/2 + 0.5), rint(sin(0.001 + 3.1415926535*time()/dayLength)/2 + 1)))
+	fRate30() = m15/(k13 + lightsensitiveproteinP)
+	fRate31() = q3*min(rint(sin(1/1000 + 3.1415926535*time()/dayLength)/2 + 0.5), rint(sin(1/1000 + 3.1415926535*time()/dayLength)/2 + 1))
+end functions
+begin reaction rules
+	one11: 0  -> LHYmRNA() fRate0() #Modifiers(cPn)
+	two11: 0  -> LHYmRNA() fRate1() #Modifiers(cXn)
+	three11: LHYmRNA() -> 0  fRate2()
+	one12: 0  -> LHYproteinin(cytoplasm~CYTOPLASM,nucleus~0) fRate3() #Modifiers(cLm)
+	three12: LHYproteinin(cytoplasm~0,nucleus~NUCLEUS) -> LHYproteinin(cytoplasm~CYTOPLASM,nucleus~0) r2
+	four12: LHYproteinin(cytoplasm~CYTOPLASM,nucleus~0) -> 0  fRate5()
+	one13: LHYproteinin(cytoplasm~CYTOPLASM,nucleus~0) -> LHYproteinin(cytoplasm~0,nucleus~NUCLEUS) r1
+	three13: LHYproteinin(cytoplasm~0,nucleus~NUCLEUS) -> 0  fRate7()
+	one14: 0  -> TOC1mRNA() fRate8() #Modifiers(cYn, cLn)
+	two14: TOC1mRNA() -> 0  fRate9()
+	one15: 0  -> TOC1proteinin(cytoplasm~CYTOPLASM,nucleus~0) fRate10() #Modifiers(cTm)
+	three15: TOC1proteinin(cytoplasm~0,nucleus~NUCLEUS) -> TOC1proteinin(cytoplasm~CYTOPLASM,nucleus~0) r4
+	four15_reactants_0: 0  -> TOC1proteinin(cytoplasm~CYTOPLASM,nucleus~0) -1*(fRate12())
+	one16: TOC1proteinin(cytoplasm~CYTOPLASM,nucleus~0) -> TOC1proteinin(cytoplasm~0,nucleus~NUCLEUS) r3
+	three16_reactants_0: 0  -> TOC1proteinin(cytoplasm~0,nucleus~NUCLEUS) -1*(fRate14())
+	one17: 0  -> XmRNA() fRate15() #Modifiers(cTn)
+	two17: XmRNA() -> 0  fRate16()
+	one18: 0  -> Xproteinin(cytoplasm~CYTOPLASM,nucleus~0) fRate17() #Modifiers(cXm)
+	three18: Xproteinin(cytoplasm~0,nucleus~NUCLEUS) -> Xproteinin(cytoplasm~CYTOPLASM,nucleus~0) r6
+	four18: Xproteinin(cytoplasm~CYTOPLASM,nucleus~0) -> 0  fRate19()
+	one19: Xproteinin(cytoplasm~CYTOPLASM,nucleus~0) -> Xproteinin(cytoplasm~0,nucleus~NUCLEUS) r5
+	three19: Xproteinin(cytoplasm~0,nucleus~NUCLEUS) -> 0  fRate21()
+	one20: 0  -> YmRNA() fRate22() #Modifiers(cPn, cTn, cLn)
+	two20: YmRNA() -> 0  fRate23()
+	one21: 0  -> Yproteinin(cytoplasm~CYTOPLASM,nucleus~0) fRate24() #Modifiers(cYm)
+	three21: Yproteinin(cytoplasm~0,nucleus~NUCLEUS) -> Yproteinin(cytoplasm~CYTOPLASM,nucleus~0) r8
+	four21: Yproteinin(cytoplasm~CYTOPLASM,nucleus~0) -> 0  fRate26()
+	one22: Yproteinin(cytoplasm~CYTOPLASM,nucleus~0) -> Yproteinin(cytoplasm~0,nucleus~NUCLEUS) r7
+	three22: Yproteinin(cytoplasm~0,nucleus~NUCLEUS) -> 0  fRate28()
+	one23_products_0: 0  -> lightsensitiveproteinP() fRate29()
+	two23: lightsensitiveproteinP() -> 0  fRate30()
+	three23: lightsensitiveproteinP() -> 0  fRate31()
+end reaction rules
+end model

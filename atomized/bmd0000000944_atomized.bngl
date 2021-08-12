@@ -1,0 +1,65 @@
+###
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/1833774']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/23892075']
+#@BQB_OCCURS_IN:['http://identifiers.org/ncit/C13054']
+#@BQB_HAS_TAXON:['http://identifiers.org/omit/0002077']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/go/GO:0007049', 'http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/biomodels.teddy/TEDDY_0000006']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL2005050002', 'http://identifiers.org/biomodels.db/BIOMD0000000944']
+#@creatorEmail:'ahmad.azd@hotmail.com'
+#@creatorName:'Zyoud Ahmad'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 3 molecules and 6 reactions. The translated model has 3 molecules and 6 rules'
+###
+begin model
+begin parameters
+	K1 0.002
+	K3 0.01
+	K4 0.01
+	Kc 0.5
+	Kd 0.001
+	kd 0.046
+	V2 2.0
+	V4 0.7
+	vs 0.06
+	vd 0.25
+	Vm1 4.0
+	Vm3 1.0
+end parameters
+begin molecule types
+	#^ bqbiol:hasProperty omit:0016746
+	ActiveCdc2kinase()
+	#^ bqbiol:hasProperty ncit:C17349
+	Cyclin()
+	#^ bqbiol:hasProperty go:GO:0005680
+	ActiveAPC()
+end molecule types
+begin seed species
+	Cyclin() 6.022000000000001e+18 # (0.01 * 0.001)mol/L * 6.022e23/mol *1.0L #Cyclin #Cyclin
+	ActiveCdc2kinase() 6.022000000000001e+18 #original 0.01substance/volume #ActiveCdc2kinase #Active_Cdc2_kinase
+	ActiveAPC() 6.022000000000001e+18 #original 0.01substance/volume #ActiveAPC #Active_APC
+end seed species
+begin observables
+	Species Cyclin Cyclin() #Cyclin
+	Species ActiveCdc2kinase ActiveCdc2kinase() #Active Cdc2 kinase
+	Species ActiveAPC ActiveAPC() #Active APC
+end observables
+begin functions
+	V3() = ActiveCdc2kinase*Vm3
+	V1() = Cyclin*Vm1/(Cyclin + Kc)
+	K2() = K1
+	fRate1() = 1.0*ActiveAPC*Cyclin*vd/(Cyclin + Kd) + 1.0*Cyclin*kd
+	fRate2() = V1/(-ActiveCdc2kinase + K1 + 1.0)
+	fRate2m() = V1/(-ActiveCdc2kinase + K1 + 1.0)
+	fRate3() = V2/(ActiveCdc2kinase + K2)
+	fRate4() = V3/(-ActiveAPC + K3 + 1.0)
+	fRate4m() = V3/(-ActiveAPC + K3 + 1.0)
+	fRate5() = V4/(ActiveAPC + K4)
+end functions
+begin reaction rules
+	reaction_for_C_production: 0  -> Cyclin() vs
+	reaction_for_C_decay_reactants_0: 0  -> Cyclin() -1*(fRate1()) #Modifiers(Active_APC)
+	reaction_for_M_production: 0  <-> ActiveCdc2kinase() fRate2(),fRate2m()
+	reaction_for_M_decay: ActiveCdc2kinase() -> 0  fRate3()
+	reaction_for_X_production: 0  <-> ActiveAPC() fRate4(),fRate4m()
+	reaction_for_X_decay: ActiveAPC() -> 0  fRate5()
+end reaction rules
+end model

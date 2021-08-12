@@ -1,0 +1,155 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/23603730']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/ncit/C34082', 'http://identifiers.org/ncit/C17930', 'http://identifiers.org/ncit/C157974']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9031']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000895', 'http://identifiers.org/biomodels.db/MODEL1912160004']
+#@creatorEmail:'johannes.p.meyer@gmail.com'
+#@creatorName:'Meyer Johannes'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 9 molecules and 29 reactions. The translated model has 6 molecules and 31 rules'
+###
+begin model
+begin parameters
+	sMr 300000.0
+	drMr 0.011
+	aMr 100.0
+	cSeMr 1.0
+	iMr 0.1
+	cSeMri 600000.0
+	kSeMr 5e-08
+	gbMr 1.2
+	ccMr 25000000.0
+	p1 0.65
+	vrecMr 1.0
+	kmrecMr 1000.0
+	drMa 0.08
+	kSeMa 2.6e-07
+	daMa 40.0
+	cdaMa 30000000.0
+	N 30.0
+	bMi 0.4
+	mMi 2.0
+	lMi 0.8
+	cCD4CD8 10.0
+	apop 0.7
+	drMi 0.011
+	sCD4 490000.0
+	drCD4 0.016
+	gbCD4 0.19
+	cc1CD4 82000000.0
+	ngbCD4 2.0
+	k2CD4 8700000.0
+	kmrecCD4 1.0
+	vrecCD4 100.0
+	CD4n 0.4
+	ndCD4 8.0
+	kSedCD4 4200.0
+	kSeCD4 1e-09
+	drCD8 0.001
+	sCD8 430000.0
+	gbCD8 1.44
+	cc1CD8 13000000.0
+	k2CD8 47000000.0
+	ncompCD4 0.5
+	kcompCD4 34000000.0
+	compCD8 0.85
+	w1 1e-25
+	drSe 27.8
+	pSe 35.0
+	ccSe 500000.0
+	drSi 0.05
+	pSi 4.1
+end parameters
+begin molecule types
+	#^ bqbiol:is cl:CL:0000864
+	Mr(rec~REC~0,se)
+	#^ bqbiol:is ncit:C76380
+	#^ bqbiol:hasProperty ncit:C28217
+	Si()
+	#^ bqbiol:is ncit:C12542
+	CD8()
+	#^ bqbiol:is cl:CL:0000863
+	Ma()
+	#^ bqbiol:is cl:CL:0000492
+	CD4(rec~REC~0)
+	#^ bqbiol:is ncit:C76380
+	#^ bqbiol:occursIn go:GO:0005576
+	Se(mr)
+end molecule types
+begin seed species
+	CD4(rec~0) 5.4198e+30 # 9000000.0mol/L * 6.022e23/mol *1.0L #CD4 #CD4
+	CD8() 4.2154e+30 #original 7000000.0substance/volume  #CD8 #CD8
+	Mr(rec~0,se) 5.4198e+30 #original 9000000.0substance/volume  #Mr #Mr
+	Mr(rec~0,se!92).Se(mr!92) 6.022e+25 #original 100.0substance/volume  #Mi #Mi
+	Se(mr) 1.2044e+26 #original 200.0substance/volume  #Se #Se
+	Si() 6.022e+25 #original 100.0substance/volume  #Si #Si
+	CD4(rec~REC) 1.62594e+31 #original 27000000.0substance/volume  #CD4rec #CD4rec
+	Mr(rec~REC,se) 1.2044e+31 #original 20000000.0substance/volume  #Mrrec #Mrrec
+end seed species
+begin observables
+	Species CD4 CD4(rec~0) #CD4
+	Species CD8 CD8() #CD8
+	Species Mr Mr(rec~0,se) #Mr
+	Species Ma Ma() #Ma
+	Species Mi Mr(rec~0,se!92).Se(mr!92) #Mi
+	Species Se Se(mr) #Se
+	Species Si Si() #Si
+	Species CD4rec CD4(rec~REC) #CD4rec
+	Species Mrrec Mr(rec~REC,se) #Mrrec
+end observables
+begin functions
+	fRate1() = Mr*gbMr
+	fRate1m() = -Mr*gbMr/(ccMr*(p1 - 1))
+	fRate2() = Se*vrecMr/(Se + kmrecMr)
+	fRate3() = CD4*daMa/(CD4 + cdaMa)
+	fRate4() = iMr/(Se + cSeMri)
+	fRate5() = Se*aMr/(Se + cSeMr)
+	fRate9() = CD4^(ngbCD4 + 1)*gbCD4/(CD4^ngbCD4 + k2CD4^ngbCD4)
+	fRate9m() = CD4^(ngbCD4 + 1)*gbCD4/(cc1CD4*(CD4^ngbCD4 + k2CD4^ngbCD4))
+	fRate10() = Se*vrecCD4/(Se + kmrecCD4)
+	fRate12() = CD4n*Se^ndCD4/(Se^ndCD4 + kSedCD4^ndCD4)
+	fRate15() = CD8^2*gbCD8/(CD8 + k2CD8)
+	fRate15m() = CD8^2*gbCD8/(cc1CD8*(CD8 + k2CD8))
+	fRate16() = CD4^ncompCD4*Se*compCD8/(CD4^ncompCD4*Se + CD4^ncompCD4*w1 + Se*kcompCD4^ncompCD4 + kcompCD4^ncompCD4*w1)
+	fRate20() = Mi*Si^mMi*bMi/(Si^mMi + (Mi*N)^mMi)
+	fRate21() = lMi*(CD4 + CD8/Mi)*(-Si*apop/(Mi + N + Si) + 1)/(CD4 + CD8/Mi + cCD4CD8)
+	fRate23() = Se*pSe
+	fRate23m() = Se*pSe/ccSe
+	fRate26() = Si*pSi
+	fRate26m() = Si*pSi/(Mi*N + Si)
+	fRate27() = Mr*Si*iMr/(Si + cSeMr)
+	fRate28() = lMi*(CD4 + CD8/Mi)/(CD4 + CD8/Mi + cCD4CD8)
+end functions
+begin reaction rules
+	Mr_Source: 0  -> Mr(rec~0,se) sMr
+	Mr_Growth_Boost: 0  <-> Mr(rec~0,se) fRate1(),fRate1m()
+	Mr_Recruitment: Mr(rec~REC,se) -> Mr(rec~0,se) fRate2() #Modifiers(Se)
+	Ma_Deactivation: Ma() -> Mr(rec~0,se) fRate3() #Modifiers(CD4)
+	Mr_Infection: Mr(rec~0,se) + Se(mr) -> Mr(rec~0,se!92).Se(mr!92) fRate4()
+	Mr_Activation: Mr(rec~0,se) -> Ma() fRate5() #Modifiers(Se)
+	Se_Killing_Mr: Mr(rec~0,se) + Se(mr) -> 0  kSeMr
+	Mr_Death: Mr(rec~0,se) -> 0  drMr
+	CD4_Source: 0  -> CD4(rec~0) sCD4
+	CD4_Growth_Boost: 0  <-> CD4(rec~0) fRate9(),fRate9m()
+	CD4_Recruitment: CD4(rec~REC) -> CD4(rec~0) fRate10() #Modifiers(Se)
+	Se_Killing_CD4: CD4(rec~0) + Se(mr) -> 0  kSeCD4
+	CD4_Interaction_Naive_Se: CD4(rec~0) -> 0  fRate12() #Modifiers(Se)
+	CD4_Death: CD4(rec~0) -> 0  drCD4
+	CD8_Source: 0  -> CD8() sCD8
+	CD8_Growth_Boost: 0  <-> CD8() fRate15(),fRate15m()
+	CD8_Competition: CD8() -> 0  fRate16() #Modifiers(Se, CD4)
+	CD8_Death: CD8() -> 0  drCD8
+	Ma_Death: Ma() -> 0  drMa
+	Se_Killing_Ma: Ma() + Se(mr) -> 0  kSeMa
+	Mi_Bursting_reactants_0: 0  -> Si() -1*(fRate20())
+	Mi_Bursting_reactants_1: 0  -> Mr(rec~0,se!92).Se(mr!92) -1*(fRate20())
+	Mi_Bursting_products_0: 0  -> Se(mr) fRate20()
+	Mi_Lysis_reactants_0: 0  -> Mr(rec~0,se!92).Se(mr!92) -1*(fRate21()) #Modifiers(CD4, CD8, Si)
+	Mi_Death: Mr(rec~0,se!92).Se(mr!92) -> 0  drMi
+	Se_Proliferation: 0  <-> Se(mr) fRate23(),fRate23m()
+	Se_Death: Se(mr) -> 0  drSe
+	Si_Death: Si() -> 0  drSi
+	Si_Proliferation: 0  <-> Si() fRate26(),fRate26m() #Modifiers(Mi)
+	Mr_Infection_Si: 0  -> Si() fRate27() #Modifiers(Mr)
+	Mi_Lysis_Si_reactants_0: 0  -> Si() -1*(fRate28()) #Modifiers(CD4, CD8, Mi)
+end reaction rules
+end model

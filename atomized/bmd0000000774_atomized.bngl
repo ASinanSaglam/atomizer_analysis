@@ -1,0 +1,49 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/29605227']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/go/GO:0002418']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1908010003', 'http://identifiers.org/biomodels.db/BIOMD0000000774']
+#@creatorEmail:'jm2187@cam.ac.uk'
+#@creatorName:'Men Jinghao'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 2 molecules and 4 reactions. The translated model has 2 molecules and 4 rules'
+###
+begin model
+begin parameters
+	a 0.0025 #units:unit_0
+	r_0 0.01 #units:unit_0
+	p_0 0.7 #units:unit_0
+	h1 0.0001 #units:unit_0
+	h2 0.0001 #units:unit_0
+	k1 1.0 #units:unit_0
+	k2 1.0 #units:unit_0
+	g_0 0.0035 #units:unit_0
+	h3 0.01 #units:unit_0
+	k3 1.0 #units:unit_0
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf cl:CL:0000034
+	S()
+	#^ bqbiol:isVersionOf cl:CL:0000000
+	D()
+end molecule types
+begin seed species
+	S() 6.022e+20 # (1.0 * 0.001)mol/L * 6.022e23/mol *1.0L #S #S
+end seed species
+begin observables
+	Species S S() #S
+	Species D D() #D
+end observables
+begin functions
+	r() = r_0/(D^k1*h1 + 1)
+	g() = g_0/(S^k3*h3 + 1)
+	p() = p_0/(D^k2*h2 + 1)
+	fRate0() = 2.0*S*p*r
+	fRate2() = 2*S*r*(1 - p)
+end functions
+begin reaction rules
+	stem_cell_division: 0  <-> S() fRate0(),r
+	de_differentiation: D() -> S() g
+	differentiation_of_cell_products_0: 0  -> D() fRate2() #Modifiers(S)
+	differentiated_cell_death: D() -> 0  a
+end reaction rules
+end model

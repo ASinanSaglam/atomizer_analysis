@@ -1,0 +1,80 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000199', 'http://identifiers.org/biomodels.db/MODEL4734733125']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/11038356']
+#@BQB_HAS_VERSION:['http://identifiers.org/omim/163731']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0004517']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10116']
+#@creatorEmail:'lukas@ebi.ac.uk'
+#@creatorName:'Endler Lukas'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 15 molecules and 10 reactions. The translated model has 7 molecules and 13 rules'
+###
+begin model
+begin parameters
+	k1 2.6 #units:persec
+	k2 0.9 #units:peruMpersec
+	k3 26.0 #units:persec
+	k4 2.6 #units:persec
+	k5 0.9 #units:peruMpersec
+	k6 26.0 #units:persec
+	k7 5.0 #units:persec
+	k8 2.6 #units:persec
+	k9 0.0001 #units:persec
+	k10 0.0013 #units:peruMpersec
+end parameters
+begin molecule types
+	#^ bqbiol:is chebi:CHEBI:16349, kegg.compound:C00327
+	citruline()
+	#^ bqbiol:is chebi:CHEBI:15379, kegg.compound:C00007
+	O2(feii)
+	#^ bqbiol:is chebi:CHEBI:16480, kegg.compound:C00533
+	NO(feii)
+	#^ bqbiol:hasPart chebi:CHEBI:17627, chebi:CHEBI:29033, uniprot:P29476
+	FeII(FeIII_t~FeIII_t~0,FeII_star~FeII_star~0,i~I~0,no,o2)
+	NADP(h~H~0,plus~PLUS~0)
+	#^ bqbiol:is chebi:CHEBI:17632, kegg.compound:C00244
+	NO3()
+	#^ bqbiol:hasPart chebi:CHEBI:17627, chebi:CHEBI:29034, uniprot:P29476
+	FeIII_star()
+end molecule types
+begin seed species
+	FeII(FeIII_t~0,FeII_star~0,i~I,no,o2) 6.022e+17 # (1.0 * 1e-06)mol/L * 6.022e23/mol *1.0L #FeIII #FeIII
+	NADP(h~H,plus~0) 2.4088e+19 #original 40.0micromole/L #NADPH #NADPH
+	O2(feii) 8.4308e+19 #original 140.0micromole/L #O2 #O2
+end seed species
+begin observables
+	Species FeIII FeII(FeIII_t~0,FeII_star~0,i~I,no,o2) #FeIII
+	Species FeII FeII(FeIII_t~0,FeII_star~0,i~0,no,o2) #FeII
+	Species FeII_O2 FeII(FeIII_t~0,FeII_star~0,i~0,no,o2!342).O2(feii!342) #FeII_O2
+	Species FeIII_star FeIII_star() #FeIII_star
+	Species FeII_star FeII(FeIII_t~0,FeII_star~FeII_star,i~0,no,o2) #FeII_star
+	Species FeII_star_O2 FeII(FeIII_t~0,FeII_star~FeII_star,i~0,no,o2!342).O2(feii!342) #FeII_star_O2
+	Species FeIII_NO FeII(FeIII_t~0,FeII_star~0,i~I,no!343,o2).NO(feii!343) #FeIII_NO
+	Species FeII_NO FeII(FeIII_t~0,FeII_star~0,i~0,no!343,o2).NO(feii!343) #FeII_NO
+	Species NADPH NADP(h~H,plus~0) #NADPH
+	Species O2 O2(feii) #O2
+	Species citruline citruline() #citruline
+	Species NO3 NO3() #NO3
+	Species NO NO(feii) #NO
+	Species NADPplus NADP(h~0,plus~PLUS) #NADPplus
+	Species FeIII_t FeII(FeIII_t~FeIII_t,FeII_star~0,i~0,no,o2) #FeIII_t
+end observables
+begin functions
+	FeIII_t_ar() = FeIII + FeIII_star
+	fRate0() = FeIII*k1
+end functions
+begin reaction rules
+	r1_reactants_0: 0  -> FeII(FeIII_t~0,FeII_star~0,i~I,no,o2) -1*(fRate0())
+	r1_reactants_1: 0  -> NADP(h~H,plus~0) -1*(fRate0())
+	r1_products_0: 0  -> FeII(FeIII_t~0,FeII_star~0,i~0,no,o2) fRate0()
+	r1_products_1: 0  -> NADP(h~0,plus~PLUS) fRate0()
+	r2: FeII(FeIII_t~0,FeII_star~0,i~0,no,o2) + O2(feii) -> FeII(FeIII_t~0,FeII_star~0,i~0,no,o2!342).O2(feii!342) k2
+	r3: FeII(FeIII_t~0,FeII_star~0,i~0,no,o2!342).O2(feii!342) -> FeIII_star() k3
+	r4: FeIII_star() + NADP(h~H,plus~0) -> FeII(FeIII_t~0,FeII_star~FeII_star,i~0,no,o2) + NADP(h~0,plus~PLUS) k4
+	r5: FeII(FeIII_t~0,FeII_star~FeII_star,i~0,no,o2) + O2(feii) -> FeII(FeIII_t~0,FeII_star~FeII_star,i~0,no,o2!342).O2(feii!342) k5
+	r6: FeII(FeIII_t~0,FeII_star~FeII_star,i~0,no,o2!342).O2(feii!342) -> FeII(FeIII_t~0,FeII_star~0,i~I,no!343,o2).NO(feii!343) + citruline() k6
+	rF: FeII(FeIII_t~0,FeII_star~0,i~I,no!343,o2).NO(feii!343) -> FeII(FeIII_t~0,FeII_star~0,i~I,no,o2) + NO(feii) k7
+	rG: FeII(FeIII_t~0,FeII_star~0,i~I,no!343,o2).NO(feii!343) + NADP(h~H,plus~0) -> FeII(FeIII_t~0,FeII_star~0,i~0,no!343,o2).NO(feii!343) + NADP(h~0,plus~PLUS) k8
+	r9: FeII(FeIII_t~0,FeII_star~0,i~0,no!343,o2).NO(feii!343) -> FeII(FeIII_t~0,FeII_star~0,i~0,no,o2) + NO(feii) k9
+	r10: FeII(FeIII_t~0,FeII_star~0,i~0,no!343,o2).NO(feii!343) + O2(feii) -> FeII(FeIII_t~0,FeII_star~0,i~I,no,o2) + NO3() k10
+end reaction rules
+end model

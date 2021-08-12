@@ -1,0 +1,99 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000644', 'http://identifiers.org/biomodels.db/MODEL1707020001']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/28613156']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/bto/BTO:0002181']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10095']
+#@creatorEmail:'kothamav@babraham.ac.uk'
+#@creatorName:'Kothamachu Varun'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 6 molecules and 0 reactions. The translated model has 4 molecules and 4 rules'
+###
+begin model
+begin parameters
+	ARPPtot 10.0
+	PP2Atot 2.0
+	MASTtot 2.7
+	PKActot 12.0
+	kass 3.3
+	kdiss 0.0033
+	kcatpp2a 0.05
+	kcatmast 0.0988
+	kmmast 0.09
+	kcatpka 0.935
+	kmpka 1.6
+	kcatpp1 0.5
+	pp1 5.0
+	kmpp1 1.0
+	k88 0.01865
+	kcamp 0.7
+	n 2.0
+	KA 10.0
+	k46 0.02335
+	a 0.37526
+	kpka 0.097
+	b 2.36
+	r 1.2
+	kppx 0.05
+	ModelValue_0 (10.0)
+	ModelValue_20 (10.0)
+	ModelValue_2 (2.7)
+	ModelValue_3 (12.0)
+	ModelValue_1 (2.0)
+	ModelValue_25 (0.37526)
+	ModelValue_28 (2.36)
+	ModelValue_22 (0)
+	ModelValue_21 (0.02335)
+	ModelValue_17 (0.01865)
+	ModelValue_4 (3.3)
+	ModelValue_18 (0.7)
+	ModelValue_8 (0.0988)
+	ModelValue_10 (0.935)
+	ModelValue_12 (0.5)
+	ModelValue_6 (0.05)
+	ModelValue_5 (0.0033)
+	ModelValue_9 (0.09)
+	ModelValue_11 (1.6)
+	ModelValue_14 (1.0)
+	ModelValue_30 (0.05)
+	ModelValue_19 (2.0)
+	ModelValue_13 (5.0)
+	ModelValue_29 (1.2)
+	cAMP 0
+	BB 5.90156000000001e+18 #original 11.8161515151515substance/volume
+	Complex -3435566911.0061*I #original 1.9958693267679substance/volume
+end parameters
+begin molecule types
+	M()
+	A46()
+	A88()
+	PKA()
+end molecule types
+begin seed species
+	A46() 5.901560000000006e+18 # (9.80000000000001 * 1e-06)mol/L * 6.022e23/mol *1.0L #A46 #A46
+	M() 5649057540000000.0 #original 0.0093807substance/volume #M #M
+	PKA() 6022000000000000.0 #original 0.01substance/volume #PKA #PKA
+	A88()() (10.0) -(9.80000000000001) #A88
+end seed species
+begin observables
+	Species A46 A46() #A46
+	Species A88 A88() #A88
+	Species M M() #M
+	Species PKA PKA() #PKA
+end observables
+begin functions
+	kmpp2a() = (ModelValue_5 + ModelValue_6)/ModelValue_4
+	BB_ar() = A46 + ModelValue_1 + kmpp2a
+	Complex_ar() = BB_ar/2 - sqrt(-4*A46*ModelValue_1 + BB_ar^2)/2
+	arRateA46() = -Complex_ar*ModelValue_6 + M*ModelValue_8*(-A46 + ARPPtot)/(-A46 + A88*ModelValue_25/ModelValue_0 + ARPPtot + ModelValue_9 + ModelValue_29*(-M + ModelValue_2)/ModelValue_2)
+	arRatePKA() = -A46*ModelValue_21*PKA + ModelValue_18*ModelValue_22^ModelValue_19*(ModelValue_3 - PKA)/(ModelValue_20^ModelValue_19 + ModelValue_22^ModelValue_19)
+	arRateM() = -A88*M*ModelValue_17 - M*PKA*kpka + ModelValue_30*(-M + ModelValue_2)
+	arRateA88() = -A88*ModelValue_12*ModelValue_13/(A88 + ModelValue_14) + ModelValue_10*PKA*(-A88 + ARPPtot)/(A46*ModelValue_28/ModelValue_0 - A88 + ARPPtot + ModelValue_11)
+	A46bar() = A46/ModelValue_0
+end functions
+begin reaction rules
+	0  -> A46() arRateA46 #rateLaw
+	0  -> A88() arRateA88 #rateLaw
+	0  -> M() arRateM #rateLaw
+	0  -> PKA() arRatePKA #rateLaw
+end reaction rules
+end model

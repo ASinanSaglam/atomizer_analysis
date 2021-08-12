@@ -1,0 +1,90 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL7981660691', 'http://identifiers.org/biomodels.db/BIOMD0000000050']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/12873422']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/131567']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:1901575']
+#@creatorEmail:'Harish_Dharuri@kgi.edu'
+#@creatorName:'Dharuri Harish'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 14 molecules and 16 reactions. The translated model has 14 molecules and 16 rules'
+###
+begin model
+begin parameters
+	r1_k1 0.005700
+	r2_k2 0.015600
+	r3_k3 0.015500
+	r4_k4 0.079400
+	r5_k5 0.090700
+	r6_k6 0.027400
+	r7_k7 0.212500
+	r8_k8 0.000000
+	r9_k9 1.908500
+	r10_k10 0.070700
+	r11_k11 0.113100
+	r12_k12 0.000800
+	r13_k13 0.002200
+	r14_k14 0.003400
+	r15_k15 0.015900
+	r16_k16 0.013400
+end parameters
+begin molecule types
+	E2()
+	#^ bqbiol:isVersionOf chebi:CHEBI:23008
+	Cn()
+	#^ bqbiol:is chebi:CHEBI:14575, kegg.compound:C00159
+	Man()
+	_1DG()
+	E1()
+	DFG()
+	#^ bqbiol:is chebi:CHEBI:17158, kegg.compound:C00546
+	MG()
+	#^ bqbiol:is chebi:CHEBI:30751, kegg.compound:C00058
+	FA()
+	#^ bqbiol:is chebi:CHEBI:15428, kegg.compound:C00037
+	Gly()
+	Mel()
+	#^ bqbiol:is chebi:CHEBI:15366, kegg.compound:C00033
+	AA()
+	#^ bqbiol:is chebi:CHEBI:28757, kegg.compound:C01496
+	Fru()
+	_3DG()
+	#^ bqbiol:is chebi:CHEBI:17234, kegg.compound:C00293
+	Glu()
+end molecule types
+begin seed species
+	DFG() 5.4198e+18 # (9.0 * 1e-06)mol/L * 6.022e23/mol *1.0L #DFG #DFG
+end seed species
+begin observables
+	Species DFG DFG() #DFG
+	Species E1 E1() #E1
+	Species E2 E2() #E2
+	Species Cn Cn() #Cn
+	Species Gly Gly() #Gly
+	Species _3DG _3DG() #_3DG
+	Species FA FA() #FA
+	Species _1DG _1DG() #_1DG
+	Species AA AA() #AA
+	Species Man Man() #Man
+	Species Glu Glu() #Glu
+	Species MG MG() #MG
+	Species Mel Mel() #Mel
+	Species Fru Fru() #Fru
+end observables
+begin reaction rules
+	v1: DFG() -> E1() r1_k1
+	v2: DFG() -> E2() r2_k2
+	v3: DFG() -> Gly() + Cn() r3_k3
+	v4: E1() -> Gly() + _3DG() r4_k4
+	v5: _3DG() -> Cn() r5_k5
+	v6: _3DG() -> FA() r6_k6
+	v7: E2() -> Gly() + _1DG() r7_k7
+	v8: _1DG() -> Cn() r8_k8
+	v9: _1DG() -> AA() r9_k9
+	v10: E1() -> Gly() + Man() r10_k10
+	v11: E1() -> Gly() + Glu() r11_k11
+	v12: Man() -> Glu() r12_k12
+	v13: Glu() -> _3DG() r13_k13
+	v14: Gly() + Cn() -> Mel() r14_k14
+	v15: Cn() -> AA() + FA() + MG() r15_k15
+	v16: E2() -> Gly() + Fru() r16_k16
+end reaction rules
+end model

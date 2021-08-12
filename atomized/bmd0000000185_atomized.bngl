@@ -1,0 +1,105 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL9223733527', 'http://identifiers.org/biomodels.db/BIOMD0000000185']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/18312618']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/40674']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0032922', 'http://identifiers.org/obo.go/GO:0048512']
+#@creatorEmail:'hdharuri@cds.caltech.edu'
+#@creatorName:'Dharuri Harish'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 8 molecules and 20 reactions. The translated model has 8 molecules and 20 rules'
+###
+begin model
+begin parameters
+	v_1 6.8355 #units:nM_hr_1
+	K1 2.7266 #units:nM
+	n 5.6645 #units:dimensionless
+	v_2 8.4297 #units:nM_hr_1
+	K2 0.291 #units:nM
+	vc 6.7924 #units:nM_hr_1
+	K 1.0 #units:dimensionless
+	Kc 4.8283 #units:nM
+	k3 0.1177 #units:hr_1
+	v_4 1.0841 #units:nM_hr_1
+	K4 8.1343 #units:nM
+	k5 0.3352 #units:hr_1
+	v_6 4.6645 #units:nM_hr_1
+	K6 9.9849 #units:nM
+	k7 0.2282 #units:hr_1
+	v_8 3.5216 #units:nM_hr_1
+	K8 7.4519 #units:nM
+	L 0
+end parameters
+begin molecule types
+	clockprotein_Y2()
+	Neuropeptide_V2()
+	Transcriptionalrepressor()
+	#^ bqbiol:isVersionOf obo.chebi:CHEBI:33699, obo.chebi:CHEBI:33699
+	#^ bqbiol:encodes uniprot:O15516, uniprot:O15516
+	clockgenemRNA()
+	clockgenemRNA_X2()
+	#^ bqbiol:isHomologTo uniprot:O15516, uniprot:O15516
+	clockprotein()
+	#^ bqbiol:isHomologTo uniprot:Q9VET0, uniprot:Q9VET0
+	#^ bqbiol:hasVersion obo.go:GO:0005184, obo.go:GO:0005184
+	Neuropeptide()
+	Transcriptionalrepressor_Z2()
+end molecule types
+begin seed species
+	clockgenemRNA() 2559350000000000.0 # (4.25 * 1e-09)mol/L * 6.022e23/mol *1.0L #clockgenemRNA #X1
+	clockprotein() 1957150000000000.2 #original 3.25nano mole/L #clockprotein #Y1
+	Transcriptionalrepressor() 1354950000000000.2 #original 2.25nano mole/L #Transcriptionalrepressor #Z1
+	Neuropeptide() 1505500000000000.0 #original 2.5nano mole/L #Neuropeptide #V1
+end seed species
+begin observables
+	Species clockgenemRNA clockgenemRNA() #clock gene mRNA
+	Species clockprotein clockprotein() #clock protein
+	Species Transcriptionalrepressor Transcriptionalrepressor() #Transcriptional repressor
+	Species Neuropeptide Neuropeptide() #Neuropeptide
+	Species clockgenemRNA_X2 clockgenemRNA_X2() #clock gene mRNA
+	Species clockprotein_Y2 clockprotein_Y2() #clock protein
+	Species Transcriptionalrepressor_Z2 Transcriptionalrepressor_Z2() #Transcriptional repressor
+	Species Neuropeptide_V2 Neuropeptide_V2() #Neuropeptide
+end observables
+begin functions
+	F() = Neuropeptide/2 + Neuropeptide_V2/2
+	fRate0() = K1^n*v_1/(K1^n + Transcriptionalrepressor^n)
+	fRate1() = v_2/(K2 + clockgenemRNA)
+	fRate2() = F*K*vc/(F*K + Kc)
+	fRate4() = clockgenemRNA*k3
+	fRate5() = v_4/(K4 + clockprotein)
+	fRate6() = clockprotein*k5
+	fRate7() = v_6/(K6 + Transcriptionalrepressor)
+	fRate8() = clockgenemRNA*k7
+	fRate9() = v_8/(K8 + Neuropeptide)
+	fRate10() = K1^n*v_1/(K1^n + Transcriptionalrepressor_Z2^n)
+	fRate11() = v_2/(K2 + clockgenemRNA_X2)
+	fRate12() = F*K*vc/(F*K + Kc)
+	fRate14() = clockgenemRNA_X2*k3
+	fRate15() = v_4/(K4 + clockprotein_Y2)
+	fRate16() = clockprotein_Y2*k5
+	fRate17() = v_6/(K6 + Transcriptionalrepressor_Z2)
+	fRate18() = clockgenemRNA_X2*k7
+	fRate19() = v_8/(K8 + Neuropeptide_V2)
+end functions
+begin reaction rules
+	R1: 0  -> clockgenemRNA() fRate0() #Modifiers(Z1)
+	R2: clockgenemRNA() -> 0  fRate1()
+	R3: 0  -> clockgenemRNA() fRate2()
+	R4: 0  -> clockgenemRNA() L
+	R5: 0  -> clockprotein() fRate4() #Modifiers(X1)
+	R6: clockprotein() -> 0  fRate5()
+	R7: 0  -> Transcriptionalrepressor() fRate6() #Modifiers(Y1)
+	R8: Transcriptionalrepressor() -> 0  fRate7()
+	R9: 0  -> Neuropeptide() fRate8() #Modifiers(X1)
+	R10: Neuropeptide() -> 0  fRate9()
+	R11: 0  -> clockgenemRNA_X2() fRate10() #Modifiers(Z2)
+	R12: clockgenemRNA_X2() -> 0  fRate11()
+	R13: 0  -> clockgenemRNA_X2() fRate12()
+	R14: 0  -> clockgenemRNA_X2() L
+	R15: 0  -> clockprotein_Y2() fRate14() #Modifiers(X2)
+	R16: clockprotein_Y2() -> 0  fRate15()
+	R17: 0  -> Transcriptionalrepressor_Z2() fRate16() #Modifiers(Y2)
+	R18: Transcriptionalrepressor_Z2() -> 0  fRate17()
+	R19: 0  -> Neuropeptide_V2() fRate18() #Modifiers(X2)
+	R20: Neuropeptide_V2() -> 0  fRate19()
+end reaction rules
+end model

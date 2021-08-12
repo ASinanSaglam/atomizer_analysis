@@ -1,0 +1,138 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000395', 'http://identifiers.org/biomodels.db/MODEL1101270001']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/21978399']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/panther.pathway/P00025']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0007224']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/40674']
+#@BQB_OCCURS_IN:['http://identifiers.org/cl/CL:0000047']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 23 molecules and 12 reactions. The translated model has 15 molecules and 12 rules'
+###
+begin model
+begin parameters
+	kass_r7 1.13
+	kdiss_r7 1.122
+	kcatp_r14 1.146
+	kM_r14_s69 1.03
+	kcatn_r14 1.75
+	kM_r14_s46 0.215
+	kass_r25 1.27
+	kdiss_r25 0.73
+	kass_r26 1.33
+	kdiss_r26 0.61
+	kass_r51 1.23
+	kdiss_r51 0.46
+	kass_r52 0.6
+	kdiss_r52 1.67
+	kcatp_r53 1.29
+	kM_r53_s70 0.79
+	kcatn_r53 1.62
+	kass_r54 1.28
+	kdiss_r54 0.71
+	kass_r55 1.56
+	kass_r15_s21 1.53
+	kdiss_r15_s21 0.89
+	kass_re24_s157 1.0
+	kass_r23_s21 1.0
+	kdiss_r23_s21 1.0
+	sag_c1 0.5
+	sag 0.5
+end parameters
+begin compartments
+	#volume units: L
+	default 3 1.0
+	c1 3 1.0 #Receiving cell
+	c4 3 1.0 #lipid raft
+	c5 3 1.0 #nucleus
+end compartments
+begin molecule types
+	#^ bqbiol:is go:GO:0005874
+	Microtubule()
+	#^ bqbiol:isVersionOf uniprot:Q92793
+	CBP(cubitus_space_interruptus)
+	#^ bqbiol:isDescribedBy go:GO:0007228
+	Hedgehogtargetgene()
+	#^ bqbiol:isHomologTo uniprot:Q3MHS8
+	Sap18(complex_br___cubitus_space_interruptus_space_repressor_su__fu____)
+	#^ bqbiol:isVersionOf chebi:CHEBI:16761
+	ADP()
+	#^ bqbiol:isVersionOf uniprot:Q13635
+	Patched(hedgehog)
+	#^ bqbiol:isVersionOf go:GO:0043234
+	Complex_br___Cubitus_space_interruptus_space_repressor_Su__fu____(sap18)
+	#^ bqbiol:isVersionOf go:GO:0043234
+	Complex_br___Costal2_Smoothened__br_Fused__()
+	#^ bqbiol:isVersionOf go:GO:0043234, go:GO:0043234
+	Complex_br___Costal2_Fused__br_Smoothened__(cubitus_space_interruptus)
+	#^ bqbiol:isVersionOf go:GO:0043234
+	complex()
+	#^ bqbiol:isVersionOf uniprot:Q15465
+	Hedgehog(patched)
+	#^ bqbiol:isHomologTo uniprot:B4NUI3
+	Cubitus_space_interruptus(Complex_br___Su__fu___Cubitus__~Complex_br___Su__fu___Cubitus__~0,cbp,complex_br___costal2_fused__br_smoothened__)
+	#^ bqbiol:isVersionOf chebi:CHEBI:15422
+	ATP()
+	smoothened()
+	#^ bqbiol:isVersionOf go:GO:0043234
+	Complex_br___Costal2_Fused____microtubule__()
+end molecule types
+begin seed species
+	@c1:ATP() 2.0 #ATP #s9
+	@c1:Patched(hedgehog) 5.0 #Patched #s1
+	@c5:Sap18(complex_br___cubitus_space_interruptus_space_repressor_su__fu____) 2.5 #Sap18 #s135
+	@default:Hedgehog(patched) 5.0 #Hedgehog #s7
+	@c5:CBP(cubitus_space_interruptus) 2.0 #CBP #s71
+	@c5:Complex_br___Cubitus_space_interruptus_space_repressor_Su__fu____(sap18) 2.5 #Complex_br___Cubitus_space_interruptus_space_repressor_Su__fu____ #s128
+	@c1:smoothened() 3.0 #smoothened #s148
+	@c1:complex() 3.0 #complex #s150
+end seed species
+begin observables
+	Species ATP_c1 @c1:ATP() #ATP
+	Species ADP_c1 @c1:ADP() #ADP
+	Species Patched_c1 @c1:Patched(hedgehog) #Patched
+	Species Hedgehogtargetgene_c5 @c5:Hedgehogtargetgene() #Hedgehog target gene
+	Species Sap18_c5 @c5:Sap18(complex_br___cubitus_space_interruptus_space_repressor_su__fu____) #Sap18
+	Species Hedgehog_default @default:Hedgehog(patched) #Hedgehog
+	Species Complex_br___Patched_Hedgehog___c1 @c1:Patched(hedgehog!659).Hedgehog(patched!659) #Complex_br_(Patched/Hedgehog)
+	Species Complex_br___Costal2_Fused__br_Smoothened___c1 @c1:Complex_br___Costal2_Fused__br_Smoothened__(cubitus_space_interruptus) #Complex_br_(Costal2/Fused/_br_Smoothened)
+	Species Complex_br___Costal2_Smoothened__br_Fused___c1 @c1:Complex_br___Costal2_Smoothened__br_Fused__() #Complex_br_(Costal2/Smoothened/_br_Fused)
+	Species Complex_br___Costal2_Fused__br_Smoothened___c4 @c4:Complex_br___Costal2_Fused__br_Smoothened__(cubitus_space_interruptus) #Complex_br_(Costal2/Fused/_br_Smoothened)
+	Species CBP_c5 @c5:CBP(cubitus_space_interruptus) #CBP
+	Species Microtubule_c1 @c1:Microtubule() #Microtubule
+	Species Cubitus_space_interruptus_c5 @c5:Cubitus_space_interruptus(Complex_br___Su__fu___Cubitus__~0,cbp,complex_br___costal2_fused__br_smoothened__) #Cubitus_space_interruptus
+	Species Complex_br___Cubitus_space_interruptus_space_repressor_Su__fu_____c5 @c5:Complex_br___Cubitus_space_interruptus_space_repressor_Su__fu____(sap18) #Complex_br_(Cubitus_space_interruptus_space_repressor/Su(fu))
+	Species Complex_br___Sap18_Su__fu____br_Cubitus_space_interruptus_space_repressor___c5 @c5:Sap18(complex_br___cubitus_space_interruptus_space_repressor_su__fu____!660).Complex_br___Cubitus_space_interruptus_space_repressor_Su__fu____(sap18!660) #Complex_br_(Sap18/Su(fu)/_br_Cubitus_space_interruptus_space_repressor)
+	Species smoothened_c1 @c1:smoothened() #smoothened
+	Species complex_c1 @c1:complex() #complex
+	Species Complex_br___CBP_Cubitus___c5 @c5:Cubitus_space_interruptus(Complex_br___Su__fu___Cubitus__~0,cbp!658,complex_br___costal2_fused__br_smoothened__).CBP(cubitus_space_interruptus!658) #Complex_br_(CBP/Cubitus)
+	Species Complex_br___Costal2_Fused____microtubule___c4 @c4:Complex_br___Costal2_Fused____microtubule__() #Complex_br_(Costal2/Fused/../microtubule)
+	Species Complex_br___Su__fu___Fused_____br_Smoothened___c4 @c4:Cubitus_space_interruptus(Complex_br___Su__fu___Cubitus__~Complex_br___Su__fu___Cubitus__,cbp,complex_br___costal2_fused__br_smoothened__!661).Complex_br___Costal2_Fused__br_Smoothened__(cubitus_space_interruptus!661) #Complex_br_(Su(fu)/Fused/../_br_Smoothened)
+	Species Complex_br___Su__fu___Cubitus___c1 @c1:Cubitus_space_interruptus(Complex_br___Su__fu___Cubitus__~Complex_br___Su__fu___Cubitus__,cbp,complex_br___costal2_fused__br_smoothened__) #Complex_br_(Su(fu)/Cubitus)
+end observables
+begin functions
+	fRate3() = Complex_br___Patched_Hedgehog___c1*kM_r14_s46*kcatp_r14/(Complex_br___Costal2_Fused__br_Smoothened___c1*kM_r14_s69 + kM_r14_s46*(Complex_br___Costal2_Fused__br_Smoothened___c4 + kM_r14_s69))
+	fRate3m() = Complex_br___Patched_Hedgehog___c1*kM_r14_s69*kcatn_r14/(Complex_br___Costal2_Fused__br_Smoothened___c4*kM_r14_s46 + kM_r14_s69*(Complex_br___Costal2_Fused__br_Smoothened___c1 + kM_r14_s46))
+	fRate5() = Complex_br___Costal2_Smoothened__br_Fused___c1*kcatp_r53/(2.0*Cubitus_space_interruptus_c5 + kM_r53_s70)
+	fRate5m() = Complex_br___Costal2_Smoothened__br_Fused___c1*kcatn_r53/(2.0*Cubitus_space_interruptus_c5 + kM_r53_s70)
+	fRate6() = kass_re24_s157*sag_c1
+	fRate7() = Complex_br___Patched_Hedgehog___c1*kass_r15_s21
+	fRate7m() = Complex_br___Patched_Hedgehog___c1*kdiss_r15_s21
+	fRate8() = Complex_br___Patched_Hedgehog___c1*kass_r23_s21
+	fRate8m() = Complex_br___Patched_Hedgehog___c1*kdiss_r23_s21
+end functions
+begin reaction rules
+	r52: Sap18(complex_br___cubitus_space_interruptus_space_repressor_su__fu____!660)@c5.Complex_br___Cubitus_space_interruptus_space_repressor_Su__fu____(sap18!660)@c5 <-> Hedgehogtargetgene()@c5 kass_r52,kdiss_r52
+	r55: Cubitus_space_interruptus(Complex_br___Su__fu___Cubitus__~0,cbp!658,complex_br___costal2_fused__br_smoothened__)@c5.CBP(cubitus_space_interruptus!658)@c5 -> Hedgehogtargetgene()@c5 kass_r55
+	r7: Hedgehog(patched)@default + Patched(hedgehog)@c1 <-> Patched(hedgehog!659)@c1.Hedgehog(patched!659)@c1 kass_r7,kdiss_r7
+	r14: Complex_br___Costal2_Fused__br_Smoothened__(cubitus_space_interruptus)@c4 <-> Complex_br___Costal2_Fused__br_Smoothened__(cubitus_space_interruptus)@c1 fRate3(),fRate3m() #Modifiers(s21)
+	r51: Sap18(complex_br___cubitus_space_interruptus_space_repressor_su__fu____)@c5 + Complex_br___Cubitus_space_interruptus_space_repressor_Su__fu____(sap18)@c5 <-> Sap18(complex_br___cubitus_space_interruptus_space_repressor_su__fu____!660)@c5.Complex_br___Cubitus_space_interruptus_space_repressor_Su__fu____(sap18!660)@c5 kass_r51,kdiss_r51
+	r53: Cubitus_space_interruptus(Complex_br___Su__fu___Cubitus__~0,cbp,complex_br___costal2_fused__br_smoothened__)@c5 <-> Cubitus_space_interruptus(Complex_br___Su__fu___Cubitus__~0,cbp,complex_br___costal2_fused__br_smoothened__)@c5 fRate5(),fRate5m() #Modifiers(s48)
+	re24: smoothened()@c1 + complex()@c1 -> Complex_br___Costal2_Fused____microtubule__()@c4 fRate6() #Modifiers(s157)
+	r15: Complex_br___Costal2_Fused__br_Smoothened__(cubitus_space_interruptus)@c1 + ATP()@c1 <-> Complex_br___Costal2_Smoothened__br_Fused__()@c1 + ADP()@c1 fRate7(),fRate7m() #Modifiers(s21)
+	r23: Complex_br___Costal2_Fused____microtubule__()@c4 <-> Microtubule()@c1 + Cubitus_space_interruptus(Complex_br___Su__fu___Cubitus__~Complex_br___Su__fu___Cubitus__,cbp,complex_br___costal2_fused__br_smoothened__!661)@c4.Complex_br___Costal2_Fused__br_Smoothened__(cubitus_space_interruptus!661)@c4 fRate8(),fRate8m() #Modifiers(s21)
+	r54: Cubitus_space_interruptus(Complex_br___Su__fu___Cubitus__~0,cbp,complex_br___costal2_fused__br_smoothened__)@c5 + CBP(cubitus_space_interruptus)@c5 <-> Cubitus_space_interruptus(Complex_br___Su__fu___Cubitus__~0,cbp!658,complex_br___costal2_fused__br_smoothened__)@c5.CBP(cubitus_space_interruptus!658)@c5 kass_r54,kdiss_r54
+	r26: Cubitus_space_interruptus(Complex_br___Su__fu___Cubitus__~Complex_br___Su__fu___Cubitus__,cbp,complex_br___costal2_fused__br_smoothened__)@c1 <-> Cubitus_space_interruptus(Complex_br___Su__fu___Cubitus__~0,cbp,complex_br___costal2_fused__br_smoothened__)@c5 kass_r26,kdiss_r26
+	r25: Cubitus_space_interruptus(Complex_br___Su__fu___Cubitus__~Complex_br___Su__fu___Cubitus__,cbp,complex_br___costal2_fused__br_smoothened__!661)@c4.Complex_br___Costal2_Fused__br_Smoothened__(cubitus_space_interruptus!661)@c4 <-> Cubitus_space_interruptus(Complex_br___Su__fu___Cubitus__~Complex_br___Su__fu___Cubitus__,cbp,complex_br___costal2_fused__br_smoothened__)@c1 + Complex_br___Costal2_Fused__br_Smoothened__(cubitus_space_interruptus)@c4 kass_r25,kdiss_r25
+end reaction rules
+end model

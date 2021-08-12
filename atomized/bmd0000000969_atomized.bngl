@@ -1,0 +1,180 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/32736312']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/doid/DOID:0080600']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606', 'http://identifiers.org/taxonomy/2697049']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000028']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000969', 'http://identifiers.org/biomodels.db/MODEL2010270001']
+#@creatorEmail:'kramachandran@ebi.ac.uk'
+#@creatorName:'Ramachandran Kausthubh'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 28 molecules and 32 reactions. The translated model has 4 molecules and 35 rules'
+###
+begin model
+begin parameters
+	lambda_Counties_with_airports 0.41
+	lambda_Counties_neighbouring_counties_with_airports 0.34
+	lambda_Counties_with_highways 0.23
+	lambda_Low_risk_counties 0.13
+	epsilon 1.0
+	delta 0.229885
+	eta_Counties_with_airports 0.05
+	eta_Counties_neighbouring_counties_with_airports 0.07
+	eta_Counties_with_highways 0.07
+	eta_Low_risk_counties 0.14
+	omega_Counties_with_airports 0.04
+	omega_Counties_neighbouring_counties_with_airports 0.06
+	omega_Counties_with_highways 0.04
+	omega_Low_risk_counties 0.07
+	xi 0.06
+	sigma 0.08
+	mu_Counties_with_airports 0.22
+	mu_Counties_neighbouring_counties_with_airports 0.17
+	mu_Counties_with_highways 0.05
+	mu_Low_risk_counties 0.25
+	psi 0.01
+	phi 0.04
+	tau 0.08
+	gamma 0.02
+	alpha 0.03
+	Metabolite_11 (0.0)
+	Metabolite_13 (0.0)
+	Metabolite_9 (0.0)
+	Metabolite_10 (0.0)
+	Metabolite_8 (26.0)
+	Metabolite_12 (0.0)
+	Metabolite_7 (4431673.0)
+	Metabolite_4 (0.0)
+	Metabolite_6 (0.0)
+	Metabolite_2 (0.0)
+	Metabolite_3 (0.0)
+	Metabolite_1 (30.0)
+	Metabolite_5 (0.0)
+	Metabolite_0 (4052876.0)
+	Metabolite_18 (0.0)
+	Metabolite_20 (0.0)
+	Metabolite_16 (0.0)
+	Metabolite_17 (0.0)
+	Metabolite_15 (10.0)
+	Metabolite_19 (0.0)
+	Metabolite_14 (1811059.0)
+	Metabolite_25 (0.0)
+	Metabolite_27 (0.0)
+	Metabolite_23 (0.0)
+	Metabolite_24 (0.0)
+	Metabolite_22 (6.0)
+	Metabolite_26 (0.0)
+	Metabolite_21 (1269942.0)
+end parameters
+begin compartments
+	#volume units: volume
+	Counties_with_airports 3 1.0
+	Counties_neighbouring_counties_with_airports 3 1.0
+	Counties_with_highways 3 1.0
+	Low_risk_counties 3 1.0
+end compartments
+begin molecule types
+	#^ bqbiol:is ncit:C25179, ncit:C53511, ncit:C53511, ncit:C25179, ncit:C25179, ncit:C53511, ncit:C25179, ncit:C53511
+	#^ bqbiol:isVersionOf ncit:C171133, ido:0000511, ido:0000511, ncit:C171133, ncit:C171133, ido:0000511, ido:0000511, ncit:C171133
+	ICU()
+	#^ bqbiol:is ncit:C154475, ncit:C154475, ncit:C154475, ncit:C154475
+	Discharged()
+	#^ bqbiol:is ncit:C28554, ncit:C28554, ncit:C28554, ncit:C28554
+	Deceased()
+	#^ bqbiol:is ncit:C171133, ido:0000511, ncit:C171133, ido:0000511, ido:0000511, ido:0000511
+	#^ bqbiol:isVersionOf ncit:C171133, ncit:C171133
+	Infected(Hospitalised~Hospitalised~0,Recovered~Recovered~0,Susceptible~Susceptible~0)
+end molecule types
+begin seed species
+	@Counties_with_airports:Infected(Hospitalised~0,Recovered~0,Susceptible~Susceptible) 2.4406419272000002e+30 # 4052876.0mol/L * 6.022e23/mol *1.0L #Susceptible #Susceptible_Counties_with_airports
+	@Counties_with_airports:Infected(Hospitalised~0,Recovered~0,Susceptible~0) 1.8066000000000001e+25 #original 30.0substance/volume #Infected #Infected_Counties_with_airports
+	@Counties_neighbouring_counties_with_airports:Infected(Hospitalised~0,Recovered~0,Susceptible~Susceptible) 2.6687534806e+30 #original 4431673.0substance/volume #Susceptible #Susceptible_Counties_neighbouring_counties_with_airports
+	@Counties_neighbouring_counties_with_airports:Infected(Hospitalised~0,Recovered~0,Susceptible~0) 1.56572e+25 #original 26.0substance/volume #Infected #Infected_Counties_neighbouring_counties_with_airports
+	@Counties_with_highways:Infected(Hospitalised~0,Recovered~0,Susceptible~Susceptible) 1.0906197298e+30 #original 1811059.0substance/volume #Susceptible #Susceptible_Counties_with_highways
+	@Counties_with_highways:Infected(Hospitalised~0,Recovered~0,Susceptible~0) 6.022e+24 #original 10.0substance/volume #Infected #Infected_Counties_with_highways
+	@Low_risk_counties:Infected(Hospitalised~0,Recovered~0,Susceptible~Susceptible) 7.647590724000001e+29 #original 1269942.0substance/volume #Susceptible #Susceptible_Low_risk_counties
+	@Low_risk_counties:Infected(Hospitalised~0,Recovered~0,Susceptible~0) 3.6132e+24 #original 6.0substance/volume #Infected #Infected_Low_risk_counties
+end seed species
+begin observables
+	Species Susceptible_Counties_with_airports @Counties_with_airports:Infected(Hospitalised~0,Recovered~0,Susceptible~Susceptible) #Susceptible_Counties_with_airports
+	Species Infected_Counties_with_airports @Counties_with_airports:Infected(Hospitalised~0,Recovered~0,Susceptible~0) #Infected_Counties_with_airports
+	Species Hospitalised_Counties_with_airports @Counties_with_airports:Infected(Hospitalised~Hospitalised,Recovered~0,Susceptible~0) #Hospitalised_Counties_with_airports
+	Species ICU_Counties_with_airports @Counties_with_airports:ICU() #ICU_Counties_with_airports
+	Species Deceased_Counties_with_airports @Counties_with_airports:Deceased() #Deceased_Counties_with_airports
+	Species Recovered_Counties_with_airports @Counties_with_airports:Infected(Hospitalised~0,Recovered~Recovered,Susceptible~0) #Recovered_Counties_with_airports
+	Species Discharged_Counties_with_airports @Counties_with_airports:Discharged() #Discharged_Counties_with_airports
+	Species Susceptible_Counties_neighbouring_counties_with_airports @Counties_neighbouring_counties_with_airports:Infected(Hospitalised~0,Recovered~0,Susceptible~Susceptible) #Susceptible_Counties_neighbouring_counties_with_airports
+	Species Infected_Counties_neighbouring_counties_with_airports @Counties_neighbouring_counties_with_airports:Infected(Hospitalised~0,Recovered~0,Susceptible~0) #Infected_Counties_neighbouring_counties_with_airports
+	Species Hospitalised_Counties_neighbouring_counties_with_airports @Counties_neighbouring_counties_with_airports:Infected(Hospitalised~Hospitalised,Recovered~0,Susceptible~0) #Hospitalised_Counties_neighbouring_counties_with_airports
+	Species ICU_Counties_neighbouring_counties_with_airports @Counties_neighbouring_counties_with_airports:ICU() #ICU_Counties_neighbouring_counties_with_airports
+	Species Deceased_Counties_neighbouring_counties_with_airports @Counties_neighbouring_counties_with_airports:Deceased() #Deceased_Counties_neighbouring_counties_with_airports
+	Species Recovered_Counties_neighbouring_counties_with_airports @Counties_neighbouring_counties_with_airports:Infected(Hospitalised~0,Recovered~Recovered,Susceptible~0) #Recovered_Counties_neighbouring_counties_with_airports
+	Species Discharged_Counties_neighbouring_counties_with_airports @Counties_neighbouring_counties_with_airports:Discharged() #Discharged_Counties_neighbouring_counties_with_airports
+	Species Susceptible_Counties_with_highways @Counties_with_highways:Infected(Hospitalised~0,Recovered~0,Susceptible~Susceptible) #Susceptible_Counties_with_highways
+	Species Infected_Counties_with_highways @Counties_with_highways:Infected(Hospitalised~0,Recovered~0,Susceptible~0) #Infected_Counties_with_highways
+	Species Hospitalised_Counties_with_highways @Counties_with_highways:Infected(Hospitalised~Hospitalised,Recovered~0,Susceptible~0) #Hospitalised_Counties_with_highways
+	Species ICU_Counties_with_highways @Counties_with_highways:ICU() #ICU_Counties_with_highways
+	Species Deceased_Counties_with_highways @Counties_with_highways:Deceased() #Deceased_Counties_with_highways
+	Species Recovered_Counties_with_highways @Counties_with_highways:Infected(Hospitalised~0,Recovered~Recovered,Susceptible~0) #Recovered_Counties_with_highways
+	Species Discharged_Counties_with_highways @Counties_with_highways:Discharged() #Discharged_Counties_with_highways
+	Species Susceptible_Low_risk_counties @Low_risk_counties:Infected(Hospitalised~0,Recovered~0,Susceptible~Susceptible) #Susceptible_Low_risk_counties
+	Species Infected_Low_risk_counties @Low_risk_counties:Infected(Hospitalised~0,Recovered~0,Susceptible~0) #Infected_Low_risk_counties
+	Species Hospitalised_Low_risk_counties @Low_risk_counties:Infected(Hospitalised~Hospitalised,Recovered~0,Susceptible~0) #Hospitalised_Low_risk_counties
+	Species ICU_Low_risk_counties @Low_risk_counties:ICU() #ICU_Low_risk_counties
+	Species Deceased_Low_risk_counties @Low_risk_counties:Deceased() #Deceased_Low_risk_counties
+	Species Recovered_Low_risk_counties @Low_risk_counties:Infected(Hospitalised~0,Recovered~Recovered,Susceptible~0) #Recovered_Low_risk_counties
+	Species Discharged_Low_risk_counties @Low_risk_counties:Discharged() #Discharged_Low_risk_counties
+end observables
+begin functions
+	Cumulative_cases_Low_risk_counties() = Deceased_Low_risk_counties + Discharged_Low_risk_counties + Infected_Low_risk_counties + Recovered_Low_risk_counties
+	Cumulative_cases_Counties_with_highways() = Deceased_Low_risk_counties + Discharged_Low_risk_counties + Infected_Low_risk_counties + Recovered_Low_risk_counties
+	Cumulative_cases_Counties_neighbouring_counties_with_airports() = Deceased_Low_risk_counties + Discharged_Low_risk_counties + Infected_Low_risk_counties + Recovered_Low_risk_counties
+	Cumulative_cases_Counties_with_airports() = Deceased_Low_risk_counties + Discharged_Low_risk_counties + Infected_Low_risk_counties + Recovered_Low_risk_counties
+	Total_cumulative_cases() = Cumulative_cases_Counties_neighbouring_counties_with_airports + Cumulative_cases_Counties_with_airports + Cumulative_cases_Counties_with_highways + Cumulative_cases_Low_risk_counties
+	Total_deaths() = 4*Deceased_Low_risk_counties
+	Total_hospitalisations() = 4*Deceased_Low_risk_counties + 4*Discharged_Low_risk_counties
+	Population_Counties_neighbouring_counties_with_airports() = Metabolite_10 + Metabolite_11 + Metabolite_12 + Metabolite_13 + Metabolite_7 + Metabolite_8 + Metabolite_9
+	Population_Low_risk_counties() = Metabolite_21 + Metabolite_22 + Metabolite_23 + Metabolite_24 + Metabolite_25 + Metabolite_26 + Metabolite_27
+	Population_Counties_with_highways() = Metabolite_14 + Metabolite_15 + Metabolite_16 + Metabolite_17 + Metabolite_18 + Metabolite_19 + Metabolite_20
+	Population_Counties_with_airports() = Metabolite_0 + Metabolite_1 + Metabolite_2 + Metabolite_3 + Metabolite_4 + Metabolite_5 + Metabolite_6
+	fRate0() = Infected_Low_risk_counties*epsilon*lambda_Counties_with_airports/Population_Counties_with_airports
+	fRate8() = Susceptible_Low_risk_counties*(Infected_Low_risk_counties*phi/Population_Counties_with_airports + Infected_Low_risk_counties*epsilon*lambda_Counties_neighbouring_counties_with_airports/Population_Counties_neighbouring_counties_with_airports)
+	fRate16() = Susceptible_Low_risk_counties*(Infected_Low_risk_counties*epsilon*lambda_Counties_with_highways/Population_Counties_with_highways + Infected_Low_risk_counties*tau/Population_Counties_neighbouring_counties_with_airports)
+	fRate24() = Susceptible_Low_risk_counties*(Infected_Low_risk_counties*epsilon*lambda_Low_risk_counties/Population_Low_risk_counties + Infected_Low_risk_counties*alpha/Population_Counties_with_highways + Infected_Low_risk_counties*gamma/Population_Counties_neighbouring_counties_with_airports)
+end functions
+begin reaction rules
+	Susceptible_to_Infected_Counties_with_airports: Infected(Hospitalised~0,Recovered~0,Susceptible~Susceptible)@Counties_with_airports -> Infected(Hospitalised~0,Recovered~0,Susceptible~0)@Counties_with_airports fRate0()
+	Infected_to_Hospitalised_Counties_with_airports: Infected(Hospitalised~0,Recovered~0,Susceptible~0)@Counties_with_airports -> Infected(Hospitalised~Hospitalised,Recovered~0,Susceptible~0)@Counties_with_airports eta_Counties_with_airports
+	Infected_to_Deceased_Counties_with_airports: Infected(Hospitalised~0,Recovered~0,Susceptible~0)@Counties_with_airports -> Deceased()@Counties_with_airports psi
+	Infected_to_Recovered_Counties_with_airports: Infected(Hospitalised~0,Recovered~0,Susceptible~0)@Counties_with_airports -> Infected(Hospitalised~0,Recovered~Recovered,Susceptible~0)@Counties_with_airports delta
+	Hospitalised_to_ICU_Counties_with_airports: Infected(Hospitalised~Hospitalised,Recovered~0,Susceptible~0)@Counties_with_airports -> ICU()@Counties_with_airports omega_Counties_with_airports
+	Hospitalised_to_Discharged_Counties_with_airports: Infected(Hospitalised~Hospitalised,Recovered~0,Susceptible~0)@Counties_with_airports -> Discharged()@Counties_with_airports sigma
+	ICU_to_Hospitalised_Counties_with_airports: ICU()@Counties_with_airports -> Infected(Hospitalised~Hospitalised,Recovered~0,Susceptible~0)@Counties_with_airports xi
+	ICU_to_Deceased_Counties_with_airports: ICU()@Counties_with_airports -> Deceased()@Counties_with_airports mu_Counties_with_airports
+	Susceptible_to_Infected_Counties_neighbouring_counties_with_airports_reactants_0: 0  -> Infected(Hospitalised~0,Recovered~0,Susceptible~Susceptible)@Counties_neighbouring_counties_with_airports -1*(fRate8()) #Modifiers(Infected_Counties_with_airports)
+	Susceptible_to_Infected_Counties_neighbouring_counties_with_airports_products_0: 0  -> Infected(Hospitalised~0,Recovered~0,Susceptible~0)@Counties_neighbouring_counties_with_airports fRate8() #Modifiers(Infected_Counties_with_airports)
+	Infected_to_Hospitalised_Counties_neighbouring_counties_with_airports: Infected(Hospitalised~0,Recovered~0,Susceptible~0)@Counties_neighbouring_counties_with_airports -> Infected(Hospitalised~Hospitalised,Recovered~0,Susceptible~0)@Counties_neighbouring_counties_with_airports eta_Counties_neighbouring_counties_with_airports
+	Infected_to_Deceased_Counties_neighbouring_counties_with_airports: Infected(Hospitalised~0,Recovered~0,Susceptible~0)@Counties_neighbouring_counties_with_airports -> Deceased()@Counties_neighbouring_counties_with_airports psi
+	Infected_to_Recovered_Counties_neighbouring_counties_with_airports: Infected(Hospitalised~0,Recovered~0,Susceptible~0)@Counties_neighbouring_counties_with_airports -> Infected(Hospitalised~0,Recovered~Recovered,Susceptible~0)@Counties_neighbouring_counties_with_airports delta
+	Hospitalised_to_ICU_Counties_neighbouring_counties_with_airports: Infected(Hospitalised~Hospitalised,Recovered~0,Susceptible~0)@Counties_neighbouring_counties_with_airports -> ICU()@Counties_neighbouring_counties_with_airports omega_Counties_neighbouring_counties_with_airports
+	Hospitalised_to_Discharged_Counties_neighbouring_counties_with_airports: Infected(Hospitalised~Hospitalised,Recovered~0,Susceptible~0)@Counties_neighbouring_counties_with_airports -> Discharged()@Counties_neighbouring_counties_with_airports sigma
+	ICU_to_Hospitalised_Counties_neighbouring_counties_with_airports: ICU()@Counties_neighbouring_counties_with_airports -> Infected(Hospitalised~Hospitalised,Recovered~0,Susceptible~0)@Counties_neighbouring_counties_with_airports xi
+	ICU_to_Deceased_Counties_neighbouring_counties_with_airports: ICU()@Counties_neighbouring_counties_with_airports -> Deceased()@Counties_neighbouring_counties_with_airports mu_Counties_neighbouring_counties_with_airports
+	Susceptible_to_Infected_Counties_with_highways_reactants_0: 0  -> Infected(Hospitalised~0,Recovered~0,Susceptible~Susceptible)@Counties_with_highways -1*(fRate16()) #Modifiers(Infected_Counties_neighbouring_counties_with_airports)
+	Susceptible_to_Infected_Counties_with_highways_products_0: 0  -> Infected(Hospitalised~0,Recovered~0,Susceptible~0)@Counties_with_highways fRate16() #Modifiers(Infected_Counties_neighbouring_counties_with_airports)
+	Infected_to_Hospitalised_Counties_with_highways: Infected(Hospitalised~0,Recovered~0,Susceptible~0)@Counties_with_highways -> Infected(Hospitalised~Hospitalised,Recovered~0,Susceptible~0)@Counties_with_highways eta_Counties_with_highways
+	Infected_to_Deceased_Counties_with_highways: Infected(Hospitalised~0,Recovered~0,Susceptible~0)@Counties_with_highways -> Deceased()@Counties_with_highways psi
+	Infected_to_Recovered_Counties_with_highways: Infected(Hospitalised~0,Recovered~0,Susceptible~0)@Counties_with_highways -> Infected(Hospitalised~0,Recovered~Recovered,Susceptible~0)@Counties_with_highways delta
+	Hospitalised_to_ICU_Counties_with_highways: Infected(Hospitalised~Hospitalised,Recovered~0,Susceptible~0)@Counties_with_highways -> ICU()@Counties_with_highways omega_Counties_with_highways
+	Hospitalised_to_Discharged_Counties_with_highways: Infected(Hospitalised~Hospitalised,Recovered~0,Susceptible~0)@Counties_with_highways -> Discharged()@Counties_with_highways sigma
+	ICU_to_Hospitalised_Counties_with_highways: ICU()@Counties_with_highways -> Infected(Hospitalised~Hospitalised,Recovered~0,Susceptible~0)@Counties_with_highways xi
+	ICU_to_Deceased_Counties_with_highways: ICU()@Counties_with_highways -> Deceased()@Counties_with_highways mu_Counties_with_highways
+	Susceptible_to_Infected_Low_risk_counties_reactants_0: 0  -> Infected(Hospitalised~0,Recovered~0,Susceptible~Susceptible)@Low_risk_counties -1*(fRate24()) #Modifiers(Infected_Counties_neighbouring_counties_with_airports, Infected_Counties_with_highways)
+	Susceptible_to_Infected_Low_risk_counties_products_0: 0  -> Infected(Hospitalised~0,Recovered~0,Susceptible~0)@Low_risk_counties fRate24() #Modifiers(Infected_Counties_neighbouring_counties_with_airports, Infected_Counties_with_highways)
+	Infected_to_Hospitalised_Low_risk_counties: Infected(Hospitalised~0,Recovered~0,Susceptible~0)@Low_risk_counties -> Infected(Hospitalised~Hospitalised,Recovered~0,Susceptible~0)@Low_risk_counties eta_Low_risk_counties
+	Infected_to_Deceased_Low_risk_counties: Infected(Hospitalised~0,Recovered~0,Susceptible~0)@Low_risk_counties -> Deceased()@Low_risk_counties psi
+	Infected_to_Recovered_Low_risk_counties: Infected(Hospitalised~0,Recovered~0,Susceptible~0)@Low_risk_counties -> Infected(Hospitalised~0,Recovered~Recovered,Susceptible~0)@Low_risk_counties delta
+	Hospitalised_to_ICU_Low_risk_counties: Infected(Hospitalised~Hospitalised,Recovered~0,Susceptible~0)@Low_risk_counties -> ICU()@Low_risk_counties omega_Low_risk_counties
+	Hospitalised_to_Discharged_Low_risk_counties: Infected(Hospitalised~Hospitalised,Recovered~0,Susceptible~0)@Low_risk_counties -> Discharged()@Low_risk_counties sigma
+	ICU_to_Hospitalised_Low_risk_counties: ICU()@Low_risk_counties -> Infected(Hospitalised~Hospitalised,Recovered~0,Susceptible~0)@Low_risk_counties xi
+	ICU_to_Deceased_Low_risk_counties: ICU()@Low_risk_counties -> Deceased()@Low_risk_counties mu_Low_risk_counties
+end reaction rules
+end model

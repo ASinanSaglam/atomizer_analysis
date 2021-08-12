@@ -1,0 +1,68 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000662', 'http://identifiers.org/biomodels.db/MODEL1006230057']
+#@BQM_UNKNOWN:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/15038986']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/efo/0000339']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/go/GO:0002262']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@creatorEmail:'mroberts@ebi.ac.uk'
+#@creatorName:'Roberts Matthew Grant'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 5 molecules and 10 reactions. The translated model has 3 molecules and 10 rules'
+###
+begin model
+begin parameters
+	sn 0.071 #units:unit_0
+	dn 0.05 #units:unit_1
+	alpha_n 0.56 #units:unit_2
+	alpha_e 0.53 #units:unit_1
+	de 0.12 #units:unit_1
+	gamma_e 0.0077 #units:unit_3
+	Cmax 190000.0 #units:unit_4
+	rc 0.23 #units:unit_1
+	dc 0.68 #units:unit_1
+	gamma_c 0.047 #units:unit_3
+	kn 0.063 #units:unit_1
+	eta 43.0 #units:unit_4
+	Source 6.022e+23 #original 1.0substance/L
+	Sink 6.022e+23 #original 1.0substance/L
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf bto:BTO:0001271
+	CML()
+	#^ bqbiol:isVersionOf ncit:C104081
+	T_cell_naive()
+	#^ bqbiol:isVersionOf ncit:C104083
+	T_cell_effector()
+end molecule types
+begin seed species
+	CML() 6.022e+27 # 10000.0mol/L * 6.022e23/mol *1.0L #CML #CML
+	T_cell_naive() 9.093220000000001e+26 #original 1510.0substance/L  #T_cell_naive #T_cell_naive
+	T_cell_effector() 1.2044e+25 #original 20.0substance/L  #T_cell_effector #T_cell_effector
+end seed species
+begin observables
+	Species CML CML() #CML
+	Species T_cell_naive T_cell_naive() #T_cell_naive
+	Species T_cell_effector T_cell_effector() #T_cell_effector
+end observables
+begin functions
+	fRate0() = Source*sn
+	fRate2() = CML*kn/(CML + eta)
+	fRate3() = CML*T_cell_effector*alpha_e/(CML + eta)
+	fRate5() = CML*gamma_e
+	fRate6() = CML*rc*ln(Cmax/CML)
+	fRate7() = T_cell_effector*gamma_c
+	fRate9() = CML*T_cell_naive*alpha_n*kn/(CML + eta)
+end functions
+begin reaction rules
+	T_cell_naive_Source: 0  -> T_cell_naive() fRate0()
+	T_cell_naive_Natural_Death: T_cell_naive() -> 0  dn
+	T_cell_naive_Activation: T_cell_naive() -> 0  fRate2() #Modifiers(CML)
+	T_cell_effector_Recruitment: 0  -> T_cell_effector() fRate3() #Modifiers(CML)
+	T_cell_effector_Natural_Death: T_cell_effector() -> 0  de
+	T_cell_effector_Death_by_CML: T_cell_effector() -> 0  fRate5() #Modifiers(CML)
+	CML_Growth: 0  -> CML() fRate6()
+	CML_death_by_T_cell_effector: CML() -> 0  fRate7() #Modifiers(T_cell_effector)
+	CML_natural_death: CML() -> 0  dc
+	T_cell_effector_Production_from_T_cell_Naive_activation: 0  -> T_cell_effector() fRate9() #Modifiers(T_cell_naive, CML)
+end reaction rules
+end model

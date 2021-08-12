@@ -1,0 +1,246 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000105', 'http://identifiers.org/biomodels.db/MODEL6540028317']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/17408507']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/BIOMD0000000091']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:1289']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0043161']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/2759']
+#@creatorEmail:'c.j.proctor@ncl.ac.uk'
+#@creatorName:'Proctor Carole'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 39 molecules and 94 reactions. The translated model has 25 molecules and 103 rules'
+###
+begin model
+begin parameters
+	k1 0.01
+	k2 2e-06
+	k3 4e-06
+	k61 1.7e-05
+	k61r 0.0002
+	k62 0.0002
+	k63 0.001
+	k64 0.001
+	k65 0.01
+	k66 1e-05
+	k67 1e-05
+	k68 1e-05
+	k71 1e-08
+	k72 1e-08
+	k73 0.001
+	k74 1e-05
+	k69 0
+	Source 1.0
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf interpro:IPR000569
+	E3()
+	MisP_Ub5(proteasome)
+	MisP_Ub()
+	MisP_Ub3()
+	#^ bqbiol:isVersionOf interpro:IPR000626
+	Ub(_2~2~0,_4~4~0,e1,e2)
+	MisP_Ub6(proteasome)
+	MisP_Ub4_Proteasome()
+	#^ bqbiol:is chebi:CHEBI:16761
+	ADP()
+	#^ bqbiol:isVersionOf interpro:IPR000608
+	E2(ub)
+	MisP_Ub7(proteasome)
+	NatP(refnatp)
+	MisP_Ub8(proteasome)
+	E3_MisP()
+	#^ bqbiol:isVersionOf interpro:IPR001394
+	DUB()
+	degUb(_4~4~0,_5~5~0,_6~6~0,_7~7~0,degUb8~degUb8~0)
+	#^ bqbiol:isVersionOf interpro:IPR000011
+	E1(ub)
+	refNatP(natp)
+	#^ bqbiol:is chebi:CHEBI:15422
+	ATP()
+	#^ bqbiol:isVersionOf go:GO:0000502
+	Proteasome(aggp,misp_ub5,misp_ub6,misp_ub7,misp_ub8)
+	MisP_Ub2()
+	#^ bqbiol:is chebi:CHEBI:16027
+	AMP()
+	#^ bqbiol:isVersionOf chebi:CHEBI:26523
+	ROS()
+	totMisP()
+	MisP_Ub4()
+	AggP(proteasome,seq~SEQ~0)
+end molecule types
+begin seed species
+	NatP(refnatp) 500.0 #NatP #NatP
+	Ub(_2~0,_4~0,e1,e2) 500.0 #Ub #Ub
+	E1(ub) 100.0 #E1 #E1
+	E2(ub) 100.0 #E2 #E2
+	E3() 100.0 #E3 #E3
+	DUB() 200.0 #DUB #DUB
+	Proteasome(aggp,misp_ub5,misp_ub6,misp_ub7,misp_ub8) 100.0 #Proteasome #Proteasome
+	ROS() 10.0 #ROS #ROS
+	$ATP() 10000.0 #ATP #ATP
+	$ADP() 1000.0 #ADP #ADP
+	$AMP() 1000.0 #AMP #AMP
+end seed species
+begin observables
+	Species NatP NatP(refnatp) #NatP
+	Species MisP refNatP(natp!169).NatP(refnatp!169) #MisP
+	Species Ub Ub(_2~0,_4~0,e1,e2) #Ub
+	Species E1 E1(ub) #E1
+	Species E2 E2(ub) #E2
+	Species E3 E3() #E3
+	Species DUB DUB() #DUB
+	Species Proteasome Proteasome(aggp,misp_ub5,misp_ub6,misp_ub7,misp_ub8) #Proteasome
+	Species ROS ROS() #ROS
+	Species E1_Ub Ub(_2~0,_4~0,e1!170,e2).E1(ub!170) #E1_Ub
+	Species E2_Ub Ub(_2~0,_4~0,e1,e2!171).E2(ub!171) #E2_Ub
+	Species E3_MisP E3_MisP() #E3_MisP
+	Species MisP_Ub MisP_Ub() #MisP_Ub
+	Species MisP_Ub2 MisP_Ub2() #MisP_Ub2
+	Species MisP_Ub3 MisP_Ub3() #MisP_Ub3
+	Species MisP_Ub4 MisP_Ub4() #MisP_Ub4
+	Species MisP_Ub5 MisP_Ub5(proteasome) #MisP_Ub5
+	Species MisP_Ub6 MisP_Ub6(proteasome) #MisP_Ub6
+	Species MisP_Ub7 MisP_Ub7(proteasome) #MisP_Ub7
+	Species MisP_Ub8 MisP_Ub8(proteasome) #MisP_Ub8
+	Species MisP_Ub4_Proteasome MisP_Ub4_Proteasome() #MisP_Ub4_Proteasome
+	Species MisP_Ub5_Proteasome Proteasome(aggp,misp_ub5!173,misp_ub6,misp_ub7,misp_ub8).MisP_Ub5(proteasome!173) #MisP_Ub5_Proteasome
+	Species MisP_Ub6_Proteasome Proteasome(aggp,misp_ub5,misp_ub6!174,misp_ub7,misp_ub8).MisP_Ub6(proteasome!174) #MisP_Ub6_Proteasome
+	Species MisP_Ub7_Proteasome Proteasome(aggp,misp_ub5,misp_ub6,misp_ub7!175,misp_ub8).MisP_Ub7(proteasome!175) #MisP_Ub7_Proteasome
+	Species MisP_Ub8_Proteasome Proteasome(aggp,misp_ub5,misp_ub6,misp_ub7,misp_ub8!176).MisP_Ub8(proteasome!176) #MisP_Ub8_Proteasome
+	Species ATP ATP() #ATP
+	Species ADP ADP() #ADP
+	Species AMP AMP() #AMP
+	Species degUb4 degUb(_4~4,_5~0,_6~0,_7~0,degUb8~0) #degUb4
+	Species degUb5 degUb(_4~0,_5~5,_6~0,_7~0,degUb8~0) #degUb5
+	Species degUb6 degUb(_4~0,_5~0,_6~6,_7~0,degUb8~0) #degUb6
+	Species degUb7 degUb(_4~0,_5~0,_6~0,_7~7,degUb8~0) #degUb7
+	Species degUb8 degUb(_4~0,_5~0,_6~0,_7~0,degUb8~degUb8) #degUb8
+	Species totMisP totMisP() #totMisP
+	Species refNatP refNatP(natp) #refNatP
+	Species AggP AggP(proteasome,seq~0) #AggP
+	Species SeqAggP AggP(proteasome,seq~SEQ) #SeqAggP
+	Species AggP_Proteasome Proteasome(aggp!172,misp_ub5,misp_ub6,misp_ub7,misp_ub8).AggP(proteasome!172,seq~0) #AggP_Proteasome
+end observables
+begin functions
+	fRate0() = Source*k1
+	fRate5() = k62/(ATP + 5000.0)
+	fRate33() = k69/(ATP + 5000.0)
+	fRate34() = k69/(ATP + 5000.0)
+	fRate35() = k69/(ATP + 5000.0)
+	fRate36() = k69/(ATP + 5000.0)
+	fRate37() = k69/(ATP + 5000.0)
+	fRate38() = 0.5*MisP*k71*(MisP - 1)
+	fRate40() = 0.5*MisP_Ub*k72*(MisP_Ub - 1)
+	fRate41() = 0.5*MisP_Ub2*k72*(MisP_Ub2 - 1)
+	fRate42() = 0.5*MisP_Ub3*k72*(MisP_Ub3 - 1)
+	fRate43() = 0.5*MisP_Ub4*k72*(MisP_Ub4 - 1)
+	fRate44() = 0.5*MisP_Ub5*k72*(MisP_Ub5 - 1)
+	fRate45() = 0.5*MisP_Ub6*k72*(MisP_Ub6 - 1)
+	fRate46() = 0.5*MisP_Ub7*k72*(MisP_Ub7 - 1)
+	fRate47() = 0.5*MisP_Ub8*k72*(MisP_Ub8 - 1)
+end functions
+begin reaction rules
+	ProteinSynthesis: 0  -> NatP(refnatp) fRate0()
+	Misfolding: NatP(refnatp) + ROS() -> refNatP(natp!169).NatP(refnatp!169) + ROS() + totMisP() k2
+	Refolding: refNatP(natp!169).NatP(refnatp!169) -> NatP(refnatp) + refNatP(natp) k3
+	MisPE3Binding: refNatP(natp!169).NatP(refnatp!169) + E3() -> E3_MisP() k61
+	MisPE3Release: E3_MisP() -> refNatP(natp!169).NatP(refnatp!169) + E3() k61r
+	E1UbBinding: E1(ub) + Ub(_2~0,_4~0,e1,e2) + ATP() -> Ub(_2~0,_4~0,e1!170,e2).E1(ub!170) + AMP() fRate5()
+	E2UbBinding: E2(ub) + Ub(_2~0,_4~0,e1!170,e2).E1(ub!170) -> Ub(_2~0,_4~0,e1,e2!171).E2(ub!171) + E1(ub) k63
+	Monoubiquitination: Ub(_2~0,_4~0,e1,e2!171).E2(ub!171) + E3_MisP() -> MisP_Ub() + E2(ub) + E3() k64
+	Polyubiquitination1: MisP_Ub() + Ub(_2~0,_4~0,e1,e2!171).E2(ub!171) -> MisP_Ub2() + E2(ub) k65
+	Polyubiquitination2: MisP_Ub2() + Ub(_2~0,_4~0,e1,e2!171).E2(ub!171) -> MisP_Ub3() + E2(ub) k65
+	Polyubiquitination3: MisP_Ub3() + Ub(_2~0,_4~0,e1,e2!171).E2(ub!171) -> MisP_Ub4() + E2(ub) k65
+	Polyubiquitination4: MisP_Ub4() + Ub(_2~0,_4~0,e1,e2!171).E2(ub!171) -> MisP_Ub5(proteasome) + E2(ub) k65
+	Polyubiquitination5: MisP_Ub5(proteasome) + Ub(_2~0,_4~0,e1,e2!171).E2(ub!171) -> MisP_Ub6(proteasome) + E2(ub) k65
+	Polyubiquitination6: MisP_Ub6(proteasome) + Ub(_2~0,_4~0,e1,e2!171).E2(ub!171) -> MisP_Ub7(proteasome) + E2(ub) k65
+	Polyubiquitination7: MisP_Ub7(proteasome) + Ub(_2~0,_4~0,e1,e2!171).E2(ub!171) -> MisP_Ub8(proteasome) + E2(ub) k65
+	Deubiqutination1: MisP_Ub8(proteasome) + DUB() -> MisP_Ub7(proteasome) + DUB() + Ub(_2~0,_4~0,e1,e2) k66
+	Deubiqutination2: MisP_Ub7(proteasome) + DUB() -> MisP_Ub6(proteasome) + DUB() + Ub(_2~0,_4~0,e1,e2) k66
+	Deubiqutination3: MisP_Ub6(proteasome) + DUB() -> MisP_Ub5(proteasome) + DUB() + Ub(_2~0,_4~0,e1,e2) k66
+	Deubiqutination4: MisP_Ub5(proteasome) + DUB() -> MisP_Ub4() + DUB() + Ub(_2~0,_4~0,e1,e2) k66
+	Deubiqutination5: MisP_Ub4() + DUB() -> MisP_Ub3() + DUB() + Ub(_2~0,_4~0,e1,e2) k66
+	Deubiqutination6: MisP_Ub3() + DUB() -> MisP_Ub2() + DUB() + Ub(_2~0,_4~0,e1,e2) k66
+	Deubiqutination7: MisP_Ub2() + DUB() -> MisP_Ub() + DUB() + Ub(_2~0,_4~0,e1,e2) k66
+	Deubiqutination8: MisP_Ub() + DUB() -> refNatP(natp!169).NatP(refnatp!169) + DUB() + Ub(_2~0,_4~0,e1,e2) k66
+	ProteasomeBinding1: MisP_Ub4() + Proteasome(aggp,misp_ub5,misp_ub6,misp_ub7,misp_ub8) -> MisP_Ub4_Proteasome() k67
+	ProteasomeBinding2: MisP_Ub5(proteasome) + Proteasome(aggp,misp_ub5,misp_ub6,misp_ub7,misp_ub8) -> Proteasome(aggp,misp_ub5!173,misp_ub6,misp_ub7,misp_ub8).MisP_Ub5(proteasome!173) k67
+	ProteasomeBinding3: MisP_Ub6(proteasome) + Proteasome(aggp,misp_ub5,misp_ub6,misp_ub7,misp_ub8) -> Proteasome(aggp,misp_ub5,misp_ub6!174,misp_ub7,misp_ub8).MisP_Ub6(proteasome!174) k67
+	ProteasomeBinding4: MisP_Ub7(proteasome) + Proteasome(aggp,misp_ub5,misp_ub6,misp_ub7,misp_ub8) -> Proteasome(aggp,misp_ub5,misp_ub6,misp_ub7!175,misp_ub8).MisP_Ub7(proteasome!175) k67
+	ProteasomeBinding5: MisP_Ub8(proteasome) + Proteasome(aggp,misp_ub5,misp_ub6,misp_ub7,misp_ub8) -> Proteasome(aggp,misp_ub5,misp_ub6,misp_ub7,misp_ub8!176).MisP_Ub8(proteasome!176) k67
+	DeubiquitinationBoundMisP5: Proteasome(aggp,misp_ub5,misp_ub6,misp_ub7,misp_ub8!176).MisP_Ub8(proteasome!176) + DUB() -> Proteasome(aggp,misp_ub5,misp_ub6,misp_ub7!175,misp_ub8).MisP_Ub7(proteasome!175) + Ub(_2~0,_4~0,e1,e2) + DUB() k68
+	DeubiquitinationBoundMisP4: Proteasome(aggp,misp_ub5,misp_ub6,misp_ub7!175,misp_ub8).MisP_Ub7(proteasome!175) + DUB() -> Proteasome(aggp,misp_ub5,misp_ub6!174,misp_ub7,misp_ub8).MisP_Ub6(proteasome!174) + Ub(_2~0,_4~0,e1,e2) + DUB() k68
+	DeubiquitinationBoundMisP3: Proteasome(aggp,misp_ub5,misp_ub6!174,misp_ub7,misp_ub8).MisP_Ub6(proteasome!174) + DUB() -> Proteasome(aggp,misp_ub5!173,misp_ub6,misp_ub7,misp_ub8).MisP_Ub5(proteasome!173) + Ub(_2~0,_4~0,e1,e2) + DUB() k68
+	DeubiquitinationBoundMisP2: Proteasome(aggp,misp_ub5!173,misp_ub6,misp_ub7,misp_ub8).MisP_Ub5(proteasome!173) + DUB() -> MisP_Ub4_Proteasome() + Ub(_2~0,_4~0,e1,e2) + DUB() k68
+	DeubiquitinationBoundMisP1: MisP_Ub4_Proteasome() + DUB() -> MisP_Ub3() + Proteasome(aggp,misp_ub5,misp_ub6,misp_ub7,misp_ub8) + Ub(_2~0,_4~0,e1,e2) + DUB() k68
+	ProteasomeActivity1: MisP_Ub4_Proteasome() + ATP() -> Ub(_2~0,_4~0,e1,e2) + Ub(_2~0,_4~0,e1,e2) + Ub(_2~0,_4~0,e1,e2) + Ub(_2~0,_4~0,e1,e2) + Proteasome(aggp,misp_ub5,misp_ub6,misp_ub7,misp_ub8) + ADP() + degUb(_4~4,_5~0,_6~0,_7~0,degUb8~0) fRate33()
+	ProteasomeActivity2: Proteasome(aggp,misp_ub5!173,misp_ub6,misp_ub7,misp_ub8).MisP_Ub5(proteasome!173) + ATP() -> Ub(_2~0,_4~0,e1,e2) + Ub(_2~0,_4~0,e1,e2) + Ub(_2~0,_4~0,e1,e2) + Ub(_2~0,_4~0,e1,e2) + Ub(_2~0,_4~0,e1,e2) + Proteasome(aggp,misp_ub5,misp_ub6,misp_ub7,misp_ub8) + ADP() + degUb(_4~0,_5~5,_6~0,_7~0,degUb8~0) fRate34()
+	ProteasomeActivity3: Proteasome(aggp,misp_ub5,misp_ub6!174,misp_ub7,misp_ub8).MisP_Ub6(proteasome!174) + ATP() -> Ub(_2~0,_4~0,e1,e2) + Ub(_2~0,_4~0,e1,e2) + Ub(_2~0,_4~0,e1,e2) + Ub(_2~0,_4~0,e1,e2) + Ub(_2~0,_4~0,e1,e2) + Ub(_2~0,_4~0,e1,e2) + Proteasome(aggp,misp_ub5,misp_ub6,misp_ub7,misp_ub8) + ADP() + degUb(_4~0,_5~0,_6~6,_7~0,degUb8~0) fRate35()
+	ProteasomeActivity4: Proteasome(aggp,misp_ub5,misp_ub6,misp_ub7!175,misp_ub8).MisP_Ub7(proteasome!175) + ATP() -> Ub(_2~0,_4~0,e1,e2) + Ub(_2~0,_4~0,e1,e2) + Ub(_2~0,_4~0,e1,e2) + Ub(_2~0,_4~0,e1,e2) + Ub(_2~0,_4~0,e1,e2) + Ub(_2~0,_4~0,e1,e2) + Ub(_2~0,_4~0,e1,e2) + Proteasome(aggp,misp_ub5,misp_ub6,misp_ub7,misp_ub8) + ADP() + degUb(_4~0,_5~0,_6~0,_7~7,degUb8~0) fRate36()
+	ProteasomeActivity5: Proteasome(aggp,misp_ub5,misp_ub6,misp_ub7,misp_ub8!176).MisP_Ub8(proteasome!176) + ATP() -> Ub(_2~0,_4~0,e1,e2) + Ub(_2~0,_4~0,e1,e2) + Ub(_2~0,_4~0,e1,e2) + Ub(_2~0,_4~0,e1,e2) + Ub(_2~0,_4~0,e1,e2) + Ub(_2~0,_4~0,e1,e2) + Ub(_2~0,_4~0,e1,e2) + Ub(_2~0,_4~0,e1,e2) + Proteasome(aggp,misp_ub5,misp_ub6,misp_ub7,misp_ub8) + ADP() + degUb(_4~0,_5~0,_6~0,_7~0,degUb8~degUb8) fRate37()
+	Aggregation1_reactants_0: 0  -> refNatP(natp!169).NatP(refnatp!169) -1*2.0*(fRate38())
+	Aggregation1_products_0: 0  -> AggP(proteasome,seq~0) fRate38()
+	Aggregation2: refNatP(natp!169).NatP(refnatp!169) + AggP(proteasome,seq~0) -> AggP(proteasome,seq~0) + AggP(proteasome,seq~0) k71
+	Aggregation3_reactants_0: 0  -> MisP_Ub() -1*2.0*(fRate40())
+	Aggregation3_products_0: 0  -> AggP(proteasome,seq~0) fRate40()
+	Aggregation4_reactants_0: 0  -> MisP_Ub2() -1*2.0*(fRate41())
+	Aggregation4_products_0: 0  -> AggP(proteasome,seq~0) fRate41()
+	Aggregation5_reactants_0: 0  -> MisP_Ub3() -1*2.0*(fRate42())
+	Aggregation5_products_0: 0  -> AggP(proteasome,seq~0) fRate42()
+	Aggregation6_reactants_0: 0  -> MisP_Ub4() -1*2.0*(fRate43())
+	Aggregation6_products_0: 0  -> AggP(proteasome,seq~0) fRate43()
+	Aggregation7_reactants_0: 0  -> MisP_Ub5(proteasome) -1*2.0*(fRate44())
+	Aggregation7_products_0: 0  -> AggP(proteasome,seq~0) fRate44()
+	Aggregation8_reactants_0: 0  -> MisP_Ub6(proteasome) -1*2.0*(fRate45())
+	Aggregation8_products_0: 0  -> AggP(proteasome,seq~0) fRate45()
+	Aggregation9_reactants_0: 0  -> MisP_Ub7(proteasome) -1*2.0*(fRate46())
+	Aggregation9_products_0: 0  -> AggP(proteasome,seq~0) fRate46()
+	Aggregation10_reactants_0: 0  -> MisP_Ub8(proteasome) -1*2.0*(fRate47())
+	Aggregation10_products_0: 0  -> AggP(proteasome,seq~0) fRate47()
+	Aggregation11: MisP_Ub() + refNatP(natp!169).NatP(refnatp!169) -> AggP(proteasome,seq~0) k72
+	Aggregation12: MisP_Ub2() + refNatP(natp!169).NatP(refnatp!169) -> AggP(proteasome,seq~0) k72
+	Aggregation13: MisP_Ub3() + refNatP(natp!169).NatP(refnatp!169) -> AggP(proteasome,seq~0) k72
+	Aggregation14: MisP_Ub4() + refNatP(natp!169).NatP(refnatp!169) -> AggP(proteasome,seq~0) k72
+	Aggregation15: MisP_Ub5(proteasome) + refNatP(natp!169).NatP(refnatp!169) -> AggP(proteasome,seq~0) k72
+	Aggregation16: MisP_Ub6(proteasome) + refNatP(natp!169).NatP(refnatp!169) -> AggP(proteasome,seq~0) k72
+	Aggregation17: MisP_Ub7(proteasome) + refNatP(natp!169).NatP(refnatp!169) -> AggP(proteasome,seq~0) k72
+	Aggregation18: MisP_Ub8(proteasome) + refNatP(natp!169).NatP(refnatp!169) -> AggP(proteasome,seq~0) k72
+	Aggregation19: MisP_Ub() + AggP(proteasome,seq~0) -> AggP(proteasome,seq~0) + AggP(proteasome,seq~0) k72
+	Aggregation20: MisP_Ub2() + AggP(proteasome,seq~0) -> AggP(proteasome,seq~0) + AggP(proteasome,seq~0) k72
+	Aggregation21: MisP_Ub3() + AggP(proteasome,seq~0) -> AggP(proteasome,seq~0) + AggP(proteasome,seq~0) k72
+	Aggregation22: MisP_Ub4() + AggP(proteasome,seq~0) -> AggP(proteasome,seq~0) + AggP(proteasome,seq~0) k72
+	Aggregation23: MisP_Ub5(proteasome) + AggP(proteasome,seq~0) -> AggP(proteasome,seq~0) + AggP(proteasome,seq~0) k72
+	Aggregation24: MisP_Ub6(proteasome) + AggP(proteasome,seq~0) -> AggP(proteasome,seq~0) + AggP(proteasome,seq~0) k72
+	Aggregation25: MisP_Ub7(proteasome) + AggP(proteasome,seq~0) -> AggP(proteasome,seq~0) + AggP(proteasome,seq~0) k72
+	Aggregation26: MisP_Ub8(proteasome) + AggP(proteasome,seq~0) -> AggP(proteasome,seq~0) + AggP(proteasome,seq~0) k72
+	Aggregation27: MisP_Ub() + MisP_Ub2() -> AggP(proteasome,seq~0) k72
+	Aggregation28: MisP_Ub() + MisP_Ub3() -> AggP(proteasome,seq~0) k72
+	Aggregation29: MisP_Ub() + MisP_Ub4() -> AggP(proteasome,seq~0) k72
+	Aggregation30: MisP_Ub() + MisP_Ub5(proteasome) -> AggP(proteasome,seq~0) k72
+	Aggregation31: MisP_Ub() + MisP_Ub6(proteasome) -> AggP(proteasome,seq~0) k72
+	Aggregation32: MisP_Ub() + MisP_Ub7(proteasome) -> AggP(proteasome,seq~0) k72
+	Aggregation33: MisP_Ub() + MisP_Ub8(proteasome) -> AggP(proteasome,seq~0) k72
+	Aggregation34: MisP_Ub2() + MisP_Ub3() -> AggP(proteasome,seq~0) k72
+	Aggregation35: MisP_Ub2() + MisP_Ub4() -> AggP(proteasome,seq~0) k72
+	Aggregation36: MisP_Ub2() + MisP_Ub5(proteasome) -> AggP(proteasome,seq~0) k72
+	Aggregation37: MisP_Ub2() + MisP_Ub6(proteasome) -> AggP(proteasome,seq~0) k72
+	Aggregation38: MisP_Ub2() + MisP_Ub7(proteasome) -> AggP(proteasome,seq~0) k72
+	Aggregation39: MisP_Ub2() + MisP_Ub8(proteasome) -> AggP(proteasome,seq~0) k72
+	Aggregation40: MisP_Ub3() + MisP_Ub4() -> AggP(proteasome,seq~0) k72
+	Aggregation41: MisP_Ub3() + MisP_Ub5(proteasome) -> AggP(proteasome,seq~0) k72
+	Aggregation42: MisP_Ub3() + MisP_Ub6(proteasome) -> AggP(proteasome,seq~0) k72
+	Aggregation43: MisP_Ub3() + MisP_Ub7(proteasome) -> AggP(proteasome,seq~0) k72
+	Aggregation44: MisP_Ub3() + MisP_Ub8(proteasome) -> AggP(proteasome,seq~0) k72
+	Aggregation45: MisP_Ub4() + MisP_Ub5(proteasome) -> AggP(proteasome,seq~0) k72
+	Aggregation46: MisP_Ub4() + MisP_Ub6(proteasome) -> AggP(proteasome,seq~0) k72
+	Aggregation47: MisP_Ub4() + MisP_Ub7(proteasome) -> AggP(proteasome,seq~0) k72
+	Aggregation48: MisP_Ub4() + MisP_Ub8(proteasome) -> AggP(proteasome,seq~0) k72
+	Aggregation49: MisP_Ub5(proteasome) + MisP_Ub6(proteasome) -> AggP(proteasome,seq~0) k72
+	Aggregation50: MisP_Ub5(proteasome) + MisP_Ub7(proteasome) -> AggP(proteasome,seq~0) k72
+	Aggregation51: MisP_Ub5(proteasome) + MisP_Ub8(proteasome) -> AggP(proteasome,seq~0) k72
+	Aggregation52: MisP_Ub6(proteasome) + MisP_Ub7(proteasome) -> AggP(proteasome,seq~0) k72
+	Aggregation53: MisP_Ub6(proteasome) + MisP_Ub8(proteasome) -> AggP(proteasome,seq~0) k72
+	Aggregation54: MisP_Ub7(proteasome) + MisP_Ub8(proteasome) -> AggP(proteasome,seq~0) k72
+	SequesteringOfAggregates: AggP(proteasome,seq~0) -> AggP(proteasome,seq~SEQ) k73
+	ProteasomeInhibtion: AggP(proteasome,seq~0) + Proteasome(aggp,misp_ub5,misp_ub6,misp_ub7,misp_ub8) -> Proteasome(aggp!172,misp_ub5,misp_ub6,misp_ub7,misp_ub8).AggP(proteasome!172,seq~0) k74
+end reaction rules
+end model

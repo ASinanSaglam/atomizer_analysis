@@ -1,0 +1,110 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/32831142']
+#@BQB_IS:['http://identifiers.org/doid/DOID:0080600']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606', 'http://identifiers.org/taxonomy/2697049']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000028']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000981', 'http://identifiers.org/biomodels.db/MODEL2012090001']
+#@creatorEmail:'kramachandran@ebi.ac.uk'
+#@creatorName:'Ramachandran Kausthubh'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 12 molecules and 15 reactions. The translated model has 8 molecules and 23 rules'
+###
+begin model
+begin parameters
+	beta 0.054043
+	c_0 40.319
+	phi 0.19231
+	theta 0.6628
+	eta 17.379
+	gamma_I 0.15796
+	gamma_A 0.55671
+	gamma_H 0.035352
+	d 0.00055888
+	xi 0.80987
+	mu 0.07142857
+	q1 1.0
+	q2 0.47218
+	q3 2.6954
+	delta 0.00028286
+	Total_population 8.04666705918753e+32 #original 1336211733.50839substance/volume
+end parameters
+begin molecule types
+	#^ bqbiol:is ncit:C28554
+	Deceased()
+	Recovered_from_hospitals()
+	#^ bqbiol:is ido:0000514, ncit:C171133
+	#^ bqbiol:hasProperty ido:0000597
+	Exposed(Hospitalised~Hospitalised~0,Infected~Infected~0)
+	Total_reported_cases()
+	#^ bqbiol:is ido:0000514
+	Susceptible(_isolated~_ISOLATED~0)
+	#^ bqbiol:is ido:0000621
+	Recovered()
+	#^ bqbiol:is ido:0000511, ncit:C171133
+	#^ bqbiol:hasProperty ncit:C71902
+	Quarantined()
+	#^ bqbiol:is ido:0000511, ncit:C171133
+	#^ bqbiol:hasProperty ido:0000569
+	Asymptomatic()
+end molecule types
+begin seed species
+	Susceptible(_isolated~0) 8.046656620000001e+32 # 1336210000.0mol/L * 6.022e23/mol *1.0L #Susceptible #Susceptible
+	Exposed(Hospitalised~0,Infected~0) 3.01840706e+26 #original 501.23substance/volume #Exposed #Exposed
+	Exposed(Hospitalised~0,Infected~Infected) 1.3753645800000001e+23 #original 0.22839substance/volume #Infected #Infected
+	Asymptomatic() 5.96954838e+26 #original 991.29substance/volume #Asymptomatic #Asymptomatic
+	Exposed(Hospitalised~Hospitalised,Infected~0) 1.2044e+24 #original 2.0substance/volume #Hospitalised #Hospitalised
+	Recovered() 1.44985672e+26 #original 240.76substance/volume #Recovered #Recovered
+	Total_reported_cases() 1.26462e+25 #original 21.0substance/volume #Total_reported_cases #Total_reported_cases
+end seed species
+begin observables
+	Species Susceptible Susceptible(_isolated~0) #Susceptible
+	Species Exposed Exposed(Hospitalised~0,Infected~0) #Exposed
+	Species Infected Exposed(Hospitalised~0,Infected~Infected) #Infected
+	Species Asymptomatic Asymptomatic() #Asymptomatic
+	Species Susceptible_isolated Susceptible(_isolated~_ISOLATED) #Susceptible_isolated
+	Species Quarantined Quarantined() #Quarantined
+	Species Hospitalised Exposed(Hospitalised~Hospitalised,Infected~0) #Hospitalised
+	Species Recovered Recovered() #Recovered
+	Species Recovered_from_hospitals Recovered_from_hospitals() #Recovered_from_hospitals
+	Species Deceased Deceased() #Deceased
+	Species Total_reported_cases Total_reported_cases() #Total_reported_cases
+end observables
+begin functions
+	q_1_t() = q1*exp(-Total_reported_cases*delta)
+	c_t() = c_0*q_1_t
+	arRateTotal_reported_cases() = Infected*q2 + Quarantined*eta
+	arRateRecovered_from_hospitals() = Hospitalised*gamma_H
+	Total_population_ar() = Asymptomatic + Exposed + Infected + Recovered + Susceptible
+	fRate0() = Susceptible*beta*c_t*(Asymptomatic*xi + Infected)/Total_population_ar
+	fRate1() = Susceptible*q3*(Infected*q2 + Quarantined*eta)/Total_population_ar
+	fRate3() = phi*theta
+	fRate4() = Exposed*phi*(1 - theta)
+	fRate5() = Exposed*q3*(Infected*q2 + Quarantined*eta)/Total_population_ar
+	fRate9() = Infected*q3*(Infected*q2 + Quarantined*eta)/Total_population_ar
+	fRate11() = Asymptomatic*q3*(Infected*q2 + Quarantined*eta)/Total_population_ar
+end functions
+begin reaction rules
+	Susceptible_to_Exposed_reactants_0: 0  -> Susceptible(_isolated~0) -1*(fRate0()) #Modifiers(Infected, Asymptomatic, Total_population)
+	Susceptible_to_Exposed_products_0: 0  -> Exposed(Hospitalised~0,Infected~0) fRate0() #Modifiers(Infected, Asymptomatic, Total_population)
+	Susceptible_to_isolated_reactants_0: 0  -> Susceptible(_isolated~0) -1*(fRate1()) #Modifiers(Infected, Quarantined, Total_population)
+	Susceptible_to_isolated_products_0: 0  -> Susceptible(_isolated~_ISOLATED) fRate1() #Modifiers(Infected, Quarantined, Total_population)
+	Isolated_to_Susceptible: Susceptible(_isolated~_ISOLATED) -> Susceptible(_isolated~0) mu
+	Exposed_to_Infected: Exposed(Hospitalised~0,Infected~0) -> Exposed(Hospitalised~0,Infected~Infected) fRate3()
+	Exposed_to_Asymptomatic_reactants_0: 0  -> Exposed(Hospitalised~0,Infected~0) -1*(fRate4())
+	Exposed_to_Asymptomatic_products_0: 0  -> Asymptomatic() fRate4()
+	Exposed_to_Quarantined_reactants_0: 0  -> Exposed(Hospitalised~0,Infected~0) -1*(fRate5()) #Modifiers(Infected, Quarantined, Total_population)
+	Exposed_to_Quarantined_products_0: 0  -> Quarantined() fRate5() #Modifiers(Infected, Quarantined, Total_population)
+	Infected_to_Hospitalised: Exposed(Hospitalised~0,Infected~Infected) -> Exposed(Hospitalised~Hospitalised,Infected~0) q2
+	Infected_to_dead: Exposed(Hospitalised~0,Infected~Infected) -> 0  d
+	Infected_to_Recovered: Exposed(Hospitalised~0,Infected~Infected) -> Recovered() gamma_I
+	Infected_to_Quarantined_reactants_0: 0  -> Exposed(Hospitalised~0,Infected~Infected) -1*(fRate9()) #Modifiers(Infected, Quarantined, Total_population)
+	Infected_to_Quarantined_products_0: 0  -> Quarantined() fRate9() #Modifiers(Infected, Quarantined, Total_population)
+	Asymptomatic_to_Recovered: Asymptomatic() -> Recovered() gamma_A
+	Asymptomatic_to_Quarantined_reactants_0: 0  -> Asymptomatic() -1*(fRate11()) #Modifiers(Infected, Quarantined, Total_population)
+	Asymptomatic_to_Quarantined_products_0: 0  -> Quarantined() fRate11() #Modifiers(Infected, Quarantined, Total_population)
+	Quarantined_to_Hospitalised: Quarantined() -> Exposed(Hospitalised~Hospitalised,Infected~0) eta
+	Hospitalised_to_Deceased: Exposed(Hospitalised~Hospitalised,Infected~0) -> Deceased() d
+	Hospitalised_to_Recovered: Exposed(Hospitalised~Hospitalised,Infected~0) -> Recovered() gamma_H
+	0  -> Recovered_from_hospitals() arRateRecovered_from_hospitals #rateLaw
+	0  -> Total_reported_cases() arRateTotal_reported_cases #rateLaw
+end reaction rules
+end model

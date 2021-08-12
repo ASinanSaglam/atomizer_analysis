@@ -1,0 +1,71 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/21656310']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/taxonomy/9606', 'http://identifiers.org/go/GO:0012501']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1909160001', 'http://identifiers.org/biomodels.db/BIOMD0000000812']
+#@creatorEmail:'johannes.p.meyer@gmail.com'
+#@creatorName:'Meyer Johannes'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 6 molecules and 9 reactions. The translated model has 3 molecules and 9 rules'
+###
+begin model
+begin parameters
+	k 0.035
+	k_1 0.0001
+	k_2 0.0001
+	k_3 0.0001
+	k_4 3.0
+	k_5 0.003
+	k_6 0.63
+	k_p 0.097
+	k_m 1.0
+	k_m_1 2.2
+	k_m_2 80.0
+	E_init 1.0
+	ModelValue_11 (1.0)
+	E_CTL 1.0 #original 1.0substance/volume
+	T_Cancer_Cell_Total 6.022e+23 #original 1.0substance/volume
+end parameters
+begin molecule types
+	#^ bqbiol:hasPart cl:CL:0000910, cl:CL:0001063
+	#^ bqbiol:isVersionOf ncit:C47881
+	X_Complex(C_Cancer_Uncomplexed~C_Cancer_Uncomplexed~0)
+	#^ bqbiol:is uniprot:S5S2F2
+	P_Perforin()
+	#^ bqbiol:isVersionOf cl:CL:0001063
+	T_ast()
+end molecule types
+begin seed species
+	P_Perforin() 1.89693e+23 # 0.315mol/L * 6.022e23/mol *1.0L #P_Perforin #P_Perforin
+	X_Complex(C_Cancer_Uncomplexed~C_Cancer_Uncomplexed) 6.022e+23 #original 1.0substance/volume #C_Cancer_Uncomplexed #C_Cancer_Uncomplexed
+	T_ast() 6.022e+23 #original 1.0substance/volume #T_ast #T_ast
+end seed species
+begin observables
+	Species X_Complex X_Complex(C_Cancer_Uncomplexed~0) #X_Complex
+	Species P_Perforin P_Perforin() #P_Perforin
+	Species C_Cancer_Uncomplexed X_Complex(C_Cancer_Uncomplexed~C_Cancer_Uncomplexed) #C_Cancer_Uncomplexed
+	Species T_ast T_ast() #T_ast
+end observables
+begin functions
+	T_Cancer_Cell_Total_ar() = C_Cancer_Uncomplexed + X_Complex
+	Perc_Lysis() = (-100*T_Cancer_Cell_Total_ar + 100*T_ast)/T_ast
+	X_1000() = 1000*X_Complex
+	P_10() = 10*P_Perforin
+	E_CTL_ar() = ModelValue_11 - X_Complex
+	fRate0() = E_CTL_ar*k_1
+	fRate3() = E_CTL_ar*k_p/(C_Cancer_Uncomplexed*k_m_2*(E_CTL_ar + k_m_1))
+	fRate5() = C_Cancer_Uncomplexed*k
+	fRate6() = C_Cancer_Uncomplexed*k_5
+	fRate7() = T_ast*k
+	fRate8() = T_ast*k_5
+end functions
+begin reaction rules
+	X_Complex_Formation: X_Complex(C_Cancer_Uncomplexed~C_Cancer_Uncomplexed) -> X_Complex(C_Cancer_Uncomplexed~0) fRate0() #Modifiers(E_CTL)
+	X_Complex_Dissociation: X_Complex(C_Cancer_Uncomplexed~0) -> X_Complex(C_Cancer_Uncomplexed~C_Cancer_Uncomplexed) k_2
+	X_Complex_Apoptosis: X_Complex(C_Cancer_Uncomplexed~0) -> 0  k_3
+	P_Production: 0  -> P_Perforin() fRate3() #Modifiers(E_CTL, C_Cancer_Uncomplexed)
+	P_Apoptosis_Perforin: P_Perforin() + X_Complex(C_Cancer_Uncomplexed~C_Cancer_Uncomplexed) -> 0  k_4
+	C_Growth: 0  -> X_Complex(C_Cancer_Uncomplexed~C_Cancer_Uncomplexed) fRate5()
+	C_Carrying_Capacity_Limit: X_Complex(C_Cancer_Uncomplexed~C_Cancer_Uncomplexed) -> 0  fRate6()
+	T_Growth: 0  -> T_ast() fRate7()
+	T_Carrying_Capacity_Limit: T_ast() -> 0  fRate8()
+end reaction rules
+end model

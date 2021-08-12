@@ -1,0 +1,54 @@
+###
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/go/GO:0001525', 'http://identifiers.org/ncit/C19361', 'http://identifiers.org/efo/0000311', 'http://identifiers.org/ncit/C25409']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/31046990']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1909240003', 'http://identifiers.org/biomodels.db/BIOMD0000000821']
+#@creatorEmail:'muffet0307@gmail.com'
+#@creatorName:'Ng Szeyi'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 3 molecules and 7 reactions. The translated model has 3 molecules and 7 rules'
+###
+begin model
+begin parameters
+	lambda_1 0.192 #units:unit_0
+	lambda_3 1.3 #units:unit_0
+	b 5.85 #units:unit_0
+	d 0.00873 #units:unit_1
+	__e__ 0.66 #units:unit_2
+	a 1.0
+	lambda_2 0
+	u 0
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf ncit:C41185, ncit:C154898
+	concentrationofadministratedinhibitorx_3()
+	#^ bqbiol:isVersionOf ncit:C12481
+	endothelialvolumex_2()
+	#^ bqbiol:isVersionOf ncit:C94515
+	tumorvolumex_1()
+end molecule types
+begin seed species
+	tumorvolumex_1() 6.022e+20 # (1.0 * 0.001)mol/L * 6.022e23/mol *1.0L #tumorvolumex_1 #tumor_volume_x_1
+	endothelialvolumex_2() 6.022e+20 #original 1.0substance/volume  #endothelialvolumex_2 #endothelial_volume_x_2
+end seed species
+begin observables
+	Species tumorvolumex_1 tumorvolumex_1() #tumor volume x_1
+	Species endothelialvolumex_2 endothelialvolumex_2() #endothelial volume x_2
+	Species concentrationofadministratedinhibitorx_3 concentrationofadministratedinhibitorx_3() #concentration of administrated inhibitor x_3
+end observables
+begin functions
+	fRate0() = a*lambda_1*ln(tumorvolumex_1/endothelialvolumex_2)
+	fRate1() = a*lambda_2
+	fRate2() = a*b*tumorvolumex_1
+	fRate3() = a*d*tumorvolumex_1^0.666666666666667
+	fRate4() = __e__*a*concentrationofadministratedinhibitorx_3
+	fRate5() = a*lambda_3
+end functions
+begin reaction rules
+	tumor_growth: tumorvolumex_1() -> 0  fRate0() #Modifiers(endothelial_volume_x_2)
+	endothelial_loss: endothelialvolumex_2() -> 0  fRate1()
+	stimulatory_effect: 0  -> endothelialvolumex_2() fRate2() #Modifiers(tumor_volume_x_1)
+	inhibition_effect: endothelialvolumex_2() -> 0  fRate3() #Modifiers(tumor_volume_x_1)
+	drug_kill: endothelialvolumex_2() -> 0  fRate4() #Modifiers(concentration_of_administrated_inhibitor_x_3)
+	inhibitor_clearance: concentrationofadministratedinhibitorx_3() -> 0  fRate5()
+	administrated_inhibitor: 0  -> concentrationofadministratedinhibitorx_3() u
+end reaction rules
+end model

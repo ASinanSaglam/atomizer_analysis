@@ -1,0 +1,152 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL8583955822', 'http://identifiers.org/biomodels.db/BIOMD0000000222']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/16887020']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/562']
+#@BQB_IS_HOMOLOG_TO:['http://identifiers.org/reactome/REACT_1785']
+#@BQB_HAS_VERSION:['http://identifiers.org/obo.go/GO:0006097', 'http://identifiers.org/obo.go/GO:0006099']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/kegg.pathway/ko00020']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 12 molecules and 11 reactions. The translated model has 11 molecules and 12 rules'
+###
+begin model
+begin parameters
+	r1_Vf_cs 91.200000
+	r1_Kaca_cs 0.030000
+	r1_Koaa_cs 0.070000
+	r1_Vr_cs 0.912000
+	r1_Kcoa_cs 0.300000
+	r1_Kcit_cs 0.700000
+	r2_Vf_acn 91.200000
+	r2_Kcit_acn 1.700000
+	r2_Vr_acn 0.912000
+	r2_Kicit_acn 3.330000
+	r3_Vf_icd 14.720000
+	r3_Kicit_icd 0.008000
+	r3_Vr_icd 0.147200
+	r3_Kakg_icd 0.130000
+	r4_Vf_kdh 35.840000
+	r4_Kakg_kdh 0.100000
+	r4_Vr_kdh 0.358400
+	r4_Ksca_kdh 1.000000
+	r5_Vf_scas 3.500000
+	r5_Ksca_scas 0.020000
+	r5_Vr_scas 0.035000
+	r5_Ksuc_scas 5.000000
+	r6_Vf_sdh 7.380000
+	r6_Ksuc_sdh 0.020000
+	r6_Vr_sdh 7.310000
+	r6_Kfa_sdh 0.400000
+	r7_Vf_fum 44.640000
+	r7_Kfa_fum 0.150000
+	r7_Vr_fum 37.200000
+	r7_Kmal_fum 0.040000
+	r8_Vf_mdh 356.640000
+	r8_Kmal_mdh 2.600000
+	r8_Vr_mdh 353.110000
+	r8_Koaa_mdh 0.040000
+	r9_Vf_icl 1.900000
+	r9_Kicit_icl 0.604000
+	r9_Vr_icl 0.019000
+	r9_Ksuc_icl 0.590000
+	r9_Kgly_icl 0.130000
+	r10_Vf_ms 1.900000
+	r10_Kgly_ms 2.000000
+	r10_Kaca_ms 0.010000
+	r10_Vr_ms 0.019000
+	r10_Kmal_ms 1.000000
+	r10_Kcoa_ms 0.100000
+	r11_Vf_icd 14.720000
+	r11_Kicit_icd 0.008000
+	r11_Vr_icd 0.147200
+	r11_Kakg_icd 0.130000
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf obo.chebi:CHEBI:30769, kegg.compound:C00158
+	cit()
+	#^ bqbiol:isVersionOf obo.chebi:CHEBI:15351, kegg.compound:C00024
+	aca()
+	#^ bqbiol:isVersionOf obo.chebi:CHEBI:15380, kegg.compound:C00091
+	sca()
+	#^ bqbiol:isVersionOf obo.chebi:CHEBI:15346, kegg.compound:C000010
+	coa()
+	#^ bqbiol:isVersionOf obo.chebi:CHEBI:18012, kegg.compound:C00122
+	fa()
+	#^ bqbiol:isVersionOf obo.chebi:CHEBI:15741, kegg.compound:C00042
+	suc(gly)
+	#^ bqbiol:isVersionOf obo.chebi:CHEBI:30744, kegg.compound:C00036
+	oaa()
+	biosyn()
+	#^ bqbiol:isVersionOf obo.chebi:CHEBI:16891, kegg.compound:C00048
+	gly(suc)
+	#^ bqbiol:isVersionOf obo.chebi:CHEBI:30915, kegg.compound:C00026
+	akg()
+	#^ bqbiol:isVersionOf obo.chebi:CHEBI:6650, kegg.compound:C00711
+	mal()
+end molecule types
+begin seed species
+	aca() 3.011e+20 # (0.5 * 0.001)mol/L * 6.022e23/mol *1.0L #aca #aca
+	oaa() 2.4088e+18 #original 0.004mmole/L  #oaa #oaa
+	coa() 6.022000000000001e+16 #original 0.0001mmole/L  #coa #coa
+	cit() 1.8066e+21 #original 3.0mmole/L  #cit #cit
+	suc(gly!384).gly(suc!384) 1.08396e+19 #original 0.018mmole/L  #icit #icit
+	akg() 1.2044000000000002e+20 #original 0.2mmole/L  #akg #akg
+	sca() 2.4088000000000004e+19 #original 0.04mmole/L  #sca #sca
+	suc(gly) 3.6132e+20 #original 0.6mmole/L  #suc #suc
+	fa() 1.8066e+20 #original 0.3mmole/L  #fa #fa
+	mal() 1.0839600000000001e+21 #original 1.8mmole/L  #mal #mal
+	gly(suc) 2.4088e+21 #original 4.0mmole/L  #gly #gly
+	biosyn() 6.022000000000001e+19 #original 0.1mmole/L  #biosyn #biosyn
+end seed species
+begin observables
+	Species aca aca() #aca
+	Species oaa oaa() #oaa
+	Species coa coa() #coa
+	Species cit cit() #cit
+	Species icit suc(gly!384).gly(suc!384) #icit
+	Species akg akg() #akg
+	Species sca sca() #sca
+	Species suc suc(gly) #suc
+	Species fa fa() #fa
+	Species mal mal() #mal
+	Species gly gly(suc) #gly
+	Species biosyn biosyn() #biosyn
+end observables
+begin functions
+	fRate0() = 19.152/(0.21*aca*oaa + 0.0147*aca + 0.0021*cit*coa + 0.021*cit*(aca + 0.03) + 0.021*coa*(oaa + 0.07) + 0.0063*oaa + 0.000441)
+	fRate0m() = 0.0019152/(0.21*aca*oaa + 0.021*aca*(cit + 0.7) + 0.0021*cit*coa + 0.00063*cit + 0.00147*coa + 0.021*oaa*(coa + 0.3) + 0.000441)
+	fRate1() = 303.696/(3.33*cit + 1.7*icit + 5.661)
+	fRate1m() = 1.5504/(3.33*cit + 1.7*icit + 5.661)
+	fRate2() = 1.9136/(0.008*akg + 0.13*icit + 0.00104)
+	fRate2m() = 0.0011776/(0.008*akg + 0.13*icit + 0.00104)
+	fRate3() = 35.84/(1.0*akg + 0.1*sca + 0.1)
+	fRate3m() = 0.03584/(1.0*akg + 0.1*sca + 0.1)
+	fRate4() = 17.5/(5.0*sca + 0.02*suc + 0.1)
+	fRate4m() = 0.0007/(5.0*sca + 0.02*suc + 0.1)
+	fRate5() = 2.952/(0.02*fa + 0.4*suc + 0.008)
+	fRate5m() = 0.1462/(0.02*fa + 0.4*suc + 0.008)
+	fRate6() = 1.7856/(0.04*fa + 0.15*mal + 0.006)
+	fRate6m() = 5.58/(0.04*fa + 0.15*mal + 0.006)
+	fRate7() = 14.2656/(0.04*mal + 2.6*oaa + 0.104)
+	fRate7m() = 918.086/(0.04*mal + 2.6*oaa + 0.104)
+	fRate8() = 0.14573/(0.604*gly*suc + 0.35636*gly + 0.0767*icit + 0.13*suc*(icit + 0.604) + 0.0463268)
+	fRate8m() = 0.011476/(0.604*gly*suc + 0.35636*gly + 0.13*icit*suc + 0.0767*icit + 0.07852*suc + 0.0463268)
+	fRate9() = 0.19/(0.1*aca*gly + 0.2*aca + 0.02*coa*mal + 0.01*coa*(gly + 2.0) + 0.001*gly + 0.2*mal*(aca + 0.01) + 0.002)
+	fRate9m() = 0.00038/(0.1*aca*gly + 0.2*aca*(mal + 1.0) + 0.02*coa*mal + 0.02*coa + 0.01*gly*(coa + 0.1) + 0.002*mal + 0.002)
+	fRate10() = (-0.212873846153846*akg + 345.92*icit)/(7.69230769230769*akg + 125.0*icit + 1)
+end functions
+begin reaction rules
+	CS: aca() + oaa() <-> coa() + cit() fRate0(),fRate0m()
+	ACN: cit() <-> suc(gly!384).gly(suc!384) fRate1(),fRate1m()
+	ICD: suc(gly!384).gly(suc!384) <-> akg() fRate2(),fRate2m()
+	KDH: akg() <-> sca() fRate3(),fRate3m()
+	ScAS: sca() <-> suc(gly) fRate4(),fRate4m()
+	SDH: suc(gly) <-> fa() fRate5(),fRate5m()
+	FUM: fa() <-> mal() fRate6(),fRate6m()
+	MDH: mal() <-> oaa() fRate7(),fRate7m()
+	ICL: suc(gly!384).gly(suc!384) <-> suc(gly) + gly(suc) fRate8(),fRate8m()
+	MS: gly(suc) + aca() <-> mal() + coa() fRate9(),fRate9m()
+	SYN_reactants_0: 0  -> akg() -1*(fRate10()) #Modifiers(icit)
+	SYN_products_0: 0  -> biosyn() fRate10() #Modifiers(icit)
+end reaction rules
+end model

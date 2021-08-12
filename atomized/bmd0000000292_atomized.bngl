@@ -1,0 +1,71 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000292', 'http://identifiers.org/biomodels.db/MODEL1101060001']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/7772723']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0019253', 'http://identifiers.org/kegg.pathway/rn00710']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/33090']
+#@creatorEmail:'raim@tbi.univie.ac.at'
+#@creatorName:'Machne Rainer'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 6 molecules and 4 reactions. The translated model has 6 molecules and 13 rules'
+###
+begin model
+begin parameters
+	k1 0.123 #units:per_s
+	k2 0.625 #units:per_s
+	k3 0.3 #units:per_mM_per_s
+	k4 0.614 #units:per_s
+	N0 1.2 #units:mM
+	A0 2.5 #units:mM
+end parameters
+begin molecule types
+	#^ bqbiol:is chebi:CHEBI:15422, kegg.compound:C00002
+	ATP()
+	#^ bqbiol:hasPart chebi:CHEBI:16108, chebi:CHEBI:17797, chebi:CHEBI:17363, chebi:CHEBI:16905, chebi:CHEBI:15946, chebi:CHEBI:48153, chebi:CHEBI:17969, chebi:CHEBI:15721, chebi:CHEBI:29052, kegg.compound:C00111, kegg.compound:C00117, kegg.compound:C00199, kegg.compound:C05382, kegg.compound:C00447, kegg.compound:C00279, kegg.compound:C00085, kegg.compound:C00354, kegg.compound:C00118
+	X()
+	#^ bqbiol:is kegg.compound:C00008, chebi:CHEBI:16761
+	ADP()
+	#^ bqbiol:hasPart chebi:CHEBI:17794, chebi:CHEBI:16710, kegg.compound:C00197, kegg.compound:C01182
+	Y()
+	#^ bqbiol:is chebi:CHEBI:18009, kegg.compound:C00006
+	NADP_super_pl()
+	#^ bqbiol:is chebi:CHEBI:16474, kegg.compound:C00005
+	NADPH()
+end molecule types
+begin seed species
+	NADPH() 4.2154e+20 # (0.7 * 0.001)mol/L * 6.022e23/mol *1.0L #NADPH #NADPH
+	ADP() -3.011e+20 #original 2.0mmole/volume #ADP #ADP
+	ATP() 3.011e+20 #original 0.5mmole/volume #ATP #ATP
+	X() 1.2044e+21 #original 2.0mmole/volume #X #X
+	$Y() 6.022e+20 #original 1.0mmole/volume #Y #Y
+	NADP_super_pl() 3.011e+20 #original 0.5mmole/volume #NADP_super_pl #NADP
+end seed species
+begin observables
+	Species NADPH NADPH() #NADPH
+	Species ADP ADP() #ADP
+	Species ATP ATP() #ATP
+	Species X X() #X
+	Species Y Y() #Y
+	Species NADP_super_pl NADP_super_pl() #NADP_super_+
+end observables
+begin functions
+	ADP_ar() = A0 - ATP
+	NADP_super_pl_ar() = N0 - NADPH
+	fRate1() = ADP_ar*NADP_super_pl_ar*k3
+	fRate2() = ATP*k2
+	fRate3() = X*k1
+end functions
+begin reaction rules
+	v4: NADP_super_pl() -> NADPH() k4
+	v3_reactants_0: 0  -> ADP() -1*2.0*(fRate1()) #Modifiers(NADP)
+	v3_products_0: 0  -> ATP() 2.0*fRate1() #Modifiers(NADP)
+	v2_reactants_0: 0  -> Y() -1*(fRate2())
+	v2_reactants_1: 0  -> NADPH() -1*(fRate2())
+	v2_reactants_2: 0  -> ATP() -1*(fRate2())
+	v2_products_0: 0  -> X() fRate2()
+	v2_products_1: 0  -> ADP() fRate2()
+	v2_products_2: 0  -> NADP_super_pl() fRate2()
+	v1_reactants_0: 0  -> X() -1*(fRate3())
+	v1_reactants_1: 0  -> ATP() -1*(fRate3())
+	v1_products_0: 0  -> Y() fRate3()
+	v1_products_1: 0  -> ADP() fRate3()
+end reaction rules
+end model

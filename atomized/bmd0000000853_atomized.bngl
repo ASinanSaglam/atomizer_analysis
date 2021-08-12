@@ -1,0 +1,124 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/30138630']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/ncit/C13314', 'http://identifiers.org/pw/PW:0000060']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1911120006', 'http://identifiers.org/biomodels.db/BIOMD0000000853']
+#@creatorEmail:'johannes.p.meyer@gmail.com'
+#@creatorName:'Meyer Johannes'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 9 molecules and 21 reactions. The translated model has 6 molecules and 24 rules'
+###
+begin model
+begin parameters
+	ksyn1 1.0
+	ksyn1bas 0.0035
+	kdeg1 0.005
+	ksyn2 2.0
+	ksyn2bas 0.0014
+	kdeg2 0.01
+	kdeg2bas 0.002
+	ksyn3 1.0
+	ksyn3bas 0.008
+	kdeg3 0.02
+	kact 0.2
+	kactbas 0.00214
+	kdeact 0.0143
+	kf1 0.1
+	kf2 0.02
+	kb1 0.005
+	kf3 0.01
+	kf4 0.02
+	kb2 0.0007
+	kb3 0.02
+	kf5 0.0005
+	kb4 0.001
+	tstimdur 20.0
+	kf1bas_value 0.001
+	ModelValue_28 (0.001)
+	ModelValue_27 (20.0)
+	PSI 0
+	LAC 0
+end parameters
+begin molecule types
+	#^ bqbiol:is ncit:C17021
+	#^ bqbiol:hasProperty ncit:C154898
+	NP()
+	#^ bqbiol:is ncit:C13281
+	#^ bqbiol:hasProperty ncit:C61589
+	ED(LP~LP~0)
+	#^ bmbiol:hasInstance pr:PR:000009238
+	STAB()
+	#^ bqbiol:is ncit:C17021
+	#^ bqbiol:hasProperty sbo:SBO:0000459
+	PP()
+	#^ bqbiol:is ncit:C13281
+	#^ bqbiol:hasProperty ncit:C90067
+	BAS(EP1~EP1~0,EP2~EP2~0)
+	#^ bqbiol:is pw:PW:0000144
+	UPS()
+end molecule types
+begin seed species
+	PP() 6.022e+21 # 0.01mol/L * 6.022e23/mol *1.0L #PP #PP
+	NP() 6.022e+21 #original 0.01substance/volume #NP #NP
+	STAB() 6.022e+21 #original 0.01substance/volume #STAB #STAB
+	UPS() 6.022e+20 #original 0.001substance/volume #UPS #UPS
+	BAS(EP1~EP1,EP2~0) 1.08396e+23 #original 0.18substance/volume #EP1 #EP1
+	BAS(EP1~0,EP2~EP2) 8.430800000000002e+22 #original 0.14substance/volume #EP2 #EP2
+	ED(LP~0) 6.022e+21 #original 0.01substance/volume #ED #ED
+	ED(LP~LP) 6.022e+21 #original 0.01substance/volume #LP #LP
+	BAS(EP1~0,EP2~0) 5.78112e+23 #original 0.96substance/volume #BAS #BAS
+end seed species
+begin observables
+	Species PP PP() #PP
+	Species NP NP() #NP
+	Species STAB STAB() #STAB
+	Species UPS UPS() #UPS
+	Species EP1 BAS(EP1~EP1,EP2~0) #EP1
+	Species EP2 BAS(EP1~0,EP2~EP2) #EP2
+	Species ED ED(LP~0) #ED
+	Species LP ED(LP~LP) #LP
+	Species BAS BAS(EP1~0,EP2~0) #BAS
+end observables
+begin functions
+	W() = BAS + 4*ED + 5*EP1 + 8*EP2 + 8*LP
+	STIM() =  if((time()<=ModelValue_27),(1),(0))
+	kf1bas() =  if((time()<=ModelValue_27),(0),(ModelValue_28))
+	fRate0() = (1 - PSI)*(STIM*ksyn1 + ksyn1bas)
+	fRate2() = (1 - PSI)*(STIM*ksyn2 + ksyn2bas)
+	fRate3() = UPS*kdeg2
+	fRate3m() = LAC*NP*UPS*kdeg2
+	fRate5() = STIM*ksyn3
+	fRate8() = STIM*kf1
+	fRate9() = BAS*kf1bas*(1 - STIM)
+	fRate10() = EP1*UPS*kf2*(1 - LAC)
+	fRate12() = STAB*kf3
+	fRate13() = EP2*UPS*kf4*(1 - LAC)
+	fRate14() = NP*kb2
+	fRate16() = PP^2*kf5
+	fRate18() = STIM*kact
+end functions
+begin reaction rules
+	PP_Synthesis_products_0: 0  -> PP() fRate0()
+	PP_Degradation: PP() -> 0  kdeg1
+	NP_Synthesis_products_0: 0  -> NP() fRate2()
+	NP_Degradation_UPS: NP() <-> 0  fRate3(),fRate3m() #Modifiers(UPS)
+	NP_Degradation: NP() -> 0  kdeg2bas
+	STAB_Synthesis_STIM: 0  -> STAB() fRate5()
+	STAB_Synthesis_Basal: 0  -> STAB() ksyn3bas
+	STAB_Degradation: STAB() -> 0  kdeg3
+	EP1_Synthesis_STIM_BAS: BAS(EP1~0,EP2~0) -> BAS(EP1~EP1,EP2~0) fRate8()
+	EP1_Synthesis_STIM_BAS_bas_reactants_0: 0  -> BAS(EP1~0,EP2~0) -1*(fRate9())
+	EP1_Synthesis_STIM_BAS_bas_products_0: 0  -> BAS(EP1~EP1,EP2~0) fRate9()
+	ED_Synthesis_EP1_UPS_reactants_0: 0  -> BAS(EP1~EP1,EP2~0) -1*(fRate10()) #Modifiers(UPS)
+	ED_Synthesis_EP1_UPS_products_0: 0  -> ED(LP~0) fRate10() #Modifiers(UPS)
+	BAS_Synthesis_EP1: BAS(EP1~EP1,EP2~0) -> BAS(EP1~0,EP2~0) kb1
+	EP2_Synthesis_EP1: BAS(EP1~EP1,EP2~0) -> BAS(EP1~0,EP2~EP2) fRate12() #Modifiers(STAB)
+	ED_Synthesis_EP2_reactants_0: 0  -> BAS(EP1~0,EP2~EP2) -1*(fRate13()) #Modifiers(UPS)
+	ED_Synthesis_EP2_products_0: 0  -> ED(LP~0) fRate13() #Modifiers(UPS)
+	BAS_Synthesis_EP2: BAS(EP1~0,EP2~EP2) -> BAS(EP1~0,EP2~0) fRate14() #Modifiers(NP)
+	BAS_Synthesis_ED: ED(LP~0) -> BAS(EP1~0,EP2~0) kb3
+	LP_Synthesis_ED: ED(LP~0) -> ED(LP~LP) fRate16() #Modifiers(PP)
+	BAS_Synthesis_LP: ED(LP~LP) -> BAS(EP1~0,EP2~0) kb4
+	UPS_Activation: 0  -> UPS() fRate18()
+	UPS_Activation_Basal: 0  -> UPS() kactbas
+	UPS_Deactivation: UPS() -> 0  kdeact
+end reaction rules
+end model

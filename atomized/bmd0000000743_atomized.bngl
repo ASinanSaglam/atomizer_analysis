@@ -1,0 +1,99 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1907050001', 'http://identifiers.org/biomodels.db/BIOMD0000000743']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/30172689']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0002418']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/efo/0001378']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@creatorEmail:'jm2187@cam.ac.uk'
+#@creatorName:'Men Jinghao'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 4 molecules and 14 reactions. The translated model has 4 molecules and 14 rules'
+###
+begin model
+begin parameters
+	sm 0.001 #units:unit_0
+	rm 0.0175 #units:unit_0
+	km 10.0 #units:unit_1
+	dm 0.002 #units:unit_0
+	anm 5.0 #units:unit_1
+	bnm 150.0 #units:unit_1
+	acm 5.0 #units:unit_1
+	bcm 375.0 #units:unit_1
+	acnm 8.0 #units:unit_1
+	amm 0.5 #units:unit_1
+	bmm 3.0 #units:unit_1
+	arm 0.5 #units:unit_1
+	brm 25.0 #units:unit_1
+	rc 0.013 #units:unit_0
+	kc 800.0 #units:unit_1
+	dc 0.02 #units:unit_0
+	amc 5.0 #units:unit_1
+	bmc 3.0 #units:unit_1
+	anc 1.0 #units:unit_1
+	bnc 150.0 #units:unit_1
+	sn 0.03 #units:unit_0
+	rn 0.04 #units:unit_0
+	kn 450.0 #units:unit_1
+	dn 0.025 #units:unit_0
+	acn 1.0 #units:unit_1
+	bcn 375.0 #units:unit_1
+	rr 0.0831 #units:unit_0
+	kr 80.0 #units:unit_1
+	dr 0.0757 #units:unit_0
+	amr 2.0 #units:unit_1
+	bmr 3.0 #units:unit_1
+end parameters
+begin molecule types
+	#^ bqbiol:is ncit:C39687, cl:CL:0000794
+	Tc()
+	#^ bqbiol:is ncit:C12536, cl:CL:0000824
+	N()
+	#^ bqbiol:is ncit:C17788
+	M()
+	#^ bqbiol:is cl:CL:0000815, ncit:C78829
+	Tr()
+end molecule types
+begin seed species
+	M() 2.4088e+21 # (4.0 * 0.001)mol/L * 6.022e23/mol *1.0L #M #M
+	Tc() 2.7942080000000002e+23 #original 464.0substance/volume  #Tc #Tc
+	N() 1.3669940000000001e+23 #original 227.0substance/volume  #N #N
+	Tr() 2.5292400000000003e+22 #original 42.0substance/volume  #Tr #Tr
+end seed species
+begin observables
+	Species M M() #M
+	Species Tc Tc() #Tc
+	Species N N() #N
+	Species Tr Tr() #Tr
+end observables
+begin functions
+	fRate0() = M*dm*(-M*amm/(M + bmm) - Tr*arm/(Tr + brm) + 1)*(N*Tc*acnm/((N + bnm)*(Tc + bcm)) + N*anm/(N + bnm) + Tc*acm/(Tc + bcm))
+	fRate3() = M*rm
+	fRate3m() = M*rm/km
+	fRate4() = Tc*rc
+	fRate4m() = Tc*rc/kc
+	fRate6() = Tc*rc*(-Tc/kc + 1)*(M*anc/(M + bnc) + N*amc/(N + bmc))
+	fRate8() = N*rn
+	fRate8m() = N*rn/kn
+	fRate9() = N*Tc*acn*rn/(Tc + bcn)
+	fRate9m() = N*Tc*acn*rn/(kn*(Tc + bcn))
+	fRate12() = Tr*rr
+	fRate12m() = Tr*rr/kr
+	fRate13() = M*Tr*amr*rr/(M + bmr)
+	fRate13m() = M*Tr*amr*rr/(kr*(M + bmr))
+end functions
+begin reaction rules
+	M_breakup_reactants_0: 0  -> M() -1*(fRate0()) #Modifiers(N, Tc, Tr)
+	M_decay: M() -> 0  dm
+	M_source: 0  -> M() sm
+	M_growth: 0  <-> M() fRate3(),fRate3m()
+	Tc_growth: 0  <-> Tc() fRate4(),fRate4m()
+	Tc_death: Tc() -> 0  dc
+	Tc_stimulation_products_0: 0  -> Tc() fRate6() #Modifiers(N, M)
+	N_source: 0  -> N() sn
+	N_growth: 0  <-> N() fRate8(),fRate8m()
+	N_stimulation: 0  <-> N() fRate9(),fRate9m() #Modifiers(Tc)
+	N_death: N() -> 0  dn
+	Tr_death: Tr() -> 0  dr
+	Tr_growth: 0  <-> Tr() fRate12(),fRate12m()
+	Tr_stimulation: 0  <-> Tr() fRate13(),fRate13m() #Modifiers(M)
+end reaction rules
+end model

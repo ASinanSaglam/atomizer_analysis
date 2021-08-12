@@ -1,0 +1,51 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/32604803']
+#@BQB_OCCURS_IN:['http://identifiers.org/ncit/C77681']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/go/GO:0070527', 'http://identifiers.org/go/GO:0007596']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL2011030002', 'http://identifiers.org/biomodels.db/BIOMD0000000973']
+#@creatorEmail:'tiwarik@babraham.ac.uk'
+#@creatorName:'Tiwari Krishna'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 2 molecules and 6 reactions. The translated model has 2 molecules and 6 rules'
+###
+begin model
+begin parameters
+	k1 0.00021
+	k2 7.5e-06
+	k_1 6.6e-09
+	k_2 0.03
+	k3 1.16
+	p0 10000.0
+	ModelValue_6 (10000.0)
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf ncit:C18106
+	P()
+	#^ bqbiol:isVersionOf ncit:C62344
+	#^ bqbiol:hasProperty ncit:C18106
+	N()
+end molecule types
+begin seed species
+	P() 6.022e+27 # 10000.0mol/L * 6.022e23/mol *1.0L #P #P
+end seed species
+begin observables
+	Species P P() #P
+	Species N N() #N
+end observables
+begin functions
+	s() = (ModelValue_6 - P)/N
+	fRate0() = N*k1
+	fRate1() = 2.0*P*k2
+	fRate2() = N*k_1
+	fRate3() = P^2*k2
+	fRate4() = N*k_2
+end functions
+begin reaction rules
+	R1: P() -> 0  fRate0() #Modifiers(N)
+	R2: P() -> 0  fRate1()
+	R3: 0  -> P() fRate2() #Modifiers(N)
+	R4: 0  -> N() fRate3() #Modifiers(P)
+	R5: N() -> 0  fRate4()
+	R6: N() -> 0  k3
+end reaction rules
+end model

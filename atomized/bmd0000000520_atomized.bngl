@@ -1,0 +1,63 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000520', 'http://identifiers.org/biomodels.db/MODEL1306190000']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/24354351']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/17360468']
+#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000305']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0048863']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/39107']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 3 molecules and 7 reactions. The translated model has 3 molecules and 11 rules'
+###
+begin model
+begin parameters
+	d0 0.1 #units:per_day
+	b0 0.218 #units:per_day
+	c0 1.0 #units:per_day
+	m0 2.92408052354609 #units:cell
+	a0 0.0999999999999998 #units:per_day
+	d1 0.263 #units:per_day
+	b1 0.547 #units:per_day
+	c1 1.0 #units:per_day
+	m1 29.2408052354609 #units:cell
+	a1 0.239254806051979 #units:per_day
+	d2 1.83 #units:per_day
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf cl:CL:0000034
+	N0()
+	#^ bqbiol:isVersionOf cl:CL:0000034
+	N2()
+	#^ bqbiol:isVersionOf cl:CL:0000034
+	N1()
+end molecule types
+begin seed species
+	N0() 1.75444831412765 #N0 #N0
+	N1() 43.8146704098797 #N1 #N1
+	N2() 27.4558812768926 #N2 #N2
+end seed species
+begin observables
+	Species N0 N0() #N0
+	Species N1 N1() #N1
+	Species N2 N2() #N2
+end observables
+begin functions
+	T() = N0 + N1 + N2
+	fRate1() = N0*(N0*c0/(N0 + m0) + b0)
+	fRate4() = N1*(N1*c1/(N1 + m1) + b1)
+end functions
+begin reaction rules
+	R0X: N0() -> 0  d0 #Modifiers(N0)
+	R01_reactants_0: 0  -> N0() -1*(fRate1()) #Modifiers(N0)
+	R01_products_0: 0  -> N0() fRate1() #Modifiers(N0)
+	R01_products_1: 0  -> N1() fRate1() #Modifiers(N0)
+	R00: N0() -> N0() + N0() a0 #Modifiers(N0)
+	R1X: N1() -> 0  d1 #Modifiers(N1)
+	R12_reactants_0: 0  -> N1() -1*(fRate4()) #Modifiers(N1)
+	R12_products_0: 0  -> N1() fRate4() #Modifiers(N1)
+	R12_products_1: 0  -> N2() fRate4() #Modifiers(N1)
+	R11: N1() -> N1() + N1() a1 #Modifiers(N1)
+	R2X: N2() -> 0  d2 #Modifiers(N2)
+end reaction rules
+end model

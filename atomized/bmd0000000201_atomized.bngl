@@ -1,0 +1,238 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000201', 'http://identifiers.org/biomodels.db/MODEL6415057828']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/18308339']
+#@BQB_HAS_VERSION:['http://identifiers.org/reactome/REACT_11045.1', 'http://identifiers.org/kegg.pathway/ko04330', 'http://identifiers.org/kegg.pathway/ko04310', 'http://identifiers.org/obo.go/GO:0016055', 'http://identifiers.org/kegg.pathway/ko04010', 'http://identifiers.org/reactome/REACT_299.2', 'http://identifiers.org/reactome/REACT_9470.2', 'http://identifiers.org/obo.go/GO:0008543', 'http://identifiers.org/obo.go/GO:0007219']
+#@BQB_IS_PART_OF:['http://identifiers.org/obo.go/GO:0001756']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/32524']
+#@creatorEmail:'c.lloyd@auckland.ac.nz'
+#@creatorName:'Lloyd Catherine'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 26 molecules and 33 reactions. The translated model has 13 molecules and 34 rules'
+###
+begin model
+begin parameters
+	KdN 1.4 #units:nanomolar
+	vsN 0.23 #units:flux
+	vdN 2.82 #units:flux
+	KdNa 0.001 #units:nanomolar
+	VdNa 0.01 #units:flux
+	kt1 0.1 #units:first_order_rate_constant
+	kt2 0.1 #units:first_order_rate_constant
+	KdNan 0.001 #units:nanomolar
+	VdNan 0.1 #units:flux
+	KdMF 0.768 #units:nanomolar
+	KIG1 2.5 #units:nanomolar
+	vsF 3.0 #units:flux
+	vmF 1.92 #units:flux
+	KA 0.05 #units:nanomolar
+	KdF 0.37 #units:nanomolar
+	vdF 0.39 #units:flux
+	ksF 0.3 #units:first_order_rate_constant
+	vsB 0.087 #units:flux
+	kd2 7.062 #units:first_order_rate_constant
+	v0 0.06 #units:flux
+	vMB 1.64 #units:flux
+	vmd 0.8 #units:flux
+	KaB 0.7 #units:nanomolar
+	KaXa 0.05 #units:nanomolar
+	Kmd 0.48 #units:nanomolar
+	n 2.0 #units:dimensionless
+	m 2.0 #units:dimensionless
+	vMXa 0.5 #units:flux
+	ksAx 0.02 #units:first_order_rate_constant
+	vdAx 0.6 #units:flux
+	KdAx 0.63 #units:nanomolar
+	d1 0.1 #units:first_order_rate_constant
+	a1 1.8 #units:second_order_rate_constant
+	K1 0.28 #units:nanomolar
+	K2 0.03 #units:nanomolar
+	kt3 0.7 #units:first_order_rate_constant
+	kt4 1.5 #units:first_order_rate_constant
+	ksDusp 0.5 #units:first_order_rate_constant
+	vdDusp 2.0 #units:flux
+	KdDusp 0.5 #units:nanomolar
+	kcDusp 1.35 #units:first_order_rate_constant
+	KaFgf 0.5 #units:nanomolar
+	KaRas 0.103 #units:nanomolar
+	KdRas 0.1 #units:nanomolar
+	KdErk 0.05 #units:nanomolar
+	KaErk 0.05 #units:nanomolar
+	KaX 0.05 #units:nanomolar
+	KIF 0.5 #units:nanomolar
+	KID 0.5 #units:nanomolar
+	KdX 0.05 #units:nanomolar
+	KaMDusp 0.5 #units:nanomolar
+	KdMDusp 0.5 #units:nanomolar
+	q 2.0 #units:dimensionless
+	r 2.0 #units:dimensionless
+	kc 3.45 #units:first_order_rate_constant
+	j 2.0 #units:dimensionless
+	p 2.0 #units:dimensionless
+	epsilon 0.3 #units:dimensionless
+	theta 1.5 #units:dimensionless
+	eta 0.3 #units:dimensionless
+	VMsMDusp 0.9 #units:flux
+	VMdMDusp 0.5 #units:flux
+	VMK 5.08 #units:flux
+	VMP 1.0 #units:flux
+	VMaRas 4.968 #units:flux
+	VMdRas 0.41 #units:flux
+	VMaErk 3.3 #units:flux
+	VMaX 1.6 #units:flux
+	VMdX 0.5 #units:flux
+	kd1 0
+	Rastotal 1204400000000000.2 #original 2.0nanomole/L
+	ERKtotal 1204400000000000.2 #original 2.0nanomole/L
+	Xtotal 1204400000000000.2 #original 2.0nanomole/L
+	Dshprotein 1204400000000000.2 #original 2.0nanomole/L
+	Kt 1806600000000000.2 #original 3.0nanomole/L
+	Fgf 602200000000000.1 #original 1.0nanomole/L
+end parameters
+begin molecule types
+	#^ bqbiol:isHomologTo uniprot:Q16828
+	Dusp6protein()
+	#^ bqbiol:isVersionOf chebi:CHEBI:33699
+	#^ bqbiol:isHomologTo ensembl:ENSG00000168646
+	#^ bqbiol:encodes uniprot:Q9Y2T1
+	Axin2mRNA()
+	#^ bqbiol:isHomologTo uniprot:P49841
+	Gsk3(axin2protein)
+	#^ bqbiol:hasVersion chebi:CHEBI:15996, interpro:IPR001806
+	activeRas()
+	#^ bqbiol:isVersionOf interpro:IPR013284
+	beta_catenin(nuclear~NUCLEAR~0,phosph_~PHOSPH_~0)
+	#^ bqbiol:isVersionOf interpro:IPR008349
+	activeERK()
+	#^ bqbiol:encodes uniprot:Q16828
+	#^ bqbiol:isHomologTo ensembl:ENSG00000139318
+	Dusp6mRNA()
+	#^ bqbiol:isHomologTo uniprot:Q9Y2T1
+	Axin2protein(gsk3)
+	#^ bqbiol:isHomologTo uniprot:P46531
+	#^ bqbiol:isVersionOf interpro:IPR008297
+	Notchprotein(cytosolicNicD~cytosolicNicD~0)
+	#^ bqbiol:isPartOf interpro:IPR008297
+	nuclearNicD()
+	#^ bqbiol:isVersionOf chebi:CHEBI:33699
+	#^ bqbiol:encodes uniprot:Q8NES3, interpro:IPR017374
+	LunaticfringemRNA()
+	#^ bqbiol:isVersionOf interpro:IPR017374
+	#^ bqbiol:isHomologTo uniprot:Q8NES3
+	LunaticFringeprotein()
+	#^ bqbiol:isVersionOf interpro:IPR006715
+	activeTFX()
+end molecule types
+begin seed species
+	Notchprotein(cytosolicNicD~0) 301100000000000.06 # (0.5 * 1e-09)mol/L * 6.022e23/mol *1.0L #Notchprotein #N
+	Notchprotein(cytosolicNicD~cytosolicNicD) 120440000000000.03 #original 0.2nanomole/L #cytosolicNicD #Na
+	LunaticfringemRNA() 60220000000000.016 #original 0.1nanomole/L #LunaticfringemRNA #MF
+	LunaticFringeprotein() 602200000000.0001 #original 0.001nanomole/L #LunaticFringeprotein #F
+	beta_catenin(nuclear~0,phosph_~PHOSPH_) 60220000000000.016 #original 0.1nanomole/L #phosph_beta_catenin #Bp
+	beta_catenin(nuclear~NUCLEAR,phosph_~0) 602200000000.0001 #original 0.001nanomole/L #nuclearbeta_catenin #BN
+	Axin2protein(gsk3) 60220000000000.016 #original 0.1nanomole/L #Axin2protein #A
+	Gsk3(axin2protein) 1806600000000000.2 #original 3.0nanomole/L #Gsk3 #K
+	beta_catenin(nuclear~0,phosph_~0) 60220000000000.016 #original 0.1nanomole/L #beta_catenin #B
+	Axin2mRNA() 60220000000000.016 #original 0.1nanomole/L #Axin2mRNA #MAx
+	activeRas() 301100000000000.06 #original 0.5nanomole/L #activeRas #Rasa
+	activeERK() 120440000000000.03 #original 0.2nanomole/L #activeERK #ERKa
+	activeTFX() 60220000000000.016 #original 0.1nanomole/L #activeTFX #Xa
+	Dusp6mRNA() 60220000000000.016 #original 0.1nanomole/L #Dusp6mRNA #MDusp
+	Dusp6protein() 60220000000000.016 #original 0.1nanomole/L #Dusp6protein #Dusp
+end seed species
+begin observables
+	Species Notchprotein Notchprotein(cytosolicNicD~0) #Notch protein
+	Species cytosolicNicD Notchprotein(cytosolicNicD~cytosolicNicD) #cytosolic NicD
+	Species nuclearNicD nuclearNicD() #nuclear NicD
+	Species LunaticfringemRNA LunaticfringemRNA() #Lunatic fringe mRNA
+	Species LunaticFringeprotein LunaticFringeprotein() #Lunatic Fringe protein
+	Species phosph_beta_catenin beta_catenin(nuclear~0,phosph_~PHOSPH_) #phosph. beta-catenin
+	Species nuclearbeta_catenin beta_catenin(nuclear~NUCLEAR,phosph_~0) #nuclear beta-catenin
+	Species Axin2protein Axin2protein(gsk3) #Axin2 protein
+	Species Gsk3 Gsk3(axin2protein) #Gsk3
+	Species beta_catenin beta_catenin(nuclear~0,phosph_~0) #beta-catenin
+	Species Axin2mRNA Axin2mRNA() #Axin2 mRNA
+	Species activeRas activeRas() #active Ras
+	Species activeERK activeERK() #active ERK
+	Species activeTFX activeTFX() #active TF X
+	Species Dusp6mRNA Dusp6mRNA() #Dusp6 mRNA
+	Species Dusp6protein Dusp6protein() #Dusp6 protein
+	Species Axin2_Gsk3destructioncomplex Gsk3(axin2protein!349).Axin2protein(gsk3!349) #Axin2/Gsk3 destruction complex
+end observables
+begin functions
+	inactiveTFX_ar() = Xtotal - activeTFX
+	inactiveERK_ar() = ERKtotal - activeERK
+	inactiveRas_ar() = Rastotal - activeRas
+	Axin2_Gsk3destructioncomplex_ar() = -Gsk3 + Kt
+	vsFK() = KIG1*vsF/(Gsk3 + KIG1)
+	fRate0() = epsilon*vsN
+	fRate1() = epsilon*vdN/(KdN + Notchprotein)
+	fRate2() = KIF^j*epsilon*kc/(KIF^j + LunaticFringeprotein^j)
+	fRate3() = VdNa*epsilon/(KdNa + cytosolicNicD)
+	fRate4() = epsilon*(-NaN*kt2 + cytosolicNicD*kt1)
+	fRate5() = NaN*VdNan*epsilon/(KdNan + NaN)
+	fRate6() = NaN^p*epsilon*vsFK/(KA^p + NaN^p)
+	fRate7() = epsilon*vmF/(KdMF + LunaticfringemRNA)
+	fRate8() = LunaticfringemRNA*epsilon*ksF
+	fRate9() = epsilon*vdF/(KdF + LunaticFringeprotein)
+	fRate10() = d1*theta
+	fRate10m() = a1*theta
+	fRate11() = theta*vsB
+	fRate12() = kd1*theta
+	fRate13() = Axin2_Gsk3destructioncomplex_ar*KID*VMK*theta/(Kt*(Dshprotein*K1 + Dshprotein*beta_catenin + K1*KID + KID*beta_catenin))
+	fRate14() = VMP*theta/(K2 + phosph_beta_catenin)
+	fRate15() = kt4*theta
+	fRate15m() = kt3*theta
+	fRate16() = kd2*theta
+	fRate17() = theta*v0
+	fRate18() = nuclearbeta_catenin^n*theta*vMB/(KaB^n + nuclearbeta_catenin^n)
+	fRate19() = activeTFX^m*theta*vMXa/(KaXa^m + activeTFX^m)
+	fRate20() = theta*vmd/(Axin2mRNA + Kmd)
+	fRate21() = Axin2mRNA*ksAx*theta
+	fRate22() = theta*vdAx/(Axin2protein + KdAx)
+	fRate23() = Fgf^r*VMaRas*eta*inactiveRas_ar/(Fgf^r*KaRas + Fgf^r*inactiveRas_ar + KaFgf^r*KaRas + KaFgf^r*inactiveRas_ar)
+	fRate24() = VMdRas*eta/(KdRas + activeRas)
+	fRate25() = VMaErk*activeRas*eta*inactiveERK_ar/(Rastotal*(KaErk + inactiveERK_ar))
+	fRate26() = Dusp6protein*eta*kcDusp/(KdErk + activeERK)
+	fRate27() = VMaX*activeERK*eta*inactiveTFX_ar/(ERKtotal*(KaX + inactiveTFX_ar))
+	fRate28() = VMdX*eta/(KdX + activeTFX)
+	fRate29() = VMsMDusp*activeTFX^q*eta/(KaMDusp^q + activeTFX^q)
+	fRate30() = VMdMDusp*eta/(Dusp6mRNA + KdMDusp)
+	fRate31() = Dusp6mRNA*eta*ksDusp
+	fRate32() = eta*vdDusp/(Dusp6protein + KdDusp)
+end functions
+begin reaction rules
+	n_synth: 0  -> Notchprotein(cytosolicNicD~0) fRate0()
+	N_degradation: Notchprotein(cytosolicNicD~0) -> 0  fRate1()
+	N_activation: Notchprotein(cytosolicNicD~0) -> Notchprotein(cytosolicNicD~cytosolicNicD) fRate2() #Modifiers(F)
+	Na_degradation: Notchprotein(cytosolicNicD~cytosolicNicD) -> 0  fRate3()
+	Na_transport_reactants_0: 0  -> Notchprotein(cytosolicNicD~cytosolicNicD) -1*(fRate4())
+	Na_transport_products_0: 0  -> nuclearNicD() fRate4()
+	Nan_degradation_reactants_0: 0  -> nuclearNicD() -1*(fRate5())
+	MF_transkription: 0  -> LunaticfringemRNA() fRate6() #Modifiers(Nan)
+	MF_degradation: LunaticfringemRNA() -> 0  fRate7()
+	F_translation: 0  -> LunaticFringeprotein() fRate8() #Modifiers(MF)
+	F_degradation: LunaticFringeprotein() -> 0  fRate9()
+	AK_dissoc: Gsk3(axin2protein!349).Axin2protein(gsk3!349) <-> Axin2protein(gsk3) + Gsk3(axin2protein) fRate10(),fRate10m()
+	B_synth: 0  -> beta_catenin(nuclear~0,phosph_~0) fRate11()
+	B_degradation: beta_catenin(nuclear~0,phosph_~0) -> 0  fRate12()
+	B_phosphorylation: beta_catenin(nuclear~0,phosph_~0) -> beta_catenin(nuclear~0,phosph_~PHOSPH_) fRate13() #Modifiers(AK, D, Kt)
+	BP_dephosphorylation: beta_catenin(nuclear~0,phosph_~PHOSPH_) -> beta_catenin(nuclear~0,phosph_~0) fRate14()
+	B_shuttling: beta_catenin(nuclear~NUCLEAR,phosph_~0) <-> beta_catenin(nuclear~0,phosph_~0) fRate15(),fRate15m()
+	Bp_degradation: beta_catenin(nuclear~0,phosph_~PHOSPH_) -> 0  fRate16()
+	MAx_trans_basal: 0  -> Axin2mRNA() fRate17() #Modifiers(BN)
+	MAx_trans_BN: 0  -> Axin2mRNA() fRate18() #Modifiers(BN)
+	MAx_trans_Xa: 0  -> Axin2mRNA() fRate19() #Modifiers(Xa)
+	MAx_degradation: Axin2mRNA() -> 0  fRate20()
+	A_translation: 0  -> Axin2protein(gsk3) fRate21() #Modifiers(MAx)
+	A_degradation: Axin2protein(gsk3) -> 0  fRate22()
+	Ras_activation: 0  -> activeRas() fRate23() #Modifiers(Rasi, Fgf)
+	Ras_inactivation: activeRas() -> 0  fRate24()
+	Erk_activation: 0  -> activeERK() fRate25() #Modifiers(ERKi, Rasa, Rast)
+	Erk_inactivation: activeERK() -> 0  fRate26() #Modifiers(Dusp)
+	X_activation: 0  -> activeTFX() fRate27() #Modifiers(ERKa, ERKt, Xi)
+	X_inactivation: activeTFX() -> 0  fRate28()
+	MDusp_transkription: 0  -> Dusp6mRNA() fRate29() #Modifiers(Xa)
+	MDusp_degradation: Dusp6mRNA() -> 0  fRate30()
+	Dusp_translation: 0  -> Dusp6protein() fRate31() #Modifiers(MDusp)
+	Dusp_degradation: Dusp6protein() -> 0  fRate32()
+end reaction rules
+end model

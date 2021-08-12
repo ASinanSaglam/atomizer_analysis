@@ -1,0 +1,49 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/18316099']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/ncit/C62713']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1907310005', 'http://identifiers.org/biomodels.db/BIOMD0000000771']
+#@creatorEmail:'johannes.p.meyer@gmail.com'
+#@creatorName:'Meyer Johannes'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 3 molecules and 6 reactions. The translated model has 2 molecules and 6 rules'
+###
+begin model
+begin parameters
+	r 0.2062134
+	K 2139.258
+	epsilon 1.648773
+	kappa 0.000448
+	rho 0.608
+	delta 0.309
+	alpha 0.001
+	omega 0.3
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf ncit:C717
+	v_Virus(y_tumor_cell)
+	#^ bqbiol:isVersionOf cl:CL:0001063
+	y_Tumor_Cell(v_virus)
+end molecule types
+begin seed species
+	y_Tumor_Cell(v_virus) 7.60199214e+22 # (126.237 * 0.001)mol/L * 6.022e23/mol *1.0L #y_Tumor_Cell #y_Tumor_Cell
+	v_Virus(y_tumor_cell) 1.2044e+21 #original 2.0substance/volume  #v_Virus #v_Virus
+end seed species
+begin observables
+	Species y_Tumor_Cell y_Tumor_Cell(v_virus) #y_Tumor_Cell
+	Species v_Virus v_Virus(y_tumor_cell) #v_Virus
+	Species x_Infected_Cell y_Tumor_Cell(v_virus!37).v_Virus(y_tumor_cell!37) #x_Infected_Cell
+end observables
+begin functions
+	fRate0() = r*y_Tumor_Cell
+	fRate0m() = K^(-epsilon)*r*(x_Infected_Cell + y_Tumor_Cell)^epsilon
+	fRate2() = rho*x_Infected_Cell
+	fRate4() = alpha*x_Infected_Cell
+end functions
+begin reaction rules
+	Tumor_Growth: 0  <-> y_Tumor_Cell(v_virus) fRate0(),fRate0m() #Modifiers(y_Tumor_Cell, x_Infected_Cell)
+	Tumor_Cell_Infection: y_Tumor_Cell(v_virus) + v_Virus(y_tumor_cell) -> y_Tumor_Cell(v_virus!37).v_Virus(y_tumor_cell!37) kappa
+	Tumor_Cell_Fusion: y_Tumor_Cell(v_virus) -> 0  fRate2() #Modifiers(x_Infected_Cell)
+	Infected_Cell_Death: y_Tumor_Cell(v_virus!37).v_Virus(y_tumor_cell!37) -> 0  delta
+	Virus_Production_Infected_Cell: 0  -> v_Virus(y_tumor_cell) fRate4() #Modifiers(x_Infected_Cell)
+	Virus_Elimination: v_Virus(y_tumor_cell) -> 0  omega
+end reaction rules
+end model

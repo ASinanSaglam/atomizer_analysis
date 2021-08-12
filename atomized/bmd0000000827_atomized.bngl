@@ -1,0 +1,79 @@
+###
+#@BQB_HAS_PROPERTY:['http://identifiers.org/ncit/C2852', 'http://identifiers.org/ncit/C12468', 'http://identifiers.org/ncit/C1855']
+#@BQB_IS_PROPERTY_OF:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/efo/0000311']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/30824185']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1909300001', 'http://identifiers.org/biomodels.db/BIOMD0000000827']
+#@creatorEmail:'muffet0307@gmail.com'
+#@creatorName:'Ng Szeyi'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 10 molecules and 9 reactions. The translated model has 6 molecules and 9 rules'
+###
+begin model
+begin parameters
+	l_1 1.24
+	k_1 23000000000.0
+	l_2 1.08
+	k_2 1900000000000.0
+	l_3 1.0
+	l_4 1.0
+	k_3 240000000000.0
+	k_4 2600000000000.0
+	k_p1 0.045
+	k_p2 10000000000.0
+	k_p3 10000000000.0
+	l_p1 0.028
+	l_p2 0.028
+	l_p3 0.028
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf cco:CCO:2065
+	X_3__MET__(x_3__met__)
+	#^ bqbiol:isVersionOf cco:CCO:13867, cco:CCO:1956, ncit:C61517
+	X_8__p_EGFR_ErbB3__()
+	#^ bqbiol:isVersionOf cco:CCO:13867, ncit:C61517
+	X_9__p_ErbB3_ErbB3__()
+	#^ bqbiol:isVersionOf ncit:C61517, chebi:CHEBI:74707
+	X_10__p_MET_MET__()
+	#^ bqbiol:isVersionOf cco:CCO:13867
+	X_2__ErbB3__(x_1__egfr__,x_2__erbb3__)
+	#^ bqbiol:isVersionOf cco:CCO:1956
+	X_1__EGFR__(x_1__egfr__,x_2__erbb3__)
+end molecule types
+begin seed species
+	X_1__EGFR__(x_1__egfr__,x_2__erbb3__) 2167920000.0 # (3.6e-12 * 0.001)mol/L * 6.022e23/mol *1.0L #X_1__EGFR__ #X_1_EGFR
+	X_2__ErbB3__(x_1__egfr__,x_2__erbb3__) 33121000.0 #original 5.5e-14substance/volume  #X_2__ErbB3__ #X_2_ErbB3
+	X_3__MET__(x_3__met__) 4456280000.0 #original 7.4e-12substance/volume  #X_3__MET__ #X_3_MET
+end seed species
+begin observables
+	Species X_1__EGFR__ X_1__EGFR__(x_1__egfr__,x_2__erbb3__) #X_1(EGFR)
+	Species X_4__EGFR_EGFR__ X_1__EGFR__(x_1__egfr__!54,x_2__erbb3__).X_1__EGFR__(x_1__egfr__!54,x_2__erbb3__) #X_4(EGFR/EGFR)
+	Species X_2__ErbB3__ X_2__ErbB3__(x_1__egfr__,x_2__erbb3__) #X_2(ErbB3)
+	Species X_6__ErbB3_ErbB3__ X_2__ErbB3__(x_1__egfr__,x_2__erbb3__!56).X_2__ErbB3__(x_1__egfr__,x_2__erbb3__!56) #X_6(ErbB3/ErbB3)
+	Species X_5__EGFR_ErbB3__ X_2__ErbB3__(x_1__egfr__!55,x_2__erbb3__).X_1__EGFR__(x_1__egfr__,x_2__erbb3__!55) #X_5(EGFR/ErbB3)
+	Species X_3__MET__ X_3__MET__(x_3__met__) #X_3(MET)
+	Species X_7__MET_MET__ X_3__MET__(x_3__met__!53).X_3__MET__(x_3__met__!53) #X_7(MET/MET)
+	Species X_10__p_MET_MET__ X_10__p_MET_MET__() #X_10(p-MET/MET)
+	Species X_8__p_EGFR_ErbB3__ X_8__p_EGFR_ErbB3__() #X_8(p-EGFR/ErbB3)
+	Species X_9__p_ErbB3_ErbB3__ X_9__p_ErbB3_ErbB3__() #X_9(p-ErbB3/ErbB3)
+end observables
+begin functions
+	fRate0() = 0.5*k_1
+	fRate0m() = 1.0*l_1
+	fRate1() = 0.5*k_2
+	fRate1m() = 1.0*l_2
+	fRate2m() = 1.0*l_3
+	fRate3() = 0.5*k_4
+	fRate3m() = 1.0*l_4
+	fRate4m() = 1.0*l_p1
+end functions
+begin reaction rules
+	EGFR_EGFR_formation: X_1__EGFR__(x_1__egfr__,x_2__erbb3__) + X_1__EGFR__(x_1__egfr__,x_2__erbb3__) <-> X_1__EGFR__(x_1__egfr__!54,x_2__erbb3__).X_1__EGFR__(x_1__egfr__!54,x_2__erbb3__) fRate0(),fRate0m()
+	ErbB3_ErbB3_formation: X_2__ErbB3__(x_1__egfr__,x_2__erbb3__) + X_2__ErbB3__(x_1__egfr__,x_2__erbb3__) <-> X_2__ErbB3__(x_1__egfr__,x_2__erbb3__!56).X_2__ErbB3__(x_1__egfr__,x_2__erbb3__!56) fRate1(),fRate1m()
+	EGFR_ErbB3_formation: X_1__EGFR__(x_1__egfr__,x_2__erbb3__) + X_2__ErbB3__(x_1__egfr__,x_2__erbb3__) <-> X_2__ErbB3__(x_1__egfr__!55,x_2__erbb3__).X_1__EGFR__(x_1__egfr__,x_2__erbb3__!55) k_3,fRate2m()
+	MET_MET_formation: X_3__MET__(x_3__met__) + X_3__MET__(x_3__met__) <-> X_3__MET__(x_3__met__!53).X_3__MET__(x_3__met__!53) fRate3(),fRate3m()
+	MET_MET_transformation: X_3__MET__(x_3__met__!53).X_3__MET__(x_3__met__!53) <-> X_10__p_MET_MET__() k_p1,fRate4m()
+	phosphorylation_1: X_10__p_MET_MET__() + X_2__ErbB3__(x_1__egfr__!55,x_2__erbb3__).X_1__EGFR__(x_1__egfr__,x_2__erbb3__!55) -> X_10__p_MET_MET__() + X_8__p_EGFR_ErbB3__() k_p2
+	phosphorylation_2: X_10__p_MET_MET__() + X_2__ErbB3__(x_1__egfr__,x_2__erbb3__!56).X_2__ErbB3__(x_1__egfr__,x_2__erbb3__!56) -> X_10__p_MET_MET__() + X_9__p_ErbB3_ErbB3__() k_p3
+	gefitinib_1: X_8__p_EGFR_ErbB3__() -> X_2__ErbB3__(x_1__egfr__!55,x_2__erbb3__).X_1__EGFR__(x_1__egfr__,x_2__erbb3__!55) l_p2
+	gefitnib_2: X_9__p_ErbB3_ErbB3__() -> X_2__ErbB3__(x_1__egfr__,x_2__erbb3__!56).X_2__ErbB3__(x_1__egfr__,x_2__erbb3__!56) l_p3
+end reaction rules
+end model

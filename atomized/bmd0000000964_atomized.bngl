@@ -1,0 +1,85 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/32703315']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/doid/DOID:0080600', 'http://identifiers.org/ido/0000503']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606', 'http://identifiers.org/taxonomy/2697049']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000028']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL2009210004', 'http://identifiers.org/biomodels.db/BIOMD0000000964']
+#@creatorEmail:'kramachandran@ebi.ac.uk'
+#@creatorName:'Ramachandran Kausthubh'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 6 molecules and 14 reactions. The translated model has 3 molecules and 16 rules'
+###
+begin model
+begin parameters
+	alpha_1 0.1 #units:unit_0
+	alpha_2 0.1 #units:unit_0
+	b 0.00018 #units:unit_1
+	mu 4.563e-05 #units:unit_2
+	mu_p 0.1724 #units:unit_2
+	beta_1 0.00414 #units:unit_3
+	beta_2 0.0115 #units:unit_3
+	delta 0.7 #units:unit_4
+	psi 0.005 #units:unit_2
+	omega 0.09 #units:unit_2
+	sigma 0.0018 #units:unit_2
+	gamma_S 0.05 #units:unit_2
+	gamma_A 0.0714 #units:unit_2
+	eta_S 0.1 #units:unit_2
+	eta_A 0.05 #units:unit_2
+end parameters
+begin compartments
+	#volume units: volume
+	Human 3 1.0
+	Pathogen 3 1.0
+end compartments
+begin molecule types
+	#^ bqbiol:isVersionOf ido:0000514, ncit:C171133
+	#^ bqbiol:hasProperty ido:0000597
+	Exposed(Infected_Symptomatic~Infected_Symptomatic~0,Susceptible~Susceptible~0)
+	#^ bqbiol:isVersionOf ncit:C171133, ido:0000621
+	Recovered(Infected_Asymptomatic~Infected_Asymptomatic~0)
+	#^ bqbiol:is ncit:C171133
+	#^ bqbiol:isVersionOf ncit:C80324
+	Pathogen()
+end molecule types
+begin seed species
+	@Human:Exposed(Infected_Symptomatic~0,Susceptible~Susceptible) 5.60046e+28 # 93000.0mol/L * 6.022e23/mol *1.0L #Susceptible #Susceptible
+	@Human:Exposed(Infected_Symptomatic~0,Susceptible~0) 6.0220000000000006e+26 #original 1000.0substance/volume  #Exposed #Exposed
+	@Human:Exposed(Infected_Symptomatic~Infected_Symptomatic,Susceptible~0) 3.011e+25 #original 50.0substance/volume  #Infected_Symptomatic #Infected_Symptomatic
+	@Human:Recovered(Infected_Asymptomatic~Infected_Asymptomatic) 3.011e+25 #original 50.0substance/volume  #Infected_Asymptomatic #Infected_Asymptomatic
+	@Pathogen:Pathogen() 3.0110000000000003e+26 #original 500.0substance/volume  #Pathogen #Pathogen_0
+end seed species
+begin observables
+	Species Susceptible_Human @Human:Exposed(Infected_Symptomatic~0,Susceptible~Susceptible) #Susceptible
+	Species Exposed_Human @Human:Exposed(Infected_Symptomatic~0,Susceptible~0) #Exposed
+	Species Infected_Symptomatic_Human @Human:Exposed(Infected_Symptomatic~Infected_Symptomatic,Susceptible~0) #Infected_Symptomatic
+	Species Infected_Asymptomatic_Human @Human:Recovered(Infected_Asymptomatic~Infected_Asymptomatic) #Infected_Asymptomatic
+	Species Recovered_Human @Human:Recovered(Infected_Asymptomatic~0) #Recovered
+	Species Pathogen_Pathogen @Pathogen:Pathogen() #Pathogen
+end observables
+begin functions
+	fRate2() = Pathogen_Pathogen*Susceptible_Human*beta_1/(Pathogen_Pathogen*alpha_1 + 1) + Susceptible_Human*beta_2*(Infected_Asymptomatic_Human + Infected_Symptomatic_Human)/(alpha_2*(Infected_Asymptomatic_Human + Infected_Symptomatic_Human) + 1)
+	fRate5() = delta*omega
+	fRate6() = Exposed_Human*omega*(1 - delta)
+	fRate7() = Infected_Symptomatic_Human*(mu + sigma)
+	fRate8() = Infected_Asymptomatic_Human*(mu + sigma)
+	fRate12() = Infected_Asymptomatic_Human*eta_A + Infected_Symptomatic_Human*eta_S
+end functions
+begin reaction rules
+	Birth_Rate: 0  -> Exposed(Infected_Symptomatic~0,Susceptible~Susceptible)@Human b
+	Exposed_to_Susceptible: Exposed(Infected_Symptomatic~0,Susceptible~0)@Human -> Exposed(Infected_Symptomatic~0,Susceptible~Susceptible)@Human psi
+	Susceptible_to_Exposed_reactants_0: 0  -> Exposed(Infected_Symptomatic~0,Susceptible~Susceptible)@Human -1*(fRate2()) #Modifiers(Pathogen_0, Infected_Asymptomatic, Infected_Symptomatic)
+	Susceptible_to_Exposed_products_0: 0  -> Exposed(Infected_Symptomatic~0,Susceptible~0)@Human fRate2() #Modifiers(Pathogen_0, Infected_Asymptomatic, Infected_Symptomatic)
+	Death_rate_Susceptible: Exposed(Infected_Symptomatic~0,Susceptible~Susceptible)@Human -> 0  mu
+	Death_rate_Exposed: Exposed(Infected_Symptomatic~0,Susceptible~0)@Human -> 0  mu
+	Symptomatic_infection_from_Exposed: Exposed(Infected_Symptomatic~0,Susceptible~0)@Human -> Exposed(Infected_Symptomatic~Infected_Symptomatic,Susceptible~0)@Human fRate5()
+	Asymptomatic_infection_from_Exposed_reactants_0: 0  -> Exposed(Infected_Symptomatic~0,Susceptible~0)@Human -1*(fRate6())
+	Asymptomatic_infection_from_Exposed_products_0: 0  -> Recovered(Infected_Asymptomatic~Infected_Asymptomatic)@Human fRate6()
+	Death_rate_Symptomatic_infected_reactants_0: 0  -> Exposed(Infected_Symptomatic~Infected_Symptomatic,Susceptible~0)@Human -1*(fRate7())
+	Death_rate_Asymptomatic_infected_reactants_0: 0  -> Recovered(Infected_Asymptomatic~Infected_Asymptomatic)@Human -1*(fRate8())
+	Recovery_from_Symptomatic_infection: Exposed(Infected_Symptomatic~Infected_Symptomatic,Susceptible~0)@Human -> Recovered(Infected_Asymptomatic~0)@Human gamma_S
+	Recovery_from_Asymptomatic_infection: Recovered(Infected_Asymptomatic~Infected_Asymptomatic)@Human -> Recovered(Infected_Asymptomatic~0)@Human gamma_A
+	Death_rate_Recovered: Recovered(Infected_Asymptomatic~0)@Human -> 0  mu
+	Rate_of_pathogen_increase: 0  -> Pathogen()@Pathogen fRate12() #Modifiers(Infected_Asymptomatic, Infected_Symptomatic)
+	Death_rate_of_Pathogen: Pathogen()@Pathogen -> 0  mu_p
+end reaction rules
+end model

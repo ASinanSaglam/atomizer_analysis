@@ -1,0 +1,70 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1303130001', 'http://identifiers.org/biomodels.db/BIOMD0000000630']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/22004735']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/131567']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/go/GO:0031639', 'http://identifiers.org/go/GO:0007596', 'http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_OCCURS_IN:['urn:miriam:bao:BAO%3A0000366']
+#@creatorEmail:'LisaTK@nus.edu.sg'
+#@creatorName:'Tucker-Kellogg Lisa'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 6 molecules and 14 reactions. The translated model has 4 molecules and 17 rules'
+###
+begin model
+begin parameters
+	parameter_1 0.084
+	parameter_2 0.032
+	parameter_13 2.0
+	r1_k1 0.035000
+	r2_parameter_8 40.000000
+	r3_k1 0.900000
+	r8_k1 0.000000
+	r8_k2 0.016000
+	r9_k1 0.020000
+	r12_v 0.003200
+	r13_v 0.010000
+	r14_v 0.010000
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf uniprot:P00747
+	plasmin(ogen~OGEN~0,x)
+	#^ bqbiol:isVersionOf pubchem.compound:10370340
+	x(plasmin)
+	#^ bqbiol:isVersionOf uniprot:P00749
+	singleintactchainurokinase_typeplasminogenactivator()
+	#^ bqbiol:isVersionOf uniprot:P00749
+	two_chainurokinase_typeplasminogenactivator()
+end molecule types
+begin seed species
+	plasmin(ogen~OGEN,x) 6022000000000000.0 # (0.01 * 1e-06)mol/L * 6.022e23/mol *1.0L #plasminogen #species_1
+	singleintactchainurokinase_typeplasminogenactivator() 1204400000000000.2 #original 0.002substance/L  #singleintactchainurokinase_typeplasminogenactivator #species_3
+end seed species
+begin observables
+	Species plasminogen plasmin(ogen~OGEN,x) #plasminogen
+	Species plasmin plasmin(ogen~0,x) #plasmin
+	Species singleintactchainurokinase_typeplasminogenactivator singleintactchainurokinase_typeplasminogenactivator() #single intact chain urokinase-type plasminogen activator
+	Species two_chainurokinase_typeplasminogenactivator two_chainurokinase_typeplasminogenactivator() #two-chain urokinase-type plasminogen activator
+	Species x x(plasmin) #x
+	Species x_plasmin plasmin(ogen~0,x!239).x(plasmin!239) #x-plasmin
+end observables
+begin functions
+	fRate1() = 40.0*plasmin^parameter_13*singleintactchainurokinase_typeplasminogenactivator
+end functions
+begin reaction rules
+	reaction_1: singleintactchainurokinase_typeplasminogenactivator() + plasmin(ogen~OGEN,x) -> plasmin(ogen~0,x) + singleintactchainurokinase_typeplasminogenactivator() r1_k1 #Modifiers(species_3, species_1)
+	reaction_2_reactants_0: 0  -> plasmin(ogen~0,x) -1*(fRate1()) #Modifiers(species_2, species_3)
+	reaction_2_reactants_1: 0  -> singleintactchainurokinase_typeplasminogenactivator() -1*(fRate1()) #Modifiers(species_2, species_3)
+	reaction_2_products_0: 0  -> two_chainurokinase_typeplasminogenactivator() fRate1() #Modifiers(species_2, species_3)
+	reaction_2_products_1: 0  -> plasmin(ogen~0,x) fRate1() #Modifiers(species_2, species_3)
+	reaction_3: two_chainurokinase_typeplasminogenactivator() + plasmin(ogen~OGEN,x) -> plasmin(ogen~0,x) + two_chainurokinase_typeplasminogenactivator() r3_k1 #Modifiers(species_4, species_1)
+	reaction_4: singleintactchainurokinase_typeplasminogenactivator() -> 0  parameter_1 #Modifiers(species_3)
+	reaction_5: plasmin(ogen~OGEN,x) -> 0  parameter_2 #Modifiers(species_1)
+	reaction_6: plasmin(ogen~0,x) -> 0  parameter_1 #Modifiers(species_2)
+	reaction_7: two_chainurokinase_typeplasminogenactivator() -> 0  parameter_1 #Modifiers(species_4)
+	reaction_8: plasmin(ogen~0,x) + x(plasmin) <-> plasmin(ogen~0,x!239).x(plasmin!239) r8_k1,r8_k2 #Modifiers(species_2, species_5, species_6)
+	reaction_9: plasmin(ogen~0,x!239).x(plasmin!239) -> plasmin(ogen~0,x) r9_k1 #Modifiers(species_6)
+	reaction_10: x(plasmin) -> 0  parameter_2 #Modifiers(species_5)
+	reaction_11: plasmin(ogen~0,x!239).x(plasmin!239) -> 0  parameter_2 #Modifiers(species_6)
+	reaction_12: 0  -> singleintactchainurokinase_typeplasminogenactivator() r12_v
+	reaction_13: 0  -> plasmin(ogen~OGEN,x) r13_v
+	reaction_14: 0  -> x(plasmin) r14_v
+end reaction rules
+end model

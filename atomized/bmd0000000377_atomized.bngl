@@ -1,0 +1,76 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000377', 'http://identifiers.org/biomodels.db/MODEL0911270001']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/11106596']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/1850840']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0003323', 'http://identifiers.org/go/GO:0044342', 'http://identifiers.org/go/GO:0061469']
+#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000783']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@creatorEmail:'ajmera@ebi.ac.uk'
+#@creatorName:'Ajmera Ishan'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 4 molecules and 0 reactions. The translated model has 4 molecules and 4 rules'
+###
+begin model
+begin parameters
+	Cm 4524.0
+	Vm -22.0
+	VCa 100.0
+	gCa 280.0
+	sm 7.5
+	VK -80.0
+	gK 1300.0
+	lambda 1.1
+	tnbar 8.3
+	Vn -9.0
+	sn 10.0
+	gs1 20.0
+	Vs1 -40.0
+	ss1 0.5
+	taus1 1000.0
+	Vs2 -42.0
+	ss2 0.4
+	gs2 32.0
+	taus2 120000.0
+	gl 25.0
+	Vl -40.0
+end parameters
+begin molecule types
+	V()
+	s1()
+	n()
+	s2()
+end molecule types
+begin seed species
+	n() 0.03 #n #n
+	s1() 0.1 #s1 #s1
+	s2() 0.434 #s2 #s2
+end seed species
+begin observables
+	Species V V() #V
+	Species n n() #n
+	Species s1 s1() #s1
+	Species s2 s2() #s2
+end observables
+begin functions
+	Is1() = gs1*s1*(V - VK)
+	Il() = gl*(V - Vl)
+	IK() = gK*n*(V - VK)
+	minf() = 1/(exp((-V + Vm)/sm) + 1)
+	ICa() = gCa*minf*(V - VCa)
+	Is2() = gs2*s2*(V - VK)
+	arRateV() = (-ICa - IK - Il - Is1 - Is2)/Cm
+	taun() = tnbar/(exp((V - Vn)/sn) + 1)
+	ninf() = 1/(exp((-V + Vn)/sn) + 1)
+	arRaten() = (-n + ninf)/taun
+	parameter_1() = Is1 + Is2
+	s2inf() = 1/(exp((-V + Vs2)/ss2) + 1)
+	arRates2() = (-s2 + s2inf)/taus2
+	s1inf() = 1/(exp((-V + Vs1)/ss1) + 1)
+	arRates1() = (-s1 + s1inf)/taus1
+end functions
+begin reaction rules
+	0  -> V() arRateV #rateLaw
+	0  -> n() arRaten #rateLaw
+	0  -> s1() arRates1 #rateLaw
+	0  -> s2() arRates2 #rateLaw
+end reaction rules
+end model

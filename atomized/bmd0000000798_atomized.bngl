@@ -1,0 +1,68 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/30853393']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/efo/0000222']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1908190001', 'http://identifiers.org/biomodels.db/BIOMD0000000798']
+#@creatorEmail:'jm2187@cam.ac.uk'
+#@creatorName:'Men Jinghao'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 5 molecules and 9 reactions. The translated model has 4 molecules and 9 rules'
+###
+begin model
+begin parameters
+	ps 0.5 #units:unit_0
+	pa 0.43 #units:unit_0
+	pl 0.27 #units:unit_0
+	ds 0.14 #units:unit_0
+	da 0.44 #units:unit_0
+	dl 0.05 #units:unit_0
+	ud 0.275 #units:unit_0
+	ut 0.3 #units:unit_0
+	k1 1.0 #units:unit_0
+	k2 1.0 #units:unit_0
+	a 0.015 #units:unit_0
+	y 0.01 #units:unit_0
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf cl:CL:0000037
+	S()
+	#^ bqbiol:isVersionOf cl:CL:0000034
+	L(T~T~0)
+	#^ bqbiol:isVersionOf cl:CL:0000049
+	A()
+	#^ bqbiol:isVersionOf cl:CL:0000000
+	D()
+end molecule types
+begin seed species
+	S() 6.022000000000001e+19 # (0.1 * 0.001)mol/L * 6.022e23/mol *1.0L #S #S
+	L(T~0) 6.022000000000001e+19 #original 0.1substance/volume #L #L
+end seed species
+begin observables
+	Species S S() #S
+	Species A A() #A
+	Species D D() #D
+	Species L L(T~0) #L
+	Species T L(T~T) #T
+end observables
+begin functions
+	Z1() = S
+	Z2() = A + L
+	fRate0() = S*k1*ps
+	fRate0m() = Z1*ps
+	fRate2() = A*k2*pa
+	fRate2m() = Z2*pa
+	fRate5() = L*k2*pl
+	fRate5m() = Z2*pl
+	fRate8() = a/(L + y)
+end functions
+begin reaction rules
+	HSC_growth: 0  <-> S() fRate0(),fRate0m()
+	HSC_differentiation: S() -> A() ds
+	progenitor_growth: 0  <-> A() fRate2(),fRate2m()
+	progenitor_differentiation: A() -> D() da
+	normal_cell_efflux: D() -> 0  ud
+	LSC_growth: 0  <-> L(T~0) fRate5(),fRate5m()
+	LSC_differentiation: L(T~0) -> L(T~T) dl
+	leukaemia_cell_efflux: L(T~T) -> 0  ut
+	immune_control: L(T~0) -> 0  fRate8()
+end reaction rules
+end model

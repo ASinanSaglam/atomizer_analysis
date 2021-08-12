@@ -1,0 +1,97 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000266', 'http://identifiers.org/biomodels.db/MODEL1007210000']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/12782117']
+#@BQB_HAS_VERSION:['http://identifiers.org/go/GO:0033638']
+#@BQB_HAS_PART:['http://identifiers.org/go/GO:0005978', 'http://identifiers.org/go/GO:0005992']
+#@BQB_IS_PART_OF:['http://identifiers.org/kegg.pathway/sce00500']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0005991']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/4932']
+#@creatorEmail:'lukas@ebi.ac.uk'
+#@creatorName:'Endler Lukas'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 8 molecules and 0 reactions. The translated model has 7 molecules and 7 rules'
+###
+begin model
+begin parameters
+	heat_shock 0
+end parameters
+begin compartments
+	#volume units: L
+	cell 3 1.0
+	external 3 1.0
+end compartments
+begin molecule types
+	G6P()
+	glucose()
+	G1P()
+	T6P()
+	trehalose()
+	UDPG()
+	glycogen()
+end molecule types
+begin seed species
+	@external:glucose() 6.022e+20 # (1.0 * 0.001)mol/L * 6.022e23/mol *1.0L #glucose #X0
+	@cell:glucose() 1.8066000000000002e+19 #original 0.03milimole/L #glucose #X1
+	@cell:G6P() 6.022e+20 #original 1.0milimole/L #G6P #X2
+	@cell:G1P() 6.022000000000001e+19 #original 0.1milimole/L #G1P #X3
+	@cell:UDPG() 4.2154e+20 #original 0.7milimole/L #UDPG #X4
+	@cell:glycogen() 6.022e+20 #original 1.0milimole/L #glycogen #X5
+	@cell:T6P() 1.2044000000000002e+19 #original 0.02milimole/L #T6P #X6
+	@cell:trehalose() 3.0110000000000004e+19 #original 0.05milimole/L #trehalose #X7
+end seed species
+begin observables
+	Species glucose_external @external:glucose() #glucose
+	Species glucose_cell @cell:glucose() #glucose
+	Species G6P_cell @cell:G6P() #G6P
+	Species G1P_cell @cell:G1P() #G1P
+	Species UDPG_cell @cell:UDPG() #UDPG
+	Species glycogen_cell @cell:glycogen() #glycogen
+	Species T6P_cell @cell:T6P() #T6P
+	Species trehalose_cell @cell:trehalose() #trehalose
+end observables
+begin functions
+	X17() =  if((heat_shock==12),(1),(1))
+	X12f() =  if((heat_shock==16),(1),(1))
+	X10() =  if((heat_shock==1),(1),(1))
+	X11() =  if((heat_shock==6),(1),(1))
+	flux_X2_out() = 30.12*G1P_cell^(-0.17)*G6P_cell^0.575*UDPG_cell^0.00333*X10^0.5111*X11^0.0667*X12f^0.411*X17^0.0111*glucose_cell^(-0.00333)
+	X12r() =  if((heat_shock==1),(16),(1))
+	X15f() =  if((heat_shock==50),(1),(1))
+	X13() =  if((heat_shock==1),(16),(1))
+	flux_X3_out() = 76.434*G1P_cell^0.593*G6P_cell^(-0.412)*X12r^0.718*X13^0.18*X15f^0.103
+	X18() =  if((heat_shock==1),(18),(1))
+	flux_X7_in() = 1.0939*T6P_cell^0.2*X18
+	X19() =  if((heat_shock==6),(1),(1))
+	flux_X7_out() = 1.2288*X19*trehalose_cell^0.3
+	arRateX7() = flux_X7_in - flux_X7_out
+	flux_X6_in() = 0.19424*G6P_cell^0.3*UDPG_cell^0.3*X17*glucose_cell^(-0.3)
+	flux_X6_out() = 1.0939*T6P_cell^0.2*X18
+	arRateX6() = flux_X6_in - flux_X6_out
+	X15r() =  if((heat_shock==1),(50),(1))
+	X16() =  if((heat_shock==1),(16),(1))
+	flux_X5_out() = 4.929*G6P_cell^(-0.04)*UDPG_cell^(-0.04)*X15r^0.2*X16^0.8*glycogen_cell^0.25
+	X14() =  if((heat_shock==16),(1),(1))
+	flux_X5_in() = 11.06*G1P_cell^0.32*G6P_cell^0.04*UDPG_cell^0.16*X14^0.6*X15f^0.4
+	arRateX5() = flux_X5_in - flux_X5_out
+	flux_X4_out() = 3.4556*G6P_cell^0.214*UDPG_cell^0.386*X14^0.857*X17^0.143*glucose_cell^(-0.0429)
+	flux_X4_in() = 11.07*G1P_cell^0.5*X13
+	arRateX4() = flux_X4_in - flux_X4_out
+	flux_X3_in() = 7.8819*G1P_cell^(-0.392)*G6P_cell^0.394*UDPG_cell^(-0.01)*X12f^0.949*X15r^0.0513*glycogen_cell^0.0128
+	arRateX3() = flux_X3_in - flux_X3_out
+	X9() =  if((heat_shock==8),(1),(1))
+	flux_X2_in() = 142.72*G1P_cell^0.183*G6P_cell^(-0.179)*T6P_cell^(-0.276)*X12r^0.311*X9^0.689*glucose_cell^0.517
+	arRateX2() = flux_X2_in - flux_X2_out
+	flux_X1_out() = 89.935*T6P_cell^(-0.4)*X9*glucose_cell^0.75
+	X8() =  if((heat_shock==1),(8),(1))
+	flux_X1_in() = 31.912*G6P_cell^(-0.194)*X19^0.0323*X8^0.968*glucose_cell^0.968*trehalose_cell^0.00968
+	arRateX1() = flux_X1_in - flux_X1_out
+end functions
+begin reaction rules
+	0  -> glucose()@cell arRateX1 #rateLaw
+	0  -> G6P()@cell arRateX2 #rateLaw
+	0  -> G1P()@cell arRateX3 #rateLaw
+	0  -> UDPG()@cell arRateX4 #rateLaw
+	0  -> glycogen()@cell arRateX5 #rateLaw
+	0  -> T6P()@cell arRateX6 #rateLaw
+	0  -> trehalose()@cell arRateX7 #rateLaw
+end reaction rules
+end model

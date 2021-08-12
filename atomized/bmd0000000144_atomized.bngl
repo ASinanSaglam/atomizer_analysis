@@ -1,0 +1,233 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000144', 'http://identifiers.org/biomodels.db/MODEL1509031628']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/17667953']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/7215']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0000278', 'http://identifiers.org/obo.go/GO:0051783']
+#@creatorEmail:'lenov@ebi.ac.uk'
+#@creatorName:'Le Novère Nicolas'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 18 molecules and 54 reactions. The translated model has 14 molecules and 62 rules'
+###
+begin model
+begin parameters
+	ksc 0.01
+	kdc 0.01
+	kdnp 0.01
+	kdn 1.5
+	kaie 1.0
+	kiie 0.4
+	kafzy 1.0
+	kifzy 0.2
+	kweep 0.005
+	kwee 1.0
+	kstgp 0.2
+	kstg 2.0
+	kastg 1.0
+	kistg 0.3
+	kawee 0.3
+	kiweep 0.01
+	kiwee 1.0
+	kt 0.15
+	Jaie 0.01
+	Jiie 0.01
+	Jafzy 0.01
+	Jifzy 0.01
+	Jastg 0.05
+	Jistg 0.05
+	Jawee 0.05
+	Jiwee 0.05
+	Jm 0.05
+	kdmp 0.002
+	kdm 0.2
+	koutw_1 0.01
+	kinw_1 0.04
+	kouts_1 0.02
+	kins_1 0.08
+	kez_1 0.5
+	factor_1 1.95
+	E_1 7e-05
+	ksxp_1 0.001
+	ksxm_1 0.0005
+	StringT 0.8
+	Wee1T 0.8
+	ksstg 0
+	kdstg 0
+	kastgp 0
+	kout_1 0
+end parameters
+begin compartments
+	#volume units: L
+	nuclei 3 1.0
+	cytoplasm 3 1.0
+end compartments
+begin molecule types
+	N()
+	IEa_1()
+	#^ bqbiol:isVersionOf obo.chebi:CHEBI:33699
+	Xm()
+	#^ bqbiol:isVersionOf obo.go:GO:0031387
+	preMPFn()
+	#^ bqbiol:hasPart uniprot:P20439, uniprot:P23572
+	#^ bqbiol:isVersionOf obo.go:GO:0031387
+	MPFn()
+	#^ bqbiol:is uniprot:P54350
+	#^ bqbiol:isHomologTo uniprot:P30291
+	Wee1c(p~P~0)
+	#^ bqbiol:isVersionOf obo.chebi:CHEBI:33699
+	Stgm()
+	#^ bqbiol:isVersionOf obo.go:GO:0031387
+	preMPFc()
+	Xp()
+	#^ bqbiol:is uniprot:P54350
+	#^ bqbiol:isHomologTo uniprot:P30291
+	Wee1n(p~P~0)
+	#^ bqbiol:is uniprot:P20483
+	#^ bqbiol:isVersionOf interpro:IPR000751
+	Stgn(p~P~0)
+	#^ bqbiol:is uniprot:Q24044
+	#^ bqbiol:isVersionOf interpro:IPR000002
+	FZYa()
+	#^ bqbiol:is uniprot:P20483
+	Stgc(p~P~0)
+	#^ bqbiol:hasPart uniprot:P23572, uniprot:P20439
+	#^ bqbiol:isVersionOf obo.go:GO:0031387
+	MPFc()
+end molecule types
+begin seed species
+	@cytoplasm:MPFc() 6.022e+23 # 1.0mol/L * 6.022e23/mol *1.0L #MPFc #MPFc
+	@cytoplasm:Stgc(p~P) 4.817600000000001e+23 #original 0.8mol/L #StgPc #StgPc
+	@cytoplasm:Wee1c(p~P) -1.89780329268871e-20 #original 0.8mol/L #Wee1Pc #Wee1Pc
+	@cytoplasm:Stgm() 6.022e+23 #original 1.0mol/L #Stgm #Stgm
+	@nuclei:N() 6.022e+23 #original 1.0mol/L #N #N
+end seed species
+begin observables
+	Species MPFc_cytoplasm @cytoplasm:MPFc() #MPFc
+	Species preMPFc_cytoplasm @cytoplasm:preMPFc() #preMPFc
+	Species StgPc_cytoplasm @cytoplasm:Stgc(p~P) #StgPc
+	Species Wee1c_cytoplasm @cytoplasm:Wee1c(p~0) #Wee1c
+	Species Wee1Pc_cytoplasm @cytoplasm:Wee1c(p~P) #Wee1Pc
+	Species Stgm_cytoplasm @cytoplasm:Stgm() #Stgm
+	Species Xp_cytoplasm @cytoplasm:Xp() #Xp
+	Species Stgc_cytoplasm @cytoplasm:Stgc(p~0) #Stgc
+	Species Xm_cytoplasm @cytoplasm:Xm() #Xm
+	Species MPFn_nuclei @nuclei:MPFn() #MPFn
+	Species preMPFn_nuclei @nuclei:preMPFn() #preMPFn
+	Species Wee1Pn_nuclei @nuclei:Wee1n(p~P) #Wee1Pn
+	Species Wee1n_nuclei @nuclei:Wee1n(p~0) #Wee1n
+	Species StgPn_nuclei @nuclei:Stgn(p~P) #StgPn
+	Species Stgn_nuclei @nuclei:Stgn(p~0) #Stgn
+	Species FZYa_nuclei @nuclei:FZYa() #FZYa
+	Species IEa_1_nuclei @nuclei:IEa_1() #IEa_1
+	Species N_nuclei @nuclei:N() #N
+end observables
+begin functions
+	Wee1Pc_ar() = -Wee1c_cytoplasm + (-E_1*N_nuclei*(Wee1Pn_nuclei + Wee1n_nuclei) + Wee1T)/(-E_1*N_nuclei + 1)
+	StgPT() = E_1*N_nuclei*StgPn_nuclei + StgPc_cytoplasm*(-E_1*N_nuclei + 1)
+	CycBT() = E_1*N_nuclei*(MPFn_nuclei + preMPFn_nuclei) + (MPFc_cytoplasm + preMPFc_cytoplasm)*(-E_1*N_nuclei + 1)
+	fRate1() = preMPFc_cytoplasm*(StgPc_cytoplasm*kstg + kstgp)
+	fRate2() = MPFc_cytoplasm*(Wee1c_cytoplasm*kwee + kweep)
+	fRate5() = Wee1c_cytoplasm*(MPFc_cytoplasm*kiwee + kiweep)/(Jiwee + Wee1c_cytoplasm)
+	fRate6() = kawee/(Jawee + Wee1Pc_cytoplasm)
+	fRate7() = Stgm_cytoplasm*Xp_cytoplasm*kdm + Stgm_cytoplasm*kdmp/(Jm + Stgm_cytoplasm)
+	fRate8() = Stgm_cytoplasm*ksstg
+	fRate9() = Stgc_cytoplasm*(MPFc_cytoplasm*kastg + kastgp)/(Jastg + Stgc_cytoplasm)
+	fRate10() = kistg/(Jistg + StgPc_cytoplasm)
+	fRate13() = -E_1*N_nuclei*kt/(E_1*N_nuclei - 1.0)
+	fRate14() = -E_1*MPFn_nuclei*N_nuclei*kout_1/(E_1*N_nuclei - 1.0)
+	fRate15() = MPFc_cytoplasm*kt
+	fRate17() = -E_1*N_nuclei*kout_1*preMPFn_nuclei/(E_1*N_nuclei - 1.0)
+	fRate18() = -E_1*N_nuclei*kt/(E_1*N_nuclei - 1.0)
+	fRate19() = kt*preMPFc_cytoplasm
+	fRate22() = -E_1*N_nuclei*Wee1Pn_nuclei*koutw_1/(E_1*N_nuclei - 1.0)
+	fRate23() = -E_1*N_nuclei*kinw_1/(E_1*N_nuclei - 1.0)
+	fRate24() = Wee1Pc_cytoplasm*kinw_1
+	fRate26() = -E_1*N_nuclei*Wee1n_nuclei*koutw_1/(E_1*N_nuclei - 1.0)
+	fRate27() = -E_1*N_nuclei*kinw_1/(E_1*N_nuclei - 1.0)
+	fRate28() = Wee1c_cytoplasm*kinw_1
+	fRate30() = -E_1*N_nuclei*StgPn_nuclei*kouts_1/(E_1*N_nuclei - 1.0)
+	fRate31() = -E_1*N_nuclei*kins_1/(E_1*N_nuclei - 1.0)
+	fRate32() = StgPc_cytoplasm*kins_1
+	fRate34() = -E_1*N_nuclei*Stgn_nuclei*kouts_1/(E_1*N_nuclei - 1.0)
+	fRate35() = -E_1*N_nuclei*kins_1/(E_1*N_nuclei - 1.0)
+	fRate36() = Stgc_cytoplasm*kins_1
+	fRate37() = preMPFn_nuclei*(StgPn_nuclei*kstg + kstgp)
+	fRate38() = MPFn_nuclei*(Wee1n_nuclei*kwee + kweep)
+	fRate39() = preMPFn_nuclei*(FZYa_nuclei*kdn + kdnp)
+	fRate40() = MPFn_nuclei*(FZYa_nuclei*kdn + kdnp)
+	fRate41() = kiie/(IEa_1_nuclei + Jiie)
+	fRate42() = MPFn_nuclei*kaie/(-IEa_1_nuclei + Jaie + 1.0)
+	fRate42m() = MPFn_nuclei*kaie/(-IEa_1_nuclei + Jaie + 1.0)
+	fRate43() = IEa_1_nuclei*kafzy/(-FZYa_nuclei + Jafzy + 1.0)
+	fRate43m() = IEa_1_nuclei*kafzy/(-FZYa_nuclei + Jafzy + 1.0)
+	fRate44() = kifzy/(FZYa_nuclei + Jifzy)
+	fRate45() = Wee1n_nuclei*(MPFn_nuclei*kiwee + kiweep)/(Jiwee + Wee1n_nuclei)
+	fRate46() = kawee/(Jawee + Wee1Pn_nuclei)
+	fRate47() = Stgn_nuclei*(MPFn_nuclei*kastg + kastgp)/(Jastg + Stgn_nuclei)
+	fRate48() = kistg/(Jistg + StgPn_nuclei)
+	fRate52() = N_nuclei*ksxm_1
+	fRate53() = Xm_cytoplasm*ksxp_1
+end functions
+begin reaction rules
+	R_1: 0  -> MPFc()@cytoplasm ksc
+	R_2_reactants_0: 0  -> preMPFc()@cytoplasm -1*(fRate1()) #Modifiers(StgPc)
+	R_2_products_0: 0  -> MPFc()@cytoplasm fRate1() #Modifiers(StgPc)
+	R_3_reactants_0: 0  -> MPFc()@cytoplasm -1*(fRate2()) #Modifiers(Wee1c)
+	R_3_products_0: 0  -> preMPFc()@cytoplasm fRate2() #Modifiers(Wee1c)
+	R_6: preMPFc()@cytoplasm -> 0  kdc
+	R_7: MPFc()@cytoplasm -> 0  kdc
+	R_8_reactants_0: 0  -> Wee1c(p~0)@cytoplasm -1*(fRate5()) #Modifiers(MPFc)
+	R_8_products_0: 0  -> Wee1c(p~P)@cytoplasm fRate5() #Modifiers(MPFc)
+	R_9: Wee1c(p~P)@cytoplasm -> Wee1c(p~0)@cytoplasm fRate6() #Modifiers(Wee1Pc)
+	R_10_reactants_0: 0  -> Stgm()@cytoplasm -1*(fRate7()) #Modifiers(Xp)
+	R_12: 0  -> Stgc(p~0)@cytoplasm fRate8() #Modifiers(Stgm)
+	R_13_reactants_0: 0  -> Stgc(p~0)@cytoplasm -1*(fRate9()) #Modifiers(MPFc)
+	R_13_products_0: 0  -> Stgc(p~P)@cytoplasm fRate9() #Modifiers(MPFc)
+	R_14: Stgc(p~P)@cytoplasm -> Stgc(p~0)@cytoplasm fRate10()
+	R_15: Stgc(p~0)@cytoplasm -> 0  kdstg
+	R_16: Stgc(p~P)@cytoplasm -> 0  kdstg
+	R_19: MPFc()@cytoplasm -> 0  fRate13() #Modifiers(N)
+	importofMPFintocytoplasm_1: 0  -> MPFc()@cytoplasm fRate14() #Modifiers(N, MPFn)
+	_16: 0  -> MPFn()@nuclei fRate15() #Modifiers(MPFc)
+	exportofMPFfromnucleus_1: MPFn()@nuclei -> 0  kout_1
+	importofpreMPFintocytoplaslm_1: 0  -> preMPFc()@cytoplasm fRate17() #Modifiers(preMPFn, N)
+	R_20: preMPFc()@cytoplasm -> 0  fRate18() #Modifiers(N)
+	_18: 0  -> preMPFn()@nuclei fRate19() #Modifiers(preMPFc)
+	exportofpreMPFnfromnucleus_1: preMPFn()@nuclei -> 0  kout_1
+	R_21: Wee1n(p~P)@nuclei -> 0  koutw_1
+	_182_1: 0  -> Wee1c(p~P)@cytoplasm fRate22() #Modifiers(Wee1Pn, N)
+	R_22: Wee1c(p~P)@cytoplasm -> 0  fRate23() #Modifiers(N)
+	_20: 0  -> Wee1n(p~P)@nuclei fRate24() #Modifiers(Wee1Pc)
+	R_23: Wee1n(p~0)@nuclei -> 0  koutw_1
+	_22: 0  -> Wee1c(p~0)@cytoplasm fRate26() #Modifiers(Wee1n, N)
+	R_24: Wee1c(p~0)@cytoplasm -> 0  fRate27() #Modifiers(N)
+	_24: 0  -> Wee1n(p~0)@nuclei fRate28() #Modifiers(Wee1c)
+	R_25: Stgn(p~P)@nuclei -> 0  kouts_1
+	_26: 0  -> Stgc(p~P)@cytoplasm fRate30() #Modifiers(StgPn, N)
+	R_26: Stgc(p~P)@cytoplasm -> 0  fRate31() #Modifiers(N)
+	_28: 0  -> Stgn(p~P)@nuclei fRate32() #Modifiers(StgPc)
+	R_27: Stgn(p~0)@nuclei -> 0  kouts_1
+	_30: 0  -> Stgc(p~0)@cytoplasm fRate34() #Modifiers(Stgn, N)
+	R_28: Stgc(p~0)@cytoplasm -> 0  fRate35() #Modifiers(N)
+	_32: 0  -> Stgn(p~0)@nuclei fRate36() #Modifiers(Stgc)
+	R_29_reactants_0: 0  -> preMPFn()@nuclei -1*(fRate37()) #Modifiers(StgPn)
+	R_29_products_0: 0  -> MPFn()@nuclei fRate37() #Modifiers(StgPn)
+	R_30_reactants_0: 0  -> MPFn()@nuclei -1*(fRate38()) #Modifiers(Wee1n)
+	R_30_products_0: 0  -> preMPFn()@nuclei fRate38() #Modifiers(Wee1n)
+	R_33_reactants_0: 0  -> preMPFn()@nuclei -1*(fRate39()) #Modifiers(FZYa)
+	R_34_reactants_0: 0  -> MPFn()@nuclei -1*(fRate40()) #Modifiers(FZYa)
+	R_37: IEa_1()@nuclei -> 0  fRate41()
+	R_38: 0  <-> IEa_1()@nuclei fRate42(),fRate42m() #Modifiers(MPFn)
+	R_39: 0  <-> FZYa()@nuclei fRate43(),fRate43m() #Modifiers(IEa_1)
+	R_40: FZYa()@nuclei -> 0  fRate44()
+	R_41_reactants_0: 0  -> Wee1n(p~0)@nuclei -1*(fRate45()) #Modifiers(MPFn)
+	R_41_products_0: 0  -> Wee1n(p~P)@nuclei fRate45() #Modifiers(MPFn)
+	R_42: Wee1n(p~P)@nuclei -> Wee1n(p~0)@nuclei fRate46()
+	R_43_reactants_0: 0  -> Stgn(p~0)@nuclei -1*(fRate47()) #Modifiers(MPFn)
+	R_43_products_0: 0  -> Stgn(p~P)@nuclei fRate47() #Modifiers(MPFn)
+	R_44: Stgn(p~P)@nuclei -> Stgn(p~0)@nuclei fRate48()
+	R_45: Stgn(p~0)@nuclei -> 0  kdstg
+	R_46: Stgn(p~P)@nuclei -> 0  kdstg
+	Nuclei_1: 0  -> N()@nuclei 0
+	_50: 0  -> Xm()@cytoplasm fRate52() #Modifiers(N)
+	_51: 0  -> Xp()@cytoplasm fRate53() #Modifiers(Xm)
+end reaction rules
+end model

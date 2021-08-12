@@ -1,0 +1,102 @@
+###
+#@BQM_IS_INSTANCE_OF:['http://identifiers.org/biomodels.db/MODEL1605030001', 'http://identifiers.org/taxonomy/9606', 'http://identifiers.org/ncit/C15261', 'http://identifiers.org/ncit/C14219']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/taxonomy/9606', 'http://identifiers.org/pubmed/28060843']
+#@BQB_IS:['http://identifiers.org/biomodels.db/MODEL1605030001']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/ncit/C15261', 'http://identifiers.org/ncit/C14219']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1605030001', 'http://identifiers.org/biomodels.db/BIOMD0000000872']
+#@creatorEmail:'msharifshohan@ebi.ac.uk'
+#@creatorName:'Sharif Shohan Mohammad Umer'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 7 molecules and 18 reactions. The translated model has 6 molecules and 20 rules'
+###
+begin model
+begin parameters
+	epi 0.5
+	omega 0.001
+	mu 0.048
+	c1 23.0
+	N1 467.0
+	d 0.01
+	beta (23.0) / ((467.0) * (250000.0))
+	s (0.01) * (250000.0) + (1.97002141327623e-07) * (250000.0) * (48000.0)
+	e_rt 0
+	e_pi 0
+	r1_delta 1.000000
+	r6_k1 1.000000
+	r8_k1 1000.000000
+	r9_a 0.010000
+	r10_k1 0.048000
+	r11_b 0.000035
+	r12_a 0.010000
+	r14_k1 0.050000
+	r15_r 0.100000
+	r16_N2 10000.000000
+	r16_p 0.000021
+	r16_phi 1000000.000000
+	r16_psi 0.006700
+	r18_k2 1000.000000
+end parameters
+begin molecule types
+	#^ bmbiol:hasInstance ncit:C97350
+	T()
+	#^ bmbiol:hasInstance ncit:C12543
+	E()
+	#^ bqbiol:hasProperty ncit:C97350
+	I()
+	#^ bmbiol:hasInstance ncit:C12578
+	Y1(Y2~Y2~0)
+	#^ bmbiol:hasInstance ncit:C14219
+	V()
+	#^ bmbiol:hasInstance efo:0004510
+	W()
+end molecule types
+begin seed species
+	V() 2.89056e+28 # 48000.0mol/L * 6.022e23/mol *1.0L #V #s2
+	T() 1.5055e+29 #original 250000.0substance/volume  #T #s4
+	E() 6.022e+21 #original 0.01substance/volume  #E #s16
+	Y1(Y2~0) 6.022e+23 #original 1.0substance/volume  #Y1 #s12
+	I() (1.97002141327623e-07) * (250000.0) * (48000.0) #s3
+end seed species
+begin observables
+	Species V V() #V
+	Species I I() #I
+	Species T T() #T
+	Species W W() #W
+	Species E E() #E
+	Species Y2 Y1(Y2~Y2) #Y2
+	Species Y1 Y1(Y2~0) #Y1
+end observables
+begin functions
+	fRate0() = 1.0*I*N1*(1 - e_pi)
+	fRate2() = T*V*beta*(1 - e_rt)
+	fRate7() = 1000.0*Y1*mu
+	fRate8() = 0.01*E
+	fRate10() = 28571.4285714286*E*Y2*omega/T
+	fRate11() = 0.01*E
+	fRate14() = 0.1*epi
+	fRate15() = 0.0067*W*(0.20833*V - Y1 + 10000.0)/(0.20833*V - Y1 + 1010000.0)
+	fRate16() = Y2*omega
+	fRate17() = 1000.0*Y2*mu
+end functions
+begin reaction rules
+	re1_products_0: 0  -> V() fRate0() #Modifiers(s3)
+	re3: V() -> 0  c1
+	re4_reactants_0: 0  -> T() -1*(fRate2()) #Modifiers(s2)
+	re4_products_0: 0  -> I() fRate2() #Modifiers(s2)
+	re5: 0  -> T() s
+	re7: T() -> 0  d
+	re8: I() -> 0  r6_k1
+	re9: Y1(Y2~0) -> Y1(Y2~Y2) epi
+	re11: 0  -> W() fRate7() #Modifiers(s12)
+	re12: Y1(Y2~0) -> 0  fRate8() #Modifiers(s16)
+	re14: Y1(Y2~Y2) -> 0  r10_k1
+	re15: E() -> 0  fRate10() #Modifiers(s13, s4)
+	re17: Y1(Y2~Y2) -> 0  fRate11() #Modifiers(s16)
+	re18: Y1(Y2~0) -> 0  mu
+	re20: W() -> 0  r14_k1
+	re24: Y1(Y2~Y2) -> Y1(Y2~Y2) + Y1(Y2~Y2) fRate14() #Modifiers(s13)
+	re25_reactants_0: 0  -> Y1(Y2~0) -1*(fRate15()) #Modifiers(s14, s2)
+	re25_products_0: 0  -> Y1(Y2~0) 2.0*fRate15() #Modifiers(s14, s2)
+	re26: E() -> E() + E() fRate16() #Modifiers(s13)
+	Production_of_HPV_due_to_HPV_self_proliferating: 0  -> W() fRate17() #Modifiers(s13)
+end reaction rules
+end model

@@ -1,0 +1,120 @@
+###
+#@BQM_UNKNOWN:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/15725723']
+#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000414']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/pw/PW:0000718', 'http://identifiers.org/go/GO:0042769']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000001006', 'http://identifiers.org/biomodels.db/MODEL2104140001']
+#@creatorEmail:'tiwarik@babraham.ac.uk'
+#@creatorName:'Tiwari Krishna'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 10 molecules and 21 reactions. The translated model has 5 molecules and 21 rules'
+###
+begin model
+begin parameters
+	Kf 8.8
+	Kr 2.5
+	ks53 0.055
+	kDNA 0.18
+	kdDNA 0.017
+	Jdna 1.0
+	vratio 15.0
+	kd53 0.0055
+	ks2 0.0015
+	ks2_0 0.006
+	kd2 0.01
+	kd2_ 0.01
+	kph 0.05
+	kdeph 6.0
+	kin 14.0
+	kout 0.5
+	kd53_0 8.0
+	m 3.0
+	Js 1.2
+	Jdam 0.2
+	Jph 0.01
+	ampl 1.0
+	t_on 10.0
+	t_off 20.0
+	ModelValue_6 (15.0)
+	step 0
+	MDM2_total_Cyt 9.03841980000001e+22 #original 0.150090000000001substance/volume
+	MDM2_total 9.03841980000001e+22 #original 0.150090000000001substance/volume
+end parameters
+begin compartments
+	#volume units: volume
+	Cyt 3 1.0
+	Nuc 3 1.0
+end compartments
+begin molecule types
+	#^ bqbiol:isVersionOf uniprot:P04637
+	p53_total()
+	#^ bqbiol:isVersionOf uniprot:Q00987
+	#^ bqbiol:hasProperty bao:0002007
+	Mdm2_p_nuc()
+	#^ bqbiol:isVersionOf ncit:C16507
+	DNA_damage()
+	#^ bqbiol:is uniprot:P04637
+	p53(_ub~_UB~0,_ub2~_UB~0)
+	#^ bqbiol:is uniprot:Q00987
+	Mdm2_cyt(p_~P_~0)
+end molecule types
+begin seed species
+	@Nuc:p53_total() 4.2864596e+22 # 0.07118mol/L * 6.022e23/mol *1.0L #p53_total #p53_total
+	@Nuc:p53(_ub~_UB,_ub2~0) 1.4790032e+22 #original 0.02456substance/volume #p53_ub #p53_ub
+	@Nuc:p53(_ub~_UB,_ub2~_UB) 4.1106172e+21 #original 0.006826substance/volume #p53_ub_ub #p53_ub_ub
+	@Cyt:Mdm2_cyt(p_~0) 6.991542e+22 #original 0.1161substance/volume #Mdm2_cyt #Mdm2_cyt
+	@Cyt:Mdm2_cyt(p_~P_) 7.148114000000001e+21 #original 0.01187substance/volume #Mdm2_p_cyt #Mdm2_p_cyt
+	@Nuc:Mdm2_p_nuc() 1.998099600000012e+23 #original 0.331800000000002substance/volume #Mdm2_p_nuc #Mdm2_p_nuc
+	@Nuc:p53(_ub~0,_ub2~0) 2.39639468e+22 #original 0.039794substance/volume #p53 #p53
+end seed species
+begin observables
+	Species DNA_damage_Nuc @Nuc:DNA_damage() #DNA_damage
+	Species p53_total_Nuc @Nuc:p53_total() #p53_total
+	Species p53_ub_Nuc @Nuc:p53(_ub~_UB,_ub2~0) #p53_ub
+	Species p53_ub_ub_Nuc @Nuc:p53(_ub~_UB,_ub2~_UB) #p53_ub_ub
+	Species Mdm2_cyt_Cyt @Cyt:Mdm2_cyt(p_~0) #Mdm2_cyt
+	Species Mdm2_p_cyt_Cyt @Cyt:Mdm2_cyt(p_~P_) #Mdm2_p_cyt
+	Species Mdm2_p_nuc_Nuc @Nuc:Mdm2_p_nuc() #Mdm2_p_nuc
+	Species p53_Nuc @Nuc:p53(_ub~0,_ub2~0) #p53
+end observables
+begin functions
+	MDM2_total_ar() = Mdm2_cyt_Cyt + Mdm2_p_cyt_Cyt + Mdm2_p_nuc_Nuc/ModelValue_6
+	p53_ar() = p53_total_Nuc - p53_ub_Nuc - p53_ub_ub_Nuc
+	IR_ar() = ampl*step
+	kd2_0() = DNA_damage_Nuc*kd2_/(DNA_damage_Nuc + Jdam) + kd2
+	fRate0() = IR_Nuc*kDNA
+	fRate1() = kdDNA*p53_total_Nuc/(DNA_damage_Nuc + Jdna)
+	fRate4() = Kf*Mdm2_p_nuc_Nuc*p53_Nuc
+	fRate5() = Kf*Mdm2_p_nuc_Nuc
+	fRate7() = p53_ub_ub_Nuc*(kd53 + kd53_0)
+	fRate10() = (ks2*(Js^m + p53_total_Nuc^m) + ks2_0*p53_total_Nuc^m)/(Js^m + p53_total_Nuc^m)
+	fRate11() = kph/(Jph + p53_total_Nuc)
+	fRate14() = kout*vratio
+	fRate18() = kd53_0*p53_ub_ub_Nuc
+	fRate19() = Mdm2_p_nuc_Nuc*kout
+	fRate20() = Mdm2_p_cyt_Cyt*kin*vratio
+end functions
+begin reaction rules
+	DNA_Damage: 0  -> DNA_damage()@Nuc fRate0() #Modifiers(IR)
+	DNA_Repair: DNA_damage()@Nuc -> 0  fRate1() #Modifiers(p53_total)
+	p53_total_production: 0  -> p53_total()@Nuc ks53
+	p53_total_degradation: p53_total()@Nuc -> 0  kd53
+	p53_ubiquitination_1: 0  -> p53(_ub~_UB,_ub2~0)@Nuc fRate4() #Modifiers(Mdm2_p_nuc, p53)
+	p53_ubiquitination_2: p53(_ub~_UB,_ub2~0)@Nuc -> p53(_ub~_UB,_ub2~_UB)@Nuc fRate5() #Modifiers(Mdm2_p_nuc)
+	p53_ub_degradation: p53(_ub~_UB,_ub2~0)@Nuc -> 0  kd53
+	p53_ub_ub_degradation_reactants_0: 0  -> p53(_ub~_UB,_ub2~_UB)@Nuc -1*(fRate7())
+	p53_deubiquitination_1: p53(_ub~_UB,_ub2~0)@Nuc -> 0  Kr
+	p53_deubiquitination_2: p53(_ub~_UB,_ub2~_UB)@Nuc -> p53(_ub~_UB,_ub2~0)@Nuc Kr
+	Mdm2_cyt_production: 0  -> Mdm2_cyt(p_~0)@Cyt fRate10() #Modifiers(p53_total)
+	Mdm2_cyt_phosphorylation: Mdm2_cyt(p_~0)@Cyt -> Mdm2_cyt(p_~P_)@Cyt fRate11() #Modifiers(p53_total)
+	Mdm2_cyt_degradation: Mdm2_cyt(p_~0)@Cyt -> 0  kd2
+	Mdm2_p_cyt_degradation: Mdm2_cyt(p_~P_)@Cyt -> 0  kd2
+	Mdm2_p_nuc_translocation_out: Mdm2_p_nuc()@Nuc -> 0  fRate14()
+	Mdm2_p_cyt_dephosphorylation: Mdm2_cyt(p_~P_)@Cyt -> Mdm2_cyt(p_~0)@Cyt kdeph
+	Mdm2_p_cyt_translocation_out: Mdm2_cyt(p_~P_)@Cyt -> 0  kin
+	Mdm2_p_nuc_degradation: Mdm2_p_nuc()@Nuc -> 0  kd2_0
+	p53_total_degradation_2_reactants_0: 0  -> p53_total()@Nuc -1*(fRate18()) #Modifiers(p53_ub_ub)
+	Mdm2_p_cyt_translocation_in: 0  -> Mdm2_cyt(p_~P_)@Cyt fRate19() #Modifiers(Mdm2_p_nuc)
+	Mdm2_p_nuc_translocation_in: 0  -> Mdm2_p_nuc()@Nuc fRate20() #Modifiers(Mdm2_p_cyt)
+end reaction rules
+end model

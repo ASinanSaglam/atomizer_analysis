@@ -1,0 +1,73 @@
+###
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/ncit/C3439', 'http://identifiers.org/efo/0005222']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606', 'http://identifiers.org/taxonomy/8782', 'http://identifiers.org/taxonomy/329376']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/doi/10.1016/j.idm.2018.03.004']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000716', 'http://identifiers.org/biomodels.db/MODEL1808280009']
+#@creatorEmail:'sarubini.kananathan@hotmail.co.uk'
+#@creatorName:'Kananathan Sarubini'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 4 molecules and 10 reactions. The translated model has 2 molecules and 10 rules'
+###
+begin model
+begin parameters
+	H_b 180000.0
+	H_bh 120000.0
+	H_v 850.0
+	gamma_b 0.003
+	ModelValue_1 (171977.0)
+	p 0
+	phi 0
+	c 0
+	q 0
+end parameters
+begin compartments
+	#volume units: volume
+	compartment 3 1.0 #Bird Population
+	Human_Population 3 1.0 #Human Population
+end compartments
+begin molecule types
+	#^ bqbiol:isVersionOf ido:0000511
+	#^ bqbiol:hasTaxon taxonomy:9606
+	InfectedHuman__I_a__(Susceptiblehuman__S_h__~Susceptiblehuman__S_h__~0)
+	#^ bqbiol:isVersionOf ido:0000511
+	#^ bqbiol:hasTaxon taxonomy:8782
+	Infectedbird__I_b__(Susceptiblebird__S_b__~Susceptiblebird__S_b__~0)
+end molecule types
+begin seed species
+	@compartment:Infectedbird__I_b__(Susceptiblebird__S_b__~Susceptiblebird__S_b__) 1.4751250320000002e+26 # (244956.0 * 0.001)mol/L * 6.022e23/mol *1.0L #Susceptiblebird__S_b__ #S_b
+	@compartment:Infectedbird__I_b__(Susceptiblebird__S_b__~0) 2.1971267e+25 #original 36485.0substance/volume #Infectedbird__I_b__ #I_b
+	@Human_Population:InfectedHuman__I_a__(Susceptiblehuman__S_h__~Susceptiblehuman__S_h__) 1.0356454940000001e+26 #original 171977.0substance/volume #Susceptiblehuman__S_h__ #S_h
+end seed species
+begin observables
+	Species Susceptiblebird__S_b___compartment @compartment:Infectedbird__I_b__(Susceptiblebird__S_b__~Susceptiblebird__S_b__) #Susceptible bird (S_b)
+	Species Infectedbird__I_b___compartment @compartment:Infectedbird__I_b__(Susceptiblebird__S_b__~0) #Infected bird (I_b)
+	Species Susceptiblehuman__S_h___Human_Population @Human_Population:InfectedHuman__I_a__(Susceptiblehuman__S_h__~Susceptiblehuman__S_h__) #Susceptible human (S_h)
+	Species InfectedHuman__I_a___Human_Population @Human_Population:InfectedHuman__I_a__(Susceptiblehuman__S_h__~0) #Infected Human (I_a)
+end observables
+begin functions
+	delta_b() = 22841/6587955
+	d() = 6.0882800608828e-11
+	beta_v() = 9137/5270364
+	beta_b() = 9137/2635182
+	beta_bh() = 1.62354134956875e-10
+	mu_h() = 3.95914165808853e-5
+	mu_b() = 1/730
+	LAMBDA_h() = 6.49315068493151e-5*ModelValue_1
+	LAMBDA_b() = 412/73
+	Nh() = InfectedHuman__I_a___Human_Population + Susceptiblehuman__S_h___Human_Population
+	Nb() = Infectedbird__I_b___compartment + Susceptiblebird__S_b___compartment
+	fRate2() = Infectedbird__I_b___compartment*beta_b
+	fRate7() = Infectedbird__I_b___compartment*beta_bh
+end functions
+begin reaction rules
+	reaction_1: 0  -> Infectedbird__I_b__(Susceptiblebird__S_b__~Susceptiblebird__S_b__)@compartment LAMBDA_b
+	reaction_2: Infectedbird__I_b__(Susceptiblebird__S_b__~Susceptiblebird__S_b__)@compartment -> 0  mu_b
+	reaction_3: Infectedbird__I_b__(Susceptiblebird__S_b__~Susceptiblebird__S_b__)@compartment -> Infectedbird__I_b__(Susceptiblebird__S_b__~0)@compartment fRate2() #Modifiers(I_b)
+	reaction_4: Infectedbird__I_b__(Susceptiblebird__S_b__~0)@compartment -> 0  delta_b
+	reaction_5: Infectedbird__I_b__(Susceptiblebird__S_b__~0)@compartment -> 0  mu_b
+	reaction_6: 0  -> InfectedHuman__I_a__(Susceptiblehuman__S_h__~Susceptiblehuman__S_h__)@Human_Population LAMBDA_h
+	reaction_7: InfectedHuman__I_a__(Susceptiblehuman__S_h__~Susceptiblehuman__S_h__)@Human_Population -> 0  mu_h
+	reaction_8: InfectedHuman__I_a__(Susceptiblehuman__S_h__~Susceptiblehuman__S_h__)@Human_Population -> InfectedHuman__I_a__(Susceptiblehuman__S_h__~0)@Human_Population fRate7() #Modifiers(I_b)
+	reaction_9: InfectedHuman__I_a__(Susceptiblehuman__S_h__~0)@Human_Population -> 0  d
+	reaction_10: InfectedHuman__I_a__(Susceptiblehuman__S_h__~0)@Human_Population -> 0  mu_h
+end reaction rules
+end model

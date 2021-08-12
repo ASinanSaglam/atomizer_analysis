@@ -1,0 +1,51 @@
+###
+#@BQB_HAS_PART:['http://identifiers.org/efo/0001068']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/53533']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/doi/10.1109/SECON.2015.7132968']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/omit/0009103', 'http://identifiers.org/ncit/C17214', 'http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/ncit/C34797', 'http://identifiers.org/ncit/C70833']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL2003130001', 'http://identifiers.org/biomodels.db/BIOMD0000000922']
+#@creatorEmail:'ahmad.azd@hotmail.com'
+#@creatorName:'Zyoud Ahmad'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 3 molecules and 3 reactions. The translated model has 3 molecules and 3 rules'
+###
+begin model
+begin parameters
+	Ar 20.0
+	ep 30.0
+	Te 0.361
+	Me 0.05
+	K0 0.0002
+	Tl 0.134
+	Tp 0.342
+	Mp 0.0025
+	Ml 0.0501
+end parameters
+begin molecule types
+	#^ bqbiol:hasProperty obo:MIRO_30000050
+	PopulationofPupae()
+	#^ bqbiol:hasProperty obo:MIRO_30000028
+	PopulationofLarvae()
+	#^ bqbiol:hasProperty obo:MIRO_30000049
+	PopulationofEggs()
+end molecule types
+begin seed species
+	PopulationofEggs() 6.022e+24 # (10000.0 * 0.001)mol/L * 6.022e23/mol *1.0L #PopulationofEggs #Population_of_Eggs
+	PopulationofLarvae() 3.011e+24 #original 5000.0substance/volume  #PopulationofLarvae #Population_of_Larvae
+	PopulationofPupae() 1.8066e+24 #original 3000.0substance/volume  #PopulationofPupae #Population_of_Pupae
+end seed species
+begin observables
+	Species PopulationofEggs PopulationofEggs() #Population of Eggs
+	Species PopulationofLarvae PopulationofLarvae() #Population of Larvae
+	Species PopulationofPupae PopulationofPupae() #Population of Pupae
+end observables
+begin functions
+	fRate0() = 1.0*Ar*ep - 1.0*PopulationofEggs*(Me + Te)
+	fRate1() = -1.0*K0*PopulationofLarvae^2 + 1.0*PopulationofEggs*Te - 1.0*PopulationofLarvae*(Ml + Tl)
+	fRate2() = 1.0*PopulationofLarvae*Tl - 1.0*PopulationofPupae*(Mp + Tp)
+end functions
+begin reaction rules
+	reaction_for_E_products_0: 0  -> PopulationofEggs() fRate0()
+	reaction_for_L_products_0: 0  -> PopulationofLarvae() fRate1() #Modifiers(Population_of_Eggs)
+	reaction_for_P_products_0: 0  -> PopulationofPupae() fRate2() #Modifiers(Population_of_Larvae)
+end reaction rules
+end model

@@ -1,0 +1,79 @@
+###
+#@BQM_UNKNOWN:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/17245126']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/pw/PW:0000718', 'http://identifiers.org/pw/PW:0001360']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000001007', 'http://identifiers.org/biomodels.db/MODEL2105260001']
+#@creatorEmail:'ktiwari@ebi.ac.uk'
+#@creatorName:'Tiwari Krishna'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 4 molecules and 6 reactions. The translated model has 2 molecules and 6 rules'
+###
+begin model
+begin parameters
+	ks53 0.6
+	Js53 0.45
+	kd53 0.27
+	n 4.0
+	kin 0.41
+	kout 0.05
+	kd2 0.05
+	ks2 0.15
+	Js2 0.92
+	m 4.0
+	Q 0.83
+	J1 0.1
+	J2 0.1
+	krepair 0.08
+	ks53_ 2.56
+	kd53_ 8.25
+	ks2_ 4.23
+	kd2_ 0.79
+	dd 2.0
+	Tdam 50.0
+	Dam0 2.0
+	ModelValue_27 (50.0)
+end parameters
+begin compartments
+	#volume units: volume
+	cyt 3 1.0
+	nuc 3 1.0
+end compartments
+begin molecule types
+	MDM2(cyt~CYT~0,nuc~NUC~0)
+	#^ bqbiol:is uniprot:P04637
+	p53()
+end molecule types
+begin seed species
+	@nuc:p53() 1.120092e+23 # 0.186mol/L * 6.022e23/mol *1.0L #p53 #p53
+	@cyt:MDM2(cyt~CYT,nuc~0) 9.51476e+22 #original 0.158substance/volume #MDM2cyt #MDM2cyt
+	@nuc:MDM2(cyt~0,nuc~NUC) 3.896234000000012e+23 #original 0.647000000000002substance/volume #MDM2nuc #MDM2nuc
+end seed species
+begin observables
+	Species p53_nuc @nuc:p53() #p53
+	Species MDM2cyt_cyt @cyt:MDM2(cyt~CYT,nuc~0) #MDM2cyt
+	Species MDM2nuc_nuc @nuc:MDM2(cyt~0,nuc~NUC) #MDM2nuc
+end observables
+begin functions
+	r() = J2/p53_nuc
+	v() = Q
+	u() = MDM2nuc_nuc
+	q() = J1/p53_nuc
+	G_u_v_q_r() = 2*r*u/(q*v + r*u - u + v + (-4*r*u*(-u + v) + (q*v + r*u - u + v)^2)^0.5)
+	xyz() =   if(( ( 0 )   >= ( Dam0-krepair*(-Tdam+time()) )   ),( ( 0 )   ),( ( Dam0-krepair*(-Tdam+time()) )   )) 
+	heav_x() =  if((x<0),(0),(if((x>0),(1),(0))))
+	DNAdamage_ar() = heav_x*xyz
+	kd2_0() = kd2*(DNAdamage_ar + 1)
+	kd53_0() = G_u_v_q_r*kd53_ + kd53
+	x() = -ModelValue_27 + time()
+	fRate0() = (MDM2cyt_cyt^n*ks53_ + ks53*(Js53^n + MDM2cyt_cyt^n))/(Js53^n + MDM2cyt_cyt^n)
+	fRate2() = (ks2*(Js2^m + p53_nuc^m) + ks2_*p53_nuc^m)/(Js2^m + p53_nuc^m)
+end functions
+begin reaction rules
+	p53_production: 0  -> p53()@nuc fRate0() #Modifiers(MDM2cyt)
+	p53_degradation: p53()@nuc -> 0  kd53_0
+	MDM2cyt_production: 0  -> MDM2(cyt~CYT,nuc~0)@cyt fRate2() #Modifiers(p53)
+	MDM2cyt_translocation: MDM2(cyt~CYT,nuc~0)@cyt <-> MDM2(cyt~0,nuc~NUC)@nuc kin,kout
+	MDM2cyt_degradation: MDM2(cyt~CYT,nuc~0)@cyt -> 0  kd2_
+	MDM2nuc_degradation: MDM2(cyt~0,nuc~NUC)@nuc -> 0  kd2_0
+end reaction rules
+end model

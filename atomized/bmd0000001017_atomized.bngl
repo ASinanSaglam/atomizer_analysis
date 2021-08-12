@@ -1,0 +1,97 @@
+###
+#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000131']
+#@BQB_IS_PROPERTY_OF:['http://identifiers.org/go/GO:0045087', 'http://identifiers.org/pw/PW:0000505']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/32062771']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/go/GO:0030451']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000001017', 'http://identifiers.org/biomodels.db/MODEL2107190001']
+#@creatorEmail:'eblc2@cam.ac.uk'
+#@creatorName:'Chen Emilia'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 13 molecules and 15 reactions. The translated model has 6 molecules and 16 rules'
+###
+begin model
+begin parameters
+	k1 0.0001 #units:unit_0
+	k2 107.0 #units:unit_0
+	k3 5.86 #units:unit_1
+	k4 0.816 #units:unit_2
+	k5 6.9 #units:unit_0
+	k6 0.46 #units:unit_0
+	k7 130.0 #units:unit_0
+	k8 0.72 #units:unit_1
+	k9 0.33 #units:unit_0
+	k10 0.1068 #units:unit_0
+	k15 312.0 #units:unit_2
+	k16 195.0 #units:unit_0
+	k19 78.0 #units:unit_0
+	k20 0.25 #units:unit_1
+	k21 0.832 #units:unit_0
+	k25 312.0 #units:unit_2
+	ks1 0.00316 #units:unit_3
+	ks2 0.000789 #units:unit_3
+	d1 0.000392 #units:unit_0
+	d2 0.000333 #units:unit_0
+	ks3 0.00067 #units:unit_3
+	d3 0.00022 #units:unit_0
+	Factor_I 2.4088e+17 #original 0.4substance/volume
+	Factor_D 4.8176e+16 #original 0.08substance/volume
+end parameters
+begin molecule types
+	#^ bqbiol:hasPart pr:PR:000005374, pr:PR:000019178
+	#^ bqbiol:hasProperty pato:PATO:0000610
+	C3bB_open()
+	#^ bqbiol:isPartOf pr:PR:000004900
+	#^ bqbiol:isVersionOf omit:0004486, pr:PR:000019178
+	C3b(bb,factor_b,factor_h,i~I~0)
+	#^ bqbiol:isVersionOf pr:PR:000005378
+	Factor_H(c3b)
+	#^ bqbiol:isVersionOf pr:PR:000005374
+	Factor_B(c3b)
+	#^ bqbiol:isVersionOf pr:PR:000004900
+	C3()
+	#^ bqbiol:isPartOf pr:PR:000005374
+	#^ bqbiol:isVersionOf pr:PR:000019308
+	Bb(c3b)
+end molecule types
+begin seed species
+	C3() 3.6132e+18 # (6.0 * 1e-06)mol/L * 6.022e23/mol *1.0L #C3 #C3
+	Factor_H(c3b) 1.8066e+18 #original 3.0substance/volume  #Factor_H #Factor_H
+	Factor_B(c3b) 1.2044e+18 #original 2.0substance/volume  #Factor_B #Factor_B
+end seed species
+begin observables
+	Species C3 C3() #C3
+	Species C3b C3b(bb,factor_b,factor_h,i~0) #C3b
+	Species C3bB_closed C3b(bb,factor_b!130,factor_h,i~0).Factor_B(c3b!130) #C3bB_closed
+	Species C3bB_open C3bB_open() #C3bB_open
+	Species C3bBb C3b(bb!129,factor_b,factor_h,i~0).Bb(c3b!129) #C3bBb
+	Species C3bBbH C3b(bb!129,factor_b,factor_h!131,i~0).Bb(c3b!129).Factor_H(c3b!131) #C3bBbH
+	Species Bb Bb(c3b) #Bb
+	Species Factor_H Factor_H(c3b) #Factor_H
+	Species Factor_B Factor_B(c3b) #Factor_B
+	Species C3bH C3b(bb,factor_b,factor_h!131,i~0).Factor_H(c3b!131) #C3bH
+	Species iC3b C3b(bb,factor_b,factor_h,i~I) #iC3b
+end observables
+begin functions
+	fRate0() = 1.0*C3*C3bBb*k2/(C3 + k3) + 1.0*C3*k1
+	fRate3() = Factor_D*k7/(C3bB_open + k8)
+	fRate8() = Factor_I*k19/(C3bH + k20)
+end functions
+begin reaction rules
+	C3_hydrolysis_reactants_0: 0  -> C3() -1*(fRate0()) #Modifiers(C3bBb)
+	C3_hydrolysis_products_0: 0  -> C3b(bb,factor_b,factor_h,i~0) fRate0() #Modifiers(C3bBb)
+	C3bB_formation: C3b(bb,factor_b,factor_h,i~0) + Factor_B(c3b) <-> C3b(bb,factor_b!130,factor_h,i~0).Factor_B(c3b!130) k4,k5
+	C3bB_conformational_change: C3b(bb,factor_b!130,factor_h,i~0).Factor_B(c3b!130) <-> C3bB_open() k9,k10
+	C3_convertase_formation: C3bB_open() -> C3b(bb!129,factor_b,factor_h,i~0).Bb(c3b!129) fRate3() #Modifiers(Factor_D)
+	Factor_H_binding_C3_convertase: C3b(bb!129,factor_b,factor_h,i~0).Bb(c3b!129) + Factor_H(c3b) <-> C3b(bb!129,factor_b,factor_h!131,i~0).Bb(c3b!129).Factor_H(c3b!131) k25,k16
+	Factor_H_induced__C3_convertase_decay: C3b(bb!129,factor_b,factor_h!131,i~0).Bb(c3b!129).Factor_H(c3b!131) -> C3b(bb,factor_b,factor_h,i~0) + Bb(c3b) + Factor_H(c3b) k21
+	C3_convertase_decay: C3b(bb!129,factor_b,factor_h,i~0).Bb(c3b!129) -> C3b(bb,factor_b,factor_h,i~0) + Bb(c3b) k6
+	Factor_H_binding_C3b: C3b(bb,factor_b,factor_h,i~0) + Factor_H(c3b) <-> C3b(bb,factor_b,factor_h!131,i~0).Factor_H(c3b!131) k15,k16
+	C3b_inactivation: C3b(bb,factor_b,factor_h!131,i~0).Factor_H(c3b!131) -> C3b(bb,factor_b,factor_h,i~I) + Factor_H(c3b) fRate8() #Modifiers(Factor_I)
+	C3_synthesis: 0  -> C3() ks1
+	C3_degradation: C3() -> 0  d1
+	Factor_B_synthesis: 0  -> Factor_B(c3b) ks2
+	Factor_B_degradation: Factor_B(c3b) -> 0  d2
+	Factor_H_synthesis: 0  -> Factor_H(c3b) ks3
+	Factor_H_degradation: Factor_H(c3b) -> 0  d3
+end reaction rules
+end model

@@ -1,0 +1,62 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1501220000', 'http://identifiers.org/biomodels.db/BIOMD0000000591']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/25333863']
+#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0001516']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10090']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0038162', 'http://identifiers.org/go/GO:0042522']
+#@creatorEmail:'l.adlung@dkfz-heidelberg.de'
+#@creatorName:'Adlung Lorenz'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 8 molecules and 9 reactions. The translated model has 2 molecules and 9 rules'
+###
+begin model
+begin parameters
+	Epo_degradation_BaF3 0.0269765368088175
+	k_exp_hetero 1.00097114635938e-05
+	k_exp_homo 0.0061723799618614
+	k_imp_hetero 0.0163701561812467
+	k_imp_homo 96807.6817909446
+	k_phos 15767.6469913504
+	ratio 0.693
+end parameters
+begin compartments
+	#volume units: L
+	cyt 3 1.4
+	nuc 3 0.45
+end compartments
+begin molecule types
+	#^ bqbiol:isVersionOf uniprot:P42230
+	STAT5A(nuc~NUC~0,stat5a,stat5b)
+	#^ bqbiol:isVersionOf uniprot:P42232
+	STAT5B(nuc~NUC~0,stat5a,stat5b)
+end molecule types
+begin seed species
+	@cyt:STAT5A(nuc~0,stat5a,stat5b) 207.6 * (0.693) #STAT5A
+	@cyt:STAT5B(nuc~0,stat5a,stat5b) 207.6 -207.6 * (0.693) #STAT5B
+end seed species
+begin observables
+	Species STAT5A_cyt @cyt:STAT5A(nuc~0,stat5a,stat5b) #STAT5A
+	Species STAT5B_cyt @cyt:STAT5B(nuc~0,stat5a,stat5b) #STAT5B
+	Species pApB_cyt @cyt:STAT5B(nuc~0,stat5a!149,stat5b).STAT5A(nuc~0,stat5a,stat5b!149) #pApB
+	Species pApA_cyt @cyt:STAT5A(nuc~0,stat5a!148,stat5b).STAT5A(nuc~0,stat5a!148,stat5b) #pApA
+	Species pBpB_cyt @cyt:STAT5B(nuc~0,stat5a,stat5b!150).STAT5B(nuc~0,stat5a,stat5b!150) #pBpB
+	Species nucpApA_nuc @nuc:STAT5A(nuc~0,stat5a!148,stat5b).STAT5A(nuc~NUC,stat5a!148,stat5b) #nucpApA
+	Species nucpApB_nuc @nuc:STAT5B(nuc~0,stat5a!149,stat5b).STAT5A(nuc~NUC,stat5a,stat5b!149) #nucpApB
+	Species nucpBpB_nuc @nuc:STAT5B(nuc~0,stat5a,stat5b!150).STAT5B(nuc~NUC,stat5a,stat5b!150) #nucpBpB
+end observables
+begin functions
+	fRate0() = 1.25e-7*k_phos*exp(-Epo_degradation_BaF3*time())
+	fRate1() = 1.25e-7*k_phos*exp(-Epo_degradation_BaF3*time())
+	fRate2() = 1.25e-7*k_phos*exp(-Epo_degradation_BaF3*time())
+end functions
+begin reaction rules
+	reaction1: STAT5A(nuc~0,stat5a,stat5b)@cyt + STAT5A(nuc~0,stat5a,stat5b)@cyt -> STAT5A(nuc~0,stat5a!148,stat5b)@cyt.STAT5A(nuc~0,stat5a!148,stat5b)@cyt fRate0() #Modifiers(STAT5A)
+	reaction2: STAT5A(nuc~0,stat5a,stat5b)@cyt + STAT5B(nuc~0,stat5a,stat5b)@cyt -> STAT5B(nuc~0,stat5a!149,stat5b)@cyt.STAT5A(nuc~0,stat5a,stat5b!149)@cyt fRate1() #Modifiers(STAT5A, STAT5B)
+	reaction3: STAT5B(nuc~0,stat5a,stat5b)@cyt + STAT5B(nuc~0,stat5a,stat5b)@cyt -> STAT5B(nuc~0,stat5a,stat5b!150)@cyt.STAT5B(nuc~0,stat5a,stat5b!150)@cyt fRate2() #Modifiers(STAT5B)
+	reaction4: STAT5A(nuc~0,stat5a!148,stat5b)@cyt.STAT5A(nuc~0,stat5a!148,stat5b)@cyt -> STAT5A(nuc~0,stat5a!148,stat5b)@nuc.STAT5A(nuc~NUC,stat5a!148,stat5b)@nuc k_imp_homo #Modifiers(pApA)
+	reaction5: STAT5B(nuc~0,stat5a!149,stat5b)@cyt.STAT5A(nuc~0,stat5a,stat5b!149)@cyt -> STAT5B(nuc~0,stat5a!149,stat5b)@nuc.STAT5A(nuc~NUC,stat5a,stat5b!149)@nuc k_imp_hetero #Modifiers(pApB)
+	reaction6: STAT5B(nuc~0,stat5a,stat5b!150)@cyt.STAT5B(nuc~0,stat5a,stat5b!150)@cyt -> STAT5B(nuc~0,stat5a,stat5b!150)@nuc.STAT5B(nuc~NUC,stat5a,stat5b!150)@nuc k_imp_homo #Modifiers(pBpB)
+	reaction7: STAT5A(nuc~0,stat5a!148,stat5b)@nuc.STAT5A(nuc~NUC,stat5a!148,stat5b)@nuc -> STAT5A(nuc~0,stat5a,stat5b)@cyt + STAT5A(nuc~0,stat5a,stat5b)@cyt k_exp_homo #Modifiers(nucpApA)
+	reaction8: STAT5B(nuc~0,stat5a!149,stat5b)@nuc.STAT5A(nuc~NUC,stat5a,stat5b!149)@nuc -> STAT5A(nuc~0,stat5a,stat5b)@cyt + STAT5B(nuc~0,stat5a,stat5b)@cyt k_exp_hetero #Modifiers(nucpApB)
+	reaction9: STAT5B(nuc~0,stat5a,stat5b!150)@nuc.STAT5B(nuc~NUC,stat5a,stat5b!150)@nuc -> STAT5B(nuc~0,stat5a,stat5b)@cyt + STAT5B(nuc~0,stat5a,stat5b)@cyt k_exp_homo #Modifiers(nucpBpB)
+end reaction rules
+end model

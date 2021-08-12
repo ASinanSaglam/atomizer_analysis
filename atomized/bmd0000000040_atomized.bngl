@@ -1,0 +1,47 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000040', 'http://identifiers.org/biomodels.db/MODEL6622000424']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/doi/10.1063/1.1681288']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/131567']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0007622']
+#@creatorEmail:'lenov@ebi.ac.uk'
+#@creatorName:'Le Novère Nicolas'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 5 molecules and 5 reactions. The translated model has 4 molecules and 5 rules'
+###
+begin model
+begin parameters
+	f 1.0
+	r1_k1 1.340000
+	r2_k2 1600000000.000000
+	r3_k3 8000.000000
+	r4_k4 40000000.000000
+	r5_k5 1.000000
+end parameters
+begin molecule types
+	HOBr()
+	HBrO2()
+	#^ bqbiol:is chebi:CHEBI:15858
+	Br_(Ce4pl~Ce4pl~0)
+	#^ bqbiol:is chebi:CHEBI:29223
+	BrO3_()
+end molecule types
+begin seed species
+	Br_(Ce4pl~0) 6.022e+16 # 1e-07mol/L * 6.022e23/mol *1.0L #Br_ #Br
+	$BrO3_() 3.6132e+22 #original 0.06mol/L  #BrO3_ #BrO3
+	Br_(Ce4pl~Ce4pl) 3.0110000000000005e+22 #original 0.05mol/L  #Ce4pl #Ce
+	HBrO2() 30110000000000.004 #original 5e-11mol/L  #HBrO2 #HBrO2
+end seed species
+begin observables
+	Species Br_ Br_(Ce4pl~0) #Br-
+	Species BrO3_ BrO3_() #BrO3-
+	Species Ce4pl Br_(Ce4pl~Ce4pl) #Ce4+
+	Species HBrO2 HBrO2() #HBrO2
+	Species HOBr HOBr() #HOBr
+end observables
+begin reaction rules
+	Reaction1: Br_(Ce4pl~0) + BrO3_() -> HBrO2() + HOBr() r1_k1
+	Reaction2: Br_(Ce4pl~0) + HBrO2() -> HOBr() + HOBr() r2_k2
+	Reaction3: BrO3_() + HBrO2() -> Br_(Ce4pl~Ce4pl) + HBrO2() + HBrO2() r3_k3
+	Reaction4: HBrO2() + HBrO2() -> BrO3_() + HOBr() r4_k4
+	Reaction5: Br_(Ce4pl~Ce4pl) -> Br_(Ce4pl~0) r5_k5
+end reaction rules
+end model

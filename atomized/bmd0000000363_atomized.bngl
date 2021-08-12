@@ -1,0 +1,36 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000363', 'http://identifiers.org/biomodels.db/MODEL1108260004']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/20435402']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/17726029']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0007596']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/2759']
+#@creatorEmail:'schubert@ebi.ac.uk'
+#@creatorName:'Schubert Michael'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 4 molecules and 4 reactions. The translated model has 1 molecules and 4 rules'
+###
+begin model
+begin parameters
+	r1_k1 0.005000
+	r2_k1 0.010000
+	r3_k1 0.000010
+	r4_k1 0.000025
+end parameters
+begin molecule types
+	M(II~II~0,IIa~IIa~0,P2~P2~0)
+end molecule types
+begin seed species
+	M(II~II,IIa~0,P2~0) 6.022e+17 # (1.0 * 1e-06)mol/L * 6.022e23/mol *1.0L #II #II
+end seed species
+begin observables
+	Species II M(II~II,IIa~0,P2~0) #II
+	Species M M(II~0,IIa~0,P2~0) #M
+	Species IIa M(II~0,IIa~IIa,P2~0) #IIa
+	Species P2 M(II~0,IIa~0,P2~P2) #P2
+end observables
+begin reaction rules
+	r1: M(II~II,IIa~0,P2~0) -> M(II~0,IIa~0,P2~0) r1_k1
+	r2: M(II~0,IIa~0,P2~0) -> M(II~0,IIa~IIa,P2~0) r2_k1
+	r3: M(II~II,IIa~0,P2~0) -> M(II~0,IIa~0,P2~P2) r3_k1
+	r4: M(II~0,IIa~0,P2~P2) -> M(II~0,IIa~IIa,P2~0) r4_k1
+end reaction rules
+end model

@@ -1,0 +1,99 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL6622188656', 'http://identifiers.org/biomodels.db/BIOMD0000000041']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/doi/10.1038/npre.2007.1317.1']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/10751324']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0046034', 'http://identifiers.org/go/GO:0006600']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9984']
+#@creatorEmail:'lenov@ebi.ac.uk'
+#@creatorName:'Le Novère Nicolas'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 10 molecules and 9 reactions. The translated model has 4 molecules and 9 rules'
+###
+begin model
+begin parameters
+	r1_V_1 4600.000000
+	r1_Ka_1 800.000000
+	r1_Kb_1 20.000000
+	r2_Vf_2 2658.000000
+	r2_Kia_2 750.000000
+	r2_Kb_2 5200.000000
+	r2_Vb_2 11160.000000
+	r2_Kic_2 204.800000
+	r2_Kd_2 500.000000
+	r2_Kib_2 28800.000000
+	r2_Kid_2 1600.000000
+	r3_Vf_3 6966.000000
+	r3_Kia_3 900.000000
+	r3_Kb_3 15500.000000
+	r3_Vb_3 29250.000000
+	r3_Kic_3 222.400000
+	r3_Kd_3 1670.000000
+	r3_Kib_3 34900.000000
+	r3_Kid_3 4730.000000
+	r4_v_4 4600.000000
+	r5_k2_5 18.400000
+	r6_k1_6 14.600000
+	r7_k1_7 8.160000
+	r8_k1_8 14.600000
+	r9_k1_9 8.160000
+end parameters
+begin compartments
+	#volume units: L
+	IMS 3 0.0625
+	CYT 3 0.75
+end compartments
+begin molecule types
+	#^ bqbiol:is chebi:CHEBI:16761, kegg.compound:C00008
+	ADP(i~I~0,pi)
+	#^ bqbiol:is chebi:CHEBI:17287, kegg.compound:C02305
+	PCr(i~I~0)
+	#^ bqbiol:is chebi:CHEBI:18367, kegg.compound:C00009
+	Pi(adp,i~I~0)
+	#^ bqbiol:is chebi:CHEBI:16919, kegg.compound:C00300
+	Cr(i~I~0)
+end molecule types
+begin seed species
+	@CYT:Pi(adp!59,i~0).ADP(i~0,pi!59) 4.381005000000001e+21 # (9700.0 * 1e-06)mol/L * 6.022e23/mol *0.75L #ATP #ATP
+	@CYT:Cr(i~0) 1.17429e+22 #original 26000.0micromole/L  #Cr #Cr
+	@IMS:Pi(adp,i~I) 1.2044e+21 #original 32000.0micromole/L  #Pii #Pi
+end seed species
+begin observables
+	Species ADPi_IMS @IMS:ADP(i~I,pi) #ADPi
+	Species ATPi_IMS @IMS:ADP(i~0,pi!59).Pi(adp!59,i~I) #ATPi
+	Species Cri_IMS @IMS:Cr(i~I) #Cri
+	Species PCri_IMS @IMS:PCr(i~I) #PCri
+	Species PCr_CYT @CYT:PCr(i~0) #PCr
+	Species ADP_CYT @CYT:ADP(i~0,pi) #ADP
+	Species ATP_CYT @CYT:Pi(adp!59,i~0).ADP(i~0,pi!59) #ATP
+	Species Cr_CYT @CYT:Cr(i~0) #Cr
+	Species Pii_IMS @IMS:Pi(adp,i~I) #Pii
+	Species Pi_CYT @CYT:Pi(adp,i~0) #Pi
+end observables
+begin functions
+	fRate0() = 4600.0/(ADPi_IMS*Pii_IMS + 20.0*ADPi_IMS + 800.0*Pii_IMS + 16000.0)
+	fRate1() = 1.2542017536e+16/(3120000000000.0*ADPi_IMS*Cri_IMS + 179712000000000.0*ADPi_IMS*PCri_IMS + 8.9856e+16*ADPi_IMS + 4718592000000.0*ATPi_IMS*Cri_IMS + 2.45366784e+16*ATPi_IMS + 638976000000000.0*Cri_IMS + 1.1501568e+16*PCri_IMS + 1.84025088e+19)
+	fRate1m() = 2.00558592e+18/(179712000000000.0*ADPi_IMS*PCri_IMS + 8.9856e+16*ADPi_IMS + 4718592000000.0*ATPi_IMS*Cri_IMS + 2.45366784e+16*ATPi_IMS + 3120000000000.0*Cri_IMS*(ADPi_IMS + 204.8) + 1.1501568e+16*PCri_IMS + 1.84025088e+19)
+	fRate2() = 4.27091857685856e+17/(110192445000000.0*ADP_CYT*Cr_CYT + 2.30282415e+15*ADP_CYT*PCr_CYT + 3.8457163305e+18*ADP_CYT + 61310918416000.0*ATP_CYT*Cr_CYT + 9.50319235448e+17*ATP_CYT + 2.4506799768e+16*Cr_CYT + 1.8082184184e+17*PCr_CYT + 8.552873119032e+20)
+	fRate2m() = 6.73576063875e+19/(2.30282415e+15*ADP_CYT*PCr_CYT + 3.8457163305e+18*ADP_CYT + 61310918416000.0*ATP_CYT*Cr_CYT + 9.50319235448e+17*ATP_CYT + 110192445000000.0*Cr_CYT*(ADP_CYT + 222.4) + 1.8082184184e+17*PCr_CYT + 8.552873119032e+20)
+	fRate4() = 24.5333333333333
+	fRate4m() = 294.4
+	fRate5() = 19.4666666666667
+	fRate5m() = 233.6
+	fRate6() = 10.88
+	fRate6m() = 130.56
+	fRate7() = 19.4666666666667
+	fRate7m() = 233.6
+	fRate8() = 10.88
+	fRate8m() = 130.56
+end functions
+begin reaction rules
+	OxPhos: ADP(i~I,pi)@IMS + Pi(adp,i~I)@IMS -> ADP(i~0,pi!59)@IMS.Pi(adp!59,i~I)@IMS fRate0()
+	MiCK: ADP(i~0,pi!59)@IMS.Pi(adp!59,i~I)@IMS + Cr(i~I)@IMS <-> ADP(i~I,pi)@IMS + PCr(i~I)@IMS fRate1(),fRate1m()
+	MMCK: Pi(adp!59,i~0)@CYT.ADP(i~0,pi!59)@CYT + Cr(i~0)@CYT <-> PCr(i~0)@CYT + ADP(i~0,pi)@CYT fRate2(),fRate2m()
+	ATPase: Pi(adp!59,i~0)@CYT.ADP(i~0,pi!59)@CYT -> ADP(i~0,pi)@CYT + Pi(adp,i~0)@CYT r4_v_4
+	Pi_diffusion: Pi(adp,i~I)@IMS <-> Pi(adp,i~0)@CYT fRate4(),fRate4m()
+	Cr_diffusion: Cr(i~I)@IMS <-> Cr(i~0)@CYT fRate5(),fRate5m()
+	ADP_diffusion: ADP(i~I,pi)@IMS <-> ADP(i~0,pi)@CYT fRate6(),fRate6m()
+	PCr_diffusion: PCr(i~I)@IMS <-> PCr(i~0)@CYT fRate7(),fRate7m()
+	ATP_diffusion: ADP(i~0,pi!59)@IMS.Pi(adp!59,i~I)@IMS <-> Pi(adp!59,i~0)@CYT.ADP(i~0,pi!59)@CYT fRate8(),fRate8m()
+end reaction rules
+end model

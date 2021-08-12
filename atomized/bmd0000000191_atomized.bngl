@@ -1,0 +1,70 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000191', 'http://identifiers.org/biomodels.db/MODEL7416883636']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/17520329']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/40674']
+#@BQB_IS_PART_OF:['http://identifiers.org/kegg.pathway/map00330', 'http://identifiers.org/go/GO:0006527']
+#@BQB_HAS_VERSION:['http://identifiers.org/go/GO:0006591', 'http://identifiers.org/go/GO:0006809']
+#@creatorEmail:'lukas@ebi.ac.uk'
+#@creatorName:'Endler Lukas'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 3 molecules and 5 reactions. The translated model has 3 molecules and 6 rules'
+###
+begin model
+begin parameters
+	r1_Vmaxarg 110.000000
+	r1_Kmarg 1500.000000
+	r1_Kioarg 1000.000000
+	r2_Kmhat 70.000000
+	r2_Vmaxhat 160.500000
+	r2_Kmlat 847.000000
+	r2_Vmaxlat 420.000000
+	r2_Kiornhat 360.000000
+	r3_Kmhat 70.000000
+	r3_Kmlat 847.000000
+	r3_Vmaxefflhat 160.500000
+	r3_Vmaxeffllat 420.000000
+	r3_Kmeffllat 847.000000
+	r3_Kiornhat 360.000000
+	r4_Vmaxnos1 1.330000
+	r4_Kmnos1 16.000000
+	r5_Vmaxodc 0.013000
+	r5_Kmodc 90.000000
+end parameters
+begin compartments
+	#volume units: L
+	extracellular 3 1.0
+	cytosol 3 1.0
+end compartments
+begin molecule types
+	#^ bqbiol:is chebi:CHEBI:16467, kegg.compound:C00062
+	Argininein()
+	#^ bqbiol:is chebi:CHEBI:15729, kegg.compound:C00077
+	Ornithine()
+	#^ bqbiol:is chebi:CHEBI:16467, kegg.compound:C00062
+	Arginineex()
+end molecule types
+begin seed species
+	@extracellular:$Arginineex() 1.98726e+20 # (330.0 * 1e-06)mol/L * 6.022e23/mol *1.0L #Arginineex #ARGex
+	@cytosol:Ornithine() 6.022e+17 #original 1.0/L  #Ornithine #ORN
+	@cytosol:Argininein() 6.022e+17 #original 1.0/L  #Argininein #ARGin
+end seed species
+begin observables
+	Species Arginineex_extracellular @extracellular:Arginineex() #Arginine ex
+	Species Ornithine_cytosol @cytosol:Ornithine() #Ornithine
+	Species Argininein_cytosol @cytosol:Argininein() #Arginine in
+end observables
+begin functions
+	fRate0() = 110000.0/(1000.0*Argininein_cytosol + 1500.0*Ornithine_cytosol + 1500000.0)
+	fRate1() = 420.0*Arginineex_extracellular/((Arginineex_extracellular + 847.0)*(0.00118063754427391*Argininein_cytosol + 0.00277777777777778*Ornithine_cytosol + 1)) + 160.5*Arginineex_extracellular/((Arginineex_extracellular + 70.0)*(0.0142857142857143*Argininein_cytosol + 0.00277777777777778*Ornithine_cytosol + 1))
+	fRate2() = 160.5*Ornithine_cytosol/((0.0142857142857143*Arginineex_extracellular + 1)*(5.14285714285714*Argininein_cytosol + Ornithine_cytosol + 360.0)) + 420.0*Ornithine_cytosol/((0.00118063754427391*Arginineex_extracellular + 1)*(1.0*Argininein_cytosol + Ornithine_cytosol + 847.0))
+	fRate3() = 1.33/(Argininein_cytosol + 16.0)
+	fRate4() = 0.013/(Ornithine_cytosol + 90.0)
+end functions
+begin reaction rules
+	Arginase: Argininein()@cytosol -> Ornithine()@cytosol fRate0() #Modifiers(ORN)
+	Arginine_transport_reactants_0: 0  -> Arginineex()@extracellular -1*(fRate1()) #Modifiers(ORN)
+	Arginine_transport_products_0: 0  -> Argininein()@cytosol fRate1() #Modifiers(ORN)
+	Ornithine_efflux_reactants_0: 0  -> Ornithine()@cytosol -1*(fRate2()) #Modifiers(ARGex, ARGin)
+	NOS: Argininein()@cytosol -> 0  fRate3()
+	ODC: Ornithine()@cytosol -> 0  fRate4()
+end reaction rules
+end model

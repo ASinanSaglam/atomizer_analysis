@@ -1,0 +1,91 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1509230010', 'http://identifiers.org/biomodels.db/BIOMD0000000619']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/27636091']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/20421935']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0042910', 'http://identifiers.org/go/GO:0017144']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000203']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 10 molecules and 13 reactions. The translated model has 2 molecules and 14 rules'
+###
+begin model
+begin parameters
+	APAP_Dose_grams 1.4 #units:gram
+	APAP_MW 151.2 #units:grams2mol
+	BW 70.0 #units:kilogram
+	BW_ref 1.0 #units:BW_ref
+	Cardiac_flow_ref 15.0 #units:Volumetric_Flow
+	QGFR_ref 0.039 #units:Volumetric_Flow
+	kGutabs 1.5 #units:first_order_rate_constant
+	CLmetabolism 9.5 #units:first_order_rate_constant
+	Fraction_unbound_plasma 0.8 #units:dimensionless
+	Ratioblood2plasma 1.09 #units:dimensionless
+	Kliver2plasma 1.0 #units:dimensionless
+	Kkidney2plasma 1.0 #units:dimensionless
+	KRest2plasma 1.6 #units:dimensionless
+	VTotal_ref 0.6 #units:volume
+	APAP_Dose (1.4) / (151.2)
+	QCardiac (15.0)*(((70.0)/(1.0)) ^ (0.75))
+	QGut (363.0) * (0.205)
+	QLiver (363.0) * (0.0535)
+	QKidney (363.0) * (0.2214)
+	QRest (363.0) -(74.42) -(80.37) -(19.42)
+	Qgfr (0.039)*(((70.0)/(1.0)) ^ (0.75))
+	VTotal (0.6) * ((70.0) / (1.0))
+end parameters
+begin compartments
+	#volume units: litre
+	VArt 3 1.4994
+	VGut 3 1.1046
+	VGutLumen 3 1.0
+	VLung 3 0.5082
+	VVen 3 3.4104
+	VRest 3 33.4698
+	VLiver 3 1.7136
+	VKidney 3 0.294
+	VKidneyTubules 3 1.0
+end compartments
+begin molecule types
+	CVen()
+	CArt(AGutlumen~AGutlumen~0,CGut~CGut~0,CKidney~CKidney~0,CLiver~CLiver~0,CLung~CLung~0,CMetabolized~CMetabolized~0,CRest~CRest~0,CTubules~CTubules~0)
+end molecule types
+begin seed species
+	@VGutLumen:CArt(AGutlumen~AGutlumen,CGut~0,CKidney~0,CLiver~0,CLung~0,CMetabolized~0,CRest~0,CTubules~0) (1.0) #AGutlumen
+end seed species
+begin observables
+	Species CArt_VArt @VArt:CArt(AGutlumen~0,CGut~0,CKidney~0,CLiver~0,CLung~0,CMetabolized~0,CRest~0,CTubules~0) #CArt
+	Species CGut_VGut @VGut:CArt(AGutlumen~0,CGut~CGut,CKidney~0,CLiver~0,CLung~0,CMetabolized~0,CRest~0,CTubules~0) #CGut
+	Species AGutlumen_VGutLumen @VGutLumen:CArt(AGutlumen~AGutlumen,CGut~0,CKidney~0,CLiver~0,CLung~0,CMetabolized~0,CRest~0,CTubules~0) #AGutlumen
+	Species CLung_VLung @VLung:CArt(AGutlumen~0,CGut~0,CKidney~0,CLiver~0,CLung~CLung,CMetabolized~0,CRest~0,CTubules~0) #CLung
+	Species CVen_VVen @VVen:CVen() #CVen
+	Species CRest_VRest @VRest:CArt(AGutlumen~0,CGut~0,CKidney~0,CLiver~0,CLung~0,CMetabolized~0,CRest~CRest,CTubules~0) #CRest
+	Species CLiver_VLiver @VLiver:CArt(AGutlumen~0,CGut~0,CKidney~0,CLiver~CLiver,CLung~0,CMetabolized~0,CRest~0,CTubules~0) #CLiver
+	Species CMetabolized_VLiver @VLiver:CArt(AGutlumen~0,CGut~0,CKidney~0,CLiver~0,CLung~0,CMetabolized~CMetabolized,CRest~0,CTubules~0) #CMetabolized
+	Species CKidney_VKidney @VKidney:CArt(AGutlumen~0,CGut~0,CKidney~CKidney,CLiver~0,CLung~0,CMetabolized~0,CRest~0,CTubules~0) #CKidney
+	Species CTubules_VKidneyTubules @VKidneyTubules:CArt(AGutlumen~0,CGut~0,CKidney~0,CLiver~0,CLung~0,CMetabolized~0,CRest~0,CTubules~CTubules) #CTubules
+end observables
+begin functions
+	fRate5() = QRest*Ratioblood2plasma/(Fraction_unbound_plasma*KRest2plasma)
+	fRate7() = CLmetabolism/(Fraction_unbound_plasma*Kliver2plasma)
+	fRate9() = CLiver_VLiver*Ratioblood2plasma*(QGut + QLiver)/(Fraction_unbound_plasma*Kliver2plasma)
+	fRate11() = Qgfr/Kkidney2plasma
+	fRate12() = QKidney*Ratioblood2plasma/(Fraction_unbound_plasma*Kkidney2plasma)
+end functions
+begin reaction rules
+	J1: CArt(AGutlumen~0,CGut~0,CKidney~0,CLiver~0,CLung~0,CMetabolized~0,CRest~0,CTubules~0)@VArt -> CArt(AGutlumen~0,CGut~CGut,CKidney~0,CLiver~0,CLung~0,CMetabolized~0,CRest~0,CTubules~0)@VGut QGut
+	J2: CArt(AGutlumen~AGutlumen,CGut~0,CKidney~0,CLiver~0,CLung~0,CMetabolized~0,CRest~0,CTubules~0)@VGutLumen -> CArt(AGutlumen~0,CGut~CGut,CKidney~0,CLiver~0,CLung~0,CMetabolized~0,CRest~0,CTubules~0)@VGut kGutabs
+	J3: CArt(AGutlumen~0,CGut~0,CKidney~0,CLiver~0,CLung~CLung,CMetabolized~0,CRest~0,CTubules~0)@VLung -> CArt(AGutlumen~0,CGut~0,CKidney~0,CLiver~0,CLung~0,CMetabolized~0,CRest~0,CTubules~0)@VArt QCardiac
+	J4: CVen()@VVen -> CArt(AGutlumen~0,CGut~0,CKidney~0,CLiver~0,CLung~CLung,CMetabolized~0,CRest~0,CTubules~0)@VLung QCardiac
+	J5: CArt(AGutlumen~0,CGut~0,CKidney~0,CLiver~0,CLung~0,CMetabolized~0,CRest~0,CTubules~0)@VArt -> CArt(AGutlumen~0,CGut~0,CKidney~0,CLiver~0,CLung~0,CMetabolized~0,CRest~CRest,CTubules~0)@VRest QRest
+	J6: CArt(AGutlumen~0,CGut~0,CKidney~0,CLiver~0,CLung~0,CMetabolized~0,CRest~CRest,CTubules~0)@VRest -> CVen()@VVen fRate5()
+	J7: CArt(AGutlumen~0,CGut~0,CKidney~0,CLiver~0,CLung~0,CMetabolized~0,CRest~0,CTubules~0)@VArt -> CArt(AGutlumen~0,CGut~0,CKidney~0,CLiver~CLiver,CLung~0,CMetabolized~0,CRest~0,CTubules~0)@VLiver QLiver
+	J8: CArt(AGutlumen~0,CGut~0,CKidney~0,CLiver~CLiver,CLung~0,CMetabolized~0,CRest~0,CTubules~0)@VLiver -> CArt(AGutlumen~0,CGut~0,CKidney~0,CLiver~0,CLung~0,CMetabolized~CMetabolized,CRest~0,CTubules~0)@VLiver fRate7()
+	J9: CArt(AGutlumen~0,CGut~CGut,CKidney~0,CLiver~0,CLung~0,CMetabolized~0,CRest~0,CTubules~0)@VGut -> CArt(AGutlumen~0,CGut~0,CKidney~0,CLiver~CLiver,CLung~0,CMetabolized~0,CRest~0,CTubules~0)@VLiver QGut
+	J10_reactants_0: 0  -> CArt(AGutlumen~0,CGut~0,CKidney~0,CLiver~CLiver,CLung~0,CMetabolized~0,CRest~0,CTubules~0)@VLiver -1*(fRate9())
+	J10_products_0: 0  -> CVen()@VVen fRate9()
+	J11: CArt(AGutlumen~0,CGut~0,CKidney~0,CLiver~0,CLung~0,CMetabolized~0,CRest~0,CTubules~0)@VArt -> CArt(AGutlumen~0,CGut~0,CKidney~CKidney,CLiver~0,CLung~0,CMetabolized~0,CRest~0,CTubules~0)@VKidney QKidney
+	J12: CArt(AGutlumen~0,CGut~0,CKidney~CKidney,CLiver~0,CLung~0,CMetabolized~0,CRest~0,CTubules~0)@VKidney -> CArt(AGutlumen~0,CGut~0,CKidney~0,CLiver~0,CLung~0,CMetabolized~0,CRest~0,CTubules~CTubules)@VKidneyTubules fRate11()
+	J13: CArt(AGutlumen~0,CGut~0,CKidney~CKidney,CLiver~0,CLung~0,CMetabolized~0,CRest~0,CTubules~0)@VKidney -> CVen()@VVen fRate12()
+end reaction rules
+end model

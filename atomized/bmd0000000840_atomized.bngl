@@ -1,0 +1,61 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/31513802']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/ncit/C16522', 'http://identifiers.org/chebi/CHEBI:5779']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000840', 'http://identifiers.org/biomodels.db/MODEL1910290002']
+#@creatorEmail:'johannes.p.meyer@gmail.com'
+#@creatorName:'Meyer Johannes'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 5 molecules and 11 reactions. The translated model has 3 molecules and 11 rules'
+###
+begin model
+begin parameters
+	lambda 3000000.0
+	rho 1e-06
+	alpha_1 0.22
+	alpha_2 0.45
+	beta 0.14
+	delta 0.05
+	epsilon 0.03
+	gamma_1 0.24
+	gamma_2 0.293
+	gamma_3 8e-10
+end parameters
+begin molecule types
+	#^ bqbiol:hasProperty ncit:C16522
+	A(T~T~0)
+	#^ bqbiol:hasProperty ncit:C14140
+	M()
+	#^ bqbiol:hasProperty ncit:C14141
+	C1(C2~C2~0)
+end molecule types
+begin seed species
+	M() 2.264272e+31 # 37600000.0mol/L * 6.022e23/mol *1.0L #M #M
+	C1(C2~0) 3.396408e+30 #original 5640000.0substance/volume  #C1 #C1
+	C1(C2~C2) 2.264272e+30 #original 3760000.0substance/volume  #C2 #C2
+	A(T~0) 1.2044e+30 #original 2000000.0substance/volume  #A #A
+	A(T~T) 4.2154e+29 #original 700000.0substance/volume  #T #T
+end seed species
+begin observables
+	Species M M() #M
+	Species C1 C1(C2~0) #C1
+	Species C2 C1(C2~C2) #C2
+	Species A A(T~0) #A
+	Species T A(T~T) #T
+end observables
+begin functions
+	fRate0 =   /(1+ ( rho )   * ( A )   ) 
+	fRate9() = A*gamma_3
+end functions
+begin reaction rules
+	New_Vicodin_Prescriptions: 0  -> M() fRate0() #Modifiers(A)
+	Vicodin_Use_Transition_Acute_Chronic: M() -> C1(C2~0) alpha_1
+	Vicodin_Use_Transition_Cessation: M() -> 0  alpha_2
+	Vicodin_Use_Transition_Chronic_Abuse: C1(C2~C2) -> A(T~0) delta
+	Vicodin_Use_Transition_Chronic_Exit: C1(C2~0) -> 0  beta
+	Vicodin_Use_Transition_Chronic: C1(C2~0) -> C1(C2~C2) delta
+	Vicodin_Use_Transition_Chronic2_Exit: C1(C2~C2) -> 0  beta
+	Vicodin_Use_Transition_Abuse_Treatment_Exit: A(T~0) -> A(T~T) epsilon
+	Vicodin_Use_Transition_Abuse_Relapse_Linear: A(T~T) -> A(T~0) gamma_1
+	Vicodin_Use_Transition_Abuse_Relapse_Nonlinear: A(T~T) -> A(T~0) fRate9()
+	Vicodin_Use_Transition_Treatment_Succesful: A(T~T) -> 0  gamma_2
+end reaction rules
+end model

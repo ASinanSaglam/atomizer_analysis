@@ -1,0 +1,156 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1101270003', 'http://identifiers.org/biomodels.db/BIOMD0000000394']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/21978399']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/panther.pathway/P00018']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0007173']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/40674']
+#@BQB_OCCURS_IN:['http://identifiers.org/cl/CL:0000047']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 23 molecules and 10 reactions. The translated model has 12 molecules and 11 rules'
+###
+begin model
+begin parameters
+	kcatp_r8_s124 0.511
+	kM_r8_s124_s23 0.47
+	kcatn_r8_s124 1.083
+	kM_r8_s124_s24 0.786
+	kcatp_r8_s31 0.727
+	kM_r8_s31_s23 0.614
+	kcatn_r8_s31 0.636
+	kM_r8_s31_s24 1.367
+	kI_r8_s22 0.583
+	kI_r8_s29 1.219
+	kI_r8_s33 0.293
+	kcatp_r9 2.0
+	kM_r9_s25 0.626
+	kcatn_r9 0.693
+	kM_r9_s26 0.463
+	kcatp_r11 0.787
+	kM_r11_s29 1.459
+	kcatn_r11 0.566
+	kM_r11_s30 1.021
+	kcatp_r14 0.558
+	kM_r14_s27 0.038
+	kcatn_r14 0.725
+	kM_r14_s28 1.65
+	kass_r15 2.0
+	kdiss_r15 0.074
+	kass_r17_s3 0.73
+	kdiss_r17_s3 1.13
+	kI_re11_s142 1.0
+	kass_r6_s144 1.0
+	kdiss_r6_s144 1.0
+	kass_r7_s144 1.0
+	kdiss_r7_s144 1.0
+	kass_r4_s144 1.0
+	kdiss_r4_s144 1.0
+	Vp_re11 1.0
+	kM_re11_s129 1.0
+	kM_re11_s147 1.0
+	ki_re11_s129 1.0
+	PP2A_c2 5.0
+	PP2A 5.0
+	s14_minus_3_minus_3_c2 5.0
+	s14_minus_3_minus_3 5.0
+	EGF_default 5.0
+	EGF 5.0
+	erlotinib_default 0.5
+	erlotinib 0.5
+end parameters
+begin compartments
+	#volume units: L
+	default 3 1.0
+	c2 3 1.0 #Cytosol
+end compartments
+begin molecule types
+	#^ bqbiol:isVersionOf uniprot:P31749, uniprot:P31749
+	Akt(_s22~_S22~0)
+	#^ bqbiol:isHomologTo uniprot:P08646
+	Ras()
+	#^ bqbiol:isVersionOf go:GO:0004707, go:GO:0004707
+	ERK1_minus_2(Mitogenesis_br_Differentiation~Mitogenesis_br_Differentiation~0,_s28~_S28~0)
+	#^ bqbiol:is chebi:CHEBI:15996
+	GTP()
+	#^ bqbiol:isVersionOf uniprot:P17252
+	PKC()
+	Raf_minus_1_s24()
+	#^ bqbiol:isVersionOf go:GO:0043234
+	Complex__Grb2____PLC__(egfr)
+	#^ bqbiol:isVersionOf uniprot:P04049, uniprot:P04049
+	Raf_minus_1()
+	#^ bqbiol:isVersionOf uniprot:Q504U8, uniprot:Q504U8
+	EGFR(complex__grb2____plc__,egfr)
+	#^ bqbiol:isVersionOf uniprot:Q02750, uniprot:Q02750
+	MEK1_minus_2(_s26~_S26~0)
+	#^ bqbiol:is chebi:CHEBI:17552
+	GDP()
+	#^ bqbiol:isVersionOf uniprot:P30086, uniprot:P30086
+	RKIP(_s30~_S30~0)
+end molecule types
+begin seed species
+	@c2:Akt(_s22~0) 5.0 #Akt #s21
+	@c2:MEK1_minus_2(_s26~0) 5.0 #MEK1_minus_2 #s25
+	@c2:ERK1_minus_2(Mitogenesis_br_Differentiation~0,_s28~0) 5.0 #ERK1_minus_2 #s27
+	@c2:RKIP(_s30~0) 5.0 #RKIP #s29
+	@c2:ERK1_minus_2(Mitogenesis_br_Differentiation~Mitogenesis_br_Differentiation,_s28~_S28) 1.0 #Mitogenesis_br_Differentiation #s34
+	@c2:Raf_minus_1() 5.0 #Raf_minus_1 #s23
+	@c2:EGFR(complex__grb2____plc__,egfr) 5.0 #EGFR #s123
+	@c2:Ras() 5.0 #Ras #s124
+	@c2:GDP() 0.5 #GDP #s125
+	@c2:PKC() 2.0 #PKC #s127
+	@c2:Complex__Grb2____PLC__(egfr) 5.0 #Complex__Grb2____PLC__ #s147
+end seed species
+begin observables
+	Species Akt_c2 @c2:Akt(_s22~0) #Akt
+	Species Akt_s22_c2 @c2:Akt(_s22~_S22) #Akt
+	Species MEK1_minus_2_c2 @c2:MEK1_minus_2(_s26~0) #MEK1_minus_2
+	Species MEK1_minus_2_s26_c2 @c2:MEK1_minus_2(_s26~_S26) #MEK1_minus_2
+	Species ERK1_minus_2_c2 @c2:ERK1_minus_2(Mitogenesis_br_Differentiation~0,_s28~0) #ERK1_minus_2
+	Species ERK1_minus_2_s28_c2 @c2:ERK1_minus_2(Mitogenesis_br_Differentiation~0,_s28~_S28) #ERK1_minus_2
+	Species RKIP_c2 @c2:RKIP(_s30~0) #RKIP
+	Species RKIP_s30_c2 @c2:RKIP(_s30~_S30) #RKIP
+	Species Mitogenesis_br_Differentiation_c2 @c2:ERK1_minus_2(Mitogenesis_br_Differentiation~Mitogenesis_br_Differentiation,_s28~_S28) #Mitogenesis_br_Differentiation
+	Species Raf_minus_1_c2 @c2:Raf_minus_1() #Raf_minus_1
+	Species Raf_minus_1_s24_c2 @c2:Raf_minus_1_s24() #Raf_minus_1
+	Species EGFR_c2 @c2:EGFR(complex__grb2____plc__,egfr) #EGFR
+	Species Ras_c2 @c2:Ras() #Ras
+	Species GDP_c2 @c2:GDP() #GDP
+	Species GTP_c2 @c2:GTP() #GTP
+	Species PKC_c2 @c2:PKC() #PKC
+	Species EGFR_s129_c2 @c2:EGFR(complex__grb2____plc__,egfr!656).EGFR(complex__grb2____plc__,egfr!656) #EGFR
+	Species Complex_br___EGFR_____br_GAP___c2 @c2:EGFR(complex__grb2____plc__,egfr!656).EGFR(complex__grb2____plc__!657,egfr!656).Complex__Grb2____PLC__(egfr!657) #Complex_br_(EGFR/../_br_GAP)
+	Species Complex__Grb2____PLC___c2 @c2:Complex__Grb2____PLC__(egfr) #Complex(Grb2/../PLC)
+end observables
+begin functions
+	fRate0() = kI_r8_s22*kI_r8_s29*kI_r8_s33*(PP2A_c2*(Raf_minus_1_c2*kcatp_r8_s31/kM_r8_s31_s23 - Raf_minus_1_s24_c2*kcatn_r8_s31/kM_r8_s31_s24)/(Raf_minus_1_c2/kM_r8_s31_s23 + Raf_minus_1_s24_c2/kM_r8_s31_s24 + 1) + Ras_c2*(Raf_minus_1_c2*kcatp_r8_s124/kM_r8_s124_s23 - Raf_minus_1_s24_c2*kcatn_r8_s124/kM_r8_s124_s24)/(Raf_minus_1_c2/kM_r8_s124_s23 + Raf_minus_1_s24_c2/kM_r8_s124_s24 + 1))/((Akt_s22_c2 + kI_r8_s22)*(RKIP_c2 + kI_r8_s29)*(kI_r8_s33 + s14_minus_3_minus_3_c2))
+	fRate1() = Raf_minus_1_s24_c2*kM_r9_s26*kcatp_r9/(MEK1_minus_2_s26_c2*kM_r9_s25 + kM_r9_s26*(MEK1_minus_2_c2 + kM_r9_s25))
+	fRate1m() = Raf_minus_1_s24_c2*kM_r9_s25*kcatn_r9/(MEK1_minus_2_c2*kM_r9_s26 + kM_r9_s25*(MEK1_minus_2_s26_c2 + kM_r9_s26))
+	fRate2() = PKC_c2*kM_r11_s30*kcatp_r11/(RKIP_s30_c2*kM_r11_s29 + kM_r11_s30*(RKIP_c2 + kM_r11_s29))
+	fRate2m() = PKC_c2*kM_r11_s29*kcatn_r11/(RKIP_c2*kM_r11_s30 + kM_r11_s29*(RKIP_s30_c2 + kM_r11_s30))
+	fRate3() = MEK1_minus_2_s26_c2*kM_r14_s28*kcatp_r14/(ERK1_minus_2_s28_c2*kM_r14_s27 + kM_r14_s28*(ERK1_minus_2_c2 + kM_r14_s27))
+	fRate3m() = MEK1_minus_2_s26_c2*kM_r14_s27*kcatn_r14/(ERK1_minus_2_c2*kM_r14_s28 + kM_r14_s27*(ERK1_minus_2_s28_c2 + kM_r14_s28))
+	fRate5() = EGF_default*kass_r17_s3
+	fRate5m() = EGF_default*kdiss_r17_s3
+	fRate6() = Complex_br___EGFR_____br_GAP___c2*kass_r6_s144
+	fRate6m() = Complex_br___EGFR_____br_GAP___c2*kdiss_r6_s144
+	fRate7() = Complex_br___EGFR_____br_GAP___c2*kass_r7_s144
+	fRate7m() = Complex_br___EGFR_____br_GAP___c2*kdiss_r7_s144
+	fRate8() = Complex_br___EGFR_____br_GAP___c2*kass_r4_s144
+	fRate8m() = Complex_br___EGFR_____br_GAP___c2*kdiss_r4_s144
+	fRate9() = Vp_re11*kI_re11_s142/(Complex__Grb2____PLC___c2*EGFR_s129_c2*erlotinib_default + Complex__Grb2____PLC___c2*EGFR_s129_c2*kI_re11_s142 + Complex__Grb2____PLC___c2*erlotinib_default*kM_re11_s129 + Complex__Grb2____PLC___c2*kI_re11_s142*kM_re11_s129 + EGFR_s129_c2*erlotinib_default*kM_re11_s147 + EGFR_s129_c2*kI_re11_s142*kM_re11_s147 + erlotinib_default*kM_re11_s147*ki_re11_s129 + kI_re11_s142*kM_re11_s147*ki_re11_s129)
+end functions
+begin reaction rules
+	r8_reactants_0: 0  -> Raf_minus_1()@c2 -1*(fRate0()) #Modifiers(s22, s29, s124, s33, s31)
+	r8_products_0: 0  -> Raf_minus_1_s24()@c2 fRate0() #Modifiers(s22, s29, s124, s33, s31)
+	r9: MEK1_minus_2(_s26~0)@c2 <-> MEK1_minus_2(_s26~_S26)@c2 fRate1(),fRate1m() #Modifiers(s24)
+	r11: RKIP(_s30~0)@c2 <-> RKIP(_s30~_S30)@c2 fRate2(),fRate2m() #Modifiers(s127)
+	r14: ERK1_minus_2(Mitogenesis_br_Differentiation~0,_s28~0)@c2 <-> ERK1_minus_2(Mitogenesis_br_Differentiation~0,_s28~_S28)@c2 fRate3(),fRate3m() #Modifiers(s26)
+	r15: ERK1_minus_2(Mitogenesis_br_Differentiation~0,_s28~_S28)@c2 <-> ERK1_minus_2(Mitogenesis_br_Differentiation~Mitogenesis_br_Differentiation,_s28~_S28)@c2 kass_r15,kdiss_r15
+	r17: EGFR(complex__grb2____plc__,egfr)@c2 + EGFR(complex__grb2____plc__,egfr)@c2 <-> EGFR(complex__grb2____plc__,egfr!656)@c2.EGFR(complex__grb2____plc__,egfr!656)@c2 fRate5(),fRate5m() #Modifiers(s3)
+	r6: PKC()@c2 <-> PKC()@c2 fRate6(),fRate6m() #Modifiers(s144)
+	r7: Akt(_s22~0)@c2 <-> Akt(_s22~_S22)@c2 fRate7(),fRate7m() #Modifiers(s144)
+	r4: Ras()@c2 + GDP()@c2 <-> Ras()@c2 + GTP()@c2 fRate8(),fRate8m() #Modifiers(s144)
+	re11: EGFR(complex__grb2____plc__,egfr!656)@c2.EGFR(complex__grb2____plc__,egfr!656)@c2 + Complex__Grb2____PLC__(egfr)@c2 -> EGFR(complex__grb2____plc__,egfr!656)@c2.EGFR(complex__grb2____plc__!657,egfr!656)@c2.Complex__Grb2____PLC__(egfr!657)@c2 fRate9() #Modifiers(s142)
+end reaction rules
+end model

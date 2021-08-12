@@ -1,0 +1,355 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000424', 'http://identifiers.org/biomodels.db/MODEL1108180000']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/19638581']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/BIOMD0000000146', 'http://identifiers.org/biomodels.db/BIOMD0000000048']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0014065', 'http://identifiers.org/go/GO:0042493']
+#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000356']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:162', 'http://identifiers.org/mamo/MAMO_0000046']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 55 molecules and 58 reactions. The translated model has 21 molecules and 59 rules'
+###
+begin model
+begin parameters
+	scal 1.0
+	scall 0.6
+	scalll 30.0
+	tE3P_max 65.0
+	tERKP_max 10.0
+	pAkt_max 91.0
+	PI0 70.0
+	Akt0 10.0
+	k1 0.005
+	Kd_1 600.0
+	k2 10.0
+	Kd_2 10.0
+	k51 0.01
+	k53 0.01
+	k3 1.0
+	Kd_3 0.1
+	V4 10.0
+	K4 50.0
+	k5 0.06
+	Kd_5 1.0
+	k6 12.0
+	k_6 3.0
+	k7 36.0
+	Kd_7 9.0
+	k8 12.0
+	Kd_8 0.1
+	k9 35.0
+	V10 0.0154
+	K10 340.0
+	k27 3.0
+	Kd_27 1.0
+	k28 300.0
+	k29 13520.0
+	V30 900.0
+	k11 6.0
+	K11 0.18
+	V12 3.0
+	K12 0.1
+	k13 1.0
+	K13 11.7
+	k14 0.6
+	K14 50.0
+	E_raf 7.0
+	k15 2.1
+	K15 1.0
+	k16 0.06
+	Kd_16 1.0
+	k16_kat 0.6
+	k18 0.6
+	k22 0.06
+	k23 1.2
+	K23 10.0
+	V24 1.8
+	K24 10.0
+	k31 0.03
+	K_d31 100.0
+	k55 30.0
+	k56 30.0
+	k32 8000.0
+	Kd_32 0.01
+	k33 15.0
+	k34 3.6
+	V35 150.0
+	K35 2.0
+	k36 1.0
+	Kd_36 2.2
+	k37 150.0
+	k38 150.0
+	k39 15000.0
+	Kd_39 20.0
+	V40 15000.0
+	K40 0.1
+	k41 3.0
+	Kd_41 0.1
+	k42 45.0
+	k43 30.0
+	k47 0.3
+	k48 0.001
+	k49 0.003
+	Kd_49 20000.0
+	k50 0.6
+	k_50 0.012
+	k57 100.0
+	Kd_57 10.0
+	k58 100.0
+	Kd_58 80.0
+	Pool_1_ 2900.0
+	Pool_2_ -2920.0
+	Pool_3_ 200.0
+	Pool_4_ 50.0
+	Pool_5_ 300.0
+	Pool_7_ 10.0
+	Pool_8_ 100.0
+	Pool_9_ 10.0
+	Pool_10_ 10.0
+	Pool_11_ 100.0
+	Pool_12_ 120.0
+	Pool_13_ 100.0
+	Pool_14_ 100.0
+	mu 0
+	E3_0 0
+	bpV 0
+	LY 0
+	PI3K_CY 0
+	k_9 0
+	k_28 0
+	k_29 0
+	sens 0
+	Pool_6_ 0
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf chembl.compound:CHEMBL2007641
+	Per(e2)
+	#^ bqbiol:isVersionOf uniprot:P04049
+	Raf(a~A~0)
+	#^ bqbiol:occursIn go:GO:0005737
+	#^ bqbiol:hasPart ec-code:2.7.10.1, uniprot:P21860, uniprot:Q02297
+	E3H_C()
+	#^ bqbiol:isVersionOf uniprot:P63151
+	PP2A(akt_pi_p,mek)
+	#^ bqbiol:hasPart uniprot:P31749, uniprot:P63151, pubchem.compound:24755492
+	Akt_PIP3_PP2A()
+	#^ bqbiol:isVersionOf uniprot:P31749
+	Akt(pip3)
+	#^ bqbiol:isVersionOf uniprot:P27361
+	ERK(p~P~0,phospho~PP~0)
+	#^ bqbiol:isVersionOf chebi:CHEBI:15552, kegg.compound:C01312
+	PI2(pi3k,pten)
+	#^ bqbiol:hasPart uniprot:P62993, uniprot:Q07889, uniprot:Q07890
+	GS(shc)
+	#^ bqbiol:isVersionOf ec-code:2.7.10.1, uniprot:P04626
+	E2(per)
+	#^ bqbiol:isVersionOf ec-code:2.7.10.1, uniprot:P21860
+	E3(hrg)
+	#^ bqbiol:isVersionOf uniprot:Q02297
+	HRG(e3)
+	#^ bqbiol:isVersionOf go:GO:0005942
+	PI3K(_ly~_LY~0,a~A~0,e23h,pi2,pip3)
+	#^ bqbiol:isVersionOf uniprot:Q02750
+	MEK(p~P~0,phospho~PP~0,pp2a)
+	#^ bqbiol:isVersionOf ec-code:3.1.3.16, uniprot:P60484, kegg.compound:C05981
+	PTEN(_bpv~_BPV~0,p~P~0,pi2,pip3,pten)
+	RasG(dp~DP~0,tp~TP~0)
+	#^ bqbiol:hasPart uniprot:P04626, chembl.compound:CHEMBL2007641
+	#^ bqbiol:occursIn go:GO:0005737
+	E2Per()
+	#^ bqbiol:is uniprot:P29353
+	Shc(e23h,gs,p~P~0)
+	#^ bqbiol:isVersionOf chebi:CHEBI:16618, kegg.compound:C05981, pubchem.compound:24755492
+	PIP3(akt,pi3k,pten)
+	#^ bqbiol:isVersionOf kegg.compound:C00562
+	#^ bqbiol:hasPart uniprot:P31749, pubchem.compound:24755492
+	Akt_PI_P(p~P~0,pp2a)
+	#^ bqbiol:hasPart ec-code:2.7.10.1, uniprot:P21860, uniprot:Q02297, uniprot:P04626
+	E23H(_c~_C~0,p~P~0,pi3k,shc)
+end molecule types
+begin seed species
+	E3(hrg) 4.8176e+25 # 80.0mol/L * 6.022e23/mol *1.0L #E3 #E3
+	E2(per) 6.022e+25 #original 100.0mol/L #E2 #E2
+	Shc(e23h,gs,p~0) 6.022e+25 #original 100.0mol/L #Shc #Shc
+	GS(shc) 6.022e+25 #original 100.0mol/L #GS #GS
+	RasG(dp~DP,tp~0) 7.2264000000000005e+25 #original 120.0mol/L #RasGDP #RasGDP
+	Raf(a~0) 6.022e+25 #original 100.0mol/L #Raf #Raf
+	MEK(p~0,phospho~0,pp2a) 6.022e+24 #original 10.0mol/L #MEK #MEK
+	PP2A(akt_pi_p,mek) 6.022e+24 #original 10.0mol/L #PP2A #PP2A
+	ERK(p~0,phospho~0) 6.022e+24 #original 10.0mol/L #ERK #ERK
+	PI3K(_ly~0,a~0,e23h,pi2,pip3) 1.2044e+26 #original 200.0mol/L #PI3K #PI3K
+	PI2(pi3k,pten) 1.8066e+26 #original 300.0mol/L #PI2 #PI2
+	PTEN(_bpv~0,p~0,pi2,pip3,pten) 2.576199556e+25 #original 42.7798mol/L #PTEN #PTEN
+	PIP3(akt,pi3k,pten) 4852358984000.0 #original 8.05772e-12mol/L #PIP3 #PIP3
+	PTEN(_bpv~0,p~0,pi2,pip3!364,pten).PIP3(akt,pi3k,pten!364) 1.894244188e+16 #original 3.14554e-08mol/L #PTEN_PIP3 #PTEN_PIP3
+	PTEN(_bpv~0,p~0,pi2!731,pip3,pten).PI2(pi3k,pten!731) 3.028548108e+16 #original 5.02914e-08mol/L #PTEN_PI #PTEN_PI
+	PTEN(_bpv~0,p~P,pi2,pip3,pten) 2.04678747e+24 #original 3.39885mol/L #PTENP #PTENP
+	PTEN(_bpv~0,p~0,pi2,pip3,pten!732).PTEN(_bpv~0,p~P,pi2,pip3,pten!732) 5.753039414e+23 #original 0.955337mol/L #PTENP_PTEN #PTENP_PTEN
+	Akt(pip3) 6.022e+25 #original 100.0mol/L #Akt #Akt
+	PTEN(_bpv~0,p~0,pi2,pip3,pten!732).PTEN(_bpv~0,p~0,pi2,pip3,pten!732) 5.753039414e+23 #original 0.955337mol/L #PTEN_PTEN #PTEN_PTEN
+	HRG(e3) 1.8066e+27 #original 3000.0mol/L #HRG #HRG
+end seed species
+begin observables
+	Species E3 E3(hrg) #E3
+	Species PI3K_LY PI3K(_ly~_LY,a~0,e23h,pi2,pip3) #PI3K_LY
+	Species E3H HRG(e3!729).E3(hrg!729) #E3H
+	Species E2 E2(per) #E2
+	Species E23H E23H(_c~0,p~0,pi3k,shc) #E23H
+	Species E23HP E23H(_c~0,p~P,pi3k,shc) #E23HP
+	Species Shc Shc(e23h,gs,p~0) #Shc
+	Species E23HP_Shc E23H(_c~0,p~P,pi3k,shc!735).Shc(e23h!735,gs,p~0) #E23HP_Shc
+	Species E23HP_ShcP E23H(_c~0,p~P,pi3k,shc!735).Shc(e23h!735,gs,p~P) #E23HP_ShcP
+	Species GS GS(shc) #GS
+	Species E23HP_ShGS E23H(_c~0,p~P,pi3k,shc!735).Shc(e23h!735,gs!420,p~P).GS(shc!420) #E23HP_ShGS
+	Species E2_Per Per(e2!730).E2(per!730) #E2_Per
+	Species PTEN_bpV PTEN(_bpv~_BPV,p~0,pi2,pip3,pten) #PTEN_bpV
+	Species RasGDP RasG(dp~DP,tp~0) #RasGDP
+	Species PI3Ka_PIP3 PI3K(_ly~0,a~A,e23h,pi2,pip3!737).PIP3(akt,pi3k!737,pten) #PI3Ka_PIP3
+	Species Raf Raf(a~0) #Raf
+	Species E23H_C E23H(_c~_C,p~0,pi3k,shc) #E23H_C
+	Species MEK MEK(p~0,phospho~0,pp2a) #MEK
+	Species MEKP MEK(p~P,phospho~0,pp2a) #MEKP
+	Species PP2A PP2A(akt_pi_p,mek) #PP2A
+	Species MEKP_PP2A MEK(p~P,phospho~0,pp2a!359).PP2A(akt_pi_p,mek!359) #MEKP_PP2A
+	Species MEK_PP2A MEK(p~0,phospho~0,pp2a!359).PP2A(akt_pi_p,mek!359) #MEK_PP2A
+	Species Akt_PIP3_PP2A Akt_PIP3_PP2A() #Akt_PIP3_PP2A
+	Species MEKPP_PP2A MEK(p~0,phospho~PP,pp2a!359).PP2A(akt_pi_p,mek!359) #MEKPP_PP2A
+	Species ERK ERK(p~0,phospho~0) #ERK
+	Species ERKP ERK(p~P,phospho~0) #ERKP
+	Species E3H_C E3H_C() #E3H_C
+	Species PI3K PI3K(_ly~0,a~0,e23h,pi2,pip3) #PI3K
+	Species E23HP_PI3K PI3K(_ly~0,a~0,e23h!736,pi2,pip3).E23H(_c~0,p~P,pi3k!736,shc) #E23HP_PI3K
+	Species Akt_PIP3 PIP3(akt!352,pi3k,pten).Akt(pip3!352) #Akt_PIP3
+	Species PI3Ka PI3K(_ly~0,a~A,e23h,pi2,pip3) #PI3Ka
+	Species PI2 PI2(pi3k,pten) #PI2
+	Species Akt_PI_P_PP2A Akt_PI_P(p~0,pp2a!733).PP2A(akt_pi_p!733,mek) #Akt_PI_P_PP2A
+	Species PTEN PTEN(_bpv~0,p~0,pi2,pip3,pten) #PTEN
+	Species PIP3 PIP3(akt,pi3k,pten) #PIP3
+	Species PTEN_PIP3 PTEN(_bpv~0,p~0,pi2,pip3!364,pten).PIP3(akt,pi3k,pten!364) #PTEN_PIP3
+	Species PTEN_PI PTEN(_bpv~0,p~0,pi2!731,pip3,pten).PI2(pi3k,pten!731) #PTEN_PI
+	Species PTENP PTEN(_bpv~0,p~P,pi2,pip3,pten) #PTENP
+	Species PTENP_PTEN PTEN(_bpv~0,p~0,pi2,pip3,pten!732).PTEN(_bpv~0,p~P,pi2,pip3,pten!732) #PTENP_PTEN
+	Species Akt_PI_P Akt_PI_P(p~0,pp2a) #Akt_PI_P
+	Species Akt Akt(pip3) #Akt
+	Species E23HP_PI3Ka PI3K(_ly~0,a~A,e23h!736,pi2,pip3).E23H(_c~0,p~P,pi3k!736,shc) #E23HP_PI3Ka
+	Species PTEN_PTEN PTEN(_bpv~0,p~0,pi2,pip3,pten!732).PTEN(_bpv~0,p~0,pi2,pip3,pten!732) #PTEN_PTEN
+	Species PI3Ka_PI PI3K(_ly~0,a~A,e23h,pi2!734,pip3).PI2(pi3k!734,pten) #PI3Ka_PI
+	Species MEKPP MEK(p~0,phospho~PP,pp2a) #MEKPP
+	Species Akt_PI_PP Akt_PI_P(p~P,pp2a) #Akt_PI_PP
+	Species Akt_PI_PP_PP2A PP2A(akt_pi_p!733,mek).Akt_PI_P(p~P,pp2a!733) #Akt_PI_PP_PP2A
+	Species Per Per(e2) #Per
+	Species ShGS Shc(e23h,gs!420,p~P).GS(shc!420) #ShGS
+	Species E2Per E2Per() #E2Per
+	Species ERKPP ERK(p~0,phospho~PP) #ERKPP
+	Species Rafa Raf(a~A) #Rafa
+	Species RasGTP RasG(dp~0,tp~TP) #RasGTP
+	Species ShcP Shc(e23h,gs,p~P) #ShcP
+	Species HRG HRG(e3) #HRG
+end observables
+begin functions
+	tERKP() = (ERKP + ERKPP)/tERKP_max
+	pAkt() = (Akt_PI_P + Akt_PI_PP + Akt_PI_PP_PP2A + Akt_PI_P_PP2A)/pAkt_max
+	tPTENP() = 0.131578947368421*PTENP
+	tPTEN() = PTEN + PTENP + PTENP_PTEN + PTEN_PI + PTEN_PIP3 + PTEN_PTEN
+	tE3P() = (E23HP + E23HP_PI3K + E23HP_PI3Ka + E23HP_ShGS + E23HP_Shc + E23HP_ShcP)/tE3P_max
+	fRate0m() = Kd_1*k1
+	fRate1m() = Kd_2*k2
+	fRate2m() = Kd_3*k3
+	fRate3() = V4/(E23HP + K4)
+	fRate4m() = Kd_5*k5
+	fRate6m() = Kd_7*k7
+	fRate7m() = Kd_8*k8
+	fRate8m() = k9*k_9
+	fRate9() = V10/(K10 + ShcP)
+	fRate10() = ShGS*k11/(K11 + RasGDP)
+	fRate11() = V12/(K12 + RasGTP)
+	fRate12() = RasGTP*k13/(K13 + Raf)
+	fRate13() = Rafa*k14*(Akt_PI_PP + E_raf)/(K14 + Rafa)
+	fRate14() = Rafa*k15/(K15 + MEK)
+	fRate18() = Rafa*k15/(K15 + MEKP)
+	fRate19m() = Kd_16*k16
+	fRate22() = MEKPP*k23/(ERK + K23)
+	fRate23() = V24/(ERKP + K24)
+	fRate24() = MEKPP*k23/(ERKP + K23)
+	fRate25() = V24/(ERKPP + K24)
+	fRate26m() = Kd_27*k27
+	fRate27m() = k28*k_28
+	fRate30m() = K_d31*k31
+	fRate31m() = Kd_32*k32
+	fRate34() = V35/(K35 + PTEN)
+	fRate35m() = Kd_36*k36
+	fRate38m() = Kd_39*k39
+	fRate39() = V40/(Akt_PIP3 + K40)
+	fRate43() = V40/(Akt_PI_P + K40)
+	fRate44m() = Kd_41*k41
+	fRate48m() = Kd_49*k49
+	fRate51m() = Kd_2*k2
+	fRate53m() = Kd_3*k3
+	fRate56() = bpV*k57
+	fRate56m() = Kd_57*k57
+	fRate57() = LY*k58
+	fRate57m() = Kd_58*k58
+end functions
+begin reaction rules
+	R1: E3(hrg) + HRG(e3) <-> HRG(e3!729).E3(hrg!729) k1,fRate0m()
+	R2: E2(per) + HRG(e3!729).E3(hrg!729) <-> E23H(_c~0,p~0,pi3k,shc) k2,fRate1m()
+	R3: E23H(_c~0,p~0,pi3k,shc) <-> E23H(_c~0,p~P,pi3k,shc) k3,fRate2m()
+	R4: E23H(_c~0,p~P,pi3k,shc) -> E23H(_c~0,p~0,pi3k,shc) fRate3()
+	R5: E23H(_c~0,p~P,pi3k,shc) + Shc(e23h,gs,p~0) <-> E23H(_c~0,p~P,pi3k,shc!735).Shc(e23h!735,gs,p~0) k5,fRate4m()
+	R6: E23H(_c~0,p~P,pi3k,shc!735).Shc(e23h!735,gs,p~0) <-> E23H(_c~0,p~P,pi3k,shc!735).Shc(e23h!735,gs,p~P) k6,k_6
+	R7: E23H(_c~0,p~P,pi3k,shc!735).Shc(e23h!735,gs,p~P) + GS(shc) <-> E23H(_c~0,p~P,pi3k,shc!735).Shc(e23h!735,gs!420,p~P).GS(shc!420) k7,fRate6m()
+	R8: E23H(_c~0,p~P,pi3k,shc!735).Shc(e23h!735,gs!420,p~P).GS(shc!420) <-> E23H(_c~0,p~P,pi3k,shc) + Shc(e23h,gs!420,p~P).GS(shc!420) k8,fRate7m()
+	R9: Shc(e23h,gs!420,p~P).GS(shc!420) <-> GS(shc) + Shc(e23h,gs,p~P) k9,fRate8m()
+	R10: Shc(e23h,gs,p~P) -> Shc(e23h,gs,p~0) fRate9()
+	R11: RasG(dp~DP,tp~0) -> RasG(dp~0,tp~TP) fRate10() #Modifiers(ShGS)
+	R12: RasG(dp~0,tp~TP) -> RasG(dp~DP,tp~0) fRate11()
+	R13: Raf(a~0) -> Raf(a~A) fRate12() #Modifiers(RasGTP)
+	R14_reactants_0: 0  -> Raf(a~A) -1*(fRate13()) #Modifiers(Akt_PI_PP)
+	R14_products_0: 0  -> Raf(a~0) fRate13() #Modifiers(Akt_PI_PP)
+	R15: MEK(p~0,phospho~0,pp2a) -> MEK(p~P,phospho~0,pp2a) fRate14() #Modifiers(Rafa)
+	R16_1: MEK(p~P,phospho~0,pp2a) + PP2A(akt_pi_p,mek) -> MEK(p~P,phospho~0,pp2a!359).PP2A(akt_pi_p,mek!359) k16
+	R16_2: MEK(p~P,phospho~0,pp2a!359).PP2A(akt_pi_p,mek!359) -> MEK(p~0,phospho~0,pp2a!359).PP2A(akt_pi_p,mek!359) k16_kat
+	R16_3: MEK(p~0,phospho~0,pp2a!359).PP2A(akt_pi_p,mek!359) -> MEK(p~0,phospho~0,pp2a) + PP2A(akt_pi_p,mek) k18
+	R17_1: MEK(p~P,phospho~0,pp2a) -> MEK(p~0,phospho~PP,pp2a) fRate18() #Modifiers(Rafa)
+	R18_1: MEK(p~0,phospho~PP,pp2a) + PP2A(akt_pi_p,mek) <-> MEK(p~0,phospho~PP,pp2a!359).PP2A(akt_pi_p,mek!359) k16,fRate19m()
+	R18_2: MEK(p~0,phospho~PP,pp2a!359).PP2A(akt_pi_p,mek!359) -> MEK(p~P,phospho~0,pp2a!359).PP2A(akt_pi_p,mek!359) k16_kat
+	R18_3: MEK(p~P,phospho~0,pp2a!359).PP2A(akt_pi_p,mek!359) -> MEK(p~P,phospho~0,pp2a) + PP2A(akt_pi_p,mek) k22
+	R19: ERK(p~0,phospho~0) -> ERK(p~P,phospho~0) fRate22() #Modifiers(MEKPP)
+	R20: ERK(p~P,phospho~0) -> ERK(p~0,phospho~0) fRate23()
+	R21: ERK(p~P,phospho~0) -> ERK(p~0,phospho~PP) fRate24() #Modifiers(MEKPP)
+	R22: ERK(p~0,phospho~PP) -> ERK(p~P,phospho~0) fRate25()
+	R23: E23H(_c~0,p~P,pi3k,shc) + PI3K(_ly~0,a~0,e23h,pi2,pip3) <-> PI3K(_ly~0,a~0,e23h!736,pi2,pip3).E23H(_c~0,p~P,pi3k!736,shc) k27,fRate26m()
+	R24: PI3K(_ly~0,a~0,e23h!736,pi2,pip3).E23H(_c~0,p~P,pi3k!736,shc) <-> PI3K(_ly~0,a~A,e23h!736,pi2,pip3).E23H(_c~0,p~P,pi3k!736,shc) k28,fRate27m()
+	R25: PI3K(_ly~0,a~A,e23h!736,pi2,pip3).E23H(_c~0,p~P,pi3k!736,shc) <-> E23H(_c~0,p~P,pi3k,shc) + PI3K(_ly~0,a~A,e23h,pi2,pip3) k29,k_29
+	R26: PI3K(_ly~0,a~A,e23h,pi2,pip3) -> PI3K(_ly~0,a~0,e23h,pi2,pip3) V30
+	R27_1: PI2(pi3k,pten) + PI3K(_ly~0,a~A,e23h,pi2,pip3) <-> PI3K(_ly~0,a~A,e23h,pi2!734,pip3).PI2(pi3k!734,pten) k31,fRate30m()
+	R28_1: PIP3(akt,pi3k,pten) + PTEN(_bpv~0,p~0,pi2,pip3,pten) <-> PTEN(_bpv~0,p~0,pi2,pip3!364,pten).PIP3(akt,pi3k,pten!364) k32,fRate31m()
+	R28_2: PTEN(_bpv~0,p~0,pi2,pip3!364,pten).PIP3(akt,pi3k,pten!364) -> PTEN(_bpv~0,p~0,pi2!731,pip3,pten).PI2(pi3k,pten!731) k33
+	R28_3: PTEN(_bpv~0,p~0,pi2!731,pip3,pten).PI2(pi3k,pten!731) -> PI2(pi3k,pten) + PTEN(_bpv~0,p~0,pi2,pip3,pten) k34
+	R28_4: PTEN(_bpv~0,p~0,pi2,pip3,pten) -> PTEN(_bpv~0,p~P,pi2,pip3,pten) fRate34()
+	R28_5: PTEN(_bpv~0,p~0,pi2,pip3,pten) + PTEN(_bpv~0,p~P,pi2,pip3,pten) <-> PTEN(_bpv~0,p~0,pi2,pip3,pten!732).PTEN(_bpv~0,p~P,pi2,pip3,pten!732) k36,fRate35m()
+	R28_6: PTEN(_bpv~0,p~0,pi2,pip3,pten!732).PTEN(_bpv~0,p~P,pi2,pip3,pten!732) -> PTEN(_bpv~0,p~0,pi2,pip3,pten!732).PTEN(_bpv~0,p~0,pi2,pip3,pten!732) k37
+	R28_7: PTEN(_bpv~0,p~0,pi2,pip3,pten!732).PTEN(_bpv~0,p~0,pi2,pip3,pten!732) -> PTEN(_bpv~0,p~0,pi2,pip3,pten) + PTEN(_bpv~0,p~0,pi2,pip3,pten) k38
+	R29: Akt(pip3) + PIP3(akt,pi3k,pten) <-> PIP3(akt!352,pi3k,pten).Akt(pip3!352) k39,fRate38m()
+	R30: PIP3(akt!352,pi3k,pten).Akt(pip3!352) -> Akt_PI_P(p~0,pp2a) fRate39()
+	R31_1: Akt_PI_P(p~0,pp2a) + PP2A(akt_pi_p,mek) -> Akt_PI_P(p~0,pp2a!733).PP2A(akt_pi_p!733,mek) k41
+	R31_2: Akt_PI_P(p~0,pp2a!733).PP2A(akt_pi_p!733,mek) -> Akt_PIP3_PP2A() k42
+	R31_3: Akt_PIP3_PP2A() -> PIP3(akt!352,pi3k,pten).Akt(pip3!352) + PP2A(akt_pi_p,mek) k43
+	R32: Akt_PI_P(p~0,pp2a) -> Akt_PI_P(p~P,pp2a) fRate43()
+	R33_1: Akt_PI_P(p~P,pp2a) + PP2A(akt_pi_p,mek) <-> PP2A(akt_pi_p!733,mek).Akt_PI_P(p~P,pp2a!733) k41,fRate44m()
+	R33_2: PP2A(akt_pi_p!733,mek).Akt_PI_P(p~P,pp2a!733) -> Akt_PI_P(p~0,pp2a!733).PP2A(akt_pi_p!733,mek) k42
+	R33_3: Akt_PI_P(p~0,pp2a!733).PP2A(akt_pi_p!733,mek) -> Akt_PI_P(p~0,pp2a) + PP2A(akt_pi_p,mek) k47
+	R34: E23H(_c~0,p~P,pi3k,shc) -> 0  k48
+	R35: E2(per) + Per(e2) <-> Per(e2!730).E2(per!730) k49,fRate48m()
+	R36: Per(e2!730).E2(per!730) <-> E2Per() k50,k_50
+	R37: HRG(e3!729).E3(hrg!729) -> E3H_C() k51
+	R38: E2(per) + E3H_C() <-> E23H(_c~0,p~0,pi3k,shc) k2,fRate51m()
+	R39: E23H(_c~0,p~0,pi3k,shc) -> E23H(_c~_C,p~0,pi3k,shc) k53
+	R40: E23H(_c~_C,p~0,pi3k,shc) <-> E23H(_c~0,p~P,pi3k,shc) k3,fRate53m()
+	R41: PI3K(_ly~0,a~A,e23h,pi2!734,pip3).PI2(pi3k!734,pten) -> PI3K(_ly~0,a~A,e23h,pi2,pip3!737).PIP3(akt,pi3k!737,pten) k55
+	R42: PI3K(_ly~0,a~A,e23h,pi2,pip3!737).PIP3(akt,pi3k!737,pten) -> PI3K(_ly~0,a~A,e23h,pi2,pip3) + PIP3(akt,pi3k,pten) k56
+	R43: PTEN(_bpv~0,p~0,pi2,pip3,pten) <-> PTEN(_bpv~_BPV,p~0,pi2,pip3,pten) fRate56(),fRate56m()
+	R44: PI3K(_ly~0,a~0,e23h,pi2,pip3) <-> PI3K(_ly~_LY,a~0,e23h,pi2,pip3) fRate57(),fRate57m()
+end reaction rules
+end model

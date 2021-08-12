@@ -1,0 +1,149 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000200', 'http://identifiers.org/biomodels.db/MODEL6409760567']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/8573792']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/BIOMD0000000404']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/562']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/kegg.pathway/eco02030']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0006935']
+#@creatorEmail:'lukas@ebi.ac.uk'
+#@creatorName:'Endler Lukas'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 22 molecules and 34 reactions. The translated model has 8 molecules and 34 rules'
+###
+begin model
+begin parameters
+	Hill 4.0
+	setYp 9.815860000000001e+17 #original 1.63e-06mol/femtolitre
+	r1_k1 0.003650
+	r1_k2 1000000.000000
+	r2_k1 0.008940
+	r2_k2 1000000.000000
+	r3_k1 297.000000
+	r3_k2 1000000.000000
+	r4_k1 0.640000
+	r4_k2 1000000.000000
+	r5_k1 0.112000
+	r5_k2 1000000.000000
+	r6_k1 0.022900
+	r6_k2 1000000.000000
+	r7_k1 39.300000
+	r7_k2 1000000.000000
+	r8_k1 727.000000
+	r8_k2 1000000.000000
+	r9_k1 0.000008
+	r9_k2 1000000.000000
+	r10_k1 0.051100
+	r10_k2 1000000.000000
+	r11_k1 0.102000
+	r11_k2 1000000.000000
+	r12_k1 0.067600
+	r12_k2 1000000.000000
+	r13_k1 15.500000
+	r14_k1 0.022700
+	r15_k1 0.022700
+	r16_k1 0.022700
+	r17_k1 0.022700
+	r18_k1 0.022700
+	r19_k1 0.001240
+	r20_k1 0.037000
+	r21_k1 500000.000000
+	r22_k1 0.350000
+	r23_k1 6000000.000000
+	r24_k1 6000000.000000
+	r25_k1 6000000.000000
+	r26_k1 6000000.000000
+	r27_k1 6000000.000000
+	r28_k1 6000000.000000
+	r29_k1 30000000.000000
+	r30_k1 30000000.000000
+	r31_k1 30000000.000000
+	r32_k1 30000000.000000
+	r33_k1 30000000.000000
+	r34_k1 30000000.000000
+end parameters
+begin molecule types
+	#^ bqbiol:hasPart uniprot:P07363
+	AA(p~P~0,tt,w,w)
+	WWAAp()
+	#^ bqbiol:hasPart uniprot:P07017
+	TT(aa,w,w)
+	#^ bqbiol:isVersionOf uniprot:P0A964
+	W(aa,tt)
+	TTWWAAp()
+	#^ bqbiol:isVersionOf uniprot:P07330
+	B(p~P~0)
+	#^ bqbiol:isVersionOf uniprot:P0A9H9
+	Z()
+	#^ bqbiol:isVersionOf uniprot:P0AE67
+	Y(p~P~0)
+end molecule types
+begin seed species
+	AA(p~0,tt,w,w) 1.5055000000000003e+18 # 2.5e-06mol/L * 6.022e23/mol *1.0L #AA #AA
+	W(aa,tt) 3.0110000000000005e+18 #original 5e-06mol/femtolitre #W #W
+	TT(aa,w,w) 1.5055000000000003e+18 #original 2.5e-06mol/femtolitre #TT #TT
+	Y(p~0) 6.022000000000001e+18 #original 1e-05mol/femtolitre #Y #Y
+	Z() 1.2044000000000002e+19 #original 2e-05mol/femtolitre #Z #Z
+	B(p~0) 1.2044e+18 #original 2e-06mol/femtolitre #B #B
+end seed species
+begin observables
+	Species AA AA(p~0,tt,w,w) #AA
+	Species AAp AA(p~P,tt,w,w) #AAp
+	Species W W(aa,tt) #W
+	Species WAA AA(p~0,tt,w!345,w).W(aa!345,tt) #WAA
+	Species WAAp AA(p~P,tt,w!345,w).W(aa!345,tt) #WAAp
+	Species WWAA AA(p~0,tt,w!345,w!348).W(aa!345,tt).W(aa!348,tt) #WWAA
+	Species WWAAp WWAAp() #WWAAp
+	Species TT TT(aa,w,w) #TT
+	Species TTW TT(aa,w!344,w).W(aa,tt!344) #TTW
+	Species TTWW TT(aa,w!344,w!347).W(aa,tt!344).W(aa,tt!347) #TTWW
+	Species TTWAA AA(p~0,tt!346,w!345,w).TT(aa!346,w!344,w).W(aa!345,tt!344) #TTWAA
+	Species TTWAAp AA(p~P,tt!346,w!345,w).TT(aa!346,w!344,w).W(aa!345,tt!344) #TTWAAp
+	Species TTAA AA(p~0,tt!346,w,w).TT(aa!346,w,w) #TTAA
+	Species TTAAp AA(p~P,tt!346,w,w).TT(aa!346,w,w) #TTAAp
+	Species TTWWAA AA(p~0,tt!346,w!345,w).TT(aa!346,w!344,w!347).W(aa!345,tt!344).W(aa,tt!347) #TTWWAA
+	Species TTWWAAp TTWWAAp() #TTWWAAp
+	Species Y Y(p~0) #Y
+	Species Yp Y(p~P) #Yp
+	Species Z Z() #Z
+	Species B B(p~0) #B
+	Species Bp B(p~P) #Bp
+end observables
+begin functions
+	Bias() = -Yp^Hill/(Yp^Hill + 2.333*setYp^Hill) + 1
+end functions
+begin reaction rules
+	complex_r1: TT(aa,w!344,w).W(aa,tt!344) <-> TT(aa,w,w) + W(aa,tt) r1_k1,r1_k2
+	complex_r2: AA(p~0,tt,w!345,w).W(aa!345,tt) <-> W(aa,tt) + AA(p~0,tt,w,w) r2_k1,r2_k2
+	complex_r3: AA(p~0,tt!346,w!345,w).TT(aa!346,w!344,w).W(aa!345,tt!344) <-> TT(aa,w,w) + AA(p~0,tt,w!345,w).W(aa!345,tt) r3_k1,r3_k2
+	complex_r4: AA(p~0,tt!346,w!345,w).TT(aa!346,w!344,w!347).W(aa!345,tt!344).W(aa,tt!347) <-> TT(aa,w!344,w).W(aa,tt!344) + AA(p~0,tt,w!345,w).W(aa!345,tt) r4_k1,r4_k2
+	complex_r5: AA(p~0,tt!346,w!345,w).TT(aa!346,w!344,w!347).W(aa!345,tt!344).W(aa,tt!347) <-> TT(aa,w!344,w!347).W(aa,tt!344).W(aa,tt!347) + AA(p~0,tt,w,w) r5_k1,r5_k2
+	complex_r6: AA(p~0,tt!346,w!345,w).TT(aa!346,w!344,w!347).W(aa!345,tt!344).W(aa,tt!347) <-> TT(aa,w,w) + AA(p~0,tt,w!345,w!348).W(aa!345,tt).W(aa!348,tt) r6_k1,r6_k2
+	complex_r7: AA(p~0,tt!346,w,w).TT(aa!346,w,w) <-> TT(aa,w,w) + AA(p~0,tt,w,w) r7_k1,r7_k2
+	complex_r8: AA(p~0,tt!346,w!345,w).TT(aa!346,w!344,w).W(aa!345,tt!344) <-> TT(aa,w!344,w).W(aa,tt!344) + AA(p~0,tt,w,w) r8_k1,r8_k2
+	complex_r9: AA(p~0,tt!346,w!345,w).TT(aa!346,w!344,w!347).W(aa!345,tt!344).W(aa,tt!347) <-> AA(p~0,tt!346,w!345,w).TT(aa!346,w!344,w).W(aa!345,tt!344) + W(aa,tt) r9_k1,r9_k2
+	complex_r10: TT(aa,w!344,w!347).W(aa,tt!344).W(aa,tt!347) <-> TT(aa,w!344,w).W(aa,tt!344) + W(aa,tt) r10_k1,r10_k2
+	complex_r11: AA(p~0,tt,w!345,w!348).W(aa!345,tt).W(aa!348,tt) <-> W(aa,tt) + AA(p~0,tt,w!345,w).W(aa!345,tt) r11_k1,r11_k2
+	complex_r12: AA(p~0,tt!346,w!345,w).TT(aa!346,w!344,w).W(aa!345,tt!344) <-> AA(p~0,tt!346,w,w).TT(aa!346,w,w) + W(aa,tt) r12_k1,r12_k2
+	phosphorylation_r1: AA(p~0,tt!346,w!345,w).TT(aa!346,w!344,w!347).W(aa!345,tt!344).W(aa,tt!347) -> TTWWAAp() r13_k1
+	phosphorylation_r2: AA(p~0,tt,w,w) -> AA(p~P,tt,w,w) r14_k1
+	phosphorylation_r3: AA(p~0,tt,w!345,w).W(aa!345,tt) -> AA(p~P,tt,w!345,w).W(aa!345,tt) r15_k1
+	phosphorylation_r4: AA(p~0,tt,w!345,w!348).W(aa!345,tt).W(aa!348,tt) -> WWAAp() r16_k1
+	phosphorylation_r5: AA(p~0,tt!346,w,w).TT(aa!346,w,w) -> AA(p~P,tt!346,w,w).TT(aa!346,w,w) r17_k1
+	phosphorylation_r6: AA(p~0,tt!346,w!345,w).TT(aa!346,w!344,w).W(aa!345,tt!344) -> AA(p~P,tt!346,w!345,w).TT(aa!346,w!344,w).W(aa!345,tt!344) r18_k1
+	phosphorylation_r7: Y(p~0) -> Y(p~P) r19_k1
+	phosphorylation_r8: Y(p~P) -> Y(p~0) r20_k1
+	phosphorylation_r9: Y(p~P) + Z() -> Y(p~0) + Z() r21_k1
+	phosphorylation_r10: B(p~P) -> B(p~0) r22_k1
+	phosphotransfer_r1: B(p~0) + AA(p~P,tt,w,w) -> B(p~P) + AA(p~0,tt,w,w) r23_k1
+	phosphotransfer_r2: B(p~0) + AA(p~P,tt,w!345,w).W(aa!345,tt) -> B(p~P) + AA(p~0,tt,w!345,w).W(aa!345,tt) r24_k1
+	phosphotransfer_r3: B(p~0) + WWAAp() -> B(p~P) + AA(p~0,tt,w!345,w!348).W(aa!345,tt).W(aa!348,tt) r25_k1
+	phosphotransfer_r4: B(p~0) + AA(p~P,tt!346,w,w).TT(aa!346,w,w) -> B(p~P) + AA(p~0,tt!346,w,w).TT(aa!346,w,w) r26_k1
+	phosphotransfer_r5: B(p~0) + AA(p~P,tt!346,w!345,w).TT(aa!346,w!344,w).W(aa!345,tt!344) -> B(p~P) + AA(p~0,tt!346,w!345,w).TT(aa!346,w!344,w).W(aa!345,tt!344) r27_k1
+	phosphotransfer_r6: B(p~0) + TTWWAAp() -> B(p~P) + AA(p~0,tt!346,w!345,w).TT(aa!346,w!344,w!347).W(aa!345,tt!344).W(aa,tt!347) r28_k1
+	phosphotransfer_r7: Y(p~0) + AA(p~P,tt,w,w) -> Y(p~P) + AA(p~0,tt,w,w) r29_k1
+	phosphotransfer_r8: Y(p~0) + AA(p~P,tt,w!345,w).W(aa!345,tt) -> Y(p~P) + AA(p~0,tt,w!345,w).W(aa!345,tt) r30_k1
+	phosphotransfer_r9: Y(p~0) + WWAAp() -> Y(p~P) + AA(p~0,tt,w!345,w!348).W(aa!345,tt).W(aa!348,tt) r31_k1
+	phosphotransfer_r10: Y(p~0) + AA(p~P,tt!346,w,w).TT(aa!346,w,w) -> Y(p~P) + AA(p~0,tt!346,w,w).TT(aa!346,w,w) r32_k1
+	phosphotransfer_r11: Y(p~0) + AA(p~P,tt!346,w!345,w).TT(aa!346,w!344,w).W(aa!345,tt!344) -> Y(p~P) + AA(p~0,tt!346,w!345,w).TT(aa!346,w!344,w).W(aa!345,tt!344) r33_k1
+	phosphotransfer_r12: Y(p~0) + TTWWAAp() -> Y(p~P) + AA(p~0,tt!346,w!345,w).TT(aa!346,w!344,w!347).W(aa!345,tt!344).W(aa,tt!347) r34_k1
+end reaction rules
+end model

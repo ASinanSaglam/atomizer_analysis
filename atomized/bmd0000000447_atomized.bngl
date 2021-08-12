@@ -1,0 +1,108 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000447', 'http://identifiers.org/biomodels.db/MODEL1303130000']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/23009856']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/MODEL1303130001']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0070053', 'http://identifiers.org/go/GO:0036363']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10117']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 13 molecules and 32 reactions. The translated model has 7 molecules and 32 rules'
+###
+begin model
+begin parameters
+	parameter_1 0.035
+	parameter_2 0.35
+	parameter_3 1.4
+	parameter_4 0.035
+	parameter_5 24.5
+	parameter_6 0.005
+	parameter_7 0.35
+	parameter_8 1.05
+	parameter_9 17.5
+	parameter_10 0.0245
+	parameter_11 0.35
+	parameter_12 24.5
+	parameter_13 0.0105
+	parameter_14 0.035
+	parameter_15 0.0035
+	parameter_16 0.07
+	parameter_17 0.0035
+	parameter_18 24.5
+	parameter_19 0.21
+	parameter_20 0.0525
+	parameter_21 0.0175
+	parameter_22 0.0035
+	parameter_23 0.035
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf uniprot:Q71SA3
+	TSP1(pls)
+	#^ bqbiol:isVersionOf uniprot:P06238
+	A2M(pls)
+	#^ bqbiol:isVersionOf uniprot:P17246
+	TGFb1(l~L~0)
+	#^ bqbiol:isVersionOf uniprot:Q01177
+	PLG()
+	cUPA(pai1,s~S~0,t~T~0)
+	#^ bqbiol:isVersionOf uniprot:P20961
+	PAI1(cupa)
+	#^ bqbiol:isVersionOf ec-code:3.4.21.7
+	PLS(a2m,tsp1)
+end molecule types
+begin seed species
+	PLG() 1806600000000000.0 # (0.003 * 1e-06)mol/L * 6.022e23/mol *1.0L #PLG #species_1
+	cUPA(pai1,s~S,t~0) 602200000000000.1 #original 0.001substance/L  #scUPA #species_3
+	TGFb1(l~L) 602200000000000.1 #original 0.001substance/L  #LTGFb1 #species_5
+	A2M(pls) 3011000000000000.0 #original 0.005substance/L  #A2M #species_10
+end seed species
+begin observables
+	Species PLG PLG() #PLG
+	Species PLS PLS(a2m,tsp1) #PLS
+	Species scUPA cUPA(pai1,s~S,t~0) #scUPA
+	Species tcUPA cUPA(pai1,s~0,t~T) #tcUPA
+	Species LTGFb1 TGFb1(l~L) #LTGFb1
+	Species TGFb1 TGFb1(l~0) #TGFb1
+	Species TSP1 TSP1(pls) #TSP1
+	Species PAI1 PAI1(cupa) #PAI1
+	Species TSP1_PLS PLS(a2m,tsp1!753).TSP1(pls!753) #TSP1:PLS
+	Species A2M A2M(pls) #A2M
+	Species A2M_PLS PLS(a2m!752,tsp1).A2M(pls!752) #A2M:PLS
+	Species PAI1_tcUPA cUPA(pai1!754,s~0,t~T).PAI1(cupa!754) #PAI1:tcUPA
+	Species PAI1_scUPA cUPA(pai1!754,s~S,t~0).PAI1(cupa!754) #PAI1:scUPA
+end observables
+begin reaction rules
+	reaction_1: cUPA(pai1,s~S,t~0) + PLG() -> PLS(a2m,tsp1) + cUPA(pai1,s~S,t~0) parameter_1 #Modifiers(species_3, species_1)
+	reaction_2: PLS(a2m,tsp1) + cUPA(pai1,s~S,t~0) -> cUPA(pai1,s~0,t~T) + PLS(a2m,tsp1) parameter_2 #Modifiers(species_2, species_3)
+	reaction_3: cUPA(pai1,s~0,t~T) + PLG() -> PLS(a2m,tsp1) + cUPA(pai1,s~0,t~T) parameter_3 #Modifiers(species_4, species_1)
+	reaction_4: PLS(a2m,tsp1) + TGFb1(l~L) -> TGFb1(l~0) + PLS(a2m,tsp1) parameter_4 #Modifiers(species_2, species_5)
+	reaction_5: TSP1(pls) + TGFb1(l~L) -> TGFb1(l~0) parameter_5 #Modifiers(species_7, species_5)
+	reaction_6: TGFb1(l~L) -> TGFb1(l~0) parameter_6 #Modifiers(species_5)
+	reaction_7: TGFb1(l~0) -> TGFb1(l~0) + TSP1(pls) parameter_7 #Modifiers(species_6)
+	reaction_8: TGFb1(l~0) -> TGFb1(l~0) + PAI1(cupa) parameter_8 #Modifiers(species_6)
+	reaction_9: TSP1(pls) + PLS(a2m,tsp1) <-> PLS(a2m,tsp1!753).TSP1(pls!753) parameter_9,parameter_10 #Modifiers(species_7, species_2, species_9)
+	reaction_10: PLS(a2m,tsp1!753).TSP1(pls!753) -> PLS(a2m,tsp1) parameter_11 #Modifiers(species_9)
+	reaction_11: A2M(pls) + PLS(a2m,tsp1) <-> PLS(a2m!752,tsp1).A2M(pls!752) parameter_12,parameter_13 #Modifiers(species_10, species_2, species_11)
+	reaction_12: PAI1(cupa) + cUPA(pai1,s~0,t~T) <-> cUPA(pai1!754,s~0,t~T).PAI1(cupa!754) parameter_14,parameter_15 #Modifiers(species_8, species_4, species_12)
+	reaction_13: PAI1(cupa) + cUPA(pai1,s~S,t~0) <-> cUPA(pai1!754,s~S,t~0).PAI1(cupa!754) parameter_16,parameter_17 #Modifiers(species_8, species_3, species_13)
+	reaction_14: 0  -> cUPA(pai1,s~S,t~0) parameter_22
+	reaction_15: 0  -> TGFb1(l~L) parameter_22
+	reaction_16: 0  -> A2M(pls) parameter_22
+	reaction_17: 0  -> PLG() parameter_23
+	reaction_18: cUPA(pai1,s~S,t~0) -> 0  parameter_20 #Modifiers(species_3)
+	reaction_19: cUPA(pai1,s~0,t~T) -> 0  parameter_20 #Modifiers(species_4)
+	reaction_20: PLS(a2m,tsp1) -> 0  parameter_20 #Modifiers(species_2)
+	reaction_21: TSP1(pls) -> 0  parameter_21 #Modifiers(species_7)
+	reaction_22: PAI1(cupa) -> 0  parameter_21 #Modifiers(species_8)
+	reaction_23: TGFb1(l~L) -> 0  parameter_21 #Modifiers(species_5)
+	reaction_24: TGFb1(l~0) -> 0  parameter_21 #Modifiers(species_6)
+	reaction_25: PLG() -> 0  parameter_21 #Modifiers(species_1)
+	reaction_26: A2M(pls) -> 0  parameter_21 #Modifiers(species_10)
+	reaction_27: PLS(a2m!752,tsp1).A2M(pls!752) -> 0  parameter_21 #Modifiers(species_11)
+	reaction_28: cUPA(pai1!754,s~0,t~T).PAI1(cupa!754) -> 0  parameter_21 #Modifiers(species_12)
+	reaction_29: cUPA(pai1!754,s~S,t~0).PAI1(cupa!754) -> 0  parameter_21 #Modifiers(species_13)
+	reaction_30: PLS(a2m,tsp1!753).TSP1(pls!753) -> 0  parameter_21 #Modifiers(species_9)
+	reaction_31: PLS(a2m,tsp1!753).TSP1(pls!753) -> 0  parameter_18 #Modifiers(species_9)
+	reaction_32: TGFb1(l~0) -> 0  parameter_19 #Modifiers(species_6)
+end reaction rules
+end model

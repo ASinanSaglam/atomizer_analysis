@@ -1,0 +1,59 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000413', 'http://identifiers.org/biomodels.db/MODEL1203230002']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/22393022']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/3701']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0009958', 'http://identifiers.org/go/GO:0090354']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 5 molecules and 9 reactions. The translated model has 4 molecules and 9 rules'
+###
+begin model
+begin parameters
+	kd 0.334
+	ka 0.000822
+	mu 0.79
+	ld 4.49
+	lm 0.175
+	la 1.15
+	delta 0.486
+	lambda 0.00316
+	TIR1T 18.5
+	alpha_tr 30.5
+end parameters
+begin molecule types
+	#^ bqbiol:hasPart uniprot:Q940U6, uniprot:Q9XFM0
+	VENUS()
+	#^ bqbiol:hasPart uniprot:P49677, uniprot:Q570C0, uniprot:Q9XFM0, uniprot:Q940U6
+	auxinTIR1VENUS()
+	#^ bqbiol:isVersionOf uniprot:Q570C0, uniprot:Q9ZR12, uniprot:Q9LW29, uniprot:Q9LPW7
+	TIR1(auxin)
+	#^ bqbiol:isVersionOf uniprot:P49677
+	auxin(tir1)
+end molecule types
+begin seed species
+	auxin(tir1) 4.444236e+24 # 7.38mol/L * 6.022e23/mol *1.0L #auxin #auxin
+	TIR1(auxin) 9.27388e+24 #original 15.4mol/L  #TIR1 #TIR1
+	auxin(tir1!722).TIR1(auxin!722) 1.6861600000000004e+23 #original 0.28mol/L  #auxinTIR1 #auxinTIR1
+	auxinTIR1VENUS() 1.674116e+24 #original 2.78mol/L  #auxinTIR1VENUS #auxinTIR1VENUS
+	VENUS() 2.432888e+25 #original 40.4mol/L  #VENUS #VENUS
+end seed species
+begin observables
+	Species auxin auxin(tir1) #auxin
+	Species TIR1 TIR1(auxin) #TIR1
+	Species auxinTIR1 auxin(tir1!722).TIR1(auxin!722) #auxinTIR1
+	Species auxinTIR1VENUS auxinTIR1VENUS() #auxinTIR1VENUS
+	Species VENUS VENUS() #VENUS
+end observables
+begin reaction rules
+	auxin_TIR1association: auxin(tir1) + TIR1(auxin) -> auxin(tir1!722).TIR1(auxin!722) ka
+	auxin_TIR1dissociation: auxin(tir1!722).TIR1(auxin!722) -> auxin(tir1) + TIR1(auxin) kd
+	auxin_TIR1_VENUSassociation: auxin(tir1!722).TIR1(auxin!722) + VENUS() -> auxinTIR1VENUS() la
+	auxin_TIR1_VENUSdissociation: auxinTIR1VENUS() -> auxin(tir1!722).TIR1(auxin!722) + VENUS() ld
+	auxin_TIR1_VENUSdissociationleadingtoubiquitination: auxinTIR1VENUS() -> auxin(tir1!722).TIR1(auxin!722) lm
+	auxinproduction: 0  -> auxin(tir1) alpha_tr
+	auxindecay: auxin(tir1) -> 0  mu
+	VENUSproduction: 0  -> VENUS() delta
+	VENUSphotobleachingdecay: VENUS() -> 0  lambda
+end reaction rules
+end model

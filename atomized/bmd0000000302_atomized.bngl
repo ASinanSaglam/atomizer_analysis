@@ -1,0 +1,102 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1101240000', 'http://identifiers.org/biomodels.db/BIOMD0000000302']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/8815919']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10116']
+#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000920', 'http://identifiers.org/bto/BTO:0000601']
+#@BQB_HAS_VERSION:['http://identifiers.org/go/GO:0051932']
+#@creatorEmail:'lukas@ebi.ac.uk'
+#@creatorName:'Endler Lukas'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 0 molecules and 0 reactions. The translated model has 7 molecules and 7 rules'
+###
+begin model
+begin parameters
+	Cm 1.0 #units:uF_per_cm2
+	gL 0.1 #units:mS_per_cm2
+	gK 9.0 #units:mS_per_cm2
+	gNa 35.0 #units:mS_per_cm2
+	E_K -90.0 #units:mV
+	E_L -65.0 #units:mV
+	E_Na 55.0 #units:mV
+	phi 5.0 #units:dimensionless
+	g_syn 0.1 #units:mS_per_cm2
+	E_syn -75.0 #units:mV
+	alpha 12.0 #units:per_ms
+	beta 0.1 #units:per_ms
+	I_app_post 0
+	theta_syn 0
+end parameters
+begin compartments
+	#volume units: L
+	pre_synaptic_cell 3 1.0
+	post_synaptic_cell 3 1.0
+end compartments
+begin molecule types
+	h_post
+	V_post
+	n_post
+	s
+	V_pre
+	h_pre
+	n_pre
+end molecule types
+begin seed species
+	h_post@pre_synaptic_cell (0) / ((0) + (0))
+	V_post@pre_synaptic_cell -64.0 #units:mV
+	n_post@pre_synaptic_cell (0) / ((0) + (0))
+	s@pre_synaptic_cell (12.0) * (0) / ((0.1) + (12.0) * (0))
+	V_pre@pre_synaptic_cell -64.0 #units:mV
+	h_pre@pre_synaptic_cell (0) / ((0) + (0))
+	n_pre@pre_synaptic_cell (0) / ((0) + (0))
+end seed species
+begin observables
+	Species h_post h_post
+	Species V_post V_post
+	Species n_post n_post
+	Species s s
+	Species V_pre V_pre
+	Species h_pre h_pre
+	Species n_pre n_pre
+end observables
+begin functions
+	I_K_pre() = gK*n_pre^4*(-E_K + V_pre)
+	beta_m_pre() = 4*exp(-V_pre/18 - 10/3)
+	alpha_m_pre() = (-0.1*V_pre - 3.5)/(exp(-0.1*V_pre - 3.5) - 1)
+	m_inf_pre() = alpha_m_pre/(alpha_m_pre + beta_m_pre)
+	I_Na_pre() = gNa*h_pre*m_inf_pre^3*(-E_Na + V_pre)
+	I_L_pre() = gL*(-E_L + V_pre)
+	I_app_pre() =  if((time()>=10&&time()<=20),(2),(0))
+	arRateV_pre() = (-I_K_pre - I_L_pre - I_Na_pre + I_app_pre)/Cm
+	I_L_post() = gL*(-E_L + V_post)
+	I_K_post() = gK*n_post^4*(-E_K + V_post)
+	I_syn() = g_syn*s*(-E_syn + V_post)
+	beta_m_post() = 4*exp(-V_post/18 - 10/3)
+	alpha_m_post() = (-0.1*V_post - 3.5)/(exp(-0.1*V_post - 3.5) - 1)
+	m_inf_post() = alpha_m_post/(alpha_m_post + beta_m_post)
+	I_Na_post() = gNa*h_post*m_inf_post^3*(-E_Na + V_post)
+	arRateV_post() = (-I_K_post - I_L_post - I_Na_post + I_app_post - I_syn)/Cm
+	beta_n_pre() = 0.125*exp(-V_pre/80 - 11/20)
+	alpha_n_pre() = (-0.01*V_pre - 0.34)/(exp(-0.1*V_pre - 3.4) - 1)
+	arRaten_pre() = phi*(alpha_n_pre*(1 - n_pre) - beta_n_pre*n_pre)
+	alpha_h_pre() = 0.07*exp(-V_pre/20 - 29/10)
+	beta_h_pre() = 1/(exp(-0.1*V_pre - 2.8) + 1)
+	arRateh_pre() = phi*(alpha_h_pre*(1 - h_pre) - beta_h_pre*h_pre)
+	beta_n_post() = 0.125*exp(-V_post/80 - 11/20)
+	alpha_n_post() = (-0.01*V_post - 0.34)/(exp(-0.1*V_post - 3.4) - 1)
+	arRaten_post() = phi*(alpha_n_post*(1 - n_post) - beta_n_post*n_post)
+	beta_h_post() = 1/(exp(-0.1*V_post - 2.8) + 1)
+	alpha_h_post() = 0.07*exp(-V_post/20 - 29/10)
+	arRateh_post() = phi*(alpha_h_post*(1 - h_post) - beta_h_post*h_post)
+	F() = 1/(exp(-V_pre/2 + theta_syn/2) + 1)
+	arRates() = F*alpha*(1 - s) - beta*s
+	tau_0() = Cm/gL
+end functions
+begin reaction rules
+	0  -> h_post()@pre_synaptic_cell arRateh_post #rateLaw
+	0  -> V_post()@pre_synaptic_cell arRateV_post #rateLaw
+	0  -> n_post()@pre_synaptic_cell arRaten_post #rateLaw
+	0  -> s()@pre_synaptic_cell arRates #rateLaw
+	0  -> V_pre()@pre_synaptic_cell arRateV_pre #rateLaw
+	0  -> h_pre()@pre_synaptic_cell arRateh_pre #rateLaw
+	0  -> n_pre()@pre_synaptic_cell arRaten_pre #rateLaw
+end reaction rules
+end model

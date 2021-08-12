@@ -1,0 +1,40 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/32382154']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/doid/DOID:0080600', 'http://identifiers.org/ido/0000503']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606', 'http://identifiers.org/taxonomy/2697049']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000028']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL2009160002', 'http://identifiers.org/biomodels.db/BIOMD0000000963']
+#@creatorEmail:'kramachandran@ebi.ac.uk'
+#@creatorName:'Ramachandran Kausthubh'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 3 molecules and 2 reactions. The translated model has 1 molecules and 2 rules'
+###
+begin model
+begin parameters
+	beta 0.25
+	gamma 0.1
+	alpha 0
+	Epidemic_size 0
+	Uninfected 0
+	r2_k1 0.100000
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf ncit:C171133, ido:0000511
+	Infected(Recovered~Recovered~0,Susceptible~Susceptible~0)
+end molecule types
+begin seed species
+	Infected(Recovered~0,Susceptible~Susceptible) 6.015978e+23 # 0.999mol/L * 6.022e23/mol *1.0L #Susceptible #Susceptible
+	Infected(Recovered~0,Susceptible~0) 6.022e+20 #original 0.001substance/volume  #Infected #Infected
+end seed species
+begin observables
+	Species Susceptible Infected(Recovered~0,Susceptible~Susceptible) #Susceptible
+	Species Infected Infected(Recovered~0,Susceptible~0) #Infected
+	Species Recovered Infected(Recovered~Recovered,Susceptible~0) #Recovered
+end observables
+begin functions
+	fRate0() = Infected*beta/(Recovered*alpha + 1.0)
+end functions
+begin reaction rules
+	Susceptible_to_Infected: Infected(Recovered~0,Susceptible~Susceptible) -> Infected(Recovered~0,Susceptible~0) fRate0() #Modifiers(Recovered)
+	Infected_to_Recovered: Infected(Recovered~0,Susceptible~0) -> Infected(Recovered~Recovered,Susceptible~0) r2_k1
+end reaction rules
+end model

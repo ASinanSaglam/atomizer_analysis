@@ -1,0 +1,140 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/26861829']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0022008', 'http://identifiers.org/ncit/C19365', 'http://identifiers.org/ncit/C48260']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000750', 'http://identifiers.org/biomodels.db/MODEL1907160001']
+#@creatorEmail:'jm2187@cam.ac.uk'
+#@creatorName:'Men Jinghao'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 8 molecules and 25 reactions. The translated model has 8 molecules and 26 rules'
+###
+begin model
+begin parameters
+	rtp 0.000481 #units:unit_0
+	rtm 0.0001 #units:unit_0
+	t1 134.27 #units:unit_1
+	t2 2.39 #units:unit_2
+	kt 1000000.0 #units:unit_3
+	theta1 10000.0 #units:unit_3
+	theta2 1.0 #units:unit_4
+	dt 0.0127 #units:unit_0
+	delta 0.0129 #units:unit_4
+	u0 0.22 #units:unit_0
+	u1 9.8e-06 #units:unit_5
+	u2 0.002 #units:unit_5
+	sg 0.00222 #units:unit_0
+	dg 22.18 #units:unit_0
+	y1 5.57e-05 #units:unit_5
+	y2 0.05 #units:unit_5
+	sA 0.00542 #units:unit_0
+	dA 2.4 #units:unit_0
+	y3 1e-05 #units:unit_5
+	y4 1.47e-05 #units:unit_5
+	rs 0.06 #units:unit_0
+	ks 0.26 #units:unit_3
+	sigma1 129.0 #units:unit_1
+	sigma2 50.0 #units:unit_2
+	sigma3 7.79 #units:unit_1
+	sigma4 0.01 #units:unit_2
+	rp 7.0 #units:unit_0
+	kp 0.03 #units:unit_3
+	p1 0.33 #units:unit_0
+	p2 0.1 #units:unit_2
+	p3 1.0 #units:unit_1
+	p4 0.01 #units:unit_2
+	cn 0.41 #units:unit_6
+	sn 1.6 #units:unit_0
+	dn 1.66 #units:unit_0
+	y5 0.002 #units:unit_5
+	ca 3990.0 #units:unit_6
+	sa 0.73 #units:unit_0
+	da 49.91 #units:unit_0
+	y6 0.001 #units:unit_5
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf cl:CL:0001063
+	Tp()
+	#^ bqbiol:isVersionOf cl:CL:0001063
+	Tm()
+	#^ bqbiol:isVersionOf ncit:C20424
+	G()
+	#^ bqbiol:isVersionOf cl:CL:0011103
+	S()
+	#^ bqbiol:is chebi:CHEBI:15355
+	Na()
+	#^ bqbiol:isVersionOf cl:CL:0011102
+	P()
+	#^ bqbiol:is chebi:CHEBI:33569
+	Nn()
+	#^ bmbiol:isInstanceOf go:GO:0007411
+	A()
+end molecule types
+begin seed species
+	Tp() 6.022e+25 # (100000.0 * 0.001)mol/L * 6.022e23/mol *1.0L #Tp #Tp
+	S() 1.5657200000000003e+20 #original 0.26substance/volume #S #S
+	P() 1.8066000000000002e+19 #original 0.03substance/volume #P #P
+	Nn() 3.011e+20 #original 0.5substance/volume #Nn #Nn
+	Na() 4.8176e+22 #original 80.0substance/volume #Na #Na
+end seed species
+begin observables
+	Species Tp Tp() #Tp
+	Species Tm Tm() #Tm
+	Species G G() #G
+	Species A A() #A
+	Species S S() #S
+	Species P P() #P
+	Species Nn Nn() #Nn
+	Species Na Na() #Na
+end observables
+begin functions
+	ONn() = theta1/(Nn*theta2 + 1)
+	fRate0() = 7*Tp*(-1 + Tp/ONn)*(G/(G*t2 + t1) + rtp)*(-Tp/kt + 1)/8
+	fRate1() = Tp*dt*(A*delta + 1)
+	fRate2() = Tp*(A*u1 + Na*u2 + u0)
+	fRate3() = Tm*rtm
+	fRate5() = Tp*sg
+	fRate7() = G*(Tp*y1 + y2*(P + S))
+	fRate8() = Tp*sA
+	fRate10() = A*(Tp*y3 + y4*(P + S))
+	fRate11() = S*rs
+	fRate11m() = S*rs/ks
+	fRate12() = G*S/(G*sigma2 + sigma1)
+	fRate13() = A*S/(A*sigma4 + sigma3)
+	fRate14() = P*rp
+	fRate14m() = P*rp/kp
+	fRate15() = G*P/(G*p2 + p1)
+	fRate16() = A*P/(A*p4 + p3)
+	fRate18() = S*sn
+	fRate20() = Tp*y5
+	fRate22() = P*sa
+	fRate24() = Tp*y6
+end functions
+begin reaction rules
+	tumor_growth_NGF__logistic_products_0: 0  -> Tp() fRate0() #Modifiers(G)
+	tumor_death_AGM_reactants_0: 0  -> Tp() -1*(fRate1()) #Modifiers(A)
+	tumor_migration_reactants_0: 0  -> Tp() -1*(fRate2()) #Modifiers(A, Na)
+	tumor_migration_products_0: 0  -> Tm() fRate2() #Modifiers(A, Na)
+	migrating_tumor_cell_growth: 0  -> Tm() fRate3()
+	migrating_cell_death: Tm() -> 0  dt
+	NGF_production: 0  -> G() fRate5() #Modifiers(Tp)
+	NGF_decay: G() -> 0  dg
+	NGF_internalisation_reactants_0: 0  -> G() -1*(fRate7()) #Modifiers(Tp, S, P)
+	AGM_production: 0  -> A() fRate8() #Modifiers(Tp)
+	AGM_decay: A() -> 0  dA
+	AGM_internalisation_reactants_0: 0  -> A() -1*(fRate10()) #Modifiers(Tp, S, P)
+	sympathetic_neuron_growth: 0  <-> S() fRate11(),fRate11m()
+	sympathetic_neuron_growth_NGF: 0  -> S() fRate12() #Modifiers(G)
+	sympathetic_neuron_growth_AGM: 0  -> S() fRate13() #Modifiers(A)
+	parasym_neuron_growth: 0  <-> P() fRate14(),fRate14m()
+	parasym_neuron_growth_NGF: 0  -> P() fRate15() #Modifiers(G)
+	parasym_neuron_growth_AGM: 0  -> P() fRate16() #Modifiers(A)
+	norepinephrine_source: 0  -> Nn() cn
+	norepinephrine_by_SNC: 0  -> Nn() fRate18() #Modifiers(S)
+	norepinephrine_decay: Nn() -> 0  dn
+	norepinephrine_uptake_tumor: Nn() -> 0  fRate20() #Modifiers(Tp)
+	ACh_source: 0  -> Na() ca
+	ACh_by_PNC: 0  -> Na() fRate22() #Modifiers(P)
+	ACh_decay: Na() -> 0  da
+	ACh_uptake_tumor: Na() -> 0  fRate24() #Modifiers(Tp)
+end reaction rules
+end model

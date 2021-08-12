@@ -1,0 +1,60 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1010190003', 'http://identifiers.org/biomodels.db/BIOMD0000000284']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/3450367']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0008652']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/2']
+#@creatorEmail:'lukas@ebi.ac.uk'
+#@creatorName:'Endler Lukas'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 9 molecules and 8 reactions. The translated model has 1 molecules and 8 rules'
+###
+begin model
+begin parameters
+end parameters
+begin molecule types
+	X(A~A~0,B~B~0,C~C~0,D~D~0,E~E~0,F~F~0,Y~Y~0,Z~Z~0)
+end molecule types
+begin seed species
+	$X(A~0,B~0,C~0,D~0,E~0,F~0,Y~0,Z~0) 6.022e+24 # 10.0mol/L * 6.022e23/mol *1.0L #X #X
+	$X(A~0,B~0,C~0,D~0,E~0,F~0,Y~Y,Z~0) 1.2044e+24 #original 2.0/L  #Y #Y
+	$X(A~0,B~0,C~0,D~0,E~0,F~0,Y~0,Z~Z) 6.022e+23 #original 1.0/L  #Z #Z
+end seed species
+begin observables
+	Species A X(A~A,B~0,C~0,D~0,E~0,F~0,Y~0,Z~0) #A
+	Species B X(A~0,B~B,C~0,D~0,E~0,F~0,Y~0,Z~0) #B
+	Species C X(A~0,B~0,C~C,D~0,E~0,F~0,Y~0,Z~0) #C
+	Species D X(A~0,B~0,C~0,D~D,E~0,F~0,Y~0,Z~0) #D
+	Species E X(A~0,B~0,C~0,D~0,E~E,F~0,Y~0,Z~0) #E
+	Species F X(A~0,B~0,C~0,D~0,E~0,F~F,Y~0,Z~0) #F
+	Species X X(A~0,B~0,C~0,D~0,E~0,F~0,Y~0,Z~0) #X
+	Species Y X(A~0,B~0,C~0,D~0,E~0,F~0,Y~Y,Z~0) #Y
+	Species Z X(A~0,B~0,C~0,D~0,E~0,F~0,Y~0,Z~Z) #Z
+end observables
+begin functions
+	fRate0() = 10.0/(A + B^2 + X + 1.0)
+	fRate0m() = 1/(A + B^2 + X + 1.0)
+	fRate1() = 2.0/(A + B + 1.0)
+	fRate1m() = 1/(A + B + 1.0)
+	fRate2() = 1/(B + C + D^2 + 1.0)
+	fRate2m() = 1/(B + C + D^2 + 1.0)
+	fRate3() = 5.0/(C + D + 1.0)
+	fRate3m() = 1/(C + D + 1.0)
+	fRate4() = 10.0/(D + Y + 1.0)
+	fRate4m() = 1/(D + Y + 1.0)
+	fRate5() = 1/(B + E + F^2 + 1.0)
+	fRate5m() = 1/(B + E + F^2 + 1.0)
+	fRate6() = 5.0/(E + F + 1.0)
+	fRate6m() = 1/(E + F + 1.0)
+	fRate7() = 10.0/(F + Z + 1.0)
+	fRate7m() = 1/(F + Z + 1.0)
+end functions
+begin reaction rules
+	R1: X(A~0,B~0,C~0,D~0,E~0,F~0,Y~0,Z~0) <-> X(A~A,B~0,C~0,D~0,E~0,F~0,Y~0,Z~0) fRate0(),fRate0m() #Modifiers(B)
+	R2: X(A~A,B~0,C~0,D~0,E~0,F~0,Y~0,Z~0) <-> X(A~0,B~B,C~0,D~0,E~0,F~0,Y~0,Z~0) fRate1(),fRate1m()
+	R3: X(A~0,B~B,C~0,D~0,E~0,F~0,Y~0,Z~0) <-> X(A~0,B~0,C~C,D~0,E~0,F~0,Y~0,Z~0) fRate2(),fRate2m() #Modifiers(D)
+	R4: X(A~0,B~0,C~C,D~0,E~0,F~0,Y~0,Z~0) <-> X(A~0,B~0,C~0,D~D,E~0,F~0,Y~0,Z~0) fRate3(),fRate3m()
+	R5: X(A~0,B~0,C~0,D~D,E~0,F~0,Y~0,Z~0) <-> X(A~0,B~0,C~0,D~0,E~0,F~0,Y~Y,Z~0) fRate4(),fRate4m()
+	R6: X(A~0,B~B,C~0,D~0,E~0,F~0,Y~0,Z~0) <-> X(A~0,B~0,C~0,D~0,E~E,F~0,Y~0,Z~0) fRate5(),fRate5m() #Modifiers(F)
+	R7: X(A~0,B~0,C~0,D~0,E~E,F~0,Y~0,Z~0) <-> X(A~0,B~0,C~0,D~0,E~0,F~F,Y~0,Z~0) fRate6(),fRate6m()
+	R8: X(A~0,B~0,C~0,D~0,E~0,F~F,Y~0,Z~0) <-> X(A~0,B~0,C~0,D~0,E~0,F~0,Y~0,Z~Z) fRate7(),fRate7m()
+end reaction rules
+end model

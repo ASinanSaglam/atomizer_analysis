@@ -1,0 +1,82 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000058', 'http://identifiers.org/biomodels.db/MODEL9107330008']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/12779457']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/MODEL9200487367']
+#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000028']
+#@BQB_IS:['http://identifiers.org/kegg.pathway/map04020']
+#@BQB_HAS_PART:['http://identifiers.org/go/GO:0019722', 'http://identifiers.org/go/GO:0048016']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10116']
+#@creatorEmail:'hdharuri@cds.caltech.edu'
+#@creatorName:'Dharuri Harish'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 4 molecules and 11 reactions. The translated model has 2 molecules and 11 rules'
+###
+begin model
+begin parameters
+	r2 100.0
+	R1 6.0
+	k1 44.0
+	R3 50.0
+	k2 26.5
+	r4 20.0
+	k3 1.6
+	R5 1.6
+	r1_kf 28.000000
+	r1_p 0.277800
+	r2_Vp 1.200000
+	r2_Kp 0.180000
+	r3_Jleak 0.200000
+	r5_p 0.277800
+	r6_kf 28.000000
+	r6_p 0.277800
+	r7_Vp 1.200000
+	r7_Kp 0.180000
+	r8_Jleak 0.200000
+	r10_p 0.277800
+	r11_D 0.010000
+end parameters
+begin molecule types
+	CalciumionCell(_1~1~0,_2~2~0)
+	ReceptorfractionCell(_1~1~0,_2~2~0)
+end molecule types
+begin seed species
+	CalciumionCell(_1~1,_2~0) 1.8066e+17 # (0.3 * 1e-06)mol/L * 6.022e23/mol *1.0L #CalciumionCell1 #c1
+	ReceptorfractionCell(_1~1,_2~0) 4.8176e+17 #original 0.8micromole/L #ReceptorfractionCell1 #h1
+	CalciumionCell(_1~0,_2~2) 6.022e+16 #original 0.1micromole/L #CalciumionCell2 #c2
+	ReceptorfractionCell(_1~0,_2~2) 6.022e+16 #original 0.1micromole/L #ReceptorfractionCell2 #h2
+end seed species
+begin observables
+	Species CalciumionCell1 CalciumionCell(_1~1,_2~0) #Calcium ion Cell1
+	Species ReceptorfractionCell1 ReceptorfractionCell(_1~1,_2~0) #Receptor fraction Cell1
+	Species CalciumionCell2 CalciumionCell(_1~0,_2~2) #Calcium ion Cell2
+	Species ReceptorfractionCell2 ReceptorfractionCell(_1~0,_2~2) #Receptor fraction Cell2
+end observables
+begin functions
+	Phi3_c2() = k3/(CalciumionCell2 + R5)
+	Phi2_c2() = (CalciumionCell2*r4 + k2)/(CalciumionCell2 + R3)
+	Phi_minus1_c2() = k1/(CalciumionCell2 + R3)
+	Phi1_c2() = CalciumionCell2*r2/(CalciumionCell2 + R1)
+	Phi3_c1() = k3/(CalciumionCell1 + R5)
+	Phi2_c1() = (CalciumionCell1*r4 + k2)/(CalciumionCell1 + R3)
+	Phi_minus1_c1() = k1/(CalciumionCell1 + R3)
+	Phi1_c1() = CalciumionCell1*r2/(CalciumionCell1 + R1)
+	fRate0() = 0.166758122542637*Phi1_c1^4*ReceptorfractionCell1^4/(0.0059556472336656*Phi1_c1^4 + 0.085754459808*Phi1_c1^3*Phi_minus1_c1 + 0.46303704*Phi1_c1^2*Phi_minus1_c1^2 + 1.1112*Phi1_c1*Phi_minus1_c1^3 + Phi_minus1_c1^4)
+	fRate1() = 1.2*CalciumionCell1/(CalciumionCell1^2 + 0.0324)
+	fRate4() = 0.2778*Phi1_c1*Phi2_c1/(0.2778*Phi1_c1 + Phi_minus1_c1)
+	fRate5() = 0.166758122542637*Phi1_c2^4*ReceptorfractionCell2^4/(0.0059556472336656*Phi1_c2^4 + 0.085754459808*Phi1_c2^3*Phi_minus1_c2 + 0.46303704*Phi1_c2^2*Phi_minus1_c2^2 + 1.1112*Phi1_c2*Phi_minus1_c2^3 + Phi_minus1_c2^4)
+	fRate6() = 1.2*CalciumionCell2/(CalciumionCell2^2 + 0.0324)
+	fRate9() = 0.2778*Phi1_c2*Phi2_c2/(0.2778*Phi1_c2 + Phi_minus1_c2)
+end functions
+begin reaction rules
+	Jreceptor_Cell1: 0  -> CalciumionCell(_1~1,_2~0) fRate0() #Modifiers(h1)
+	Jpump_Cell1: CalciumionCell(_1~1,_2~0) -> 0  fRate1()
+	Jleak_Cell1: 0  -> CalciumionCell(_1~1,_2~0) r3_Jleak
+	Inactivated_to_S_Cell1: 0  <-> ReceptorfractionCell(_1~1,_2~0) Phi3_c1,Phi3_c1
+	Open_to_Inactivated_Cell1: ReceptorfractionCell(_1~1,_2~0) -> 0  fRate4()
+	Jreceptor_Cell2: 0  -> CalciumionCell(_1~0,_2~2) fRate5() #Modifiers(h2)
+	Jpump_Cell2: CalciumionCell(_1~0,_2~2) -> 0  fRate6()
+	Jleak_Cell2: 0  -> CalciumionCell(_1~0,_2~2) r8_Jleak
+	Inactivated_to_S_Cell2: 0  <-> ReceptorfractionCell(_1~0,_2~2) Phi3_c2,Phi3_c2
+	Open_to_Inactivated_Cell2: ReceptorfractionCell(_1~0,_2~2) -> 0  fRate9()
+	diffusion: CalciumionCell(_1~0,_2~2) <-> CalciumionCell(_1~1,_2~0) r11_D,r11_D
+end reaction rules
+end model

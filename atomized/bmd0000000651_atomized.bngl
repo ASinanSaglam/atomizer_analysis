@@ -1,0 +1,161 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000651', 'http://identifiers.org/biomodels.db/MODEL1708250003']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/26481970']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/ncit/C16212', 'http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_HAS_PART:['http://identifiers.org/pw/PW:0000180', 'http://identifiers.org/pw/PW:0000102']
+#@creatorEmail:'efairbanks@ebi.ac.uk'
+#@creatorName:'Fairbanks Emma Louise'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 29 molecules and 16 reactions. The translated model has 11 molecules and 18 rules'
+###
+begin model
+begin parameters
+	k1f 0.01
+	k1r 0.01
+	k2f 0.001
+	k2fa 0.001
+	k2r 0.01
+	k3f 0.001
+	k3r 0.01
+	k4f 0.001
+	k4r 0.01
+	k5f 0.001
+	k5r 0.01
+	k6f 0.1
+	k6r 0.001
+	k7f 0.01
+	k7fa 0.01
+	k7r 0.01
+	k8f 0.001
+	k8r 0.01
+	k9f 0.001
+	k9r 0.01
+	k10f 0.001
+	k10r 0.01
+	k11f 0.001
+	k11r 0.01
+	k12f 0.01
+	k12r 0.001
+	k13f 0.1
+	k13r 0.001
+	k14f 0.1
+	k14r 0.001
+	k15f 0.01
+	k15r 0.001
+	k16f 0.01
+	k16r 0.001
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf uniprot:P35568
+	IRS(a~A~0,i~I~0)
+	#^ bqbiol:isVersionOf uniprot:P27361
+	ERK(a~A~0)
+	#^ bqbiol:isVersionOf urn:miriam:uniprot:C17270
+	PI3K(a~A~0)
+	RasG(dp~DP~0,tp~TP~0)
+	#^ bqbiol:isVersionOf uniprot:Q08345
+	RTK(a~A~0,i~I~0)
+	#^ bqbiol:isVersionOf uniprot:P23443
+	S6K(a~A~0)
+	#^ bqbiol:isVersionOf uniprot:Q12778
+	FOXO(i~I~0)
+	#^ bqbiol:isVersionOf uniprot:Q02750
+	MEK(a~A~0,i~I~0,mek)
+	#^ bqbiol:isVersionOf uniprot:P42345
+	mTORC1(a~A~0)
+	#^ bqbiol:isVersionOf uniprot:P31749
+	Akt(a~A~0,akt,i~I~0)
+	#^ bqbiol:isVersionOf uniprot:P04049
+	Raf(a~A~0,i~I~0)
+end molecule types
+begin seed species
+	IRS(a~0,i~0) 6.022000000000001e+22 # (100.0 * 0.001)mol/L * 6.022e23/mol *1.0L #IRS #IRS
+	PI3K(a~0) 6.022000000000001e+22 #original 100.0substance/volume  #PI3K #PI3K
+	Akt(a~0,akt,i~0) 6.022000000000001e+22 #original 100.0substance/volume  #Akt #Akt
+	mTORC1(a~0) 1.806599999999994e+23 #original 299.999999999999substance/volume  #mTORC1 #mTORC1
+	S6K(a~0) 1.806599999999994e+23 #original 299.999999999999substance/volume  #S6K #S6K
+	FOXO(i~0) 1.2044000000000002e+23 #original 200.0substance/volume  #FOXO #FOXO
+	RTK(a~0,i~0) 1.2044000000000002e+23 #original 200.0substance/volume  #RTK #RTK
+	RasG(dp~DP,tp~0) 6.022000000000001e+22 #original 100.0substance/volume  #RasGDP #RasGDP
+	Raf(a~0,i~0) 6.022000000000001e+22 #original 100.0substance/volume  #Raf #Raf
+	MEK(a~0,i~0,mek) 1.806599999999994e+23 #original 299.999999999999substance/volume  #MEK #MEK
+	ERK(a~0) 5.419799999999976e+23 #original 899.999999999996substance/volume  #ERK #ERK
+end seed species
+begin observables
+	Species IRS IRS(a~0,i~0) #IRS
+	Species aIRS IRS(a~A,i~0) #aIRS
+	Species iIRS IRS(a~0,i~I) #iIRS
+	Species PI3K PI3K(a~0) #PI3K
+	Species aPI3K PI3K(a~A) #aPI3K
+	Species Akt Akt(a~0,akt,i~0) #Akt
+	Species aAkt Akt(a~A,akt,i~0) #aAkt
+	Species mTORC1 mTORC1(a~0) #mTORC1
+	Species amTORC1 mTORC1(a~A) #amTORC1
+	Species S6K S6K(a~0) #S6K
+	Species aS6K S6K(a~A) #aS6K
+	Species FOXO FOXO(i~0) #FOXO
+	Species iFOXO FOXO(i~I) #iFOXO
+	Species RTK RTK(a~0,i~0) #RTK
+	Species aRTK RTK(a~A,i~0) #aRTK
+	Species iRTK RTK(a~0,i~I) #iRTK
+	Species RasGDP RasG(dp~DP,tp~0) #RasGDP
+	Species RasGTP RasG(dp~0,tp~TP) #RasGTP
+	Species Raf Raf(a~0,i~0) #Raf
+	Species aRaf Raf(a~A,i~0) #aRaf
+	Species iRaf Raf(a~0,i~I) #iRaf
+	Species MEK MEK(a~0,i~0,mek) #MEK
+	Species aMEK MEK(a~A,i~0,mek) #aMEK
+	Species ERK ERK(a~0) #ERK
+	Species aERK ERK(a~A) #aERK
+	Species AktI Akt(a~0,akt,i~I) #AktI
+	Species iAkt Akt(a~0,akt!284,i~0).Akt(a~0,akt!284,i~I) #iAkt
+	Species MEKI MEK(a~0,i~I,mek) #MEKI
+	Species iMEK MEK(a~0,i~0,mek!285).MEK(a~0,i~I,mek!285) #iMEK
+end observables
+begin functions
+	fRate1() = 1.0*PI3K*(aIRS*k2f + aRTK*k2fa) - 1.0*aPI3K*k2r
+	fRate2() = aPI3K*k3f
+	fRate2m() = 1.0*k3r
+	fRate3() = aAkt*k4f
+	fRate3m() = 1.0*k4r
+	fRate4() = amTORC1*k5f
+	fRate4m() = 1.0*k5r
+	fRate5() = aS6K*k6f
+	fRate5m() = 1.0*k6r
+	fRate6() = 1.0*RTK*(FOXO*k7fa + k7f) - 1.0*aRTK*k7r
+	fRate7() = aRTK*k8f
+	fRate7m() = 1.0*k8r
+	fRate8() = RasGTP*k9f
+	fRate8m() = 1.0*k9r
+	fRate9() = aRaf*k10f
+	fRate9m() = 1.0*k10r
+	fRate10() = aMEK*k11f
+	fRate10m() = 1.0*k11r
+	fRate11() = aERK*k12f
+	fRate11m() = 1.0*k12r
+	fRate12() = aERK*k13f
+	fRate12m() = 1.0*k13r
+	fRate13() = aAkt*k14f
+	fRate13m() = 1.0*k14r
+end functions
+begin reaction rules
+	IRS__activation_deactivation: IRS(a~0,i~0) <-> IRS(a~A,i~0) k1f,k1r
+	PI3K_activation_deactivation_reactants_0: 0  -> PI3K(a~0) -1*(fRate1()) #Modifiers(aIRS, aRTK)
+	PI3K_activation_deactivation_products_0: 0  -> PI3K(a~A) fRate1() #Modifiers(aIRS, aRTK)
+	Akt_activation_deactivation: Akt(a~0,akt,i~0) <-> Akt(a~A,akt,i~0) fRate2(),fRate2m() #Modifiers(aPI3K)
+	mTOC1_acivation_deactivation: mTORC1(a~0) <-> mTORC1(a~A) fRate3(),fRate3m() #Modifiers(aAkt)
+	S6K_activation_deactivation: S6K(a~0) <-> S6K(a~A) fRate4(),fRate4m() #Modifiers(amTORC1)
+	IRS_inhibition: IRS(a~0,i~0) <-> IRS(a~0,i~I) fRate5(),fRate5m() #Modifiers(aS6K)
+	RTK_activation_deactivation_reactants_0: 0  -> RTK(a~0,i~0) -1*(fRate6()) #Modifiers(FOXO)
+	RTK_activation_deactivation_products_0: 0  -> RTK(a~A,i~0) fRate6() #Modifiers(FOXO)
+	RasGDP__activation_deactivation: RasG(dp~DP,tp~0) <-> RasG(dp~0,tp~TP) fRate7(),fRate7m() #Modifiers(aRTK)
+	Raf_activation_deactivation: Raf(a~0,i~0) <-> Raf(a~A,i~0) fRate8(),fRate8m() #Modifiers(RasGTP)
+	MEK_activation_deactivation: MEK(a~0,i~0,mek) <-> MEK(a~A,i~0,mek) fRate9(),fRate9m() #Modifiers(aRaf)
+	ERK_activation_deactivation: ERK(a~0) <-> ERK(a~A) fRate10(),fRate10m() #Modifiers(aMEK)
+	Raf_inhibition: Raf(a~0,i~0) <-> Raf(a~0,i~I) fRate11(),fRate11m() #Modifiers(aERK)
+	RTK_inhibition: RTK(a~0,i~0) <-> RTK(a~0,i~I) fRate12(),fRate12m() #Modifiers(aERK)
+	FOXO_inhibition: FOXO(i~0) <-> FOXO(i~I) fRate13(),fRate13m() #Modifiers(aAkt)
+	Akt_inhibition: Akt(a~0,akt,i~0) + Akt(a~0,akt,i~I) <-> Akt(a~0,akt!284,i~0).Akt(a~0,akt!284,i~I) k15f,k15r
+	MEK_inhibition: MEK(a~0,i~0,mek) + MEK(a~0,i~I,mek) <-> MEK(a~0,i~0,mek!285).MEK(a~0,i~I,mek!285) k16f,k16r
+end reaction rules
+end model

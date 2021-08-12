@@ -1,0 +1,131 @@
+###
+#@BQM_IS_DERIVED_FROM:['urn:miriam:unknown:https://www.ncbi.nlm.nih.gov/pubmed/24523664']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/30713074']
+#@BQB_HAS_PART:['http://identifiers.org/go/GO:0051726']
+#@BQB_IS:['http://identifiers.org/biomodels.db/MODEL2004170001']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/7955']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'urn:miriam:unknown:http://purl.obolibrary.org/obo/CHMO_0002076']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000952', 'http://identifiers.org/biomodels.db/MODEL2004170001']
+#@creatorEmail:'ahmad.azd@hotmail.com'
+#@creatorName:'Zyoud Ahmad'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 15 molecules and 15 reactions. The translated model has 9 molecules and 18 rules'
+###
+begin model
+begin parameters
+	k_synth 2.85
+	k_dest 0.76
+	ec50_cdc25 30.0
+	n_cdc25 11.0
+	ec50_wee1 35.0
+	n_wee1 3.5
+	k_cdk1_on 0.06726
+	k_cdk1_off 0.06726
+	p 5.0
+	ec50_plx 60.0
+	ec50_apc 0.5
+	n_apc 4.0
+	n_plx 5.0
+	k_plxon 2.85
+	k_plx_off 0.2375
+	k_apc_on 1.5
+	k_apc_off 0.15
+	r 0.03125
+	tau 4.0
+	Kcdk_on 10.0
+	Kcdk_off 1.0
+	Kcatcdk1 180.0
+	Kpp2_on 100.0
+	Kpp2_off 0.01
+	Kcatpp2 1800.0
+	delta_Hdesphos 40000.0
+	Plx1_total 6.022e+20 #original 1.0substance/volume
+	APC_Ctotal 6.022e+20 #original 1.0substance/volume
+	cdk1a 3.6132e+22 #original 60.0substance/volume
+end parameters
+begin molecule types
+	#^ bqbiol:hasPart ncit:C120264
+	Substrate()
+	#^ bqbiol:hasPart uniprot:Q6NY64
+	#^ bqbiol:is go:GO:0032991
+	PP2A()
+	#^ bqbiol:hasPart uniprot:Q7T3L7, ncit:C120264
+	#^ bqbiol:is go:GO:0032991
+	Substrate_Cdk1complex(CyclinB1Cdk1complexphosphorylated__Active__~CyclinB1Cdk1complexphosphorylated__Active__~0,CyclinB1Cdk1complextotal~CyclinB1Cdk1complextotal~0,CyclinB1Cdk1complexunphosphorylated~CyclinB1Cdk1complexunphosphorylated~0)
+	#^ bqbiol:isVersionOf uniprot:Q4KMI8
+	#^ bqbiol:hasProperty pato:PATO:0002354
+	Plx1_active()
+	Stotal()
+	#^ bqbiol:hasPart pato:PATO:0002220, ncit:C120264
+	PhosphorylatedSubstrate__SP__()
+	#^ bqbiol:is go:GO:0031649
+	Heat__Q__()
+	#^ bqbiol:hasPart uniprot:Q561X1
+	#^ bqbiol:hasProperty pato:PATO:0002354
+	APC_Cactive()
+	#^ bqbiol:is go:GO:0032991
+	PhosphorylatedSubstratePhosphataseComplex__SP_PP2A__()
+end molecule types
+begin seed species
+	Substrate_Cdk1complex(CyclinB1Cdk1complexphosphorylated__Active__~CyclinB1Cdk1complexphosphorylated__Active__,CyclinB1Cdk1complextotal~0,CyclinB1Cdk1complexunphosphorylated~0) 3.6132e+22 # (60.0 * 0.001)mol/L * 6.022e23/mol *1.0L #CyclinB1Cdk1complexphosphorylated__Active__ #Cyclin_B1_Cdk1_complex_phosphorylated
+	Substrate_Cdk1complex(CyclinB1Cdk1complexphosphorylated__Active__~0,CyclinB1Cdk1complextotal~CyclinB1Cdk1complextotal,CyclinB1Cdk1complexunphosphorylated~0) 3.6132e+22 #original 60.0substance/volume #CyclinB1Cdk1complextotal #Cyclin_B1_Cdk1_complex_total
+	Substrate() 3.6132e+22 #original 60.0substance/volume #Substrate #S
+	PP2A() 3.6132e+22 #original 60.0substance/volume #PP2A #PP2A
+	Stotal() 3.6132e+22 #original 60.0substance/volume #Stotal #Stotal
+end seed species
+begin observables
+	Species CyclinB1Cdk1complexphosphorylated__Active__ Substrate_Cdk1complex(CyclinB1Cdk1complexphosphorylated__Active__~CyclinB1Cdk1complexphosphorylated__Active__,CyclinB1Cdk1complextotal~0,CyclinB1Cdk1complexunphosphorylated~0) #Cyclin B1 Cdk1 complex phosphorylated( Active)
+	Species CyclinB1Cdk1complexunphosphorylated Substrate_Cdk1complex(CyclinB1Cdk1complexphosphorylated__Active__~0,CyclinB1Cdk1complextotal~0,CyclinB1Cdk1complexunphosphorylated~CyclinB1Cdk1complexunphosphorylated) #Cyclin B1 Cdk1 complex unphosphorylated
+	Species Plx1_active Plx1_active() #Plx1_active
+	Species APC_Cactive APC_Cactive() #APC/C active
+	Species CyclinB1Cdk1complextotal Substrate_Cdk1complex(CyclinB1Cdk1complexphosphorylated__Active__~0,CyclinB1Cdk1complextotal~CyclinB1Cdk1complextotal,CyclinB1Cdk1complexunphosphorylated~0) #Cyclin B1 Cdk1 complex total
+	Species Substrate_Cdk1complex Substrate_Cdk1complex(CyclinB1Cdk1complexphosphorylated__Active__~0,CyclinB1Cdk1complextotal~0,CyclinB1Cdk1complexunphosphorylated~0) #Substrate/Cdk1 complex
+	Species Substrate Substrate() #Substrate
+	Species PhosphorylatedSubstrate__SP__ PhosphorylatedSubstrate__SP__() #Phosphorylated Substrate(SP)
+	Species PP2A PP2A() #PP2A
+	Species PhosphorylatedSubstratePhosphataseComplex__SP_PP2A__ PhosphorylatedSubstratePhosphataseComplex__SP_PP2A__() #Phosphorylated Substrate Phosphatase Complex(SP-PP2A)
+	Species Stotal Stotal() #Stotal
+	Species Heat__Q__ Heat__Q__() #Heat(Q)
+end observables
+begin functions
+	arRateStotal() = 4*NaN
+	cdk1a_ar() = CyclinB1Cdk1complexphosphorylated__Active__
+	CyclinB1Cdk1complextotal_ar() = CyclinB1Cdk1complexphosphorylated__Active__ + CyclinB1Cdk1complexunphosphorylated
+	fRate1() = APC_Cactive*k_dest
+	fRate2() = APC_Cactive*k_dest
+	fRate3() = CyclinB1Cdk1complexphosphorylated__Active__*k_cdk1_off*sqrt(r)*(p/((CyclinB1Cdk1complexphosphorylated__Active__/ec50_wee1)^n_wee1 + 1) + 1)
+	fRate4() = CyclinB1Cdk1complexunphosphorylated*k_cdk1_on*(p/((ec50_cdc25/CyclinB1Cdk1complexphosphorylated__Active__)^n_cdc25 + 1) + 1)/sqrt(r)
+	fRate5() = Plx1_total*k_plxon/((ec50_plx/CyclinB1Cdk1complexphosphorylated__Active__)^n_plx + 1.0)
+	fRate5m() = k_plxon/((ec50_plx/CyclinB1Cdk1complexphosphorylated__Active__)^n_plx + 1.0)
+	fRate7() = APC_Ctotal*k_apc_on/((ec50_apc/Plx1_active)^n_apc + 1.0)
+	fRate7m() = k_apc_on/((ec50_apc/Plx1_active)^n_apc + 1.0)
+	fRate9() = 1.0*Kcdk_on*Substrate*cdk1a_ar - 1.0*Substrate_Cdk1complex*(Kcatcdk1 + Kcdk_off)
+	fRate10() = 1.0*Kcatpp2*PhosphorylatedSubstratePhosphataseComplex__SP_PP2A__ + Kcdk_off*Substrate_Cdk1complex
+	fRate10m() = 1.0*Kcdk_on*cdk1a_ar
+	fRate11() = Kcatcdk1*Substrate_Cdk1complex + 1.0*Kpp2_off*PhosphorylatedSubstratePhosphataseComplex__SP_PP2A__
+	fRate11m() = 1.0*Kpp2_on*PP2A
+	fRate12() = 1.0*PhosphorylatedSubstratePhosphataseComplex__SP_PP2A__*(Kcatpp2 + 1.0*Kpp2_off)
+	fRate12m() = 1.0*Kpp2_on*PhosphorylatedSubstrate__SP__
+	fRate13() = 1.0*Kpp2_on*PP2A*PhosphorylatedSubstrate__SP__ + 1.0*PhosphorylatedSubstratePhosphataseComplex__SP_PP2A__*(-Kcatpp2 - Kpp2_off)
+	fRate14() = Kcatpp2*delta_Hdesphos*(Kpp2_on*PP2A*PhosphorylatedSubstrate__SP__ + PhosphorylatedSubstratePhosphataseComplex__SP_PP2A__*(-Kcatpp2 - Kpp2_off))
+end functions
+begin reaction rules
+	Cyclin_B1_Cdk1_phosphorylated_synthesis: 0  -> Substrate_Cdk1complex(CyclinB1Cdk1complexphosphorylated__Active__~CyclinB1Cdk1complexphosphorylated__Active__,CyclinB1Cdk1complextotal~0,CyclinB1Cdk1complexunphosphorylated~0) k_synth
+	Cyclin_B1_Cdk1_unphosphorylated_degradation: Substrate_Cdk1complex(CyclinB1Cdk1complexphosphorylated__Active__~0,CyclinB1Cdk1complextotal~0,CyclinB1Cdk1complexunphosphorylated~CyclinB1Cdk1complexunphosphorylated) -> 0  fRate1() #Modifiers(APC_C_active)
+	Cyclin_B1_Cdk1_phosphorylated_degradation: Substrate_Cdk1complex(CyclinB1Cdk1complexphosphorylated__Active__~CyclinB1Cdk1complexphosphorylated__Active__,CyclinB1Cdk1complextotal~0,CyclinB1Cdk1complexunphosphorylated~0) -> 0  fRate2() #Modifiers(APC_C_active)
+	Cyclin_B1_Cdk1_phosphorylated_dephosphorylation_reactants_0: 0  -> Substrate_Cdk1complex(CyclinB1Cdk1complexphosphorylated__Active__~CyclinB1Cdk1complexphosphorylated__Active__,CyclinB1Cdk1complextotal~0,CyclinB1Cdk1complexunphosphorylated~0) -1*(fRate3())
+	Cyclin_B1_Cdk1_phosphorylated_dephosphorylation_products_0: 0  -> Substrate_Cdk1complex(CyclinB1Cdk1complexphosphorylated__Active__~0,CyclinB1Cdk1complextotal~0,CyclinB1Cdk1complexunphosphorylated~CyclinB1Cdk1complexunphosphorylated) fRate3()
+	Cyclin_B1_Cdk1_phosphorylated_phosphorylation_reactants_0: 0  -> Substrate_Cdk1complex(CyclinB1Cdk1complexphosphorylated__Active__~0,CyclinB1Cdk1complextotal~0,CyclinB1Cdk1complexunphosphorylated~CyclinB1Cdk1complexunphosphorylated) -1*(fRate4())
+	Cyclin_B1_Cdk1_phosphorylated_phosphorylation_products_0: 0  -> Substrate_Cdk1complex(CyclinB1Cdk1complexphosphorylated__Active__~CyclinB1Cdk1complexphosphorylated__Active__,CyclinB1Cdk1complextotal~0,CyclinB1Cdk1complexunphosphorylated~0) fRate4()
+	Plx1_activation_by_active_Cdk1: 0  <-> Plx1_active() fRate5(),fRate5m() #Modifiers(Cyclin_B1_Cdk1_complex_phosphorylated, Plx1_total)
+	Plx1_inactivation_after_Cdk1_inactivated: Plx1_active() -> 0  k_plx_off
+	Activation_of_APC_CCdc20_by_active_Plx1: 0  <-> APC_Cactive() fRate7(),fRate7m() #Modifiers(Plx1_active, APC_C_total)
+	inactivation_of_APC_CCdc20_after_Plx1_is_inactivated: APC_Cactive() -> 0  k_apc_off
+	reaction_for_SCdk1_products_0: 0  -> Substrate_Cdk1complex(CyclinB1Cdk1complexphosphorylated__Active__~0,CyclinB1Cdk1complextotal~0,CyclinB1Cdk1complexunphosphorylated~0) fRate9() #Modifiers(S, cdk1a)
+	reaction_for_S: 0  <-> Substrate() fRate10(),fRate10m() #Modifiers(SCdk1, cdk1a, SPPP2A)
+	reaction_for_SP: 0  <-> PhosphorylatedSubstrate__SP__() fRate11(),fRate11m() #Modifiers(SCdk1, PP2A, SPPP2A)
+	reaction_for_PP2A: 0  <-> PP2A() fRate12(),fRate12m() #Modifiers(SPPP2A, SP)
+	reaction_for_SPPP2A_products_0: 0  -> PhosphorylatedSubstratePhosphataseComplex__SP_PP2A__() fRate13() #Modifiers(SP, PP2A)
+	reaction_for_heat_flow_products_0: 0  -> Heat__Q__() fRate14() #Modifiers(SPPP2A, SP, PP2A)
+	0  -> Stotal() arRateStotal #rateLaw
+end reaction rules
+end model

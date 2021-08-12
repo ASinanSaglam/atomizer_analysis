@@ -1,0 +1,54 @@
+###
+#@BQM_IS_INSTANCE_OF:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/go/GO:0032274', 'http://identifiers.org/taxonomy/9913', 'http://identifiers.org/go/GO:0032275', 'http://identifiers.org/biomodels.db/MODEL7898438988']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/6986927', 'http://identifiers.org/go/GO:0032274', 'http://identifiers.org/go/GO:0032275']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/biomodels.db/MODEL7898438988']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9913']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000831', 'http://identifiers.org/biomodels.db/MODEL7898438988']
+#@creatorEmail:'msharifshohan@ebi.ac.uk'
+#@creatorName:'Sharif Shohan Mohammad Umer'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 3 molecules and 6 reactions. The translated model has 3 molecules and 6 rules'
+###
+begin model
+begin parameters
+	h 12.0 #units:unit_0
+	c 100.0 #units:unit_1
+	b1 1.29 #units:unit_0
+	g1 10.0 #units:unit_0
+	b2 0.97 #units:unit_0
+	g2 0.7 #units:unit_0
+	b3 1.39 #units:unit_0
+end parameters
+begin molecule types
+	#^ bqbiol:is uniprot:Q9I999
+	L()
+	#^ bqbiol:is uniprot:B0FMT3
+	R()
+	#^ bqbiol:is uniprot:Q5I3B1
+	T()
+end molecule types
+begin seed species
+	R() 301100000000.0 # (0.5 * 1e-12)mol/L * 6.022e23/mol *1.0L #R #R
+	L() 13248400000000.0 #original 22.0substance/volume #L #L
+	T() 9033000000000.0 #original 15.0substance/volume #T #T
+end seed species
+begin observables
+	Species R R() #R
+	Species L L() #L
+	Species T T() #T
+end observables
+begin functions
+	H() =  if((x>0),(1),(0))
+	x() = T - c/h
+	fRate0() = R*g1
+	fRate1() = L*g2
+	fRate5() = (1 - H)*(-T*h + c)
+end functions
+begin reaction rules
+	LH_formation: 0  -> L() fRate0() #Modifiers(R)
+	T_formation: 0  -> T() fRate1() #Modifiers(L)
+	R_degradation: R() -> 0  b1
+	LH_degradation: L() -> 0  b2
+	T_degradation: T() -> 0  b3
+	R_formation_products_0: 0  -> R() fRate5() #Modifiers(T)
+end reaction rules
+end model

@@ -1,0 +1,124 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1708310000', 'http://identifiers.org/biomodels.db/BIOMD0000000658']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/kegg.pathway/xla04310', 'http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/262014']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/14551908']
+#@creatorEmail:'kothamav@babraham.ac.uk'
+#@creatorName:'Kothamachu Varun Kothamachu'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 16 molecules and 17 reactions. The translated model has 8 molecules and 17 rules'
+###
+begin model
+begin parameters
+	k1 0.182
+	k2 0.0182
+	k3 0.05
+	k4 0.267
+	k5 0.133
+	k6 0.0909
+	k_6 0.909
+	k7 500.0
+	k8 500.0
+	k9 206.0
+	k10 206.0
+	k11 0.417
+	k12 0.423
+	k13 0.000257
+	k14 8.22e-05
+	k15 0.167
+	k16 500.0
+	k17 500.0
+	K_7 50.0
+	K_8 120.0
+	K_16 30.0
+	K_17 1200.0
+	lambda 0.05
+	t0 40.0
+	Dsh0 100.0
+end parameters
+begin compartments
+	#volume units: volume
+	Cytoplasm 3 1.0
+	Nucleus 3 1.0
+end compartments
+begin molecule types
+	#^ bqbiol:isVersionOf uniprot:P70039
+	APC(axin,b_catenin)
+	#^ bqbiol:is chebi:CHEBI:30956
+	TCF(b_catenin)
+	#^ bqbiol:isVersionOf uniprot:Q91757
+	GSK3()
+	#^ bqbiol:isHomologTo uniprot:P51142
+	Dsh_i(Dsh_a~Dsh_a~0)
+	#^ bqbiol:hasPart uniprot:Q9YGY0, uniprot:Q91757, uniprot:P70039
+	APC_axin_GSK3()
+	#^ bqbiol:isVersionOf uniprot:Q9YGY0
+	Axin(apc)
+	#^ bqbiol:isVersionOf uniprot:P26233
+	B_catenin(apc,apcm_axinm_gsk3,m~M~0,tcf)
+	#^ bqbiol:hasPart uniprot:Q9YGY0, uniprot:P70039, uniprot:Q91757
+	APCm_axinm_GSK3(b_catenin)
+end molecule types
+begin seed species
+	@Cytoplasm:APCm_axinm_GSK3(b_catenin) 5817252000000000.0 #original 0.00966substance/volume #APCm_axinm_GSK3 #APC__axin__GSK3
+	@Cytoplasm:APC_axin_GSK3() 2908626000000000.0 #original 0.00483substance/volume #APC_axin_GSK3 #APC_axin_GSK3
+	@Cytoplasm:GSK3() 3.011e+19 #original 50.0substance/volume #GSK3 #GSK3
+	@Cytoplasm:APC(axin!280,b_catenin).Axin(apc!280) 590547430000000.0 #original 0.00098065substance/volume #APC_axin #APC_axin
+	@Cytoplasm:APC(axin,b_catenin) 5.90156e+19 #original 98.0substance/volume #APC #APC
+	@Cytoplasm:B_catenin(apc,apcm_axinm_gsk3!289,m~0,tcf).APCm_axinm_GSK3(b_catenin!289) 1216444000000000.0 #original 0.00202substance/volume #B_catenin_APCm_axinm_GSK3 #B_catenin_APC__axin__GSK3
+	@Cytoplasm:B_catenin(apc,apcm_axinm_gsk3!289,m~M,tcf).APCm_axinm_GSK3(b_catenin!289) 1216444000000000.0 #original 0.00202substance/volume #B_cateninm_APCm_axinm_GSK3 #B_catenin__APC__axin__GSK3
+	@Cytoplasm:B_catenin(apc,apcm_axinm_gsk3,m~M,tcf) 6.022e+17 #original 1.0substance/volume #B_cateninm #B_catenin
+	@Nucleus:B_catenin(apc,apcm_axinm_gsk3,m~0,tcf) 1.511522e+19 #original 25.1substance/volume #B_catenin #B_catenin_0
+	@Cytoplasm:Axin(apc) 296884600000000.0 #original 0.000493substance/volume #Axin #Axin
+	@Nucleus:TCF(b_catenin) 4.919974e+18 #original 8.17substance/volume #TCF #TCF
+	@Nucleus:B_catenin(apc,apcm_axinm_gsk3,m~0,tcf!287).TCF(b_catenin!287) 4.113026e+18 #original 6.83substance/volume #B_catenin_TCF #B_catenin_TCF
+	@Cytoplasm:B_catenin(apc!288,apcm_axinm_gsk3,m~0,tcf).APC(axin,b_catenin!288) 1.23451e+18 #original 2.05substance/volume #B_catenin_APC #B_catenin_APC
+	@Cytoplasm:Dsh_i(Dsh_a~0) (100.0) -(0.0) #Dsh_i
+end seed species
+begin observables
+	Species Dsh_i_Cytoplasm @Cytoplasm:Dsh_i(Dsh_a~0) #Dsh_i
+	Species Dsh_a_Cytoplasm @Cytoplasm:Dsh_i(Dsh_a~Dsh_a) #Dsh_a
+	Species APCm_axinm_GSK3_Cytoplasm @Cytoplasm:APCm_axinm_GSK3(b_catenin) #APC*/axin*/GSK3
+	Species APC_axin_GSK3_Cytoplasm @Cytoplasm:APC_axin_GSK3() #APC/axin/GSK3
+	Species GSK3_Cytoplasm @Cytoplasm:GSK3() #GSK3
+	Species APC_axin_Cytoplasm @Cytoplasm:APC(axin!280,b_catenin).Axin(apc!280) #APC/axin
+	Species APC_Cytoplasm @Cytoplasm:APC(axin,b_catenin) #APC
+	Species B_catenin_APCm_axinm_GSK3_Cytoplasm @Cytoplasm:B_catenin(apc,apcm_axinm_gsk3!289,m~0,tcf).APCm_axinm_GSK3(b_catenin!289) #B_catenin/APC*/axin*/GSK3
+	Species B_cateninm_APCm_axinm_GSK3_Cytoplasm @Cytoplasm:B_catenin(apc,apcm_axinm_gsk3!289,m~M,tcf).APCm_axinm_GSK3(b_catenin!289) #B_catenin*/APC*/axin*/GSK3
+	Species B_cateninm_Cytoplasm @Cytoplasm:B_catenin(apc,apcm_axinm_gsk3,m~M,tcf) #B_catenin*
+	Species B_catenin_Nucleus @Nucleus:B_catenin(apc,apcm_axinm_gsk3,m~0,tcf) #B_catenin
+	Species Axin_Cytoplasm @Cytoplasm:Axin(apc) #Axin
+	Species TCF_Nucleus @Nucleus:TCF(b_catenin) #TCF
+	Species B_catenin_TCF_Nucleus @Nucleus:B_catenin(apc,apcm_axinm_gsk3,m~0,tcf!287).TCF(b_catenin!287) #B_catenin/TCF
+	Species B_catenin_APC_Cytoplasm @Cytoplasm:B_catenin(apc!288,apcm_axinm_gsk3,m~0,tcf).APC(axin,b_catenin!288) #B_catenin/APC
+end observables
+begin functions
+	W_ar() =  if((time()<t0),(0),(exp(-lambda*(-t0+time()))))
+	k_8() = K_8*k8
+	k_17() = K_17*k17
+	k_7() = K_7*k7
+	k_16() = K_16*k16
+	Total_Axin() = APC_axin_Cytoplasm + APC_axin_GSK3_Cytoplasm + APCm_axinm_GSK3_Cytoplasm + Axin_Cytoplasm + B_catenin_APCm_axinm_GSK3_Cytoplasm + B_cateninm_APCm_axinm_GSK3_Cytoplasm
+	Total_B_Catenin() = B_catenin_APC_Cytoplasm + B_catenin_APCm_axinm_GSK3_Cytoplasm + B_catenin_TCF_Nucleus + B_cateninm_APCm_axinm_GSK3_Cytoplasm + 2*B_cateninm_Cytoplasm
+	fRate0() = W_Cytoplasm*k1
+	fRate2() = Dsh_a_Cytoplasm*k3
+end functions
+begin reaction rules
+	v1: Dsh_i(Dsh_a~0)@Cytoplasm -> Dsh_i(Dsh_a~Dsh_a)@Cytoplasm fRate0() #Modifiers(W)
+	v2: Dsh_i(Dsh_a~Dsh_a)@Cytoplasm -> Dsh_i(Dsh_a~0)@Cytoplasm k2
+	v3: APC_axin_GSK3()@Cytoplasm -> GSK3()@Cytoplasm + APC(axin!280,b_catenin)@Cytoplasm.Axin(apc!280)@Cytoplasm fRate2() #Modifiers(Dsh_a)
+	v4: APC_axin_GSK3()@Cytoplasm -> APCm_axinm_GSK3(b_catenin)@Cytoplasm k4
+	v5: APCm_axinm_GSK3(b_catenin)@Cytoplasm -> APC_axin_GSK3()@Cytoplasm k5
+	v6: GSK3()@Cytoplasm + APC(axin!280,b_catenin)@Cytoplasm.Axin(apc!280)@Cytoplasm <-> APC_axin_GSK3()@Cytoplasm k6,k_6
+	v7: APC(axin,b_catenin)@Cytoplasm + Axin(apc)@Cytoplasm <-> APC(axin!280,b_catenin)@Cytoplasm.Axin(apc!280)@Cytoplasm k7,k_7
+	v8: APCm_axinm_GSK3(b_catenin)@Cytoplasm + B_catenin(apc,apcm_axinm_gsk3,m~0,tcf)@Nucleus <-> B_catenin(apc,apcm_axinm_gsk3!289,m~0,tcf)@Cytoplasm.APCm_axinm_GSK3(b_catenin!289)@Cytoplasm k8,k_8
+	v9: B_catenin(apc,apcm_axinm_gsk3!289,m~0,tcf)@Cytoplasm.APCm_axinm_GSK3(b_catenin!289)@Cytoplasm -> B_catenin(apc,apcm_axinm_gsk3!289,m~M,tcf)@Cytoplasm.APCm_axinm_GSK3(b_catenin!289)@Cytoplasm k9
+	v10: B_catenin(apc,apcm_axinm_gsk3!289,m~M,tcf)@Cytoplasm.APCm_axinm_GSK3(b_catenin!289)@Cytoplasm -> B_catenin(apc,apcm_axinm_gsk3,m~M,tcf)@Cytoplasm + APCm_axinm_GSK3(b_catenin)@Cytoplasm k10
+	v11: B_catenin(apc,apcm_axinm_gsk3,m~M,tcf)@Cytoplasm -> 0  k11
+	v12: 0  -> B_catenin(apc,apcm_axinm_gsk3,m~0,tcf)@Nucleus k12
+	v13: B_catenin(apc,apcm_axinm_gsk3,m~0,tcf)@Nucleus -> 0  k13
+	v14: 0  -> Axin(apc)@Cytoplasm k14
+	v15: Axin(apc)@Cytoplasm -> 0  k15
+	v16: B_catenin(apc,apcm_axinm_gsk3,m~0,tcf)@Nucleus + TCF(b_catenin)@Nucleus <-> B_catenin(apc,apcm_axinm_gsk3,m~0,tcf!287)@Nucleus.TCF(b_catenin!287)@Nucleus k16,k_16
+	v17: APC(axin,b_catenin)@Cytoplasm + B_catenin(apc,apcm_axinm_gsk3,m~0,tcf)@Nucleus <-> B_catenin(apc!288,apcm_axinm_gsk3,m~0,tcf)@Cytoplasm.APC(axin,b_catenin!288)@Cytoplasm k17,k_17
+end reaction rules
+end model

@@ -1,0 +1,71 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/22438084']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/go/GO:0002418']
+#@creatorEmail:'jm2187@cam.ac.uk'
+#@creatorName:'Men Jinghao'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 5 molecules and 11 reactions. The translated model has 5 molecules and 11 rules'
+###
+begin model
+begin parameters
+	a0 0.1946 #units:unit_1
+	d0 1e-05 #units:unit_1
+	c1 100.0 #units:unit_0
+	a1 0.3 #units:unit_1
+	c2 300.0 #units:unit_0
+	d 0.0007 #units:unit_1
+	f 0.62 #units:unit_1
+	c3 300.0 #units:unit_0
+	r 0.01 #units:unit_1
+	d1 1e-05 #units:unit_1
+	c0inv 369.0 #units:unit_0
+	g0 0
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf cl:CL:0001064
+	T()
+	#^ bqbiol:isVersionOf cl:CL:0000911
+	E()
+	#^ bqbiol:is uniprot:P01137
+	B()
+	#^ bqbiol:isPropertyOf cl:CL:0000815
+	R()
+	#^ bqbiol:isVersionOf cl:CL:0000911
+	V()
+end molecule types
+begin seed species
+	T() 1.8066e+21 # (3.0 * 0.001)mol/L * 6.022e23/mol *1.0L #T #T
+	E() 6.022000000000001e+22 #original 100.0substance/volume #E #E
+	R() 6.022e+20 #original 1.0substance/volume #R #R
+end seed species
+begin observables
+	Species T T() #T
+	Species B B() #B
+	Species E E() #E
+	Species R R() #R
+	Species V V() #V
+end observables
+begin functions
+	c0() = 1/c0inv
+	fRate0() = T*a0
+	fRate0m() = T*a0*c0
+	fRate1() = E*d0/(B*c1 + 1.0)
+	fRate2() = V*d0
+	fRate3() = T^2*a1/(T^2 + c2)
+	fRate5() = E*T*f/(B*T*c3 + 1.0)
+	fRate7() = R*d0
+end functions
+begin reaction rules
+	tumor_growth: 0  <-> T() fRate0(),fRate0m()
+	tumor_immune: T() -> 0  fRate1() #Modifiers(E, B)
+	tumor_immune_induced: T() -> 0  fRate2() #Modifiers(V)
+	tgfb_secretion: 0  -> B() fRate3() #Modifiers(T)
+	tgfb_decay: B() -> 0  d
+	effector_stimulation: 0  -> E() fRate5() #Modifiers(T, B)
+	effector_death: E() -> 0  d1
+	effector_regulation: E() -> 0  fRate7() #Modifiers(R)
+	effector_conversion: E() -> R() r
+	Treg_death: R() -> 0  d1
+	vaccine_decay: V() -> 0  d1
+end reaction rules
+end model

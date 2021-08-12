@@ -1,0 +1,55 @@
+###
+#@BQM_HAS_INSTANCE:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/taxonomy/9606', 'http://identifiers.org/biomodels.db/MODEL1609100000', 'http://identifiers.org/ncit/C540']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/23805169', 'http://identifiers.org/ncit/C540']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/biomodels.db/MODEL1609100000']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1609100000', 'http://identifiers.org/biomodels.db/BIOMD0000000830']
+#@creatorEmail:'msharifshohan@ebi.ac.uk'
+#@creatorName:'Mohammad Umer Sharif Shohan'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 7 molecules and 7 reactions. The translated model has 5 molecules and 7 rules'
+###
+begin model
+begin parameters
+	r1_k3 0.960000
+	r2_k1 0.050000
+	r3_k2 0.050000
+	r4_k6 0.010000
+	r5_k7 0.010000
+	r6_k8 0.005000
+	r7_k4 0.033000
+end parameters
+begin molecule types
+	endosome(early~EARLY~0,late~LATE~0)
+	#^ bqbiol:is ncit:C13238
+	golgi()
+	osome(lys~LYS~0)
+	shedding(HSsurface~HSsurface~0)
+	#^ bqbiol:hasProperty ncit:C42882
+	release()
+end molecule types
+begin seed species
+	shedding(HSsurface~HSsurface) 6.022000000000001e+22 # 0.1mol/L * 6.022e23/mol *1.0L #HSsurface #s1
+	endosome(early~EARLY,late~0) 2.4088000000000004e+23 #original 0.4mol/L  #earlyendosome #s2
+	endosome(early~0,late~LATE) 2.4088000000000004e+23 #original 0.4mol/L  #lateendosome #s3
+	$golgi() 3.0110000000000005e+22 #original 0.05mol/L  #golgi #s6
+	osome(lys~LYS) 7.40706e+23 #original 1.23mol/L  #lysosome #s4
+end seed species
+begin observables
+	Species HSsurface shedding(HSsurface~HSsurface) #HS surface
+	Species earlyendosome endosome(early~EARLY,late~0) #early endosome
+	Species lateendosome endosome(early~0,late~LATE) #late endosome
+	Species golgi golgi() #golgi
+	Species lysosome osome(lys~LYS) #lysosome
+	Species release release() #release
+	Species shedding shedding(HSsurface~0) #shedding
+end observables
+begin reaction rules
+	k_golgi: golgi() -> shedding(HSsurface~HSsurface) r1_k3
+	k_endo: shedding(HSsurface~HSsurface) -> endosome(early~EARLY,late~0) r2_k1
+	k_exo: endosome(early~EARLY,late~0) -> shedding(HSsurface~HSsurface) r3_k2
+	k_le: endosome(early~EARLY,late~0) -> endosome(early~0,late~LATE) r4_k6
+	k_lys: endosome(early~0,late~LATE) -> osome(lys~LYS) r5_k7
+	k_deg: osome(lys~LYS) -> release() r6_k8
+	k_shed: shedding(HSsurface~HSsurface) -> shedding(HSsurface~0) r7_k4
+end reaction rules
+end model

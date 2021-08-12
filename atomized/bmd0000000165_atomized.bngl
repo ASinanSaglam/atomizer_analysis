@@ -1,0 +1,204 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000165', 'http://identifiers.org/biomodels.db/MODEL8003201958']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/16905651']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/MODEL1006230118']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10116']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0007188', 'http://identifiers.org/go/GO:0034199']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/doid/DOID:114']
+#@BQB_OCCURS_IN:['http://identifiers.org/cl/CL:0002495']
+#@creatorEmail:'hdharuri@cds.caltech.edu'
+#@creatorName:'Dharuri Harish'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 37 molecules and 30 reactions. The translated model has 22 molecules and 32 rules'
+###
+begin model
+begin parameters
+	k_ac_gsa_cAMP_synthesis_GsAC 2.5 #units:s_1
+	ton_global_light_cAMP_photolysis 2160.0 #units:s
+	toff_global_light_cAMP_photolysis 2165.0 #units:s
+	kfsk_cAMP_synthesis_FskAC 7.3 #units:s_1
+	t_propadd 2420.0
+	Propranolol_pipette 1.0
+	tauPropranolol 1.0
+	t_Ladd 2160.0
+	L_pipette 0.1
+	tauL 1.0
+	ton_local_light_cAMP_photolysis 0
+	toff_local_light_cAMP_photolysis 0
+	r1_Km 315.000000
+	r2_Kf 1000.000000
+	r2_Kr 8.000000
+	r4_kphot 0.100000
+	r5_k_gact 16.000000
+	r6_Kf 1000.000000
+	r6_Kr 62.000000
+	r7_k_barkp 0.001100
+	r8_Kf 1000.000000
+	r8_Kr 1640.000000
+	r9_Kf 1000.000000
+	r9_Kr 33000.000000
+	r10_Kf 1000.000000
+	r10_Kr 1300.000000
+	r11_khyd 0.800000
+	r12_k_reassoc 1210.000000
+	r13_Kf 1000.000000
+	r13_Kr 860000.000000
+	r14_Kf 1000.000000
+	r14_Kr 7000.000000
+	r15_kpkap 0.003600
+	r15_kpkam 0.002200
+	r16_Kf 1000.000000
+	r16_Kd 0.535714
+	r17_Kf 1000.000000
+	r17_Kr 285.000000
+	r18_Kf 4375.000000
+	r18_Kr 1000.000000
+	r19_Kf 1000.000000
+	r19_Kr 0.200000
+	r20_Kf 1000.000000
+	r20_Kr 9140.000000
+	r21_Km 860.000000
+	r23_Kf 1000.000000
+	r23_Kr 400.000000
+	r24_k_barkm 0.002200
+	r25_Kf 1000.000000
+	r25_Kr 21000.000000
+	r27_kcat_PP_AKARp 8.500000
+	r28_kpka_akar 54.000000
+	r29_k_gact 16.000000
+	r30_kpde 5.000000
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf uniprot:P54750
+	PDE(camp,ibmx)
+	#^ bqbiol:hasPart uniprot:P63092, uniprot:Q5T5Y4
+	L_b1AR_Gs()
+	IBMX(pde)
+	#^ bqbiol:is go:GO:0031680
+	Gsbg(gsa_gtp)
+	#^ bqbiol:hasPart uniprot:Q5T5Y4
+	b1AR_S464()
+	Propranolol(b1ar)
+	#^ bqbiol:hasPart chebi:CHEBI:15996, interpro:IPR001019, interpro:IPR001019, kegg.compound:C00044
+	Gsa_gtp(Gsa_gdp~Gsa_gdp~0,ac,gsbg)
+	#^ bqbiol:hasPart uniprot:P63092, uniprot:Q5T5Y4
+	b1AR_Gs()
+	#^ bqbiol:is chebi:CHEBI:17489, kegg.compound:C00575
+	cAMP(dmnb_~DMNB_~0,pde,rc)
+	AKAR(p~P~0,pkac,pp)
+	#^ bqbiol:isVersionOf uniprot:Q5T5Y4
+	b1AR(l,propranolol)
+	PKAC(akar,pki)
+	#^ bqbiol:isVersionOf uniprot:Q08828
+	AC(fsk,gsa_gtp)
+	#^ bqbiol:is chebi:CHEBI:15422, kegg.compound:C00002
+	ATP()
+	Fsk(ac)
+	#^ bqbiol:isVersionOf uniprot:Q5T5Y4
+	b1AR_p()
+	A2RC()
+	L(b1ar)
+	RC(camp)
+	PP(akar)
+	PKI(pkac)
+	A2R()
+end molecule types
+begin seed species
+	PDE(camp,ibmx) 8430800000000000.0 # (0.014 * 1e-06)mol/L * 6.022e23/mol *1.0L #PDE #PDE_cell
+	ATP() 3.011e+21 #original 5000.0/ #ATP #ATP_cell
+	b1AR(l,propranolol) 7949040000000000.0 #original 0.0132/ #b1AR #b1AR_cell
+	Gsa_gtp(Gsa_gdp~Gsa_gdp,ac,gsbg!289).Gsbg(gsa_gtp!289) 2.306426e+18 #original 3.83/ #Gs #Gs_cell
+	AC(fsk,gsa_gtp) 2.9929340000000004e+16 #original 0.0497/ #AC #AC_cell
+	PKI(pkac) 1.08396e+17 #original 0.18/ #PKI #PKI_cell
+	RC(camp) 7.10596e+17 #original 1.18/ #RC #RC_cell
+	AKAR(p~0,pkac,pp) 6.022e+18 #original 10.0/ #AKAR #AKAR_cell
+	PP(akar) 4.0347400000000006e+17 #original 0.67/ #PP #PP_cell
+	cAMP(dmnb_~DMNB_,pde,rc) 1.8126219999999997e+18 #original 3.01/ #DMNB_cAMP #DMNB_cAMP_cell
+end seed species
+begin observables
+	Species Gsbg Gsbg(gsa_gtp) #Gsbg
+	Species L L(b1ar) #L
+	Species Gsa_gdp Gsa_gtp(Gsa_gdp~Gsa_gdp,ac,gsbg) #Gsa_gdp
+	Species Gsa_gtp Gsa_gtp(Gsa_gdp~0,ac,gsbg) #Gsa_gtp
+	Species b1AR_S464 b1AR_S464() #b1AR_S464
+	Species PDEcAMP cAMP(dmnb_~0,pde!239,rc).PDE(camp!239,ibmx) #PDEcAMP
+	Species PDE PDE(camp,ibmx) #PDE
+	Species ATP ATP() #ATP
+	Species b1AR b1AR(l,propranolol) #b1AR
+	Species Gs Gsa_gtp(Gsa_gdp~Gsa_gdp,ac,gsbg!289).Gsbg(gsa_gtp!289) #Gs
+	Species A2RC A2RC() #A2RC
+	Species A2R A2R() #A2R
+	Species PKAC PKAC(akar,pki) #PKAC
+	Species ARC cAMP(dmnb_~0,pde,rc!281).RC(camp!281) #ARC
+	Species PKAC_AKAR AKAR(p~0,pkac!288,pp).PKAC(akar!288,pki) #PKAC_AKAR
+	Species Propranolol Propranolol(b1ar) #Propranolol
+	Species b1ARinhib b1AR(l,propranolol!287).Propranolol(b1ar!287) #b1ARinhib
+	Species AC AC(fsk,gsa_gtp) #AC
+	Species PKI PKI(pkac) #PKI
+	Species PKAC_PKI PKAC(akar,pki!285).PKI(pkac!285) #PKAC_PKI
+	Species RC RC(camp) #RC
+	Species b1AR_Gs b1AR_Gs() #b1AR_Gs
+	Species cAMP cAMP(dmnb_~0,pde,rc) #cAMP
+	Species GsAC Gsa_gtp(Gsa_gdp~0,ac!282,gsbg).AC(fsk,gsa_gtp!282) #GsAC
+	Species IBMX IBMX(pde) #IBMX
+	Species PDE_IBMX PDE(camp,ibmx!286).IBMX(pde!286) #PDE_IBMX
+	Species Fsk Fsk(ac) #Fsk
+	Species FskAC AC(fsk!283,gsa_gtp).Fsk(ac!283) #FskAC
+	Species b1AR_p b1AR_p() #b1AR_p
+	Species L_b1AR b1AR(l!284,propranolol).L(b1ar!284) #L_b1AR
+	Species AKAR AKAR(p~0,pkac,pp) #AKAR
+	Species AKARp AKAR(p~P,pkac,pp) #AKARp
+	Species PP PP(akar) #PP
+	Species PP_AKARp AKAR(p~P,pkac,pp!290).PP(akar!290) #PP_AKARp
+	Species DMNB_cAMP cAMP(dmnb_~DMNB_,pde,rc) #DMNB_cAMP
+	Species L_b1AR_Gs L_b1AR_Gs() #L_b1AR_Gs
+end observables
+begin functions
+	Ratio_AKARp_AKARtot() = AKARp/(AKAR + AKARp + PKAC_AKAR + PP_AKARp)
+	ar_for_add_Ligand() =  if((time()>t_Ladd),((-L+L_pipette)/tauL),(0))
+	ar_for_add_propranolol() =  if((time()>t_propadd),((-Propranolol+Propranolol_pipette)/tauPropranolol),(0))
+	Kr_inhibit_PDE() =  if((time()>1000),(30000),(0))
+	Kf_inhibit_PDE() =  if((time()>1000),(1000),(0))
+	Vmax_cAMP_synthesis_FskAC() = FskAC*kfsk_cAMP_synthesis_FskAC
+	light_cAMP_photolysis() =  if((time()>ton_global_light_cAMP_photolysis&&time()<toff_global_light_cAMP_photolysis),(1),(0))+if((time()>ton_local_light_cAMP_photolysis&&time()<toff_local_light_cAMP_photolysis),(light_spot),(0))
+	Vmax_cAMP_synthesis_GsAC() = GsAC*k_ac_gsa_cAMP_synthesis_GsAC
+	fRate0() = Vmax_cAMP_synthesis_GsAC/(ATP + 315.0)
+	fRate3() = 0.1*light_cAMP_photolysis
+	fRate6() = 0.0011*L_b1AR + 0.0011*L_b1AR_Gs
+	fRate14() = 0.0036*PKAC*(L_b1AR + L_b1AR_Gs + b1AR) - 0.0022*b1AR_p
+	fRate20() = Vmax_cAMP_synthesis_FskAC/(ATP + 860.0)
+end functions
+begin reaction rules
+	cAMP_synthesis_GsAC: ATP() -> cAMP(dmnb_~0,pde,rc) fRate0() #Modifiers(GsAC_cell)
+	bind_b1AR_propranolol: Propranolol(b1ar) + b1AR(l,propranolol) <-> b1AR(l,propranolol!287).Propranolol(b1ar!287) r2_Kf,r2_Kr
+	add_propranolol: 0  -> Propranolol(b1ar) ar_for_add_propranolol
+	cAMP_photolysis: cAMP(dmnb_~DMNB_,pde,rc) -> cAMP(dmnb_~0,pde,rc) fRate3() #Modifiers(light_spot_cell)
+	LRG_activation: L_b1AR_Gs() -> Gsa_gtp(Gsa_gdp~0,ac,gsbg) + Gsbg(gsa_gtp) + b1AR(l!284,propranolol).L(b1ar!284) r5_k_gact
+	bind_Lb1AR_Gs: Gsa_gtp(Gsa_gdp~Gsa_gdp,ac,gsbg!289).Gsbg(gsa_gtp!289) + b1AR(l!284,propranolol).L(b1ar!284) <-> L_b1AR_Gs() r6_Kf,r6_Kr
+	desens_bark_reactants_0: 0  -> b1AR(l!284,propranolol).L(b1ar!284) -1*(fRate6()) #Modifiers(L_b1AR_Gs_cell)
+	desens_bark_products_0: 0  -> b1AR_S464() fRate6() #Modifiers(L_b1AR_Gs_cell)
+	bind_cAMP_ARC: cAMP(dmnb_~0,pde,rc!281).RC(camp!281) + cAMP(dmnb_~0,pde,rc) <-> A2RC() r8_Kf,r8_Kr
+	bind_b1AR_Gs: b1AR(l,propranolol) + Gsa_gtp(Gsa_gdp~Gsa_gdp,ac,gsbg!289).Gsbg(gsa_gtp!289) <-> b1AR_Gs() r9_Kf,r9_Kr
+	bind_PDEcAMP: PDE(camp,ibmx) + cAMP(dmnb_~0,pde,rc) <-> cAMP(dmnb_~0,pde!239,rc).PDE(camp!239,ibmx) r10_Kf,r10_Kr
+	Gs_gtp_hydrolysis: Gsa_gtp(Gsa_gdp~0,ac,gsbg) -> Gsa_gtp(Gsa_gdp~Gsa_gdp,ac,gsbg) r11_khyd
+	Gs_reassociation: Gsbg(gsa_gtp) + Gsa_gtp(Gsa_gdp~Gsa_gdp,ac,gsbg) -> Gsa_gtp(Gsa_gdp~Gsa_gdp,ac,gsbg!289).Gsbg(gsa_gtp!289) r12_k_reassoc
+	bind_FskAC: AC(fsk,gsa_gtp) + Fsk(ac) <-> AC(fsk!283,gsa_gtp).Fsk(ac!283) r13_Kf,r13_Kr
+	bind_AKARp_PP: PP(akar) + AKAR(p~P,pkac,pp) <-> AKAR(p~P,pkac,pp!290).PP(akar!290) r14_Kf,r14_Kr
+	desens_pka_reactants_0: 0  -> b1AR(l,propranolol) -1*(fRate14()) #Modifiers(PKAC_cell, L_b1AR_Gs_cell, L_b1AR_cell)
+	desens_pka_products_0: 0  -> b1AR_p() fRate14() #Modifiers(PKAC_cell, L_b1AR_Gs_cell, L_b1AR_cell)
+	bind_L_b1ARGs: b1AR_Gs() + L(b1ar) <-> L_b1AR_Gs() r16_Kf,r16_Kd
+	bind_L_b1AR: L(b1ar) + b1AR(l,propranolol) <-> b1AR(l!284,propranolol).L(b1ar!284) r17_Kf,r17_Kr
+	bind_A2R_PKAC: A2RC() <-> A2R() + PKAC(akar,pki) r18_Kf,r18_Kr
+	inhib_PKAC: PKAC(akar,pki) + PKI(pkac) <-> PKAC(akar,pki!285).PKI(pkac!285) r19_Kf,r19_Kr
+	bind_RC_cAMP: RC(camp) + cAMP(dmnb_~0,pde,rc) <-> cAMP(dmnb_~0,pde,rc!281).RC(camp!281) r20_Kf,r20_Kr
+	cAMP_synthesis_FskAC: ATP() -> cAMP(dmnb_~0,pde,rc) fRate20() #Modifiers(FskAC_cell)
+	add_Ligand: 0  -> L(b1ar) ar_for_add_Ligand
+	bind_Gs_AC: Gsa_gtp(Gsa_gdp~0,ac,gsbg) + AC(fsk,gsa_gtp) <-> Gsa_gtp(Gsa_gdp~0,ac!282,gsbg).AC(fsk,gsa_gtp!282) r23_Kf,r23_Kr
+	resens_bark: b1AR_S464() -> b1AR(l!284,propranolol).L(b1ar!284) r24_k_barkm
+	bind_PKAC_AKAR: AKAR(p~0,pkac,pp) + PKAC(akar,pki) <-> AKAR(p~0,pkac!288,pp).PKAC(akar!288,pki) r25_Kf,r25_Kr
+	inhibit_PDE: PDE(camp,ibmx) + IBMX(pde) <-> PDE(camp,ibmx!286).IBMX(pde!286) Kf_inhibit_PDE,Kr_inhibit_PDE
+	AKARp_dephosph: AKAR(p~P,pkac,pp!290).PP(akar!290) -> PP(akar) + AKAR(p~0,pkac,pp) r27_kcat_PP_AKARp
+	AKAR_phosph: AKAR(p~0,pkac!288,pp).PKAC(akar!288,pki) -> AKAR(p~P,pkac,pp) + PKAC(akar,pki) r28_kpka_akar
+	RG_activation: b1AR_Gs() -> Gsa_gtp(Gsa_gdp~0,ac,gsbg) + Gsbg(gsa_gtp) + b1AR(l,propranolol) r29_k_gact
+	cAMP_degradation: cAMP(dmnb_~0,pde!239,rc).PDE(camp!239,ibmx) -> PDE(camp,ibmx) r30_kpde
+end reaction rules
+end model

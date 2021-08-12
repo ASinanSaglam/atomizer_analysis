@@ -1,0 +1,103 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL3352181362', 'http://identifiers.org/biomodels.db/BIOMD0000000206']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/10692304']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/4932']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0006096']
+#@BQB_IS:['http://identifiers.org/kegg.pathway/sce00010']
+#@creatorEmail:'hdharuri@cds.caltech.edu'
+#@creatorName:'Dharuri Harish'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 9 molecules and 11 reactions. The translated model has 8 molecules and 19 rules'
+###
+begin model
+begin parameters
+	k0 50.0 #units:mM_min_1
+	k1 550.0 #units:mM_1_min_1
+	k2 9.8 #units:min_1
+	k31 323.8 #units:mM_1_min_1
+	k33 57823.1 #units:mM_1_min_1
+	k32 76411.1 #units:mM_1_min_1
+	k34 23.7 #units:mM_1_min_1
+	k4 80.0 #units:mM_1_min_1
+	k5 9.7 #units:min_1
+	k6 2000.0 #units:mM_1_min_1
+	k7 28.0 #units:min_1
+	k8 85.7 #units:mM_1_min_1
+	k9 80.0 #units:min_1
+	k10 375.0 #units:min_1
+	atot 4.0 #units:mM
+	ntot 1.0 #units:mM
+	n 4.0 #units:dimensionless
+	ki 1.0 #units:mM
+end parameters
+begin molecule types
+	#^ bqbiol:is kegg.compound:C00022, chebi:CHEBI:32816, obo.chebi:CHEBI:15361
+	Pyruvate()
+	#^ bqbiol:is obo.chebi:CHEBI:15846, kegg.compound:C00003
+	NAD()
+	#^ bqbiol:is obo.chebi:CHEBI:15343, kegg.compound:C00084
+	extracellularacetaldehyde()
+	#^ bqbiol:hasPart obo.chebi:CHEBI:16108, obo.chebi:CHEBI:29052, kegg.compound:C00111, kegg.compound:C00118
+	Triose_Gly3Phos_DHAP(triose_gly3phos_dhap)
+	#^ bqbiol:is obo.chebi:CHEBI:15343, kegg.compound:C00084
+	Acetaldehyde()
+	#^ bqbiol:is obo.chebi:CHEBI:17794, kegg.compound:C00197
+	s3PG()
+	#^ bqbiol:is obo.chebi:CHEBI:15422, kegg.compound:C00002
+	ATP()
+	#^ bqbiol:is obo.chebi:CHEBI:17234, kegg.compound:C00293
+	Glucose()
+end molecule types
+begin seed species
+	Glucose() 6.022e+20 # (1.0 * 0.001)mol/L * 6.022e23/mol *1.0L #Glucose #s1
+	ATP() 1.2044e+21 #original 2.0milli mole/L  #ATP #at
+	Triose_Gly3Phos_DHAP(triose_gly3phos_dhap!377).Triose_Gly3Phos_DHAP(triose_gly3phos_dhap!377) 3.011e+21 #original 5.0milli mole/L  #F16P #s2
+	Triose_Gly3Phos_DHAP(triose_gly3phos_dhap) 3.6132e+20 #original 0.6milli mole/L  #Triose_Gly3Phos_DHAP #s3
+	NAD() 3.6132e+20 #original 0.6milli mole/L  #NAD #na
+	s3PG() 4.2154e+20 #original 0.7milli mole/L  #s3PG #s4
+	Pyruvate() 4.8176e+21 #original 8.0milli mole/L  #Pyruvate #s5
+	Acetaldehyde() 4.817600000000001e+19 #original 0.08milli mole/L  #Acetaldehyde #s6
+	extracellularacetaldehyde() 1.2044000000000002e+19 #original 0.02milli mole/L  #extracellularacetaldehyde #s6o
+end seed species
+begin observables
+	Species Glucose Glucose() #Glucose
+	Species ATP ATP() #ATP
+	Species F16P Triose_Gly3Phos_DHAP(triose_gly3phos_dhap!377).Triose_Gly3Phos_DHAP(triose_gly3phos_dhap!377) #F16P
+	Species Triose_Gly3Phos_DHAP Triose_Gly3Phos_DHAP(triose_gly3phos_dhap) #Triose_Gly3Phos_DHAP
+	Species NAD NAD() #NAD
+	Species s3PG s3PG() #3PG
+	Species Pyruvate Pyruvate() #Pyruvate
+	Species Acetaldehyde Acetaldehyde() #Acetaldehyde
+	Species extracellularacetaldehyde extracellularacetaldehyde() #extracellular acetaldehyde
+end observables
+begin functions
+	fRate0() = ATP*Glucose*k1/((ATP/ki)^n + 1)
+	fRate2() = (-ATP*k33*k34*s3PG*(-NAD + ntot) + NAD*Triose_Gly3Phos_DHAP*k31*k32*(-ATP + atot))/(k32*(-ATP + atot) + k33*(-NAD + ntot))
+	fRate3() = k4*s3PG*(-ATP + atot)
+	fRate6() = k8*ntot
+	fRate6m() = Triose_Gly3Phos_DHAP*k8
+	fRate8() = k10*(Acetaldehyde - extracellularacetaldehyde)
+	fRate9() = k6*ntot
+	fRate9m() = Acetaldehyde*k6
+end functions
+begin reaction rules
+	v1_reactants_0: 0  -> Glucose() -1*(fRate0())
+	v1_reactants_1: 0  -> ATP() -1*2.0*(fRate0())
+	v1_products_0: 0  -> Triose_Gly3Phos_DHAP(triose_gly3phos_dhap!377).Triose_Gly3Phos_DHAP(triose_gly3phos_dhap!377) fRate0()
+	v2: Triose_Gly3Phos_DHAP(triose_gly3phos_dhap!377).Triose_Gly3Phos_DHAP(triose_gly3phos_dhap!377) -> Triose_Gly3Phos_DHAP(triose_gly3phos_dhap) + Triose_Gly3Phos_DHAP(triose_gly3phos_dhap) k2
+	v3_reactants_0: 0  -> Triose_Gly3Phos_DHAP(triose_gly3phos_dhap) -1*(fRate2())
+	v3_reactants_1: 0  -> NAD() -1*(fRate2())
+	v3_products_0: 0  -> s3PG() fRate2()
+	v3_products_1: 0  -> ATP() fRate2()
+	v4_reactants_0: 0  -> s3PG() -1*(fRate3())
+	v4_products_0: 0  -> Pyruvate() fRate3()
+	v4_products_1: 0  -> ATP() fRate3()
+	v5: Pyruvate() -> Acetaldehyde() k5
+	v7: ATP() -> 0  k7
+	v8: Triose_Gly3Phos_DHAP(triose_gly3phos_dhap) <-> NAD() fRate6(),fRate6m()
+	v9: extracellularacetaldehyde() -> 0  k9
+	v10_reactants_0: 0  -> Acetaldehyde() -1*(fRate8())
+	v10_products_0: 0  -> extracellularacetaldehyde() 0.1*fRate8()
+	v6: Acetaldehyde() <-> NAD() fRate9(),fRate9m()
+	v0: 0  -> Glucose() k0
+end reaction rules
+end model

@@ -1,0 +1,49 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/32574303']
+#@BQB_IS:['http://identifiers.org/doid/DOID:0080600']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606', 'http://identifiers.org/taxonomy/2697049']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000028']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000974', 'http://identifiers.org/biomodels.db/MODEL2011030005']
+#@creatorEmail:'kramachandran@ebi.ac.uk'
+#@creatorName:'Ramachandran Kausthubh'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 6 molecules and 4 reactions. The translated model has 2 molecules and 4 rules'
+###
+begin model
+begin parameters
+	mu 0.012048
+	beta 0.833
+	epsilon 0.33333
+	gamma 0.125
+	alpha 0.006
+	Total_population 6.022e+30 #original 10000000.0substance/volume
+end parameters
+begin molecule types
+	#^ bqbiol:is ncit:C28554, ncit:C168970
+	Deceased()
+	#^ bqbiol:isVersionOf ido:0000514, ncit:C171133
+	#^ bqbiol:hasProperty ido:0000597
+	Exposed(Infected~Infected~0,Recovered~Recovered~0,Susceptible~Susceptible~0)
+end molecule types
+begin seed species
+	Exposed(Infected~0,Recovered~0,Susceptible~0) 1.2044e+28 #original 20000.0substance/volume #Exposed #Exposed
+	Exposed(Infected~Infected,Recovered~0,Susceptible~0) 6.022e+23 #original 1.0substance/volume #Infected #Infected
+	Exposed(Infected~0,Recovered~0,Susceptible~Susceptible) (10000000.0) -(20000.0) -(1.0) #Susceptible
+end seed species
+begin observables
+	Species Susceptible Exposed(Infected~0,Recovered~0,Susceptible~Susceptible) #Susceptible
+	Species Exposed Exposed(Infected~0,Recovered~0,Susceptible~0) #Exposed
+	Species Infected Exposed(Infected~Infected,Recovered~0,Susceptible~0) #Infected
+	Species Recovered Exposed(Infected~0,Recovered~Recovered,Susceptible~0) #Recovered
+	Species Deceased Deceased() #Deceased
+end observables
+begin functions
+	lambda() = Total_population*mu
+	fRate0() = Infected*beta/Total_population
+end functions
+begin reaction rules
+	Susceptible_to_Exposed: Exposed(Infected~0,Recovered~0,Susceptible~Susceptible) -> Exposed(Infected~0,Recovered~0,Susceptible~0) fRate0() #Modifiers(Infected, Total_population)
+	Exposed_to_Infected: Exposed(Infected~0,Recovered~0,Susceptible~0) -> Exposed(Infected~Infected,Recovered~0,Susceptible~0) epsilon
+	Infected_to_Recovered: Exposed(Infected~Infected,Recovered~0,Susceptible~0) -> Exposed(Infected~0,Recovered~Recovered,Susceptible~0) gamma
+	Infected_to_Deceased: Exposed(Infected~Infected,Recovered~0,Susceptible~0) -> Deceased() alpha
+end reaction rules
+end model

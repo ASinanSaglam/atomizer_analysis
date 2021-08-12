@@ -1,0 +1,56 @@
+###
+#@BQB_HAS_PROPERTY:['http://identifiers.org/go/GO:0002424', 'http://identifiers.org/go/GO:0002419', 'http://identifiers.org/ncit/C153548', 'http://identifiers.org/ncit/C15262']
+#@BQB_IS_PROPERTY_OF:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1902200001', 'http://identifiers.org/biomodels.db/BIOMD0000000733']
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 3 molecules and 6 reactions. The translated model has 3 molecules and 6 rules'
+###
+begin model
+begin parameters
+	Sn 0.37 #units:unit_0
+	n 720.0 #units:unit_1
+	Kn 0.062 #units:unit_2
+	De 0.3 #units:unit_2
+	gamma_E 0.057 #units:unit_3
+	An 0.14 #units:unit_4
+	Ae 0.98 #units:unit_2
+	Dn 0.23 #units:unit_2
+	Rc 0.0057 #units:unit_2
+	Cmax 230000.0 #units:unit_1
+	Dc 0.024 #units:unit_2
+	gamma_C 0.0034 #units:unit_3
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf efo:0000616
+	tumor_cells()
+	#^ bqbiol:isVersionOf ncit:C104083
+	eff_Tcells()
+	#^ bqbiol:isVersionOf ncit:C104081
+	naive_Tcells()
+end molecule types
+begin seed species
+	naive_Tcells() 9.093220000000001e+23 # (1510.0 * 0.001)mol/L * 6.022e23/mol *1.0L #naive_Tcells #naive_Tcells
+	eff_Tcells() 1.2044e+22 #original 20.0substance/L  #eff_Tcells #eff_Tcells
+	tumor_cells() 6.022e+24 #original 10000.0substance/L  #tumor_cells #tumor_cells
+end seed species
+begin observables
+	Species naive_Tcells naive_Tcells() #naive_Tcells
+	Species eff_Tcells eff_Tcells() #eff_Tcells
+	Species tumor_cells tumor_cells() #tumor_cells
+end observables
+begin functions
+	fRate1() = 1.0*Dn*naive_Tcells + 1.0*Kn*naive_Tcells*tumor_cells/(n + tumor_cells)
+	fRate2() = tumor_cells*(Ae*eff_Tcells + 1.0*An*Kn*naive_Tcells)/(1.0*n + 1.0*tumor_cells)
+	fRate3() = 1.0*De*eff_Tcells + 1.0*eff_Tcells*gamma_E*tumor_cells
+	fRate4() = Rc*tumor_cells*ln(Cmax/tumor_cells)
+	fRate5m() = 1.0*eff_Tcells*gamma_C*tumor_cells
+end functions
+begin reaction rules
+	Naive_Tcells_production: 0  -> naive_Tcells() Sn
+	Naive_Tcells_degradation_reactants_0: 0  -> naive_Tcells() -1*(fRate1()) #Modifiers(tumor_cells)
+	eff_Tcells_production: 0  -> eff_Tcells() fRate2() #Modifiers(naive_Tcells, tumor_cells)
+	eff_Tcells_degradation_reactants_0: 0  -> eff_Tcells() -1*(fRate3()) #Modifiers(tumor_cells)
+	Tumor_growth: 0  -> tumor_cells() fRate4()
+	Tumor_killing: tumor_cells() <-> 0  Dc,fRate5m() #Modifiers(eff_Tcells)
+end reaction rules
+end model

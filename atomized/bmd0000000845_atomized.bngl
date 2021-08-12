@@ -1,0 +1,53 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/30389532']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/go/GO:0019089']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000845', 'http://identifiers.org/biomodels.db/MODEL1911100003']
+#@creatorEmail:'johannes.p.meyer@gmail.com'
+#@creatorName:'Meyer Johannes'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 3 molecules and 7 reactions. The translated model has 2 molecules and 7 rules'
+###
+begin model
+begin parameters
+	r 0.339
+	K 894700000.0
+	beta 20.0
+	eta 1.5
+	mu 0.0866
+	r_tilde 0.2
+	phi_tilde 2e-11
+	alpha 0.1
+	d_tilde 0.05
+end parameters
+begin molecule types
+	#^ bqbiol:is ncit:C14368
+	V_L(s)
+	#^ bqbiol:hasVersion ncit:C14187
+	S(v_l)
+end molecule types
+begin seed species
+	S(v_l) 4.99826e+32 # 830000000.0mol/L * 6.022e23/mol *1.0L #S #S
+	V_L(s) 1.999304e+31 #original 33200000.0substance/volume #V_L #V_L
+end seed species
+begin observables
+	Species S S(v_l) #S
+	Species I V_L(s!71).S(v_l!71) #I
+	Species V_L V_L(s) #V_L
+end observables
+begin functions
+	N() = I + S
+	phi() = 1.73925271309261e-10
+	d() = 1/24
+	fRate0() = S*r
+	fRate0m() = N*r/K
+	fRate5() = I*beta*eta
+end functions
+begin reaction rules
+	Susceptible_Logistic_Growth: 0  <-> S(v_l) fRate0(),fRate0m()
+	Susceptible_Absorption_Virus: S(v_l) + V_L(s) -> V_L(s!71).S(v_l!71) phi
+	Susceptible_Death: S(v_l) -> 0  d
+	Infected_Death: V_L(s!71).S(v_l!71) -> 0  d
+	Infected_Lysis: V_L(s!71).S(v_l!71) -> 0  eta
+	Virus_Lytic_Release_From_Infected: 0  -> V_L(s) fRate5() #Modifiers(I)
+	Virus_Lytic_Decay: V_L(s) -> 0  mu
+end reaction rules
+end model

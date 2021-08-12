@@ -1,0 +1,48 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/31048505']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000868', 'http://identifiers.org/biomodels.db/MODEL1903280002']
+#@BQB_IS:['http://identifiers.org/biomodels.db/MODEL1903280002']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/taxonomy/9606', 'http://identifiers.org/ncit/C39163']
+#@creatorEmail:'msharifshohan@ebi.ac.uk'
+#@creatorName:'Sharif Shohan Mohammad Umer'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 5 molecules and 5 reactions. The translated model has 3 molecules and 5 rules'
+###
+begin model
+begin parameters
+	r1_k1 0.200000
+	r2_k1 0.050000
+	r3_k1 0.000380
+	r4_k1 0.000380
+	r5_k1 0.005000
+	r5_k2 0.000240
+end parameters
+begin molecule types
+	#^ bqbiol:is uniprot:Q00653
+	p100(nik,t~T~0)
+	#^ bqbiol:is uniprot:Q99558
+	NIK(p100)
+	#^ bqbiol:is uniprot:Q00653
+	p52()
+end molecule types
+begin seed species
+	$p100(nik,t~T) 1505500000000000.0 # (2.5 * 1e-09)mol/L * 6.022e23/mol *1.0L #p100t #p100t
+	NIK(p100) 6022000000000000.0 #original 10.0substance/volume #NIK #NIK
+end seed species
+begin observables
+	Species p100t p100(nik,t~T) #p100t
+	Species p100 p100(nik,t~0) #p100
+	Species p52 p52() #p52
+	Species NIK NIK(p100) #NIK
+	Species p100_NIK p100(nik!81,t~0).NIK(p100!81) #p100:NIK
+end observables
+begin functions
+	p52_uM() = p52/1000
+end functions
+begin reaction rules
+	p100_mRNA_Expressions: p100(nik,t~T) -> p100(nik,t~0) r1_k1
+	p100_processing: p100(nik!81,t~0).NIK(p100!81) -> p52() + NIK(p100) r2_k1
+	p52_degradation: p52() -> 0  r3_k1
+	p100_degradation: p100(nik,t~0) -> 0  r4_k1
+	p100_NIK_binding: p100(nik,t~0) + NIK(p100) <-> p100(nik!81,t~0).NIK(p100!81) r5_k1,r5_k2
+end reaction rules
+end model

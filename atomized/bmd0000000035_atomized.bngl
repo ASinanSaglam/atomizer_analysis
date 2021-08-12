@@ -1,0 +1,74 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL6619651140', 'http://identifiers.org/biomodels.db/BIOMD0000000035']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/11972055']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0042752']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/131567']
+#@creatorEmail:'lenov@ebi.ac.uk'
+#@creatorName:'Le Novère Nicolas'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 10 molecules and 16 reactions. The translated model has 6 molecules and 16 rules'
+###
+begin model
+begin parameters
+	r1_gammaC 2.000000
+	r2_deltaA 1.000000
+	r3_deltaA 1.000000
+	r4_deltaR 0.200000
+	r5_gammaA 1.000000
+	r6_thetaA 50.000000
+	r7_alphaA 50.000000
+	r8_alphaAp 500.000000
+	r9_deltaMA 10.000000
+	r10_betaA 50.000000
+	r11_gammaR 1.000000
+	r12_thetaR 100.000000
+	r13_alphaR 0.010000
+	r14_alphaRp 50.000000
+	r15_deltaMR 0.500000
+	r16_betaR 5.000000
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf chebi:CHEBI:33699
+	MR()
+	#^ bqbiol:isVersionOf chebi:CHEBI:36080
+	A(da,dr,r)
+	#^ bqbiol:isVersionOf chebi:CHEBI:33699
+	MA()
+	DA(a)
+	#^ bqbiol:isVersionOf chebi:CHEBI:36080
+	R(a)
+	DR(a)
+end molecule types
+begin seed species
+	DA(a) 1.0 #DA #DA
+	DR(a) 1.0 #DR #DR
+end seed species
+begin observables
+	Species A A(da,dr,r) #A
+	Species C A(da,dr,r!51).R(a!51) #C
+	Species DA DA(a) #DA
+	Species DAp A(da!52,dr,r).DA(a!52) #DAp
+	Species DR DR(a) #DR
+	Species DRp A(da,dr!53,r).DR(a!53) #DRp
+	Species MA MA() #MA
+	Species MR MR() #MR
+	Species R R(a) #R
+end observables
+begin reaction rules
+	Reaction1: A(da,dr,r) + R(a) -> A(da,dr,r!51).R(a!51) r1_gammaC
+	Reaction2: A(da,dr,r) -> 0  r2_deltaA
+	Reaction3: A(da,dr,r!51).R(a!51) -> R(a) r3_deltaA
+	Reaction4: R(a) -> 0  r4_deltaR
+	Reaction5: A(da,dr,r) + DA(a) -> A(da!52,dr,r).DA(a!52) r5_gammaA
+	Reaction6: A(da!52,dr,r).DA(a!52) -> A(da,dr,r) + DA(a) r6_thetaA
+	Reaction7: DA(a) -> DA(a) + MA() r7_alphaA
+	Reaction8: A(da!52,dr,r).DA(a!52) -> A(da!52,dr,r).DA(a!52) + MA() r8_alphaAp
+	Reaction9: MA() -> 0  r9_deltaMA
+	Reaction10: MA() -> A(da,dr,r) + MA() r10_betaA
+	Reaction11: A(da,dr,r) + DR(a) -> A(da,dr!53,r).DR(a!53) r11_gammaR
+	Reaction12: A(da,dr!53,r).DR(a!53) -> A(da,dr,r) + DR(a) r12_thetaR
+	Reaction13: DR(a) -> DR(a) + MR() r13_alphaR
+	Reaction14: A(da,dr!53,r).DR(a!53) -> A(da,dr!53,r).DR(a!53) + MR() r14_alphaRp
+	Reaction15: MR() -> 0  r15_deltaMR
+	Reaction16: MR() -> MR() + R(a) r16_betaR
+end reaction rules
+end model

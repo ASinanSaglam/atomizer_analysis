@@ -1,0 +1,69 @@
+###
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/efo/0005222']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/8782', 'http://identifiers.org/taxonomy/9606']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/27887851']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1808240002', 'http://identifiers.org/biomodels.db/BIOMD0000000708']
+#@creatorEmail:'sarubini.kananathan@hotmail.co.uk'
+#@creatorName:'Kananathan Sarubini'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 5 molecules and 11 reactions. The translated model has 2 molecules and 11 rules'
+###
+begin model
+begin parameters
+	r_a 0.005
+	K_a 50000.0
+	beta_a 2e-08
+	mu_a 0.00034246
+	delta_a 0.0004
+	pi_h 30.0
+	beta_h 6e-09
+	mu_h 3.91e-05
+	gamma 0.1
+	delta_h 0.3445
+	M_a 50000.0
+	m_a 800.0
+end parameters
+begin compartments
+	#volume units: volume
+	compartment 3 1.0 #Human population
+	Avian_population 3 1.0 #Avian population
+end compartments
+begin molecule types
+	#^ bqbiol:isVersionOf ido:0000511
+	#^ bqbiol:hasTaxon taxonomy:9606
+	InfectedHuman__I_h__(RecoveredHuman__R_h__~RecoveredHuman__R_h__~0,SusceptibleHuman__S_h__~SusceptibleHuman__S_h__~0)
+	#^ bqbiol:isVersionOf ido:0000511
+	#^ bqbiol:hasTaxon taxonomy:8782
+	InfectedAvian__I_a__(SusceptibleAvian__S_a__~SusceptibleAvian__S_a__~0)
+end molecule types
+begin seed species
+	@Avian_population:InfectedAvian__I_a__(SusceptibleAvian__S_a__~SusceptibleAvian__S_a__) 6.022000000000001e+28 # 100000.0mol/L * 6.022e23/mol *1.0L #SusceptibleAvian__S_a__ #S_a
+	@Avian_population:InfectedAvian__I_a__(SusceptibleAvian__S_a__~0) 6.0220000000000006e+26 #original 1000.0mol/volume  #InfectedAvian__I_a__ #I_a
+	@compartment:InfectedHuman__I_h__(RecoveredHuman__R_h__~0,SusceptibleHuman__S_h__~SusceptibleHuman__S_h__) 6.022e+29 #original 1000000.0mol/volume  #SusceptibleHuman__S_h__ #S_h
+end seed species
+begin observables
+	Species SusceptibleAvian__S_a___Avian_population @Avian_population:InfectedAvian__I_a__(SusceptibleAvian__S_a__~SusceptibleAvian__S_a__) #Susceptible Avian (S_a)
+	Species InfectedAvian__I_a___Avian_population @Avian_population:InfectedAvian__I_a__(SusceptibleAvian__S_a__~0) #Infected Avian (I_a)
+	Species SusceptibleHuman__S_h___compartment @compartment:InfectedHuman__I_h__(RecoveredHuman__R_h__~0,SusceptibleHuman__S_h__~SusceptibleHuman__S_h__) #Susceptible Human (S_h)
+	Species InfectedHuman__I_h___compartment @compartment:InfectedHuman__I_h__(RecoveredHuman__R_h__~0,SusceptibleHuman__S_h__~0) #Infected Human (I_h)
+	Species RecoveredHuman__R_h___compartment @compartment:InfectedHuman__I_h__(RecoveredHuman__R_h__~RecoveredHuman__R_h__,SusceptibleHuman__S_h__~0) #Recovered Human (R_h)
+end observables
+begin functions
+	fRate0() = SusceptibleAvian__S_a___Avian_population*r_a
+	fRate0m() = SusceptibleAvian__S_a___Avian_population*r_a/K_a
+	fRate1() = InfectedAvian__I_a___Avian_population*beta_a
+	fRate5() = InfectedAvian__I_a___Avian_population*beta_h
+end functions
+begin reaction rules
+	reaction_1: 0  <-> InfectedAvian__I_a__(SusceptibleAvian__S_a__~SusceptibleAvian__S_a__)@Avian_population fRate0(),fRate0m()
+	reaction_2: InfectedAvian__I_a__(SusceptibleAvian__S_a__~SusceptibleAvian__S_a__)@Avian_population -> InfectedAvian__I_a__(SusceptibleAvian__S_a__~0)@Avian_population fRate1()
+	reaction_3: InfectedAvian__I_a__(SusceptibleAvian__S_a__~0)@Avian_population -> 0  mu_a
+	reaction_4: InfectedAvian__I_a__(SusceptibleAvian__S_a__~0)@Avian_population -> 0  delta_a
+	reaction_5: 0  -> InfectedHuman__I_h__(RecoveredHuman__R_h__~0,SusceptibleHuman__S_h__~SusceptibleHuman__S_h__)@compartment pi_h
+	reaction_6: InfectedHuman__I_h__(RecoveredHuman__R_h__~0,SusceptibleHuman__S_h__~SusceptibleHuman__S_h__)@compartment -> InfectedHuman__I_h__(RecoveredHuman__R_h__~0,SusceptibleHuman__S_h__~0)@compartment fRate5() #Modifiers(I_a)
+	reaction_7: InfectedHuman__I_h__(RecoveredHuman__R_h__~0,SusceptibleHuman__S_h__~SusceptibleHuman__S_h__)@compartment -> 0  mu_h
+	reaction_8: InfectedHuman__I_h__(RecoveredHuman__R_h__~0,SusceptibleHuman__S_h__~0)@compartment -> 0  mu_h
+	reaction_9: InfectedHuman__I_h__(RecoveredHuman__R_h__~0,SusceptibleHuman__S_h__~0)@compartment -> 0  delta_h
+	reaction_10: InfectedHuman__I_h__(RecoveredHuman__R_h__~0,SusceptibleHuman__S_h__~0)@compartment -> InfectedHuman__I_h__(RecoveredHuman__R_h__~RecoveredHuman__R_h__,SusceptibleHuman__S_h__~0)@compartment gamma
+	reaction_11: InfectedHuman__I_h__(RecoveredHuman__R_h__~RecoveredHuman__R_h__,SusceptibleHuman__S_h__~0)@compartment -> 0  mu_h
+end reaction rules
+end model

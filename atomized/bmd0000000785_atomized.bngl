@@ -1,0 +1,42 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/doi/10.1016/S0167-2789(03)00005-8']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/go/GO:0002424']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1908090002', 'http://identifiers.org/biomodels.db/BIOMD0000000785']
+#@creatorEmail:'johannes.p.meyer@gmail.com'
+#@creatorName:'Meyer Johannes'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 2 molecules and 5 reactions. The translated model has 2 molecules and 5 rules'
+###
+begin model
+begin parameters
+	alpha 2.0
+	k 0.2
+	sigma 0.25
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf cl:CL:0001063
+	x_Malignant_Cells()
+	#^ bqbiol:is cl:CL:0000542
+	y_Lymphocytes()
+end molecule types
+begin seed species
+	x_Malignant_Cells() 3.19166e+21 # (5.3 * 0.001)mol/L * 6.022e23/mol *1.0L #x_Malignant_Cells #x_Malignant_Cells
+	y_Lymphocytes() 4.0347400000000004e+21 #original 6.7substance/volume  #y_Lymphocytes #y_Lymphocytes
+end seed species
+begin observables
+	Species x_Malignant_Cells x_Malignant_Cells() #x_Malignant_Cells
+	Species y_Lymphocytes y_Lymphocytes() #y_Lymphocytes
+end observables
+begin functions
+	fRate0() = alpha*x_Malignant_Cells
+	fRate1() = y_Lymphocytes
+	fRate3() = 1/alpha
+	fRate4() = k*x_Malignant_Cells
+end functions
+begin reaction rules
+	Malignant_Cells_Growth: 0  -> x_Malignant_Cells() fRate0()
+	Malignant_Cells_Death_Lymphocytes: x_Malignant_Cells() -> y_Lymphocytes() fRate1()
+	Lymphocytes_Production: 0  -> y_Lymphocytes() sigma
+	Lymphocyte_Death: y_Lymphocytes() -> 0  fRate3()
+	Lymphocyte_Elimination_Malignant_Cells_reactants_0: 0  -> y_Lymphocytes() -1*(fRate4()) #Modifiers(x_Malignant_Cells)
+end reaction rules
+end model

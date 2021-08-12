@@ -1,0 +1,103 @@
+###
+#@BQB_IS:['http://identifiers.org/doid/DOID:0080600']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606', 'http://identifiers.org/taxonomy/2697049']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/32532983']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000028']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000988', 'http://identifiers.org/biomodels.db/MODEL2102120001']
+#@creatorEmail:'s6pajost@uni-bonn.de'
+#@creatorName:'Jost Paul Jonas'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 20 molecules and 18 reactions. The translated model has 3 molecules and 18 rules'
+###
+begin model
+begin parameters
+	Testing_Randome 0.0008
+	Normal_death_rate_constant_0 3.29e-05
+	Corona_death_rate_constant 0.002
+	Birth_rate 3.29e-05
+	Testing_for_Symptoms 500.0
+	Corona_recover 0.067
+	Symptoms_appear 0.30165
+	Infection_from_non_tested_no_symptoms_0 0.508
+	Infection_from_non_tested_symptoms 0.25
+	Infection_from_tested_no_symptoms_0 0.025
+	Infection_from_tested_symptoms 0.025
+	Time_government_action_0 15.0
+	lockdown_duration 7.0 #units:unit_0
+	lockdownPause_duration_0 7.0 #units:unit_0
+	timeFraction_lockdown_0 0.55
+	symptomatic_numberTolerance_0 141.0
+	social_distancing_factor 10.0
+	Social_Distance_base 534700.0
+	n_pauses 0
+	number_cutoff 0
+	governmentResponseFactorToDiagnosedInfected_0 0
+	total_population 3.793878066e+29 #original 630003.0substance/volume
+	registered_corona 6.022e+23 #original 1.0substance/volume
+	infected_tested_div10 6.022e+22 #original 0.1substance/volume
+end parameters
+begin molecule types
+	#^ bqbiol:is ido:0000514
+	susceptible()
+	#^ bqbiol:is ncit:C28554
+	dead_noncorona()
+	#^ bqbiol:is ido:0000511, ncit:C171133
+	#^ bqbiol:hasProperty ncit:C47891
+	infected_tested(dead_corona_tested~dead_corona_tested~0,non~NON~0,recovered_nontested~recovered_nontested~0,recovered_tested~recovered_tested~0,symptoms_tested~symptoms_tested~0,un~UN~0)
+end molecule types
+begin seed species
+	infected_tested(dead_corona_tested~0,non~NON,recovered_nontested~0,recovered_tested~0,symptoms_tested~0,un~0) 1.2044e+24 # 2.0mol/L * 6.022e23/mol *1.0L #infected_nontested #infected_nontested_0
+	infected_tested(dead_corona_tested~0,non~0,recovered_nontested~0,recovered_tested~0,symptoms_tested~0,un~0) 6.022e+23 #original 1.0substance/volume #infected_tested #infected_tested_0
+	infected_tested(dead_corona_tested~0,non~NON,recovered_nontested~0,recovered_tested~0,symptoms_tested~0,un~UN) 3.7938600000000004e+29 #original 630000.0substance/volume #uninfected_nontested #uninfected_nontested_0
+	$susceptible() 6.022e+23 #original 1.0substance/volume #susceptible #susceptible_0
+end seed species
+begin observables
+	Species infected_nontested infected_tested(dead_corona_tested~0,non~NON,recovered_nontested~0,recovered_tested~0,symptoms_tested~0,un~0) #infected_nontested
+	Species infected_tested infected_tested(dead_corona_tested~0,non~0,recovered_nontested~0,recovered_tested~0,symptoms_tested~0,un~0) #infected_tested
+	Species uninfected_nontested infected_tested(dead_corona_tested~0,non~NON,recovered_nontested~0,recovered_tested~0,symptoms_tested~0,un~UN) #uninfected_nontested
+	Species uninfected_tested infected_tested(dead_corona_tested~0,non~0,recovered_nontested~0,recovered_tested~0,symptoms_tested~0,un~UN) #uninfected_tested
+	Species symptoms_tested infected_tested(dead_corona_tested~0,non~0,recovered_nontested~0,recovered_tested~0,symptoms_tested~symptoms_tested,un~0) #symptoms_tested
+	Species symptoms_nontested infected_tested(dead_corona_tested~0,non~NON,recovered_nontested~0,recovered_tested~0,symptoms_tested~symptoms_tested,un~0) #symptoms_nontested
+	Species recovered_tested infected_tested(dead_corona_tested~0,non~0,recovered_nontested~0,recovered_tested~recovered_tested,symptoms_tested~0,un~0) #recovered_tested
+	Species recovered_nontested infected_tested(dead_corona_tested~0,non~NON,recovered_nontested~recovered_nontested,recovered_tested~0,symptoms_tested~0,un~0) #recovered_nontested
+	Species susceptible susceptible() #susceptible
+	Species dead_corona_tested infected_tested(dead_corona_tested~dead_corona_tested,non~0,recovered_nontested~0,recovered_tested~0,symptoms_tested~0,un~0) #dead_corona_tested
+	Species dead_corona_nontested infected_tested(dead_corona_tested~dead_corona_tested,non~NON,recovered_nontested~0,recovered_tested~0,symptoms_tested~0,un~0) #dead_corona_nontested
+	Species dead_noncorona dead_noncorona() #dead_noncorona
+end observables
+begin functions
+	Social_Distance() =  if((time()>Time_government_action_0&&intermittent_time<Time_government_action_0-lockdown_duration*(1-timeFraction_lockdown_0)),(Government_induced_isolation_factor_0*Social_Distance_base),(Social_Distance_base))
+	epidemic_extinguished_bool_ar() =  if((infected_nontested+infected_tested+symptoms_nontested+symptoms_tested<number_cutoff),(1),(0))
+	Total_Infection_coefficient() = (1 - epidemic_extinguished_bool_ar)*(Infection_from_non_tested_no_symptoms_0*infected_nontested + Infection_from_non_tested_symptoms*symptoms_nontested + Infection_from_tested_no_symptoms_0*infected_tested + Infection_from_tested_symptoms*symptoms_tested)/Social_Distance
+	total_population_ar() = infected_nontested + infected_tested + recovered_nontested + recovered_tested + symptoms_nontested + symptoms_tested + uninfected_nontested + uninfected_tested
+	dead_noncorona_perc_ar() = 100*dead_noncorona/total_population_ar
+	dead_corona_perc_ar() = (100*dead_corona_nontested + 100*dead_corona_tested)/total_population_ar
+	frac_coronaDeadOfAllDead_ar() = 100*dead_corona_perc_ar/(dead_corona_perc_ar + dead_noncorona_perc_ar)
+	n_lockdowns() =  if((-Time_government_action_0+time()>0),(1),(0))+if((-Time_government_action_0+time()>lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>2*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>3*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>4*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>5*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>6*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>7*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>8*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>9*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>10*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>11*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>12*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>13*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>14*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>15*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>16*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>17*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>18*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>19*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>20*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>21*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>22*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>23*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>24*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>25*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>26*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>27*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>28*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>29*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>30*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>31*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>32*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>33*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>34*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>35*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>36*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>37*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>38*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>39*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>40*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>41*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>42*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>43*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>44*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>45*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>46*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>47*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>48*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>49*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>50*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>51*lockdown_duration),(1),(0))
+	intermittent_time() = -lockdownPause_duration_0*n_pauses - lockdown_duration*n_lockdowns + time()
+	recovered_corona_perc_ar() = (100*recovered_nontested + 100*recovered_tested)/total_population_ar
+	Government_induced_isolation_factor_0() =  social_distancing_factor*(1+2.5*symptoms_tested*if((time()<Time_government_action_0),(0),(governmentResponseFactorToDiagnosedInfected_0))/symptomatic_numberTolerance_0)
+	registered_corona_ar() = dead_corona_tested + infected_tested + recovered_tested + symptoms_tested
+	infected_tested_div10_ar() = 0.1*infected_tested
+	fRate10() = Birth_rate*total_population_ar
+end functions
+begin reaction rules
+	re1: infected_tested(dead_corona_tested~0,non~NON,recovered_nontested~0,recovered_tested~0,symptoms_tested~0,un~UN) -> infected_tested(dead_corona_tested~0,non~NON,recovered_nontested~0,recovered_tested~0,symptoms_tested~0,un~0) Total_Infection_coefficient
+	re2: infected_tested(dead_corona_tested~0,non~NON,recovered_nontested~0,recovered_tested~0,symptoms_tested~0,un~UN) -> infected_tested(dead_corona_tested~0,non~0,recovered_nontested~0,recovered_tested~0,symptoms_tested~0,un~UN) Testing_Randome
+	re3: infected_tested(dead_corona_tested~0,non~0,recovered_nontested~0,recovered_tested~0,symptoms_tested~0,un~UN) -> infected_tested(dead_corona_tested~0,non~NON,recovered_nontested~0,recovered_tested~0,symptoms_tested~0,un~0) Total_Infection_coefficient
+	re4: infected_tested(dead_corona_tested~0,non~NON,recovered_nontested~0,recovered_tested~0,symptoms_tested~0,un~0) -> infected_tested(dead_corona_tested~0,non~0,recovered_nontested~0,recovered_tested~0,symptoms_tested~0,un~0) Testing_Randome
+	re5: infected_tested(dead_corona_tested~0,non~NON,recovered_nontested~0,recovered_tested~0,symptoms_tested~0,un~0) -> infected_tested(dead_corona_tested~0,non~NON,recovered_nontested~0,recovered_tested~0,symptoms_tested~symptoms_tested,un~0) Symptoms_appear
+	re6: infected_tested(dead_corona_tested~0,non~0,recovered_nontested~0,recovered_tested~0,symptoms_tested~0,un~0) -> infected_tested(dead_corona_tested~0,non~0,recovered_nontested~0,recovered_tested~0,symptoms_tested~symptoms_tested,un~0) Symptoms_appear
+	re7: infected_tested(dead_corona_tested~0,non~NON,recovered_nontested~0,recovered_tested~0,symptoms_tested~symptoms_tested,un~0) -> infected_tested(dead_corona_tested~0,non~0,recovered_nontested~0,recovered_tested~0,symptoms_tested~symptoms_tested,un~0) Testing_for_Symptoms
+	re8: infected_tested(dead_corona_tested~0,non~0,recovered_nontested~0,recovered_tested~0,symptoms_tested~symptoms_tested,un~0) -> infected_tested(dead_corona_tested~dead_corona_tested,non~0,recovered_nontested~0,recovered_tested~0,symptoms_tested~0,un~0) Corona_death_rate_constant
+	re9: infected_tested(dead_corona_tested~0,non~0,recovered_nontested~0,recovered_tested~0,symptoms_tested~symptoms_tested,un~0) -> infected_tested(dead_corona_tested~0,non~0,recovered_nontested~0,recovered_tested~recovered_tested,symptoms_tested~0,un~0) Corona_recover
+	re10: infected_tested(dead_corona_tested~0,non~NON,recovered_nontested~0,recovered_tested~0,symptoms_tested~symptoms_tested,un~0) -> infected_tested(dead_corona_tested~0,non~NON,recovered_nontested~recovered_nontested,recovered_tested~0,symptoms_tested~0,un~0) Corona_recover
+	re11: susceptible() -> infected_tested(dead_corona_tested~0,non~NON,recovered_nontested~0,recovered_tested~0,symptoms_tested~0,un~UN) fRate10() #Modifiers(total_population_0)
+	re12: infected_tested(dead_corona_tested~0,non~NON,recovered_nontested~0,recovered_tested~0,symptoms_tested~0,un~UN) -> dead_noncorona() Normal_death_rate_constant_0
+	re13: infected_tested(dead_corona_tested~0,non~0,recovered_nontested~0,recovered_tested~recovered_tested,symptoms_tested~0,un~0) -> dead_noncorona() Normal_death_rate_constant_0
+	re14: infected_tested(dead_corona_tested~0,non~NON,recovered_nontested~recovered_nontested,recovered_tested~0,symptoms_tested~0,un~0) -> dead_noncorona() Normal_death_rate_constant_0
+	re15: infected_tested(dead_corona_tested~0,non~0,recovered_nontested~0,recovered_tested~0,symptoms_tested~0,un~0) -> infected_tested(dead_corona_tested~dead_corona_tested,non~0,recovered_nontested~0,recovered_tested~0,symptoms_tested~0,un~0) Corona_death_rate_constant
+	re16: infected_tested(dead_corona_tested~0,non~NON,recovered_nontested~0,recovered_tested~0,symptoms_tested~0,un~0) -> infected_tested(dead_corona_tested~dead_corona_tested,non~NON,recovered_nontested~0,recovered_tested~0,symptoms_tested~0,un~0) Corona_death_rate_constant
+	re17: infected_tested(dead_corona_tested~0,non~0,recovered_nontested~0,recovered_tested~0,symptoms_tested~0,un~UN) -> dead_noncorona() Normal_death_rate_constant_0
+	re18: infected_tested(dead_corona_tested~0,non~NON,recovered_nontested~0,recovered_tested~0,symptoms_tested~symptoms_tested,un~0) -> infected_tested(dead_corona_tested~dead_corona_tested,non~NON,recovered_nontested~0,recovered_tested~0,symptoms_tested~0,un~0) Corona_death_rate_constant
+end reaction rules
+end model

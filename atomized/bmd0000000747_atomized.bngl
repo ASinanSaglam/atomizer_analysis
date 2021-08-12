@@ -1,0 +1,159 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/12496240']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0007596']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/taxonomy/9606']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000747', 'http://identifiers.org/biomodels.db/MODEL1807230003']
+#@creatorEmail:'mroberts@ebi.ac.uk'
+#@creatorName:'Roberts Matthew Grant'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 33 molecules and 28 reactions. The translated model has 12 molecules and 28 rules'
+###
+begin model
+begin parameters
+	k01 0.1
+	k02 2.2
+	k03 0.47
+	k04 0.1
+	k05 5.5
+	k06 1.4
+	k07 0.1
+	k08 2.1
+	k09 0.023
+	k10 0.1
+	k11 15.0
+	k12 0.9
+	k13 0.1
+	k14 0.17
+	k15 0.1
+	k16 19.0
+	k17 29.0
+	k18 0.1
+	k19 1.0
+	k20 0.043
+	k21 0.1
+	k22 7.2
+	k23 0.26
+	k24 0.1
+	k25 0.1
+	k26 0.1
+	k27 100.0
+	k28 35.0
+	k29 0.1
+	k30 720.0
+	k31 84.0
+	k32 0.0011
+	k33 0.0017
+	k34 0.011
+	k35 0.024
+	k36 0.1
+	k38 0.1
+	k39 0.1
+	k40 0.1
+	k42 0.1
+	Dummy_variable_inhibitor 0
+end parameters
+begin molecule types
+	#^ bqbiol:is ncit:C87773
+	IIa(_inact~_INACT~0,fibrinogen,iia_inhibitor,v,viii)
+	#^ bqbiol:is ncit:C91335
+	V(a~A~0,iia,x)
+	#^ bqbiol:is ncit:C16571
+	VIII(_inact~_INACT~0,a~A~0,iia,ix,x)
+	#^ bqbiol:is ncit:C82273
+	II()
+	#^ bqbiol:is ncit:C25736
+	Fibrinogen(iia)
+	#^ bqbiol:is ncit:C32598
+	Fibrin()
+	#^ bqbiol:hasPart ncit:C82271, ncit:C17197
+	TF_VIIa(ix,x)
+	#^ bqbiol:hasPart ncit:C82272, ncit:C82273, ncit:C91335
+	Va_Xa_II()
+	#^ bqbiol:isHomologTo chebi:CHEBI:68581
+	Xa_Inhibitor(x)
+	#^ bqbiol:is ncit:C82272
+	X(_inact~_INACT~0,a~A~0,tf_viia,v,viii,xa_inhibitor)
+	#^ bqbiol:isHomologTo chebi:CHEBI:65232
+	IIa_Inhibitor(iia)
+	#^ bqbiol:is ncit:C82269
+	IX(_inact~_INACT~0,a~A~0,tf_viia,viii)
+end molecule types
+begin seed species
+	IX(_inact~0,a~0,tf_viia,viii) 5.419800000000001e+16 # (90.0 * 1e-09)mol/L * 6.022e23/mol *1.0L #IX #IX
+	TF_VIIa(ix,x) 3011000000000.0005 #original 0.005substance/volume #TF_VIIa #TF_VIIa
+	X(_inact~0,a~0,tf_viia,v,viii,xa_inhibitor) 1.0237400000000002e+17 #original 170.0substance/volume #X #X
+	VIII(_inact~0,a~0,iia,ix,x) 421540000000000.0 #original 0.7substance/volume #VIII #VIII
+	V(a~0,iia,x) 1.2044e+16 #original 20.0substance/volume #V #V
+	II() 8.430800000000001e+17 #original 1400.0substance/volume #II #II
+	Fibrinogen(iia) 4.757380000000001e+18 #original 7900.0substance/volume #Fibrinogen #Fibrinogen
+end seed species
+begin observables
+	Species IX IX(_inact~0,a~0,tf_viia,viii) #IX
+	Species TF_VIIa_IX IX(_inact~0,a~0,tf_viia!25,viii).TF_VIIa(ix!25,x) #TF:VIIa:IX
+	Species TF_VIIa TF_VIIa(ix,x) #TF:VIIa
+	Species IXa IX(_inact~0,a~A,tf_viia,viii) #IXa
+	Species TF_VIIa_X X(_inact~0,a~0,tf_viia!24,v,viii,xa_inhibitor).TF_VIIa(ix,x!24) #TF:VIIa:X
+	Species X X(_inact~0,a~0,tf_viia,v,viii,xa_inhibitor) #X
+	Species Xa X(_inact~0,a~A,tf_viia,v,viii,xa_inhibitor) #Xa
+	Species VIII VIII(_inact~0,a~0,iia,ix,x) #VIII
+	Species Xa_VIII X(_inact~0,a~A,tf_viia,v,viii!29,xa_inhibitor).VIII(_inact~0,a~0,iia,ix,x!29) #Xa:VIII
+	Species VIIIa VIII(_inact~0,a~A,iia,ix,x) #VIIIa
+	Species IIa IIa(_inact~0,fibrinogen,iia_inhibitor,v,viii) #IIa
+	Species IIa_VIII VIII(_inact~0,a~0,iia!23,ix,x).IIa(_inact~0,fibrinogen,iia_inhibitor,v,viii!23) #IIa:VIII
+	Species VIIIa_IXa VIII(_inact~0,a~A,iia,ix!31,x).IX(_inact~0,a~A,tf_viia,viii!31) #VIIIa:IXa
+	Species VIIIa_IXa_X X(_inact~0,a~0,tf_viia,v,viii!29,xa_inhibitor).VIII(_inact~0,a~A,iia,ix!31,x!29).IX(_inact~0,a~A,tf_viia,viii!31) #VIIIa:IXa:X
+	Species V V(a~0,iia,x) #V
+	Species Xa_V X(_inact~0,a~A,tf_viia,v!28,viii,xa_inhibitor).V(a~0,iia,x!28) #Xa:V
+	Species Va V(a~A,iia,x) #Va
+	Species IIa_V IIa(_inact~0,fibrinogen,iia_inhibitor,v!22,viii).V(a~0,iia!22,x) #IIa:V
+	Species Va_Xa X(_inact~0,a~A,tf_viia,v!28,viii,xa_inhibitor).V(a~A,iia,x!28) #Va:Xa
+	Species II II() #II
+	Species Va_Xa_II Va_Xa_II() #Va:Xa:II
+	Species Fibrinogen Fibrinogen(iia) #Fibrinogen
+	Species Fibrinogen_IIa IIa(_inact~0,fibrinogen!26,iia_inhibitor,v,viii).Fibrinogen(iia!26) #Fibrinogen:IIa
+	Species Fibrin Fibrin() #Fibrin
+	Species VIIIa_inact VIII(_inact~_INACT,a~A,iia,ix,x) #VIIIa_inact
+	Species IXa_inact IX(_inact~_INACT,a~A,tf_viia,viii) #IXa_inact
+	Species Xa_inact X(_inact~_INACT,a~A,tf_viia,v,viii,xa_inhibitor) #Xa_inact
+	Species IIa_inact IIa(_inact~_INACT,fibrinogen,iia_inhibitor,v,viii) #IIa_inact
+	Species Xa_Xa_Inhibitor X(_inact~0,a~A,tf_viia,v,viii,xa_inhibitor!30).Xa_Inhibitor(x!30) #Xa:Xa_Inhibitor
+	Species Xa_Inhibitor Xa_Inhibitor(x) #Xa_Inhibitor
+	Species Va_Xa_Xa_Inhibitor X(_inact~0,a~A,tf_viia,v!28,viii,xa_inhibitor!30).V(a~A,iia,x!28).Xa_Inhibitor(x!30) #Va:Xa:Xa_Inhibitor
+	Species IIa_IIa_Inhibitor IIa(_inact~0,fibrinogen,iia_inhibitor!27,v,viii).IIa_Inhibitor(iia!27) #IIa:IIa_Inhibitor
+	Species IIa_Inhibitor IIa_Inhibitor(iia) #IIa_Inhibitor
+end observables
+begin functions
+	k43() = 3
+	k41() = 3
+	k37() = 3
+end functions
+begin reaction rules
+	R01a: TF_VIIa(ix,x) + IX(_inact~0,a~0,tf_viia,viii) <-> IX(_inact~0,a~0,tf_viia!25,viii).TF_VIIa(ix!25,x) k01,k02
+	R01b: IX(_inact~0,a~0,tf_viia!25,viii).TF_VIIa(ix!25,x) -> TF_VIIa(ix,x) + IX(_inact~0,a~A,tf_viia,viii) k03
+	R02a: TF_VIIa(ix,x) + X(_inact~0,a~0,tf_viia,v,viii,xa_inhibitor) <-> X(_inact~0,a~0,tf_viia!24,v,viii,xa_inhibitor).TF_VIIa(ix,x!24) k04,k05
+	R02b: X(_inact~0,a~0,tf_viia!24,v,viii,xa_inhibitor).TF_VIIa(ix,x!24) -> TF_VIIa(ix,x) + X(_inact~0,a~A,tf_viia,v,viii,xa_inhibitor) k06
+	R03a: X(_inact~0,a~A,tf_viia,v,viii,xa_inhibitor) + VIII(_inact~0,a~0,iia,ix,x) <-> X(_inact~0,a~A,tf_viia,v,viii!29,xa_inhibitor).VIII(_inact~0,a~0,iia,ix,x!29) k07,k08
+	R03b: X(_inact~0,a~A,tf_viia,v,viii!29,xa_inhibitor).VIII(_inact~0,a~0,iia,ix,x!29) -> X(_inact~0,a~A,tf_viia,v,viii,xa_inhibitor) + VIII(_inact~0,a~A,iia,ix,x) k09
+	R04a: IIa(_inact~0,fibrinogen,iia_inhibitor,v,viii) + VIII(_inact~0,a~0,iia,ix,x) <-> VIII(_inact~0,a~0,iia!23,ix,x).IIa(_inact~0,fibrinogen,iia_inhibitor,v,viii!23) k10,k11
+	R04b: VIII(_inact~0,a~0,iia!23,ix,x).IIa(_inact~0,fibrinogen,iia_inhibitor,v,viii!23) -> IIa(_inact~0,fibrinogen,iia_inhibitor,v,viii) + VIII(_inact~0,a~A,iia,ix,x) k12
+	R05: VIII(_inact~0,a~A,iia,ix,x) + IX(_inact~0,a~A,tf_viia,viii) <-> VIII(_inact~0,a~A,iia,ix!31,x).IX(_inact~0,a~A,tf_viia,viii!31) k13,k14
+	R06a: VIII(_inact~0,a~A,iia,ix!31,x).IX(_inact~0,a~A,tf_viia,viii!31) + X(_inact~0,a~0,tf_viia,v,viii,xa_inhibitor) <-> X(_inact~0,a~0,tf_viia,v,viii!29,xa_inhibitor).VIII(_inact~0,a~A,iia,ix!31,x!29).IX(_inact~0,a~A,tf_viia,viii!31) k15,k16
+	R06b: X(_inact~0,a~0,tf_viia,v,viii!29,xa_inhibitor).VIII(_inact~0,a~A,iia,ix!31,x!29).IX(_inact~0,a~A,tf_viia,viii!31) -> VIII(_inact~0,a~A,iia,ix!31,x).IX(_inact~0,a~A,tf_viia,viii!31) + X(_inact~0,a~A,tf_viia,v,viii,xa_inhibitor) k17
+	R07a: X(_inact~0,a~A,tf_viia,v,viii,xa_inhibitor) + V(a~0,iia,x) <-> X(_inact~0,a~A,tf_viia,v!28,viii,xa_inhibitor).V(a~0,iia,x!28) k18,k19
+	R07b: X(_inact~0,a~A,tf_viia,v!28,viii,xa_inhibitor).V(a~0,iia,x!28) -> X(_inact~0,a~A,tf_viia,v,viii,xa_inhibitor) + V(a~A,iia,x) k20
+	R08a: IIa(_inact~0,fibrinogen,iia_inhibitor,v,viii) + V(a~0,iia,x) <-> IIa(_inact~0,fibrinogen,iia_inhibitor,v!22,viii).V(a~0,iia!22,x) k21,k22
+	R08b: IIa(_inact~0,fibrinogen,iia_inhibitor,v!22,viii).V(a~0,iia!22,x) -> IIa(_inact~0,fibrinogen,iia_inhibitor,v,viii) + V(a~A,iia,x) k23
+	R09: X(_inact~0,a~A,tf_viia,v,viii,xa_inhibitor) + V(a~A,iia,x) <-> X(_inact~0,a~A,tf_viia,v!28,viii,xa_inhibitor).V(a~A,iia,x!28) k24,k25
+	R10a: X(_inact~0,a~A,tf_viia,v!28,viii,xa_inhibitor).V(a~A,iia,x!28) + II() <-> Va_Xa_II() k26,k27
+	R10b: Va_Xa_II() -> X(_inact~0,a~A,tf_viia,v!28,viii,xa_inhibitor).V(a~A,iia,x!28) + IIa(_inact~0,fibrinogen,iia_inhibitor,v,viii) k28
+	R11a: Fibrinogen(iia) + IIa(_inact~0,fibrinogen,iia_inhibitor,v,viii) <-> IIa(_inact~0,fibrinogen!26,iia_inhibitor,v,viii).Fibrinogen(iia!26) k29,k30
+	R11b: IIa(_inact~0,fibrinogen!26,iia_inhibitor,v,viii).Fibrinogen(iia!26) -> Fibrin() + IIa(_inact~0,fibrinogen,iia_inhibitor,v,viii) k31
+	R12: VIII(_inact~0,a~A,iia,ix,x) -> VIII(_inact~_INACT,a~A,iia,ix,x) k32
+	R13: IX(_inact~0,a~A,tf_viia,viii) -> IX(_inact~_INACT,a~A,tf_viia,viii) k33
+	R14: X(_inact~0,a~A,tf_viia,v,viii,xa_inhibitor) -> X(_inact~_INACT,a~A,tf_viia,v,viii,xa_inhibitor) k34
+	R15: IIa(_inact~0,fibrinogen,iia_inhibitor,v,viii) -> IIa(_inact~_INACT,fibrinogen,iia_inhibitor,v,viii) k35
+	R16: X(_inact~0,a~A,tf_viia,v,viii,xa_inhibitor) + Xa_Inhibitor(x) <-> X(_inact~0,a~A,tf_viia,v,viii,xa_inhibitor!30).Xa_Inhibitor(x!30) k36,k37
+	R17: V(a~A,iia,x) + X(_inact~0,a~A,tf_viia,v,viii,xa_inhibitor!30).Xa_Inhibitor(x!30) <-> X(_inact~0,a~A,tf_viia,v!28,viii,xa_inhibitor!30).V(a~A,iia,x!28).Xa_Inhibitor(x!30) k38,k39
+	R18: X(_inact~0,a~A,tf_viia,v!28,viii,xa_inhibitor).V(a~A,iia,x!28) + Xa_Inhibitor(x) <-> X(_inact~0,a~A,tf_viia,v!28,viii,xa_inhibitor!30).V(a~A,iia,x!28).Xa_Inhibitor(x!30) k40,k41
+	R19: IIa(_inact~0,fibrinogen,iia_inhibitor,v,viii) + IIa_Inhibitor(iia) <-> IIa(_inact~0,fibrinogen,iia_inhibitor!27,v,viii).IIa_Inhibitor(iia!27) k42,k43
+end reaction rules
+end model

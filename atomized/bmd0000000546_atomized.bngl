@@ -1,0 +1,57 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1405150000', 'http://identifiers.org/biomodels.db/BIOMD0000000546']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/20410284']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/MODEL1406230000']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/132504', 'http://identifiers.org/taxonomy/39107']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0045087', 'http://identifiers.org/go/GO:0002250']
+#@BQB_HAS_VERSION:['http://identifiers.org/doid/DOID:8469']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 7 molecules and 5 reactions. The translated model has 5 molecules and 7 rules'
+###
+begin model
+begin parameters
+	rho_E 6.2e-08 #units:substance
+	beta_a 2.4e-06 #units:substance
+	delta_Es 0.6 #units:substance
+	pi_a 100.0 #units:substance
+	c_V 4.2 #units:substance
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf fma:FMA:66768
+	Ep(s~S~0)
+	s7()
+	s4()
+	s5()
+	#^ bqbiol:isVersionOf taxonomy:132504
+	V(s6~s6~0)
+end molecule types
+begin seed species
+	Ep(s~0) 5.8e5 #s1
+	Ep(s~S) 0 #s2
+	V(s6~0) 1.473e3 #s3
+end seed species
+begin observables
+	Species Ep Ep(s~0) #Ep
+	Species Eps Ep(s~S) #Eps
+	Species V V(s6~0) #V
+	Species s4 s4() #s4
+	Species s5 s5() #s5
+	Species s6 V(s6~s6) #s6
+	Species s7 s7() #s7
+end observables
+begin functions
+	fRate0() = V*beta_a
+	fRate1() = Ep*rho_E
+	fRate4() = Eps*pi_a
+end functions
+begin reaction rules
+	re1: Ep(s~0) -> Ep(s~S) fRate0() #Modifiers(s3, s1, s3, s1, s3)
+	re3_reactants_0: 0  -> s4() -1*(fRate1()) #Modifiers(s1, s1)
+	re3_products_0: 0  -> Ep(s~0) fRate1() #Modifiers(s1, s1)
+	re5: Ep(s~S) -> s5() delta_Es #Modifiers(s2, s2)
+	re6: V(s6~0) -> V(s6~s6) c_V #Modifiers(s3, s3)
+	re7_reactants_0: 0  -> s7() -1*(fRate4()) #Modifiers(s2, s2, s2)
+	re7_products_0: 0  -> V(s6~0) fRate4() #Modifiers(s2, s2, s2)
+end reaction rules
+end model

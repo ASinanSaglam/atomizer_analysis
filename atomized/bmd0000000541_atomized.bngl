@@ -1,0 +1,230 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1406130001', 'http://identifiers.org/biomodels.db/BIOMD0000000541']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/25131207']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/MODEL1204060000']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/131567']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0032868', 'http://identifiers.org/go/GO:0006110']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 37 molecules and 30 reactions. The translated model has 24 molecules and 37 rules'
+###
+begin model
+begin parameters
+	K_FBPase_cit 0.0211646 #units:dimensionless
+	K_FBPase_f16bp 0.104089638 #units:dimensionless
+	K_FBPase_f26bp 17.51744342 #units:dimensionless
+	K_PFKL_PHOS_S775 6.283705757 #units:dimensionless
+	K_PFKL_akg 24661.01154 #units:dimensionless
+	K_PFKL_cit 41.30426029 #units:dimensionless
+	K_PFKL_f26bp 1.282443082 #units:dimensionless
+	K_PFKL_f6p 0.014114844 #units:dimensionless
+	K_PFKL_icit 1784.508205 #units:dimensionless
+	K_PFKL_mal 9.544729149 #units:dimensionless
+	K_PFKL_pep 0.633518366 #units:dimensionless
+	Vf_FBPase 9.932861302 #units:dimensionless
+	Vf_PFKL 695063.7194 #units:dimensionless
+	k_ALDO 0.008187906 #units:dimensionless
+	k_mal 1.005530417 #units:substance
+	k_akg -3.544494721 #units:substance
+	k_pep 43.99195576 #units:substance
+	k_icit -0.038210156 #units:substance
+	k_f26bp -0.083430336 #units:substance
+	k_cit -0.351935646 #units:substance
+	k_f6p -0.930115636 #units:dimensionless
+	insulin 1.0 #units:dimensionless
+	FBPase 1.0
+	ALDO 1.0
+	r11_k1 0.047799
+	r12_k1 7.781608
+	r12_k2 1.611475
+	r13_k1 9.933112
+	r14_k1 0.363030
+	r14_k2 0.408128
+	r15_k1 0.000039
+	r16_k1 0.284426
+	r17_k1 0.000010
+	r18_k1 0.094896
+	r19_k1 0.009196
+	r20_k1 7.706185
+	r21_k1 0.000010
+	r22_k1 0.007927
+	r23_k1 0.419682
+	r24_k1 0.124330
+	r25_k1 0.007525
+	r26_k1 1.954976
+	r27_k1 0.001053
+	r28_k1 0.001458
+	r29_k1 26.831671
+	r30_k1 0.016653
+end parameters
+begin molecule types
+	#^ bqbiol:is uniprot:P31749
+	AKT(p~P~0)
+	#^ bqbiol:is chebi:CHEBI:15946
+	F6P()
+	#^ bqbiol:is chebi:CHEBI:16905
+	F1_6BP(sa4_degraded~sa4_degraded~0)
+	#^ bqbiol:is chebi:CHEBI:30915
+	s2_oxoglutarate()
+	#^ bqbiol:is chebi:CHEBI:6650
+	Malate()
+	sa6_degraded()
+	sa10_degraded()
+	sa8_degraded()
+	sa9_degraded()
+	#^ bqbiol:is uniprot:P23443
+	S6K(p~P~0)
+	p2IR(p1complex~P1COMPLEX~0,sa28_degraded~sa28_degraded~0)
+	sa3_degraded()
+	#^ bqbiol:is uniprot:P42345
+	mTOR(p~P~0)
+	sa5_degraded()
+	p1IR()
+	#^ bqbiol:is uniprot:P17858
+	PFKL(p~P~0)
+	sa7_degraded()
+	#^ bqbiol:is chebi:CHEBI:30769
+	Citrate()
+	#^ bqbiol:is chebi:CHEBI:18021
+	PEP()
+	#^ bqbiol:is chebi:CHEBI:36080
+	X(p~P~0)
+	#^ bqbiol:is chebi:CHEBI:30887
+	Isocitrate()
+	#^ bqbiol:is uniprot:P06213
+	IR_complex(p1~P1~0,p2~P2~0,pro_~PRO_~0,sa26_degraded~sa26_degraded~0,sa27_degraded~sa27_degraded~0)
+	#^ bqbiol:isVersionOf chebi:CHEBI:57579
+	F6P_proxy()
+	#^ bqbiol:is chebi:CHEBI:28602
+	F2_6BP()
+end molecule types
+begin seed species
+	$PFKL(p~0) 1.235570941 #PFKL #s1
+	F6P() 14.0774258421 #F6P #s3
+	F1_6BP(sa4_degraded~0) 104.07239819 #F1_6BP #s4
+	PEP() 108.094519859 #PEP #s5
+	Isocitrate() 1.79487179487 #Isocitrate #s6
+	s2_oxoglutarate() 25.1885369533 #s2_oxoglutarate #s7
+	Malate() 68.8788335846 #Malate #s8
+	F2_6BP() 1.0 #F2_6BP #s9
+	Citrate() 17.7476118652 #Citrate #s10
+	PFKL(p~P) 0.759332005 #pPFKL #s13
+	IR_complex(p1~0,p2~0,pro_~0,sa26_degraded~0,sa27_degraded~0) 37.81914621 #IR_complex #s23
+	$IR_complex(p1~0,p2~0,pro_~PRO_,sa26_degraded~0,sa27_degraded~0) 46.2222520609226 #pro_IR_complex #s24
+	IR_complex(p1~P1,p2~0,pro_~0,sa26_degraded~0,sa27_degraded~0) 2.507671281 #p1IR_complex #s25
+	IR_complex(p1~0,p2~P2,pro_~0,sa26_degraded~0,sa27_degraded~0) 852.608418 #p2IR_complex #s26
+	p2IR(p1complex~P1COMPLEX,sa28_degraded~0) 3.930695895 #p1p2IRcomplex #s27
+	$AKT(p~0) 4.33812187331668 #AKT #s28
+	AKT(p~P) 0.012942682 #pAKT #s29
+	$mTOR(p~0) 0.0959163701057347 #mTOR #s30
+	mTOR(p~P) 0.004015031 #pmTOR #s31
+	$S6K(p~0) 2.7769943784158 #S6K #s32
+	S6K(p~P) 0.000988831 #pS6K #s33
+	$X(p~0) 14.9913345914433 #X #s34
+	X(p~P) 0.043352951 #pX #s35
+	F6P_proxy() 14.0774258421 #F6P_proxy #s22
+end seed species
+begin observables
+	Species PFKL PFKL(p~0) #PFKL
+	Species F6P F6P() #F6P
+	Species F1_6BP F1_6BP(sa4_degraded~0) #F1,6BP
+	Species PEP PEP() #PEP
+	Species Isocitrate Isocitrate() #Isocitrate
+	Species s2_oxoglutarate s2_oxoglutarate() #2-oxoglutarate
+	Species Malate Malate() #Malate
+	Species F2_6BP F2_6BP() #F2,6BP
+	Species Citrate Citrate() #Citrate
+	Species sa4_degraded F1_6BP(sa4_degraded~sa4_degraded) #sa4_degraded
+	Species pPFKL PFKL(p~P) #pPFKL
+	Species sa8_degraded sa8_degraded() #sa8_degraded
+	Species sa7_degraded sa7_degraded() #sa7_degraded
+	Species sa5_degraded sa5_degraded() #sa5_degraded
+	Species sa6_degraded sa6_degraded() #sa6_degraded
+	Species sa9_degraded sa9_degraded() #sa9_degraded
+	Species sa3_degraded sa3_degraded() #sa3_degraded
+	Species sa10_degraded sa10_degraded() #sa10_degraded
+	Species IR_complex IR_complex(p1~0,p2~0,pro_~0,sa26_degraded~0,sa27_degraded~0) #IR_complex
+	Species pro_IR_complex IR_complex(p1~0,p2~0,pro_~PRO_,sa26_degraded~0,sa27_degraded~0) #pro_IR_complex
+	Species p1IR_complex IR_complex(p1~P1,p2~0,pro_~0,sa26_degraded~0,sa27_degraded~0) #p1IR_complex
+	Species p2IR_complex IR_complex(p1~0,p2~P2,pro_~0,sa26_degraded~0,sa27_degraded~0) #p2IR_complex
+	Species p1p2IRcomplex p2IR(p1complex~P1COMPLEX,sa28_degraded~0) #p1p2IRcomplex
+	Species AKT AKT(p~0) #AKT
+	Species pAKT AKT(p~P) #pAKT
+	Species mTOR mTOR(p~0) #mTOR
+	Species pmTOR mTOR(p~P) #pmTOR
+	Species S6K S6K(p~0) #S6K
+	Species pS6K S6K(p~P) #pS6K
+	Species X X(p~0) #X
+	Species pX X(p~P) #pX
+	Species sa28_degraded p2IR(p1complex~P1COMPLEX,sa28_degraded~sa28_degraded) #sa28_degraded
+	Species sa27_degraded IR_complex(p1~0,p2~P2,pro_~0,sa26_degraded~0,sa27_degraded~sa27_degraded) #sa27_degraded
+	Species sa26_degraded IR_complex(p1~P1,p2~0,pro_~0,sa26_degraded~sa26_degraded,sa27_degraded~0) #sa26_degraded
+	Species F6P_proxy F6P_proxy() #F6P_proxy
+end observables
+begin functions
+	F6P_proxy_ar() = F6P
+	fRate0() = F2_6BP*K_PFKL_akg*K_PFKL_cit*K_PFKL_icit*K_PFKL_mal*K_PFKL_pep*Vf_PFKL*pPFKL/(Citrate*F2_6BP*F6P_proxy_ar*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_mal*K_PFKL_pep + Citrate*F2_6BP*F6P_proxy_ar*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_mal*PEP + Citrate*F2_6BP*F6P_proxy_ar*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_pep*Malate + Citrate*F2_6BP*F6P_proxy_ar*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_akg*Malate*PEP + Citrate*F2_6BP*F6P_proxy_ar*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_mal*K_PFKL_pep*s2_oxoglutarate + Citrate*F2_6BP*F6P_proxy_ar*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_mal*PEP*s2_oxoglutarate + Citrate*F2_6BP*F6P_proxy_ar*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_pep*Malate*s2_oxoglutarate + Citrate*F2_6BP*F6P_proxy_ar*Isocitrate*K_PFKL_PHOS_S775*Malate*PEP*s2_oxoglutarate + Citrate*F2_6BP*F6P_proxy_ar*Isocitrate*K_PFKL_akg*K_PFKL_mal*K_PFKL_pep*pPFKL + Citrate*F2_6BP*F6P_proxy_ar*Isocitrate*K_PFKL_akg*K_PFKL_mal*PEP*pPFKL + Citrate*F2_6BP*F6P_proxy_ar*Isocitrate*K_PFKL_akg*K_PFKL_pep*Malate*pPFKL + Citrate*F2_6BP*F6P_proxy_ar*Isocitrate*K_PFKL_akg*Malate*PEP*pPFKL + Citrate*F2_6BP*F6P_proxy_ar*Isocitrate*K_PFKL_mal*K_PFKL_pep*pPFKL*s2_oxoglutarate + Citrate*F2_6BP*F6P_proxy_ar*Isocitrate*K_PFKL_mal*PEP*pPFKL*s2_oxoglutarate + Citrate*F2_6BP*F6P_proxy_ar*Isocitrate*K_PFKL_pep*Malate*pPFKL*s2_oxoglutarate + Citrate*F2_6BP*F6P_proxy_ar*Isocitrate*Malate*PEP*pPFKL*s2_oxoglutarate + Citrate*F2_6BP*F6P_proxy_ar*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_icit*K_PFKL_mal*K_PFKL_pep + Citrate*F2_6BP*F6P_proxy_ar*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_icit*K_PFKL_mal*PEP + Citrate*F2_6BP*F6P_proxy_ar*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_icit*K_PFKL_pep*Malate + Citrate*F2_6BP*F6P_proxy_ar*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_icit*Malate*PEP + Citrate*F2_6BP*F6P_proxy_ar*K_PFKL_PHOS_S775*K_PFKL_icit*K_PFKL_mal*K_PFKL_pep*s2_oxoglutarate + Citrate*F2_6BP*F6P_proxy_ar*K_PFKL_PHOS_S775*K_PFKL_icit*K_PFKL_mal*PEP*s2_oxoglutarate + Citrate*F2_6BP*F6P_proxy_ar*K_PFKL_PHOS_S775*K_PFKL_icit*K_PFKL_pep*Malate*s2_oxoglutarate + Citrate*F2_6BP*F6P_proxy_ar*K_PFKL_PHOS_S775*K_PFKL_icit*Malate*PEP*s2_oxoglutarate + Citrate*F2_6BP*F6P_proxy_ar*K_PFKL_akg*K_PFKL_icit*K_PFKL_mal*K_PFKL_pep*pPFKL + Citrate*F2_6BP*F6P_proxy_ar*K_PFKL_akg*K_PFKL_icit*K_PFKL_mal*PEP*pPFKL + Citrate*F2_6BP*F6P_proxy_ar*K_PFKL_akg*K_PFKL_icit*K_PFKL_pep*Malate*pPFKL + Citrate*F2_6BP*F6P_proxy_ar*K_PFKL_akg*K_PFKL_icit*Malate*PEP*pPFKL + Citrate*F2_6BP*F6P_proxy_ar*K_PFKL_icit*K_PFKL_mal*K_PFKL_pep*pPFKL*s2_oxoglutarate + Citrate*F2_6BP*F6P_proxy_ar*K_PFKL_icit*K_PFKL_mal*PEP*pPFKL*s2_oxoglutarate + Citrate*F2_6BP*F6P_proxy_ar*K_PFKL_icit*K_PFKL_pep*Malate*pPFKL*s2_oxoglutarate + Citrate*F2_6BP*F6P_proxy_ar*K_PFKL_icit*Malate*PEP*pPFKL*s2_oxoglutarate + Citrate*F2_6BP*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_f6p*K_PFKL_mal*K_PFKL_pep + Citrate*F2_6BP*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_f6p*K_PFKL_mal*PEP + Citrate*F2_6BP*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_f6p*K_PFKL_pep*Malate + Citrate*F2_6BP*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_f6p*Malate*PEP + Citrate*F2_6BP*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_f6p*K_PFKL_mal*K_PFKL_pep*s2_oxoglutarate + Citrate*F2_6BP*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_f6p*K_PFKL_mal*PEP*s2_oxoglutarate + Citrate*F2_6BP*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_f6p*K_PFKL_pep*Malate*s2_oxoglutarate + Citrate*F2_6BP*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_f6p*Malate*PEP*s2_oxoglutarate + Citrate*F2_6BP*Isocitrate*K_PFKL_akg*K_PFKL_f6p*K_PFKL_mal*K_PFKL_pep*pPFKL + Citrate*F2_6BP*Isocitrate*K_PFKL_akg*K_PFKL_f6p*K_PFKL_mal*PEP*pPFKL + Citrate*F2_6BP*Isocitrate*K_PFKL_akg*K_PFKL_f6p*K_PFKL_pep*Malate*pPFKL + Citrate*F2_6BP*Isocitrate*K_PFKL_akg*K_PFKL_f6p*Malate*PEP*pPFKL + Citrate*F2_6BP*Isocitrate*K_PFKL_f6p*K_PFKL_mal*K_PFKL_pep*pPFKL*s2_oxoglutarate + Citrate*F2_6BP*Isocitrate*K_PFKL_f6p*K_PFKL_mal*PEP*pPFKL*s2_oxoglutarate + Citrate*F2_6BP*Isocitrate*K_PFKL_f6p*K_PFKL_pep*Malate*pPFKL*s2_oxoglutarate + Citrate*F2_6BP*Isocitrate*K_PFKL_f6p*Malate*PEP*pPFKL*s2_oxoglutarate + Citrate*F2_6BP*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_f6p*K_PFKL_icit*K_PFKL_mal*K_PFKL_pep + Citrate*F2_6BP*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_f6p*K_PFKL_icit*K_PFKL_mal*PEP + Citrate*F2_6BP*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_f6p*K_PFKL_icit*K_PFKL_pep*Malate + Citrate*F2_6BP*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_f6p*K_PFKL_icit*Malate*PEP + Citrate*F2_6BP*K_PFKL_PHOS_S775*K_PFKL_f6p*K_PFKL_icit*K_PFKL_mal*K_PFKL_pep*s2_oxoglutarate + Citrate*F2_6BP*K_PFKL_PHOS_S775*K_PFKL_f6p*K_PFKL_icit*K_PFKL_mal*PEP*s2_oxoglutarate + Citrate*F2_6BP*K_PFKL_PHOS_S775*K_PFKL_f6p*K_PFKL_icit*K_PFKL_pep*Malate*s2_oxoglutarate + Citrate*F2_6BP*K_PFKL_PHOS_S775*K_PFKL_f6p*K_PFKL_icit*Malate*PEP*s2_oxoglutarate + Citrate*F2_6BP*K_PFKL_akg*K_PFKL_f6p*K_PFKL_icit*K_PFKL_mal*K_PFKL_pep*pPFKL + Citrate*F2_6BP*K_PFKL_akg*K_PFKL_f6p*K_PFKL_icit*K_PFKL_mal*PEP*pPFKL + Citrate*F2_6BP*K_PFKL_akg*K_PFKL_f6p*K_PFKL_icit*K_PFKL_pep*Malate*pPFKL + Citrate*F2_6BP*K_PFKL_akg*K_PFKL_f6p*K_PFKL_icit*Malate*PEP*pPFKL + Citrate*F2_6BP*K_PFKL_f6p*K_PFKL_icit*K_PFKL_mal*K_PFKL_pep*pPFKL*s2_oxoglutarate + Citrate*F2_6BP*K_PFKL_f6p*K_PFKL_icit*K_PFKL_mal*PEP*pPFKL*s2_oxoglutarate + Citrate*F2_6BP*K_PFKL_f6p*K_PFKL_icit*K_PFKL_pep*Malate*pPFKL*s2_oxoglutarate + Citrate*F2_6BP*K_PFKL_f6p*K_PFKL_icit*Malate*PEP*pPFKL*s2_oxoglutarate + Citrate*F6P_proxy_ar*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_f26bp*K_PFKL_mal*K_PFKL_pep + Citrate*F6P_proxy_ar*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_f26bp*K_PFKL_mal*PEP + Citrate*F6P_proxy_ar*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_f26bp*K_PFKL_pep*Malate + Citrate*F6P_proxy_ar*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_f26bp*Malate*PEP + Citrate*F6P_proxy_ar*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_f26bp*K_PFKL_mal*K_PFKL_pep*s2_oxoglutarate + Citrate*F6P_proxy_ar*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_f26bp*K_PFKL_mal*PEP*s2_oxoglutarate + Citrate*F6P_proxy_ar*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_f26bp*K_PFKL_pep*Malate*s2_oxoglutarate + Citrate*F6P_proxy_ar*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_f26bp*Malate*PEP*s2_oxoglutarate + Citrate*F6P_proxy_ar*Isocitrate*K_PFKL_akg*K_PFKL_f26bp*K_PFKL_mal*K_PFKL_pep*pPFKL + Citrate*F6P_proxy_ar*Isocitrate*K_PFKL_akg*K_PFKL_f26bp*K_PFKL_mal*PEP*pPFKL + Citrate*F6P_proxy_ar*Isocitrate*K_PFKL_akg*K_PFKL_f26bp*K_PFKL_pep*Malate*pPFKL + Citrate*F6P_proxy_ar*Isocitrate*K_PFKL_akg*K_PFKL_f26bp*Malate*PEP*pPFKL + Citrate*F6P_proxy_ar*Isocitrate*K_PFKL_f26bp*K_PFKL_mal*K_PFKL_pep*pPFKL*s2_oxoglutarate + Citrate*F6P_proxy_ar*Isocitrate*K_PFKL_f26bp*K_PFKL_mal*PEP*pPFKL*s2_oxoglutarate + Citrate*F6P_proxy_ar*Isocitrate*K_PFKL_f26bp*K_PFKL_pep*Malate*pPFKL*s2_oxoglutarate + Citrate*F6P_proxy_ar*Isocitrate*K_PFKL_f26bp*Malate*PEP*pPFKL*s2_oxoglutarate + Citrate*F6P_proxy_ar*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_f26bp*K_PFKL_icit*K_PFKL_mal*K_PFKL_pep + Citrate*F6P_proxy_ar*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_f26bp*K_PFKL_icit*K_PFKL_mal*PEP + Citrate*F6P_proxy_ar*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_f26bp*K_PFKL_icit*K_PFKL_pep*Malate + Citrate*F6P_proxy_ar*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_f26bp*K_PFKL_icit*Malate*PEP + Citrate*F6P_proxy_ar*K_PFKL_PHOS_S775*K_PFKL_f26bp*K_PFKL_icit*K_PFKL_mal*K_PFKL_pep*s2_oxoglutarate + Citrate*F6P_proxy_ar*K_PFKL_PHOS_S775*K_PFKL_f26bp*K_PFKL_icit*K_PFKL_mal*PEP*s2_oxoglutarate + Citrate*F6P_proxy_ar*K_PFKL_PHOS_S775*K_PFKL_f26bp*K_PFKL_icit*K_PFKL_pep*Malate*s2_oxoglutarate + Citrate*F6P_proxy_ar*K_PFKL_PHOS_S775*K_PFKL_f26bp*K_PFKL_icit*Malate*PEP*s2_oxoglutarate + Citrate*F6P_proxy_ar*K_PFKL_akg*K_PFKL_f26bp*K_PFKL_icit*K_PFKL_mal*K_PFKL_pep*pPFKL + Citrate*F6P_proxy_ar*K_PFKL_akg*K_PFKL_f26bp*K_PFKL_icit*K_PFKL_mal*PEP*pPFKL + Citrate*F6P_proxy_ar*K_PFKL_akg*K_PFKL_f26bp*K_PFKL_icit*K_PFKL_pep*Malate*pPFKL + Citrate*F6P_proxy_ar*K_PFKL_akg*K_PFKL_f26bp*K_PFKL_icit*Malate*PEP*pPFKL + Citrate*F6P_proxy_ar*K_PFKL_f26bp*K_PFKL_icit*K_PFKL_mal*K_PFKL_pep*pPFKL*s2_oxoglutarate + Citrate*F6P_proxy_ar*K_PFKL_f26bp*K_PFKL_icit*K_PFKL_mal*PEP*pPFKL*s2_oxoglutarate + Citrate*F6P_proxy_ar*K_PFKL_f26bp*K_PFKL_icit*K_PFKL_pep*Malate*pPFKL*s2_oxoglutarate + Citrate*F6P_proxy_ar*K_PFKL_f26bp*K_PFKL_icit*Malate*PEP*pPFKL*s2_oxoglutarate + Citrate*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_mal*K_PFKL_pep + Citrate*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_mal*PEP + Citrate*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_pep*Malate + Citrate*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_f26bp*K_PFKL_f6p*Malate*PEP + Citrate*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_mal*K_PFKL_pep*s2_oxoglutarate + Citrate*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_mal*PEP*s2_oxoglutarate + Citrate*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_pep*Malate*s2_oxoglutarate + Citrate*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_f26bp*K_PFKL_f6p*Malate*PEP*s2_oxoglutarate + Citrate*Isocitrate*K_PFKL_akg*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_mal*K_PFKL_pep*pPFKL + Citrate*Isocitrate*K_PFKL_akg*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_mal*PEP*pPFKL + Citrate*Isocitrate*K_PFKL_akg*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_pep*Malate*pPFKL + Citrate*Isocitrate*K_PFKL_akg*K_PFKL_f26bp*K_PFKL_f6p*Malate*PEP*pPFKL + Citrate*Isocitrate*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_mal*K_PFKL_pep*pPFKL*s2_oxoglutarate + Citrate*Isocitrate*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_mal*PEP*pPFKL*s2_oxoglutarate + Citrate*Isocitrate*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_pep*Malate*pPFKL*s2_oxoglutarate + Citrate*Isocitrate*K_PFKL_f26bp*K_PFKL_f6p*Malate*PEP*pPFKL*s2_oxoglutarate + Citrate*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_icit*K_PFKL_mal*K_PFKL_pep + Citrate*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_icit*K_PFKL_mal*PEP + Citrate*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_icit*K_PFKL_pep*Malate + Citrate*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_icit*Malate*PEP + Citrate*K_PFKL_PHOS_S775*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_icit*K_PFKL_mal*K_PFKL_pep*s2_oxoglutarate + Citrate*K_PFKL_PHOS_S775*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_icit*K_PFKL_mal*PEP*s2_oxoglutarate + Citrate*K_PFKL_PHOS_S775*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_icit*K_PFKL_pep*Malate*s2_oxoglutarate + Citrate*K_PFKL_PHOS_S775*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_icit*Malate*PEP*s2_oxoglutarate + Citrate*K_PFKL_akg*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_icit*K_PFKL_mal*K_PFKL_pep*pPFKL + Citrate*K_PFKL_akg*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_icit*K_PFKL_mal*PEP*pPFKL + Citrate*K_PFKL_akg*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_icit*K_PFKL_pep*Malate*pPFKL + Citrate*K_PFKL_akg*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_icit*Malate*PEP*pPFKL + Citrate*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_icit*K_PFKL_mal*K_PFKL_pep*pPFKL*s2_oxoglutarate + Citrate*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_icit*K_PFKL_mal*PEP*pPFKL*s2_oxoglutarate + Citrate*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_icit*K_PFKL_pep*Malate*pPFKL*s2_oxoglutarate + Citrate*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_icit*Malate*PEP*pPFKL*s2_oxoglutarate + F2_6BP*F6P_proxy_ar*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_cit*K_PFKL_mal*K_PFKL_pep + F2_6BP*F6P_proxy_ar*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_cit*K_PFKL_mal*PEP + F2_6BP*F6P_proxy_ar*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_cit*K_PFKL_pep*Malate + F2_6BP*F6P_proxy_ar*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_cit*Malate*PEP + F2_6BP*F6P_proxy_ar*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_cit*K_PFKL_mal*K_PFKL_pep*s2_oxoglutarate + F2_6BP*F6P_proxy_ar*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_cit*K_PFKL_mal*PEP*s2_oxoglutarate + F2_6BP*F6P_proxy_ar*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_cit*K_PFKL_pep*Malate*s2_oxoglutarate + F2_6BP*F6P_proxy_ar*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_cit*Malate*PEP*s2_oxoglutarate + F2_6BP*F6P_proxy_ar*Isocitrate*K_PFKL_akg*K_PFKL_cit*K_PFKL_mal*K_PFKL_pep*pPFKL + F2_6BP*F6P_proxy_ar*Isocitrate*K_PFKL_akg*K_PFKL_cit*K_PFKL_mal*PEP*pPFKL + F2_6BP*F6P_proxy_ar*Isocitrate*K_PFKL_akg*K_PFKL_cit*K_PFKL_pep*Malate*pPFKL + F2_6BP*F6P_proxy_ar*Isocitrate*K_PFKL_akg*K_PFKL_cit*Malate*PEP*pPFKL + F2_6BP*F6P_proxy_ar*Isocitrate*K_PFKL_cit*K_PFKL_mal*K_PFKL_pep*pPFKL*s2_oxoglutarate + F2_6BP*F6P_proxy_ar*Isocitrate*K_PFKL_cit*K_PFKL_mal*PEP*pPFKL*s2_oxoglutarate + F2_6BP*F6P_proxy_ar*Isocitrate*K_PFKL_cit*K_PFKL_pep*Malate*pPFKL*s2_oxoglutarate + F2_6BP*F6P_proxy_ar*Isocitrate*K_PFKL_cit*Malate*PEP*pPFKL*s2_oxoglutarate + F2_6BP*F6P_proxy_ar*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_cit*K_PFKL_icit*K_PFKL_mal*K_PFKL_pep + F2_6BP*F6P_proxy_ar*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_cit*K_PFKL_icit*K_PFKL_mal*PEP + F2_6BP*F6P_proxy_ar*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_cit*K_PFKL_icit*K_PFKL_pep*Malate + F2_6BP*F6P_proxy_ar*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_cit*K_PFKL_icit*Malate*PEP + F2_6BP*F6P_proxy_ar*K_PFKL_PHOS_S775*K_PFKL_cit*K_PFKL_icit*K_PFKL_mal*K_PFKL_pep*s2_oxoglutarate + F2_6BP*F6P_proxy_ar*K_PFKL_PHOS_S775*K_PFKL_cit*K_PFKL_icit*K_PFKL_mal*PEP*s2_oxoglutarate + F2_6BP*F6P_proxy_ar*K_PFKL_PHOS_S775*K_PFKL_cit*K_PFKL_icit*K_PFKL_pep*Malate*s2_oxoglutarate + F2_6BP*F6P_proxy_ar*K_PFKL_PHOS_S775*K_PFKL_cit*K_PFKL_icit*Malate*PEP*s2_oxoglutarate + F2_6BP*F6P_proxy_ar*K_PFKL_akg*K_PFKL_cit*K_PFKL_icit*K_PFKL_mal*K_PFKL_pep*pPFKL + F2_6BP*F6P_proxy_ar*K_PFKL_akg*K_PFKL_cit*K_PFKL_icit*K_PFKL_mal*PEP*pPFKL + F2_6BP*F6P_proxy_ar*K_PFKL_akg*K_PFKL_cit*K_PFKL_icit*K_PFKL_pep*Malate*pPFKL + F2_6BP*F6P_proxy_ar*K_PFKL_akg*K_PFKL_cit*K_PFKL_icit*Malate*PEP*pPFKL + F2_6BP*F6P_proxy_ar*K_PFKL_cit*K_PFKL_icit*K_PFKL_mal*K_PFKL_pep*pPFKL*s2_oxoglutarate + F2_6BP*F6P_proxy_ar*K_PFKL_cit*K_PFKL_icit*K_PFKL_mal*PEP*pPFKL*s2_oxoglutarate + F2_6BP*F6P_proxy_ar*K_PFKL_cit*K_PFKL_icit*K_PFKL_pep*Malate*pPFKL*s2_oxoglutarate + F2_6BP*F6P_proxy_ar*K_PFKL_cit*K_PFKL_icit*Malate*PEP*pPFKL*s2_oxoglutarate + F2_6BP*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_cit*K_PFKL_f6p*K_PFKL_mal*K_PFKL_pep + F2_6BP*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_cit*K_PFKL_f6p*K_PFKL_mal*PEP + F2_6BP*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_cit*K_PFKL_f6p*K_PFKL_pep*Malate + F2_6BP*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_cit*K_PFKL_f6p*Malate*PEP + F2_6BP*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_cit*K_PFKL_f6p*K_PFKL_mal*K_PFKL_pep*s2_oxoglutarate + F2_6BP*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_cit*K_PFKL_f6p*K_PFKL_mal*PEP*s2_oxoglutarate + F2_6BP*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_cit*K_PFKL_f6p*K_PFKL_pep*Malate*s2_oxoglutarate + F2_6BP*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_cit*K_PFKL_f6p*Malate*PEP*s2_oxoglutarate + F2_6BP*Isocitrate*K_PFKL_akg*K_PFKL_cit*K_PFKL_f6p*K_PFKL_mal*K_PFKL_pep*pPFKL + F2_6BP*Isocitrate*K_PFKL_akg*K_PFKL_cit*K_PFKL_f6p*K_PFKL_mal*PEP*pPFKL + F2_6BP*Isocitrate*K_PFKL_akg*K_PFKL_cit*K_PFKL_f6p*K_PFKL_pep*Malate*pPFKL + F2_6BP*Isocitrate*K_PFKL_akg*K_PFKL_cit*K_PFKL_f6p*Malate*PEP*pPFKL + F2_6BP*Isocitrate*K_PFKL_cit*K_PFKL_f6p*K_PFKL_mal*K_PFKL_pep*pPFKL*s2_oxoglutarate + F2_6BP*Isocitrate*K_PFKL_cit*K_PFKL_f6p*K_PFKL_mal*PEP*pPFKL*s2_oxoglutarate + F2_6BP*Isocitrate*K_PFKL_cit*K_PFKL_f6p*K_PFKL_pep*Malate*pPFKL*s2_oxoglutarate + F2_6BP*Isocitrate*K_PFKL_cit*K_PFKL_f6p*Malate*PEP*pPFKL*s2_oxoglutarate + F2_6BP*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_cit*K_PFKL_f6p*K_PFKL_icit*K_PFKL_mal*K_PFKL_pep + F2_6BP*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_cit*K_PFKL_f6p*K_PFKL_icit*K_PFKL_mal*PEP + F2_6BP*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_cit*K_PFKL_f6p*K_PFKL_icit*K_PFKL_pep*Malate + F2_6BP*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_cit*K_PFKL_f6p*K_PFKL_icit*Malate*PEP + F2_6BP*K_PFKL_PHOS_S775*K_PFKL_cit*K_PFKL_f6p*K_PFKL_icit*K_PFKL_mal*K_PFKL_pep*s2_oxoglutarate + F2_6BP*K_PFKL_PHOS_S775*K_PFKL_cit*K_PFKL_f6p*K_PFKL_icit*K_PFKL_mal*PEP*s2_oxoglutarate + F2_6BP*K_PFKL_PHOS_S775*K_PFKL_cit*K_PFKL_f6p*K_PFKL_icit*K_PFKL_pep*Malate*s2_oxoglutarate + F2_6BP*K_PFKL_PHOS_S775*K_PFKL_cit*K_PFKL_f6p*K_PFKL_icit*Malate*PEP*s2_oxoglutarate + F2_6BP*K_PFKL_akg*K_PFKL_cit*K_PFKL_f6p*K_PFKL_icit*K_PFKL_mal*K_PFKL_pep*pPFKL + F2_6BP*K_PFKL_akg*K_PFKL_cit*K_PFKL_f6p*K_PFKL_icit*K_PFKL_mal*PEP*pPFKL + F2_6BP*K_PFKL_akg*K_PFKL_cit*K_PFKL_f6p*K_PFKL_icit*K_PFKL_pep*Malate*pPFKL + F2_6BP*K_PFKL_akg*K_PFKL_cit*K_PFKL_f6p*K_PFKL_icit*Malate*PEP*pPFKL + F2_6BP*K_PFKL_cit*K_PFKL_f6p*K_PFKL_icit*K_PFKL_mal*K_PFKL_pep*pPFKL*s2_oxoglutarate + F2_6BP*K_PFKL_cit*K_PFKL_f6p*K_PFKL_icit*K_PFKL_mal*PEP*pPFKL*s2_oxoglutarate + F2_6BP*K_PFKL_cit*K_PFKL_f6p*K_PFKL_icit*K_PFKL_pep*Malate*pPFKL*s2_oxoglutarate + F2_6BP*K_PFKL_cit*K_PFKL_f6p*K_PFKL_icit*Malate*PEP*pPFKL*s2_oxoglutarate + F6P_proxy_ar*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_mal*K_PFKL_pep + F6P_proxy_ar*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_mal*PEP + F6P_proxy_ar*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_pep*Malate + F6P_proxy_ar*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_cit*K_PFKL_f26bp*Malate*PEP + F6P_proxy_ar*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_mal*K_PFKL_pep*s2_oxoglutarate + F6P_proxy_ar*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_mal*PEP*s2_oxoglutarate + F6P_proxy_ar*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_pep*Malate*s2_oxoglutarate + F6P_proxy_ar*Isocitrate*K_PFKL_PHOS_S775*K_PFKL_cit*K_PFKL_f26bp*Malate*PEP*s2_oxoglutarate + F6P_proxy_ar*Isocitrate*K_PFKL_akg*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_mal*K_PFKL_pep*pPFKL + F6P_proxy_ar*Isocitrate*K_PFKL_akg*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_mal*PEP*pPFKL + F6P_proxy_ar*Isocitrate*K_PFKL_akg*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_pep*Malate*pPFKL + F6P_proxy_ar*Isocitrate*K_PFKL_akg*K_PFKL_cit*K_PFKL_f26bp*Malate*PEP*pPFKL + F6P_proxy_ar*Isocitrate*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_mal*K_PFKL_pep*pPFKL*s2_oxoglutarate + F6P_proxy_ar*Isocitrate*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_mal*PEP*pPFKL*s2_oxoglutarate + F6P_proxy_ar*Isocitrate*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_pep*Malate*pPFKL*s2_oxoglutarate + F6P_proxy_ar*Isocitrate*K_PFKL_cit*K_PFKL_f26bp*Malate*PEP*pPFKL*s2_oxoglutarate + F6P_proxy_ar*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_icit*K_PFKL_mal*K_PFKL_pep + F6P_proxy_ar*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_icit*K_PFKL_mal*PEP + F6P_proxy_ar*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_icit*K_PFKL_pep*Malate + F6P_proxy_ar*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_icit*Malate*PEP + F6P_proxy_ar*K_PFKL_PHOS_S775*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_icit*K_PFKL_mal*K_PFKL_pep*s2_oxoglutarate + F6P_proxy_ar*K_PFKL_PHOS_S775*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_icit*K_PFKL_mal*PEP*s2_oxoglutarate + F6P_proxy_ar*K_PFKL_PHOS_S775*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_icit*K_PFKL_pep*Malate*s2_oxoglutarate + F6P_proxy_ar*K_PFKL_PHOS_S775*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_icit*Malate*PEP*s2_oxoglutarate + F6P_proxy_ar*K_PFKL_akg*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_icit*K_PFKL_mal*K_PFKL_pep*pPFKL + F6P_proxy_ar*K_PFKL_akg*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_icit*K_PFKL_mal*PEP*pPFKL + F6P_proxy_ar*K_PFKL_akg*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_icit*K_PFKL_pep*Malate*pPFKL + F6P_proxy_ar*K_PFKL_akg*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_icit*Malate*PEP*pPFKL + F6P_proxy_ar*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_icit*K_PFKL_mal*K_PFKL_pep*pPFKL*s2_oxoglutarate + F6P_proxy_ar*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_icit*K_PFKL_mal*PEP*pPFKL*s2_oxoglutarate + F6P_proxy_ar*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_icit*K_PFKL_pep*Malate*pPFKL*s2_oxoglutarate + F6P_proxy_ar*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_icit*Malate*PEP*pPFKL*s2_oxoglutarate + Isocitrate*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_mal*K_PFKL_pep + Isocitrate*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_mal*PEP + Isocitrate*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_pep*Malate + Isocitrate*K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_f6p*Malate*PEP + Isocitrate*K_PFKL_PHOS_S775*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_mal*K_PFKL_pep*s2_oxoglutarate + Isocitrate*K_PFKL_PHOS_S775*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_mal*PEP*s2_oxoglutarate + Isocitrate*K_PFKL_PHOS_S775*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_pep*Malate*s2_oxoglutarate + Isocitrate*K_PFKL_PHOS_S775*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_f6p*Malate*PEP*s2_oxoglutarate + Isocitrate*K_PFKL_akg*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_mal*K_PFKL_pep*pPFKL + Isocitrate*K_PFKL_akg*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_mal*PEP*pPFKL + Isocitrate*K_PFKL_akg*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_pep*Malate*pPFKL + Isocitrate*K_PFKL_akg*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_f6p*Malate*PEP*pPFKL + Isocitrate*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_mal*K_PFKL_pep*pPFKL*s2_oxoglutarate + Isocitrate*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_mal*PEP*pPFKL*s2_oxoglutarate + Isocitrate*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_pep*Malate*pPFKL*s2_oxoglutarate + Isocitrate*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_f6p*Malate*PEP*pPFKL*s2_oxoglutarate + K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_icit*K_PFKL_mal*K_PFKL_pep + K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_icit*K_PFKL_mal*PEP + K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_icit*K_PFKL_pep*Malate + K_PFKL_PHOS_S775*K_PFKL_akg*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_icit*Malate*PEP + K_PFKL_PHOS_S775*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_icit*K_PFKL_mal*K_PFKL_pep*s2_oxoglutarate + K_PFKL_PHOS_S775*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_icit*K_PFKL_mal*PEP*s2_oxoglutarate + K_PFKL_PHOS_S775*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_icit*K_PFKL_pep*Malate*s2_oxoglutarate + K_PFKL_PHOS_S775*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_icit*Malate*PEP*s2_oxoglutarate + K_PFKL_akg*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_icit*K_PFKL_mal*K_PFKL_pep*pPFKL + K_PFKL_akg*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_icit*K_PFKL_mal*PEP*pPFKL + K_PFKL_akg*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_icit*K_PFKL_pep*Malate*pPFKL + K_PFKL_akg*K_PFKL_cit*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_icit*Malate*PEP*pPFKL + K_PFKL_cit*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_icit*K_PFKL_mal*K_PFKL_pep*pPFKL*s2_oxoglutarate + K_PFKL_cit*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_icit*K_PFKL_mal*PEP*pPFKL*s2_oxoglutarate + K_PFKL_cit*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_icit*K_PFKL_pep*Malate*pPFKL*s2_oxoglutarate + K_PFKL_cit*K_PFKL_f26bp*K_PFKL_f6p*K_PFKL_icit*Malate*PEP*pPFKL*s2_oxoglutarate)
+	fRate1() = Citrate*K_FBPase_f26bp*Vf_FBPase/(Citrate*F1_6BP*F2_6BP + Citrate*F1_6BP*K_FBPase_f26bp + Citrate*F2_6BP*K_FBPase_f16bp + Citrate*K_FBPase_f16bp*K_FBPase_f26bp + F1_6BP*F2_6BP*K_FBPase_cit + F1_6BP*K_FBPase_cit*K_FBPase_f26bp + F2_6BP*K_FBPase_cit*K_FBPase_f16bp + K_FBPase_cit*K_FBPase_f16bp*K_FBPase_f26bp)
+	fRate3() = -k_mal
+	fRate4() = -k_akg
+	fRate5() = -k_pep
+	fRate6() = -k_icit
+	fRate7() = -k_f26bp
+	fRate8() = -k_cit
+	fRate9() = -k_f6p
+	fRate11() = 7.78160761103111*insulin
+	fRate12() = 9.93311225447353*pmTOR
+	fRate13() = 0.363030286526969*insulin
+	fRate14() = 3.88248960751442e-5*pmTOR
+	fRate18() = 0.00919578911309774*p1IR_complex
+	fRate18m() = 0.00919578911309774*p1IR_complex
+	fRate22() = 0.419682384304397*pAKT
+	fRate22m() = 0.419682384304397*pAKT
+	fRate24() = 0.00752464611370891*pmTOR
+	fRate24m() = 0.00752464611370891*pmTOR
+	fRate25() = 1.95497593092361*pX
+	fRate26() = 0.00105342379833469*pmTOR
+	fRate26m() = 0.00105342379833469*pmTOR
+	fRate28() = 26.8316707654711*pS6K
+	fRate28m() = 26.8316707654711*pS6K
+end functions
+begin reaction rules
+	re30: F6P_proxy() -> F1_6BP(sa4_degraded~0) fRate0() #Modifiers(s1, s5, s6, s7, s8, s9, s10, s13, s9, s7, s5, s10, s6, s8, s13, s22)
+	re31: F1_6BP(sa4_degraded~0) -> F6P_proxy() fRate1() #Modifiers(s2, s9, s10, s9, s10, s4)
+	re32: F1_6BP(sa4_degraded~0) -> F1_6BP(sa4_degraded~sa4_degraded) k_ALDO #Modifiers(s12, s4)
+	re33_reactants_0: 0  -> Malate() -1*(fRate3())
+	re33_products_0: 0  -> sa8_degraded() fRate3()
+	re34_reactants_0: 0  -> s2_oxoglutarate() -1*(fRate4())
+	re34_products_0: 0  -> sa7_degraded() fRate4()
+	re35_reactants_0: 0  -> PEP() -1*(fRate5())
+	re35_products_0: 0  -> sa5_degraded() fRate5()
+	re36_reactants_0: 0  -> Isocitrate() -1*(fRate6())
+	re36_products_0: 0  -> sa6_degraded() fRate6()
+	re37_reactants_0: 0  -> F2_6BP() -1*(fRate7())
+	re37_products_0: 0  -> sa9_degraded() fRate7()
+	re38_reactants_0: 0  -> Citrate() -1*(fRate8())
+	re38_products_0: 0  -> sa10_degraded() fRate8()
+	re39_reactants_0: 0  -> F6P() -1*(fRate9())
+	re39_products_0: 0  -> sa3_degraded() fRate9()
+	re40: IR_complex(p1~0,p2~0,pro_~PRO_,sa26_degraded~0,sa27_degraded~0) <-> IR_complex(p1~0,p2~0,pro_~0,sa26_degraded~0,sa27_degraded~0) r11_k1,r11_k1 #Modifiers(s24, s23)
+	re41: IR_complex(p1~0,p2~0,pro_~0,sa26_degraded~0,sa27_degraded~0) <-> IR_complex(p1~P1,p2~0,pro_~0,sa26_degraded~0,sa27_degraded~0) fRate11(),r12_k2 #Modifiers(s23, s25)
+	re42: IR_complex(p1~0,p2~0,pro_~0,sa26_degraded~0,sa27_degraded~0) -> IR_complex(p1~0,p2~P2,pro_~0,sa26_degraded~0,sa27_degraded~0) fRate12() #Modifiers(s31, s23, s31)
+	re43: IR_complex(p1~0,p2~P2,pro_~0,sa26_degraded~0,sa27_degraded~0) <-> p2IR(p1complex~P1COMPLEX,sa28_degraded~0) fRate13(),r14_k2 #Modifiers(s26, s27)
+	re44: IR_complex(p1~P1,p2~0,pro_~0,sa26_degraded~0,sa27_degraded~0) -> p2IR(p1complex~P1COMPLEX,sa28_degraded~0) fRate14() #Modifiers(s31, s25, s31)
+	re45: p2IR(p1complex~P1COMPLEX,sa28_degraded~0) -> IR_complex(p1~P1,p2~0,pro_~0,sa26_degraded~0,sa27_degraded~0) r16_k1 #Modifiers(s27)
+	re46: IR_complex(p1~0,p2~P2,pro_~0,sa26_degraded~0,sa27_degraded~0) -> IR_complex(p1~0,p2~0,pro_~0,sa26_degraded~0,sa27_degraded~0) r17_k1 #Modifiers(s26)
+	re47: p2IR(p1complex~P1COMPLEX,sa28_degraded~0) -> p2IR(p1complex~P1COMPLEX,sa28_degraded~sa28_degraded) r18_k1 #Modifiers(s27)
+	re48: AKT(p~0) <-> AKT(p~P) fRate18(),fRate18m() #Modifiers(s25, s28, s29, s25)
+	re49: AKT(p~P) -> AKT(p~0) r20_k1 #Modifiers(s29)
+	re50: IR_complex(p1~0,p2~P2,pro_~0,sa26_degraded~0,sa27_degraded~0) -> IR_complex(p1~0,p2~P2,pro_~0,sa26_degraded~0,sa27_degraded~sa27_degraded) r21_k1 #Modifiers(s26)
+	re51: IR_complex(p1~P1,p2~0,pro_~0,sa26_degraded~0,sa27_degraded~0) -> IR_complex(p1~P1,p2~0,pro_~0,sa26_degraded~sa26_degraded,sa27_degraded~0) r22_k1 #Modifiers(s25)
+	re52: mTOR(p~0) <-> mTOR(p~P) fRate22(),fRate22m() #Modifiers(s29, s30, s31, s29)
+	re53: mTOR(p~P) -> mTOR(p~0) r24_k1 #Modifiers(s31)
+	re54: S6K(p~0) <-> S6K(p~P) fRate24(),fRate24m() #Modifiers(s31, s32, s33, s31)
+	re55: S6K(p~P) -> S6K(p~0) fRate25() #Modifiers(s35, s33, s35)
+	re56: X(p~0) <-> X(p~P) fRate26(),fRate26m() #Modifiers(s31, s34, s35, s31)
+	re57: X(p~P) -> X(p~0) r28_k1 #Modifiers(s35)
+	re58: PFKL(p~0) <-> PFKL(p~P) fRate28(),fRate28m() #Modifiers(s33, s1, s13, s33)
+	re59: PFKL(p~P) -> PFKL(p~0) r30_k1 #Modifiers(s13)
+end reaction rules
+end model

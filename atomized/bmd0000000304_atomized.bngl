@@ -1,0 +1,82 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL6762427183', 'http://identifiers.org/biomodels.db/BIOMD0000000304']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/7252375']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/6499', 'http://identifiers.org/bto/BTO:0000938', 'http://identifiers.org/bto/BTO:0000022']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0006814', 'http://identifiers.org/go/GO:0006816', 'http://identifiers.org/go/GO:0019228', 'http://identifiers.org/go/GO:0006813']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 5 molecules and 0 reactions. The translated model has 5 molecules and 5 rules'
+###
+begin model
+begin parameters
+	V_I 30.0
+	V_K -75.0
+	V_L -40.0
+	V_Ca 140.0
+	g_I 4.0
+	g_K 0.3
+	g_T 0.01
+	g_K_Ca 0.03
+	g_L 0.003
+	K_p 0.5
+	K_c 0.0085
+	f 0.0003
+	tau_x 235.0
+	a 1.209
+	b 78.714
+	g_Ca 0.004
+end parameters
+begin molecule types
+	x1()
+	n1()
+	V()
+	h1()
+	c()
+end molecule types
+begin seed species
+	h1() 5.4198e+23 # 0.9mol/L * 6.022e23/mol *1.0L #h1 #h1
+	x1() 1.62594e+23 #original 0.27mol/L #x1 #x1
+	n1() 1.8066e+22 #original 0.03mol/L #n1 #n1
+	c() 2.4088000000000004e+23 #original 0.4mol/L #c #c
+end seed species
+begin observables
+	Species V V() #V
+	Species h1 h1() #h1
+	Species x1 x1() #x1
+	Species n1 n1() #n1
+	Species c c() #c
+end observables
+begin functions
+	i_L() = g_L*(-V + V_L)
+	i_Ca() = g_T*x1*(-V + V_I)
+	i_K() = g_K*n1^4*(-V + V_K)
+	Vs() = V*a + b
+	alpha_m() = (5.0 - 0.1*Vs)/(exp(5 - Vs/10) - 1)
+	beta_m() = 4*exp(25/18 - Vs/18)
+	m_infinity() = alpha_m/(alpha_m + beta_m)
+	i_Na() = g_I*h1*m_infinity^3*(-V + V_I)
+	i_K_Ca() = c*g_K_Ca*(-V + V_K)/(K_p + c)
+	arRateV_membrane() = i_Ca + i_K + i_K_Ca + i_L + i_Na
+	beta_n() = 0.125*exp(9/16 - Vs/80)
+	alpha_n() = (0.55 - 0.01*Vs)/(exp(11/2 - Vs/10) - 1)
+	n_infinity() = alpha_n/(alpha_n + beta_n)
+	tau_n() = 12.5/(alpha_n + beta_n)
+	arRaten1() = (-n1 + n_infinity)/tau_n
+	alpha_h() = 0.07*exp(5/4 - Vs/20)
+	beta_h() = 1/(exp(11/2 - Vs/10) + 1)
+	h_infinity() = alpha_h/(alpha_h + beta_h)
+	tau_h() = 12.5/(alpha_h + beta_h)
+	arRateh1() = (-h1 + h_infinity)/tau_h
+	x_infinity() = 1/(exp(-0.15*V - 7.5) + 1)
+	arRatex1() = (-x1 + x_infinity)/tau_x
+	arRatec() = f*(K_c*x1*(-V + V_Ca) - c)
+end functions
+begin reaction rules
+	0  -> h1() arRateh1 #rateLaw
+	0  -> x1() arRatex1 #rateLaw
+	0  -> n1() arRaten1 #rateLaw
+	0  -> c() arRatec #rateLaw
+	0  -> V() arRateV_membrane #rateLaw
+end reaction rules
+end model

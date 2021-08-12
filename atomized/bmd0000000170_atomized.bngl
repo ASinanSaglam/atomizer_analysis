@@ -1,0 +1,98 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000170', 'http://identifiers.org/biomodels.db/MODEL8378813456']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/15347590']
+#@BQB_IS_PART_OF:['http://identifiers.org/kegg.pathway/hsa04710']
+#@BQB_IS:['http://identifiers.org/obo.go/GO:0007623']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/40674']
+#@creatorEmail:'hdharuri@cds.caltech.edu'
+#@creatorName:'Dharuri Harish'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 7 molecules and 17 reactions. The translated model has 5 molecules and 17 rules'
+###
+begin model
+begin parameters
+	v1b 9.0 #units:nM_per_hour
+	c 0.01 #units:nM
+	k1b 1.0 #units:nM
+	k1i 0.56 #units:nM
+	hill_coeff 8.0 #units:dimensionless
+	v4b 3.6 #units:nM_per_hour
+	r 3.0 #units:dimensionless
+	k4b 2.16 #units:nM
+	k1d 0.12 #units:time_inverse
+	k2b 0.3 #units:nM_inv_hr_inv
+	q 2.0 #units:dimensionless
+	k2d 0.05 #units:time_inverse
+	k2t 0.24 #units:time_inverse
+	k3t 0.02 #units:time_inverse
+	k3d 0.12 #units:time_inverse
+	k4d 0.75 #units:time_inverse
+	k5b 0.24 #units:time_inverse
+	k5d 0.06 #units:time_inverse
+	k5t 0.45 #units:time_inverse
+	k6t 0.06 #units:time_inverse
+	k6d 0.12 #units:time_inverse
+	k6a 0.09 #units:time_inverse
+	k7a 0.003 #units:time_inverse
+	k7d 0.09 #units:time_inverse
+end parameters
+begin compartments
+	#volume units: L
+	Nucleus 3 1.0
+	Cytoplasm 3 1.0
+end compartments
+begin molecule types
+	#^ bqbiol:isVersionOf obo.chebi:CHEBI:33699, kegg.compound:C00046
+	#^ bqbiol:encodes uniprot:Q8IUT4
+	Bmal1mRNA()
+	PER2_CRY_complex(_cytoplasm~_CYTOPLASM~0,_nucleus~_NUCLEUS~0)
+	#^ bqbiol:isVersionOf uniprot:Q8IUT4
+	ActiveBMAL1()
+	#^ bqbiol:encodes uniprot:O15055, uniprot:Q16526
+	#^ bqbiol:isVersionOf obo.chebi:CHEBI:33699, kegg.compound:C00046
+	Per2orCrymRNA()
+	BMAL1(_cytoplasm~_CYTOPLASM~0,_nucleus~_NUCLEUS~0)
+end molecule types
+begin seed species
+	@Cytoplasm:Per2orCrymRNA() 120440000000000.03 # (0.2 * 1e-09)mol/L * 6.022e23/mol *1.0L #Per2orCrymRNA #y1
+	@Nucleus:PER2_CRY_complex(_cytoplasm~0,_nucleus~_NUCLEUS) 662420000000000.1 #original 1.1nano mole/L #PER2_CRY_complex_nucleus #y3
+	@Cytoplasm:Bmal1mRNA() 481760000000000.1 #original 0.8nano mole/L #Bmal1mRNA #y4
+	@Cytoplasm:BMAL1(_cytoplasm~_CYTOPLASM,_nucleus~0) 602200000000000.1 #original 1.0nano mole/L #BMAL1_cytoplasm #y5
+	@Nucleus:BMAL1(_cytoplasm~0,_nucleus~_NUCLEUS) 602200000000000.1 #original 1.0nano mole/L #BMAL1_nucleus #y6
+	@Nucleus:ActiveBMAL1() 632310000000000.1 #original 1.05nano mole/L #ActiveBMAL1 #y7
+end seed species
+begin observables
+	Species Per2orCrymRNA_Cytoplasm @Cytoplasm:Per2orCrymRNA() #Per2 or Cry mRNA
+	Species PER2_CRY_complex_cytoplasm_Cytoplasm @Cytoplasm:PER2_CRY_complex(_cytoplasm~_CYTOPLASM,_nucleus~0) #PER2_CRY_complex_cytoplasm
+	Species PER2_CRY_complex_nucleus_Nucleus @Nucleus:PER2_CRY_complex(_cytoplasm~0,_nucleus~_NUCLEUS) #PER2_CRY_complex_nucleus
+	Species Bmal1mRNA_Cytoplasm @Cytoplasm:Bmal1mRNA() #Bmal1 mRNA
+	Species BMAL1_cytoplasm_Cytoplasm @Cytoplasm:BMAL1(_cytoplasm~_CYTOPLASM,_nucleus~0) #BMAL1_cytoplasm
+	Species BMAL1_nucleus_Nucleus @Nucleus:BMAL1(_cytoplasm~0,_nucleus~_NUCLEUS) #BMAL1_nucleus
+	Species ActiveBMAL1_Nucleus @Nucleus:ActiveBMAL1() #Active BMAL1
+end observables
+begin functions
+	y5_y6_y7() = ActiveBMAL1_Nucleus + BMAL1_cytoplasm_Cytoplasm + BMAL1_nucleus_Nucleus
+	trans_Bmal1() = PER2_CRY_complex_nucleus_Nucleus^r*v4b/(PER2_CRY_complex_nucleus_Nucleus^r + k4b^r)
+	trans_per2_cry() = v1b*(ActiveBMAL1_Nucleus + c)/(ActiveBMAL1_Nucleus + c + k1b*((PER2_CRY_complex_nucleus_Nucleus/k1i)^hill_coeff + 1))
+	fRate2() = Per2orCrymRNA_Cytoplasm^q*k2b
+	fRate9() = Bmal1mRNA_Cytoplasm*k5b
+end functions
+begin reaction rules
+	per2_cry_transcription: 0  -> Per2orCrymRNA()@Cytoplasm trans_per2_cry
+	per2_cry_mRNA_degradation: Per2orCrymRNA()@Cytoplasm -> 0  k1d
+	per2_cry_complex_formation: 0  -> PER2_CRY_complex(_cytoplasm~_CYTOPLASM,_nucleus~0)@Cytoplasm fRate2() #Modifiers(y1)
+	cytoplasmic_per2_cry_complex_degradation: PER2_CRY_complex(_cytoplasm~_CYTOPLASM,_nucleus~0)@Cytoplasm -> 0  k2d
+	per2_cry_nuclear_import: PER2_CRY_complex(_cytoplasm~_CYTOPLASM,_nucleus~0)@Cytoplasm -> PER2_CRY_complex(_cytoplasm~0,_nucleus~_NUCLEUS)@Nucleus k2t
+	per2_cry_nuclear_export: PER2_CRY_complex(_cytoplasm~0,_nucleus~_NUCLEUS)@Nucleus -> PER2_CRY_complex(_cytoplasm~_CYTOPLASM,_nucleus~0)@Cytoplasm k3t
+	nuclear_per2_cry_complex_degradation: PER2_CRY_complex(_cytoplasm~0,_nucleus~_NUCLEUS)@Nucleus -> 0  k3d
+	Bmal1_transcription: 0  -> Bmal1mRNA()@Cytoplasm trans_Bmal1
+	Bmal1_mRNA_degradation: Bmal1mRNA()@Cytoplasm -> 0  k4d
+	BMAL1_translation: 0  -> BMAL1(_cytoplasm~_CYTOPLASM,_nucleus~0)@Cytoplasm fRate9() #Modifiers(y4)
+	cytoplasmic_BMAL1_degradation: BMAL1(_cytoplasm~_CYTOPLASM,_nucleus~0)@Cytoplasm -> 0  k5d
+	BMAL1_nuclear_import: BMAL1(_cytoplasm~_CYTOPLASM,_nucleus~0)@Cytoplasm -> BMAL1(_cytoplasm~0,_nucleus~_NUCLEUS)@Nucleus k5t
+	BMAL1_nuclear_export: BMAL1(_cytoplasm~0,_nucleus~_NUCLEUS)@Nucleus -> BMAL1(_cytoplasm~_CYTOPLASM,_nucleus~0)@Cytoplasm k6t
+	nuclear_BMAL1_degradation: BMAL1(_cytoplasm~0,_nucleus~_NUCLEUS)@Nucleus -> 0  k6d
+	BMAL1_activation: BMAL1(_cytoplasm~0,_nucleus~_NUCLEUS)@Nucleus -> ActiveBMAL1()@Nucleus k6a
+	BMAL1_deactivation: ActiveBMAL1()@Nucleus -> BMAL1(_cytoplasm~0,_nucleus~_NUCLEUS)@Nucleus k7a
+	Active_BMAL1_degradation: ActiveBMAL1()@Nucleus -> 0  k7d
+end reaction rules
+end model

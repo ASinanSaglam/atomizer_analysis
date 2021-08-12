@@ -1,0 +1,62 @@
+###
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/go/GO:0000278']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/2759']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/8631387']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1812120005', 'http://identifiers.org/biomodels.db/BIOMD0000000729']
+#@creatorEmail:'ashleythomasxavier@gmail.com'
+#@creatorName:'Xavier Ashley'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 3 molecules and 7 reactions. The translated model has 3 molecules and 7 rules'
+###
+begin model
+begin parameters
+	VM1 3.0
+	V2 1.5
+	VM3 1.0
+	V4 0.5
+	Kc 0.5
+	vi 0.05
+	vd 0.25
+	Kd 0.02
+	K1 0.01
+	K2 0.01
+	K3 0.01
+	K4 0.01
+	kd 0.01
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf uniprot:C94967
+	#^ bqbiol:hasProperty ncit:C17349
+	C()
+	#^ bqbiol:hasProperty ncit:C16981
+	X()
+	#^ bqbiol:hasProperty ncit:C28597
+	M()
+end molecule types
+begin seed species
+end seed species
+begin observables
+	Species C C() #C
+	Species M M() #M
+	Species X X() #X
+end observables
+begin functions
+	V3() = M*VM3
+	V1() = C*VM1/(C + Kc)
+	fRate1() = X*vd/(C + Kd)
+	fRate3() = V1/(K1 - M + 1.0)
+	fRate3m() = V1/(K1 - M + 1.0)
+	fRate4() = V2/(K2 + M)
+	fRate5() = V3/(K3 - X + 1.0)
+	fRate5m() = V3/(K3 - X + 1.0)
+	fRate6() = V4/(K4 + X)
+end functions
+begin reaction rules
+	Cyclin_synthesis: 0  -> C() vi
+	Cyclin_degradation: C() -> 0  fRate1() #Modifiers(X)
+	Cyclin_decay: C() -> 0  kd
+	Cdc2_kinase_activation: 0  <-> M() fRate3(),fRate3m()
+	Cdc2_kinase_inactivation: M() -> 0  fRate4()
+	X_activation: 0  <-> X() fRate5(),fRate5m()
+	X_inactivation: X() -> 0  fRate6()
+end reaction rules
+end model

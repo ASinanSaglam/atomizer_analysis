@@ -1,0 +1,95 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1003170000', 'http://identifiers.org/biomodels.db/BIOMD0000000251']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/20493519']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/12242336', 'http://identifiers.org/biomodels.db/BIOMD0000000175']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_HAS_VERSION:['http://identifiers.org/reactome/REACT_634', 'http://identifiers.org/go/GO:0038029', 'http://identifiers.org/go/GO:0035559']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/reactome/REACT_9417']
+#@BQB_IS_PART_OF:['http://identifiers.org/kegg.pathway/hsa04010']
+#@creatorEmail:'lukas@ebi.ac.uk'
+#@creatorName:'Endler Lukas'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 10 molecules and 9 reactions. The translated model has 9 molecules and 9 rules'
+###
+begin model
+begin parameters
+	k7 0.5
+	k11 0.11
+	k13 0.06
+	L 1.0
+	K1 1.09
+	tau1 3.07
+	K2 2.89
+	tau2 472.0
+	r3_k1 15.000000
+	r3_k2 50.000000
+	r3_k3 14.000000
+	r4_k 1.000000
+	r5_k4 0.100000
+	r5_k5 0.150000
+	r6_k6 0.130000
+	r6_n 1.100000
+	r7_k8 0.080000
+	r8_k10 0.300000
+	r8_k9 0.300000
+	r9_k12 0.001000
+end parameters
+begin molecule types
+	#^ bqbiol:encodes reactome:REACT_21788.1
+	#^ bqbiol:isEncodedBy kegg.genes:hsa:2353
+	cFOSpreRNA()
+	x1()
+	#^ bqbiol:encodes reactome:REACT_21788.1, uniprot:P01100
+	cFOSmRNA()
+	#^ bqbiol:is reactome:REACT_13229.1
+	pRSKn()
+	#^ bqbiol:isVersionOf uniprot:P01100, reactome:REACT_21788.1
+	cFOS()
+	#^ bqbiol:isHomologTo kegg.orthology:K04459
+	#^ bqbiol:isVersionOf interpro:IPR014393, reactome:REACT_12976.1, uniprot:Q13202, uniprot:Q9Y6W6, uniprot:Q16690, uniprot:Q13115, uniprot:Q05923, uniprot:P28562
+	DUSP()
+	#^ bqbiol:isVersionOf uniprot:P01100
+	#^ bqbiol:is reactome:REACT_21988.1
+	pc_FOS()
+	#^ bqbiol:isVersionOf kegg.compound:C00562, uniprot:P28482, uniprot:P27361, reactome:REACT_13301.1
+	ppERK__nucleus__()
+	x2()
+end molecule types
+begin seed species
+end seed species
+begin observables
+	Species x1 x1() #x1
+	Species x2 x2() #x2
+	Species ppERK__nucleus__ ppERK__nucleus__() #ppERK(nucleus)
+	Species DUSP DUSP() #DUSP
+	Species pRSKn pRSKn() #pRSKn
+	Species cFOSpreRNA cFOSpreRNA() #cFOS preRNA
+	Species cFOS cFOS() #cFOS
+	Species pc_FOS pc_FOS() #pc-FOS
+	Species cFOSmRNA cFOSmRNA() #cFOSmRNA
+end observables
+begin functions
+	ppERK__cytosol___ar() = x1 - x2
+	fRate0() = K1*L/tau1
+	fRate0m() = 1/tau1
+	fRate1() = K2*L/tau2
+	fRate1m() = 1/tau2
+	fRate2() = -14.0*DUSP*ppERK__nucleus__ + 15.0*ppERK__cytosol___ar - 50.0*ppERK__nucleus__
+	fRate3() = 1.0*ppERK__nucleus__
+	fRate4() = 0.1*ppERK__nucleus__
+	fRate5() = (pRSKn*ppERK__nucleus__)^1.1/((pRSKn*ppERK__nucleus__)^1.1 + 0.106007767274595)
+	fRate6() = cFOSpreRNA*k7
+	fRate7() = -cFOS*k11*ppERK__cytosol___ar - 0.3*cFOS + 0.3*cFOSmRNA + k13*pc_FOS
+	fRate8() = cFOS*k11*ppERK__cytosol___ar - k13*pc_FOS - 0.001*pc_FOS
+end functions
+begin reaction rules
+	reaction_1: 0  <-> x1() fRate0(),fRate0m()
+	reaction_2: 0  <-> x2() fRate1(),fRate1m()
+	reaction_3_products_0: 0  -> ppERK__nucleus__() fRate2() #Modifiers(ppERKc, DUSP)
+	reaction_4: 0  -> DUSP() fRate3() #Modifiers(ppERKn)
+	reaction_5: 0  <-> pRSKn() fRate4(),r5_k5 #Modifiers(ppERKn)
+	reaction_6: 0  <-> cFOSpreRNA() fRate5(),k7 #Modifiers(ppERKn, pRSKn)
+	reaction_7: 0  <-> cFOSmRNA() fRate6(),r7_k8 #Modifiers(cFOSp)
+	reaction_8_products_0: 0  -> cFOS() fRate7() #Modifiers(cFOSm, ppERKc, pcFOS)
+	reaction_9_products_0: 0  -> pc_FOS() fRate8() #Modifiers(cFOS, ppERKc)
+end reaction rules
+end model

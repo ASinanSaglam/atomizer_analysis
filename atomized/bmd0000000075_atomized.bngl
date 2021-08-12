@@ -1,0 +1,120 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL3095606944', 'http://identifiers.org/biomodels.db/BIOMD0000000075']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/12771127']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/10579714', 'http://identifiers.org/pubmed/10866945']
+#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000931']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0046488']
+#@BQB_IS_PART_OF:['http://identifiers.org/kegg.pathway/map04070']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10090']
+#@creatorEmail:'hdharuri@cds.caltech.edu'
+#@creatorName:'Dharuri Harish'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 13 molecules and 8 reactions. The translated model has 6 molecules and 10 rules'
+###
+begin model
+begin parameters
+	KMOLE 0.00166112956810631 #units:uM_um3_molecules_1
+	PIP_basal_PIPSyn 2857.0 #units:molecules_um_2
+	kBasalSynPIP_PIPSyn 0.0055 #units:s_1
+	kStimSynPIP_PIPSyn 0.019 #units:s_1
+	tauPIPsyn_PIPSyn 0.05 #units:s
+	PIPsyndecay_PIPSyn 1.0 #units:s
+	tau0_PLCact 0.05 #units:second
+	stimdecay_PLCact 1.0 #units:second
+	kf_PIP2PH_PIP2_PH 0.12 #units:uM_1_s_1
+	KdPIP2PH_PIP2_PH 2.0 #units:uM
+	kStimSynPIP2_PIP2Syn 0.92 #units:s_1
+	tauPIP2syn_PIP2Syn 0.05 #units:s
+	PIP2syndecay_PIP2Syn 1.0 #units:s
+	PIP2_basal_PIP2Syn 4000.0 #units:molecules_um_2
+	kBasalSynPIP2_PIP2Syn 0.048 #units:s_1
+	kf_IP3PH_IP3_PHGFP 10.0 #units:uM_1_s_1
+	KdIP3PH_IP3_PHGFP 2.0 #units:uM
+	stim_PM 3.345555555555823e+23 #original 1.0/
+	stim 3.345555555555823e+23 #original 1.0/
+	r1_I 0.000000
+	r2_I 0.000000
+	r2_k_PIP2hyd 2.400000
+	r3_I 0.000000
+	r3_KfPLCact 0.000500
+	r3_krPLCact 0.100000
+	r4_I 0.000000
+	r4_k_PIP2PHhyd 0.000000
+	r5_I 0.000000
+	r6_kIP3deg 0.080000
+	r6_IP3_basal 0.160000
+	r7_I 0.000000
+end parameters
+begin compartments
+	#volume units: 
+	Extracellular 3 0.277777777777778
+	PM 2 0.5555555555556
+	Cytosol 3 1.0
+	NM 2 0.111111111111111
+	Nucleus 3 0.111111111111111
+end compartments
+begin molecule types
+	#^ bqbiol:isVersionOf chebi:CHEBI:18035
+	DAG(ip3_cyt)
+	#^ bqbiol:isVersionOf uniprot:Q8K4S1
+	PLC(_act~_ACT~0)
+	#^ bqbiol:isVersionOf chebi:CHEBI:26034
+	PIP()
+	#^ bqbiol:isVersionOf chebi:CHEBI:16595
+	IP3_Cyt(dag,ph_gfp_cyt)
+	#^ bqbiol:hasPart interpro:IPR011584, interpro:IPR001849
+	PH_GFP_Cyt(ip3_cyt)
+	#^ bqbiol:isVersionOf chebi:CHEBI:28874
+	PI()
+end molecule types
+begin seed species
+	@PM:PI() 4.779360300000383e+28 # 142857.0mol/L * 6.022e23/mol *0.5555555555556L #PI #PI_PM
+	@PM:IP3_Cyt(dag!105,ph_gfp_cyt).DAG(ip3_cyt!105) 1.3382222222223294e+27 #original 4000.0/ #PIP2 #PIP2_PM
+	@PM:PIP() 9.558252222222988e+26 #original 2857.0/ #PIP #PIP_PM
+	@PM:DAG(ip3_cyt) 6.691111111111647e+26 #original 2000.0/ #DAG #DAG_PM
+	@PM:PLC(_act~0) 3.345555555555823e+25 #original 100.0/ #PLC #PLC_PM
+	@Cytosol:IP3_Cyt(dag,ph_gfp_cyt) 5.8003903999999995e+25 #original 96.32/ #IP3_Cyt #IP3_Cyt
+end seed species
+begin observables
+	Species PIP2_PHGFP_PM @PM:IP3_Cyt(dag!105,ph_gfp_cyt!106).DAG(ip3_cyt!105).PH_GFP_Cyt(ip3_cyt!106) #PIP2_PHGFP_PM
+	Species PH_GFP_Cyt_Cytosol @Cytosol:PH_GFP_Cyt(ip3_cyt) #PH_GFP_Cyt
+	Species PI_PM @PM:PI() #PI_PM
+	Species IP3_PHGFP_Cyt_Cytosol @Cytosol:IP3_Cyt(dag,ph_gfp_cyt!106).PH_GFP_Cyt(ip3_cyt!106) #IP3_PHGFP_Cyt
+	Species PIP2_PM @PM:IP3_Cyt(dag!105,ph_gfp_cyt).DAG(ip3_cyt!105) #PIP2_PM
+	Species PIP_PM @PM:PIP() #PIP_PM
+	Species DAG_PM @PM:DAG(ip3_cyt) #DAG_PM
+	Species PLC_PM @PM:PLC(_act~0) #PLC_PM
+	Species PLC_act_PM @PM:PLC(_act~_ACT) #PLC_act_PM
+	Species IP3_Cyt_Cytosol @Cytosol:IP3_Cyt(dag,ph_gfp_cyt) #IP3_Cyt
+end observables
+begin functions
+	kr_IP3PH_IP3_PHGFP() = KdIP3PH_IP3_PHGFP*kf_IP3PH_IP3_PHGFP
+	Rate_PIP2SynStim_PIP2Syn() =  if((time()>tauPIP2syn_PIP2Syn),(kStimSynPIP2_PIP2Syn*exp(-(time()-tauPIP2syn_PIP2Syn)/PIP2syndecay_PIP2Syn)),(0))
+	Rate_PIP2Synbasal_PIP2Syn() =  if((PIP2_PM<PIP2_basal_PIP2Syn),(0.581*kBasalSynPIP2_PIP2Syn*(exp((-PIP2_PM+PIP2_basal_PIP2Syn)/PIP2_basal_PIP2Syn)-1)),(0))
+	kr_PIP2PH_PIP2_PH() = KdPIP2PH_PIP2_PH*kf_PIP2PH_PIP2_PH
+	signal_PLCact() =  if((time()>tau0_PLCact),(exp(-(time()-tau0_PLCact)/stimdecay_PLCact)),(0))
+	Ratestim_PIPsyn_PIPSyn() =  if((time()>tauPIPsyn_PIPSyn),(kStimSynPIP_PIPSyn*exp(-(time()-tauPIPsyn_PIPSyn)/PIPsyndecay_PIPSyn)),(0))
+	Ratebasal_PIPsyn_PIPSyn() =  if((PIP_PM<PIP_basal_PIPSyn),(0.581*kBasalSynPIP_PIPSyn*(exp((-PIP_PM+PIP_basal_PIPSyn)/PIP_basal_PIPSyn)-1)),(0))
+	fRate0() = PI_PM*(Ratebasal_PIPsyn_PIPSyn + Ratestim_PIPsyn_PIPSyn)
+	fRate1() = 2.4*PLC_act_PM
+	fRate2() = 0.0005*signal_PLCact*stim_PM
+	fRate3() = 0
+	fRate4() = 0.00166112956810631*kf_PIP2PH_PIP2_PH
+	fRate5() = 0.000132890365448505/KMOLE
+	fRate5m() = 0.0128/KMOLE
+	fRate6() = PIP_PM*(Rate_PIP2SynStim_PIP2Syn + Rate_PIP2Synbasal_PIP2Syn)
+	fRate7() = 2.75935144203706e-6*kf_IP3PH_IP3_PHGFP/KMOLE
+	fRate7m() = 0.00166112956810631*kr_IP3PH_IP3_PHGFP/KMOLE
+end functions
+begin reaction rules
+	PIPSyn_reactants_0: 0  -> PI()@PM -1*(fRate0())
+	PIPSyn_products_0: 0  -> PIP()@PM fRate0()
+	PIP2_hyd: IP3_Cyt(dag!105,ph_gfp_cyt)@PM.DAG(ip3_cyt!105)@PM -> DAG(ip3_cyt)@PM + IP3_Cyt(dag,ph_gfp_cyt)@Cytosol fRate1() #Modifiers(PLC_act_PM)
+	PLCact: PLC(_act~0)@PM <-> PLC(_act~_ACT)@PM fRate2(),r3_krPLCact #Modifiers(stim_PM)
+	PIP2_PH_hyd: IP3_Cyt(dag!105,ph_gfp_cyt!106)@PM.DAG(ip3_cyt!105)@PM.PH_GFP_Cyt(ip3_cyt!106)@PM -> PH_GFP_Cyt(ip3_cyt)@Cytosol + IP3_Cyt(dag,ph_gfp_cyt)@Cytosol + DAG(ip3_cyt)@PM fRate3() #Modifiers(PLC_act_PM)
+	PIP2_PH: PH_GFP_Cyt(ip3_cyt)@Cytosol + IP3_Cyt(dag!105,ph_gfp_cyt)@PM.DAG(ip3_cyt!105)@PM <-> IP3_Cyt(dag!105,ph_gfp_cyt!106)@PM.DAG(ip3_cyt!105)@PM.PH_GFP_Cyt(ip3_cyt!106)@PM fRate4(),kr_PIP2PH_PIP2_PH
+	IP3deg: IP3_Cyt(dag,ph_gfp_cyt)@Cytosol <-> 0  fRate5(),fRate5m()
+	PIP2Syn_reactants_0: 0  -> PIP()@PM -1*(fRate6())
+	PIP2Syn_products_0: 0  -> IP3_Cyt(dag!105,ph_gfp_cyt)@PM.DAG(ip3_cyt!105)@PM fRate6()
+	IP3_PHGFP: IP3_Cyt(dag,ph_gfp_cyt)@Cytosol + PH_GFP_Cyt(ip3_cyt)@Cytosol <-> IP3_Cyt(dag,ph_gfp_cyt!106)@Cytosol.PH_GFP_Cyt(ip3_cyt!106)@Cytosol fRate7(),fRate7m()
+end reaction rules
+end model

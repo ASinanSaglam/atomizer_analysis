@@ -1,0 +1,106 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000204', 'http://identifiers.org/biomodels.db/MODEL7957942740']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/16978048']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10090', 'http://identifiers.org/taxonomy/9606']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0048863']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 12 molecules and 10 reactions. The translated model has 8 molecules and 14 rules'
+###
+begin model
+begin parameters
+	eta1 0.0001
+	a1 1.0
+	a2 0.01
+	a3 0.5
+	f 1000.0
+	b1 0.0011
+	b2 0.001
+	b3 0.001
+	gamma1 1.0
+	eta5 0.0001
+	e1 0.01
+	e2 0.1
+	f2 0.001
+	f1 0.001
+	f3 0.05
+	gamma2 1.0
+	k1c 0.05
+	k2c 0.001
+	k3c 5.0
+	eta3 0.0001
+	c1 1.0
+	c2 0.01
+	c3 0.5
+	d1 0.0011
+	d2 0.001
+	d3 0.001
+	gamma3 1.0
+	g1 0.1
+	eta7 0.0001
+	h1 0.0011
+	h2 1.0
+	gamma4 0.01
+	A 6.022e+24 #original 10.0arb_substance/L
+end parameters
+begin molecule types
+	Protein()
+	#^ bqbiol:isVersionOf uniprot:Q01860
+	OCT4(degradation~degradation~0,sox2)
+	#^ bqbiol:isVersionOf uniprot:Q6ZRP7
+	SOX2(oct4)
+	#^ bqbiol:isVersionOf ensembl:ENSG00000204531
+	#^ bqbiol:encodes uniprot:Q01860
+	OCT4_Gene()
+	#^ bqbiol:isVersionOf uniprot:Q8N7R0
+	NANOG()
+	#^ bqbiol:isVersionOf ensembl:ENSG00000165661
+	#^ bqbiol:encodes uniprot:Q6ZRP7
+	SOX2_Gene()
+	#^ bqbiol:encodes uniprot:Q8N7R0
+	#^ bqbiol:isVersionOf ensembl:ENSG00000176654
+	NANOG_Gene()
+	targetGene()
+end molecule types
+begin seed species
+	targetGene() 6.022e+21 # 0.01mol/L * 6.022e23/mol *1.0L #targetGene #targetGene
+	OCT4(degradation~0,sox2) 6.022e+21 #original 0.01arb_substance/L  #OCT4 #OCT4
+	SOX2(oct4) 6.022e+21 #original 0.01arb_substance/L  #SOX2 #SOX2
+	NANOG() 6.022e+21 #original 0.01arb_substance/L  #NANOG #NANOG
+	OCT4(degradation~0,sox2!350).SOX2(oct4!350) 6.022000000000001e+22 #original 0.1arb_substance/L  #OCT4_SOX2 #OCT4_SOX2
+end seed species
+begin observables
+	Species OCT4_Gene OCT4_Gene() #OCT4_Gene
+	Species NANOG_Gene NANOG_Gene() #NANOG_Gene
+	Species SOX2_Gene SOX2_Gene() #SOX2_Gene
+	Species targetGene targetGene() #targetGene
+	Species degradation OCT4(degradation~degradation,sox2) #degradation
+	Species OCT4 OCT4(degradation~0,sox2) #OCT4
+	Species SOX2 SOX2(oct4) #SOX2
+	Species NANOG NANOG() #NANOG
+	Species OCT4_SOX2 OCT4(degradation~0,sox2!350).SOX2(oct4!350) #OCT4_SOX2
+	Species Protein Protein() #Protein
+end observables
+begin functions
+	fRate0() = (A*a1 + NANOG*OCT4_SOX2*a3 + OCT4_SOX2*a2 + eta1)/(A*b1 + NANOG*OCT4_SOX2*b3 + OCT4_SOX2*b2 + eta1/f + 1)
+	fRate2() = (NANOG*OCT4_SOX2*e2 + OCT4_SOX2*e1 + eta5)/(NANOG*OCT4_SOX2*f1 + OCT4_SOX2*f2 + eta5/f + f3*p53 + 1)
+	fRate6() = (A*c1 + NANOG*OCT4_SOX2*c3 + OCT4_SOX2*c2 + eta3)/(A*d1 + NANOG*OCT4_SOX2*d3 + OCT4_SOX2*d2 + eta3/f + 1)
+	fRate8() = (OCT4_SOX2*g1 + eta7)/(NANOG*OCT4_SOX2*h2 + OCT4_SOX2*h1 + eta7/f2 + 1)
+end functions
+begin reaction rules
+	J0_reactants_0: 0  -> OCT4_Gene() -1*(fRate0()) #Modifiers(A, OCT4_SOX2, NANOG)
+	J0_products_0: 0  -> OCT4(degradation~0,sox2) fRate0() #Modifiers(A, OCT4_SOX2, NANOG)
+	J1: OCT4(degradation~0,sox2) -> OCT4(degradation~degradation,sox2) gamma1
+	J2_reactants_0: 0  -> NANOG_Gene() -1*(fRate2()) #Modifiers(OCT4_SOX2, p53)
+	J2_products_0: 0  -> NANOG() fRate2() #Modifiers(OCT4_SOX2, p53)
+	J3: NANOG() -> OCT4(degradation~degradation,sox2) gamma2
+	J4: OCT4(degradation~0,sox2) + SOX2(oct4) <-> OCT4(degradation~0,sox2!350).SOX2(oct4!350) k1c,k2c
+	J5: OCT4(degradation~0,sox2!350).SOX2(oct4!350) -> OCT4(degradation~degradation,sox2) k3c
+	J6_reactants_0: 0  -> SOX2_Gene() -1*(fRate6()) #Modifiers(A, OCT4_SOX2, NANOG)
+	J6_products_0: 0  -> SOX2(oct4) fRate6() #Modifiers(A, OCT4_SOX2, NANOG)
+	J7: SOX2(oct4) -> OCT4(degradation~degradation,sox2) gamma3
+	J8_reactants_0: 0  -> targetGene() -1*(fRate8()) #Modifiers(OCT4_SOX2, NANOG)
+	J8_products_0: 0  -> Protein() fRate8() #Modifiers(OCT4_SOX2, NANOG)
+	J9: Protein() -> OCT4(degradation~degradation,sox2) gamma4
+end reaction rules
+end model

@@ -1,0 +1,64 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/23734575']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0002418']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1907180002', 'http://identifiers.org/biomodels.db/BIOMD0000000754']
+#@creatorEmail:'jm2187@cam.ac.uk'
+#@creatorName:'Men Jinghao'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 3 molecules and 10 reactions. The translated model has 3 molecules and 10 rules'
+###
+begin model
+begin parameters
+	a 0.18 #units:unit_0
+	b 1e-09 #units:unit_0
+	c 0.05 #units:unit_0
+	aa 1.0 #units:unit_0
+	g2 100000.0 #units:unit_0
+	u2 0.03 #units:unit_0
+	p1 0.1245 #units:unit_0
+	g1 20000000.0 #units:unit_0
+	p2 5.0 #units:unit_0
+	g3 1000.0 #units:unit_0
+	u3 10.0 #units:unit_0
+	s1 0
+	s2 0
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf cl:CL:0001064
+	T()
+	#^ bqbiol:isVersionOf ncit:C28241
+	E()
+	#^ bqbiol:isVersionOf uniprot:P60568
+	I()
+end molecule types
+begin seed species
+	T() 3.0110000000000005e+22 # (50.0 * 0.001)mol/L * 6.022e23/mol *1.0L #T #T
+	E() 6.022e+21 #original 10.0substance/volume  #E #E
+end seed species
+begin observables
+	Species T T() #T
+	Species E E() #E
+	Species I I() #I
+end observables
+begin functions
+	fRate0() = T*a
+	fRate1() = T*a*b
+	fRate2() = E*aa/(T + g2)
+	fRate4() = T*c
+	fRate5() = E*I*p1/(I + g1)
+	fRate9() = E*T*p2/(T + g3)
+end functions
+begin reaction rules
+	tumor_growth: 0  -> T() fRate0()
+	tumor_death: T() -> 0  fRate1()
+	tumor_killing: T() -> 0  fRate2() #Modifiers(E)
+	immune_death: E() -> 0  u2
+	immune_stimulation_tumor: 0  -> E() fRate4() #Modifiers(T)
+	immune_stimulation_IL2: 0  -> E() fRate5() #Modifiers(I)
+	immune_injection: 0  -> E() s1
+	IL2_injection: 0  -> I() s2
+	IL2_loss: I() -> 0  u3
+	IL2_production: 0  -> I() fRate9() #Modifiers(E, T)
+end reaction rules
+end model

@@ -1,0 +1,112 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1108050001', 'http://identifiers.org/biomodels.db/BIOMD0000000355']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/21844332']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/7215']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0019722']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 9 molecules and 17 reactions. The translated model has 6 molecules and 19 rules'
+###
+begin model
+begin parameters
+	A 3.0
+	B 0.266
+	D 2.0
+	E 5.0
+	F 0.018
+	k2 0.175
+	L 0.01
+	R 1.0
+	mw92b257b7_00af_4fd6_a11b_8e4655a4ba65 0.175
+	mw0ad64e84_bb75_4be4_a9c3_2d4741b0f45f 0.0346
+	mwfe8e89cf_3c67_4dd5_939e_b4cfee2e0778 1.0
+	mw004dcb62_da5f_41c7_a7bd_033574894f48 0.02
+	mw78dd80b8_e003_4c62_81d1_547d001767af 0.13
+	mw3a93c3a6_623a_44fe_84e9_a47823defd1f 0.2
+	mwd21d3f76_d133_4053_8e44_02a538657e0a 0.013
+	mwf998b218_be11_4aa4_81ae_41141861fb42 1.0
+	mwfbff577a_4e9c_40fe_8777_eb0ceade28c9 1e-06
+	mwd8bf5d8f_ad00_4119_bde1_91015ef2cd7c 0.03
+	mwe3841c25_6042_49c2_9feb_90cbf6751167 0.6
+	mw219cf65d_18cc_4f7e_ab5a_5b87cda6fc43 0.005
+	mwa3072851_e3e4_4767_ac41_49fa7c0de7a7 0.03
+	mwd3b36919_202a_4fed_a3c8_1a3a60594404 8.0
+	CaO_outside 1000.0
+	CaO 1000.0
+end parameters
+begin compartments
+	#volume units: L
+	cytosol 3 1.0
+	outside 3 1.0 #Outside
+	mitochondria 3 1.0 #mito
+	ER_store 3 1.0
+end compartments
+begin molecule types
+	#^ bqbiol:isVersionOf uniprot:P22700
+	SERCA()
+	#^ bqbiol:isVersionOf uniprot:P83094
+	STIM()
+	#^ bqbiol:isVersionOf uniprot:Q9V4C7
+	PMCA()
+	#^ bqbiol:isVersionOf obo.chebi:CHEBI:16595, kegg.compound:C01255
+	IP3()
+	#^ bqbiol:isVersionOf obo.go:GO:0019855
+	g()
+	#^ bqbiol:isVersionOf obo.chebi:CHEBI:29108, kegg.compound:C00076
+	CaI(CaM~CaM~0,CaS~CaS~0)
+end molecule types
+begin seed species
+	@cytosol:CaI(CaM~0,CaS~0) 0.05 #CaI #CaI
+	@cytosol:g() 0.002 #g #g
+	@cytosol:PMCA() 0.013 #PMCA #mwaf195932_a72c_4552_8cf2_b349b15d39c4
+	@cytosol:SERCA() 0.266 #SERCA #mw0ebc76ad_49d7_4845_8f88_04d443fbe7f3
+	@cytosol:STIM() 0.02 #STIM #mw7cb2644a_384a_4bbb_93fd_fd686e01d7cb
+	@ER_store:CaI(CaM~0,CaS~CaS) 2.0 #CaS #CaS
+end seed species
+begin observables
+	Species CaI_cytosol @cytosol:CaI(CaM~0,CaS~0) #CaI
+	Species IP3_cytosol @cytosol:IP3() #IP3
+	Species g_cytosol @cytosol:g() #g
+	Species PMCA_cytosol @cytosol:PMCA() #PMCA
+	Species SERCA_cytosol @cytosol:SERCA() #SERCA
+	Species STIM_cytosol @cytosol:STIM() #STIM
+	Species CaM_mitochondria @mitochondria:CaI(CaM~CaM,CaS~0) #CaM
+	Species CaS_ER_store @ER_store:CaI(CaM~0,CaS~CaS) #CaS
+end observables
+begin functions
+	fRate0() = CaI_cytosol*R
+	fRate1() = CaI_cytosol*SERCA_cytosol/(CaI_cytosol^2 + k2^2)
+	fRate2() = CaS_ER_store*(1 - mwd8bf5d8f_ad00_4119_bde1_91015ef2cd7c)*(A*CaI_cytosol^2*IP3_cytosol^2*(1 - g_cytosol)/((CaI_cytosol^2 + mw78dd80b8_e003_4c62_81d1_547d001767af^2)*(IP3_cytosol^2 + mw92b257b7_00af_4fd6_a11b_8e4655a4ba65^2)) + L)
+	fRate4() = CaI_cytosol^4*E/(CaI_cytosol^4 + mwf998b218_be11_4aa4_81ae_41141861fb42^4)
+	fRate4m() = CaI_cytosol^4*E/(CaI_cytosol^4 + mwf998b218_be11_4aa4_81ae_41141861fb42^4)
+	fRate6() = STIM_cytosol*(mw0ad64e84_bb75_4be4_a9c3_2d4741b0f45f*(CaS_ER_store^8 + mwfe8e89cf_3c67_4dd5_939e_b4cfee2e0778^8) + mwfe8e89cf_3c67_4dd5_939e_b4cfee2e0778^8)/(CaS_ER_store^8 + mwfe8e89cf_3c67_4dd5_939e_b4cfee2e0778^8)
+	fRate7() = CaI_cytosol*PMCA_cytosol/(CaI_cytosol^2 + mw3a93c3a6_623a_44fe_84e9_a47823defd1f^2)
+	fRate8() = CaI_cytosol^4*mwd21d3f76_d133_4053_8e44_02a538657e0a*mwd3b36919_202a_4fed_a3c8_1a3a60594404*mwfbff577a_4e9c_40fe_8777_eb0ceade28c9/(CaI_cytosol^4 + 6.25e-6*mwd3b36919_202a_4fed_a3c8_1a3a60594404 - 6.25e-6)
+	fRate10() = B*mwfbff577a_4e9c_40fe_8777_eb0ceade28c9*(CaS_ER_store^4 + 16*mwd3b36919_202a_4fed_a3c8_1a3a60594404 - 16)/(CaS_ER_store^4*mwd3b36919_202a_4fed_a3c8_1a3a60594404)
+	fRate11() = mw004dcb62_da5f_41c7_a7bd_033574894f48*mwfbff577a_4e9c_40fe_8777_eb0ceade28c9*(CaI_cytosol^2 + 0.0025*mwd3b36919_202a_4fed_a3c8_1a3a60594404 - 0.0025)*(CaS_ER_store^2 + 4*mwd3b36919_202a_4fed_a3c8_1a3a60594404 - 4)/(CaI_cytosol^2*CaS_ER_store^2*mwd3b36919_202a_4fed_a3c8_1a3a60594404^2)
+	fRate14() = CaI_cytosol^3*mwa3072851_e3e4_4767_ac41_49fa7c0de7a7/(CaI_cytosol^4 + mwe3841c25_6042_49c2_9feb_90cbf6751167^4)
+	fRate15() = CaS_ER_store*mwd8bf5d8f_ad00_4119_bde1_91015ef2cd7c*(A*CaI_cytosol^2*IP3_cytosol^2*(1 - g_cytosol)/((CaI_cytosol^2 + mw78dd80b8_e003_4c62_81d1_547d001767af^2)*(IP3_cytosol^2 + mw92b257b7_00af_4fd6_a11b_8e4655a4ba65^2)) + L)
+	fRate16() = mw219cf65d_18cc_4f7e_ab5a_5b87cda6fc43/(CaM_mitochondria + 0.01)
+end functions
+begin reaction rules
+	kPLC: 0  -> IP3()@cytosol fRate0() #Modifiers(CaI)
+	JPump: CaI(CaM~0,CaS~0)@cytosol -> CaI(CaM~0,CaS~CaS)@ER_store fRate1() #Modifiers(mw0ebc76ad_49d7_4845_8f88_04d443fbe7f3)
+	JChannel_reactants_0: 0  -> CaI(CaM~0,CaS~CaS)@ER_store -1*(fRate2()) #Modifiers(g, IP3)
+	JChannel_products_0: 0  -> CaI(CaM~0,CaS~0)@cytosol fRate2() #Modifiers(g, IP3)
+	kPhosphatase: IP3()@cytosol -> 0  D
+	inhibition_parameter1: 0  <-> g()@cytosol fRate4(),fRate4m() #Modifiers(CaI)
+	inhibition_parameter2: g()@cytosol -> 0  F
+	mwbdcd6a40_1ae7_4c86_a99f_1fba0b8beaf7: 0  -> CaI(CaM~0,CaS~0)@cytosol fRate6() #Modifiers(mw7cb2644a_384a_4bbb_93fd_fd686e01d7cb, CaS)
+	mw530793e3_76b2_4483_be11_e94364306712: CaI(CaM~0,CaS~0)@cytosol -> 0  fRate7() #Modifiers(mwaf195932_a72c_4552_8cf2_b349b15d39c4)
+	mw5658298a_d96a_4b97_9a4f_6f06dad35824: 0  -> PMCA()@cytosol fRate8() #Modifiers(CaI)
+	mw700bd02b_9fc4_47e7_864a_967c03874dd6: PMCA()@cytosol -> 0  mwfbff577a_4e9c_40fe_8777_eb0ceade28c9
+	mw06f8fde4_d97b_4d5f_b71e_d93aa53e9932_products_0: 0  -> SERCA()@cytosol fRate10() #Modifiers(CaS)
+	mw8021d532_dd9b_4e34_a865_c2bb1689b0b5_products_0: 0  -> STIM()@cytosol fRate11() #Modifiers(CaS, CaI)
+	mw1f122e51_99cb_4a32_a12e_4c2921920a17: STIM()@cytosol -> 0  mwfbff577a_4e9c_40fe_8777_eb0ceade28c9
+	mw89d547e1_8d48_4cd2_ba3d_e4390294089d: SERCA()@cytosol -> 0  mwfbff577a_4e9c_40fe_8777_eb0ceade28c9
+	mwa61047ec_49c1_47b2_b78e_4d84a33d432a: CaI(CaM~0,CaS~0)@cytosol -> CaI(CaM~CaM,CaS~0)@mitochondria fRate14()
+	ERtoMito_reactants_0: 0  -> CaI(CaM~0,CaS~CaS)@ER_store -1*(fRate15()) #Modifiers(g, IP3, CaI)
+	ERtoMito_products_0: 0  -> CaI(CaM~CaM,CaS~0)@mitochondria fRate15() #Modifiers(g, IP3, CaI)
+	mw1c50c3d1_dab9_423a_8373_6a4c75479b54: CaI(CaM~CaM,CaS~0)@mitochondria -> CaI(CaM~0,CaS~0)@cytosol fRate16()
+end reaction rules
+end model

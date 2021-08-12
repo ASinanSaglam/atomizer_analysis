@@ -1,0 +1,55 @@
+###
+#@BQM_HAS_INSTANCE:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/taxonomy/9606', 'http://identifiers.org/bto/BTO:0005810']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/bto/BTO:0005810', 'http://identifiers.org/doi/10.1142/S0218339007002301']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000906', 'http://identifiers.org/biomodels.db/MODEL1912190002']
+#@creatorEmail:'msharifshohan@ebi.ac.uk'
+#@creatorName:'Sharif Shohan Mohammad Umer'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 3 molecules and 6 reactions. The translated model has 3 molecules and 6 rules'
+###
+begin model
+begin parameters
+	beta 0.9
+	gamma 0.05
+	beta0 0.2
+	mu 0.04
+	a 0.8
+	b 0.3
+	n 0.1
+	alpha 2.4
+	alpha0 0.1
+end parameters
+begin molecule types
+	#^ bmbiol:hasInstance ncit:C14329
+	P()
+	#^ bmbiol:hasInstance bto:BTO:0005810
+	I()
+	M()
+end molecule types
+begin seed species
+	P() 6.022e+20 # (1.0 * 0.001)mol/L * 6.022e23/mol *1.0L #P #P
+	I() 6.022e+20 #original 1.0substance/volume  #I #I
+	M() 6.022e+20 #original 1.0substance/volume  #M #M
+end seed species
+begin observables
+	Species P P() #P
+	Species I I() #I
+	Species M M() #M
+end observables
+begin functions
+	fRate0() = P*beta
+	fRate1() = 1.0*I*P*gamma + 1.0*P^2*beta0
+	fRate2() = 1.0*I*P*b + mu
+	fRate3() = 1.0*I*P*gamma*n + 1.0*I*a
+	fRate4() = P*alpha
+end functions
+begin reaction rules
+	increase_in_the_amount_of_pathogenic_micro_organism: 0  -> P() fRate0()
+	Decrease_in_the_amount_of_pathogenic_micro_organism_reactants_0: 0  -> P() -1*(fRate1()) #Modifiers(I)
+	Increase_of_appropriate_immune_response_with_respect_to_pathogen: 0  -> I() fRate2() #Modifiers(P)
+	Reduction_of_immune_response_reactants_0: 0  -> I() -1*(fRate3()) #Modifiers(P)
+	betterment_of_relative_characteristics_of_the_damaged_part_of_the_organ: 0  -> M() fRate4() #Modifiers(P)
+	removal_of_relative_characteristics_of_the_damaged_part_of_the_organ: M() -> 0  alpha0
+end reaction rules
+end model

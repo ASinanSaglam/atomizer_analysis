@@ -1,0 +1,49 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL0332756009', 'http://identifiers.org/biomodels.db/BIOMD0000000060']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/8968617']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/131567']
+#@BQB_IS:['http://identifiers.org/kegg.pathway/map04020']
+#@BQB_HAS_PART:['http://identifiers.org/go/GO:0019722', 'http://identifiers.org/go/GO:0005219', 'http://identifiers.org/go/GO:0048763']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@creatorEmail:'hdharuri@cds.caltech.edu'
+#@creatorName:'Dharuri Harish'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 4 molecules and 3 reactions. The translated model has 1 molecules and 3 rules'
+###
+begin model
+begin parameters
+	r1_ka_minus 28.800000
+	r1_ka_plus 1500.000000
+	r1_Ca 0.900000
+	r1_n 4.000000
+	r2_kb_plus 1500.000000
+	r2_Ca 0.900000
+	r2_m 3.000000
+	r2_kb_minus 385.900000
+	r3_kc_plus 1.750000
+	r3_kc_minus 0.100000
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf uniprot:P21817
+	Po1(Pc1~Pc1~0,Pc2~Pc2~0,Po2~Po2~0)
+end molecule types
+begin seed species
+	Po1(Pc1~Pc1,Pc2~0,Po2~0) 0.963 #Pc1 #Pc1
+	Po1(Pc1~0,Pc2~Pc2,Po2~0) 0.037 #Pc2 #Pc2
+end seed species
+begin observables
+	Species Pc1 Po1(Pc1~Pc1,Pc2~0,Po2~0) #Pc1
+	Species Po2 Po1(Pc1~0,Pc2~0,Po2~Po2) #Po2
+	Species Po1 Po1(Pc1~0,Pc2~0,Po2~0) #Po1
+	Species Pc2 Po1(Pc1~0,Pc2~Pc2,Po2~0) #Pc2
+end observables
+begin functions
+	Open_probability() = Po1 + Po2
+	fRate0m() = 984.15
+	fRate1() = 1093.5
+end functions
+begin reaction rules
+	Closed_state_1: Po1(Pc1~0,Pc2~0,Po2~0) <-> Po1(Pc1~Pc1,Pc2~0,Po2~0) r1_ka_minus,fRate0m() #Modifiers(Po1)
+	Open_state_2: Po1(Pc1~0,Pc2~0,Po2~0) <-> Po1(Pc1~0,Pc2~0,Po2~Po2) fRate1(),r2_kb_minus #Modifiers(Po1)
+	Closed_State_2: Po1(Pc1~0,Pc2~0,Po2~0) <-> Po1(Pc1~0,Pc2~Pc2,Po2~0) r3_kc_plus,r3_kc_minus #Modifiers(Po1)
+end reaction rules
+end model

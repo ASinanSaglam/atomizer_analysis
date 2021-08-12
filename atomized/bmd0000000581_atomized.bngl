@@ -1,0 +1,158 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000581', 'http://identifiers.org/biomodels.db/MODEL1506230001']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/22457331']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606', 'http://identifiers.org/taxonomy/10090']
+#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000165', 'http://identifiers.org/bto/BTO:0000567']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0032869']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 28 molecules and 32 reactions. The translated model has 14 molecules and 32 rules'
+###
+begin model
+begin parameters
+	PI3K_compartment_2 1.785523e+24 #original 2.965substance/volume
+	PI3K 1.785523e+24 #original 2.965substance/volume
+	r1_k1 0.008125
+	r2_k1 0.005739
+	r3_k1 0.005285
+	r4_k1 1.000000
+	r5_k1 0.134664
+	r6_k1 0.699505
+	r7_k1 4.507690
+	r8_k1 0.006273
+	r9_k1 0.051378
+	r10_k1 0.025376
+	r11_k1 0.000100
+	r12_k1 0.000100
+	r13_k1 0.003283
+	r14_k1 7.528420
+	r15_k1 4.073900
+	r16_k1 0.025571
+	r17_k1 0.149328
+	r18_k1 0.000100
+	r19_k1 0.099997
+	r20_k1 0.030973
+	r21_k1 0.000100
+	r22_k1 0.999989
+	r23_k1 0.023918
+	r24_k1 0.999991
+	r25_k1 0.403706
+	r26_k1 0.073093
+	r27_k1 0.031890
+	r28_k1 5.903720
+	r29_k1 1.000000
+	r30_k1 0.100000
+	r31_k1 0.999985
+	r32_k1 0.000232
+end parameters
+begin compartments
+	#volume units: volume
+	compartment_1 3 1.0 #Membrane
+	compartment_2 3 1.0 #Cytoplasm
+end compartments
+begin molecule types
+	#^ bqbiol:is uniprot:P01308
+	Insulin(ir_beta)
+	#^ bqbiol:hasPart uniprot:Q92574, uniprot:P49815
+	TSC_clx(p_~P_~0)
+	#^ bqbiol:is uniprot:P31749
+	Akt(_ps473~_PS473~0,_pt308~_PT308~0)
+	#^ bqbiol:is uniprot:P49137, uniprot:P78527, uniprot:Q13315, uniprot:Q13153
+	PDK2(_p~_P~0)
+	#^ bqbiol:isVersionOf uniprot:P27986
+	PI3K_variant(_p~_P~0)
+	#^ bqbiol:is uniprot:P23443
+	p70S6K(_pt389~_PT389~0)
+	#^ bqbiol:hasPart uniprot:P35568, uniprot:P42336
+	IRS1_pS636_PI3K()
+	#^ bqbiol:hasPart uniprot:P42336, uniprot:P35568
+	IRS1_PI3K(_p~_P~0)
+	#^ bqbiol:is uniprot:P42345
+	mTORC1(amino_acids)
+	#^ bqbiol:is uniprot:Q96B36
+	PRAS40(_ps183~_PS183~0,_pt246~_PT246~0)
+	#^ bqbiol:is uniprot:P42345
+	mTORC2(_ps2481~_PS2481~0)
+	#^ bqbiol:is uniprot:P06213
+	IR_beta(insulin)
+	#^ bqbiol:is uniprot:P06213
+	IR_beta_refractory()
+	Amino_Acids(mtorc1)
+end molecule types
+begin seed species
+	@compartment_1:IR_beta(insulin) 7.2971585e+24 # 12.1175mol/L * 6.022e23/mol *1.0L #IR_beta #species_20
+	@compartment_1:$Insulin(ir_beta) 6.022e+25 #original 100.0substance/volume  #Insulin #species_41
+	@compartment_2:$Amino_Acids(mtorc1) 6.022e+25 #original 100.0substance/volume  #Amino_Acids #species_28
+	@compartment_2:mTORC2(_ps2481~0) 3.7441785e+24 #original 6.2175substance/volume  #mTORC2 #species_5
+	@compartment_2:mTORC1(amino_acids) 2.6030095e+24 #original 4.3225substance/volume  #mTORC1 #species_11
+	@compartment_2:TSC_clx(p_~0) 6.022e+24 #original 10.0substance/volume  #TSC_clx #species_6
+	@compartment_2:PRAS40(_ps183~0,_pt246~0) 4.40915785e+25 #original 73.2175substance/volume  #PRAS40 #species_9
+	@compartment_2:Akt(_ps473~0,_pt308~0) 8.6795086e+25 #original 144.13substance/volume  #Akt #species_27
+	@compartment_2:p70S6K(_pt389~0) 7.65230595e+25 #original 127.0725substance/volume  #p70S6K #species_47
+	@compartment_2:PDK2(_p~0) 7.2971585e+24 #original 12.1175substance/volume  #PDK2 #species_13
+	@compartment_2:IRS1_PI3K(_p~0) (2.965) #species_42
+	@compartment_2:PI3K_variant(_p~0) (2.965) #species_18
+end seed species
+begin observables
+	Species IR_beta_compartment_1 @compartment_1:IR_beta(insulin) #IR_beta
+	Species IR_beta_pY1146_compartment_1 @compartment_1:Insulin(ir_beta!114).IR_beta(insulin!114) #IR_beta_pY1146
+	Species IR_beta_refractory_compartment_1 @compartment_1:IR_beta_refractory() #IR_beta_refractory
+	Species Insulin_compartment_1 @compartment_1:Insulin(ir_beta) #Insulin
+	Species Amino_Acids_compartment_2 @compartment_2:Amino_Acids(mtorc1) #Amino_Acids
+	Species mTORC2_compartment_2 @compartment_2:mTORC2(_ps2481~0) #mTORC2
+	Species mTORC1_pS2448_compartment_2 @compartment_2:mTORC1(amino_acids!113).Amino_Acids(mtorc1!113) #mTORC1_pS2448
+	Species mTORC1_compartment_2 @compartment_2:mTORC1(amino_acids) #mTORC1
+	Species IRS1_pS636_PI3K_compartment_2 @compartment_2:IRS1_pS636_PI3K() #IRS1_pS636_PI3K
+	Species IRS1_p_PI3K_compartment_2 @compartment_2:IRS1_PI3K(_p~_P) #IRS1_p_PI3K
+	Species mTORC2_pS2481_compartment_2 @compartment_2:mTORC2(_ps2481~_PS2481) #mTORC2_pS2481
+	Species p70S6K_pT389_compartment_2 @compartment_2:p70S6K(_pt389~_PT389) #p70S6K_pT389
+	Species IRS1_PI3K_compartment_2 @compartment_2:IRS1_PI3K(_p~0) #IRS1_PI3K
+	Species Akt_pT308_compartment_2 @compartment_2:Akt(_ps473~0,_pt308~_PT308) #Akt_pT308
+	Species TSC_clx_compartment_2 @compartment_2:TSC_clx(p_~0) #TSC_clx
+	Species PRAS40_compartment_2 @compartment_2:PRAS40(_ps183~0,_pt246~0) #PRAS40
+	Species PRAS40_pS183_compartment_2 @compartment_2:PRAS40(_ps183~_PS183,_pt246~0) #PRAS40_pS183
+	Species PRAS40_pT246_compartment_2 @compartment_2:PRAS40(_ps183~0,_pt246~_PT246) #PRAS40_pT246
+	Species Akt_compartment_2 @compartment_2:Akt(_ps473~0,_pt308~0) #Akt
+	Species Akt_pT308_pS473_compartment_2 @compartment_2:Akt(_ps473~_PS473,_pt308~_PT308) #Akt_pT308_pS473
+	Species p70S6K_compartment_2 @compartment_2:p70S6K(_pt389~0) #p70S6K
+	Species TSC_p_clx_compartment_2 @compartment_2:TSC_clx(p_~P_) #TSC_p_clx
+	Species PDK2_compartment_2 @compartment_2:PDK2(_p~0) #PDK2
+	Species PDK2_p_compartment_2 @compartment_2:PDK2(_p~_P) #PDK2_p
+	Species PI3K_variant_p_compartment_2 @compartment_2:PI3K_variant(_p~_P) #PI3K_variant_p
+	Species PI3K_variant_compartment_2 @compartment_2:PI3K_variant(_p~0) #PI3K_variant
+end observables
+begin reaction rules
+	reaction_9: TSC_clx(p_~P_)@compartment_2 -> TSC_clx(p_~0)@compartment_2 r1_k1 #Modifiers(species_8)
+	reaction_16: p70S6K(_pt389~0)@compartment_2 + mTORC1(amino_acids!113)@compartment_2.Amino_Acids(mtorc1!113)@compartment_2 -> p70S6K(_pt389~_PT389)@compartment_2 + mTORC1(amino_acids!113)@compartment_2.Amino_Acids(mtorc1!113)@compartment_2 r2_k1 #Modifiers(species_47, species_2)
+	reaction_17: p70S6K(_pt389~_PT389)@compartment_2 -> p70S6K(_pt389~0)@compartment_2 r3_k1 #Modifiers(species_17)
+	reaction_22: IRS1_PI3K(_p~0)@compartment_2 + p70S6K(_pt389~_PT389)@compartment_2 -> IRS1_pS636_PI3K()@compartment_2 + p70S6K(_pt389~_PT389)@compartment_2 r4_k1 #Modifiers(species_42, species_17)
+	reaction_23: IRS1_PI3K(_p~0)@compartment_2 + Insulin(ir_beta!114)@compartment_1.IR_beta(insulin!114)@compartment_1 -> IRS1_PI3K(_p~_P)@compartment_2 + Insulin(ir_beta!114)@compartment_1.IR_beta(insulin!114)@compartment_1 r5_k1 #Modifiers(species_42, species_21)
+	reaction_31: Akt(_ps473~0,_pt308~0)@compartment_2 + IRS1_PI3K(_p~_P)@compartment_2 -> Akt(_ps473~0,_pt308~_PT308)@compartment_2 + IRS1_PI3K(_p~_P)@compartment_2 r6_k1 #Modifiers(species_27, species_7)
+	reaction_32: Akt(_ps473~0,_pt308~_PT308)@compartment_2 + mTORC2(_ps2481~_PS2481)@compartment_2 -> Akt(_ps473~_PS473,_pt308~_PT308)@compartment_2 + mTORC2(_ps2481~_PS2481)@compartment_2 r7_k1 #Modifiers(species_3, species_22)
+	reaction_33: TSC_clx(p_~0)@compartment_2 + Akt(_ps473~0,_pt308~_PT308)@compartment_2 -> TSC_clx(p_~P_)@compartment_2 + Akt(_ps473~0,_pt308~_PT308)@compartment_2 r8_k1 #Modifiers(species_6, species_3)
+	reaction_40: mTORC1(amino_acids)@compartment_2 + Amino_Acids(mtorc1)@compartment_2 -> mTORC1(amino_acids!113)@compartment_2.Amino_Acids(mtorc1!113)@compartment_2 r9_k1 #Modifiers(species_11, species_28)
+	reaction_41: IR_beta(insulin)@compartment_1 + Insulin(ir_beta)@compartment_1 -> Insulin(ir_beta!114)@compartment_1.IR_beta(insulin!114)@compartment_1 r10_k1 #Modifiers(species_20, species_41)
+	reaction_46: IRS1_PI3K(_p~_P)@compartment_2 + p70S6K(_pt389~_PT389)@compartment_2 -> IRS1_pS636_PI3K()@compartment_2 + p70S6K(_pt389~_PT389)@compartment_2 r11_k1 #Modifiers(species_7, species_17)
+	reaction_53: IRS1_pS636_PI3K()@compartment_2 -> 0  r12_k1 #Modifiers(species_19)
+	reaction_55: IRS1_PI3K(_p~_P)@compartment_2 -> IRS1_PI3K(_p~0)@compartment_2 r13_k1 #Modifiers(species_7)
+	reaction_44: Akt(_ps473~_PS473,_pt308~_PT308)@compartment_2 -> Akt(_ps473~0,_pt308~_PT308)@compartment_2 r14_k1 #Modifiers(species_4)
+	reaction_61: Akt(_ps473~0,_pt308~_PT308)@compartment_2 -> Akt(_ps473~0,_pt308~0)@compartment_2 r15_k1 #Modifiers(species_3)
+	reaction_1: mTORC2(_ps2481~_PS2481)@compartment_2 -> mTORC2(_ps2481~0)@compartment_2 r16_k1 #Modifiers(species_22)
+	reaction_2: Insulin(ir_beta!114)@compartment_1.IR_beta(insulin!114)@compartment_1 -> IR_beta_refractory()@compartment_1 r17_k1 #Modifiers(species_21)
+	reaction_3: TSC_clx(p_~0)@compartment_2 + Akt(_ps473~_PS473,_pt308~_PT308)@compartment_2 -> TSC_clx(p_~P_)@compartment_2 + Akt(_ps473~_PS473,_pt308~_PT308)@compartment_2 r18_k1 #Modifiers(species_6, species_4)
+	reaction_4: 0  -> IRS1_PI3K(_p~0)@compartment_2 r19_k1 #Modifiers(species_1)
+	reaction_5: IR_beta_refractory()@compartment_1 -> IR_beta(insulin)@compartment_1 r20_k1 #Modifiers(species_15)
+	reaction_6: PRAS40(_ps183~0,_pt246~0)@compartment_2 + Akt(_ps473~_PS473,_pt308~_PT308)@compartment_2 -> PRAS40(_ps183~0,_pt246~_PT246)@compartment_2 + Akt(_ps473~_PS473,_pt308~_PT308)@compartment_2 r21_k1 #Modifiers(species_9, species_4)
+	reaction_7: mTORC1(amino_acids!113)@compartment_2.Amino_Acids(mtorc1!113)@compartment_2 + TSC_clx(p_~0)@compartment_2 -> mTORC1(amino_acids)@compartment_2 + TSC_clx(p_~0)@compartment_2 r22_k1 #Modifiers(species_2, species_6)
+	reaction_8: PRAS40(_ps183~0,_pt246~0)@compartment_2 + Akt(_ps473~0,_pt308~_PT308)@compartment_2 -> PRAS40(_ps183~0,_pt246~_PT246)@compartment_2 + Akt(_ps473~0,_pt308~_PT308)@compartment_2 r23_k1 #Modifiers(species_9, species_3)
+	reaction_10: PRAS40(_ps183~0,_pt246~_PT246)@compartment_2 -> PRAS40(_ps183~0,_pt246~0)@compartment_2 r24_k1 #Modifiers(species_10)
+	reaction_11: PRAS40(_ps183~_PS183,_pt246~0)@compartment_2 -> PRAS40(_ps183~0,_pt246~0)@compartment_2 r25_k1 #Modifiers(species_12)
+	reaction_12: PRAS40(_ps183~0,_pt246~0)@compartment_2 + mTORC1(amino_acids!113)@compartment_2.Amino_Acids(mtorc1!113)@compartment_2 -> PRAS40(_ps183~_PS183,_pt246~0)@compartment_2 + mTORC1(amino_acids!113)@compartment_2.Amino_Acids(mtorc1!113)@compartment_2 r26_k1 #Modifiers(species_9, species_2)
+	reaction_18: mTORC2(_ps2481~0)@compartment_2 + PI3K_variant(_p~_P)@compartment_2 -> mTORC2(_ps2481~_PS2481)@compartment_2 + PI3K_variant(_p~_P)@compartment_2 r27_k1 #Modifiers(species_5, species_16)
+	reaction_13: Akt(_ps473~0,_pt308~_PT308)@compartment_2 + PDK2(_p~_P)@compartment_2 -> Akt(_ps473~_PS473,_pt308~_PT308)@compartment_2 + PDK2(_p~_P)@compartment_2 r28_k1 #Modifiers(species_3, species_14)
+	reaction_14: PDK2(_p~_P)@compartment_2 -> PDK2(_p~0)@compartment_2 r29_k1 #Modifiers(species_14)
+	reaction_15: PDK2(_p~0)@compartment_2 + Insulin(ir_beta!114)@compartment_1.IR_beta(insulin!114)@compartment_1 -> PDK2(_p~_P)@compartment_2 + Insulin(ir_beta!114)@compartment_1.IR_beta(insulin!114)@compartment_1 r30_k1 #Modifiers(species_13, species_21)
+	reaction_19: PI3K_variant(_p~0)@compartment_2 + Insulin(ir_beta!114)@compartment_1.IR_beta(insulin!114)@compartment_1 -> PI3K_variant(_p~_P)@compartment_2 + Insulin(ir_beta!114)@compartment_1.IR_beta(insulin!114)@compartment_1 r31_k1 #Modifiers(species_18, species_21)
+	reaction_20: PI3K_variant(_p~_P)@compartment_2 -> PI3K_variant(_p~0)@compartment_2 r32_k1 #Modifiers(species_16)
+end reaction rules
+end model

@@ -1,0 +1,120 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL6615048798', 'http://identifiers.org/biomodels.db/BIOMD0000000009']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/8816754']
+#@BQB_IS_HOMOLOG_TO:['http://identifiers.org/reactome/REACT_634']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0000165']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/8355']
+#@creatorEmail:'raim@tbi.univie.ac.at'
+#@creatorName:'Machne Rainer'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 26 molecules and 20 reactions. The translated model has 7 molecules and 20 rules'
+###
+begin model
+begin parameters
+	K_PP_norm_max 0.900049
+	r1_a1 1000.000000
+	r1_d1 150.000000
+	r2_k2 150.000000
+	r3_a2 1000.000000
+	r3_d2 150.000000
+	r4_k2 150.000000
+	r5_a3 1000.000000
+	r5_d3 150.000000
+	r6_k3 150.000000
+	r7_a4 1000.000000
+	r7_d4 150.000000
+	r8_k4 150.000000
+	r9_a5 1000.000000
+	r9_d5 150.000000
+	r10_k5 150.000000
+	r11_a6 1000.000000
+	r11_d6 150.000000
+	r12_k6 150.000000
+	r13_a7 1000.000000
+	r13_d7 150.000000
+	r14_k7 150.000000
+	r15_a8 1000.000000
+	r15_d8 150.000000
+	r16_k8 150.000000
+	r17_a9 1000.000000
+	r17_d9 150.000000
+	r18_k9 150.000000
+	r19_a10 1000.000000
+	r19_d10 150.000000
+	r20_k10 150.000000
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf uniprot:Q05116
+	Mek1(_p~_P~0,erk2,mapkk_pase,mos,p~P~0)
+	MAPKKKinactivator(mos)
+	#^ bqbiol:isVersionOf interpro:IPR003577
+	MAPKKKactivator__Ras__(mos)
+	#^ bqbiol:isVersionOf uniprot:P12965
+	Mos(_p~_P~0,mapkkkactivator__ras__,mapkkkinactivator,mek1)
+	#^ bqbiol:is uniprot:Q90W58
+	MAPK_Pase(erk2)
+	MAPKK_Pase(mek1)
+	#^ bqbiol:isVersionOf uniprot:P26696
+	Erk2(_p~_P~0,mapk_pase,mek1,p~P~0)
+end molecule types
+begin seed species
+	MAPKKKactivator__Ras__(mos) 18066000000000.0 # (3e-05 * 1e-06)mol/L * 6.022e23/mol *1.0L #MAPKKKactivator__Ras__ #E1
+	MAPKKKinactivator(mos) 180659999999999.97 #original 0.0003micromole/L #MAPKKKinactivator #E2
+	Mos(_p~0,mapkkkactivator__ras__,mapkkkinactivator,mek1) 1806600000000000.0 #original 0.003micromole/L #Mos #KKK
+	Mek1(_p~0,erk2,mapkk_pase,mos,p~0) 7.2264e+17 #original 1.2micromole/L #Mek1 #KK
+	Erk2(_p~0,mapk_pase,mek1,p~0) 7.2264e+17 #original 1.2micromole/L #Erk2 #K
+	MAPK_Pase(erk2) 7.2264e+16 #original 0.12micromole/L #MAPK_Pase #KPase
+	MAPKK_Pase(mek1) 180659999999999.97 #original 0.0003micromole/L #MAPKK_Pase #KKPase
+end seed species
+begin observables
+	Species MAPKKKactivator__Ras__ MAPKKKactivator__Ras__(mos) #MAPKKK activator (Ras)
+	Species MAPKKKinactivator MAPKKKinactivator(mos) #MAPKKK inactivator
+	Species Mos Mos(_p~0,mapkkkactivator__ras__,mapkkkinactivator,mek1) #Mos
+	Species Mos_P Mos(_p~_P,mapkkkactivator__ras__,mapkkkinactivator,mek1) #Mos-P
+	Species Mek1 Mek1(_p~0,erk2,mapkk_pase,mos,p~0) #Mek1
+	Species Mek1_P Mek1(_p~_P,erk2,mapkk_pase,mos,p~0) #Mek1-P
+	Species Mek1_PP Mek1(_p~_P,erk2,mapkk_pase,mos,p~P) #Mek1-PP
+	Species Erk2 Erk2(_p~0,mapk_pase,mek1,p~0) #Erk2
+	Species Erk2_P Erk2(_p~_P,mapk_pase,mek1,p~0) #Erk2-P
+	Species Erk2_PP Erk2(_p~_P,mapk_pase,mek1,p~P) #Erk2-PP
+	Species MAPK_Pase MAPK_Pase(erk2) #MAPK-Pase
+	Species MAPKK_Pase MAPKK_Pase(mek1) #MAPKK-Pase
+	Species E1_Mos Mos(_p~0,mapkkkactivator__ras__!5,mapkkkinactivator,mek1).MAPKKKactivator__Ras__(mos!5) #E1_Mos
+	Species E2_Mos_P Mos(_p~_P,mapkkkactivator__ras__,mapkkkinactivator!8,mek1).MAPKKKinactivator(mos!8) #E2_Mos-P
+	Species P_Mos_Mek1 Mek1(_p~0,erk2,mapkk_pase,mos!9,p~0).Mos(_p~_P,mapkkkactivator__ras__,mapkkkinactivator,mek1!9) #P-Mos_Mek1
+	Species P_Mos_P_Mek1 Mek1(_p~_P,erk2,mapkk_pase,mos!9,p~0).Mos(_p~_P,mapkkkactivator__ras__,mapkkkinactivator,mek1!9) #P-Mos_P-Mek1
+	Species PP_Mek1_Erk2 Mek1(_p~_P,erk2!10,mapkk_pase,mos,p~P).Erk2(_p~0,mapk_pase,mek1!10,p~0) #PP-Mek1_Erk2
+	Species PP_Mek1_P_Erk2 Mek1(_p~_P,erk2!10,mapkk_pase,mos,p~P).Erk2(_p~_P,mapk_pase,mek1!10,p~0) #PP-Mek1_P-Erk2
+	Species MAPKK_Pase_PP_Mek1 Mek1(_p~_P,erk2,mapkk_pase!7,mos,p~P).MAPKK_Pase(mek1!7) #MAPKK-Pase_PP-Mek1
+	Species MAPKK_Pase_P_Mek1 Mek1(_p~0,erk2,mapkk_pase!7,mos,p~0).MAPKK_Pase(mek1!7) #MAPKK-Pase_P-Mek1
+	Species MAPK_Pase_PP_Erk2 Erk2(_p~_P,mapk_pase!6,mek1,p~P).MAPK_Pase(erk2!6) #MAPK-Pase_PP-Erk2
+	Species MAPK_Pase_P_Erk2 Erk2(_p~0,mapk_pase!6,mek1,p~0).MAPK_Pase(erk2!6) #MAPK-Pase_P-Erk2
+end observables
+begin functions
+	K_PP_norm_ar() = (Erk2_PP + MAPK_Pase_PP_Erk2)/(Erk2 + Erk2_P + Erk2_PP + MAPK_Pase_PP_Erk2 + MAPK_Pase_P_Erk2 + PP_Mek1_Erk2 + PP_Mek1_P_Erk2)
+	relativemaximalK_PP_ar() = K_PP_norm_ar/K_PP_norm_max
+	KKK_P_norm_ar() = (Mos_P + P_Mos_Mek1 + P_Mos_P_Mek1)/(Mos + Mos_P + P_Mos_Mek1 + P_Mos_P_Mek1)
+	KK_PP_norm_ar() = (MAPKK_Pase_PP_Mek1 + Mek1_PP + PP_Mek1_Erk2 + PP_Mek1_P_Erk2)/(MAPKK_Pase_PP_Mek1 + MAPKK_Pase_P_Mek1 + Mek1 + Mek1_P + Mek1_PP + PP_Mek1_Erk2 + PP_Mek1_P_Erk2 + P_Mos_Mek1 + P_Mos_P_Mek1)
+end functions
+begin reaction rules
+	r1a: Mos(_p~0,mapkkkactivator__ras__,mapkkkinactivator,mek1) + MAPKKKactivator__Ras__(mos) <-> Mos(_p~0,mapkkkactivator__ras__!5,mapkkkinactivator,mek1).MAPKKKactivator__Ras__(mos!5) r1_a1,r1_d1
+	r1b: Mos(_p~0,mapkkkactivator__ras__!5,mapkkkinactivator,mek1).MAPKKKactivator__Ras__(mos!5) -> MAPKKKactivator__Ras__(mos) + Mos(_p~_P,mapkkkactivator__ras__,mapkkkinactivator,mek1) r2_k2
+	r2a: Mos(_p~_P,mapkkkactivator__ras__,mapkkkinactivator,mek1) + MAPKKKinactivator(mos) <-> Mos(_p~_P,mapkkkactivator__ras__,mapkkkinactivator!8,mek1).MAPKKKinactivator(mos!8) r3_a2,r3_d2
+	r2b: Mos(_p~_P,mapkkkactivator__ras__,mapkkkinactivator!8,mek1).MAPKKKinactivator(mos!8) -> MAPKKKinactivator(mos) + Mos(_p~0,mapkkkactivator__ras__,mapkkkinactivator,mek1) r4_k2
+	r3a: Mek1(_p~0,erk2,mapkk_pase,mos,p~0) + Mos(_p~_P,mapkkkactivator__ras__,mapkkkinactivator,mek1) <-> Mek1(_p~0,erk2,mapkk_pase,mos!9,p~0).Mos(_p~_P,mapkkkactivator__ras__,mapkkkinactivator,mek1!9) r5_a3,r5_d3
+	r3b: Mek1(_p~0,erk2,mapkk_pase,mos!9,p~0).Mos(_p~_P,mapkkkactivator__ras__,mapkkkinactivator,mek1!9) -> Mek1(_p~_P,erk2,mapkk_pase,mos,p~0) + Mos(_p~_P,mapkkkactivator__ras__,mapkkkinactivator,mek1) r6_k3
+	r4a: Mek1(_p~_P,erk2,mapkk_pase,mos,p~0) + MAPKK_Pase(mek1) <-> Mek1(_p~0,erk2,mapkk_pase!7,mos,p~0).MAPKK_Pase(mek1!7) r7_a4,r7_d4
+	r4b: Mek1(_p~0,erk2,mapkk_pase!7,mos,p~0).MAPKK_Pase(mek1!7) -> Mek1(_p~0,erk2,mapkk_pase,mos,p~0) + MAPKK_Pase(mek1) r8_k4
+	r5a: Mek1(_p~_P,erk2,mapkk_pase,mos,p~0) + Mos(_p~_P,mapkkkactivator__ras__,mapkkkinactivator,mek1) <-> Mek1(_p~_P,erk2,mapkk_pase,mos!9,p~0).Mos(_p~_P,mapkkkactivator__ras__,mapkkkinactivator,mek1!9) r9_a5,r9_d5
+	r5b: Mek1(_p~_P,erk2,mapkk_pase,mos!9,p~0).Mos(_p~_P,mapkkkactivator__ras__,mapkkkinactivator,mek1!9) -> Mek1(_p~_P,erk2,mapkk_pase,mos,p~P) + Mos(_p~_P,mapkkkactivator__ras__,mapkkkinactivator,mek1) r10_k5
+	r6a: Mek1(_p~_P,erk2,mapkk_pase,mos,p~P) + MAPKK_Pase(mek1) <-> Mek1(_p~_P,erk2,mapkk_pase!7,mos,p~P).MAPKK_Pase(mek1!7) r11_a6,r11_d6
+	r6b: Mek1(_p~_P,erk2,mapkk_pase!7,mos,p~P).MAPKK_Pase(mek1!7) -> Mek1(_p~_P,erk2,mapkk_pase,mos,p~0) + MAPKK_Pase(mek1) r12_k6
+	r7a: Erk2(_p~0,mapk_pase,mek1,p~0) + Mek1(_p~_P,erk2,mapkk_pase,mos,p~P) <-> Mek1(_p~_P,erk2!10,mapkk_pase,mos,p~P).Erk2(_p~0,mapk_pase,mek1!10,p~0) r13_a7,r13_d7
+	r7b: Mek1(_p~_P,erk2!10,mapkk_pase,mos,p~P).Erk2(_p~0,mapk_pase,mek1!10,p~0) -> Erk2(_p~_P,mapk_pase,mek1,p~0) + Mek1(_p~_P,erk2,mapkk_pase,mos,p~P) r14_k7
+	r8a: Erk2(_p~_P,mapk_pase,mek1,p~0) + MAPK_Pase(erk2) <-> Erk2(_p~0,mapk_pase!6,mek1,p~0).MAPK_Pase(erk2!6) r15_a8,r15_d8
+	r8b: Erk2(_p~0,mapk_pase!6,mek1,p~0).MAPK_Pase(erk2!6) -> Erk2(_p~0,mapk_pase,mek1,p~0) + MAPK_Pase(erk2) r16_k8
+	r9a: Erk2(_p~_P,mapk_pase,mek1,p~0) + Mek1(_p~_P,erk2,mapkk_pase,mos,p~P) <-> Mek1(_p~_P,erk2!10,mapkk_pase,mos,p~P).Erk2(_p~_P,mapk_pase,mek1!10,p~0) r17_a9,r17_d9
+	r9b: Mek1(_p~_P,erk2!10,mapkk_pase,mos,p~P).Erk2(_p~_P,mapk_pase,mek1!10,p~0) -> Mek1(_p~_P,erk2,mapkk_pase,mos,p~P) + Erk2(_p~_P,mapk_pase,mek1,p~P) r18_k9
+	r10a: Erk2(_p~_P,mapk_pase,mek1,p~P) + MAPK_Pase(erk2) <-> Erk2(_p~_P,mapk_pase!6,mek1,p~P).MAPK_Pase(erk2!6) r19_a10,r19_d10
+	r10b: Erk2(_p~_P,mapk_pase!6,mek1,p~P).MAPK_Pase(erk2!6) -> Erk2(_p~_P,mapk_pase,mek1,p~0) + MAPK_Pase(erk2) r20_k10
+end reaction rules
+end model

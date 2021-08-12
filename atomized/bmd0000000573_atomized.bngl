@@ -1,0 +1,46 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000573', 'http://identifiers.org/biomodels.db/MODEL1503180001']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/24997239']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:526']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0045087']
+#@creatorEmail:'lloret@ebi.ac.uk'
+#@creatorName:'Lloret i Villas Audald'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 2 molecules and 7 reactions. The translated model has 2 molecules and 7 rules'
+###
+begin model
+begin parameters
+	r1_v 0.001340
+	r2_Km 380.000000
+	r2_Vmax 0.134000
+	r3_k1 0.029500
+	r4_k1 0.000068
+	r5_v 0.070000
+	r6_k1 0.927000
+	r7_k1 0.000050
+end parameters
+begin molecule types
+	#^ bqbiol:hasPart go:GO:0039660, go:GO:0019021
+	V()
+	C()
+end molecule types
+begin seed species
+	V() 6.022e+23 # 1.0mol/L * 6.022e23/mol *1.0L #V #V
+end seed species
+begin observables
+	Species V V() #V
+	Species C C() #C
+end observables
+begin functions
+	fRate1() = 0.134/(V + 380.0)
+end functions
+begin reaction rules
+	Kb: 0  -> V() r1_v
+	Kv: V() -> V() + V() fRate1() #Modifiers(V)
+	Kcv: V() + C() -> C() r3_k1 #Modifiers(V, C)
+	Kdv: V() -> 0  r4_k1 #Modifiers(V)
+	Kc: 0  -> C() r5_v
+	Kvc: V() + C() -> V() r6_k1 #Modifiers(V, C)
+	Kdc: C() -> 0  r7_k1 #Modifiers(C)
+end reaction rules
+end model

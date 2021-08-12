@@ -1,0 +1,119 @@
+###
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/go/GO:0002837', 'http://identifiers.org/efo/0000311', 'http://identifiers.org/doid/DOID:4159', 'http://identifiers.org/doid/DOID:162', 'http://identifiers.org/ncit/C62713']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/11276', 'http://identifiers.org/taxonomy/10090']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/31410657']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1909050001', 'http://identifiers.org/biomodels.db/BIOMD0000000806']
+#@creatorEmail:'muffet.ng@qq.com'
+#@creatorName:'Ng Szeyi'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 6 molecules and 25 reactions. The translated model has 5 molecules and 27 rules'
+###
+begin model
+begin parameters
+	r 0.924 #units:unit_0
+	K 3300000000.0 #units:unit_1
+	d_v 0.011
+	v_h_u 100000.0
+	d_u 0.44
+	h_e 1.0
+	d_m1 0.01
+	h_m 1000.0
+	d_m2 0.4
+	delta_i 0.475 #units:unit_0
+	b 2500.0
+	v_d_u 4.4 #units:unit_0
+	v_d_m1 1.5 #units:unit_0
+	omega 2.0 #units:unit_0
+	d_em1 0.2
+	v_a_1 1e-06 #units:unit_0
+	u_a_1 3e-06 #units:unit_0
+	p_m1 0.22 #units:unit_0
+	M 100000000.0
+	o_r_m1 0.001 #units:unit_0
+	o_r_m2 0.001 #units:unit_0
+	u_r_m1 4.0 #units:unit_0
+	v_r_m2 0.5 #units:unit_0
+	p_m2 0.22 #units:unit_0
+	h_u 5000000000.0
+	h_v 0.105636
+	d_em2 0.2 #units:unit_0
+	u_a_2 4e-08 #units:unit_0
+	d_ee 0.4 #units:unit_0
+	p_e 2070.0 #units:unit_0
+	d_t 1e-10 #units:unit_0
+	H 0
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf ncit:C123783
+	M2_Macrophage__Xm2__()
+	#^ bqbiol:isVersionOf cl:CL:0000794
+	Effector_Cytotoxic_CD8_TCells__Xe__()
+	#^ bqbiol:isVersionOf ncit:C156004
+	M1_Macrophage__Xm1__()
+	#^ bqbiol:isVersionOf bto:BTO:0002014, efo:EFO:0000311, bto:BTO:0000152
+	Infected_Tumour_Cells__Xi__(UnInfected_Tumour_Cells__Xu__~UnInfected_Tumour_Cells__Xu__~0)
+	#^ bqbiol:isVersionOf taxonomy:11276
+	Virus__Xv__()
+end molecule types
+begin seed species
+	Infected_Tumour_Cells__Xi__(UnInfected_Tumour_Cells__Xu__~UnInfected_Tumour_Cells__Xu__) 3.0110000000000003e+26 # (500000.0 * 0.001)mol/L * 6.022e23/mol *1.0L #UnInfected_Tumour_Cells__Xu__ #UnInfected_Tumour_Cells_Xu
+end seed species
+begin observables
+	Species UnInfected_Tumour_Cells__Xu__ Infected_Tumour_Cells__Xi__(UnInfected_Tumour_Cells__Xu__~UnInfected_Tumour_Cells__Xu__) #UnInfected_Tumour_Cells(Xu)
+	Species Infected_Tumour_Cells__Xi__ Infected_Tumour_Cells__Xi__(UnInfected_Tumour_Cells__Xu__~0) #Infected_Tumour_Cells(Xi)
+	Species Virus__Xv__ Virus__Xv__() #Virus(Xv)
+	Species Effector_Cytotoxic_CD8_TCells__Xe__ Effector_Cytotoxic_CD8_TCells__Xe__() #Effector_Cytotoxic_CD8_TCells (Xe)
+	Species M1_Macrophage__Xm1__ M1_Macrophage__Xm1__() #M1_Macrophage(Xm1)
+	Species M2_Macrophage__Xm2__ M2_Macrophage__Xm2__() #M2_Macrophage(Xm2)
+end observables
+begin functions
+	fRate0() = UnInfected_Tumour_Cells__Xu__*r
+	fRate0m() = UnInfected_Tumour_Cells__Xu__*r/K
+	fRate1() = Virus__Xv__*d_v/(UnInfected_Tumour_Cells__Xu__ + v_h_u)
+	fRate2() = Effector_Cytotoxic_CD8_TCells__Xe__*d_u/(Effector_Cytotoxic_CD8_TCells__Xe__ + h_e)
+	fRate3() = M1_Macrophage__Xm1__*d_m1/(M2_Macrophage__Xm2__ + h_m)
+	fRate4() = M2_Macrophage__Xm2__*UnInfected_Tumour_Cells__Xu__*d_m2/(M2_Macrophage__Xm2__ + h_m)
+	fRate6() = Infected_Tumour_Cells__Xi__*b*delta_i
+	fRate7() = Effector_Cytotoxic_CD8_TCells__Xe__*v_d_u/(Effector_Cytotoxic_CD8_TCells__Xe__ + h_e)
+	fRate8() = M1_Macrophage__Xm1__*v_d_m1/(M2_Macrophage__Xm2__ + h_m)
+	fRate11() = M1_Macrophage__Xm1__*v_d_m1/(M2_Macrophage__Xm2__ + h_m)
+	fRate12() = Effector_Cytotoxic_CD8_TCells__Xe__*v_d_u/(Effector_Cytotoxic_CD8_TCells__Xe__ + h_e)
+	fRate13() = v_a_1*(Infected_Tumour_Cells__Xi__ + Virus__Xv__)
+	fRate14() = UnInfected_Tumour_Cells__Xu__*u_a_1
+	fRate15() = M1_Macrophage__Xm1__*p_m1*(1 - (M1_Macrophage__Xm1__ + M2_Macrophage__Xm2__)/M)
+	fRate16() = M1_Macrophage__Xm1__*(UnInfected_Tumour_Cells__Xu__*u_r_m1/(UnInfected_Tumour_Cells__Xu__ + h_u) + o_r_m1)
+	fRate17() = M2_Macrophage__Xm2__*(Virus__Xv__*v_r_m2/(Virus__Xv__ + h_v) + o_r_m2)
+	fRate19() = UnInfected_Tumour_Cells__Xu__*u_a_2
+	fRate20() = M2_Macrophage__Xm2__*p_m2*(1 - (M1_Macrophage__Xm1__ + M2_Macrophage__Xm2__)/M)
+	fRate22() = M1_Macrophage__Xm1__*p_e/(M2_Macrophage__Xm2__ + h_m)
+	fRate24() = UnInfected_Tumour_Cells__Xu__*d_t
+end functions
+begin reaction rules
+	Uninfected_tumour_cell_logistic_growth: 0  <-> Infected_Tumour_Cells__Xi__(UnInfected_Tumour_Cells__Xu__~UnInfected_Tumour_Cells__Xu__) fRate0(),fRate0m()
+	Uninfected_tumour_cell_infection: Infected_Tumour_Cells__Xi__(UnInfected_Tumour_Cells__Xu__~UnInfected_Tumour_Cells__Xu__) -> Infected_Tumour_Cells__Xi__(UnInfected_Tumour_Cells__Xu__~0) fRate1() #Modifiers(Virus_Xv)
+	Uninfected_tumour_cell_elimination_1: Infected_Tumour_Cells__Xi__(UnInfected_Tumour_Cells__Xu__~UnInfected_Tumour_Cells__Xu__) -> 0  fRate2() #Modifiers(Effector_Cytotoxic_CD8_TCells__Xe)
+	Uninfected_tumour_cell_elimination_2: Infected_Tumour_Cells__Xi__(UnInfected_Tumour_Cells__Xu__~UnInfected_Tumour_Cells__Xu__) -> 0  fRate3() #Modifiers(M1_Macrophage_Xm1, M2_Macrophage_Xm2)
+	Uninfected_tumour_cell_growth_M2: 0  -> Infected_Tumour_Cells__Xi__(UnInfected_Tumour_Cells__Xu__~UnInfected_Tumour_Cells__Xu__) fRate4() #Modifiers(M2_Macrophage_Xm2)
+	Infected_tumour_cell_death: Infected_Tumour_Cells__Xi__(UnInfected_Tumour_Cells__Xu__~0) -> 0  delta_i
+	virus_growth: 0  -> Virus__Xv__() fRate6() #Modifiers(Infected_Tumour_Cells_Xi)
+	Infected_tumour_cell_elimination_1: Infected_Tumour_Cells__Xi__(UnInfected_Tumour_Cells__Xu__~0) -> 0  fRate7() #Modifiers(Infected_Tumour_Cells_Xi, Effector_Cytotoxic_CD8_TCells__Xe)
+	Infected_tumour_cell_elimination_2: Infected_Tumour_Cells__Xi__(UnInfected_Tumour_Cells__Xu__~0) -> 0  fRate8() #Modifiers(Infected_Tumour_Cells_Xi, M1_Macrophage_Xm1, M2_Macrophage_Xm2)
+	virus_injection: 0  -> Virus__Xv__() H
+	virus_death: Virus__Xv__() -> 0  omega #Modifiers(Virus_Xv)
+	virus_clearance_1: Virus__Xv__() -> 0  fRate11() #Modifiers(Virus_Xv, M1_Macrophage_Xm1, M2_Macrophage_Xm2)
+	virus_clearance_2: Virus__Xv__() -> 0  fRate12() #Modifiers(Virus_Xv, Effector_Cytotoxic_CD8_TCells__Xe)
+	M1_activation_1: 0  -> M1_Macrophage__Xm1__() fRate13() #Modifiers(Infected_Tumour_Cells_Xi, Virus_Xv)
+	M1_activation_2: 0  -> M1_Macrophage__Xm1__() fRate14() #Modifiers(UnInfected_Tumour_Cells_Xu)
+	M1_recruitment_products_0: 0  -> M1_Macrophage__Xm1__() fRate15() #Modifiers(M2_Macrophage_Xm2)
+	M1_to_M2_repolarisation_reactants_0: 0  -> M1_Macrophage__Xm1__() -1*(fRate16()) #Modifiers(UnInfected_Tumour_Cells_Xu)
+	M1_to_M2_repolarisation_products_0: 0  -> M2_Macrophage__Xm2__() fRate16() #Modifiers(UnInfected_Tumour_Cells_Xu)
+	M2_to_M1_repolarisation_reactants_0: 0  -> M2_Macrophage__Xm2__() -1*(fRate17()) #Modifiers(Virus_Xv)
+	M2_to_M1_repolarisation_products_0: 0  -> M1_Macrophage__Xm1__() fRate17() #Modifiers(Virus_Xv)
+	M1_death: M1_Macrophage__Xm1__() -> 0  d_em1
+	M2_activation: 0  -> M2_Macrophage__Xm2__() fRate19() #Modifiers(UnInfected_Tumour_Cells_Xu)
+	M2_growth_products_0: 0  -> M2_Macrophage__Xm2__() fRate20() #Modifiers(M1_Macrophage_Xm1)
+	M2_death: M2_Macrophage__Xm2__() -> 0  d_em2
+	T_cells_activation: 0  -> Effector_Cytotoxic_CD8_TCells__Xe__() fRate22() #Modifiers(M1_Macrophage_Xm1, M2_Macrophage_Xm2)
+	T_cells_death: Effector_Cytotoxic_CD8_TCells__Xe__() -> 0  d_ee
+	T_cells_inactivation: Effector_Cytotoxic_CD8_TCells__Xe__() -> 0  fRate24() #Modifiers(UnInfected_Tumour_Cells_Xu)
+end reaction rules
+end model

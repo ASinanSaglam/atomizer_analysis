@@ -1,0 +1,230 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1206190000', 'http://identifiers.org/biomodels.db/BIOMD0000000422']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/22523240']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/3701']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0010476']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 37 molecules and 43 reactions. The translated model has 22 molecules and 54 rules'
+###
+begin model
+begin parameters
+	muGA20ox 0.047770755070625 #units:substance
+	muGA3ox 0.102600014140148 #units:substance
+	muGID 0.045708818961487 #units:substance
+	muDELLA 0.070794578438414 #units:substance
+	Pmem 2.66664 #units:substance
+	muGA 0.290804218727464 #units:substance
+	tGA4on 500.0 #units:substance
+	tGA4off 620.0 #units:substance
+	appliedGA4 2.0 #units:substance
+	omegaGA12ga13 0.006602803853512 #units:substance
+	R 1.0 #units:substance
+	omegaGA4 0
+	r1_la 1.350000
+	r2_ld 2.843151
+	r3_ua1 10.000000
+	r4_ud1 0.133045
+	r5_um 6.922089
+	r7_ka12 2904.118537
+	r8_kd12 2.672986
+	r9_km12 198.804277
+	r10_ka15 2073.224025
+	r11_kd15 0.008828
+	r12_km15 763.777072
+	r13_ka24 3099.189159
+	r14_kd24 0.015885
+	r15_km24 2.588461
+	r16_ka9 2073.224025
+	r17_kd9 0.008828
+	r18_km9 763.777072
+	r19_q 0.025119
+	r20_p 0.077625
+	r21_deltaDELLA 0.000528
+	r22_deltaGA20ox 0.192990
+	r23_deltaGA3ox 0.019299
+	r24_deltaGID 19.299031
+	r25_thetaGA20ox 0.638300
+	r26_thetaGID 0.000560
+	r27_thetaDELLA 0.010000
+	r28_thetaGA3ox 0.008200
+	r33_gammaGA20ox 3.514000
+	r34_gammaGID 3.514000
+	r35_gammaGA3ox 3.514000
+	r36_ua2 316.227800
+	r37_ud2 2.818400
+	r38_A1 0.030700
+	r43_B1 0.000398
+end parameters
+begin molecule types
+	#^ bqbiol:hasPart obo.chebi:CHEBI:32902, uniprot:Q9MAA7
+	GA4_GID_closed(della)
+	#^ bqbiol:isVersionOf obo.chebi:CHEBI:32902
+	GA4(_source~_SOURCE~0,gid)
+	gid_source()
+	ga20ox_source()
+	#^ bqbiol:isVersionOf kegg.genes:ath:AT4G25420
+	ga20ox()
+	#^ bqbiol:isVersionOf kegg.genes:ath:AT4G21690
+	GA3ox(ga9)
+	#^ bqbiol:isVersionOf kegg.genes:ath:AT4G21690
+	ga3ox()
+	#^ bqbiol:isVersionOf kegg.genes:ath:AT4G25420
+	GA20ox(ga12,ga15,ga24)
+	#^ bqbiol:isVersionOf obo.chebi:CHEBI:32906
+	GA24(ga20ox,sa7_degraded~sa7_degraded~0)
+	#^ bqbiol:isVersionOf obo.chebi:CHEBI:29605
+	GA9(ga3ox,sa8_degraded~sa8_degraded~0)
+	#^ bqbiol:isVersionOf uniprot:Q9MAA7
+	gid()
+	#^ bqbiol:isVersionOf obo.chebi:CHEBI:30088
+	GA12(_source~_SOURCE~0,ga20ox,sa5_degraded~sa5_degraded~0)
+	GA4_GID_DELLA2()
+	GA3ox_source()
+	#^ bqbiol:isVersionOf uniprot:Q9LQT8
+	della(_source~_SOURCE~0)
+	GID_source()
+	ga3ox_source()
+	GA20ox_source()
+	#^ bqbiol:isVersionOf obo.chebi:CHEBI:29590
+	GA15(ga20ox,sa6_degraded~sa6_degraded~0)
+	sa1_degraded()
+	#^ bqbiol:isVersionOf uniprot:Q9LQT8
+	DELLA(_source~_SOURCE~0,_u~_U~0,ga4_gid_closed)
+	#^ bqbiol:isVersionOf uniprot:Q9MAA7
+	GID(ga4)
+end molecule types
+begin seed species
+	GA4(_source~0,gid) 0.01 #GA4 #s1
+	GID(ga4) 0.01 #GID #s2
+	DELLA(_source~0,_u~0,ga4_gid_closed) 0.01 #DELLA #s16
+	DELLA(_source~0,_u~_U,ga4_gid_closed) 0.01 #DELLA_U #s22
+	GA12(_source~0,ga20ox,sa5_degraded~0) 0.01 #GA12 #s23
+	GA15(ga20ox,sa6_degraded~0) 0.01 #GA15 #s24
+	GA24(ga20ox,sa7_degraded~0) 0.01 #GA24 #s25
+	GA9(ga3ox,sa8_degraded~0) 0.01 #GA9 #s26
+	GA20ox(ga12,ga15,ga24) 0.01 #GA20ox #s27
+	GA3ox(ga9) 0.01 #GA3ox #s28
+	ga20ox() 0.01 #ga20ox #s39
+	della(_source~0) 0.01 #della #s40
+	ga3ox() 0.01 #ga3ox #s41
+	gid() 0.01 #gid #s42
+	GA4(_source~0,gid!723).GID(ga4!723) 0.01 #GA4_GID #s65
+	GA9(ga3ox!724,sa8_degraded~0).GA3ox(ga9!724) 0.01 #GA9_GA3ox #s29
+	GA20ox(ga12,ga15,ga24!727).GA24(ga20ox!727,sa7_degraded~0) 0.01 #GA24_GA20ox #s30
+	GA20ox(ga12,ga15!726,ga24).GA15(ga20ox!726,sa6_degraded~0) 0.01 #GA15_GA20ox #s31
+	GA12(_source~0,ga20ox!725,sa5_degraded~0).GA20ox(ga12!725,ga15,ga24) 0.01 #GA12_GA20ox #s32
+	GA4_GID_closed(della) 0.01 #GA4_GID_closed #s62
+	GA4_GID_DELLA2() 0.01 #GA4_GID_DELLA2 #s36
+	DELLA(_source~0,_u~0,ga4_gid_closed!728).GA4_GID_closed(della!728) 0.01 #GA4_GID_DELLA1 #s45
+end seed species
+begin observables
+	Species GA4 GA4(_source~0,gid) #GA4
+	Species GID GID(ga4) #GID
+	Species DELLA DELLA(_source~0,_u~0,ga4_gid_closed) #DELLA
+	Species DELLA_U DELLA(_source~0,_u~_U,ga4_gid_closed) #DELLA_U
+	Species GA12 GA12(_source~0,ga20ox,sa5_degraded~0) #GA12
+	Species GA15 GA15(ga20ox,sa6_degraded~0) #GA15
+	Species GA24 GA24(ga20ox,sa7_degraded~0) #GA24
+	Species GA9 GA9(ga3ox,sa8_degraded~0) #GA9
+	Species GA20ox GA20ox(ga12,ga15,ga24) #GA20ox
+	Species GA3ox GA3ox(ga9) #GA3ox
+	Species ga20ox ga20ox() #ga20ox
+	Species della della(_source~0) #della
+	Species ga3ox ga3ox() #ga3ox
+	Species gid gid() #gid
+	Species GA4_GID GA4(_source~0,gid!723).GID(ga4!723) #GA4-GID
+	Species GA9_GA3ox GA9(ga3ox!724,sa8_degraded~0).GA3ox(ga9!724) #GA9-GA3ox
+	Species GA24_GA20ox GA20ox(ga12,ga15,ga24!727).GA24(ga20ox!727,sa7_degraded~0) #GA24-GA20ox
+	Species GA15_GA20ox GA20ox(ga12,ga15!726,ga24).GA15(ga20ox!726,sa6_degraded~0) #GA15-GA20ox
+	Species GA12_GA20ox GA12(_source~0,ga20ox!725,sa5_degraded~0).GA20ox(ga12!725,ga15,ga24) #GA12-GA20ox
+	Species GA4_GID_closed GA4_GID_closed(della) #GA4-GID-closed
+	Species GA12_source GA12(_source~_SOURCE,ga20ox,sa5_degraded~0) #GA12_source
+	Species GA3ox_source GA3ox_source() #GA3ox_source
+	Species GA20ox_source GA20ox_source() #GA20ox_source
+	Species DELLA_source DELLA(_source~_SOURCE,_u~0,ga4_gid_closed) #DELLA_source
+	Species GID_source GID_source() #GID_source
+	Species ga20ox_source ga20ox_source() #ga20ox_source
+	Species gid_source gid_source() #gid_source
+	Species della_source della(_source~_SOURCE) #della_source
+	Species ga3ox_source ga3ox_source() #ga3ox_source
+	Species GA4_GID_DELLA2 GA4_GID_DELLA2() #GA4-GID-DELLA2
+	Species GA4_GID_DELLA1 DELLA(_source~0,_u~0,ga4_gid_closed!728).GA4_GID_closed(della!728) #GA4-GID-DELLA1
+	Species GA4_source GA4(_source~_SOURCE,gid) #GA4_source
+	Species sa5_degraded GA12(_source~0,ga20ox,sa5_degraded~sa5_degraded) #sa5_degraded
+	Species sa6_degraded GA15(ga20ox,sa6_degraded~sa6_degraded) #sa6_degraded
+	Species sa7_degraded GA24(ga20ox,sa7_degraded~sa7_degraded) #sa7_degraded
+	Species sa8_degraded GA9(ga3ox,sa8_degraded~sa8_degraded) #sa8_degraded
+	Species sa1_degraded sa1_degraded() #sa1_degraded
+end observables
+begin functions
+	omegaGA12() = R*omegaGA12ga13
+	fRate5() = omegaGA12
+	fRate20() = 0.000527749140286577*della
+	fRate21() = 0.192990314378105*ga20ox
+	fRate22() = 0.019299031437811*ga3ox
+	fRate23() = 19.2990314378105*gid
+	fRate24() = DELLA*muGA20ox/(DELLA + 0.6383)
+	fRate25() = DELLA*muGID/(DELLA + 0.00055995)
+	fRate26() = 0.01*muDELLA/(DELLA + 0.01)
+	fRate27() = DELLA*muGA3ox/(DELLA + 0.0082)
+	fRate37() = 0.0307*Pmem*omegaGA4
+	fRate42() = GA4*(0.00039795*Pmem + muGA)
+end functions
+begin reaction rules
+	re1: GA4(_source~0,gid) + GID(ga4) -> GA4(_source~0,gid!723).GID(ga4!723) r1_la #Modifiers(s1, s2)
+	re2: GA4(_source~0,gid!723).GID(ga4!723) -> GA4(_source~0,gid) + GID(ga4) r2_ld #Modifiers(s65)
+	re3: GA4_GID_closed(della) + DELLA(_source~0,_u~0,ga4_gid_closed) -> DELLA(_source~0,_u~0,ga4_gid_closed!728).GA4_GID_closed(della!728) r3_ua1 #Modifiers(s62, s16)
+	re4: DELLA(_source~0,_u~0,ga4_gid_closed!728).GA4_GID_closed(della!728) -> GA4_GID_closed(della) + DELLA(_source~0,_u~0,ga4_gid_closed) r4_ud1 #Modifiers(s45)
+	re5: DELLA(_source~0,_u~0,ga4_gid_closed!728).GA4_GID_closed(della!728) -> GA4_GID_closed(della) + DELLA(_source~0,_u~_U,ga4_gid_closed) r5_um #Modifiers(s45)
+	re6_reactants_0: 0  -> GA12(_source~_SOURCE,ga20ox,sa5_degraded~0) -1*(fRate5())
+	re6_products_0: 0  -> GA12(_source~0,ga20ox,sa5_degraded~0) fRate5()
+	re7: GA12(_source~0,ga20ox,sa5_degraded~0) + GA20ox(ga12,ga15,ga24) -> GA12(_source~0,ga20ox!725,sa5_degraded~0).GA20ox(ga12!725,ga15,ga24) r7_ka12 #Modifiers(s23, s27)
+	re8: GA12(_source~0,ga20ox!725,sa5_degraded~0).GA20ox(ga12!725,ga15,ga24) -> GA12(_source~0,ga20ox,sa5_degraded~0) + GA20ox(ga12,ga15,ga24) r8_kd12 #Modifiers(s32)
+	re9: GA12(_source~0,ga20ox!725,sa5_degraded~0).GA20ox(ga12!725,ga15,ga24) -> GA20ox(ga12,ga15,ga24) + GA15(ga20ox,sa6_degraded~0) r9_km12 #Modifiers(s32)
+	re10: GA15(ga20ox,sa6_degraded~0) + GA20ox(ga12,ga15,ga24) -> GA20ox(ga12,ga15!726,ga24).GA15(ga20ox!726,sa6_degraded~0) r10_ka15 #Modifiers(s24, s27)
+	re11: GA20ox(ga12,ga15!726,ga24).GA15(ga20ox!726,sa6_degraded~0) -> GA15(ga20ox,sa6_degraded~0) + GA20ox(ga12,ga15,ga24) r11_kd15 #Modifiers(s31)
+	re12: GA20ox(ga12,ga15!726,ga24).GA15(ga20ox!726,sa6_degraded~0) -> GA20ox(ga12,ga15,ga24) + GA24(ga20ox,sa7_degraded~0) r12_km15 #Modifiers(s31)
+	re13: GA24(ga20ox,sa7_degraded~0) + GA20ox(ga12,ga15,ga24) -> GA20ox(ga12,ga15,ga24!727).GA24(ga20ox!727,sa7_degraded~0) r13_ka24 #Modifiers(s25, s27)
+	re14: GA20ox(ga12,ga15,ga24!727).GA24(ga20ox!727,sa7_degraded~0) -> GA24(ga20ox,sa7_degraded~0) + GA20ox(ga12,ga15,ga24) r14_kd24 #Modifiers(s30)
+	re15: GA20ox(ga12,ga15,ga24!727).GA24(ga20ox!727,sa7_degraded~0) -> GA20ox(ga12,ga15,ga24) + GA9(ga3ox,sa8_degraded~0) r15_km24 #Modifiers(s30)
+	re16: GA9(ga3ox,sa8_degraded~0) + GA3ox(ga9) -> GA9(ga3ox!724,sa8_degraded~0).GA3ox(ga9!724) r16_ka9 #Modifiers(s26, s28)
+	re17: GA9(ga3ox!724,sa8_degraded~0).GA3ox(ga9!724) -> GA9(ga3ox,sa8_degraded~0) + GA3ox(ga9) r17_kd9 #Modifiers(s29)
+	re18: GA9(ga3ox!724,sa8_degraded~0).GA3ox(ga9!724) -> GA3ox(ga9) + GA4(_source~0,gid) r18_km9 #Modifiers(s29)
+	re19: GA4(_source~0,gid!723).GID(ga4!723) -> GA4_GID_closed(della) r19_q #Modifiers(s65)
+	re20: GA4_GID_closed(della) -> GA4(_source~0,gid!723).GID(ga4!723) r20_p #Modifiers(s62)
+	re21_reactants_0: 0  -> DELLA(_source~_SOURCE,_u~0,ga4_gid_closed) -1*(fRate20()) #Modifiers(s40, s40)
+	re21_products_0: 0  -> DELLA(_source~0,_u~0,ga4_gid_closed) fRate20() #Modifiers(s40, s40)
+	re22_reactants_0: 0  -> GA20ox_source() -1*(fRate21()) #Modifiers(s39, s39)
+	re22_products_0: 0  -> GA20ox(ga12,ga15,ga24) fRate21() #Modifiers(s39, s39)
+	re23_reactants_0: 0  -> GA3ox_source() -1*(fRate22()) #Modifiers(s41, s41)
+	re23_products_0: 0  -> GA3ox(ga9) fRate22() #Modifiers(s41, s41)
+	re24_reactants_0: 0  -> GID_source() -1*(fRate23()) #Modifiers(s42, s42)
+	re24_products_0: 0  -> GID(ga4) fRate23() #Modifiers(s42, s42)
+	re27_reactants_0: 0  -> ga20ox_source() -1*(fRate24()) #Modifiers(s16, s16)
+	re27_products_0: 0  -> ga20ox() fRate24() #Modifiers(s16, s16)
+	re28_reactants_0: 0  -> gid_source() -1*(fRate25()) #Modifiers(s16, s16)
+	re28_products_0: 0  -> gid() fRate25() #Modifiers(s16, s16)
+	re29_reactants_0: 0  -> della(_source~_SOURCE) -1*(fRate26()) #Modifiers(s16, s16)
+	re29_products_0: 0  -> della(_source~0) fRate26() #Modifiers(s16, s16)
+	re30_reactants_0: 0  -> ga3ox_source() -1*(fRate27()) #Modifiers(s16, s16)
+	re30_products_0: 0  -> ga3ox() fRate27() #Modifiers(s16, s16)
+	re31: della(_source~0) -> della(_source~_SOURCE) muDELLA #Modifiers(s40)
+	re32: gid() -> gid_source() muGID #Modifiers(s42)
+	re33: ga20ox() -> ga20ox_source() muGA20ox #Modifiers(s39)
+	re34: ga3ox() -> ga3ox_source() muGA3ox #Modifiers(s41)
+	re35: GA20ox(ga12,ga15,ga24) -> GA20ox_source() r33_gammaGA20ox #Modifiers(s27)
+	re37: GID(ga4) -> GID_source() r34_gammaGID #Modifiers(s2)
+	re38: GA3ox(ga9) -> GA3ox_source() r35_gammaGA3ox #Modifiers(s28)
+	re39: GA4_GID_closed(della) + DELLA(_source~0,_u~0,ga4_gid_closed) -> GA4_GID_DELLA2() r36_ua2 #Modifiers(s62, s16)
+	re40: GA4_GID_DELLA2() -> GA4_GID_closed(della) + DELLA(_source~0,_u~0,ga4_gid_closed) r37_ud2 #Modifiers(s36)
+	re41_reactants_0: 0  -> GA4(_source~_SOURCE,gid) -1*(fRate37())
+	re41_products_0: 0  -> GA4(_source~0,gid) fRate37()
+	re42: GA12(_source~0,ga20ox,sa5_degraded~0) -> GA12(_source~0,ga20ox,sa5_degraded~sa5_degraded) muGA #Modifiers(s23)
+	re43: GA15(ga20ox,sa6_degraded~0) -> GA15(ga20ox,sa6_degraded~sa6_degraded) muGA #Modifiers(s24)
+	re44: GA24(ga20ox,sa7_degraded~0) -> GA24(ga20ox,sa7_degraded~sa7_degraded) muGA #Modifiers(s25)
+	re45: GA9(ga3ox,sa8_degraded~0) -> GA9(ga3ox,sa8_degraded~sa8_degraded) muGA #Modifiers(s26)
+	re46_reactants_0: 0  -> GA4(_source~0,gid) -1*(fRate42()) #Modifiers(s1)
+	re46_products_0: 0  -> sa1_degraded() fRate42() #Modifiers(s1)
+end reaction rules
+end model

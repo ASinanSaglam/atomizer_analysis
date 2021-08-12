@@ -1,0 +1,73 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000438', 'http://identifiers.org/biomodels.db/MODEL1301110000']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/doi/10.1016/j.ces.2012.12.016']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/131567']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0009372']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 10 molecules and 7 reactions. The translated model has 6 molecules and 8 rules'
+###
+begin model
+begin parameters
+	r1_Y2 0.069600
+	r2_k2 35.700000
+	r3_k3 9600000.000000
+	r3_k4 0.000000
+	r4_k5 1960000.000000
+	r4_k6 10.200000
+	r5_Y3 0.000283
+	r6_k1 3.734000
+	r6_Y1 0.348000
+	r7_K7 0.004051
+	r7_K8 0.009567
+	r7_K9 0.000000
+	r7_k10 0.000000
+	r7_K11 0.000000
+	r7_K12 0.000000
+	r7_n1 2.000000
+	r7_n2 2.000000
+end parameters
+begin molecule types
+	pLuxR()
+	Ptet_LasR()
+	#^ bqbiol:isVersionOf go:GO:0000428
+	ApLux()
+	#^ bqbiol:is uniprot:P25084
+	LasR(mRNA__LasR__~mRNA__LasR__~0,s3oc12hsl,sa3_degraded~sa3_degraded~0)
+	#^ bqbiol:is uniprot:P42212
+	GFP()
+	#^ bqbiol:is chebi:CHEBI:56080
+	s3OC12HSL(lasr,sa6_degraded~sa6_degraded~0)
+end molecule types
+begin seed species
+	Ptet_LasR() 1e-05 #Ptet_LasR #s1
+	LasR(mRNA__LasR__~0,s3oc12hsl,sa3_degraded~0) 1e-06 #LasR #s19
+	s3OC12HSL(lasr,sa6_degraded~0) 3.0110000000000005e+18 # 5e-06mol/L * 6.022e23/mol *1.0L #s3OC12HSL #s4
+	pLuxR() 1e-05 #pLuxR #s16
+end seed species
+begin observables
+	Species Ptet_LasR Ptet_LasR() #Ptet-LasR
+	Species LasR LasR(mRNA__LasR__~0,s3oc12hsl,sa3_degraded~0) #LasR
+	Species sa3_degraded LasR(mRNA__LasR__~0,s3oc12hsl,sa3_degraded~sa3_degraded) #sa3_degraded
+	Species s3OC12HSL s3OC12HSL(lasr,sa6_degraded~0) #3OC12HSL
+	Species pLuxR pLuxR() #pLuxR
+	Species ApLux ApLux() #A pLux
+	Species sa6_degraded s3OC12HSL(lasr,sa6_degraded~sa6_degraded) #sa6_degraded
+	Species LasR_AHL LasR(mRNA__LasR__~0,s3oc12hsl!749,sa3_degraded~0).s3OC12HSL(lasr!749,sa6_degraded~0) #LasR/AHL
+	Species mRNA__LasR__ LasR(mRNA__LasR__~mRNA__LasR__,s3oc12hsl,sa3_degraded~0) #mRNA(LasR)
+	Species GFP GFP() #GFP
+end observables
+begin functions
+	fRate6() = (0.009567*ApLux^2.0/(ApLux^2.0 + 9.4906564e-15) + 0.004051)*(1.0e-14*ApLux^2.0/(ApLux^2.0 + 5.76e-14) - GFP + 6.5e-16)
+end functions
+begin reaction rules
+	re3: LasR(mRNA__LasR__~0,s3oc12hsl,sa3_degraded~0) -> LasR(mRNA__LasR__~0,s3oc12hsl,sa3_degraded~sa3_degraded) r1_Y2 #Modifiers(s19)
+	re2: LasR(mRNA__LasR__~mRNA__LasR__,s3oc12hsl,sa3_degraded~0) -> LasR(mRNA__LasR__~0,s3oc12hsl,sa3_degraded~0) r2_k2 #Modifiers(s2)
+	re4: LasR(mRNA__LasR__~0,s3oc12hsl,sa3_degraded~0) + s3OC12HSL(lasr,sa6_degraded~0) <-> LasR(mRNA__LasR__~0,s3oc12hsl!749,sa3_degraded~0).s3OC12HSL(lasr!749,sa6_degraded~0) r3_k3,r3_k4 #Modifiers(s19, s4, s42)
+	re5: LasR(mRNA__LasR__~0,s3oc12hsl!749,sa3_degraded~0).s3OC12HSL(lasr!749,sa6_degraded~0) + pLuxR() <-> ApLux() r4_k5,r4_k6 #Modifiers(s16, s42, s17)
+	re8: s3OC12HSL(lasr,sa6_degraded~0) -> s3OC12HSL(lasr,sa6_degraded~sa6_degraded) r5_Y3 #Modifiers(s4)
+	re1: Ptet_LasR() <-> LasR(mRNA__LasR__~mRNA__LasR__,s3oc12hsl,sa3_degraded~0) r6_k1,r6_Y1 #Modifiers(s1, s2)
+	re14_reactants_0: 0  -> ApLux() -1*(fRate6()) #Modifiers(s17, s45)
+	re14_products_0: 0  -> GFP() fRate6() #Modifiers(s17, s45)
+end reaction rules
+end model

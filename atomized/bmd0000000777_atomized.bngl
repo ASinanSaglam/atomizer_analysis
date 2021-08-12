@@ -1,0 +1,59 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/doi/10.1142/S0218339010003226']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/ncit/C18246']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1908040001', 'http://identifiers.org/biomodels.db/BIOMD0000000777']
+#@creatorEmail:'johannes.p.meyer@gmail.com'
+#@creatorName:'Meyer Johannes'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 3 molecules and 8 reactions. The translated model has 3 molecules and 8 rules'
+###
+begin model
+begin parameters
+	r_1 0.18
+	k_1 5000000.0
+	alpha_1 1.101e-07
+	d_1 0.0412
+	alpha_2 3.422e-10
+	r_2 0.0245
+	k_2 10000000.0
+	mu_1 0.05
+	mu_2 0
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf ncit:C12922
+	M_Tumor_Cells()
+	#^ bqbiol:isVersionOf cl:CL:0000912
+	Z_THL()
+	#^ bqbiol:isVersionOf cl:CL:0000910
+	N_CTL()
+end molecule types
+begin seed species
+	M_Tumor_Cells() 1.65605e+30 # 2750000.0mol/L * 6.022e23/mol *1.0L #M_Tumor_Cells #M_Tumor_Cells
+	N_CTL() 1.2044000000000001e+29 #original 200000.0substance/volume  #N_CTL #N_CTL
+	Z_THL() 4.33584e+30 #original 7200000.0substance/volume  #Z_THL #Z_THL
+end seed species
+begin observables
+	Species M_Tumor_Cells M_Tumor_Cells() #M_Tumor_Cells
+	Species N_CTL N_CTL() #N_CTL
+	Species Z_THL Z_THL() #Z_THL
+end observables
+begin functions
+	fRate0() = M_Tumor_Cells*r_1
+	fRate0m() = M_Tumor_Cells*r_1/k_1
+	fRate1() = N_CTL*alpha_1
+	fRate2() = N_CTL*Z_THL*mu_2
+	fRate4() = M_Tumor_Cells*alpha_2
+	fRate5() = Z_THL*r_2
+	fRate5m() = Z_THL*r_2/k_2
+	fRate6() = N_CTL*mu_2
+end functions
+begin reaction rules
+	Tumor_Growth: 0  <-> M_Tumor_Cells() fRate0(),fRate0m() #Modifiers(M_Tumor_Cells)
+	Tumor_Killing_T_Cells: M_Tumor_Cells() -> 0  fRate1() #Modifiers(M_Tumor_Cells, N_CTL)
+	CTL_Recruitment: 0  -> N_CTL() fRate2() #Modifiers(N_CTL, Z_THL)
+	CTL_Death: N_CTL() -> 0  d_1
+	CTL_Decay: N_CTL() -> 0  fRate4() #Modifiers(M_Tumor_Cells)
+	THL_Growth: 0  <-> Z_THL() fRate5(),fRate5m() #Modifiers(Z_THL)
+	THL_Decay_IL_2: Z_THL() -> 0  fRate6() #Modifiers(N_CTL)
+	Tumor_Killing_ACI: M_Tumor_Cells() -> 0  mu_1
+end reaction rules
+end model

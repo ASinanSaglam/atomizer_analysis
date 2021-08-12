@@ -1,0 +1,68 @@
+###
+#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000089']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/doi/10.1016/j.cnsns.2020.105570']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/doid/DOID:1037', 'http://identifiers.org/ncit/C15262', 'http://identifiers.org/ncit/C126102', 'http://identifiers.org/hp/HP:0004812', 'http://identifiers.org/go/GO:0002376']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL2107120002', 'http://identifiers.org/biomodels.db/BIOMD0000001012']
+#@creatorEmail:'eblc2@cam.ac.uk'
+#@creatorName:'Chen Emilia'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 4 molecules and 7 reactions. The translated model has 4 molecules and 8 rules'
+###
+begin model
+begin parameters
+	tao_B 60.0 #units:unit_0
+	rho_L 0.03333333333 #units:unit_1
+	tao_C 14.0 #units:unit_0
+	alpha 4.5e-11 #units:unit_2
+	tao_I 6.0 #units:unit_0
+	beta 0.1
+	C_50 1000000000.0 #units:unit_3
+	I_0 10000000.0 #units:unit_4
+end parameters
+begin molecule types
+	#^ bqbiol:is cl:CL:0011026
+	#^ bqbiol:isVersionOf cl:CL:0000826
+	#^ bqbiol:hasProperty ncit:C129255
+	B_cell_progenitors()
+	#^ bqbiol:isVersionOf ncit:C41073
+	#^ bqbiol:hasProperty ncit:C18128
+	Leukaemic_B_cells()
+	#^ bqbiol:isVersionOf cl:CL:0000084, ncit:C137999
+	CAR_T_cells()
+	#^ bqbiol:isVersionOf cl:CL:0000785
+	#^ bqbiol:hasProperty ncit:C115935
+	B_cells_healthy()
+end molecule types
+begin seed species
+	CAR_T_cells() 6.022e+30 # 10000000.0mol/L * 6.022e23/mol *1.0L #CAR_T_cells #CAR_T_cells
+	Leukaemic_B_cells() 3.011e+34 #original 50000000000.0substance/volume #Leukaemic_B_cells #Leukaemic_B_cells
+	B_cells_healthy() 1.5055e+34 #original 25000000000.0substance/volume #B_cells_healthy #B_cells_healthy
+	B_cell_progenitors() (10000000.0) #B_cell_progenitors
+end seed species
+begin observables
+	Species CAR_T_cells CAR_T_cells() #CAR_T-cells
+	Species Leukaemic_B_cells Leukaemic_B_cells() #Leukaemic_B_cells
+	Species B_cells_healthy B_cells_healthy() #B_cells_healthy
+	Species B_cell_progenitors B_cell_progenitors() #B_cell_progenitors
+end observables
+begin functions
+	rho_C() = 0.25*alpha
+	k() = rho_C/alpha
+	fRate0() = rho_C*(1.0*CAR_T_cells*(B_cells_healthy + Leukaemic_B_cells)*(CAR_T_cells + C_50) + C_50*I_0*beta)/(1.0*CAR_T_cells + 1.0*C_50)
+	fRate1() = 1/tao_C
+	fRate2() = Leukaemic_B_cells*rho_L
+	fRate3() = CAR_T_cells*alpha
+	fRate4() = 1.0*B_cells_healthy*CAR_T_cells*alpha + 1.0*B_cells_healthy/tao_B
+	fRate5() = I_0/(tao_I*(CAR_T_cells/C_50 + 1))
+end functions
+begin reaction rules
+	CARTcell_proliferation: 0  -> CAR_T_cells() fRate0() #Modifiers(Leukaemic_B_cells, B_cells_healthy)
+	CARTcell_death: CAR_T_cells() -> 0  fRate1()
+	Leukaemia_proliferation: 0  -> Leukaemic_B_cells() fRate2()
+	Leukaemia_death: Leukaemic_B_cells() -> 0  fRate3() #Modifiers(CAR_T_cells)
+	Bcell_death_reactants_0: 0  -> B_cells_healthy() -1*(fRate4()) #Modifiers(CAR_T_cells)
+	Bcell_proliferation_reactants_0: 0  -> B_cell_progenitors() -1*(fRate5()) #Modifiers(CAR_T_cells)
+	Bcell_proliferation_products_0: 0  -> B_cells_healthy() fRate5() #Modifiers(CAR_T_cells)
+	proBcell_proliferation: 0  -> B_cell_progenitors() I_0
+end reaction rules
+end model

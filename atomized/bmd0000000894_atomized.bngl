@@ -1,0 +1,57 @@
+###
+#@BQM_HAS_INSTANCE:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/taxonomy/9606', 'http://identifiers.org/ncit/C48686']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/21929038', 'http://identifiers.org/ncit/C48686']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/doi.org/10.1103/PhysRevE.79.051903']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000894', 'http://identifiers.org/biomodels.db/MODEL1912160003']
+#@creatorEmail:'msharifshohan@ebi.ac.uk'
+#@creatorName:'Sharif Shohan Mohammad Umer'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 3 molecules and 6 reactions. The translated model has 3 molecules and 6 rules'
+###
+begin model
+begin parameters
+	t 1.0
+	tau 0.3
+	R 1.0
+	Dx 2.1
+	Dy 0.01
+	Dz 1.2
+	p 0.06
+	mu 20.0
+end parameters
+begin molecule types
+	#^ bmbiol:hasInstance ncit:C12535
+	z()
+	#^ bmbiol:hasInstance ncit:C28241
+	y()
+	#^ bmbiol:hasInstance ncit:C12922
+	x()
+end molecule types
+begin seed species
+	x() 602200000000000.1 # (1e-06 * 0.001)mol/L * 6.022e23/mol *1.0L #x #x
+	y() 6.022000000000001e+18 #original 0.01substance/volume  #y #y
+end seed species
+begin observables
+	Species x x() #x
+	Species y y() #y
+	Species z z() #z
+end observables
+begin functions
+	fRate0() = 1.0*Dx*R*tau*z + 1.0*Dx*z + 1.0*x*(0.5*Dx*Dz*tau + R + 1)
+	fRate0m() = Dx*R*tau
+	fRate1() = 1.0*x^2 + 1.0*x*y
+	fRate2() = y*z
+	fRate3m() = Dy*y
+	fRate4() = x*(Dx*Dz*tau + R*(-Dx*tau + 1))
+	fRate5m() = z*(0.5*Dx*Dz*tau + Dx*R*tau + Dx + R)
+end functions
+begin reaction rules
+	Formation_of_tumor_system: 0  <-> x() fRate0(),fRate0m() #Modifiers(z)
+	Removal_of_tumor_system_reactants_0: 0  -> x() -1*(fRate1()) #Modifiers(y)
+	Formation_of_effector_cell_against_tumor_cell: 0  -> y() fRate2() #Modifiers(z)
+	Removal_of_effector_cell_functioning_against_tumor_cell: y() <-> 0  p,fRate3m()
+	Formation_of_tumor_detecting_cell_products_0: 0  -> z() fRate4() #Modifiers(x)
+	Removal_of_tumor_detecting_cell: z() <-> 0  mu,fRate5m()
+end reaction rules
+end model

@@ -1,0 +1,56 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL0911270008', 'http://identifiers.org/biomodels.db/BIOMD0000000663']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/efo/0000764', 'http://identifiers.org/go/GO:0046718']
+#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000782']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606', 'http://identifiers.org/taxonomy/11676']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/17379260']
+#@creatorEmail:'mroberts@ebi.ac.uk'
+#@creatorName:'Roberts Matthew'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 3 molecules and 9 reactions. The translated model has 2 molecules and 9 rules'
+###
+begin model
+begin parameters
+	r 1.0
+	k 10.0
+	d 0.1
+	Beta 0.2
+	a 0.2
+	eta 1.0
+	u 0.5
+end parameters
+begin molecule types
+	#^ bqbiol:hasPart ncit:C14219
+	#^ bqbiol:isVersionOf bto:BTO:0000152, bto:BTO:0000782
+	x_Tcell_infected(y_Tcell_uninfected~y_Tcell_uninfected~0)
+	#^ bqbiol:isVersionOf ncit:C14219
+	v_free_virus()
+end molecule types
+begin seed species
+	x_Tcell_infected(y_Tcell_uninfected~0) 6.022000000000001e+19 # (0.1 * 0.001)mol/L * 6.022e23/mol *1.0L #x_Tcell_infected #x
+	v_free_virus() 6.022e+20 #original 1.0substance/volume  #v_free_virus #v
+end seed species
+begin observables
+	Species x_Tcell_infected x_Tcell_infected(y_Tcell_uninfected~0) #x_Tcell_infected
+	Species y_Tcell_uninfected x_Tcell_infected(y_Tcell_uninfected~y_Tcell_uninfected) #y_Tcell_uninfected
+	Species v_free_virus v_free_virus() #v_free_virus
+end observables
+begin functions
+	fRate0() = r*v_free_virus*x_Tcell_infected
+	fRate1() = r*v_free_virus*x_Tcell_infected*(x_Tcell_infected + y_Tcell_uninfected)/k
+	fRate3() = Beta*v_free_virus
+	fRate4() = r*v_free_virus*y_Tcell_uninfected
+	fRate5() = r*v_free_virus*y_Tcell_uninfected*(x_Tcell_infected + y_Tcell_uninfected)/k
+	fRate7() = eta*y_Tcell_uninfected
+end functions
+begin reaction rules
+	reaction: 0  -> x_Tcell_infected(y_Tcell_uninfected~0) fRate0() #Modifiers(v)
+	reaction_1_reactants_0: 0  -> x_Tcell_infected(y_Tcell_uninfected~0) -1*(fRate1()) #Modifiers(v, y)
+	reaction_2: x_Tcell_infected(y_Tcell_uninfected~0) -> 0  d
+	reaction_3: x_Tcell_infected(y_Tcell_uninfected~0) -> x_Tcell_infected(y_Tcell_uninfected~y_Tcell_uninfected) fRate3() #Modifiers(v)
+	reaction_4: 0  -> x_Tcell_infected(y_Tcell_uninfected~y_Tcell_uninfected) fRate4() #Modifiers(v)
+	reaction_5_reactants_0: 0  -> x_Tcell_infected(y_Tcell_uninfected~y_Tcell_uninfected) -1*(fRate5()) #Modifiers(v, x)
+	reaction_6: x_Tcell_infected(y_Tcell_uninfected~y_Tcell_uninfected) -> 0  a
+	reaction_7: 0  -> v_free_virus() fRate7() #Modifiers(y)
+	reaction_8: v_free_virus() -> 0  u
+end reaction rules
+end model

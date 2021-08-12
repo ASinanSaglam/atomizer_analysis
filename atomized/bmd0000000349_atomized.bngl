@@ -1,0 +1,174 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000349', 'http://identifiers.org/biomodels.db/MODEL1108090001']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/20497556']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/9575814', 'http://identifiers.org/pubmed/9575813']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000783']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0044342', 'http://identifiers.org/go/GO:0061178']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:9351']
+#@creatorEmail:'ajmera@ebi.ac.uk'
+#@creatorName:'Ajmera Ishan'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 7 molecules and 0 reactions. The translated model has 9 molecules and 9 rules'
+###
+begin model
+begin parameters
+	ai 0.341
+	am 0.2
+	Ao 4000.0
+	ATP_init 3700.0
+	Cac_init 0.1
+	Cam_init 0.2
+	Cmit 1.82
+	Cmp 6158.0
+	F 96480.0
+	fi 0.01
+	fm 0.0003
+	G3P_init 30.0
+	gKCa 25.0
+	Glu 8.0
+	gmVCa 20.0
+	hgl 1.7
+	hp 8.0
+	hpc 8.0
+	kat -0.00492
+	kATP 4e-05
+	kATPCa 9e-05
+	kbt -0.00443
+	kCaA 30.0
+	KCaj 8.0
+	KCam 0.05
+	KgNc 0.09
+	kgpd 1e-05
+	Klnc 1.0
+	klp 0.0305
+	Kmadp 20.0
+	KmATP 500.0
+	Kmg3p 200.0
+	Kmgl 7.0
+	KmLD 47.5
+	KmNh 3000.0
+	Kmph 131.4
+	Kmpyr 47.5
+	knadhc 0.0001
+	knadhm 0.0001
+	KNaj 8000.0
+	KpCam 0.165
+	KPNm 81.0
+	ksg 2e-05
+	KTNc 0.002
+	KTNm 16.78
+	NADHc_init 10.0
+	NADHm_init 50.0
+	Nam 5000.0
+	Ni 10000.0
+	Ntc 2000.0
+	Ntm 2200.0
+	PCa 0.004
+	Plb 0.0012
+	Plr 0.0012
+	PYR_init 10.0
+	Tnadh 0.05
+	Tv 26.73
+	u1 1.5
+	u2 1.1
+	Vci 0.764
+	Vi 0.53
+	Vm_init 100.0
+	Vme 22.0
+	Vmglu 0.011
+	Vmgpd 0.5
+	Vmldh 1.2
+	Vmmit 0.0144
+	Vmnc 0.025
+	Vmpdh 0.3
+	Vmph 8.0
+	Vp_init -70.0
+	ZCa 2.0
+end parameters
+begin molecule types
+	Cam()
+	Vm()
+	G3P()
+	NADHm()
+	NADHc()
+	PYR()
+	ATP()
+	Vp
+	Cac
+end molecule types
+begin seed species
+	G3P()() (30.0) #G3P
+	PYR()() (10.0) #PYR
+	ATP()() (3700.0) #ATP
+	NADHm()() (50.0) #NADHm
+	NADHc()() (10.0) #NADHc
+	Vm()() (100.0) #Vm
+	Cam()() (0.2) #Cam
+	Vp (-70.0)
+	Cac (0.1)
+end seed species
+begin observables
+	Species G3P G3P() #G3P
+	Species PYR PYR() #PYR
+	Species ATP ATP() #ATP
+	Species NADHm NADHm() #NADHm
+	Species NADHc NADHc() #NADHc
+	Species Vm Vm() #Vm
+	Species Cam Cam() #Cam
+	Species Vp Vp
+	Species Cac Cac
+end observables
+begin functions
+	Jhl() = (Plb + Plr)*exp(Vm*klp)
+	FTe() = (Vm*kat + 1)/(Vm*kbt + 1)
+	FDe() = NADHm/(KmNh + NADHm)
+	Jhres() = FDe*FTe*Vme
+	ACa() = 1 - 1/exp(Cam/KpCam)
+	ADP() = -ATP + Ao
+	MgADP() = 0.055*ADP
+	AD() = MgADP^2/(Kmadp^2 + MgADP^2)
+	AT() = Vm^hp/(Kmph^hp + Vm^hp)
+	Jph() = ACa*AD*AT*Vmph
+	DelJNCa() = Cac/KCaj + Cac*Nam^3/(KCaj*KNaj^3) + Cam/KCaj + Cam*Ni^3/(KCaj*KNaj^3) + 1 + Nam^3/KNaj^3 + Ni^3/KNaj^3
+	JNCa() = Vmnc*(-exp(-0.5*Cac*Nam^3*Vm/(KCaj*KNaj^3*Tv)) + exp(0.5*Cam*Ni^3*Vm/(KCaj*KNaj^3*Tv)))/DelJNCa
+	Juni() = PCa*Vm*ZCa*(-Cac*ai + Cam*am*exp(-Vm*ZCa/Tv))/(Tv*(exp(-Vm*ZCa/Tv) - 1))
+	arRateVm() = (-JNCa - Jhl + Jhres - Jph - 2*Juni)/Cmit
+	NADm() = -NADHm + Ntm
+	NADc() = -NADHc + Ntc
+	FNADc() = NADHc/(NADc*(KTNc + NADHc/NADc))
+	Jtnadh() = FNADc*NADm*Tnadh/(NADHm*(KTNm + NADm/NADHm))
+	FLNADc() = NADHc/(NADc*(Klnc + NADHc/NADc))
+	JLDH() = FLNADc*PYR*Vmldh/(KmLD + PYR)
+	Jgpd() = G3P*NADc*Vmgpd/(NADHc*(G3P + Kmg3p)*(KgNc + NADc/NADHc))
+	arRateNADHc() = -NADHc*knadhc + (-JLDH + Jgpd - Jtnadh)/Vi
+	FPYR() = PYR/(Kmpyr + PYR)
+	FPNAD() = NADm/(NADHm*(KPNm + NADm/NADHm))
+	FPCa() = 1/(u2*(u1/(Cam/KCam + 1)^2 + 1) + 1)
+	JPYR() = FPCa*FPNAD*FPYR*Vmpdh
+	arRateNADHm() = -NADHm*knadhm + (4.6*JPYR - 0.1*Jhres + Jtnadh)/Vmmit
+	arRatePYR() = (-JLDH - JPYR + Jgpd)/(Vi + Vmmit)
+	PVCa() = 1/(exp(-0.105263157894737*Vp - 2.0) + 1)
+	hCa() = 1/(exp(0.166666666666667*Vp + 2.5) + 1)
+	IVCa() = PVCa*gmVCa*hCa*(Vp - 100)
+	nKCa() = Cac^3/(Cac^3 + 0.015625)
+	IKCa() = gKCa*nKCa*(Vp + 75)
+	arRateVp() = (-IKCa - IVCa)/Cmp
+	arRateCam() = fm*(-JNCa + Juni)/Vmmit
+	JGlu() = ATP*Glu^hgl*Vmglu/((ATP + KmATP)*(Glu^hgl + Kmgl^hgl))
+	arRateATP() = -ATP*(Cac*kATPCa + kATP) + (2*JGlu + 0.231*Jph)/Vi
+	arRateG3P() = -G3P*kgpd + (2*JGlu - Jgpd)/Vi
+	arRateCac() = -Cac*ksg - 0.5*IVCa*fi/(F*Vci)
+	JO2() = 0.1*Jhres
+end functions
+begin reaction rules
+	0  -> G3P() arRateG3P #rateLaw
+	0  -> PYR() arRatePYR #rateLaw
+	0  -> ATP() arRateATP #rateLaw
+	0  -> NADHm() arRateNADHm #rateLaw
+	0  -> NADHc() arRateNADHc #rateLaw
+	0  -> Vm() arRateVm #rateLaw
+	0  -> Cam() arRateCam #rateLaw
+	0  -> Vp() arRateVp #rateLaw
+	0  -> Cac() arRateCac #rateLaw
+end reaction rules
+end model

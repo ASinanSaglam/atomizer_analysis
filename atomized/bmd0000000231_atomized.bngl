@@ -1,0 +1,61 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL5952687775', 'http://identifiers.org/biomodels.db/BIOMD0000000231']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/16884499']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9913']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0046085', 'http://identifiers.org/reactome/REACT_2124']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 6 molecules and 4 reactions. The translated model has 5 molecules and 6 rules'
+###
+begin model
+begin parameters
+	Vmapp1 2.3
+	Kmapp1 700.0
+	Vm2 170.0
+	Km2ATP 25.0
+	Km2AMP 110.0
+	K 71000.0
+	Vmapp3 65.0
+	Kmapp3 260.0
+	k4 5.0
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf uniprot:Q2KJG0, interpro:IPR011304
+	Lac()
+	#^ bqbiol:isVersionOf interpro:IPR001697
+	#^ bqbiol:isHomologTo uniprot:O62619
+	Pyr(atp)
+	#^ bqbiol:isVersionOf obo.chebi:CHEBI:16908, kegg.compound:C00004
+	NADH()
+	#^ bqbiol:isVersionOf obo.chebi:CHEBI:15422, kegg.compound:C00002
+	ATP(pyr)
+	#^ bqbiol:isVersionOf obo.chebi:CHEBI:16027, kegg.compound:C00020
+	AMP()
+end molecule types
+begin seed species
+	ATP(pyr) 9.815860000000001e+24 # 16.3mol/L * 6.022e23/mol *1.0L #ATP #ATP
+	NADH() 1.541632e+26 #original 256.0mol/L  #NADH #NADH
+end seed species
+begin observables
+	Species ATP ATP(pyr) #ATP
+	Species AMP AMP() #AMP
+	Species ADP Pyr(atp!431).ATP(pyr!431) #ADP
+	Species Pyr Pyr(atp) #Pyr
+	Species NADH NADH() #NADH
+	Species Lac Lac() #Lac
+end observables
+begin functions
+	fRate0() = Vmapp1/(ATP + Kmapp1)
+	fRate1() = Vm2/(AMP*ATP + AMP*Km2ATP + ATP*Km2AMP + K)
+	fRate2() = Vmapp3/(ADP + Kmapp3)
+	fRate3() = Pyr*k4
+end functions
+begin reaction rules
+	v1: ATP(pyr) -> AMP() fRate0()
+	v2: ATP(pyr) + AMP() -> Pyr(atp!431).ATP(pyr!431) + Pyr(atp!431).ATP(pyr!431) fRate1()
+	v3: Pyr(atp!431).ATP(pyr!431) -> ATP(pyr) + Pyr(atp) fRate2()
+	v4_reactants_0: 0  -> Pyr(atp) -1*(fRate3())
+	v4_reactants_1: 0  -> NADH() -1*(fRate3())
+	v4_products_0: 0  -> Lac() fRate3()
+end reaction rules
+end model

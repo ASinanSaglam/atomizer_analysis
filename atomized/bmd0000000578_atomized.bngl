@@ -1,0 +1,377 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000578', 'http://identifiers.org/biomodels.db/MODEL1501210000']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/24675755']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/21843151']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10090']
+#@BQB_OCCURS_IN:['http://identifiers.org/fma/FMA:67747']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0007602']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 76 molecules and 96 reactions. The translated model has 51 molecules and 98 rules'
+###
+begin model
+begin parameters
+	Rtot 100000000.0
+	PDEtot 2000000.0
+	Gtot 10000000.0
+	RGStot 100000.0
+	ArrTot 7074600.0
+	flash0Dur 0.001
+	flashDur 0.001
+	kRK1_0 0.1724
+	omega 2.5
+	kRK2 250.0
+	kRK3_ATP 4000.0
+	kRK4 250.0
+	kArr 9.9147e-06
+	kA2 0.026
+	m_Arr 9.5475e-06
+	kA3 1.1651
+	kA4 2.9965e-07
+	kA5 0.424
+	kOps 6.1172e-13
+	kRrecyc 0.0007
+	omega_G 0.6
+	kG1_0 0.001
+	kG2 2200.0
+	kG3 8500.0
+	kG4_GDP 400.0
+	kG5_GTP 3500.0
+	kG6 8500.0
+	kG7 200.0
+	kGrecyc 2.0
+	kGshutoff 0.05
+	kP1 0.05497
+	kP2 940.7
+	kP3 1.4983e-09
+	kP4 21.088
+	kPDEshutoff 0.1
+	kRGS1 4.8182e-05
+	kRGS2 98.0
+	kRec1 0.011
+	kRec2 0.05
+	kRec3 0.00041081
+	kRec4 0.610084
+	Vcyto 0.03916
+	Kc1 0.171
+	Kc2 0.059
+	m1 3.0
+	m2 1.5
+	alfamax 60.0
+	betadark 3.19
+	betasub 0.0021826
+	fCa 0.12
+	Jdark 14.87
+	F 96485.34
+	cGMPdark 6.4944
+	ncg 3.8
+	gammaCa 981.3558
+	Ca2dark 0.25
+	Ca2_0 0.023
+	k1 9.37059
+	k2 46.412
+	eT 400.0
+	ktherm 0.0238
+	flashBG 0
+	flash0Mag 0
+	flashDel 0
+	flashMag 0
+	otherstimulus 0
+	kP1_rev 0
+end parameters
+begin molecule types
+	R(_0~ON~0,Ops~Ops~0,rk)
+	R4_G_GTP()
+	R1(arr,rk)
+	Gbg(ga_gtp)
+	R3_G_GTP()
+	R4_Gt()
+	R0_G()
+	R5_G_GTP()
+	R_Gt()
+	R3_G()
+	R2_G_GTP()
+	R0_Gt()
+	R5_RKpost()
+	R6_G_GTP()
+	R2_RKpost()
+	Ca2_free(rect)
+	R1_RKpost()
+	cGMP()
+	PDE(ga_gtp,ga_gtp)
+	RK(r,r1,r2,r3,r4,r5,r6)
+	R5_G()
+	R1_G_GTP()
+	R2(arr,rk)
+	Arr(arr,arr,arr,r1,r2,r3,r4,r5,r6)
+	Ops_Gt()
+	R4_RKpost()
+	R6_Gt()
+	RGS()
+	Ops_G()
+	R2_Gt()
+	R6(arr,rk)
+	Ca2_buff()
+	Ops_G_GTP()
+	R4(arr,rk)
+	R4_G()
+	R3_Gt()
+	R1_G()
+	R3_RKpost()
+	R5_Gt()
+	Ga_GTP(Ga_GDP~Ga_GDP~0,gbg,pde)
+	RGS_Ga_GTP_a_PDE_a_Ga_GTP()
+	RecT(ca2_free)
+	R1_Gt()
+	R2_G()
+	R5(arr,rk)
+	RGS_PDE_a_Ga_GTP()
+	R3(arr,rk)
+	R0_G_GTP()
+	RecR_Ca_RK()
+	R6_RKpost()
+	R6_G()
+end molecule types
+begin seed species
+	Arr(arr,arr,arr,r1,r2,r3,r4,r5,r6) 32195097.037793666 #Arr #Arr
+	Arr(arr!82,arr,arr,r1,r2,r3,r4,r5,r6).Arr(arr!82,arr,arr,r1,r2,r3,r4,r5,r6) 28684882.53319714 #Arr_di #Arr_di
+	Arr(arr!82,arr!95,arr!96,r1,r2,r3,r4,r5,r6).Arr(arr!82,arr!93,arr!94,r1,r2,r3,r4,r5,r6).Arr(arr!93,arr!95,arr!97,r1,r2,r3,r4,r5,r6).Arr(arr!94,arr!96,arr!97,r1,r2,r3,r4,r5,r6) 22773493.36057201 #Arr_tetra #Arr_tetra
+	Ca2_buff() 1.157422378e+25 # 19.2199mol/L * 6.022e23/mol *1.0L #Ca2_buff #Ca2_buff
+	Ca2_free(rect) 1.5055e+23 #original 0.25mol/L #Ca2_free #Ca2_free
+	Ga_GTP(Ga_GDP~Ga_GDP,gbg!75,pde).Gbg(ga_gtp!75) 208184371.8079673 #Gt #Gt
+	PDE(ga_gtp,ga_gtp) 51072522.98263534 #PDE #PDE
+	R(_0~0,Ops~0,rk) 2506447906.026558 #R #R
+	RGS() 2553626.149131767 #RGS #RGS
+	RK(r,r1,r2,r3,r4,r5,r6) 14811.031664964248 #RK #RK
+	R_Gt() 47178243.105209395 #R_Gt #R_Gt
+	RecT(ca2_free!83).Ca2_free(rect!83) 13047242.083758937 #RecR_Ca #RecR_Ca
+	RecR_Ca_RK() 5092441.26659857 #RecR_Ca_RK #RecR_Ca_RK
+	RecT(ca2_free) 237222931.5628192 #RecT #RecT
+	cGMP() 3.91092768e+24 #original 6.4944mol/L #cGMP #cGMP
+end seed species
+begin observables
+	Species Arr Arr(arr,arr,arr,r1,r2,r3,r4,r5,r6) #Arr
+	Species Arr_di Arr(arr!82,arr,arr,r1,r2,r3,r4,r5,r6).Arr(arr!82,arr,arr,r1,r2,r3,r4,r5,r6) #Arr_di
+	Species Arr_tetra Arr(arr!82,arr!95,arr!96,r1,r2,r3,r4,r5,r6).Arr(arr!82,arr!93,arr!94,r1,r2,r3,r4,r5,r6).Arr(arr!93,arr!95,arr!97,r1,r2,r3,r4,r5,r6).Arr(arr!94,arr!96,arr!97,r1,r2,r3,r4,r5,r6) #Arr_tetra
+	Species Ca2_buff Ca2_buff() #Ca2_buff
+	Species Ca2_free Ca2_free(rect) #Ca2_free
+	Species G_GTP Ga_GTP(Ga_GDP~0,gbg!75,pde).Gbg(ga_gtp!75) #G_GTP
+	Species Ga_GDP Ga_GTP(Ga_GDP~Ga_GDP,gbg,pde) #Ga_GDP
+	Species Ga_GTP Ga_GTP(Ga_GDP~0,gbg,pde) #Ga_GTP
+	Species Ga_GTP_PDE_a_Ga_GTP Ga_GTP(Ga_GDP~Ga_GDP,gbg,pde!90).Ga_GTP(Ga_GDP~0,gbg,pde!92).PDE(ga_gtp!90,ga_gtp!92) #Ga_GTP_PDE_a_Ga_GTP
+	Species Ga_GTP_a_PDE_a_Ga_GTP Ga_GTP(Ga_GDP~Ga_GDP,gbg,pde!90).Ga_GTP(Ga_GDP~Ga_GDP,gbg,pde!92).PDE(ga_gtp!90,ga_gtp!92) #Ga_GTP_a_PDE_a_Ga_GTP
+	Species Gbg Gbg(ga_gtp) #Gbg
+	Species Gt Ga_GTP(Ga_GDP~Ga_GDP,gbg!75,pde).Gbg(ga_gtp!75) #Gt
+	Species Ops R(_0~ON,Ops~Ops,rk) #Ops
+	Species Ops_G Ops_G() #Ops_G
+	Species Ops_G_GTP Ops_G_GTP() #Ops_G_GTP
+	Species Ops_Gt Ops_Gt() #Ops_Gt
+	Species PDE PDE(ga_gtp,ga_gtp) #PDE
+	Species PDE_Ga_GTP Ga_GTP(Ga_GDP~0,gbg,pde!90).PDE(ga_gtp!90,ga_gtp) #PDE_Ga_GTP
+	Species PDE_a_Ga_GTP Ga_GTP(Ga_GDP~Ga_GDP,gbg,pde!90).PDE(ga_gtp!90,ga_gtp) #PDE_a_Ga_GTP
+	Species R R(_0~0,Ops~0,rk) #R
+	Species R0 R(_0~ON,Ops~0,rk) #R0
+	Species R0_G R0_G() #R0_G
+	Species R0_G_GTP R0_G_GTP() #R0_G_GTP
+	Species R0_Gt R0_Gt() #R0_Gt
+	Species R0_RKpre RK(r!91,r1,r2,r3,r4,r5,r6).R(_0~ON,Ops~0,rk!91) #R0_RKpre
+	Species R1 R1(arr,rk) #R1
+	Species R1_Arr Arr(arr,arr,arr,r1!76,r2,r3,r4,r5,r6).R1(arr!76,rk) #R1_Arr
+	Species R1_G R1_G() #R1_G
+	Species R1_G_GTP R1_G_GTP() #R1_G_GTP
+	Species R1_Gt R1_Gt() #R1_Gt
+	Species R1_RKpost R1_RKpost() #R1_RKpost
+	Species R1_RKpre RK(r,r1!84,r2,r3,r4,r5,r6).R1(arr,rk!84) #R1_RKpre
+	Species R2 R2(arr,rk) #R2
+	Species R2_Arr Arr(arr,arr,arr,r1,r2!77,r3,r4,r5,r6).R2(arr!77,rk) #R2_Arr
+	Species R2_G R2_G() #R2_G
+	Species R2_G_GTP R2_G_GTP() #R2_G_GTP
+	Species R2_Gt R2_Gt() #R2_Gt
+	Species R2_RKpost R2_RKpost() #R2_RKpost
+	Species R2_RKpre RK(r,r1,r2!85,r3,r4,r5,r6).R2(arr,rk!85) #R2_RKpre
+	Species R3 R3(arr,rk) #R3
+	Species R3_Arr Arr(arr,arr,arr,r1,r2,r3!78,r4,r5,r6).R3(arr!78,rk) #R3_Arr
+	Species R3_G R3_G() #R3_G
+	Species R3_G_GTP R3_G_GTP() #R3_G_GTP
+	Species R3_Gt R3_Gt() #R3_Gt
+	Species R3_RKpost R3_RKpost() #R3_RKpost
+	Species R3_RKpre RK(r,r1,r2,r3!86,r4,r5,r6).R3(arr,rk!86) #R3_RKpre
+	Species R4 R4(arr,rk) #R4
+	Species R4_Arr Arr(arr,arr,arr,r1,r2,r3,r4!79,r5,r6).R4(arr!79,rk) #R4_Arr
+	Species R4_G R4_G() #R4_G
+	Species R4_G_GTP R4_G_GTP() #R4_G_GTP
+	Species R4_Gt R4_Gt() #R4_Gt
+	Species R4_RKpost R4_RKpost() #R4_RKpost
+	Species R4_RKpre RK(r,r1,r2,r3,r4!87,r5,r6).R4(arr,rk!87) #R4_RKpre
+	Species R5 R5(arr,rk) #R5
+	Species R5_Arr Arr(arr,arr,arr,r1,r2,r3,r4,r5!80,r6).R5(arr!80,rk) #R5_Arr
+	Species R5_G R5_G() #R5_G
+	Species R5_G_GTP R5_G_GTP() #R5_G_GTP
+	Species R5_Gt R5_Gt() #R5_Gt
+	Species R5_RKpost R5_RKpost() #R5_RKpost
+	Species R5_RKpre RK(r,r1,r2,r3,r4,r5!88,r6).R5(arr,rk!88) #R5_RKpre
+	Species R6 R6(arr,rk) #R6
+	Species R6_Arr Arr(arr,arr,arr,r1,r2,r3,r4,r5,r6!81).R6(arr!81,rk) #R6_Arr
+	Species R6_G R6_G() #R6_G
+	Species R6_G_GTP R6_G_GTP() #R6_G_GTP
+	Species R6_Gt R6_Gt() #R6_Gt
+	Species R6_RKpost R6_RKpost() #R6_RKpost
+	Species R6_RKpre RK(r,r1,r2,r3,r4,r5,r6!89).R6(arr,rk!89) #R6_RKpre
+	Species RGS RGS() #RGS
+	Species RGS_Ga_GTP_a_PDE_a_Ga_GTP RGS_Ga_GTP_a_PDE_a_Ga_GTP() #RGS_Ga_GTP_a_PDE_a_Ga_GTP
+	Species RGS_PDE_a_Ga_GTP RGS_PDE_a_Ga_GTP() #RGS_PDE_a_Ga_GTP
+	Species RK RK(r,r1,r2,r3,r4,r5,r6) #RK
+	Species R_Gt R_Gt() #R_Gt
+	Species RecR_Ca RecT(ca2_free!83).Ca2_free(rect!83) #RecR_Ca
+	Species RecR_Ca_RK RecR_Ca_RK() #RecR_Ca_RK
+	Species RecT RecT(ca2_free) #RecT
+	Species cGMP cGMP() #cGMP
+end observables
+begin functions
+	background() = flashBG
+	testflash() =  if((time()>=del&&time()<=del+dur),(mag),(0))
+	preflash() =  if((time()<=predur),(premag),(0))
+	stimulus() = background + otherstimulus + preflash + testflash
+	numConcFactor() = 1.66057788110262e-6/Vcyto
+	arRateCa2_free() = -2*numConcFactor*v_r30 - v_r33 - v_r34 + v_r35
+	Ca2_frac() = (-Ca2_0 + Ca2_free)/(-Ca2_0 + Ca2dark)
+	J() = Ca2_frac*Jdark*fCa/(fCa + 2) + 2*Jdark*(cGMP/cGMPdark)^ncg/(fCa + 2)
+	deltaJ() = -J + Jdark
+	E() = Ga_GTP_PDE_a_Ga_GTP + 2*Ga_GTP_a_PDE_a_Ga_GTP + PDE_a_Ga_GTP
+	kG1_6() = kG1_0*exp(-6*omega_G)
+	kG1_5() = kG1_0*exp(-5*omega_G)
+	kG1_4() = kG1_0*exp(-4*omega_G)
+	kG1_3() = kG1_0*exp(-3*omega_G)
+	kG1_2() = kG1_0*exp(-2*omega_G)
+	kG1_1() = kG1_0*exp(-omega_G)
+	kG2ops() = 3*kG2
+	kG1ops() = 1.9*kG1_0
+	kGpre2() = 315*kG2
+	kGpre1() = 1.6*kG1_0
+	kA1_6() = kArr + 3*m_Arr
+	kA1_5() = kArr + 3*m_Arr
+	kA1_4() = kArr + 3*m_Arr
+	kA1_3() = kArr + 2*m_Arr
+	kA1_2() = kArr + m_Arr
+	kA1_1() = kArr
+	kRK1_6() = 0
+	kRK1_5() = kRK1_0*exp(-5*omega)
+	kRK1_4() = kRK1_0*exp(-4*omega)
+	kRK1_3() = kRK1_0*exp(-3*omega)
+	kRK1_2() = kRK1_0*exp(-2*omega)
+	kRK1_1() = kRK1_0*exp(-omega)
+	del() = flashDel
+	dur() = flashDur
+	predur() = flash0Dur
+	mag() = flashMag/flashDur
+	premag() = flash0Mag/flash0Dur
+	fRate0() = stimulus/Rtot
+	fRate1() = stimulus/Rtot
+	fRate91() = -Ca2_buff*k2 + Ca2_free*k1*(-Ca2_buff + eT)
+	fRate92m() = Ca2_0*gammaCa
+	fRate93() = 1000000.0*Jdark*fCa*(cGMP/cGMPdark)^ncg/(F*Vcyto*(fCa + 2.0))
+	fRate94() = alfamax*((Ca2_free/Kc1)^m1 + (Ca2_free/Kc2)^m2 + 2.0)/(((Ca2_free/Kc1)^m1 + 1.0)*((Ca2_free/Kc2)^m2 + 1.0))
+	fRate95() = cGMP*(E*betasub + betadark)
+end functions
+begin reaction rules
+	v_r1: R(_0~0,Ops~0,rk) -> R(_0~ON,Ops~0,rk) fRate0()
+	v_rstprec: R_Gt() -> R0_Gt() fRate1()
+	v_r2_0: R(_0~ON,Ops~0,rk) + RK(r,r1,r2,r3,r4,r5,r6) <-> RK(r!91,r1,r2,r3,r4,r5,r6).R(_0~ON,Ops~0,rk!91) kRK1_0,kRK2
+	v_r2_1: R1(arr,rk) + RK(r,r1,r2,r3,r4,r5,r6) <-> RK(r,r1!84,r2,r3,r4,r5,r6).R1(arr,rk!84) kRK1_1,kRK2
+	v_r2_2: R2(arr,rk) + RK(r,r1,r2,r3,r4,r5,r6) <-> RK(r,r1,r2!85,r3,r4,r5,r6).R2(arr,rk!85) kRK1_2,kRK2
+	v_r2_3: R3(arr,rk) + RK(r,r1,r2,r3,r4,r5,r6) <-> RK(r,r1,r2,r3!86,r4,r5,r6).R3(arr,rk!86) kRK1_3,kRK2
+	v_r2_4: R4(arr,rk) + RK(r,r1,r2,r3,r4,r5,r6) <-> RK(r,r1,r2,r3,r4!87,r5,r6).R4(arr,rk!87) kRK1_4,kRK2
+	v_r2_5: R5(arr,rk) + RK(r,r1,r2,r3,r4,r5,r6) <-> RK(r,r1,r2,r3,r4,r5!88,r6).R5(arr,rk!88) kRK1_5,kRK2
+	v_r2_6: R6(arr,rk) + RK(r,r1,r2,r3,r4,r5,r6) <-> RK(r,r1,r2,r3,r4,r5,r6!89).R6(arr,rk!89) kRK1_6,kRK2
+	v_r3_0: RK(r!91,r1,r2,r3,r4,r5,r6).R(_0~ON,Ops~0,rk!91) -> R1_RKpost() kRK3_ATP
+	v_r3_1: RK(r,r1!84,r2,r3,r4,r5,r6).R1(arr,rk!84) -> R2_RKpost() kRK3_ATP
+	v_r3_2: RK(r,r1,r2!85,r3,r4,r5,r6).R2(arr,rk!85) -> R3_RKpost() kRK3_ATP
+	v_r3_3: RK(r,r1,r2,r3!86,r4,r5,r6).R3(arr,rk!86) -> R4_RKpost() kRK3_ATP
+	v_r3_4: RK(r,r1,r2,r3,r4!87,r5,r6).R4(arr,rk!87) -> R5_RKpost() kRK3_ATP
+	v_r3_5: RK(r,r1,r2,r3,r4,r5!88,r6).R5(arr,rk!88) -> R6_RKpost() kRK3_ATP
+	v_r4_1: R1_RKpost() -> R1(arr,rk) + RK(r,r1,r2,r3,r4,r5,r6) kRK4
+	v_r4_2: R2_RKpost() -> R2(arr,rk) + RK(r,r1,r2,r3,r4,r5,r6) kRK4
+	v_r4_3: R3_RKpost() -> R3(arr,rk) + RK(r,r1,r2,r3,r4,r5,r6) kRK4
+	v_r4_4: R4_RKpost() -> R4(arr,rk) + RK(r,r1,r2,r3,r4,r5,r6) kRK4
+	v_r4_5: R5_RKpost() -> R5(arr,rk) + RK(r,r1,r2,r3,r4,r5,r6) kRK4
+	v_r4_6: R6_RKpost() -> R6(arr,rk) + RK(r,r1,r2,r3,r4,r5,r6) kRK4
+	v_r5_1: Arr(arr,arr,arr,r1,r2,r3,r4,r5,r6) + R1(arr,rk) <-> Arr(arr,arr,arr,r1!76,r2,r3,r4,r5,r6).R1(arr!76,rk) kA1_1,kA2
+	v_r5_2: Arr(arr,arr,arr,r1,r2,r3,r4,r5,r6) + R2(arr,rk) <-> Arr(arr,arr,arr,r1,r2!77,r3,r4,r5,r6).R2(arr!77,rk) kA1_2,kA2
+	v_r5_3: Arr(arr,arr,arr,r1,r2,r3,r4,r5,r6) + R3(arr,rk) <-> Arr(arr,arr,arr,r1,r2,r3!78,r4,r5,r6).R3(arr!78,rk) kA1_3,kA2
+	v_r5_4: Arr(arr,arr,arr,r1,r2,r3,r4,r5,r6) + R4(arr,rk) <-> Arr(arr,arr,arr,r1,r2,r3,r4!79,r5,r6).R4(arr!79,rk) kA1_4,kA2
+	v_r5_5: Arr(arr,arr,arr,r1,r2,r3,r4,r5,r6) + R5(arr,rk) <-> Arr(arr,arr,arr,r1,r2,r3,r4,r5!80,r6).R5(arr!80,rk) kA1_5,kA2
+	v_r5_6: Arr(arr,arr,arr,r1,r2,r3,r4,r5,r6) + R6(arr,rk) <-> Arr(arr,arr,arr,r1,r2,r3,r4,r5,r6!81).R6(arr!81,rk) kA1_6,kA2
+	v_r6_1: Arr(arr,arr,arr,r1!76,r2,r3,r4,r5,r6).R1(arr!76,rk) -> Arr(arr,arr,arr,r1,r2,r3,r4,r5,r6) + R(_0~ON,Ops~Ops,rk) kA3
+	v_r6_2: Arr(arr,arr,arr,r1,r2!77,r3,r4,r5,r6).R2(arr!77,rk) -> Arr(arr,arr,arr,r1,r2,r3,r4,r5,r6) + R(_0~ON,Ops~Ops,rk) kA3
+	v_r6_3: Arr(arr,arr,arr,r1,r2,r3!78,r4,r5,r6).R3(arr!78,rk) -> Arr(arr,arr,arr,r1,r2,r3,r4,r5,r6) + R(_0~ON,Ops~Ops,rk) kA3
+	v_r6_4: Arr(arr,arr,arr,r1,r2,r3,r4!79,r5,r6).R4(arr!79,rk) -> Arr(arr,arr,arr,r1,r2,r3,r4,r5,r6) + R(_0~ON,Ops~Ops,rk) kA3
+	v_r6_5: Arr(arr,arr,arr,r1,r2,r3,r4,r5!80,r6).R5(arr!80,rk) -> Arr(arr,arr,arr,r1,r2,r3,r4,r5,r6) + R(_0~ON,Ops~Ops,rk) kA3
+	v_r6_6: Arr(arr,arr,arr,r1,r2,r3,r4,r5,r6!81).R6(arr!81,rk) -> Arr(arr,arr,arr,r1,r2,r3,r4,r5,r6) + R(_0~ON,Ops~Ops,rk) kA3
+	v_r7_0: R(_0~ON,Ops~0,rk) -> R(_0~ON,Ops~Ops,rk) ktherm
+	v_r7_1: R1(arr,rk) -> R(_0~ON,Ops~Ops,rk) ktherm
+	v_r7_2: R2(arr,rk) -> R(_0~ON,Ops~Ops,rk) ktherm
+	v_r7_3: R3(arr,rk) -> R(_0~ON,Ops~Ops,rk) ktherm
+	v_r7_4: R4(arr,rk) -> R(_0~ON,Ops~Ops,rk) ktherm
+	v_r7_5: R5(arr,rk) -> R(_0~ON,Ops~Ops,rk) ktherm
+	v_r7_6: R6(arr,rk) -> R(_0~ON,Ops~Ops,rk) ktherm
+	v_r8: Ga_GTP(Ga_GDP~Ga_GDP,gbg!75,pde).Gbg(ga_gtp!75) + R(_0~ON,Ops~Ops,rk) <-> Ops_Gt() kG1ops,kG2ops
+	v_r9: Ops_Gt() <-> Ops_G() kOps,kG4_GDP
+	v_r10: Ops_G() -> Ops_G_GTP() kG5_GTP
+	v_r11: Ops_G_GTP() -> Ga_GTP(Ga_GDP~0,gbg!75,pde).Gbg(ga_gtp!75) + R(_0~ON,Ops~Ops,rk) kG6
+	v_r12: R(_0~ON,Ops~Ops,rk) -> R(_0~0,Ops~0,rk) kRrecyc
+	v_GtRpre: Ga_GTP(Ga_GDP~Ga_GDP,gbg!75,pde).Gbg(ga_gtp!75) + R(_0~0,Ops~0,rk) <-> R_Gt() kGpre1,kGpre2
+	v_r13_0: Ga_GTP(Ga_GDP~Ga_GDP,gbg!75,pde).Gbg(ga_gtp!75) + R(_0~ON,Ops~0,rk) <-> R0_Gt() kG1_0,kG2
+	v_r13_1: Ga_GTP(Ga_GDP~Ga_GDP,gbg!75,pde).Gbg(ga_gtp!75) + R1(arr,rk) <-> R1_Gt() kG1_1,kG2
+	v_r13_2: Ga_GTP(Ga_GDP~Ga_GDP,gbg!75,pde).Gbg(ga_gtp!75) + R2(arr,rk) <-> R2_Gt() kG1_2,kG2
+	v_r13_3: Ga_GTP(Ga_GDP~Ga_GDP,gbg!75,pde).Gbg(ga_gtp!75) + R3(arr,rk) <-> R3_Gt() kG1_3,kG2
+	v_r13_4: Ga_GTP(Ga_GDP~Ga_GDP,gbg!75,pde).Gbg(ga_gtp!75) + R4(arr,rk) <-> R4_Gt() kG1_4,kG2
+	v_r13_5: Ga_GTP(Ga_GDP~Ga_GDP,gbg!75,pde).Gbg(ga_gtp!75) + R5(arr,rk) <-> R5_Gt() kG1_5,kG2
+	v_r13_6: Ga_GTP(Ga_GDP~Ga_GDP,gbg!75,pde).Gbg(ga_gtp!75) + R6(arr,rk) <-> R6_Gt() kG1_6,kG2
+	v_r14_0: R0_Gt() <-> R0_G() kG3,kG4_GDP
+	v_r14_1: R1_Gt() <-> R1_G() kG3,kG4_GDP
+	v_r14_2: R2_Gt() <-> R2_G() kG3,kG4_GDP
+	v_r14_3: R3_Gt() <-> R3_G() kG3,kG4_GDP
+	v_r14_4: R4_Gt() <-> R4_G() kG3,kG4_GDP
+	v_r14_5: R5_Gt() <-> R5_G() kG3,kG4_GDP
+	v_r14_6: R6_Gt() <-> R6_G() kG3,kG4_GDP
+	v_r15_0: R0_G() -> R0_G_GTP() kG5_GTP
+	v_r15_1: R1_G() -> R1_G_GTP() kG5_GTP
+	v_r15_2: R2_G() -> R2_G_GTP() kG5_GTP
+	v_r15_3: R3_G() -> R3_G_GTP() kG5_GTP
+	v_r15_4: R4_G() -> R4_G_GTP() kG5_GTP
+	v_r15_5: R5_G() -> R5_G_GTP() kG5_GTP
+	v_r15_6: R6_G() -> R6_G_GTP() kG5_GTP
+	v_r16_0: R0_G_GTP() -> Ga_GTP(Ga_GDP~0,gbg!75,pde).Gbg(ga_gtp!75) + R(_0~ON,Ops~0,rk) kG6
+	v_r16_1: R1_G_GTP() -> Ga_GTP(Ga_GDP~0,gbg!75,pde).Gbg(ga_gtp!75) + R1(arr,rk) kG6
+	v_r16_2: R2_G_GTP() -> Ga_GTP(Ga_GDP~0,gbg!75,pde).Gbg(ga_gtp!75) + R2(arr,rk) kG6
+	v_r16_3: R3_G_GTP() -> Ga_GTP(Ga_GDP~0,gbg!75,pde).Gbg(ga_gtp!75) + R3(arr,rk) kG6
+	v_r16_4: R4_G_GTP() -> Ga_GTP(Ga_GDP~0,gbg!75,pde).Gbg(ga_gtp!75) + R4(arr,rk) kG6
+	v_r16_5: R5_G_GTP() -> Ga_GTP(Ga_GDP~0,gbg!75,pde).Gbg(ga_gtp!75) + R5(arr,rk) kG6
+	v_r16_6: R6_G_GTP() -> Ga_GTP(Ga_GDP~0,gbg!75,pde).Gbg(ga_gtp!75) + R6(arr,rk) kG6
+	v_r17: Ga_GTP(Ga_GDP~0,gbg!75,pde).Gbg(ga_gtp!75) -> Ga_GTP(Ga_GDP~0,gbg,pde) + Gbg(ga_gtp) kG7
+	v_r18: Ga_GTP(Ga_GDP~0,gbg,pde) + PDE(ga_gtp,ga_gtp) <-> Ga_GTP(Ga_GDP~0,gbg,pde!90).PDE(ga_gtp!90,ga_gtp) kP1,kP1_rev
+	v_r19: Ga_GTP(Ga_GDP~0,gbg,pde!90).PDE(ga_gtp!90,ga_gtp) -> Ga_GTP(Ga_GDP~Ga_GDP,gbg,pde!90).PDE(ga_gtp!90,ga_gtp) kP2
+	v_r20: Ga_GTP(Ga_GDP~0,gbg,pde) + Ga_GTP(Ga_GDP~Ga_GDP,gbg,pde!90).PDE(ga_gtp!90,ga_gtp) -> Ga_GTP(Ga_GDP~Ga_GDP,gbg,pde!90).Ga_GTP(Ga_GDP~0,gbg,pde!92).PDE(ga_gtp!90,ga_gtp!92) kP3
+	v_r21: Ga_GTP(Ga_GDP~Ga_GDP,gbg,pde!90).Ga_GTP(Ga_GDP~0,gbg,pde!92).PDE(ga_gtp!90,ga_gtp!92) -> Ga_GTP(Ga_GDP~Ga_GDP,gbg,pde!90).Ga_GTP(Ga_GDP~Ga_GDP,gbg,pde!92).PDE(ga_gtp!90,ga_gtp!92) kP4
+	v_r22: Ga_GTP(Ga_GDP~Ga_GDP,gbg,pde!90).Ga_GTP(Ga_GDP~Ga_GDP,gbg,pde!92).PDE(ga_gtp!90,ga_gtp!92) + RGS() -> RGS_Ga_GTP_a_PDE_a_Ga_GTP() kRGS1
+	v_r23: RGS_Ga_GTP_a_PDE_a_Ga_GTP() -> Ga_GTP(Ga_GDP~Ga_GDP,gbg,pde) + Ga_GTP(Ga_GDP~Ga_GDP,gbg,pde!90).PDE(ga_gtp!90,ga_gtp) + RGS() kRGS2
+	v_r24: Ga_GTP(Ga_GDP~Ga_GDP,gbg,pde!90).PDE(ga_gtp!90,ga_gtp) + RGS() -> RGS_PDE_a_Ga_GTP() kRGS1
+	v_r25: RGS_PDE_a_Ga_GTP() -> Ga_GTP(Ga_GDP~Ga_GDP,gbg,pde) + PDE(ga_gtp,ga_gtp) + RGS() kRGS2
+	v_r26: Ga_GTP(Ga_GDP~Ga_GDP,gbg,pde!90).PDE(ga_gtp!90,ga_gtp) -> Ga_GTP(Ga_GDP~Ga_GDP,gbg,pde) + PDE(ga_gtp,ga_gtp) kPDEshutoff
+	v_r27: Ga_GTP(Ga_GDP~Ga_GDP,gbg,pde!90).Ga_GTP(Ga_GDP~Ga_GDP,gbg,pde!92).PDE(ga_gtp!90,ga_gtp!92) -> Ga_GTP(Ga_GDP~Ga_GDP,gbg,pde) + Ga_GTP(Ga_GDP~Ga_GDP,gbg,pde!90).PDE(ga_gtp!90,ga_gtp) kPDEshutoff
+	v_r28: Ga_GTP(Ga_GDP~0,gbg,pde) -> Ga_GTP(Ga_GDP~Ga_GDP,gbg,pde) kGshutoff
+	v_r29: Ga_GTP(Ga_GDP~Ga_GDP,gbg,pde) + Gbg(ga_gtp) -> Ga_GTP(Ga_GDP~Ga_GDP,gbg!75,pde).Gbg(ga_gtp!75) kGrecyc
+	v_r30: RecT(ca2_free) + Ca2_free(rect) <-> RecT(ca2_free!83).Ca2_free(rect!83) kRec1,kRec2
+	v_r31: RK(r,r1,r2,r3,r4,r5,r6) + RecT(ca2_free!83).Ca2_free(rect!83) <-> RecR_Ca_RK() kRec3,kRec4
+	v_r_diarr: Arr(arr,arr,arr,r1,r2,r3,r4,r5,r6) + Arr(arr,arr,arr,r1,r2,r3,r4,r5,r6) <-> Arr(arr!82,arr,arr,r1,r2,r3,r4,r5,r6).Arr(arr!82,arr,arr,r1,r2,r3,r4,r5,r6) kA4,kA5
+	v_r_tetraarr: Arr(arr!82,arr,arr,r1,r2,r3,r4,r5,r6).Arr(arr!82,arr,arr,r1,r2,r3,r4,r5,r6) + Arr(arr!82,arr,arr,r1,r2,r3,r4,r5,r6).Arr(arr!82,arr,arr,r1,r2,r3,r4,r5,r6) <-> Arr(arr!82,arr!95,arr!96,r1,r2,r3,r4,r5,r6).Arr(arr!82,arr!93,arr!94,r1,r2,r3,r4,r5,r6).Arr(arr!93,arr!95,arr!97,r1,r2,r3,r4,r5,r6).Arr(arr!94,arr!96,arr!97,r1,r2,r3,r4,r5,r6) kA4,kA5
+	v_r33_reactants_0: 0  -> Ca2_free(rect) -1*(fRate91())
+	v_r33_products_0: 0  -> Ca2_buff() fRate91()
+	v_r34: Ca2_free(rect) <-> 0  gammaCa,fRate92m()
+	v_r35: 0  -> Ca2_free(rect) fRate93() #Modifiers(cGMP)
+	v_r36: 0  -> cGMP() fRate94() #Modifiers(Ca2_free)
+	v_r37_reactants_0: 0  -> cGMP() -1*(fRate95()) #Modifiers(Ga_GTP_PDE_a_Ga_GTP, Ga_GTP_a_PDE_a_Ga_GTP, PDE_a_Ga_GTP)
+	0  -> Ca2_free(rect) arRateCa2_free #rateLaw
+end reaction rules
+end model

@@ -1,0 +1,148 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1503250002', 'http://identifiers.org/biomodels.db/BIOMD0000000589']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/26797294']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/3193']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0009628', 'http://identifiers.org/go/GO:0033355']
+#@creatorEmail:'juty@ebi.ac.uk'
+#@creatorName:'Juty Nick'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 13 molecules and 0 reactions. The translated model has 13 molecules and 13 rules'
+###
+begin model
+begin parameters
+	k12 2200.0
+	k4 2520.0
+	k3 0.01
+	kSOD 720000.0
+	SOD 50.0
+	kcatDHAR 511200.0
+	DHAR 1.7
+	K 500.0
+	KMDHA 70.0
+	KMGSH 2500.0
+	k1 1800.0
+	k13 15000.0
+	k2APX 180000.0
+	k3APX 7560.0
+	k4APX 2520.0
+	k5APX 1.0
+	k6 720.0
+	k5 0.0072
+	k1APX 43200.0
+	k2 720.0
+	GR 1.4
+	kcatGR 2142000.0
+	KMNADPH 3.0
+	KMGSSG 200.0
+	k11 30000.0
+	b 11.0
+	c_0 4.712389
+	incr 0.25
+	kN_cte 0.005
+	min 3500000.0
+	max 4500000.0
+	kcatMDAR 1080000.0
+	KMNADPH2 23.0
+	KMMDA 1.4
+	a1 RUNIFORM((3500000.0), (4500000.0))
+	a2 RUNIFORM((3500000.0), (4500000.0))
+	a3 RUNIFORM((3500000.0), (4500000.0))
+	a4 RUNIFORM((3500000.0), (4500000.0))
+	a5 RUNIFORM((3500000.0), (4500000.0))
+	a6 RUNIFORM((3500000.0), (4500000.0))
+	a7 RUNIFORM((3500000.0), (4500000.0))
+	a8 RUNIFORM((3500000.0), (4500000.0))
+	a9 RUNIFORM((3500000.0), (4500000.0))
+	a10 RUNIFORM((3500000.0), (4500000.0))
+	a11 RUNIFORM((3500000.0), (4500000.0))
+	a12 RUNIFORM((3500000.0), (4500000.0))
+	a13 RUNIFORM((3500000.0), (4500000.0))
+	a14 RUNIFORM((3500000.0), (4500000.0))
+	a0 RUNIFORM((3500000.0), (4500000.0))
+	a15 RUNIFORM((3500000.0), (4500000.0))
+	Metabolite_17 (40.0)
+	MDAR 0
+end parameters
+begin molecule types
+	H2O2()
+	MDA()
+	APXi()
+	GSSG()
+	NADPplus()
+	NADPH()
+	DHA()
+	ASC()
+	GSH()
+	CoI()
+	APX()
+	O2neg()
+	CoII()
+end molecule types
+begin seed species
+	NADPH() 6.624201968954203e+19 # (110.000032696018 * 1e-06)mol/L * 6.022e23/mol *1.0L #NADPH #NADPH
+	NADPplus() 2.4088007159833534e+19 #original 40.0000118894612substance/L #NADPplus #NADPplus
+	GSH() 2.4088e+21 #original 4000.0substance/L #GSH #GSH
+	ASC() 6.022e+21 #original 10000.0substance/L #ASC #ASC
+	APX() 2.4088e+19 #original 40.0substance/L #APX #APX
+end seed species
+begin observables
+	Species NADPH NADPH() #NADPH
+	Species NADPplus NADPplus() #NADPplus
+	Species GSH GSH() #GSH
+	Species GSSG GSSG() #GSSG
+	Species ASC ASC() #ASC
+	Species DHA DHA() #DHA
+	Species MDA MDA() #MDA
+	Species H2O2 H2O2() #H2O2
+	Species APX APX() #APX
+	Species CoI CoI() #CoI
+	Species CoII CoII() #CoII
+	Species APXi APXi() #APXi
+	Species O2neg O2neg() #O2neg
+end observables
+begin functions
+	F1() =  if((time()>=24*i&&time()<=b+i*incr+24*i),(ai*sin(c_0+2*3.1415926535*(-24*i+time())/(b+i*incr))+ai),(0))
+	c12() = 2*NADPplus*k12/(MDA*k13 + 2*NADPplus*k12 + k11)
+	F12() = F1*c12
+	kN() = F12*kN_cte
+	vMDAR() = MDA*MDAR*NADPH*kcatMDAR/(KMMDA*NADPH + KMNADPH2*MDA + MDA*NADPH)
+	vGR() = GR*GSSG*NADPH*kcatGR/(GSSG*KMNADPH + GSSG*NADPH + KMGSSG*NADPH)
+	arRateNADPplus() = -0.5*F12 + NADPH*kN + vGR + vMDAR
+	arRateNADPH() = 0.5*F12 - NADPH*kN - vGR - vMDAR
+	c13() = MDA*k13/(MDA*k13 + 2*NADPplus*k12 + k11)
+	F13() = F1*c13
+	vDHAR() = DHA*DHAR*GSH*kcatDHAR/(DHA*GSH + DHA*KMGSH + GSH*KMDHA + K)
+	arRateASC() = -ASC*CoI*k2APX - ASC*CoII*k3APX - 2*ASC*H2O2*k5 - ASC*O2neg*k6 + DHA*GSH*k3 + F13 + MDA^2*k1 + vDHAR + 2*vMDAR
+	c11() = k11/(MDA*k13 + 2*NADPplus*k12 + k11)
+	F11() = F1*c11
+	vSOD() = O2neg*SOD*kSOD
+	arRateO2neg() = -ASC*O2neg*k6 + F11 - GSH*O2neg*k4 - 2*O2neg^2*k2 - 2*vSOD
+	arRateMDA() = ASC*CoI*k2APX + ASC*CoII*k3APX + 2*ASC*H2O2*k5 + ASC*O2neg*k6 - F13 - 2*MDA^2*k1 - 2*vMDAR
+	arRateGSSG() = DHA*GSH*k3 + GSH*O2neg*k4 + vDHAR - vGR
+	arRateGSH() = -2*DHA*GSH*k3 - 2*GSH*O2neg*k4 - 2*vDHAR + 2*vGR
+	arRateH2O2() = -APX*H2O2*k1APX - ASC*H2O2*k5 + ASC*O2neg*k6 - CoI*H2O2*k4APX + GSH*O2neg*k4 + O2neg^2*k2 + vSOD
+	arRateDHA() = -DHA*GSH*k3 + MDA^2*k1 - vDHAR
+	FN() = NADPH*kN
+	arRateAPXi() = CoI*H2O2*k4APX
+	arRateCoII() = ASC*CoI*k2APX - ASC*CoII*k3APX
+	arRateCoI() = APX*H2O2*k1APX - ASC*CoI*k2APX - CoI*H2O2*k4APX
+	arRateAPX() = -APX*H2O2*k1APX + ASC*CoII*k3APX + k5APX*(-APX - CoI - CoII + Metabolite_17)
+	vAPX() = ASC*CoI*k2APX + ASC*CoII*k3APX
+	ai() =  if((i==0),(a0),(if((i==1),(a1),(if((i==2),(a2),(if((i==3),(a3),(if((i==4),(a4),(if((i==5),(a5),(if((i==6),(a6),(if((i==7),(a7),(if((i==8),(a8),(if((i==9),(a9),(if((i==10),(a10),(if((i==11),(a11),(if((i==12),(a12),(if((i==13),(a13),(if((i==14),(a14),(a15))))))))))))))))))))))))))))))
+	i() = min(rint(time()/24 - 0.5), rint(time()/24 + 0.5))
+end functions
+begin reaction rules
+	0  -> NADPH() arRateNADPH #rateLaw
+	0  -> NADPplus() arRateNADPplus #rateLaw
+	0  -> GSH() arRateGSH #rateLaw
+	0  -> GSSG() arRateGSSG #rateLaw
+	0  -> ASC() arRateASC #rateLaw
+	0  -> DHA() arRateDHA #rateLaw
+	0  -> MDA() arRateMDA #rateLaw
+	0  -> H2O2() arRateH2O2 #rateLaw
+	0  -> APX() arRateAPX #rateLaw
+	0  -> CoI() arRateCoI #rateLaw
+	0  -> CoII() arRateCoII #rateLaw
+	0  -> APXi() arRateAPXi #rateLaw
+	0  -> O2neg() arRateO2neg #rateLaw
+end reaction rules
+end model

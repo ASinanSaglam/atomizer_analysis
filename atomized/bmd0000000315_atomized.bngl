@@ -1,0 +1,137 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1010260000', 'http://identifiers.org/biomodels.db/BIOMD0000000315']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/21283142']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0006259']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/131567']
+#@creatorEmail:'lukas@ebi.ac.uk'
+#@creatorName:'Endler Lukas'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 20 molecules and 27 reactions. The translated model has 10 molecules and 27 rules'
+###
+begin model
+begin parameters
+	k0d 0.0294 #units:per_nM_per_min
+	k0r 3.43457943925 #units:per_min
+	k1d 3.43457943925 #units:per_min
+	k1r 0.0294 #units:per_nM_per_min
+	k2d 3.43457943925 #units:per_min
+	k2r 0.0294 #units:per_nM_per_min
+	k3d 3.43457943925 #units:per_min
+	k3r 0.0294 #units:per_nM_per_min
+	k4d 15.2 #units:per_min
+	k5d 11.8408 #units:per_min
+	k6d 3.34 #units:per_min
+	k7d 0.0294 #units:per_nM_per_min
+	k7r 3.43457943925 #units:per_min
+	k8d 0.610714285714 #units:per_min
+	k8r 0.0171 #units:per_nM_per_min
+	k9d 0.610714285714 #units:per_min
+	k9r 0.0171 #units:per_nM_per_min
+	k10d 3.43457943925 #units:per_min
+	k10r 0.0294 #units:per_nM_per_min
+	k11d 11.8408 #units:per_min
+	k12d 9.2239832 #units:per_min
+	k13d 2.60186 #units:per_min
+	k14d 0.0171 #units:per_nM_per_min
+	k14r 0.610714285714 #units:per_min
+	k15d 0.00186296832954 #units:per_min
+	k15r 0.027 #units:per_nM_per_min
+	k16d 0.027 #units:per_nM_per_min
+	k16r 0.00186296832954 #units:per_min
+	k17d 0.0171 #units:per_nM_per_min
+	k17r 0.610714285714 #units:per_min
+	k18d 17.024 #units:per_min
+	k19d 5.566848 #units:per_min
+	k20d 3.2064 #units:per_min
+	k21d 0.027 #units:per_nM_per_min
+	k21r 0.00608108108108 #units:per_min
+	k22d 0.021546 #units:per_nM_per_min
+	k22r 4.15391351351e-05 #units:per_nM_per_min
+	k23d 4.15391351351e-05 #units:per_nM_per_min
+	k23r 0.021546 #units:per_nM_per_min
+	k24d 0.411 #units:per_min
+	k25d 0.485802 #units:per_min
+	k26d 1.7262 #units:per_min
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf chebi:CHEBI:16991, kegg.compound:C00039
+	T3(beta,inh)
+	#^ bqbiol:isVersionOf chebi:CHEBI:16991, kegg.compound:C00039
+	T2(alpha,beta)
+	alpha_beta_T2()
+	#^ bqbiol:isVersionOf chebi:CHEBI:16991, kegg.compound:C00039
+	alpha(empty~empty~0,t1,t2)
+	beta_Inh_T3()
+	#^ bqbiol:isVersionOf chebi:CHEBI:16991, kegg.compound:C00039
+	T1(alpha,alpha,inh)
+	alpha_alpha_T1()
+	#^ bqbiol:isVersionOf chebi:CHEBI:16991, kegg.compound:C00039
+	Inh(t1,t3)
+	#^ bqbiol:isVersionOf chebi:CHEBI:16991, kegg.compound:C00039
+	beta(t2,t3)
+	T1_alpha()
+end molecule types
+begin seed species
+	T1(alpha,alpha,inh) 2.31847e+16 # (38.5 * 1e-09)mol/L * 6.022e23/mol *1.0L #T1 #T1
+	alpha(empty~0,t1,t2) 6022000000000000.0 #original 10.0nanomole/L #alpha #alpha
+	T2(alpha,beta) 2342558000000000.5 #original 3.89nanomole/L #T2 #T2
+	T3(beta,inh) 2.31847e+16 #original 38.5nanomole/L #T3 #T3
+end seed species
+begin observables
+	Species T1 T1(alpha,alpha,inh) #T1
+	Species alpha alpha(empty~0,t1,t2) #alpha
+	Species alpha_T1 alpha(empty~0,t1!563,t2).T1(alpha!563,alpha,inh) #alpha_T1
+	Species alpha_T1_alpha alpha(empty~0,t1!563,t2).T1(alpha!563,alpha!565,inh).alpha(empty~0,t1!565,t2) #alpha_T1_alpha
+	Species T1_alpha T1_alpha() #T1_alpha
+	Species alpha_alpha_T1 alpha_alpha_T1() #alpha_alpha_T1
+	Species T2 T2(alpha,beta) #T2
+	Species alpha_T2 alpha(empty~0,t1,t2!564).T2(alpha!564,beta) #alpha_T2
+	Species alpha_T2_beta alpha(empty~0,t1,t2!564).beta(t2!561,t3).T2(alpha!564,beta!561) #alpha_T2_beta
+	Species beta beta(t2,t3) #beta
+	Species T2_beta T2(alpha,beta!561).beta(t2!561,t3) #T2_beta
+	Species alpha_beta_T2 alpha_beta_T2() #alpha_beta_T2
+	Species T3 T3(beta,inh) #T3
+	Species beta_T3 T3(beta!562,inh).beta(t2,t3!562) #beta_T3
+	Species beta_T3_Inh Inh(t1,t3!559).T3(beta!562,inh!559).beta(t2,t3!562) #beta_T3_Inh
+	Species Inh Inh(t1,t3) #Inh
+	Species T3_Inh T3(beta,inh!559).Inh(t1,t3!559) #T3_Inh
+	Species beta_Inh_T3 beta_Inh_T3() #beta_Inh_T3
+	Species Inh_T1 T1(alpha,alpha,inh!560).Inh(t1!560,t3) #Inh_T1
+	Species empty alpha(empty~empty,t1,t2) #empty
+end observables
+begin functions
+	alpha_total() = T1_alpha + alpha + alpha_T1 + 2*alpha_T1_alpha + 2*alpha_T2 + alpha_T2_beta
+	beta_total() = T2_beta + alpha_T2_beta + beta + beta_T3 + beta_T3_Inh
+	Inh_total() = Inh + Inh_T1 + T3_Inh + beta_T3_Inh
+	fluorescence() = 0.01488*Inh_T1 + 0.01023*T1_alpha + 0.01023*T2_beta + 0.01488*T3_Inh + 0.01023*alpha_T1 + 0.02046*alpha_T1_alpha + 0.01023*alpha_T2 + 0.02046*alpha_T2_beta + 0.02046*alpha_alpha_T1 + 0.02046*alpha_beta_T2 + 0.02511*beta_Inh_T3 + 0.01023*beta_T3 + 0.02511*beta_T3_Inh - 0.38
+	Bp_concentration() = 16*Inh_T1 + 11*T1_alpha + 11*T2_beta + 16*T3_Inh + 11*alpha_T1 + 22*alpha_T1_alpha + 11*alpha_T2 + 22*alpha_T2_beta + 22*alpha_alpha_T1 + 22*alpha_beta_T2 + 27*beta_Inh_T3 + 11*beta_T3 + 27*beta_T3_Inh
+end functions
+begin reaction rules
+	ass_aa_l: T1(alpha,alpha,inh) + alpha(empty~0,t1,t2) <-> alpha(empty~0,t1!563,t2).T1(alpha!563,alpha,inh) k0d,k0r
+	m_ass_aa_lr: alpha(empty~0,t1!563,t2).T1(alpha!563,alpha!565,inh).alpha(empty~0,t1!565,t2) <-> alpha(empty~0,t1,t2) + alpha(empty~0,t1!563,t2).T1(alpha!563,alpha,inh) k1d,k1r
+	m_ass_aa_r: T1_alpha() <-> T1(alpha,alpha,inh) + alpha(empty~0,t1,t2) k2d,k2r
+	m_ass_aa_rl: alpha(empty~0,t1!563,t2).T1(alpha!563,alpha!565,inh).alpha(empty~0,t1!565,t2) <-> alpha(empty~0,t1,t2) + T1_alpha() k3d,k3r
+	pol_aa: alpha(empty~0,t1!563,t2).T1(alpha!563,alpha,inh) -> alpha_alpha_T1() k4d
+	dis_aa: alpha(empty~0,t1!563,t2).T1(alpha!563,alpha!565,inh).alpha(empty~0,t1!565,t2) -> alpha(empty~0,t1,t2) + alpha_alpha_T1() k5d
+	nick_aa: alpha_alpha_T1() -> alpha(empty~0,t1!563,t2).T1(alpha!563,alpha!565,inh).alpha(empty~0,t1!565,t2) k6d
+	ass_ab_l: alpha(empty~0,t1,t2) + T2(alpha,beta) <-> alpha(empty~0,t1,t2!564).T2(alpha!564,beta) k7d,k7r
+	m_ass_ab_lr: alpha(empty~0,t1,t2!564).beta(t2!561,t3).T2(alpha!564,beta!561) <-> alpha(empty~0,t1,t2!564).T2(alpha!564,beta) + beta(t2,t3) k8d,k8r
+	m_ass_ab_r: T2(alpha,beta!561).beta(t2!561,t3) <-> T2(alpha,beta) + beta(t2,t3) k9d,k9r
+	m_ass_ab_rl: alpha(empty~0,t1,t2!564).beta(t2!561,t3).T2(alpha!564,beta!561) <-> alpha(empty~0,t1,t2) + T2(alpha,beta!561).beta(t2!561,t3) k10d,k10r
+	pol_ab: alpha(empty~0,t1,t2!564).T2(alpha!564,beta) -> alpha_beta_T2() k11d
+	dis_ab: alpha(empty~0,t1,t2!564).beta(t2!561,t3).T2(alpha!564,beta!561) -> beta(t2,t3) + alpha_beta_T2() k12d
+	nick_ab: alpha_beta_T2() -> alpha(empty~0,t1,t2!564).beta(t2!561,t3).T2(alpha!564,beta!561) k13d
+	ass_bc_l: beta(t2,t3) + T3(beta,inh) <-> T3(beta!562,inh).beta(t2,t3!562) k14d,k14r
+	m_ass_bc_lr: Inh(t1,t3!559).T3(beta!562,inh!559).beta(t2,t3!562) <-> T3(beta!562,inh).beta(t2,t3!562) + Inh(t1,t3) k15d,k15r
+	ass_bc_r: T3(beta,inh) + Inh(t1,t3) <-> T3(beta,inh!559).Inh(t1,t3!559) k16d,k16r
+	ass_bc_rl: beta(t2,t3) + T3(beta,inh!559).Inh(t1,t3!559) <-> Inh(t1,t3!559).T3(beta!562,inh!559).beta(t2,t3!562) k17d,k17r
+	pol_bc: T3(beta!562,inh).beta(t2,t3!562) -> beta_Inh_T3() k18d
+	dis_bc: Inh(t1,t3!559).T3(beta!562,inh!559).beta(t2,t3!562) -> Inh(t1,t3) + beta_Inh_T3() k19d
+	nick_bc: beta_Inh_T3() -> Inh(t1,t3!559).T3(beta!562,inh!559).beta(t2,t3!562) k20d
+	inh_ac: T1(alpha,alpha,inh) + Inh(t1,t3) <-> T1(alpha,alpha,inh!560).Inh(t1!560,t3) k21d,k21r
+	inh_displ_ac: T1_alpha() + Inh(t1,t3) <-> alpha(empty~0,t1,t2) + T1(alpha,alpha,inh!560).Inh(t1!560,t3) k22d,k22r
+	m_inh_displ_ca: alpha(empty~0,t1,t2) + T1(alpha,alpha,inh!560).Inh(t1!560,t3) <-> alpha(empty~0,t1!563,t2).T1(alpha!563,alpha,inh) + Inh(t1,t3) k23d,k23r
+	exo_a: alpha(empty~0,t1,t2) -> alpha(empty~empty,t1,t2) k24d
+	exo_b: beta(t2,t3) -> alpha(empty~empty,t1,t2) k25d
+	exo_c: Inh(t1,t3) -> alpha(empty~empty,t1,t2) k26d
+end reaction rules
+end model

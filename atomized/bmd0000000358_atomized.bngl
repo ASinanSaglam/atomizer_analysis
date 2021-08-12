@@ -1,0 +1,72 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1108260009', 'http://identifiers.org/biomodels.db/BIOMD0000000358', 'http://identifiers.org/go/GO:0007596']
+#@BQM_IS_DESCRIBED_BY:['http://www.narcis.nl/publication/RecordID/oai:cwi.nl:4725', 'http://identifiers.org/narcis/oai:cwi.nl:4725']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/2759']
+#@creatorEmail:'schubert@ebi.ac.uk'
+#@creatorName:'Schubert Michael'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 12 molecules and 8 reactions. The translated model has 5 molecules and 8 rules'
+###
+begin model
+begin parameters
+	kcat_X 239.1
+	km_X 23.65
+	ki_Xa 4.531
+	k_PT 122.9
+	k_PL 801.4
+	kcat_V 7.844
+	km_V 149.7
+	kcat_II 43.87
+	km_II 62.25
+	kcat_2 12.4
+	km_2 0.06148
+	ki_IIaAlpha2M 0.1762
+	ki_IIaATIII 0.7859
+	RVV 201736939780000.03 #original 0.3349999substance/L
+end parameters
+begin molecule types
+	#^ bqbiol:is uniprot:P00734
+	II(_alpha2m~_ALPHA2M~0,_atiii~_ATIII~0,a~A~0)
+	PL()
+	PT()
+	#^ bqbiol:is uniprot:P00742
+	X(_atiii~_ATIII~0,a~A~0)
+	#^ bqbiol:is uniprot:P12259
+	V(a~A~0)
+end molecule types
+begin seed species
+	X(_atiii~0,a~0) 4.8928737956e+16 # (81.24998 * 1e-09)mol/L * 6.022e23/mol *1.0L #X #X
+	PL() 6021998193400001.0 #original 9.999997substance/L #PL #PL
+	V(a~0) 4041965195600001.0 #original 6.711998substance/L #V #V
+	II(_alpha2m~0,_atiii~0,a~0) 3.0670033956000006e+17 #original 509.2998substance/L #II #II
+end seed species
+begin observables
+	Species X X(_atiii~0,a~0) #X
+	Species Xa X(_atiii~0,a~A) #Xa
+	Species Xa_ATIII X(_atiii~_ATIII,a~A) #Xa_ATIII
+	Species PL PL() #PL
+	Species PT PT() #PT
+	Species Va V(a~A) #Va
+	Species IIa II(_alpha2m~0,_atiii~0,a~A) #IIa
+	Species V V(a~0) #V
+	Species II II(_alpha2m~0,_atiii~0,a~0) #II
+	Species IIa_alpha2M II(_alpha2m~_ALPHA2M,_atiii~0,a~A) #IIa_alpha2M
+	Species IIa_ATIII II(_alpha2m~0,_atiii~_ATIII,a~A) #IIa_ATIII
+end observables
+begin functions
+	AmAct() = IIa + 0.556*IIa_alpha2M
+	fRate0() = RVV*kcat_X/(X + km_X)
+	fRate3() = IIa*kcat_V/(V + km_V)
+	fRate4() = PT*kcat_II/(II + km_II)
+	fRate5() = Xa*kcat_2/(II + km_2)
+end functions
+begin reaction rules
+	R1: X(_atiii~0,a~0) -> X(_atiii~0,a~A) fRate0() #Modifiers(RVV)
+	R2: X(_atiii~0,a~A) -> X(_atiii~_ATIII,a~A) ki_Xa
+	R3: V(a~A) + X(_atiii~0,a~A) + PL() <-> PT() k_PT,k_PL
+	R4: V(a~0) -> V(a~A) fRate3() #Modifiers(IIa)
+	R5: II(_alpha2m~0,_atiii~0,a~0) -> II(_alpha2m~0,_atiii~0,a~A) fRate4() #Modifiers(PT)
+	R6: II(_alpha2m~0,_atiii~0,a~0) -> II(_alpha2m~0,_atiii~0,a~A) fRate5() #Modifiers(Xa)
+	R7: II(_alpha2m~0,_atiii~0,a~A) -> II(_alpha2m~_ALPHA2M,_atiii~0,a~A) ki_IIaAlpha2M
+	R8: II(_alpha2m~0,_atiii~0,a~A) -> II(_alpha2m~0,_atiii~_ATIII,a~A) ki_IIaATIII
+end reaction rules
+end model

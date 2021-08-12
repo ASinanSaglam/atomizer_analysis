@@ -1,0 +1,99 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL8142536273', 'http://identifiers.org/biomodels.db/BIOMD0000000189']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/18706112']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0030330']
+#@BQB_IS_PART_OF:['http://identifiers.org/kegg.pathway/hsa04115', 'http://identifiers.org/reactome/REACT_85.1']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@creatorEmail:'c.j.proctor@ncl.ac.uk'
+#@creatorName:'Proctor Carole'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 18 molecules and 14 reactions. The translated model has 8 molecules and 14 rules'
+###
+begin model
+begin parameters
+	ksynMdm2 0.000495 #units:psec
+	kdegMdm2 0.000433 #units:psec
+	ksynp53 0.078 #units:psec
+	kdegp53 0.000825 #units:psec
+	kbinMdm2p53 0.001155 #units:pmolepsec
+	krelMdm2p53 1.155e-05 #units:psec
+	ksynMdm2mRNA 0.0001 #units:psec
+	kdegMdm2mRNA 0.0001 #units:psec
+	kbinARFMdm2 0.01 #units:pmolepsec
+	kdegARFMdm2 0.001 #units:psec
+	kdegARF 0.0001 #units:psec
+	kactARF 3.3e-05 #units:psec
+	kdam 0.08 #units:molepsecpdGy
+	krepair 2e-05 #units:psec
+	kproteff 1.0 #units:dimensionless
+	IR 0
+	Sink 1.0
+	Source 1.0
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf go:GO:0003700
+	Mdm2mRNAsyn()
+	totdamDNA()
+	#^ bqbiol:isEncodedBy ensembl:ENSG00000147889
+	#^ bqbiol:is uniprot:Q8N726
+	ARF(mdm2)
+	#^ bqbiol:isEncodedBy ensembl:ENSG00000135679
+	#^ bqbiol:is uniprot:Q00987
+	Mdm2(_mrna~_MRNA~0,arf,deg~DEG~0,mrnadeg~MRNADEG~0,p53)
+	#^ bqbiol:isVersionOf go:GO:0006412
+	p53syn()
+	#^ bqbiol:isVersionOf uniprot:P04637
+	#^ bqbiol:isEncodedBy ensembl:ENSG00000141510
+	p53(deg~DEG~0,mdm2)
+	#^ bqbiol:isVersionOf go:GO:0006412
+	mdm2syn()
+	#^ bqbiol:isVersionOf chebi:CHEBI:16991, go:GO:0006974
+	damDNA()
+end molecule types
+begin seed species
+	Mdm2(_mrna~0,arf,deg~0,mrnadeg~0,p53) 5.0 #Mdm2 #Mdm2
+	p53(deg~0,mdm2) 5.0 #p53 #p53
+	Mdm2(_mrna~0,arf,deg~0,mrnadeg~0,p53!332).p53(deg~0,mdm2!332) 95.0 #Mdm2_p53 #Mdm2_p53
+end seed species
+begin observables
+	Species Mdm2 Mdm2(_mrna~0,arf,deg~0,mrnadeg~0,p53) #Mdm2
+	Species p53 p53(deg~0,mdm2) #p53
+	Species Mdm2_p53 Mdm2(_mrna~0,arf,deg~0,mrnadeg~0,p53!332).p53(deg~0,mdm2!332) #Mdm2_p53
+	Species Mdm2_mRNA Mdm2(_mrna~_MRNA,arf,deg~0,mrnadeg~0,p53) #Mdm2_mRNA
+	Species ARF ARF(mdm2) #ARF
+	Species ARF_Mdm2 Mdm2(_mrna~0,arf!333,deg~0,mrnadeg~0,p53).ARF(mdm2!333) #ARF_Mdm2
+	Species damDNA damDNA() #damDNA
+	Species p53deg p53(deg~DEG,mdm2) #p53deg
+	Species p53syn p53syn() #p53syn
+	Species mdm2deg Mdm2(_mrna~0,arf,deg~DEG,mrnadeg~0,p53) #mdm2deg
+	Species mdm2syn mdm2syn() #mdm2syn
+	Species Mdm2mRNAdeg Mdm2(_mrna~0,arf,deg~0,mrnadeg~MRNADEG,p53) #Mdm2mRNAdeg
+	Species Mdm2mRNAsyn Mdm2mRNAsyn() #Mdm2mRNAsyn
+	Species totdamDNA totdamDNA() #totdamDNA
+end observables
+begin functions
+	totMdm2_ar() = ARF_Mdm2 + Mdm2 + Mdm2_p53
+	totp53_ar() = Mdm2_p53 + p53
+	fRate3() = kdegMdm2*kproteff
+	fRate4() = Source*ksynp53
+	fRate5() = kdegp53*kproteff
+	fRate8() = IR*kdam
+	fRate12() = kdegARFMdm2*kproteff
+	fRate13() = kdegARF*kproteff
+end functions
+begin reaction rules
+	Mdm2Synthesis: Mdm2(_mrna~_MRNA,arf,deg~0,mrnadeg~0,p53) -> Mdm2(_mrna~_MRNA,arf,deg~0,mrnadeg~0,p53) + Mdm2(_mrna~0,arf,deg~0,mrnadeg~0,p53) + mdm2syn() ksynMdm2
+	Mdm2mRNASynthesis: p53(deg~0,mdm2) -> p53(deg~0,mdm2) + Mdm2(_mrna~_MRNA,arf,deg~0,mrnadeg~0,p53) + Mdm2mRNAsyn() ksynMdm2mRNA
+	Mdm2mRNADegradation: Mdm2(_mrna~_MRNA,arf,deg~0,mrnadeg~0,p53) -> Mdm2(_mrna~0,arf,deg~0,mrnadeg~MRNADEG,p53) kdegMdm2mRNA
+	Mdm2Degradation: Mdm2(_mrna~0,arf,deg~0,mrnadeg~0,p53) -> Mdm2(_mrna~0,arf,deg~DEG,mrnadeg~0,p53) fRate3()
+	p53Synthesis: 0  -> p53(deg~0,mdm2) + p53syn() fRate4()
+	p53Degradation: Mdm2(_mrna~0,arf,deg~0,mrnadeg~0,p53!332).p53(deg~0,mdm2!332) -> Mdm2(_mrna~0,arf,deg~0,mrnadeg~0,p53) + p53(deg~DEG,mdm2) fRate5()
+	P53_Mdm2Binding: p53(deg~0,mdm2) + Mdm2(_mrna~0,arf,deg~0,mrnadeg~0,p53) -> Mdm2(_mrna~0,arf,deg~0,mrnadeg~0,p53!332).p53(deg~0,mdm2!332) kbinMdm2p53
+	P53_Mdm2Release: Mdm2(_mrna~0,arf,deg~0,mrnadeg~0,p53!332).p53(deg~0,mdm2!332) -> p53(deg~0,mdm2) + Mdm2(_mrna~0,arf,deg~0,mrnadeg~0,p53) krelMdm2p53
+	DNAdamage: 0  -> damDNA() + totdamDNA() fRate8()
+	DNArepair: damDNA() -> 0  krepair
+	ARFactivation: damDNA() -> damDNA() + ARF(mdm2) kactARF
+	ARF_Mdm2Binding: ARF(mdm2) + Mdm2(_mrna~0,arf,deg~0,mrnadeg~0,p53) -> Mdm2(_mrna~0,arf!333,deg~0,mrnadeg~0,p53).ARF(mdm2!333) kbinARFMdm2
+	ARF_Mdm2Degradation: Mdm2(_mrna~0,arf!333,deg~0,mrnadeg~0,p53).ARF(mdm2!333) -> ARF(mdm2) + Mdm2(_mrna~0,arf,deg~DEG,mrnadeg~0,p53) fRate12()
+	ARFDegradation: ARF(mdm2) -> 0  fRate13()
+end reaction rules
+end model

@@ -1,0 +1,67 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000026', 'http://identifiers.org/biomodels.db/MODEL6618379269']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/14744999']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/8355']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0000165']
+#@creatorEmail:'lenov@ebi.ac.uk'
+#@creatorName:'Le Novère Nicolas'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 11 molecules and 10 reactions. The translated model has 3 molecules and 10 rules'
+###
+begin model
+begin parameters
+	k1 0.02
+	k_1 1.0
+	k2 0.01
+	k3 0.032
+	k_3 1.0
+	k4 15.0
+	h1 0.045
+	h_1 1.0
+	h2 0.092
+	h3 1.0
+	h_3 0.01
+	h4 0.01
+	h_4 1.0
+	h5 0.5
+	h6 0.086
+	h_6 0.0011
+end parameters
+begin molecule types
+	#^ bqbiol:is uniprot:Q05116
+	MAPKK(m)
+	#^ bqbiol:is uniprot:Q90W58
+	MKP(MKPm~MKPm~0,m)
+	#^ bqbiol:isVersionOf uniprot:P26696
+	M(mapkk,mkp,p~P~0,p2~P~0)
+end molecule types
+begin seed species
+	M(mapkk,mkp,p~0,p2~0) 500.0 #M #M
+	MAPKK(m) 50.0 #MAPKK #MAPKK
+	MKP(MKPm~0,m) 100.0 #MKP #MKP3
+end seed species
+begin observables
+	Species M M(mapkk,mkp,p~0,p2~0) #M
+	Species Mp M(mapkk,mkp,p~P,p2~0) #Mp
+	Species Mpp M(mapkk,mkp,p~P,p2~P) #Mpp
+	Species MAPKK MAPKK(m) #MAPKK
+	Species MKP MKP(MKPm~0,m) #MKP
+	Species M_MAPKK M(mapkk!38,mkp,p~0,p2~0).MAPKK(m!38) #M_MAPKK
+	Species Mp_MAPKK M(mapkk!38,mkp,p~P,p2~0).MAPKK(m!38) #Mp_MAPKK
+	Species Mpp_MKP M(mapkk,mkp!37,p~P,p2~P).MKP(MKPm~0,m!37) #Mpp_MKP
+	Species Mp_MKP M(mapkk,mkp!37,p~P,p2~0).MKP(MKPm~0,m!37) #Mp_MKP
+	Species Mp_MKPm M(mapkk,mkp!37,p~P,p2~0).MKP(MKPm~MKPm,m!37) #Mp_MKP*
+	Species M_MKP M(mapkk,mkp!37,p~0,p2~0).MKP(MKPm~0,m!37) #M_MKP
+end observables
+begin reaction rules
+	v1a: M(mapkk,mkp,p~0,p2~0) + MAPKK(m) <-> M(mapkk!38,mkp,p~0,p2~0).MAPKK(m!38) k1,k_1
+	v1b: M(mapkk!38,mkp,p~0,p2~0).MAPKK(m!38) -> M(mapkk,mkp,p~P,p2~0) + MAPKK(m) k2
+	v2a: M(mapkk,mkp,p~P,p2~0) + MAPKK(m) <-> M(mapkk!38,mkp,p~P,p2~0).MAPKK(m!38) k3,k_3
+	v2b: M(mapkk!38,mkp,p~P,p2~0).MAPKK(m!38) -> M(mapkk,mkp,p~P,p2~P) + MAPKK(m) k4
+	v3a: M(mapkk,mkp,p~P,p2~P) + MKP(MKPm~0,m) <-> M(mapkk,mkp!37,p~P,p2~P).MKP(MKPm~0,m!37) h1,h_1
+	v3b: M(mapkk,mkp!37,p~P,p2~P).MKP(MKPm~0,m!37) -> M(mapkk,mkp!37,p~P,p2~0).MKP(MKPm~0,m!37) h2
+	v3c: M(mapkk,mkp!37,p~P,p2~0).MKP(MKPm~0,m!37) <-> M(mapkk,mkp,p~P,p2~0) + MKP(MKPm~0,m) h3,h_3
+	v4a: M(mapkk,mkp,p~P,p2~0) + MKP(MKPm~0,m) <-> M(mapkk,mkp!37,p~P,p2~0).MKP(MKPm~MKPm,m!37) h4,h_4
+	v4b: M(mapkk,mkp!37,p~P,p2~0).MKP(MKPm~MKPm,m!37) -> M(mapkk,mkp!37,p~0,p2~0).MKP(MKPm~0,m!37) h5
+	v4c: M(mapkk,mkp!37,p~0,p2~0).MKP(MKPm~0,m!37) <-> M(mapkk,mkp,p~0,p2~0) + MKP(MKPm~0,m) h6,h_6
+end reaction rules
+end model

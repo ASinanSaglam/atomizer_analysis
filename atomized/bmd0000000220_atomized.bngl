@@ -1,0 +1,286 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL6964793701', 'http://identifiers.org/biomodels.db/BIOMD0000000220']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/18406323']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/kegg.pathway/hsa04210', 'http://identifiers.org/go/GO:0008624', 'http://identifiers.org/reactome/REACT_1059']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@creatorEmail:'lukas@ebi.ac.uk'
+#@creatorName:'Endler Lukas'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 58 molecules and 42 reactions. The translated model has 33 molecules and 42 rules'
+###
+begin model
+begin parameters
+	k1 4e-07
+	k_1 0.001
+	kc1 1e-05
+	k2 1e-06
+	k_2 0.001
+	k3 1e-06
+	k_3 0.001
+	kc3 1.0
+	k4 1e-06
+	k_4 0.001
+	k5 1e-07
+	k_5 0.001
+	kc5 1.0
+	k6 1e-06
+	k_6 0.001
+	kc6 1.0
+	k7 3e-08
+	k_7 0.001
+	k8 2e-06
+	k_8 0.001
+	kc8 0.1
+	k9 1e-06
+	k_9 0.01
+	kc9 1.0
+	k10 1e-07
+	k_10 0.001
+	kc10 1.0
+	k11 1e-06
+	k_11 0.001
+	k12 1e-07
+	k_12 0.001
+	kc12 1.0
+	k13 0.01
+	k_13 0.01
+	k14 1e-06
+	k_14 0.001
+	k15 1e-06
+	k_15 0.001
+	k16 1e-06
+	k_16 0.001
+	k17 1e-06
+	k_17 0.001
+	k18 1e-06
+	k_18 0.001
+	k19 1e-06
+	k_19 0.001
+	kc19 1.0
+	k20 2e-06
+	k_20 0.001
+	kc20 10.0
+	k21 2e-06
+	k_21 0.001
+	kc21 10.0
+	k22 0.01
+	k_22 0.01
+	k23 5e-07
+	k_23 0.001
+	kc23 1.0
+	k24 5e-08
+	k_24 0.001
+	k25 5e-09
+	k_25 0.001
+	kc25 1.0
+	k26 0.01
+	k_26 0.01
+	k27 2e-06
+	k_27 0.001
+	k28 7e-06
+	k_28 0.001
+	kc7 1.0
+	v 0.07
+end parameters
+begin compartments
+	#volume units: L
+	cell 3 1.0
+	mitochondrion 3 1.0
+end compartments
+begin molecule types
+	#^ bqbiol:isVersionOf uniprot:P55212
+	proC6()
+	#^ bqbiol:hasVersion uniprot:P42574, uniprot:P62988
+	UbC3()
+	#^ bqbiol:isVersionOf uniprot:Q07812
+	Baxm(baxm,baxm,baxm,bcl2,m)
+	#^ bqbiol:isVersionOf uniprot:P99999, reactome:REACT_14114
+	CytoC_m(m)
+	C3_pC6()
+	XIAP_C3()
+	#^ bqbiol:isVersionOf uniprot:P99999
+	CytoC(CytoCreleased~CytoCreleased~0,apaf)
+	C6_pC8()
+	#^ bqbiol:isVersionOf uniprot:Q9NR28, reactome:REACT_5375
+	Smac(Smacreleased~Smacreleased~0,xiap)
+	#^ bqbiol:isVersionOf uniprot:Q07812
+	Bax(bid,sh~SH~0)
+	#^ bqbiol:isVersionOf uniprot:O14763
+	Rsh(flip)
+	pC3(ro~RO~0)
+	#^ bqbiol:isVersionOf uniprot:Q14790, reactome:REACT_4998.1
+	proC8()
+	casp3(parp)
+	#^ bqbiol:isVersionOf uniprot:P09874
+	PARP(c~C~0,casp3)
+	M(baxm,cytoc_m,sh~SH~0,smac_m)
+	#^ bqbiol:isVersionOf uniprot:P50591, reactome:REACT_3803
+	L(r)
+	#^ bqbiol:isVersionOf uniprot:P55957, reactome:REACT_3224
+	#^ bqbiol:isDescribedBy omim:601997
+	Bid(bax,casp8,cytosolicbcl_2,t~T~0)
+	Bcl2(_~_~0,baxm)
+	#^ bqbiol:isVersionOf uniprot:P10415, reactome:REACT_3598
+	cytosolicBcl_2(bid)
+	casp6()
+	#^ bqbiol:isVersionOf uniprot:P98170, reactome:REACT_5246
+	XIAP(smac)
+	pC3_Apop()
+	#^ bqbiol:isVersionOf uniprot:O14727
+	Apaf(cytoc,proc9,sh~SH~0)
+	BAR(casp8)
+	Rsh_pC8()
+	C8_pC3()
+	#^ bqbiol:isVersionOf uniprot:O14763, reactome:REACT_2540
+	R(l)
+	#^ bqbiol:isVersionOf uniprot:Q9NR28, reactome:REACT_5499
+	Smac_m(m)
+	Apop_XIAP()
+	#^ bqbiol:isVersionOf reactome:REACT_4185
+	casp8(bar,bid)
+	#^ bqbiol:isVersionOf uniprot:P55211
+	proC9(apaf)
+	#^ bqbiol:isVersionOf uniprot:O15519, reactome:REACT_2438
+	#^ bqbiol:isDescribedBy omim:603599
+	flip(rsh)
+end molecule types
+begin seed species
+	@cell:L(r) 3000.0 #L #L
+	@cell:R(l) 200.0 #R #R
+	@cell:flip(rsh) 100.0 #flip #flip
+	@cell:proC8() 20000.0 #proC8 #pC8
+	@cell:BAR(casp8) 1000.0 #BAR #BAR
+	@cell:pC3(ro~RO) 10000.0 #proC3 #pC3
+	@cell:Bid(bax,casp8,cytosolicbcl_2,t~0) 40000.0 #Bid #Bid
+	@cell:proC6() 10000.0 #proC6 #pC6
+	@cell:XIAP(smac) 100000.0 #XIAP #XIAP
+	@cell:PARP(c~0,casp3) 1000000.0 #PARP #PARP
+	@cell:cytosolicBcl_2(bid) 20000.0 #cytosolicBcl_2 #Bcl2c
+	@cell:Bax(bid,sh~0) 100000.0 #Bax #Bax
+	@mitochondrion:Bcl2(_~_,baxm) 20000.0 #Bcl_2 #Bcl2
+	@mitochondrion:M(baxm,cytoc_m,sh~0,smac_m) 500000.0 #M #M
+	@mitochondrion:Smac_m(m) 100000.0 #Smac_m #Smacm
+	@mitochondrion:CytoC_m(m) 500000.0 #CytoC_m #CytoCm
+	@cell:Apaf(cytoc,proc9,sh~0) 100000.0 #Apaf #Apaf
+	@cell:proC9(apaf) 100000.0 #proC9 #pC9
+end seed species
+begin observables
+	Species L_cell @cell:L(r) #L
+	Species R_cell @cell:R(l) #R
+	Species flip_cell @cell:flip(rsh) #flip
+	Species proC8_cell @cell:proC8() #proC8
+	Species casp8_cell @cell:casp8(bar,bid) #casp8
+	Species casp6_cell @cell:casp6() #casp6
+	Species BAR_cell @cell:BAR(casp8) #BAR
+	Species proC3_cell @cell:pC3(ro~RO) #proC3
+	Species casp3_cell @cell:casp3(parp) #casp3
+	Species Bid_cell @cell:Bid(bax,casp8,cytosolicbcl_2,t~0) #Bid
+	Species tBid_cell @cell:Bid(bax,casp8,cytosolicbcl_2,t~T) #tBid
+	Species proC6_cell @cell:proC6() #proC6
+	Species XIAP_cell @cell:XIAP(smac) #XIAP
+	Species UbC3_cell @cell:UbC3() #Ub C3
+	Species PARP_cell @cell:PARP(c~0,casp3) #PARP
+	Species cPARP_cell @cell:PARP(c~C,casp3) #cPARP
+	Species Smac_cell @cell:Smac(Smacreleased~0,xiap) #Smac
+	Species cytosolicBcl_2_cell @cell:cytosolicBcl_2(bid) #cytosolic Bcl-2
+	Species Bax_cell @cell:Bax(bid,sh~0) #Bax
+	Species Baxsh_cell @cell:Bax(bid,sh~SH) #Bax#
+	Species Bcl_2_mitochondrion @mitochondrion:Bcl2(_~_,baxm) #Bcl-2
+	Species L_R_cell @cell:R(l!385).L(r!385) #L:R
+	Species Rsh_cell @cell:Rsh(flip) #R#
+	Species flip_Rsh_cell @cell:flip(rsh!390).Rsh(flip!390) #flip:R#
+	Species Rsh_pC8_cell @cell:Rsh_pC8() #R#:pC8
+	Species C6_pC8_cell @cell:C6_pC8() #C6:pC8
+	Species BAR_C8_cell @cell:casp8(bar!387,bid).BAR(casp8!387) #BAR:C8
+	Species C8_pC3_cell @cell:C8_pC3() #C8:pC3
+	Species pC3_Apop_cell @cell:pC3_Apop() #pC3:Apop
+	Species Apop_cell @cell:Apaf(cytoc,proc9!393,sh~SH).proC9(apaf!393) #Apop
+	Species C8_Bid_cell @cell:Bid(bax,casp8!388,cytosolicbcl_2,t~0).casp8(bar,bid!388) #C8:Bid
+	Species C3_pC6_cell @cell:C3_pC6() #C3:pC6
+	Species XIAP_C3_cell @cell:XIAP_C3() #XIAP:C3
+	Species PARP_C3_cell @cell:PARP(c~0,casp3!389).casp3(parp!389) #PARP:C3
+	Species Apop_XIAP_cell @cell:Apop_XIAP() #Apop:XIAP
+	Species Smac_XIAP_cell @cell:Smac(Smacreleased~0,xiap!391).XIAP(smac!391) #Smac:XIAP
+	Species Bcl2c_tBid_cell @cell:Bid(bax,casp8,cytosolicbcl_2!396,t~T).cytosolicBcl_2(bid!396) #Bcl2c:tBid
+	Species Bax_tBid_cell @cell:Bid(bax!394,casp8,cytosolicbcl_2,t~T).Bax(bid!394,sh~0) #Bax:tBid
+	Species Baxm_Bcl2_mitochondrion @mitochondrion:Baxm(baxm,baxm,baxm,bcl2!395,m).Bcl2(_~_,baxm!395) #Baxm:Bcl2
+	Species Bax4_mitochondrion @mitochondrion:Baxm(baxm!386,baxm!401,baxm!402,bcl2,m).Baxm(baxm!386,baxm!399,baxm!400,bcl2,m).Baxm(baxm!399,baxm!401,baxm!403,bcl2,m).Baxm(baxm!400,baxm!402,baxm!403,bcl2,m) #Bax4
+	Species Bax2_Bcl2_mitochondrion @mitochondrion:Baxm(baxm!386,baxm,baxm,bcl2,m).Baxm(baxm!386,baxm,baxm,bcl2!395,m).Bcl2(_~0,baxm!395) #Bax2:Bcl2
+	Species Bax4_Bcl2_mitochondrion @mitochondrion:Baxm(baxm!386,baxm!401,baxm!402,bcl2,m).Baxm(baxm!386,baxm!399,baxm!400,bcl2!395,m).Baxm(baxm!399,baxm!401,baxm!403,bcl2,m).Baxm(baxm!400,baxm!402,baxm!403,bcl2,m).Bcl2(_~0,baxm!395) #Bax4:Bcl2
+	Species M_mitochondrion @mitochondrion:M(baxm,cytoc_m,sh~0,smac_m) #M
+	Species Bax4_M_mitochondrion @mitochondrion:Baxm(baxm!386,baxm!401,baxm!402,bcl2,m).Baxm(baxm!386,baxm!399,baxm!400,bcl2,m!404).Baxm(baxm!399,baxm!401,baxm!403,bcl2,m).Baxm(baxm!400,baxm!402,baxm!403,bcl2,m).M(baxm!404,cytoc_m,sh~0,smac_m) #Bax4:M
+	Species Msh_mitochondrion @mitochondrion:M(baxm,cytoc_m,sh~SH,smac_m) #M#
+	Species Smac_m_mitochondrion @mitochondrion:Smac_m(m) #Smac_m
+	Species Msh_Smac_m_mitochondrion @mitochondrion:M(baxm,cytoc_m,sh~SH,smac_m!397).Smac_m(m!397) #M#:Smac_m
+	Species Smacreleased_mitochondrion @mitochondrion:Smac(Smacreleased~Smacreleased,xiap) #Smac released
+	Species CytoC_m_mitochondrion @mitochondrion:CytoC_m(m) #CytoC_m
+	Species Msh_CytoC_m_mitochondrion @mitochondrion:M(baxm,cytoc_m!398,sh~SH,smac_m).CytoC_m(m!398) #M#:CytoC_m
+	Species CytoCreleased_mitochondrion @mitochondrion:CytoC(CytoCreleased~CytoCreleased,apaf) #CytoC released
+	Species CytoC_cell @cell:CytoC(CytoCreleased~0,apaf) #CytoC
+	Species Apaf_cell @cell:Apaf(cytoc,proc9,sh~0) #Apaf
+	Species CytoC_Apaf_cell @cell:Apaf(cytoc!392,proc9,sh~0).CytoC(CytoCreleased~0,apaf!392) #CytoC:Apaf
+	Species Apafsh_cell @cell:Apaf(cytoc,proc9,sh~SH) #Apaf#
+	Species proC9_cell @cell:proC9(apaf) #proC9
+	Species Baxm_mitochondrion @mitochondrion:Baxm(baxm,baxm,baxm,bcl2,m) #Baxm
+	Species Bax2_mitochondrion @mitochondrion:Baxm(baxm!386,baxm,baxm,bcl2,m).Baxm(baxm!386,baxm,baxm,bcl2,m) #Bax2
+end observables
+begin functions
+	C3_tot() = C3_pC6_cell + C8_pC3_cell + PARP_C3_cell + UbC3_cell + XIAP_C3_cell + casp3_cell + pC3_Apop_cell + proC3_cell
+	fC3_fract() = casp3_cell/C3_tot
+	pC3_frac() = (C8_pC3_cell + pC3_Apop_cell + proC3_cell)/C3_tot
+	C3_UB_frac() = UbC3_cell/C3_tot
+	C3_frac() = (C3_pC6_cell + PARP_C3_cell + XIAP_C3_cell + casp3_cell)/C3_tot
+	cPARP_frac() = cPARP_cell/(PARP_C3_cell + PARP_cell + cPARP_cell)
+	fRate26() = k14/v
+	fRate27() = k15/v
+	fRate28() = k17/v
+	fRate29() = k16/v
+	fRate30() = k18/v
+	fRate31() = k19/v
+	fRate33() = k21/v
+	fRate36() = k20/v
+end functions
+begin reaction rules
+	re1: L(r)@cell + R(l)@cell <-> R(l!385)@cell.L(r!385)@cell k1,k_1
+	re2: R(l!385)@cell.L(r!385)@cell -> Rsh(flip)@cell kc1
+	re3: Rsh(flip)@cell + flip(rsh)@cell <-> flip(rsh!390)@cell.Rsh(flip!390)@cell k2,k_2
+	re4: Rsh(flip)@cell + proC8()@cell <-> Rsh_pC8()@cell k3,k_3
+	re5: Rsh_pC8()@cell -> casp8(bar,bid)@cell + Rsh(flip)@cell kc3
+	re6: casp6()@cell + proC8()@cell <-> C6_pC8()@cell k7,k_7
+	re7: C6_pC8()@cell -> casp8(bar,bid)@cell + casp6()@cell kc7
+	re8: casp8(bar,bid)@cell + BAR(casp8)@cell <-> casp8(bar!387,bid)@cell.BAR(casp8!387)@cell k4,k_4
+	re9: pC3(ro~RO)@cell + casp8(bar,bid)@cell <-> C8_pC3()@cell k5,k_5
+	re10: C8_pC3()@cell -> casp8(bar,bid)@cell + casp3(parp)@cell kc5
+	re11: casp8(bar,bid)@cell + Bid(bax,casp8,cytosolicbcl_2,t~0)@cell <-> Bid(bax,casp8!388,cytosolicbcl_2,t~0)@cell.casp8(bar,bid!388)@cell k10,k_10
+	re12: Bid(bax,casp8!388,cytosolicbcl_2,t~0)@cell.casp8(bar,bid!388)@cell -> Bid(bax,casp8,cytosolicbcl_2,t~T)@cell + casp8(bar,bid)@cell kc10
+	re13: pC3(ro~RO)@cell + Apaf(cytoc,proc9!393,sh~SH)@cell.proC9(apaf!393)@cell <-> pC3_Apop()@cell k25,k_25
+	re14: pC3_Apop()@cell -> casp3(parp)@cell + Apaf(cytoc,proc9!393,sh~SH)@cell.proC9(apaf!393)@cell kc25
+	re15: casp3(parp)@cell + proC6()@cell <-> C3_pC6()@cell k6,k_6
+	re16: C3_pC6()@cell -> casp3(parp)@cell + casp6()@cell kc6
+	re17: casp3(parp)@cell + XIAP(smac)@cell <-> XIAP_C3()@cell k8,k_8
+	re18: XIAP_C3()@cell -> UbC3()@cell + XIAP(smac)@cell kc8
+	re19: PARP(c~0,casp3)@cell + casp3(parp)@cell <-> PARP(c~0,casp3!389)@cell.casp3(parp!389)@cell k9,k_9
+	re20: PARP(c~0,casp3!389)@cell.casp3(parp!389)@cell -> PARP(c~C,casp3)@cell + casp3(parp)@cell kc9
+	re21: XIAP(smac)@cell + Apaf(cytoc,proc9!393,sh~SH)@cell.proC9(apaf!393)@cell <-> Apop_XIAP()@cell k27,k_27
+	re22: XIAP(smac)@cell + Smac(Smacreleased~0,xiap)@cell <-> Smac(Smacreleased~0,xiap!391)@cell.XIAP(smac!391)@cell k28,k_28
+	re23: Bid(bax,casp8,cytosolicbcl_2,t~T)@cell + cytosolicBcl_2(bid)@cell <-> Bid(bax,casp8,cytosolicbcl_2!396,t~T)@cell.cytosolicBcl_2(bid!396)@cell k11,k_11
+	re24: Bid(bax,casp8,cytosolicbcl_2,t~T)@cell + Bax(bid,sh~0)@cell <-> Bid(bax!394,casp8,cytosolicbcl_2,t~T)@cell.Bax(bid!394,sh~0)@cell k12,k_12
+	re25: Bid(bax!394,casp8,cytosolicbcl_2,t~T)@cell.Bax(bid!394,sh~0)@cell -> Bid(bax,casp8,cytosolicbcl_2,t~T)@cell + Bax(bid,sh~SH)@cell kc12
+	re26: Bax(bid,sh~SH)@cell <-> Baxm(baxm,baxm,baxm,bcl2,m)@mitochondrion k13,k_13
+	re27: Baxm(baxm,baxm,baxm,bcl2,m)@mitochondrion + Bcl2(_~_,baxm)@mitochondrion <-> Baxm(baxm,baxm,baxm,bcl2!395,m)@mitochondrion.Bcl2(_~_,baxm!395)@mitochondrion fRate26(),k_14
+	re29: Baxm(baxm,baxm,baxm,bcl2,m)@mitochondrion + Baxm(baxm,baxm,baxm,bcl2,m)@mitochondrion <-> Baxm(baxm!386,baxm,baxm,bcl2,m)@mitochondrion.Baxm(baxm!386,baxm,baxm,bcl2,m)@mitochondrion fRate27(),k_15
+	re30: Baxm(baxm!386,baxm,baxm,bcl2,m)@mitochondrion.Baxm(baxm!386,baxm,baxm,bcl2,m)@mitochondrion + Baxm(baxm!386,baxm,baxm,bcl2,m)@mitochondrion.Baxm(baxm!386,baxm,baxm,bcl2,m)@mitochondrion <-> Baxm(baxm!386,baxm!401,baxm!402,bcl2,m)@mitochondrion.Baxm(baxm!386,baxm!399,baxm!400,bcl2,m)@mitochondrion.Baxm(baxm!399,baxm!401,baxm!403,bcl2,m)@mitochondrion.Baxm(baxm!400,baxm!402,baxm!403,bcl2,m)@mitochondrion fRate28(),k_17
+	re31: Bcl2(_~_,baxm)@mitochondrion + Baxm(baxm!386,baxm,baxm,bcl2,m)@mitochondrion.Baxm(baxm!386,baxm,baxm,bcl2,m)@mitochondrion <-> Baxm(baxm!386,baxm,baxm,bcl2,m)@mitochondrion.Baxm(baxm!386,baxm,baxm,bcl2!395,m)@mitochondrion.Bcl2(_~0,baxm!395)@mitochondrion fRate29(),k_16
+	re32: Bcl2(_~_,baxm)@mitochondrion + Baxm(baxm!386,baxm!401,baxm!402,bcl2,m)@mitochondrion.Baxm(baxm!386,baxm!399,baxm!400,bcl2,m)@mitochondrion.Baxm(baxm!399,baxm!401,baxm!403,bcl2,m)@mitochondrion.Baxm(baxm!400,baxm!402,baxm!403,bcl2,m)@mitochondrion <-> Baxm(baxm!386,baxm!401,baxm!402,bcl2,m)@mitochondrion.Baxm(baxm!386,baxm!399,baxm!400,bcl2!395,m)@mitochondrion.Baxm(baxm!399,baxm!401,baxm!403,bcl2,m)@mitochondrion.Baxm(baxm!400,baxm!402,baxm!403,bcl2,m)@mitochondrion.Bcl2(_~0,baxm!395)@mitochondrion fRate30(),k_18
+	re33: Baxm(baxm!386,baxm!401,baxm!402,bcl2,m)@mitochondrion.Baxm(baxm!386,baxm!399,baxm!400,bcl2,m)@mitochondrion.Baxm(baxm!399,baxm!401,baxm!403,bcl2,m)@mitochondrion.Baxm(baxm!400,baxm!402,baxm!403,bcl2,m)@mitochondrion + M(baxm,cytoc_m,sh~0,smac_m)@mitochondrion <-> Baxm(baxm!386,baxm!401,baxm!402,bcl2,m)@mitochondrion.Baxm(baxm!386,baxm!399,baxm!400,bcl2,m!404)@mitochondrion.Baxm(baxm!399,baxm!401,baxm!403,bcl2,m)@mitochondrion.Baxm(baxm!400,baxm!402,baxm!403,bcl2,m)@mitochondrion.M(baxm!404,cytoc_m,sh~0,smac_m)@mitochondrion fRate31(),k_19
+	re34: Baxm(baxm!386,baxm!401,baxm!402,bcl2,m)@mitochondrion.Baxm(baxm!386,baxm!399,baxm!400,bcl2,m!404)@mitochondrion.Baxm(baxm!399,baxm!401,baxm!403,bcl2,m)@mitochondrion.Baxm(baxm!400,baxm!402,baxm!403,bcl2,m)@mitochondrion.M(baxm!404,cytoc_m,sh~0,smac_m)@mitochondrion -> M(baxm,cytoc_m,sh~SH,smac_m)@mitochondrion kc19
+	re35: M(baxm,cytoc_m,sh~SH,smac_m)@mitochondrion + Smac_m(m)@mitochondrion <-> M(baxm,cytoc_m,sh~SH,smac_m!397)@mitochondrion.Smac_m(m!397)@mitochondrion fRate33(),k_21
+	re36: M(baxm,cytoc_m,sh~SH,smac_m!397)@mitochondrion.Smac_m(m!397)@mitochondrion -> M(baxm,cytoc_m,sh~SH,smac_m)@mitochondrion + Smac(Smacreleased~Smacreleased,xiap)@mitochondrion kc21
+	re37: Smac(Smacreleased~Smacreleased,xiap)@mitochondrion <-> Smac(Smacreleased~0,xiap)@cell k26,k_26
+	re38: M(baxm,cytoc_m,sh~SH,smac_m)@mitochondrion + CytoC_m(m)@mitochondrion <-> M(baxm,cytoc_m!398,sh~SH,smac_m)@mitochondrion.CytoC_m(m!398)@mitochondrion fRate36(),k_20
+	re39: M(baxm,cytoc_m!398,sh~SH,smac_m)@mitochondrion.CytoC_m(m!398)@mitochondrion -> CytoC(CytoCreleased~CytoCreleased,apaf)@mitochondrion + M(baxm,cytoc_m,sh~SH,smac_m)@mitochondrion kc20
+	re40: CytoC(CytoCreleased~CytoCreleased,apaf)@mitochondrion <-> CytoC(CytoCreleased~0,apaf)@cell k22,k_22
+	re41: CytoC(CytoCreleased~0,apaf)@cell + Apaf(cytoc,proc9,sh~0)@cell <-> Apaf(cytoc!392,proc9,sh~0)@cell.CytoC(CytoCreleased~0,apaf!392)@cell k23,k_23
+	re42: Apaf(cytoc!392,proc9,sh~0)@cell.CytoC(CytoCreleased~0,apaf!392)@cell -> CytoC(CytoCreleased~0,apaf)@cell + Apaf(cytoc,proc9,sh~SH)@cell kc23
+	re43: Apaf(cytoc,proc9,sh~SH)@cell + proC9(apaf)@cell <-> Apaf(cytoc,proc9!393,sh~SH)@cell.proC9(apaf!393)@cell k24,k_24
+end reaction rules
+end model

@@ -1,0 +1,214 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1304190000', 'http://identifiers.org/biomodels.db/BIOMD0000000448']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/23400783']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/BIOMD0000000343']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0032869']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/doid/DOID:9352']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 27 molecules and 34 reactions. The translated model has 9 molecules and 36 rules'
+###
+begin model
+begin parameters
+	diabetes 1.0
+	k1a 0.6331
+	k1basal 0.03683
+	k1c 0.8768
+	k1d 31.01
+	k1f 1840.0
+	k1g 1944.0
+	k1r 0.5471
+	k2a 3.227
+	k2c 5759.0
+	k2basal 0.04228
+	k2b 3424.0
+	k2d 280.8
+	k2f 2.913
+	k2g 0.2671
+	k3a 0.001377
+	k3b 0.09876
+	k4a 5790.0
+	k4b 34.8
+	k4c 4.456
+	k4e 42.84
+	k4f 143.6
+	k4h 0.5361
+	k5a1 1.842
+	k5a2 0.05506
+	k5b 24.83
+	k5d 1.06
+	km5 2.65
+	k5c 0.08575
+	k6f1 2.652
+	k6f2 36.93
+	km6 30.54
+	n6 2.137
+	k6b 65.18
+	k7f 50.98
+	k7b 2286.0
+	k8 724.2
+	glut1 7042.0
+	k9f1 0.1298
+	k9b1 0.04441
+	k9f2 3.329
+	k9b2 31.0
+	km9 5873.0
+	n9 0.9855
+	scaleIR 5.2022
+	scaleIRS1 0.37615
+	scaleIRS1ds 14.892
+	scaleIRS1307 0.058663
+	scalePKB308 0.043564
+	scalePKB473 0.012996
+	scaleAS160 0.026656
+	scaleGLUCOSE 0.040513
+	scaleS6K 0.74654
+	scaleS6 0.11494
+	gluc 0.05
+	insulin 10.0
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf uniprot:P06213
+	IR(IRins~IRins~0,i~I~0,p~P~0)
+	#^ bqbiol:isVersionOf uniprot:P14672
+	GLUT4(m~M~0)
+	#^ bqbiol:isVersionOf uniprot:P23443
+	S6K(p~P~0)
+	#^ bqbiol:isVersionOf chebi:CHEBI:36080, fma:FMA:74531
+	X(p~P~0)
+	#^ bqbiol:isVersionOf uniprot:O60343
+	AS160(p~P~0)
+	#^ bqbiol:isVersionOf uniprot:P62753
+	S6(p~P~0)
+	#^ bqbiol:hasPart uniprot:P42345, uniprot:Q8N122
+	mTORC1(a~A~0,mTORC2~mTORC2~0)
+	#^ bqbiol:isVersionOf uniprot:P31751
+	PKB(_308p~308P~0,_473p~473P~0)
+	#^ bqbiol:isVersionOf uniprot:P35568
+	IRS1(_307~307~0,p~P~0)
+end molecule types
+begin seed species
+	IR(IRins~0,i~0,p~0) 6.0143948453609814e+25 # 99.8737104842408mol/L * 6.022e23/mol *1.0L #IR #IR
+	IR(IRins~0,i~0,p~P) 1.1216168766033536e+21 #original 0.00186253217635894mol/L #IRp #IRp
+	IR(IRins~0,i~I,p~P) 1.1347282650571026e+22 #original 0.0188430465801578mol/L #IRip #IRip
+	IR(IRins~0,i~I,p~0) 6.3582639919905034e+22 #original 0.105583925473107mol/L #IRi #IRi
+	IRS1(_307~0,p~0) 4.996284769087113e+25 #original 82.9671997523599mol/L #IRS1 #IRS1
+	IRS1(_307~0,p~P) 7.195196473254302e+20 #original 0.00119481841136737mol/L #IRS1p #IRS1p
+	IRS1(_307~307,p~P) 1.971930128450021e+23 #original 0.327454355438396mol/L #IRS1p307 #IRS1p307
+	IRS1(_307~307,p~0) 1.0059239747710325e+25 #original 16.7041510257561mol/L #IRS1307 #IRS1307
+	X(p~0) 6.021899652973084e+25 #original 99.9983336594667mol/L #X #X
+	X(p~P) 1.0034702690843022e+21 #original 0.00166634053318549mol/L #Xp #Xp
+	PKB(_308p~0,_473p~0) 4.105839644263967e+25 #original 68.1806649661901mol/L #PKB #PKB
+	PKB(_308p~308P,_473p~0) 8.00714324694379e+24 #original 13.2964849666951mol/L #PKB308p #PKB308p
+	PKB(_308p~0,_473p~473P) 1.0127314320780357e+25 #original 16.8171941560617mol/L #PKB473p #PKB473p
+	PKB(_308p~308P,_473p~473P) 1.0271487593029973e+24 #original 1.70566051030056mol/L #PKB308p473p #PKB308p473p
+	mTORC1(a~0,mTORC2~0) 5.209044887830924e+25 #original 86.5002472240273mol/L #mTORC1 #mTORC1
+	mTORC1(a~A,mTORC2~0) 8.129551121690701e+24 #original 13.4997527759726mol/L #mTORC1a #mTORC1a
+	mTORC1(a~0,mTORC2~mTORC2) 6.012835410035701e+25 #original 99.8478148461591mol/L #mTORC2 #mTORC2
+	mTORC1(a~A,mTORC2~mTORC2) 9.16458996429665e+22 #original 0.152185153840861mol/L #mTORC2a #mTORC2a
+	AS160(p~0) 5.047285213955598e+25 #original 83.8141018591099mol/L #AS160 #AS160
+	AS160(p~P) 9.747147860444139e+24 #original 16.1858981408903mol/L #AS160p #AS160p
+	GLUT4(m~M) 1.5972679780979103e+25 #original 26.523878746229mol/L #GLUT4m #GLUT4m
+	GLUT4(m~0) 4.42473202190209e+25 #original 73.476121253771mol/L #GLUT4 #GLUT4
+	S6K(p~0) 5.9782320270361124e+25 #original 99.2731987219547mol/L #S6K #S6K
+	S6K(p~P) 4.376797296388315e+23 #original 0.72680127804522mol/L #S6Kp #S6Kp
+	S6(p~0) 5.585985646033741e+25 #original 92.7596420796038mol/L #S6 #S6
+	S6(p~P) 4.3601435396624895e+24 #original 7.24035792039603mol/L #S6p #S6p
+end seed species
+begin observables
+	Species IR IR(IRins~0,i~0,p~0) #IR
+	Species IRp IR(IRins~0,i~0,p~P) #IRp
+	Species IRins IR(IRins~IRins,i~0,p~0) #IRins
+	Species IRip IR(IRins~0,i~I,p~P) #IRip
+	Species IRi IR(IRins~0,i~I,p~0) #IRi
+	Species IRS1 IRS1(_307~0,p~0) #IRS1
+	Species IRS1p IRS1(_307~0,p~P) #IRS1p
+	Species IRS1p307 IRS1(_307~307,p~P) #IRS1p307
+	Species IRS1307 IRS1(_307~307,p~0) #IRS1307
+	Species X X(p~0) #X
+	Species Xp X(p~P) #Xp
+	Species PKB PKB(_308p~0,_473p~0) #PKB
+	Species PKB308p PKB(_308p~308P,_473p~0) #PKB308p
+	Species PKB473p PKB(_308p~0,_473p~473P) #PKB473p
+	Species PKB308p473p PKB(_308p~308P,_473p~473P) #PKB308p473p
+	Species mTORC1 mTORC1(a~0,mTORC2~0) #mTORC1
+	Species mTORC1a mTORC1(a~A,mTORC2~0) #mTORC1a
+	Species mTORC2 mTORC1(a~0,mTORC2~mTORC2) #mTORC2
+	Species mTORC2a mTORC1(a~A,mTORC2~mTORC2) #mTORC2a
+	Species AS160 AS160(p~0) #AS160
+	Species AS160p AS160(p~P) #AS160p
+	Species GLUT4m GLUT4(m~M) #GLUT4m
+	Species GLUT4 GLUT4(m~0) #GLUT4
+	Species S6K S6K(p~0) #S6K
+	Species S6Kp S6K(p~P) #S6Kp
+	Species S6 S6(p~0) #S6
+	Species S6p S6(p~P) #S6p
+end observables
+begin functions
+	glucoseuptake() = GLUT4m*gluc*k8 + gluc*glut1
+	measuredmTORC2a() = mTORC2a
+	measuredS6p() = S6p*scaleS6
+	measuredS6Kp() = S6Kp*scaleS6K
+	measuredmTORC1a() = mTORC1a
+	measuredAS160p() = AS160p*scaleAS160
+	measuredPKB473p() = scalePKB473*(PKB308p473p + PKB473p)
+	measuredPKB308p() = scalePKB308*(PKB308p + PKB308p473p)
+	measuredIRS1307() = scaleIRS1307*(IRS1307 + IRS1p307)
+	measuredIRS1p() = scaleIRS1*(IRS1p + IRS1p307)
+	measuredIRint() = IRi + IRip
+	measuredIRp() = scaleIR*(IRip + IRp)
+	fRate0() = insulin*k1a
+	fRate4() = Xp*k1f
+	fRate7() = IRip*k2a
+	fRate9() = diabetes*k2c*mTORC1a
+	fRate14() = IRS1p*k3a
+	fRate16() = mTORC1*(PKB308p*k5a2 + PKB308p473p*k5a1)
+	fRate18() = IRip*k5c
+	fRate20() = IRS1p*k4a
+	fRate22() = k4c*mTORC2a
+	fRate23() = IRS1p307*k4e
+	fRate26() = AS160*(PKB308p473p*k6f1 + PKB473p^n6*k6f2/(PKB473p^n6 + km6^n6))
+	fRate28() = AS160p*k7f
+	fRate30() = k9f1*mTORC1a^n9/(km9^n9 + mTORC1a^n9)
+	fRate32() = S6Kp*k9f2
+end functions
+begin reaction rules
+	v1a: IR(IRins~0,i~0,p~0) -> IR(IRins~IRins,i~0,p~0) fRate0() #Modifiers(IR)
+	v1basal: IR(IRins~0,i~0,p~0) -> IR(IRins~0,i~0,p~P) k1basal #Modifiers(IR)
+	v1c: IR(IRins~IRins,i~0,p~0) -> IR(IRins~0,i~0,p~P) k1c #Modifiers(IRins)
+	v1d: IR(IRins~0,i~0,p~P) -> IR(IRins~0,i~I,p~P) k1d #Modifiers(IRp)
+	v1e: IR(IRins~0,i~I,p~P) -> IR(IRins~0,i~I,p~0) fRate4() #Modifiers(Xp, IRip, Xp)
+	v1g: IR(IRins~0,i~0,p~P) -> IR(IRins~0,i~0,p~0) k1g #Modifiers(IRp)
+	v1r: IR(IRins~0,i~I,p~0) -> IR(IRins~0,i~0,p~0) k1r #Modifiers(IRi)
+	v2a: IRS1(_307~0,p~0) -> IRS1(_307~0,p~P) fRate7() #Modifiers(IRip, IRS1, IRip)
+	v2b: IRS1(_307~0,p~P) -> IRS1(_307~0,p~0) k2b #Modifiers(IRS1p)
+	v2c: IRS1(_307~0,p~P) -> IRS1(_307~307,p~P) fRate9() #Modifiers(mTORC1a, IRS1p, mTORC1a)
+	v2d: IRS1(_307~307,p~P) -> IRS1(_307~0,p~P) k2d #Modifiers(IRS1p307)
+	v2f: IRS1(_307~307,p~P) -> IRS1(_307~307,p~0) k2f #Modifiers(IRS1p307)
+	v2basal: IRS1(_307~0,p~0) -> IRS1(_307~307,p~0) k2basal #Modifiers(IRS1)
+	v2g: IRS1(_307~307,p~0) -> IRS1(_307~0,p~0) k2g #Modifiers(IRS1307)
+	v3a: X(p~0) -> X(p~P) fRate14() #Modifiers(IRS1p, X, IRS1p)
+	v3b: X(p~P) -> X(p~0) k3b #Modifiers(Xp)
+	v5a_reactants_0: 0  -> mTORC1(a~0,mTORC2~0) -1*(fRate16()) #Modifiers(PKB308p, PKB308p473p, mTORC1, PKB308p473p, PKB308p)
+	v5a_products_0: 0  -> mTORC1(a~A,mTORC2~0) fRate16() #Modifiers(PKB308p, PKB308p473p, mTORC1, PKB308p473p, PKB308p)
+	v5b: mTORC1(a~A,mTORC2~0) -> mTORC1(a~0,mTORC2~0) k5b #Modifiers(mTORC1a)
+	v5c: mTORC1(a~0,mTORC2~mTORC2) -> mTORC1(a~A,mTORC2~mTORC2) fRate18() #Modifiers(IRip, mTORC2, IRip)
+	v5d: mTORC1(a~A,mTORC2~mTORC2) -> mTORC1(a~0,mTORC2~mTORC2) k5d #Modifiers(mTORC2a)
+	v4a: PKB(_308p~0,_473p~0) -> PKB(_308p~308P,_473p~0) fRate20() #Modifiers(IRS1p, PKB, IRS1p)
+	v4b: PKB(_308p~308P,_473p~0) -> PKB(_308p~0,_473p~0) k4b #Modifiers(PKB308p)
+	v4c: PKB(_308p~308P,_473p~0) -> PKB(_308p~308P,_473p~473P) fRate22() #Modifiers(mTORC2a, PKB308p, mTORC2a)
+	v4e: PKB(_308p~0,_473p~473P) -> PKB(_308p~308P,_473p~473P) fRate23() #Modifiers(IRS1p307, PKB473p, IRS1p307)
+	v4f: PKB(_308p~308P,_473p~473P) -> PKB(_308p~0,_473p~473P) k4f #Modifiers(PKB308p473p)
+	v4h: PKB(_308p~0,_473p~473P) -> PKB(_308p~0,_473p~0) k4h #Modifiers(PKB473p)
+	v6f1_reactants_0: 0  -> AS160(p~0) -1*(fRate26()) #Modifiers(PKB308p473p, PKB473p, AS160, PKB308p473p, PKB473p)
+	v6f1_products_0: 0  -> AS160(p~P) fRate26() #Modifiers(PKB308p473p, PKB473p, AS160, PKB308p473p, PKB473p)
+	v6b1: AS160(p~P) -> AS160(p~0) k6b #Modifiers(AS160p)
+	v7f: GLUT4(m~0) -> GLUT4(m~M) fRate28() #Modifiers(AS160p, GLUT4, AS160p)
+	v7b: GLUT4(m~M) -> GLUT4(m~0) k7b #Modifiers(GLUT4m)
+	v9f1: S6K(p~0) -> S6K(p~P) fRate30() #Modifiers(mTORC1a, S6K, mTORC1a)
+	v9b1: S6K(p~P) -> S6K(p~0) k9b1 #Modifiers(S6Kp)
+	v9f2: S6(p~0) -> S6(p~P) fRate32() #Modifiers(S6Kp, S6, S6Kp)
+	v9b2: S6(p~P) -> S6(p~0) k9b2 #Modifiers(S6p)
+end reaction rules
+end model

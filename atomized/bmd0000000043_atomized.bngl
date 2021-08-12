@@ -1,0 +1,67 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL6622689184', 'http://identifiers.org/biomodels.db/BIOMD0000000043']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/17029867']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0019722', 'http://identifiers.org/obo.go/GO:0048016']
+#@BQB_IS:['http://identifiers.org/kegg.pathway/rno04020']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10114']
+#@creatorEmail:'lenov@ebi.ac.uk'
+#@creatorName:'Le Novère Nicolas'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 5 molecules and 7 reactions. The translated model has 2 molecules and 9 rules'
+###
+begin model
+begin parameters
+	a 40000.0
+	d 100.0
+	beta 1.0
+	r1_v0 1.000000
+	r1_v1 1.000000
+	r2_Vm2 6.500000
+	r2_K2 0.100000
+	r3_Vm3 50.000000
+	r3_Ky 0.200000
+	r4_Kf 1.000000
+	r5_K 10.000000
+	r6_Kd 5000.000000
+	r7_Kr 5.000000
+end parameters
+begin compartments
+	#volume units: L
+	extracellular 3 1.0
+	cytosol 3 1.0
+	intravesicular 3 1.0
+end compartments
+begin molecule types
+	#^ bqbiol:is chebi:CHEBI:29108, kegg.compound:C00076
+	Z(EC~EC~0,Y~Y~0)
+	#^ bqbiol:isVersionOf interpro:IPR016093, interpro:IPR000493
+	Rho(Fraction_Inactive_Channels~Fraction_Inactive_Channels~0)
+end molecule types
+begin seed species
+	@intravesicular:Z(EC~0,Y~Y) 2.16792e+17 # (0.36 * 1e-06)mol/L * 6.022e23/mol *1.0L #Y #Y
+end seed species
+begin observables
+	Species EC_extracellular @extracellular:Z(EC~EC,Y~0) #EC
+	Species Z_cytosol @cytosol:Z(EC~0,Y~0) #Z
+	Species Rho_cytosol @cytosol:Rho(Fraction_Inactive_Channels~0) #Rho
+	Species Y_intravesicular @intravesicular:Z(EC~0,Y~Y) #Y
+	Species Fraction_Inactive_Channels_cytosol @cytosol:Rho(Fraction_Inactive_Channels~Fraction_Inactive_Channels) #Fraction_Inactive_Channels
+end observables
+begin functions
+	fRate0() = 1.0*beta + 1.0
+	fRate1() = 6.5*Z_cytosol/(Z_cytosol^2 + 0.01)
+	fRate2() = 50.0*Rho_cytosol*Y_intravesicular*Z_cytosol^4*a*beta/(Y_intravesicular^2*Z_cytosol^4*a + Y_intravesicular^2*d + 0.04*Z_cytosol^4*a + 0.04*d)
+	fRate5() = 5000.0*Z_cytosol^4
+	fRate6() = 5.0 - 5.0*Rho_cytosol
+end functions
+begin reaction rules
+	vin_reactants_0: 0  -> Z(EC~EC,Y~0)@extracellular -1*(fRate0())
+	vin_products_0: 0  -> Z(EC~0,Y~0)@cytosol fRate0()
+	v2: Z(EC~0,Y~0)@cytosol -> Z(EC~0,Y~Y)@intravesicular fRate1()
+	v3: Z(EC~0,Y~Y)@intravesicular -> Z(EC~0,Y~0)@cytosol fRate2() #Modifiers(Rho)
+	v4: Z(EC~0,Y~Y)@intravesicular -> Z(EC~0,Y~0)@cytosol r4_Kf
+	v5: Z(EC~0,Y~0)@cytosol -> Z(EC~EC,Y~0)@extracellular r5_K
+	v6: Rho(Fraction_Inactive_Channels~0)@cytosol -> Rho(Fraction_Inactive_Channels~Fraction_Inactive_Channels)@cytosol fRate5() #Modifiers(Z)
+	v7_reactants_0: 0  -> Rho(Fraction_Inactive_Channels~Fraction_Inactive_Channels)@cytosol -1*(fRate6())
+	v7_products_0: 0  -> Rho(Fraction_Inactive_Channels~0)@cytosol fRate6()
+end reaction rules
+end model

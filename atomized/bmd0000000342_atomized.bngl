@@ -1,0 +1,153 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000342', 'http://identifiers.org/biomodels.db/MODEL1104050000']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/21613981']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000312']
+#@BQB_IS_PART_OF:['http://identifiers.org/reactome/REACT_6844', 'http://identifiers.org/kegg.pathway/map04350']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0007179']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 21 molecules and 29 reactions. The translated model has 9 molecules and 31 rules'
+###
+begin model
+begin parameters
+	stimulation_type 1.0 #units:dimensionless
+	single_pulse_duration 0.5 #units:min
+	ki 0.333 #units:per_min
+	kr 0.0333 #units:per_min
+	k_T1R 0.0167 #units:nM_per_min
+	k_T2R 0.0190076 #units:nM_per_min
+	kdeg_T1R 0.00256 #units:per_min
+	kdeg_T2R 0.0132 #units:per_min
+	kdeg_LRC 0.00256 #units:per_min
+	kdeg_TGF_beta 0.347 #units:per_min
+	klid 0.0233678 #units:per_min
+	ka_LRC 117.897 #units:third_order
+	kdiss_LRC 0.0438111 #units:per_min
+	kimp_Smad2 0.156 #units:per_min
+	kexp_Smad2 0.763 #units:per_min
+	kimp_Smad4 0.156 #units:per_min
+	kexp_Smad4 0.359 #units:per_min
+	kpho_Smad2 0.0488268 #units:second_order
+	kon_Smads 0.198472 #units:second_order
+	koff_Smads 1.0 #units:per_min
+	kimp_Smads 0.889 #units:per_min
+	kdepho_Smad2 0.394 #units:per_min
+	kon_ns 0.0505413 #units:per_min
+	KD_ns 40.2257 #units:dimensionless
+	TGF_beta_dose_mol_per_cell (0.05) * 1e-9 * Vmed * 6e23
+end parameters
+begin compartments
+	#volume units: volume
+	default 3 1.0
+	Vmed 3 2e-09 #Medium
+	Vcyt 3 2.3e-12 #Cytoplasm
+	Vnuc 3 1e-12 #Nucleus
+end compartments
+begin molecule types
+	TGF_beta(_ex~_EX~0,_ns~_NS~0)
+	Smad2(c~C~0,n~N~0,p~P~0,smad2,smad4)
+	#^ bqbiol:occursIn go:GO:0005769
+	#^ bqbiol:isVersionOf go:GO:0043235
+	#^ bqbiol:hasPart uniprot:P01137, uniprot:P36897, uniprot:P01137, uniprot:P37173
+	LRC_endo()
+	#^ bqbiol:occursIn go:GO:0009986
+	#^ bqbiol:isVersionOf go:GO:0043235
+	#^ bqbiol:hasPart uniprot:P01137, uniprot:P36897, uniprot:P01137, uniprot:P37173
+	LRC_surf()
+	#^ bqbiol:isVersionOf uniprot:P37173
+	#^ bqbiol:occursIn go:GO:0009986
+	T2R_surf(T2R_endo~T2R_endo~0)
+	AA()
+	#^ bqbiol:isVersionOf uniprot:P36897
+	#^ bqbiol:occursIn go:GO:0009986
+	T1R_surf(T1R_endo~T1R_endo~0,empty_degraded~empty_degraded~0)
+	Smad4(c~C~0,n~N~0,smad2)
+	#^ bqbiol:isVersionOf uniprot:P01137
+	#^ bqbiol:occursIn go:GO:0005769
+	TGF_beta_endo()
+end molecule types
+begin seed species
+	@Vmed:TGF_beta(_ex~_EX,_ns~0) 60220.00000000002 # (0.05 * 1e-09)mol/L * 6.022e23/mol *2e-09L #TGF_beta_ex #TGF_beta_ex
+	@Vcyt:Smad2(c~C,n~0,p~0,smad2,smad4) 83934.636 #original 60.6substance/volume #Smad2c #Smad2c
+	@Vnuc:Smad2(c~0,n~N,p~0,smad2,smad4) 17162.7 #original 28.5substance/volume #Smad2n #Smad2n
+	@Vcyt:Smad4(c~C,n~0,smad2) 70361.048 #original 50.8substance/volume #Smad4c #Smad4c
+	@Vnuc:Smad4(c~0,n~N,smad2) 30591.76 #original 50.8substance/volume #Smad4n #Smad4n
+	@Vcyt:T1R_surf(T1R_endo~0,empty_degraded~0) ((0.0167) * (0.00256) + (0.0167) * (0.0333)) / ((0.00256) * (0.333)) #T1R_surf
+	@Vcyt:T1R_surf(T1R_endo~T1R_endo,empty_degraded~0) (0.0167) / (0.00256) #T1R_endo
+	@Vcyt:T2R_surf(T2R_endo~0) ((0.0190076) * (0.0132) + (0.0190076) * (0.0333)) / ((0.0132) * (0.333)) #T2R_surf
+	@Vcyt:T2R_surf(T2R_endo~T2R_endo) (0.0190076) / (0.0132) #T2R_endo
+end seed species
+begin observables
+	Species TGF_beta_ex_Vmed @Vmed:TGF_beta(_ex~_EX,_ns~0) #TGF_beta_ex
+	Species T1R_surf_Vcyt @Vcyt:T1R_surf(T1R_endo~0,empty_degraded~0) #T1R_surf
+	Species T1R_endo_Vcyt @Vcyt:T1R_surf(T1R_endo~T1R_endo,empty_degraded~0) #T1R_endo
+	Species T2R_surf_Vcyt @Vcyt:T2R_surf(T2R_endo~0) #T2R_surf
+	Species T2R_endo_Vcyt @Vcyt:T2R_surf(T2R_endo~T2R_endo) #T2R_endo
+	Species LRC_surf_Vcyt @Vcyt:LRC_surf() #LRC_surf
+	Species LRC_endo_Vcyt @Vcyt:LRC_endo() #LRC_endo
+	Species Smad2c_Vcyt @Vcyt:Smad2(c~C,n~0,p~0,smad2,smad4) #Smad2c
+	Species Smad2n_Vnuc @Vnuc:Smad2(c~0,n~N,p~0,smad2,smad4) #Smad2n
+	Species Smad4c_Vcyt @Vcyt:Smad4(c~C,n~0,smad2) #Smad4c
+	Species Smad4n_Vnuc @Vnuc:Smad4(c~0,n~N,smad2) #Smad4n
+	Species PSmad2c_Vcyt @Vcyt:Smad2(c~C,n~0,p~P,smad2,smad4) #PSmad2c
+	Species PSmad2_PSmad2_c_Vcyt @Vcyt:Smad2(c~C,n~0,p~P,smad2!297,smad4).Smad2(c~C,n~0,p~P,smad2!297,smad4) #PSmad2_PSmad2_c
+	Species PSmad2_Smad4_c_Vcyt @Vcyt:Smad2(c~C,n~0,p~P,smad2,smad4!277).Smad4(c~C,n~0,smad2!277) #PSmad2_Smad4_c
+	Species PSmad2n_Vnuc @Vnuc:Smad2(c~0,n~N,p~P,smad2,smad4) #PSmad2n
+	Species PSmad2_PSmad2_n_Vnuc @Vnuc:Smad2(c~0,n~N,p~P,smad2!297,smad4).Smad2(c~0,n~N,p~P,smad2!297,smad4) #PSmad2_PSmad2_n
+	Species PSmad2_Smad4_n_Vnuc @Vnuc:Smad2(c~0,n~N,p~P,smad2,smad4!277).Smad4(c~0,n~N,smad2!277) #PSmad2_Smad4_n
+	Species TGF_beta_endo_Vcyt @Vcyt:TGF_beta_endo() #TGF_beta_endo
+	Species TGF_beta_ns_Vmed @Vmed:TGF_beta(_ex~0,_ns~_NS) #TGF_beta_ns
+	Species AA_Vcyt @Vcyt:AA() #AA
+	Species empty_degraded_Vcyt @Vcyt:T1R_surf(T1R_endo~0,empty_degraded~empty_degraded) #empty_degraded
+end observables
+begin functions
+	medium_TGF_beta_amount() = 1200000.00000000014947582*TGF_beta_ex_Vmed
+	koff_ns() = KD_ns*kon_ns
+	totalSmad2n() = 2*PSmad2_PSmad2_n_Vnuc + PSmad2_Smad4_n_Vnuc + PSmad2n_Vnuc + Smad2n_Vnuc
+	totalSmad2c() = 2*PSmad2_PSmad2_c_Vcyt + PSmad2_Smad4_c_Vcyt + PSmad2c_Vcyt + Smad2c_Vcyt
+	totalNumLRC() = 1384.6*LRC_endo_Vcyt + 1384.6*LRC_surf_Vcyt
+	totalNumT2R() = 1384.6*LRC_endo_Vcyt + 1384.6*LRC_surf_Vcyt + 1384.6*T2R_endo_Vcyt + 1384.6*T2R_surf_Vcyt
+	totalNumT1R() = 1384.6*LRC_endo_Vcyt + 1384.6*LRC_surf_Vcyt + 1384.6*T1R_endo_Vcyt + 1384.6*T1R_surf_Vcyt
+	totalNuclearPSmad2() = 2*PSmad2_PSmad2_n_Vnuc + PSmad2_Smad4_n_Vnuc + PSmad2n_Vnuc
+	totalNumPSmad2() = 2769.2*PSmad2_PSmad2_c_Vcyt + 1204*PSmad2_PSmad2_n_Vnuc + 1384.6*PSmad2_Smad4_c_Vcyt + 602*PSmad2_Smad4_n_Vnuc + 1384.6*PSmad2c_Vcyt + 602*PSmad2n_Vnuc
+	Vmed() = 2.0e-9/exp(0.000258030247522558*time())
+	fRate0() = k_T1R
+	fRate4() = k_T2R
+	fRate17() = LRC_endo_Vcyt*kpho_Smad2
+	fRate27() = klid*totalNuclearPSmad2
+end functions
+begin reaction rules
+	re1_reactants_0: 0  -> AA()@Vcyt -1*(fRate0())
+	re1_products_0: 0  -> T1R_surf(T1R_endo~0,empty_degraded~0)@Vcyt fRate0()
+	re2: T1R_surf(T1R_endo~0,empty_degraded~0)@Vcyt -> T1R_surf(T1R_endo~T1R_endo,empty_degraded~0)@Vcyt ki
+	re3: T1R_surf(T1R_endo~T1R_endo,empty_degraded~0)@Vcyt -> T1R_surf(T1R_endo~0,empty_degraded~0)@Vcyt kr
+	re4: T1R_surf(T1R_endo~T1R_endo,empty_degraded~0)@Vcyt -> T1R_surf(T1R_endo~0,empty_degraded~empty_degraded)@Vcyt kdeg_T1R
+	re5_reactants_0: 0  -> AA()@Vcyt -1*(fRate4())
+	re5_products_0: 0  -> T2R_surf(T2R_endo~0)@Vcyt fRate4()
+	re6: T2R_surf(T2R_endo~0)@Vcyt -> T2R_surf(T2R_endo~T2R_endo)@Vcyt ki
+	re7: T2R_surf(T2R_endo~T2R_endo)@Vcyt -> T2R_surf(T2R_endo~0)@Vcyt kr
+	re8: T2R_surf(T2R_endo~T2R_endo)@Vcyt -> T1R_surf(T1R_endo~0,empty_degraded~empty_degraded)@Vcyt kdeg_T2R
+	re9: TGF_beta(_ex~_EX,_ns~0)@Vmed + T2R_surf(T2R_endo~0)@Vcyt + T1R_surf(T1R_endo~0,empty_degraded~0)@Vcyt -> LRC_surf()@Vcyt ka_LRC
+	re10: LRC_surf()@Vcyt -> LRC_endo()@Vcyt ki
+	re11: LRC_endo()@Vcyt -> T1R_surf(T1R_endo~0,empty_degraded~empty_degraded)@Vcyt kdeg_LRC
+	re12: LRC_endo()@Vcyt -> T1R_surf(T1R_endo~T1R_endo,empty_degraded~0)@Vcyt + T2R_surf(T2R_endo~T2R_endo)@Vcyt + TGF_beta_endo()@Vcyt kdiss_LRC
+	re13: TGF_beta_endo()@Vcyt -> T1R_surf(T1R_endo~0,empty_degraded~empty_degraded)@Vcyt kdeg_TGF_beta
+	re14: Smad2(c~C,n~0,p~0,smad2,smad4)@Vcyt -> Smad2(c~0,n~N,p~0,smad2,smad4)@Vnuc kimp_Smad2
+	re15: Smad2(c~0,n~N,p~0,smad2,smad4)@Vnuc -> Smad2(c~C,n~0,p~0,smad2,smad4)@Vcyt kexp_Smad2
+	re16: Smad4(c~C,n~0,smad2)@Vcyt -> Smad4(c~0,n~N,smad2)@Vnuc kimp_Smad4
+	re17: Smad4(c~0,n~N,smad2)@Vnuc -> Smad4(c~C,n~0,smad2)@Vcyt kexp_Smad4
+	re18: Smad2(c~C,n~0,p~0,smad2,smad4)@Vcyt -> Smad2(c~C,n~0,p~P,smad2,smad4)@Vcyt fRate17() #Modifiers(LRC_endo)
+	re19: Smad2(c~C,n~0,p~P,smad2,smad4)@Vcyt -> Smad2(c~0,n~N,p~P,smad2,smad4)@Vnuc kimp_Smad2
+	re20: Smad2(c~0,n~N,p~P,smad2,smad4)@Vnuc -> Smad2(c~C,n~0,p~P,smad2,smad4)@Vcyt kexp_Smad2
+	re21: Smad2(c~C,n~0,p~P,smad2,smad4)@Vcyt + Smad4(c~C,n~0,smad2)@Vcyt <-> Smad2(c~C,n~0,p~P,smad2,smad4!277)@Vcyt.Smad4(c~C,n~0,smad2!277)@Vcyt kon_Smads,koff_Smads
+	re22: Smad2(c~C,n~0,p~P,smad2,smad4!277)@Vcyt.Smad4(c~C,n~0,smad2!277)@Vcyt -> Smad2(c~0,n~N,p~P,smad2,smad4!277)@Vnuc.Smad4(c~0,n~N,smad2!277)@Vnuc kimp_Smads
+	re23: Smad2(c~0,n~N,p~P,smad2,smad4!277)@Vnuc.Smad4(c~0,n~N,smad2!277)@Vnuc <-> Smad2(c~0,n~N,p~P,smad2,smad4)@Vnuc + Smad4(c~0,n~N,smad2)@Vnuc koff_Smads,kon_Smads
+	re24: Smad2(c~0,n~N,p~P,smad2,smad4)@Vnuc -> Smad2(c~0,n~N,p~0,smad2,smad4)@Vnuc kdepho_Smad2
+	re25: Smad2(c~C,n~0,p~P,smad2,smad4)@Vcyt + Smad2(c~C,n~0,p~P,smad2,smad4)@Vcyt <-> Smad2(c~C,n~0,p~P,smad2!297,smad4)@Vcyt.Smad2(c~C,n~0,p~P,smad2!297,smad4)@Vcyt kon_Smads,koff_Smads
+	re26: Smad2(c~C,n~0,p~P,smad2!297,smad4)@Vcyt.Smad2(c~C,n~0,p~P,smad2!297,smad4)@Vcyt -> Smad2(c~0,n~N,p~P,smad2!297,smad4)@Vnuc.Smad2(c~0,n~N,p~P,smad2!297,smad4)@Vnuc kimp_Smads
+	re27: Smad2(c~0,n~N,p~P,smad2!297,smad4)@Vnuc.Smad2(c~0,n~N,p~P,smad2!297,smad4)@Vnuc <-> Smad2(c~0,n~N,p~P,smad2,smad4)@Vnuc + Smad2(c~0,n~N,p~P,smad2,smad4)@Vnuc koff_Smads,kon_Smads
+	re28: LRC_surf()@Vcyt -> T1R_surf(T1R_endo~0,empty_degraded~empty_degraded)@Vcyt fRate27()
+	re29: TGF_beta(_ex~_EX,_ns~0)@Vmed <-> TGF_beta(_ex~0,_ns~_NS)@Vmed kon_ns,koff_ns
+end reaction rules
+end model

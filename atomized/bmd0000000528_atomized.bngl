@@ -1,0 +1,157 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1403310002', 'http://identifiers.org/biomodels.db/BIOMD0000000528']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/24594370']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/20739535', 'http://identifiers.org/pubmed/20159146']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0009814']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/36420', 'http://identifiers.org/taxonomy/9606']
+#@BQB_OCCURS_IN:['http://identifiers.org/cl/CL:0001056']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_HAS_VERSION:['http://identifiers.org/doid/DOID:0050211']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 13 molecules and 12 reactions. The translated model has 13 molecules and 24 rules'
+###
+begin model
+begin parameters
+	r5 1.0 #units:dimensionless
+	n3 5.0 #units:substance
+	bm 6.0 #units:substance
+	sp 0.3 #units:substance
+	delta1 0.1 #units:substance
+	n1 1.0 #units:substance
+	sv 0.1 #units:substance
+	delta2 0.4 #units:substance
+	n2 5.0 #units:substance
+	TJtot 0.0001 #units:substance
+	K3 0.0043 #units:substance
+	K9 780.0 #units:substance
+	delta 0.0003 #units:substance
+	r0 0.001 #units:substance
+	k15 3.6e-08 #units:substance
+	tao1 2.5 #units:substance
+	C 500000.0 #units:substance
+	vmax2 72000.0 #units:substance
+	NA 6.023e+23 #units:substance
+	K2 0.002 #units:substance
+	K5 0.01 #units:substance
+	tao3 0.56 #units:substance
+	r3 1e-07 #units:substance
+	k8 0.0036 #units:substance
+	tao4 0.46 #units:substance
+	k11 0.00036 #units:substance
+	k14 3.204e-07 #units:substance
+	tao6 1.0
+	k12 360.0 #units:substance
+	k16 0.36 #units:substance
+	tao8 2.0 #units:substance
+	vmax17 72000.0 #units:substance
+	K17 0.002 #units:substance
+	r1 0.0001 #units:substance
+	rmax20 0.001 #units:substance
+	K20 0.0006 #units:substance
+	tao9 2.0 #units:substance
+	vmax19 154800.0 #units:substance
+	K19 0.004 #units:substance
+	r4 1e-05 #units:substance
+	k26 0.360085 #units:substance
+	tao12 1.0 #units:substance
+	k28 360.0 #units:substance
+	tao13 15.0 #units:substance
+end parameters
+begin compartments
+	#volume units: volume
+	default 3 1.0
+	c2 3 1.0 #Environment
+	compartment 3 1.0 #Cell
+end compartments
+begin molecule types
+	#^ bqbiol:isVersionOf uniprot:P01375
+	TNFam()
+	#^ bqbiol:isVersionOf interpro:IPR015589
+	IFNa_env()
+	#^ bqbiol:isVersionOf uniprot:P01375
+	TNFenv()
+	#^ bqbiol:isVersionOf interpro:IPR001217
+	STAT()
+	#^ bqbiol:isVersionOf uniprot:P01574
+	IFNb_env()
+	#^ bqbiol:encodes uniprot:Q92985
+	IRF7m()
+	#^ bqbiol:encodes interpro:IPR001217
+	STATm()
+	#^ bqbiol:encodes interpro:IPR028411
+	SOCS1m()
+	#^ bqbiol:isVersionOf interpro:IPR001217
+	STATP2n()
+	w()
+	#^ bqbiol:isVersionOf uniprot:Q92985
+	IRF7Pn()
+	#^ bqbiol:encodes interpro:IPR015589
+	IFNa_mRNA()
+	#^ bqbiol:encodes uniprot:P01574
+	IFNb_mRNA()
+end molecule types
+begin seed species
+	@compartment:STAT() 6.022e+16 # (0.1 * 1e-06)mol/L * 6.022e23/mol *1.0L #STAT #STAT
+end seed species
+begin observables
+	Species w_compartment @compartment:w() #w
+	Species IFNb_mRNA_compartment @compartment:IFNb_mRNA() #IFNb_mRNA
+	Species IFNb_env_c2 @c2:IFNb_env() #IFNb_env
+	Species STATP2n_compartment @compartment:STATP2n() #STATP2n
+	Species SOCS1m_compartment @compartment:SOCS1m() #SOCS1m
+	Species IRF7m_compartment @compartment:IRF7m() #IRF7m
+	Species IRF7Pn_compartment @compartment:IRF7Pn() #IRF7Pn
+	Species IFNa_mRNA_compartment @compartment:IFNa_mRNA() #IFNa_mRNA
+	Species IFNa_env_c2 @c2:IFNa_env() #IFNa_env
+	Species TNFam_compartment @compartment:TNFam() #TNFam
+	Species TNFenv_c2 @c2:TNFenv() #TNFenv
+	Species STATm_compartment @compartment:STATm() #STATm
+	Species STAT_compartment @compartment:STAT() #STAT
+end observables
+begin functions
+	NS() = r5*time()^n3/(bm^n3 + time()^n3)
+	IC1() = (sp*(NS/delta1)^n1 + 1)/((NS/delta1)^n1 + 1)
+	TJ() = TJtot*(IFNa_env_c2 + IFNb_env_c2)/((K9*SOCS1m_compartment/delta + 1)*(IFNa_env_c2 + IFNb_env_c2 + K3))
+	IC2ifa() = 1
+	IC2() = 1
+	fRate0() = IC2*(IC1*r0 + IRF7Pn_compartment*k15) - IFNb_mRNA_compartment*log(2)/tao1
+	fRate1() = 1000000000*C*IFNb_mRNA_compartment*vmax2/(NA*(IFNb_mRNA_compartment + K2))
+	fRate2() = K5*STAT_compartment*TJ/(2*K5 + 2*STAT_compartment) - STATP2n_compartment*log(2)/tao3
+	fRate3() = IC2*(IC1*r3 + STATP2n_compartment*k8) - SOCS1m_compartment*log(2)/tao4
+	fRate4() = IC2*(IRF7Pn_compartment*k14 + STATP2n_compartment*k11) - IRF7m_compartment*log(2)/tao6
+	fRate5() = IC1*IRF7m_compartment*k12
+	fRate6() = IC2ifa*IRF7Pn_compartment*k16 - IFNa_mRNA_compartment*log(2)/tao8
+	fRate7() = 1000000000*C*IFNa_mRNA_compartment*vmax17/(NA*(IFNa_mRNA_compartment + K17))
+	fRate8() = IC2*(IC1*r1 + TNFenv_c2*rmax20/(K20 + TNFenv_c2)) - TNFam_compartment*log(2)/tao9
+	fRate9() = 1000000000*C*TNFam_compartment*vmax19/(NA*(K19 + TNFam_compartment))
+	fRate10() = IC2*(IC1*r4 + STATP2n_compartment*k26) - STATm_compartment*log(2)/tao12
+	fRate11() = -STAT_compartment*log(2)/tao13 + STATm_compartment*k28
+end functions
+begin reaction rules
+	J1_reactants_0: 0  -> w()@compartment -1*(fRate0()) #Modifiers(IRF7Pn)
+	J1_products_0: 0  -> IFNb_mRNA()@compartment fRate0() #Modifiers(IRF7Pn)
+	J2_reactants_0: 0  -> w()@compartment -1*(fRate1()) #Modifiers(IFNb_mRNA)
+	J2_products_0: 0  -> IFNb_env()@c2 fRate1() #Modifiers(IFNb_mRNA)
+	J3_reactants_0: 0  -> w()@compartment -1*(fRate2()) #Modifiers(STAT)
+	J3_products_0: 0  -> STATP2n()@compartment fRate2() #Modifiers(STAT)
+	J4_reactants_0: 0  -> w()@compartment -1*(fRate3()) #Modifiers(STATP2n)
+	J4_products_0: 0  -> SOCS1m()@compartment fRate3() #Modifiers(STATP2n)
+	J5_reactants_0: 0  -> w()@compartment -1*(fRate4()) #Modifiers(STATP2n, IRF7Pn)
+	J5_products_0: 0  -> IRF7m()@compartment fRate4() #Modifiers(STATP2n, IRF7Pn)
+	J6_reactants_0: 0  -> w()@compartment -1*(fRate5()) #Modifiers(IRF7m)
+	J6_products_0: 0  -> IRF7Pn()@compartment fRate5() #Modifiers(IRF7m)
+	J7_reactants_0: 0  -> w()@compartment -1*(fRate6()) #Modifiers(IRF7Pn)
+	J7_products_0: 0  -> IFNa_mRNA()@compartment fRate6() #Modifiers(IRF7Pn)
+	J8_reactants_0: 0  -> w()@compartment -1*(fRate7()) #Modifiers(IFNa_mRNA)
+	J8_products_0: 0  -> IFNa_env()@c2 fRate7() #Modifiers(IFNa_mRNA)
+	J9_reactants_0: 0  -> w()@compartment -1*(fRate8()) #Modifiers(TNFenv)
+	J9_products_0: 0  -> TNFam()@compartment fRate8() #Modifiers(TNFenv)
+	J10_reactants_0: 0  -> w()@compartment -1*(fRate9()) #Modifiers(TNFam)
+	J10_products_0: 0  -> TNFenv()@c2 fRate9() #Modifiers(TNFam)
+	J11_reactants_0: 0  -> w()@compartment -1*(fRate10()) #Modifiers(STATP2n)
+	J11_products_0: 0  -> STATm()@compartment fRate10() #Modifiers(STATP2n)
+	J12_reactants_0: 0  -> w()@compartment -1*(fRate11()) #Modifiers(STATm)
+	J12_products_0: 0  -> STAT()@compartment fRate11() #Modifiers(STATm)
+end reaction rules
+end model

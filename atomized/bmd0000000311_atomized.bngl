@@ -1,0 +1,51 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000311', 'http://identifiers.org/biomodels.db/MODEL1102100001']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/12648679']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0051098']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/131567']
+#@creatorEmail:'lukas@ebi.ac.uk'
+#@creatorName:'Endler Lukas'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 4 molecules and 5 reactions. The translated model has 2 molecules and 5 rules'
+###
+begin model
+begin parameters
+	k0 0.4 #units:per_s
+	k1 0.01 #units:per_s
+	k2 1.0 #units:per_s
+	k3 1.0 #units:per_s
+	J3 0.05 #units:M
+	k4 0.2 #units:M_per_s
+	J4 0.05 #units:M
+	Et 1.0 #units:M
+end parameters
+begin molecule types
+	#^ bqbiol:hasProperty go:GO:0016301
+	#^ bqbiol:isVersionOf chebi:CHEBI:36080
+	R()
+	#^ bqbiol:isVersionOf chebi:CHEBI:36080
+	E(p~P~0)
+end molecule types
+begin seed species
+end seed species
+begin observables
+	Species R R() #R
+	Species Ep E(p~P) #Ep
+	Species E E(p~0) #E
+end observables
+begin functions
+	Ep_ar() = 2*J4*R*k3/(J3*k4 + J4*R*k3 - R*k3 + k4 + sqrt(-J4*R*k3*(-4*R*k3 + 4*k4) + (J3*k4 + J4*R*k3 - R*k3 + k4)^2))
+	E_ar() = -Ep_ar + Et
+	fRate0() = Ep_ar*k0
+	fRate1() = S*k1
+	fRate3() = R*k3/(E_ar + J3)
+	fRate4() = k4/(Ep_ar + J4)
+end functions
+begin reaction rules
+	r1: 0  -> R() fRate0() #Modifiers(Ep)
+	r2: 0  -> R() fRate1() #Modifiers(S)
+	r3: R() -> 0  k2
+	r4: E(p~0) -> E(p~P) fRate3() #Modifiers(R)
+	r5: E(p~P) -> E(p~0) fRate4()
+end reaction rules
+end model

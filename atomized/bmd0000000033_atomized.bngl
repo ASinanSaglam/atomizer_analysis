@@ -1,0 +1,199 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000033', 'http://identifiers.org/biomodels.db/MODEL6619514794']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/16204838']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0070371']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/131567']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_HAS_PART:['http://identifiers.org/go/GO:0048011', 'http://identifiers.org/go/GO:0007173']
+#@creatorEmail:'lenov@ebi.ac.uk'
+#@creatorName:'Le Novère Nicolas'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 32 molecules and 26 reactions. The translated model has 15 molecules and 26 rules'
+###
+begin model
+begin parameters
+	krbEGF 2.18503e-05
+	kruEGF 0.0121008
+	krbNGF 1.38209e-07
+	kruNGF 0.00723811
+	kEGF 694.731
+	KmEGF 6086070.0
+	kNGF 389.428
+	KmNGF 2112.66
+	kdSos 1611.97
+	KmdSos 896896.0
+	kSos 32.344
+	KmSos 35954.3
+	kRasGap 1509.36
+	KmRasGap 1432410.0
+	kRasToRaf1 0.884096
+	KmRasToRaf1 62464.6
+	kpRaf1 185.759
+	KmpRaf1 4768350.0
+	kpBRaf 125.089
+	KmpBRaf 157948.0
+	kdMek 2.83243
+	KmdMek 518753.0
+	kpMekCytoplasmic 9.85367
+	KmpMekCytoplasmic 1007340.0
+	kdErk 8.8912
+	KmdErk 3496490.0
+	kpP90Rsk 0.0213697
+	KmpP90Rsk 763523.0
+	kPI3K 10.6737
+	KmPI3K 184912.0
+	kPI3KRas 0.0771067
+	KmPI3KRas 272056.0
+	kAkt 0.0566279
+	KmAkt 653951.0
+	kdRaf1ByAkt 15.1212
+	KmRaf1ByAkt 119355.0
+	kC3GNGF 146.912
+	KmC3GNGF 12876.2
+	kC3G 1.40145
+	KmC3G 10965.6
+	kRapGap 27.265
+	KmRapGap 295990.0
+	kRap1ToBRaf 2.20995
+	KmRap1ToBRaf 1025460.0
+	kdRaf1 0.126329
+	KmdRaf1 1061.71
+	kdBRaf 441.287
+	KmdBRaf 10879500.0
+	RasGapActive 7.2264e+28 #original 120000.0item (default)/L
+	RapGapActive 7.2264e+28 #original 120000.0item (default)/L
+	PP2AActive 7.2264e+28 #original 120000.0item (default)/L
+	Raf1PPtase 7.2264e+28 #original 120000.0item (default)/L
+end parameters
+begin molecule types
+	#^ bqbiol:is uniprot:P25427
+	NGF(freengfreceptor)
+	#^ bqbiol:isVersionOf uniprot:Q01986, uniprot:P36506
+	MekActive(in~IN~0)
+	#^ bqbiol:is uniprot:P35739
+	freeNGFReceptor(ngf)
+	#^ bqbiol:isVersionOf uniprot:P21708, uniprot:P63086
+	ErkActive(in~IN~0)
+	#^ bqbiol:isVersionOf uniprot:Q9QYV3
+	C3GActive(in~IN~0)
+	#^ bqbiol:is uniprot:Q9QX70
+	freeEGFReceptor(egf)
+	#^ bqbiol:isVersionOf uniprot:Q99MC6
+	BRafActive(in~IN~0)
+	#^ bqbiol:isVersionOf interpro:IPR003577
+	RasActive(in~IN~0)
+	#^ bqbiol:hasVersion uniprot:P10113, uniprot:Q62636
+	Rap1Active(in~IN~0)
+	#^ bqbiol:hasPart interpro:IPR015433
+	#^ bqbiol:isVersionOf go:GO:0005942
+	PI3KActive(in~IN~0)
+	#^ bqbiol:isVersionOf ensembl:ENSRNOP00000009359, uniprot:Q9Z1I1
+	SosActive(in~IN~0)
+	#^ bqbiol:hasVersion uniprot:Q9Z1I2, uniprot:Q63531
+	P90RskActive(in~IN~0)
+	#^ bqbiol:isVersionOf uniprot:P11345
+	Raf1Active(in~IN~0)
+	#^ bqbiol:is uniprot:P07522
+	EGF(freeegfreceptor)
+	#^ bqbiol:hasVersion uniprot:P47196, uniprot:P47197, uniprot:Q63484
+	AktActive(in~IN~0)
+end molecule types
+begin seed species
+	EGF(freeegfreceptor) 6.0232044e+30 # 10002000.0mol/L * 6.022e23/mol *1.0L #EGF #EGF
+	NGF(freengfreceptor) 2.746032e+29 #original 456000.0item (default)/L  #NGF #NGF
+	freeEGFReceptor(egf) 4.8176e+28 #original 80000.0item (default)/L  #freeEGFReceptor #freeEGFReceptor
+	freeNGFReceptor(ngf) 6.022e+27 #original 10000.0item (default)/L  #freeNGFReceptor #freeNGFReceptor
+	SosActive(in~IN) 7.2264e+28 #original 120000.0item (default)/L  #SosInactive #SosInactive
+	P90RskActive(in~IN) 7.2264e+28 #original 120000.0item (default)/L  #P90RskInactive #P90RskInactive
+	RasActive(in~IN) 7.2264e+28 #original 120000.0item (default)/L  #RasInactive #RasInactive
+	Raf1Active(in~IN) 7.2264e+28 #original 120000.0item (default)/L  #Raf1Inactive #Raf1Inactive
+	BRafActive(in~IN) 7.2264e+28 #original 120000.0item (default)/L  #BRafInactive #BRafInactive
+	MekActive(in~IN) 3.6132e+29 #original 600000.0item (default)/L  #MekInactive #MekInactive
+	ErkActive(in~IN) 3.6132e+29 #original 600000.0item (default)/L  #ErkInactive #ErkInactive
+	PI3KActive(in~IN) 7.2264e+28 #original 120000.0item (default)/L  #PI3KInactive #PI3KInactive
+	AktActive(in~IN) 7.2264e+28 #original 120000.0item (default)/L  #AktInactive #AktInactive
+	C3GActive(in~IN) 7.2264e+28 #original 120000.0item (default)/L  #C3GInactive #C3GInactive
+	Rap1Active(in~IN) 7.2264e+28 #original 120000.0item (default)/L  #Rap1Inactive #Rap1Inactive
+end seed species
+begin observables
+	Species EGF EGF(freeegfreceptor) #EGF
+	Species NGF NGF(freengfreceptor) #NGF
+	Species freeEGFReceptor freeEGFReceptor(egf) #freeEGFReceptor
+	Species boundEGFReceptor freeEGFReceptor(egf!49).EGF(freeegfreceptor!49) #boundEGFReceptor
+	Species freeNGFReceptor freeNGFReceptor(ngf) #freeNGFReceptor
+	Species boundNGFReceptor freeNGFReceptor(ngf!50).NGF(freengfreceptor!50) #boundNGFReceptor
+	Species SosInactive SosActive(in~IN) #SosInactive
+	Species SosActive SosActive(in~0) #SosActive
+	Species P90RskInactive P90RskActive(in~IN) #P90RskInactive
+	Species P90RskActive P90RskActive(in~0) #P90RskActive
+	Species RasInactive RasActive(in~IN) #RasInactive
+	Species RasActive RasActive(in~0) #RasActive
+	Species Raf1Inactive Raf1Active(in~IN) #Raf1Inactive
+	Species Raf1Active Raf1Active(in~0) #Raf1Active
+	Species BRafInactive BRafActive(in~IN) #BRafInactive
+	Species BRafActive BRafActive(in~0) #BRafActive
+	Species MekInactive MekActive(in~IN) #MekInactive
+	Species MekActive MekActive(in~0) #MekActive
+	Species ErkInactive ErkActive(in~IN) #ErkInactive
+	Species ErkActive ErkActive(in~0) #ErkActive
+	Species PI3KInactive PI3KActive(in~IN) #PI3KInactive
+	Species PI3KActive PI3KActive(in~0) #PI3KActive
+	Species AktInactive AktActive(in~IN) #AktInactive
+	Species AktActive AktActive(in~0) #AktActive
+	Species C3GInactive C3GActive(in~IN) #C3GInactive
+	Species C3GActive C3GActive(in~0) #C3GActive
+	Species Rap1Inactive Rap1Active(in~IN) #Rap1Inactive
+	Species Rap1Active Rap1Active(in~0) #Rap1Active
+end observables
+begin functions
+	fRate4() = boundEGFReceptor*kEGF/(KmEGF + SosInactive)
+	fRate5() = boundNGFReceptor*kNGF/(KmNGF + SosInactive)
+	fRate6() = P90RskActive*kdSos/(KmdSos + SosActive)
+	fRate7() = SosActive*kSos/(KmSos + RasInactive)
+	fRate8() = RasGapActive*kRasGap/(KmRasGap + RasActive)
+	fRate9() = RasActive*kRasToRaf1/(KmRasToRaf1 + Raf1Inactive)
+	fRate10() = Raf1Active*kpRaf1/(KmpRaf1 + MekInactive)
+	fRate11() = BRafActive*kpBRaf/(KmpBRaf + MekInactive)
+	fRate12() = MekActive*kpMekCytoplasmic/(ErkInactive + KmpMekCytoplasmic)
+	fRate13() = PP2AActive*kdMek/(KmdMek + MekActive)
+	fRate14() = PP2AActive*kdErk/(ErkActive + KmdErk)
+	fRate15() = Raf1PPtase*kdRaf1/(KmdRaf1 + Raf1Active)
+	fRate16() = ErkActive*kpP90Rsk/(KmpP90Rsk + P90RskInactive)
+	fRate17() = boundEGFReceptor*kPI3K/(KmPI3K + PI3KInactive)
+	fRate18() = RasActive*kPI3KRas/(KmPI3KRas + PI3KInactive)
+	fRate19() = PI3KActive*kAkt/(AktInactive + KmAkt)
+	fRate20() = AktActive*kdRaf1ByAkt/(KmRaf1ByAkt + Raf1Active)
+	fRate21() = boundNGFReceptor*kC3GNGF/(C3GInactive + KmC3GNGF)
+	fRate22() = C3GActive*kC3G/(KmC3G + Rap1Inactive)
+	fRate23() = RapGapActive*kRapGap/(KmRapGap + Rap1Active)
+	fRate24() = Rap1Active*kRap1ToBRaf/(BRafInactive + KmRap1ToBRaf)
+	fRate25() = Raf1PPtase*kdBRaf/(BRafActive + KmdBRaf)
+end functions
+begin reaction rules
+	EGFBindingReaction: EGF(freeegfreceptor) + freeEGFReceptor(egf) -> freeEGFReceptor(egf!49).EGF(freeegfreceptor!49) krbEGF
+	EGFUnbindingReaction: freeEGFReceptor(egf!49).EGF(freeegfreceptor!49) -> EGF(freeegfreceptor) + freeEGFReceptor(egf) kruEGF
+	NGFBindingReaction: NGF(freengfreceptor) + freeNGFReceptor(ngf) -> freeNGFReceptor(ngf!50).NGF(freengfreceptor!50) krbNGF
+	NGFUnbindingReaction: freeNGFReceptor(ngf!50).NGF(freengfreceptor!50) -> NGF(freengfreceptor) + freeNGFReceptor(ngf) kruNGF
+	SosActivationByEGFReaction: SosActive(in~IN) -> SosActive(in~0) fRate4() #Modifiers(boundEGFReceptor)
+	SosActivationByNGFReaction: SosActive(in~IN) -> SosActive(in~0) fRate5() #Modifiers(boundNGFReceptor)
+	SosDeactivationReaction: SosActive(in~0) -> SosActive(in~IN) fRate6() #Modifiers(P90RskActive)
+	RasActivationReaction: RasActive(in~IN) -> RasActive(in~0) fRate7() #Modifiers(SosActive)
+	RasDeactivationReaction: RasActive(in~0) -> RasActive(in~IN) fRate8() #Modifiers(RasGapActive)
+	Raf1ByRasActivationReaction: Raf1Active(in~IN) -> Raf1Active(in~0) fRate9() #Modifiers(RasActive)
+	MekbyRaf1ActivationReaction: MekActive(in~IN) -> MekActive(in~0) fRate10() #Modifiers(Raf1Active)
+	MekbyBRafActivationReaction: MekActive(in~IN) -> MekActive(in~0) fRate11() #Modifiers(BRafActive)
+	ErkActivationReaction: ErkActive(in~IN) -> ErkActive(in~0) fRate12() #Modifiers(MekActive)
+	MekDeactivationReaction: MekActive(in~0) -> MekActive(in~IN) fRate13() #Modifiers(PP2AActive)
+	ErkDeactivationReaction: ErkActive(in~0) -> ErkActive(in~IN) fRate14() #Modifiers(PP2AActive)
+	Raf1byPPtaseDeactivationReaction: Raf1Active(in~0) -> Raf1Active(in~IN) fRate15() #Modifiers(Raf1PPtase)
+	P90RskActivationReaction: P90RskActive(in~IN) -> P90RskActive(in~0) fRate16() #Modifiers(ErkActive)
+	PI3KbyEGFRActivationReaction: PI3KActive(in~IN) -> PI3KActive(in~0) fRate17() #Modifiers(boundEGFReceptor)
+	PI3KbyRasActivationReaction: PI3KActive(in~IN) -> PI3KActive(in~0) fRate18() #Modifiers(RasActive)
+	AktActivationReaction: AktActive(in~IN) -> AktActive(in~0) fRate19() #Modifiers(PI3KActive)
+	Raf1ByAktDeactivationReaction: Raf1Active(in~0) -> Raf1Active(in~IN) fRate20() #Modifiers(AktActive)
+	C3GActivationReaction: C3GActive(in~IN) -> C3GActive(in~0) fRate21() #Modifiers(boundNGFReceptor)
+	Rap1ActivationReaction: Rap1Active(in~IN) -> Rap1Active(in~0) fRate22() #Modifiers(C3GActive)
+	Rap1DeactivationReaction: Rap1Active(in~0) -> Rap1Active(in~IN) fRate23() #Modifiers(RapGapActive)
+	BRafByRap1ActivationReaction: BRafActive(in~IN) -> BRafActive(in~0) fRate24() #Modifiers(Rap1Active)
+	BRafbyPPtaseDeactivationReaction: BRafActive(in~0) -> BRafActive(in~IN) fRate25() #Modifiers(Raf1PPtase)
+end reaction rules
+end model

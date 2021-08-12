@@ -1,0 +1,109 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/30745900']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/pr/PR:000001543', 'http://identifiers.org/ncit/C53482', 'http://identifiers.org/ncit/C3224', 'http://identifiers.org/ncit/C94697']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10090']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1911180001', 'http://identifiers.org/biomodels.db/BIOMD0000000865']
+#@creatorEmail:'johannes.p.meyer@gmail.com'
+#@creatorName:'Meyer Johannes'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 4 molecules and 8 reactions. The translated model has 4 molecules and 8 rules'
+###
+begin model
+begin parameters
+	sigma_i 0.3
+	sigma_p 0.1
+	a_c 0.75
+	a_p 0.75
+	a_i 75.0
+	a_b 100.0
+	A_c 0.01
+	A_p 0.1
+	A_i 1.0
+	A_b 10.0
+	n_c 3.0
+	n_p 3.0
+	n_b 2.0
+	n_i 2.0
+	k_b 25.0
+	k_i 7.5
+	q_i 7.5
+	K_b 1.0
+	K_i 1.0
+	Q_i 1.0
+	m_b 2.0
+	m_i 2.0
+	s_i 2.0
+	M_b 10.0
+	M_c 10.0
+	M_p 10.0
+	H_p 0.1
+	H_L 0.1
+	r_b 2.0
+	r_c 2.0
+	r_p 4.0
+	h_L 4.0
+	mu_c 0.1
+	mu_p 0.1
+	mu_b 1.0
+	mu_i 1.0
+	K_i_nu 0.001
+	K_p 0.01
+	gamma_y 500.0
+	gamma_p 500.0
+	delta 5000.0
+	theta 50000.0
+	lambda 10000.0
+	alpha 0.0001
+	kappa 1.0
+	k_T 0.5
+	K_T 1.0
+	n_T 2.0
+	L 0
+	T 0
+end parameters
+begin molecule types
+	#^ bqbiol:is pr:PR:000001831
+	B()
+	#^ bqbiol:is ncit:C26149
+	C()
+	#^ bqbiol:is pr:PR:000001919
+	P()
+	#^ bqbiol:is ncit:C17926
+	I()
+end molecule types
+begin seed species
+	C() 6.022e+23 # 1.0mol/L * 6.022e23/mol *1.0L #C #C
+	P() 6.022e+23 #original 1.0substance/volume #P #P
+	I() 6.022e+23 #original 1.0substance/volume #I #I
+	B() 6.022e+23 #original 1.0substance/volume #B #B
+end seed species
+begin observables
+	Species C C() #C
+	Species P P() #P
+	Species I I() #I
+	Species B B() #B
+end observables
+begin functions
+	nu_k() = K_p*kappa/((K_i_nu + kappa)*(K_p + kappa))
+	y_a_k() =  (lambda*c_T_a_k*nu_k + 1)/(lambda*c_T_a_k*nu_k + gamma_y + 1)
+	c_T_a_k() = 0.5*alpha + 0.5*kappa - 0.5*(-4*alpha + (alpha + kappa + 1)^2)^0.5 + 0.5
+	mu_a_k() = (delta*y_a_k + 1)/(c_T_a_k*nu_k*theta + delta*y_a_k + gamma_p + 1)
+	phi_L_P() = H_p/(H_p + L*P)
+	U_a_k_P() = mu_a_k*phi_L_P
+	Phi_L_P() = H_L^h_L/(H_L^h_L + (L*P)^h_L)
+	sigma_p_tilde() = T^n_T*k_T/(K_T^n_T + T^n_T) + sigma_p
+	fRate0() = M_c^r_c*U_a_k_P^n_c*a_c/(A_c^n_c*B^r_c + A_c^n_c*C^r_c + A_c^n_c*I^r_c + A_c^n_c*M_c^r_c + B^r_c*U_a_k_P^n_c + C^r_c*U_a_k_P^n_c + I^r_c*U_a_k_P^n_c + M_c^r_c*U_a_k_P^n_c)
+	fRate2() = M_p^r_p*(A_p^n_p*sigma_p_tilde + U_a_k_P^n_p*a_p + U_a_k_P^n_p*sigma_p_tilde)/(A_p^n_p*B^r_p + A_p^n_p*M_p^r_p + B^r_p*U_a_k_P^n_p + M_p^r_p*U_a_k_P^n_p)
+	fRate4() = B^m_i*Phi_L_P*k_i/(B^m_i + K_i^m_i) + I^s_i*Phi_L_P*q_i/(I^s_i + Q_i^s_i) + Phi_L_P*U_a_k_P^n_i*a_i/(A_i^n_i + U_a_k_P^n_i) + Phi_L_P*sigma_i
+	fRate7() = M_b^r_b*(A_b^n_b*I^m_b*k_b + I^m_b*U_a_k_P^n_b*a_b + I^m_b*U_a_k_P^n_b*k_b + K_b^m_b*U_a_k_P^n_b*a_b)/(A_b^n_b*C^r_b*I^m_b + A_b^n_b*C^r_b*K_b^m_b + A_b^n_b*I^m_b*M_b^r_b + A_b^n_b*K_b^m_b*M_b^r_b + C^r_b*I^m_b*U_a_k_P^n_b + C^r_b*K_b^m_b*U_a_k_P^n_b + I^m_b*M_b^r_b*U_a_k_P^n_b + K_b^m_b*M_b^r_b*U_a_k_P^n_b)
+end functions
+begin reaction rules
+	Bcl6_Production: 0  -> C() fRate0() #Modifiers(B, I)
+	Bcl6_Degradation: C() -> 0  mu_c
+	PD1_Production: 0  -> P() fRate2() #Modifiers(B)
+	PD1_Degradation: P() -> 0  mu_p
+	IRF4_Production: 0  -> I() fRate4() #Modifiers(B, I)
+	IRF4_Degradation: I() -> 0  mu_i
+	Blimp1_Degradation: B() -> 0  mu_b
+	Blimp1_Production: 0  -> B() fRate7() #Modifiers(I, C)
+end reaction rules
+end model

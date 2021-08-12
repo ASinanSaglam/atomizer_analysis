@@ -1,0 +1,51 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000672', 'http://identifiers.org/biomodels.db/MODEL1006230019']
+#@BQB_HAS_PART:['http://identifiers.org/ncit/C2267', 'http://identifiers.org/chebi/CHEBI:16796']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0030186']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/go/GO:0007623']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/9124558']
+#@creatorEmail:'mroberts@ebi.ac.uk'
+#@creatorName:'Roberts Matthew Grant'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 0 molecules and 0 reactions. The translated model has 2 molecules and 2 rules'
+###
+begin model
+begin parameters
+	t_on 1316.0
+	t_off 1794.0
+	A_max 6.51
+	tau_I 2.82
+	tau_C 23.67
+	tau_alpha 25.92
+	tau_lamda 24.04
+end parameters
+begin compartments
+	#volume units: L
+	COMpartment 3 1.0
+end compartments
+begin molecule types
+	H1
+	H2
+end molecule types
+begin seed species
+	H1@COMpartment 0.05
+	H2@COMpartment 1.0
+end seed species
+begin observables
+	Species H1 H1
+	Species H2 H2
+end observables
+begin functions
+	beta_I() = ln(2)/tau_I
+	beta_C() = ln(2)/tau_C
+	arRateH2() = H1*beta_I - H2*beta_C
+	A() =  if((time()<t_off&&time()>=t_on),(A_max*(1-exp(-lamda*(-t_on+time())))/(1-exp(-lamda*(t_off-t_on)))),(if((time()>=t_off),(A_max*exp(-alpha*(-t_off+time()))),(0))))
+	arRateH1() = A - H1*beta_I
+	lamda() = ln(2)/tau_lamda
+	alpha() = ln(2)/tau_alpha
+end functions
+begin reaction rules
+	0  -> H1()@COMpartment arRateH1 #rateLaw
+	0  -> H2()@COMpartment arRateH2 #rateLaw
+end reaction rules
+end model

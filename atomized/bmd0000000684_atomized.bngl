@@ -1,0 +1,96 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1006230061', 'http://identifiers.org/biomodels.db/BIOMD0000000684']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/13678598']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0002250']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/13678598']
+#@creatorEmail:'mroberts@embl.ac.uk'
+#@creatorName:'Roberts Matthew Grant'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 0 molecules and 0 reactions. The translated model has 10 molecules and 10 rules'
+###
+begin model
+begin parameters
+	r 0.5
+	epsilon 0.1
+	k_1 0.1
+	k_2 0.1
+	g 0.01
+	beta_1 1.0
+	alpha_1 0.1
+	beta_2 1.0
+	alpha_2 0.1
+	a_1 0.03
+	a_2 1.0
+	d 0.01
+	u 0.5
+end parameters
+begin compartments
+	#volume units: L
+	COMpartment 3 1.0 #population
+end compartments
+begin molecule types
+	S
+	I_1
+	I_2
+	I_12
+	I_21
+	R_1
+	R_2
+	R_12
+	P_1
+	P_2
+end molecule types
+begin seed species
+	S@COMpartment 100.0
+	I_1@COMpartment 0
+	I_2@COMpartment 0
+	I_12@COMpartment 0
+	I_21@COMpartment 0
+	R_1@COMpartment 0
+	R_2@COMpartment 0
+	R_12@COMpartment 0
+	P_1@COMpartment 0.1
+	P_2@COMpartment 0.1
+end seed species
+begin observables
+	Species S S
+	Species I_1 I_1
+	Species I_2 I_2
+	Species I_12 I_12
+	Species I_21 I_21
+	Species R_1 R_1
+	Species R_2 R_2
+	Species R_12 R_12
+	Species P_1 P_1
+	Species P_2 P_2
+end observables
+begin functions
+	H() = I_1 + I_12 + I_2 + I_21 + R_1 + R_12 + R_2 + S
+	arRateS() = H*r/(H*epsilon + 1) - P_1*S*beta_1 - P_2*S*beta_2 - S*d + g*(R_1 + R_12 + R_2)
+	arRateP_2() = -P_2*u + k_2*(I_12 + I_2)
+	arRateP_1() = -P_1*u + k_1*(I_1 + I_21)
+	arRateR_12() = I_12*alpha_2 + I_21*alpha_1 - R_12*d - R_12*g
+	arRateR_2() = I_2*alpha_2 - P_1*R_2*beta_1 - R_2*d - R_2*g
+	arRateR_1() = I_1*alpha_1 - P_2*R_1*beta_2 - R_1*d - R_1*g
+	arRateI_21() = -I_21*a_1 - I_21*alpha_1 + P_1*R_2*beta_1
+	arRateI_12() = -I_12*a_2 - I_12*alpha_2 + P_2*R_1*beta_2
+	arRateI_2() = -I_2*a_2 - I_2*alpha_2 + P_2*S*beta_2
+	arRateI_1() = -I_1*a_1 - I_1*alpha_1 + P_1*S*beta_1
+	log_P1() = log10(P_1)/log10(10)
+	G() = 1/g
+	log_P2() = log10(P_2)/log10(10)
+	P() = P_1 + P_2
+end functions
+begin reaction rules
+	0  -> S()@COMpartment arRateS #rateLaw
+	0  -> I_1()@COMpartment arRateI_1 #rateLaw
+	0  -> I_2()@COMpartment arRateI_2 #rateLaw
+	0  -> I_12()@COMpartment arRateI_12 #rateLaw
+	0  -> I_21()@COMpartment arRateI_21 #rateLaw
+	0  -> R_1()@COMpartment arRateR_1 #rateLaw
+	0  -> R_2()@COMpartment arRateR_2 #rateLaw
+	0  -> R_12()@COMpartment arRateR_12 #rateLaw
+	0  -> P_1()@COMpartment arRateP_1 #rateLaw
+	0  -> P_2()@COMpartment arRateP_2 #rateLaw
+end reaction rules
+end model

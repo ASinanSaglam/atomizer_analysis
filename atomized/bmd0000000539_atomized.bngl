@@ -1,0 +1,64 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1408130000', 'http://identifiers.org/biomodels.db/BIOMD0000000539']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/16241483']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0010468']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/131567']
+#@creatorEmail:'n.lenovere@gmail.com'
+#@creatorName:'Le Novère Nicolas'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 6 molecules and 11 reactions. The translated model has 4 molecules and 11 rules'
+###
+begin model
+begin parameters
+	theta 0.04
+	alpha 0.001
+	rhob 5.0
+	rhof 0.1
+	deltar 0.03
+	rhoA 100.0
+	gamma 1.0
+	deltaA 0.01
+	deltaB 0.01
+	beta 3.0
+	deltaAB 0.01
+end parameters
+begin molecule types
+	#^ bqbiol:is so:SO:0000704
+	gB(a)
+	#^ bqbiol:is chebi:CHEBI:36080
+	B(a)
+	#^ bqbiol:is chebi:CHEBI:36080
+	A(b,gb)
+	#^ bqbiol:is chebi:CHEBI:33699
+	rB()
+end molecule types
+begin seed species
+	A(b,gb) 2.4088e+25 # 40.0mol/L * 6.022e23/mol *1.0L #A #A
+	gB(a) 6.022e+23 #original 1.0substance/volume  #gB #gB
+end seed species
+begin observables
+	Species A A(b,gb) #A
+	Species AgB A(b,gb!986).gB(a!986) #AgB
+	Species gB gB(a) #gB
+	Species rB rB() #rB
+	Species B B(a) #B
+	Species AB A(b!985,gb).B(a!985) #AB
+end observables
+begin functions
+	fRate2() = gB*rhof
+	fRate3() = AgB*rhob
+	fRate7() = beta*rB
+end functions
+begin reaction rules
+	A_binds_gB: A(b,gb) + gB(a) -> A(b,gb!986).gB(a!986) alpha #Modifiers(A, gB)
+	gB_releases_A: A(b,gb!986).gB(a!986) -> A(b,gb) + gB(a) theta #Modifiers(AgB)
+	basal_transcription_B: 0  -> rB() fRate2() #Modifiers(gB, gB)
+	stim_transcription_B: 0  -> rB() fRate3() #Modifiers(AgB, AgB)
+	degradation_mRNA_B: rB() -> 0  deltar #Modifiers(rB)
+	production_A: 0  -> A(b,gb) rhoA
+	degradation_A: A(b,gb) -> 0  deltaA #Modifiers(A)
+	translation_B: 0  -> B(a) fRate7() #Modifiers(rB, rB)
+	degradation_B: B(a) -> 0  deltaB #Modifiers(B)
+	formation_dimer: A(b,gb) + B(a) -> A(b!985,gb).B(a!985) gamma #Modifiers(A, B)
+	degradation_dimer: A(b!985,gb).B(a!985) -> 0  deltaAB #Modifiers(AB)
+end reaction rules
+end model

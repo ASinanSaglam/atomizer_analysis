@@ -1,0 +1,184 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000164', 'http://identifiers.org/biomodels.db/MODEL1886921294']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/11799242']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/40674']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0006913', 'http://identifiers.org/go/GO:0031291']
+#@creatorEmail:'hdharuri@cds.caltech.edu'
+#@creatorName:'Dharuri Harish'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 26 molecules and 29 reactions. The translated model has 3 molecules and 35 rules'
+###
+begin model
+begin parameters
+	RanGAP_Kcat_FRanGTP_dephosphorylation 6.0 #units:s_1
+	RanGAP_Kcat_dephosphorylationF 6.0 #units:s_1
+	RanGAP_Kcat_RanGTP_dephosphorylation 6.0 #units:s_1
+	RanGAP_Kcat_dephosphorylation 6.0 #units:s_1
+	kinj 25.0 #units:s_1
+	start 1.0 #units:s
+	tau 0.4 #units:s
+	RCC1_Nucleus 9.83876056338028e+16 #original 0.4/L
+	RCC1 9.83876056338028e+16 #original 0.4/L
+	r1_Kon_Carrier_RanGTP_binding 0.000000
+	r1_Koff_Carrier_RanGTP_binding 0.000000
+	r2_Km_RanGTP_dephosphorylation 0.430000
+	r3_Km_dephosphorylation 0.430000
+	r4_Kon_RanGTP_Carrier_binding 100.000000
+	r4_Koff_RanGTP_Carrier_binding 1.000000
+	r5_Kon_NTF2_RanGDP_binding 100.000000
+	r5_Koff_NTF2_RanGDP_binding 2.500000
+	r6_Kon_RanBP1_binding 100.000000
+	r6_Koff_RanBP1_binding 0.500000
+	r7_Koff_NTF2_RanGDP_unbinding 2.500000
+	r7_Kon_NTF2_RanGDP_unbinding 100.000000
+	r9_RCC1Kcat 8.500000
+	r9_RCC1Km 1.100000
+	r10_Km_RanGTP_dephosphorylation 0.430000
+	r11_Kon_RanGTP_Carrier_binding 100.000000
+	r11_Koff_RanGTP_Carrier_binding 1.000000
+	r12_Kon_NTF2_RanGDP_binding 100.000000
+	r12_Koff_NTF2_RanGDP_binding 2.500000
+	r13_Km_dephosphorylation 0.430000
+	r14_RCC1Kcat 8.500000
+	r14_RCC1Km 1.100000
+	r15_RCC1Kcat 8.500000
+	r15_RCC1Km 1.100000
+	r16_Koff_NTF2_RanGDP_unbinding 2.500000
+	r16_Kon_NTF2_RanGDP_unbinding 100.000000
+	r17_Kon_Carrier_RanGTP_binding 0.000000
+	r17_Koff_Carrier_RanGTP_binding 0.000000
+	r18_RCC1Kcat 8.500000
+	r18_RCC1Km 1.100000
+	r19_Kon_RanBP1_binding 100.000000
+	r19_Koff_RanBP1_binding 0.500000
+	r20_I 0.000000
+	r20_Carrier_RanGTP_Kperm 0.173333
+	r21_I 0.000000
+	r21_NTF2_Kperm 3.733330
+	r22_I 0.000000
+	r22_NTF2_RanGDP_Kperm 3.733330
+	r23_I 0.000000
+	r23_Carrier_Kperm 1.866670
+	r24_I 0.000000
+	r24_RanGDP_Kperm 0.000000
+	r25_I 0.000000
+	r25_Carrier_RanGTP_Kperm 0.173333
+	r26_I 0.000000
+	r26_NTF2_RanGDP_Kperm 3.733330
+	r27_I 0.000000
+	r27_RanGTP_Kperm 0.000000
+	r28_I 0.000000
+	r28_RanGDP_Kperm 0.000000
+	r29_I 0.000000
+	r29_RanGTP_Kperm 0.000000
+end parameters
+begin compartments
+	#volume units: L
+	Cytosol 3 1.0
+	EC 3 1.40845070422535
+	Nucleus 3 0.408450704225352
+	Nuc_membrane 2 0.245070422535211
+	PM 2 1.40845070422535
+end compartments
+begin molecule types
+	#^ bqbiol:isVersionOf uniprot:P61970, uniprot:P61970
+	NTF2(f~F~0,ran)
+	Ran(FRanG~FRanG~0,RanG~RanG~0,RanGAP~RanGAP~0,bp1~BP1~0,carrier,dp~DP~0,f~F~0,f2~F~0,gdp~GDP~0,ntf2,tp~TP~0)
+	Carrier(f~F~0,ran,ran)
+end molecule types
+begin seed species
+	@Cytosol:Carrier(f~0,ran,ran) 7.163329445814756e+18 # (11.8952664327711 * 1e-06)mol/L * 6.022e23/mol *1.0L #Carrier #Carrier_Cytosol
+	@Cytosol:Ran(FRanG~0,RanG~RanG,RanGAP~0,bp1~0,carrier!279,dp~0,f~0,f2~0,gdp~0,ntf2,tp~TP).Carrier(f~0,ran!279,ran) 1101829892018865.2 #original 0.00182967434742422/L #Carrier_RanGTP #Carrier_RanGTP_Cytosol
+	@Cytosol:Ran(FRanG~0,RanG~0,RanGAP~RanGAP,bp1~0,carrier,dp~0,f~0,f2~0,gdp~0,ntf2,tp~0) 3.011e+17 #original 0.5/L #RanGAP #RanGAP_Cytosol
+	@Cytosol:Ran(FRanG~0,RanG~0,RanGAP~0,bp1~BP1,carrier,dp~0,f~0,f2~0,gdp~0,ntf2,tp~0) 1.7558787452796352e+18 #original 2.91577340630959/L #RanBP1 #RanBP1_Cytosol
+	@Cytosol:Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier!279,dp~DP,f~0,f2~0,gdp~GDP,ntf2,tp~0).Ran(FRanG~0,RanG~RanG,RanGAP~0,bp1~0,carrier!280,dp~0,f~0,f2~0,gdp~0,ntf2,tp~0).Carrier(f~0,ran!279,ran!280) 5.072125472035913e+16 #original 0.0842265936904004/L #RanBP1_Carrier_RanGTP #RanBP1_Carrier_RanGTP_Cytosol
+	@Nucleus:NTF2(f~0,ran) 1.3796121126899638e+17 #original 0.560888580955963/L #NTF2 #NTF2_Nucleus
+	@Nucleus:Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier,dp~DP,f~0,f2~0,gdp~GDP,ntf2,tp~0) 1.1483056865594348e+16 #original 0.0466849733424111/L #RanGDP #RanGDP_Nucleus
+	@Nucleus:Ran(FRanG~0,RanG~RanG,RanGAP~0,bp1~0,carrier,dp~0,f~0,f2~0,gdp~0,ntf2,tp~TP) 2903230648441968.0 #original 0.0118032373274648/L #RanGTP #RanGTP_Nucleus
+	@Nucleus:Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier,dp~DP,f~0,f2~0,gdp~GDP,ntf2!278,tp~0).NTF2(f~0,ran!278) 2.309923098577641e+17 #original 0.939111419044037/L #NTF2_RanGDP #NTF2_RanGDP_Nucleus
+	@Nucleus:Carrier(f~0,ran,ran) 2.661663380375367e+18 #original 10.8211328580636/L #Carrier #Carrier_Nucleus
+	@Cytosol:Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier,dp~DP,f~0,f2~0,gdp~GDP,ntf2,tp~0) 1.0571385893325605e+18 #original 1.75546095870568/L #RanGDP #RanGDP_Cytosol
+	@Nucleus:Ran(FRanG~0,RanG~RanG,RanGAP~0,bp1~0,carrier!279,dp~0,f~0,f2~0,gdp~0,ntf2,tp~TP).Carrier(f~0,ran!279,ran) 2.8457193004650424e+18 #original 11.5694219089212/L #Carrier_RanGTP #Carrier_RanGTP_Nucleus
+	@Cytosol:Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier,dp~DP,f~0,f2~0,gdp~GDP,ntf2!278,tp~0).NTF2(f~0,ran!278) 8.889545127252495e+17 #original 1.47617820113791/L #NTF2_RanGDP #NTF2_RanGDP_Cytosol
+	@Cytosol:Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier,dp~DP,f~F,f2~F,gdp~GDP,ntf2,tp~0) 6.022e+17 #original 1.0/L #FRanGDP #FRanGDP_Cytosol
+	@Cytosol:NTF2(f~0,ran) 1.4345487274747588e+16 #original 0.023821798862085/L #NTF2 #NTF2_Cytosol
+end seed species
+begin observables
+	Species Carrier_Cytosol @Cytosol:Carrier(f~0,ran,ran) #Carrier_Cytosol
+	Species Carrier_RanGTP_Cytosol @Cytosol:Ran(FRanG~0,RanG~RanG,RanGAP~0,bp1~0,carrier!279,dp~0,f~0,f2~0,gdp~0,ntf2,tp~TP).Carrier(f~0,ran!279,ran) #Carrier_RanGTP_Cytosol
+	Species RanGAP_Cytosol @Cytosol:Ran(FRanG~0,RanG~0,RanGAP~RanGAP,bp1~0,carrier,dp~0,f~0,f2~0,gdp~0,ntf2,tp~0) #RanGAP_Cytosol
+	Species RanBP1_Cytosol @Cytosol:Ran(FRanG~0,RanG~0,RanGAP~0,bp1~BP1,carrier,dp~0,f~0,f2~0,gdp~0,ntf2,tp~0) #RanBP1_Cytosol
+	Species RanBP1_Carrier_RanGTP_Cytosol @Cytosol:Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier!279,dp~DP,f~0,f2~0,gdp~GDP,ntf2,tp~0).Ran(FRanG~0,RanG~RanG,RanGAP~0,bp1~0,carrier!280,dp~0,f~0,f2~0,gdp~0,ntf2,tp~0).Carrier(f~0,ran!279,ran!280) #RanBP1_Carrier_RanGTP_Cytosol
+	Species NTF2_Nucleus @Nucleus:NTF2(f~0,ran) #NTF2_Nucleus
+	Species RanGDP_Nucleus @Nucleus:Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier,dp~DP,f~0,f2~0,gdp~GDP,ntf2,tp~0) #RanGDP_Nucleus
+	Species RanGTP_Nucleus @Nucleus:Ran(FRanG~0,RanG~RanG,RanGAP~0,bp1~0,carrier,dp~0,f~0,f2~0,gdp~0,ntf2,tp~TP) #RanGTP_Nucleus
+	Species NTF2_RanGDP_Nucleus @Nucleus:Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier,dp~DP,f~0,f2~0,gdp~GDP,ntf2!278,tp~0).NTF2(f~0,ran!278) #NTF2_RanGDP_Nucleus
+	Species Carrier_Nucleus @Nucleus:Carrier(f~0,ran,ran) #Carrier_Nucleus
+	Species RanGDP_Cytosol @Cytosol:Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier,dp~DP,f~0,f2~0,gdp~GDP,ntf2,tp~0) #RanGDP_Cytosol
+	Species Carrier_RanGTP_Nucleus @Nucleus:Ran(FRanG~0,RanG~RanG,RanGAP~0,bp1~0,carrier!279,dp~0,f~0,f2~0,gdp~0,ntf2,tp~TP).Carrier(f~0,ran!279,ran) #Carrier_RanGTP_Nucleus
+	Species NTF2_RanGDP_Cytosol @Cytosol:Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier,dp~DP,f~0,f2~0,gdp~GDP,ntf2!278,tp~0).NTF2(f~0,ran!278) #NTF2_RanGDP_Cytosol
+	Species FRanGTP_Cytosol @Cytosol:Ran(FRanG~0,RanG~RanG,RanGAP~0,bp1~0,carrier,dp~0,f~F,f2~0,gdp~0,ntf2,tp~TP) #FRanGTP_Cytosol
+	Species FCarrier_RanGTP_Cytosol @Cytosol:Ran(FRanG~0,RanG~RanG,RanGAP~0,bp1~0,carrier!279,dp~0,f~0,f2~0,gdp~0,ntf2,tp~TP).Carrier(f~F,ran!279,ran) #FCarrier_RanGTP_Cytosol
+	Species FRanGDP_Cytosol @Cytosol:Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier,dp~DP,f~F,f2~F,gdp~GDP,ntf2,tp~0) #FRanGDP_Cytosol
+	Species FNTF2_RanGDP_Cytosol @Cytosol:Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier,dp~DP,f~0,f2~0,gdp~GDP,ntf2!278,tp~0).NTF2(f~F,ran!278) #FNTF2_RanGDP_Cytosol
+	Species FRanBP1_Carrier_RanGTP_Cytosol @Cytosol:Ran(FRanG~0,RanG~0,RanGAP~0,bp1~BP1,carrier!279,dp~0,f~F,f2~0,gdp~0,ntf2,tp~0).Ran(FRanG~0,RanG~0,RanGAP~0,bp1~BP1,carrier!280,dp~0,f~0,f2~0,gdp~0,ntf2,tp~0).Carrier(f~0,ran!279,ran!280) #FRanBP1_Carrier_RanGTP_Cytosol
+	Species FCarrier_RanGTP_Nucleus @Nucleus:Ran(FRanG~0,RanG~RanG,RanGAP~0,bp1~0,carrier!279,dp~0,f~0,f2~0,gdp~0,ntf2,tp~TP).Carrier(f~F,ran!279,ran) #FCarrier_RanGTP_Nucleus
+	Species FRanGDP_Nucleus @Nucleus:Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier,dp~DP,f~F,f2~F,gdp~GDP,ntf2,tp~0) #FRanGDP_Nucleus
+	Species FNTF2_RanGDP_Nucleus @Nucleus:Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier,dp~DP,f~0,f2~0,gdp~GDP,ntf2!278,tp~0).NTF2(f~F,ran!278) #FNTF2_RanGDP_Nucleus
+	Species FRanGTP_Nucleus @Nucleus:Ran(FRanG~0,RanG~RanG,RanGAP~0,bp1~0,carrier,dp~0,f~F,f2~0,gdp~0,ntf2,tp~TP) #FRanGTP_Nucleus
+	Species NTF2_Cytosol @Cytosol:NTF2(f~0,ran) #NTF2_Cytosol
+	Species RanGTP_Cytosol @Cytosol:Ran(FRanG~0,RanG~RanG,RanGAP~0,bp1~0,carrier,dp~0,f~0,f2~0,gdp~0,ntf2,tp~TP) #RanGTP_Cytosol
+end observables
+begin functions
+	ar_for_Microinj() =  if((time()>start&&time()<start+tau),(0.0016611295681*Pipet_Cytosol*kinj),(0))
+	Vmax_dephosphorylation_dephosphorylation() = RanGAP_Cytosol*RanGAP_Kcat_dephosphorylation
+	Vmax_RanGTP_dephosphorylation_RanGTP_dephosphorylation() = RanGAP_Cytosol*RanGAP_Kcat_RanGTP_dephosphorylation
+	Vmax_dephosphorylation_dephosphorylationF() = RanGAP_Cytosol*RanGAP_Kcat_dephosphorylationF
+	Vmax_RanGTP_dephosphorylation_FRanGTP_dephosphorylation() = RanGAP_Cytosol*RanGAP_Kcat_FRanGTP_dephosphorylation
+	fRate1() = Vmax_RanGTP_dephosphorylation_FRanGTP_dephosphorylation/(FRanGTP_Nucleus + 0.43)
+	fRate2() = Vmax_dephosphorylation_dephosphorylationF/(FRanBP1_Carrier_RanGTP_Cytosol + 0.43)
+	fRate8() = 6.375*RCC1_Nucleus/(FRanGDP_Nucleus + NTF2_RanGDP_Cytosol + 1.1)
+	fRate9() = Vmax_RanGTP_dephosphorylation_RanGTP_dephosphorylation/(RanGTP_Cytosol + 0.43)
+	fRate12() = Vmax_dephosphorylation_dephosphorylation/(RanBP1_Carrier_RanGTP_Cytosol + 0.43)
+	fRate13() = 6.375*RCC1_Nucleus/(NTF2_RanGDP_Cytosol + RanGDP_Cytosol + 1.1)
+	fRate14() = 2.125*NTF2_RanGDP_Cytosol*RCC1_Nucleus/(NTF2_RanGDP_Cytosol + RanGDP_Cytosol + 1.1)
+	fRate17() = 2.125*FNTF2_RanGDP_Nucleus*RCC1_Nucleus/(FNTF2_RanGDP_Nucleus + RanGDP_Cytosol + 1.1)
+end functions
+begin reaction rules
+	Carrier_FRanGTP_binding: Carrier(f~0,ran,ran)@Cytosol + Ran(FRanG~0,RanG~RanG,RanGAP~0,bp1~0,carrier,dp~0,f~F,f2~0,gdp~0,ntf2,tp~TP)@Cytosol <-> Ran(FRanG~0,RanG~RanG,RanGAP~0,bp1~0,carrier!279,dp~0,f~0,f2~0,gdp~0,ntf2,tp~TP)@Cytosol.Carrier(f~F,ran!279,ran)@Cytosol r1_Kon_Carrier_RanGTP_binding,r1_Koff_Carrier_RanGTP_binding
+	FRanGTP_dephosphorylation: Ran(FRanG~0,RanG~RanG,RanGAP~0,bp1~0,carrier,dp~0,f~F,f2~0,gdp~0,ntf2,tp~TP)@Cytosol -> Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier,dp~DP,f~F,f2~F,gdp~GDP,ntf2,tp~0)@Cytosol fRate1() #Modifiers(RanGAP_Cytosol)
+	dephosphorylationF: Ran(FRanG~0,RanG~0,RanGAP~0,bp1~BP1,carrier!279,dp~0,f~F,f2~0,gdp~0,ntf2,tp~0)@Cytosol.Ran(FRanG~0,RanG~0,RanGAP~0,bp1~BP1,carrier!280,dp~0,f~0,f2~0,gdp~0,ntf2,tp~0)@Cytosol.Carrier(f~0,ran!279,ran!280)@Cytosol -> Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier,dp~DP,f~F,f2~F,gdp~GDP,ntf2,tp~0)@Cytosol + Ran(FRanG~0,RanG~0,RanGAP~0,bp1~BP1,carrier,dp~0,f~0,f2~0,gdp~0,ntf2,tp~0)@Cytosol + Carrier(f~0,ran,ran)@Cytosol fRate2() #Modifiers(RanGAP_Cytosol)
+	FRanGTP_Carrier_binding: Carrier(f~0,ran,ran)@Nucleus + Ran(FRanG~0,RanG~RanG,RanGAP~0,bp1~0,carrier,dp~0,f~F,f2~0,gdp~0,ntf2,tp~TP)@Nucleus <-> Ran(FRanG~0,RanG~RanG,RanGAP~0,bp1~0,carrier!279,dp~0,f~0,f2~0,gdp~0,ntf2,tp~TP)@Nucleus.Carrier(f~F,ran!279,ran)@Nucleus r4_Kon_RanGTP_Carrier_binding,r4_Koff_RanGTP_Carrier_binding
+	NTF2_FRanGDP_Unbinding: NTF2(f~0,ran)@Cytosol + Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier,dp~DP,f~F,f2~F,gdp~GDP,ntf2,tp~0)@Cytosol <-> Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier,dp~DP,f~0,f2~0,gdp~GDP,ntf2!278,tp~0)@Cytosol.NTF2(f~F,ran!278)@Cytosol r5_Kon_NTF2_RanGDP_binding,r5_Koff_NTF2_RanGDP_binding
+	RanBP1_bindingF: Ran(FRanG~0,RanG~RanG,RanGAP~0,bp1~0,carrier!279,dp~0,f~0,f2~0,gdp~0,ntf2,tp~TP)@Cytosol.Carrier(f~F,ran!279,ran)@Cytosol + Ran(FRanG~0,RanG~0,RanGAP~0,bp1~BP1,carrier,dp~0,f~0,f2~0,gdp~0,ntf2,tp~0)@Cytosol <-> Ran(FRanG~0,RanG~0,RanGAP~0,bp1~BP1,carrier!279,dp~0,f~F,f2~0,gdp~0,ntf2,tp~0)@Cytosol.Ran(FRanG~0,RanG~0,RanGAP~0,bp1~BP1,carrier!280,dp~0,f~0,f2~0,gdp~0,ntf2,tp~0)@Cytosol.Carrier(f~0,ran!279,ran!280)@Cytosol r6_Kon_RanBP1_binding,r6_Koff_RanBP1_binding
+	NTF2_FRanGDP_unbinding: Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier,dp~DP,f~0,f2~0,gdp~GDP,ntf2!278,tp~0)@Nucleus.NTF2(f~F,ran!278)@Nucleus <-> NTF2(f~0,ran)@Nucleus + Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier,dp~DP,f~F,f2~F,gdp~GDP,ntf2,tp~0)@Nucleus r7_Koff_NTF2_RanGDP_unbinding,r7_Kon_NTF2_RanGDP_unbinding
+	Microinj: 0  -> Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier,dp~DP,f~F,f2~F,gdp~GDP,ntf2,tp~0)@Cytosol ar_for_Microinj #Modifiers(Pipet_Cytosol)
+	FRanGDP_to_FRanGTP: Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier,dp~DP,f~F,f2~F,gdp~GDP,ntf2,tp~0)@Nucleus -> Ran(FRanG~0,RanG~RanG,RanGAP~0,bp1~0,carrier,dp~0,f~F,f2~0,gdp~0,ntf2,tp~TP)@Nucleus fRate8() #Modifiers(RCC1_Nucleus, NTF2_RanGDP_Nucleus, RanGDP_Nucleus)
+	RanGTP_dephosphorylation: Ran(FRanG~0,RanG~RanG,RanGAP~0,bp1~0,carrier,dp~0,f~0,f2~0,gdp~0,ntf2,tp~TP)@Cytosol -> Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier,dp~DP,f~0,f2~0,gdp~GDP,ntf2,tp~0)@Cytosol fRate9() #Modifiers(RanGAP_Cytosol)
+	RanGTP_Carrier_binding: Ran(FRanG~0,RanG~RanG,RanGAP~0,bp1~0,carrier,dp~0,f~0,f2~0,gdp~0,ntf2,tp~TP)@Nucleus + Carrier(f~0,ran,ran)@Nucleus <-> Ran(FRanG~0,RanG~RanG,RanGAP~0,bp1~0,carrier!279,dp~0,f~0,f2~0,gdp~0,ntf2,tp~TP)@Nucleus.Carrier(f~0,ran!279,ran)@Nucleus r11_Kon_RanGTP_Carrier_binding,r11_Koff_RanGTP_Carrier_binding
+	NTF2_RanGDP_Unbinding: Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier,dp~DP,f~0,f2~0,gdp~GDP,ntf2,tp~0)@Cytosol + NTF2(f~0,ran)@Cytosol <-> Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier,dp~DP,f~0,f2~0,gdp~GDP,ntf2!278,tp~0)@Cytosol.NTF2(f~0,ran!278)@Cytosol r12_Kon_NTF2_RanGDP_binding,r12_Koff_NTF2_RanGDP_binding
+	dephosphorylation: Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier!279,dp~DP,f~0,f2~0,gdp~GDP,ntf2,tp~0)@Cytosol.Ran(FRanG~0,RanG~RanG,RanGAP~0,bp1~0,carrier!280,dp~0,f~0,f2~0,gdp~0,ntf2,tp~0)@Cytosol.Carrier(f~0,ran!279,ran!280)@Cytosol -> Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier,dp~DP,f~0,f2~0,gdp~GDP,ntf2,tp~0)@Cytosol + Carrier(f~0,ran,ran)@Cytosol + Ran(FRanG~0,RanG~0,RanGAP~0,bp1~BP1,carrier,dp~0,f~0,f2~0,gdp~0,ntf2,tp~0)@Cytosol fRate12() #Modifiers(RanGAP_Cytosol)
+	RanGDP_to_RanGTP: Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier,dp~DP,f~0,f2~0,gdp~GDP,ntf2,tp~0)@Nucleus -> Ran(FRanG~0,RanG~RanG,RanGAP~0,bp1~0,carrier,dp~0,f~0,f2~0,gdp~0,ntf2,tp~TP)@Nucleus fRate13() #Modifiers(RCC1_Nucleus, NTF2_RanGDP_Nucleus)
+	NTF2_RAN_Nuc_Exchange_reactants_0: 0  -> Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier,dp~DP,f~0,f2~0,gdp~GDP,ntf2!278,tp~0)@Nucleus.NTF2(f~0,ran!278)@Nucleus -1*4.0*(fRate14()) #Modifiers(RCC1_Nucleus)
+	NTF2_RAN_Nuc_Exchange_products_0: 0  -> NTF2(f~0,ran)@Nucleus 4.0*fRate14() #Modifiers(RCC1_Nucleus)
+	NTF2_RAN_Nuc_Exchange_products_1: 0  -> Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier,dp~DP,f~0,f2~0,gdp~GDP,ntf2,tp~0)@Nucleus fRate14() #Modifiers(RCC1_Nucleus)
+	NTF2_RAN_Nuc_Exchange_products_2: 0  -> Ran(FRanG~0,RanG~RanG,RanGAP~0,bp1~0,carrier,dp~0,f~0,f2~0,gdp~0,ntf2,tp~TP)@Nucleus 3.0*fRate14() #Modifiers(RCC1_Nucleus)
+	NTF2_RanGDP_unbinding: Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier,dp~DP,f~0,f2~0,gdp~GDP,ntf2!278,tp~0)@Nucleus.NTF2(f~0,ran!278)@Nucleus <-> Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier,dp~DP,f~0,f2~0,gdp~GDP,ntf2,tp~0)@Nucleus + NTF2(f~0,ran)@Nucleus r16_Koff_NTF2_RanGDP_unbinding,r16_Kon_NTF2_RanGDP_unbinding
+	Carrier_RanGTP_binding: Ran(FRanG~0,RanG~RanG,RanGAP~0,bp1~0,carrier,dp~0,f~0,f2~0,gdp~0,ntf2,tp~TP)@Cytosol + Carrier(f~0,ran,ran)@Cytosol <-> Ran(FRanG~0,RanG~RanG,RanGAP~0,bp1~0,carrier!279,dp~0,f~0,f2~0,gdp~0,ntf2,tp~TP)@Cytosol.Carrier(f~0,ran!279,ran)@Cytosol r17_Kon_Carrier_RanGTP_binding,r17_Koff_Carrier_RanGTP_binding
+	NTF2_FRAN_Nuc_Exchange_reactants_0: 0  -> Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier,dp~DP,f~0,f2~0,gdp~GDP,ntf2!278,tp~0)@Nucleus.NTF2(f~F,ran!278)@Nucleus -1*4.0*(fRate17()) #Modifiers(RCC1_Nucleus, NTF2_RanGDP_Nucleus, RanGDP_Nucleus)
+	NTF2_FRAN_Nuc_Exchange_products_0: 0  -> NTF2(f~0,ran)@Nucleus 4.0*fRate17() #Modifiers(RCC1_Nucleus, NTF2_RanGDP_Nucleus, RanGDP_Nucleus)
+	NTF2_FRAN_Nuc_Exchange_products_1: 0  -> Ran(FRanG~0,RanG~RanG,RanGAP~0,bp1~0,carrier,dp~0,f~F,f2~0,gdp~0,ntf2,tp~TP)@Nucleus 3.0*fRate17() #Modifiers(RCC1_Nucleus, NTF2_RanGDP_Nucleus, RanGDP_Nucleus)
+	NTF2_FRAN_Nuc_Exchange_products_2: 0  -> Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier,dp~DP,f~F,f2~F,gdp~GDP,ntf2,tp~0)@Nucleus fRate17() #Modifiers(RCC1_Nucleus, NTF2_RanGDP_Nucleus, RanGDP_Nucleus)
+	RanBP1_binding: Ran(FRanG~0,RanG~0,RanGAP~0,bp1~BP1,carrier,dp~0,f~0,f2~0,gdp~0,ntf2,tp~0)@Cytosol + Ran(FRanG~0,RanG~RanG,RanGAP~0,bp1~0,carrier!279,dp~0,f~0,f2~0,gdp~0,ntf2,tp~TP)@Cytosol.Carrier(f~0,ran!279,ran)@Cytosol <-> Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier!279,dp~DP,f~0,f2~0,gdp~GDP,ntf2,tp~0)@Cytosol.Ran(FRanG~0,RanG~RanG,RanGAP~0,bp1~0,carrier!280,dp~0,f~0,f2~0,gdp~0,ntf2,tp~0)@Cytosol.Carrier(f~0,ran!279,ran!280)@Cytosol r19_Kon_RanBP1_binding,r19_Koff_RanBP1_binding
+	Carrier_RanGTP_flux: Ran(FRanG~0,RanG~RanG,RanGAP~0,bp1~0,carrier!279,dp~0,f~0,f2~0,gdp~0,ntf2,tp~TP)@Cytosol.Carrier(f~0,ran!279,ran)@Cytosol <-> Ran(FRanG~0,RanG~RanG,RanGAP~0,bp1~0,carrier!279,dp~0,f~0,f2~0,gdp~0,ntf2,tp~TP)@Nucleus.Carrier(f~0,ran!279,ran)@Nucleus r20_Carrier_RanGTP_Kperm,r20_Carrier_RanGTP_Kperm
+	NTF2_flux: NTF2(f~0,ran)@Cytosol <-> NTF2(f~0,ran)@Nucleus r21_NTF2_Kperm,r21_NTF2_Kperm
+	NTF2_RanGDP_flux: Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier,dp~DP,f~0,f2~0,gdp~GDP,ntf2!278,tp~0)@Cytosol.NTF2(f~0,ran!278)@Cytosol <-> Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier,dp~DP,f~0,f2~0,gdp~GDP,ntf2!278,tp~0)@Nucleus.NTF2(f~0,ran!278)@Nucleus r22_NTF2_RanGDP_Kperm,r22_NTF2_RanGDP_Kperm
+	Carrier_flux: Carrier(f~0,ran,ran)@Cytosol <-> Carrier(f~0,ran,ran)@Nucleus r23_Carrier_Kperm,r23_Carrier_Kperm
+	FRanGDP_flux: Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier,dp~DP,f~F,f2~F,gdp~GDP,ntf2,tp~0)@Cytosol <-> Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier,dp~DP,f~F,f2~F,gdp~GDP,ntf2,tp~0)@Nucleus r24_RanGDP_Kperm,r24_RanGDP_Kperm
+	Carrier_FRanGTP_flux: Ran(FRanG~0,RanG~RanG,RanGAP~0,bp1~0,carrier!279,dp~0,f~0,f2~0,gdp~0,ntf2,tp~TP)@Cytosol.Carrier(f~F,ran!279,ran)@Cytosol <-> Ran(FRanG~0,RanG~RanG,RanGAP~0,bp1~0,carrier!279,dp~0,f~0,f2~0,gdp~0,ntf2,tp~TP)@Nucleus.Carrier(f~F,ran!279,ran)@Nucleus r25_Carrier_RanGTP_Kperm,r25_Carrier_RanGTP_Kperm
+	FNTF2_RanGDP_flux: Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier,dp~DP,f~0,f2~0,gdp~GDP,ntf2!278,tp~0)@Cytosol.NTF2(f~F,ran!278)@Cytosol <-> Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier,dp~DP,f~0,f2~0,gdp~GDP,ntf2!278,tp~0)@Nucleus.NTF2(f~F,ran!278)@Nucleus r26_NTF2_RanGDP_Kperm,r26_NTF2_RanGDP_Kperm
+	FRanGTP_flux: Ran(FRanG~0,RanG~RanG,RanGAP~0,bp1~0,carrier,dp~0,f~F,f2~0,gdp~0,ntf2,tp~TP)@Cytosol <-> Ran(FRanG~0,RanG~RanG,RanGAP~0,bp1~0,carrier,dp~0,f~F,f2~0,gdp~0,ntf2,tp~TP)@Nucleus r27_RanGTP_Kperm,r27_RanGTP_Kperm
+	RanGDP_flux: Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier,dp~DP,f~0,f2~0,gdp~GDP,ntf2,tp~0)@Cytosol <-> Ran(FRanG~0,RanG~0,RanGAP~0,bp1~0,carrier,dp~DP,f~0,f2~0,gdp~GDP,ntf2,tp~0)@Nucleus r28_RanGDP_Kperm,r28_RanGDP_Kperm
+	RanGTP_flux: Ran(FRanG~0,RanG~RanG,RanGAP~0,bp1~0,carrier,dp~0,f~0,f2~0,gdp~0,ntf2,tp~TP)@Cytosol <-> Ran(FRanG~0,RanG~RanG,RanGAP~0,bp1~0,carrier,dp~0,f~0,f2~0,gdp~0,ntf2,tp~TP)@Nucleus r29_RanGTP_Kperm,r29_RanGTP_Kperm
+end reaction rules
+end model

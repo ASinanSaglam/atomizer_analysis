@@ -1,0 +1,207 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000623', 'http://identifiers.org/biomodels.db/MODEL1611280000']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/19804630']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/BIOMD0000000033']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0007173']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10116']
+#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0001009']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:162']
+#@creatorEmail:'tvarusai@ebi.ac.uk'
+#@creatorName:'Varusai Thawfeek'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 31 molecules and 31 reactions. The translated model has 14 molecules and 32 rules'
+###
+begin model
+begin parameters
+	PP2AActive 7.2264000000000005e+25 #original 120000.0substance/volume
+	Raf1PPtase 7.2264000000000005e+25 #original 120000.0substance/volume
+	RasGapActive 7.2264000000000005e+25 #original 120000.0substance/volume
+	Rap1Gap 7.2264000000000005e+25 #original 120000.0substance/volume
+	r1_k1 0.000022
+	r1_k2 0.121008
+	r2_Kcat 694.731000
+	r2_km 6086070.000000
+	r3_k1 2.500000
+	r4_Kcat 32.344000
+	r4_km 35954.300000
+	r5_Kcat 1509.360000
+	r5_km 1432410.000000
+	r6_Kcat 0.884096
+	r6_km 62464.600000
+	r7_Kcat 0.126329
+	r7_km 1061.710000
+	r8_Kcat 185.759000
+	r8_km 4768350.000000
+	r9_Kcat 2.832430
+	r9_km 518753.000000
+	r10_Kcat 9.853670
+	r10_km 1007340.000000
+	r11_Kcat 8.891200
+	r11_km 3496490.000000
+	r12_Kcat 0.021370
+	r12_km 763523.000000
+	r13_k1 0.005000
+	r14_Kcat 1611.970000
+	r14_km 896896.000000
+	r15_Kcat 10.673700
+	r15_km 184912.000000
+	r16_Kcat 0.077107
+	r16_km 272056.000000
+	r17_k1 0.005000
+	r18_Kcat 0.056628
+	r18_km 653951.000000
+	r19_k1 0.005000
+	r20_Kcat 15.121200
+	r20_km 119355.000000
+	r21_k1 0.200000
+	r22_kcat 694.731000
+	r22_km 6086070.000000
+	r23_k1 2.500000
+	r24_kcat 32.344000
+	r24_km 35954.300000
+	r25_kcat 1509.360000
+	r25_km 1432410.000000
+	r26_kcat 0.884096
+	r26_km 62464.600000
+	r27_kcat 0.126329
+	r27_km 1061.710000
+	r28_kcat 185.759000
+	r28_km 4768350.000000
+	r29_v 100.000000
+	r30_k1 0.001250
+	r31_kcat 0.884096
+	r31_km 62464.600000
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf interpro:IPR020849
+	RasActive(in~IN~0)
+	#^ bqbiol:isVersionOf uniprot:Q9Z1I1
+	SosActive(in~IN~0)
+	#^ bqbiol:isVersionOf uniprot:Q63787
+	PI3KActive(in~IN~0)
+	#^ bqbiol:isVersionOf uniprot:F1M9C3
+	bRafActive(in~IN~0)
+	#^ bqbiol:isVersionOf uniprot:Q9QYV3
+	C3GActive(in~IN~0)
+	#^ bqbiol:isVersionOf uniprot:Q9QX70
+	proEGFReceptor()
+	#^ bqbiol:isVersionOf uniprot:P07522
+	EGF(egfreceptor)
+	#^ bqbiol:isVersionOf uniprot:P47196, uniprot:P47197, uniprot:Q63484
+	AktActive(in~IN~0)
+	#^ bqbiol:isVersionOf uniprot:P36506, uniprot:Q01986
+	MekActive(in~IN~0)
+	#^ bqbiol:isVersionOf uniprot:Q9Z1I2, uniprot:Q63531
+	P90RskActive(in~IN~0)
+	#^ bqbiol:isVersionOf uniprot:P63086, uniprot:P21708
+	ErkActive(in~IN~0)
+	EGFReceptor(degraded~DEGRADED~0,egf,free~FREE~0)
+	#^ bqbiol:isVersionOf uniprot:Q62636
+	Rap1Active(in~IN~0)
+	#^ bqbiol:isVersionOf uniprot:P11345
+	Raf1Active(in~IN~0)
+end molecule types
+begin seed species
+	EGFReceptor(degraded~0,egf,free~FREE) 4.8176e+25 # (80000.0 * 0.001)mol/L * 6.022e23/mol *1.0L #freeEGFReceptor #species_1
+	SosActive(in~IN) 7.2264000000000005e+25 #original 120000.0substance/volume  #SosInactive #species_3
+	RasActive(in~IN) 7.2264000000000005e+25 #original 120000.0substance/volume  #RasInactive #species_5
+	Raf1Active(in~IN) 7.2264000000000005e+25 #original 120000.0substance/volume  #Raf1Inactive #species_7
+	MekActive(in~IN) 3.6132e+26 #original 600000.0substance/volume  #MekInactive #species_9
+	ErkActive(in~IN) 3.6132e+26 #original 600000.0substance/volume  #ErkInactive #species_11
+	P90RskActive(in~IN) 7.2264000000000005e+25 #original 120000.0substance/volume  #P90RskInactive #species_13
+	PI3KActive(in~IN) 7.2264000000000005e+25 #original 120000.0substance/volume  #PI3KInactive #species_15
+	AktActive(in~IN) 7.2264000000000005e+25 #original 120000.0substance/volume  #AktInactive #species_17
+	C3GActive(in~IN) 7.2264000000000005e+25 #original 120000.0substance/volume  #C3GInactive #species_20
+	Rap1Active(in~IN) 7.2264000000000005e+25 #original 120000.0substance/volume  #Rap1Inactive #species_22
+	bRafActive(in~IN) 7.2264000000000005e+25 #original 120000.0substance/volume  #bRafInactive #species_24
+	$EGF(egfreceptor) 6.0232044e+27 #original 10002000.0substance/volume  #EGF #species_25
+	$proEGFReceptor() 6.022e+20 #original 1.0substance/volume  #proEGFReceptor #species_30
+end seed species
+begin observables
+	Species boundEGFReceptor EGFReceptor(degraded~0,egf!216,free~FREE).EGF(egfreceptor!216) #boundEGFReceptor
+	Species freeEGFReceptor EGFReceptor(degraded~0,egf,free~FREE) #freeEGFReceptor
+	Species SosActive SosActive(in~0) #SosActive
+	Species SosInactive SosActive(in~IN) #SosInactive
+	Species RasActive RasActive(in~0) #RasActive
+	Species RasInactive RasActive(in~IN) #RasInactive
+	Species Raf1Active Raf1Active(in~0) #Raf1Active
+	Species Raf1Inactive Raf1Active(in~IN) #Raf1Inactive
+	Species MekActive MekActive(in~0) #MekActive
+	Species MekInactive MekActive(in~IN) #MekInactive
+	Species ErkActive ErkActive(in~0) #ErkActive
+	Species ErkInactive ErkActive(in~IN) #ErkInactive
+	Species P90RskActive P90RskActive(in~0) #P90RskActive
+	Species P90RskInactive P90RskActive(in~IN) #P90RskInactive
+	Species PI3KActive PI3KActive(in~0) #PI3KActive
+	Species PI3KInactive PI3KActive(in~IN) #PI3KInactive
+	Species AktActive AktActive(in~0) #AktActive
+	Species AktInactive AktActive(in~IN) #AktInactive
+	Species degradedEGFReceptor EGFReceptor(degraded~DEGRADED,egf,free~0) #degradedEGFReceptor
+	Species C3GActive C3GActive(in~0) #C3GActive
+	Species C3GInactive C3GActive(in~IN) #C3GInactive
+	Species Rap1Active Rap1Active(in~0) #Rap1Active
+	Species Rap1Inactive Rap1Active(in~IN) #Rap1Inactive
+	Species bRafActive bRafActive(in~0) #bRafActive
+	Species bRafInactive bRafActive(in~IN) #bRafInactive
+	Species EGF EGF(egfreceptor) #EGF
+	Species proEGFReceptor proEGFReceptor() #proEGFReceptor
+end observables
+begin functions
+	fRate1() = 694.731*boundEGFReceptor/(SosInactive + 6086070.0)
+	fRate3() = 32.344*SosActive/(RasInactive + 35954.3)
+	fRate4() = 1509.36*RasGapActive/(RasActive + 1432410.0)
+	fRate5() = 0.884096*RasActive/(Raf1Inactive + 62464.6)
+	fRate6() = 0.126329*Raf1PPtase/(Raf1Active + 1061.71)
+	fRate7() = 185.759*Raf1Active/(MekInactive + 4768350.0)
+	fRate8() = 2.83243*PP2AActive/(MekActive + 518753.0)
+	fRate9() = 9.85367*MekActive/(ErkInactive + 1007340.0)
+	fRate10() = 8.8912*PP2AActive/(ErkActive + 3496490.0)
+	fRate11() = 0.0213697*ErkActive/(P90RskInactive + 763523.0)
+	fRate13() = 1611.97*P90RskActive/(SosActive + 896896.0)
+	fRate14() = 10.6737*boundEGFReceptor/(PI3KInactive + 184912.0)
+	fRate15() = 0.0771067*RasActive/(PI3KInactive + 272056.0)
+	fRate17() = 0.0566279*PI3KActive/(AktInactive + 653951.0)
+	fRate19() = 15.1212*AktActive/(Raf1Active + 119355.0)
+	fRate21() = 694.731*boundEGFReceptor/(C3GInactive + 6086070.0)
+	fRate23() = 32.344*C3GActive/(Rap1Inactive + 35954.3)
+	fRate24() = 1509.36*Rap1Gap/(Rap1Active + 1432410.0)
+	fRate25() = 0.884096*Rap1Active/(bRafInactive + 62464.6)
+	fRate26() = 0.126329*Raf1PPtase/(bRafActive + 1061.71)
+	fRate27() = 185.759*bRafActive/(MekInactive + 4768350.0)
+	fRate28() = 100.0
+	fRate30() = 0.884096*RasActive/(bRafInactive + 62464.6)
+end functions
+begin reaction rules
+	reaction_0: EGF(egfreceptor) + EGFReceptor(degraded~0,egf,free~FREE) <-> EGFReceptor(degraded~0,egf!216,free~FREE).EGF(egfreceptor!216) r1_k1,r1_k2
+	reaction_1: SosActive(in~IN) -> SosActive(in~0) fRate1() #Modifiers(species_0)
+	reaction_2: SosActive(in~0) -> SosActive(in~IN) r3_k1
+	reaction_3: RasActive(in~IN) -> RasActive(in~0) fRate3() #Modifiers(species_2)
+	reaction_4: RasActive(in~0) -> RasActive(in~IN) fRate4() #Modifiers(species_28)
+	reaction_5: Raf1Active(in~IN) -> Raf1Active(in~0) fRate5() #Modifiers(species_4)
+	reaction_6: Raf1Active(in~0) -> Raf1Active(in~IN) fRate6() #Modifiers(species_27)
+	reaction_7: MekActive(in~IN) -> MekActive(in~0) fRate7() #Modifiers(species_6)
+	reaction_8: MekActive(in~0) -> MekActive(in~IN) fRate8() #Modifiers(species_26)
+	reaction_9: ErkActive(in~IN) -> ErkActive(in~0) fRate9() #Modifiers(species_8)
+	reaction_10: ErkActive(in~0) -> ErkActive(in~IN) fRate10() #Modifiers(species_26)
+	reaction_11: P90RskActive(in~IN) -> P90RskActive(in~0) fRate11() #Modifiers(species_10)
+	reaction_12: P90RskActive(in~0) -> P90RskActive(in~IN) r13_k1
+	reaction_13: SosActive(in~0) -> SosActive(in~IN) fRate13() #Modifiers(species_12)
+	reaction_14: PI3KActive(in~IN) -> PI3KActive(in~0) fRate14() #Modifiers(species_0)
+	reaction_15: PI3KActive(in~IN) -> PI3KActive(in~0) fRate15() #Modifiers(species_4)
+	reaction_16: PI3KActive(in~0) -> PI3KActive(in~IN) r17_k1
+	reaction_17: AktActive(in~IN) -> AktActive(in~0) fRate17() #Modifiers(species_14)
+	reaction_18: AktActive(in~0) -> AktActive(in~IN) r19_k1
+	reaction_19: Raf1Active(in~0) -> Raf1Active(in~IN) fRate19() #Modifiers(species_16)
+	reaction_20: EGFReceptor(degraded~0,egf!216,free~FREE).EGF(egfreceptor!216) -> EGFReceptor(degraded~DEGRADED,egf,free~0) r21_k1
+	reaction_21: C3GActive(in~IN) -> C3GActive(in~0) fRate21() #Modifiers(species_0)
+	reaction_22: C3GActive(in~0) -> C3GActive(in~IN) r23_k1
+	reaction_23: Rap1Active(in~IN) -> Rap1Active(in~0) fRate23() #Modifiers(species_19)
+	reaction_24: Rap1Active(in~0) -> Rap1Active(in~IN) fRate24() #Modifiers(species_29)
+	reaction_25: bRafActive(in~IN) -> bRafActive(in~0) fRate25() #Modifiers(species_21)
+	reaction_26: bRafActive(in~0) -> bRafActive(in~IN) fRate26() #Modifiers(species_27)
+	reaction_27: MekActive(in~IN) -> MekActive(in~0) fRate27() #Modifiers(species_23)
+	reaction_28_reactants_0: 0  -> proEGFReceptor() -1*(fRate28())
+	reaction_28_products_0: 0  -> EGFReceptor(degraded~0,egf,free~FREE) fRate28()
+	reaction_29: EGFReceptor(degraded~0,egf,free~FREE) -> EGFReceptor(degraded~DEGRADED,egf,free~0) r30_k1
+	reaction_30: bRafActive(in~IN) -> bRafActive(in~0) fRate30() #Modifiers(species_4)
+end reaction rules
+end model

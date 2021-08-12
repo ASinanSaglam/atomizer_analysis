@@ -1,0 +1,60 @@
+###
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10088']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/31645462']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/ncit/C16578', 'http://identifiers.org/ncit/C2270', 'http://identifiers.org/ncit/C41064']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL2003190007', 'http://identifiers.org/biomodels.db/BIOMD0000000931']
+#@creatorEmail:'ahmad.azd@hotmail.com'
+#@creatorName:'Zyoud Ahmad'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 3 molecules and 6 reactions. The translated model has 3 molecules and 6 rules'
+###
+begin model
+begin parameters
+	d_D 0.25
+	d_N 1.0
+	d_v 10.0
+	k_D 4.5
+	k_N 320.0
+	k_D0 0.175
+	p_v 1.0
+	v_0 30000.0
+	K_D 0.3
+	K_N 32.0
+	K_v1 1200.0
+	K_v2 1200.0
+	I_0 0.2
+	n_1 2.0
+	n_2 2.0
+	n_3 2.0
+	n_4 2.0
+	k_N0 0
+end parameters
+begin molecule types
+	N()
+	v()
+	D()
+end molecule types
+begin seed species
+	D() 1.4139656e+24 # 2.348mol/L * 6.022e23/mol *1.0L #D #D
+	N() 4.6754808e+22 #original 0.07764substance/volume #N #N
+	v() 1.8066e+26 #original 300.0substance/volume #v #v
+end seed species
+begin observables
+	Species D D() #D
+	Species N N() #N
+	Species v v() #v
+end observables
+begin functions
+	I() = I_0 + N^n_4*p_v*v/(K_N^n_4 + N^n_4)
+	f_v() = v_0*(1 - exp(-I))/(exp(-I) + 1)
+	f_D() = k_D*v^n_1/(K_v1^n_1 + v^n_1) + k_D0
+	f_N() = K_D^n_3*k_N*v^n_2/((D^n_3 + K_D^n_3)*(K_v2^n_2 + v^n_2)) + k_N0
+end functions
+begin reaction rules
+	Dyn_Secretion: 0  -> D() f_D
+	NKB_Secretion: 0  -> N() f_N
+	Firing_Rate: 0  -> v() f_v
+	Dyn_Decay: D() -> 0  d_D
+	NKB_Decay: N() -> 0  d_N
+	FR_Decay: v() -> 0  d_v
+end reaction rules
+end model

@@ -1,0 +1,132 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL2977476330', 'http://identifiers.org/biomodels.db/BIOMD0000000122']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/17031595']
+#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000782']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/40674']
+#@BQB_IS:['http://identifiers.org/go/GO:0033173']
+#@BQB_IS_PART_OF:['http://identifiers.org/kegg.pathway/hsa04660']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0002709']
+#@creatorEmail:'hdharuri@cds.caltech.edu'
+#@creatorName:'Dharuri Harish'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 14 molecules and 17 reactions. The translated model has 5 molecules and 27 rules'
+###
+begin model
+begin parameters
+	k1 2.56e-05
+	k2 0.00256
+	k16 6.63
+	k15 0.00168
+	k18 0.00096
+	k17 0.0015
+	k6 0.00092
+	k5 0.0019
+	k14 0.00256
+	k13 0.5
+	k12 0.00168
+	k11 6.63
+	k10 0.005
+	k9 0.5
+	k3 0.005
+	k4 0.5
+	k7 0.005
+	k8 0.5
+	k19 1.0
+	k20 1.0
+	k21 0.21
+	k22 0.5
+	Time_in_Seconds 100.0
+end parameters
+begin compartments
+	#volume units: L
+	cytosol 3 2.69e-13
+	nucleus 3 1.13e-13
+end compartments
+begin molecule types
+	NFAT(_cyt~_CYT~0,_nuc~_NUC~0,activecalcineurinin)
+	ActiveCalcineurinin(cytosol~CYTOSOL~0,nfat,nucleus~NUCLEUS~0,phosphorylatednfatin)
+	PhosphorylatedNFATin(activecalcineurinin,cytosol~CYTOSOL~0,nucleus~NUCLEUS~0)
+	InactiveCalcineurinin(cytosol~CYTOSOL~0,nucleus~NUCLEUS~0)
+	Calciumin(cytosol~CYTOSOL~0,nucleus~NUCLEUS~0)
+end molecule types
+begin seed species
+	@nucleus:Calciumin(cytosol~0,nucleus~NUCLEUS) 68048.6 # (1.0 * 1e-06)mol/L * 6.022e23/mol *1.13e-13L #CalciuminNucleus #Ca_Nuc
+	@cytosol:Calciumin(cytosol~CYTOSOL,nucleus~0) 161991.80000000002 #original 1.0micro mole/L  #CalciuminCytosol #Ca_Cyt
+	@nucleus:NFAT(_cyt~0,_nuc~_NUC,activecalcineurinin) 35.51456434 #original 0.0005219micro mole/L  #NFAT_nuc #NFAT_Nuc
+	@nucleus:ActiveCalcineurinin(cytosol~0,nfat,nucleus~NUCLEUS,phosphorylatednfatin) 3.4364543 #original 5.05e-05micro mole/L  #ActiveCalcineurininNucleus #Act_C_Nuc
+	@nucleus:PhosphorylatedNFATin(activecalcineurinin,cytosol~0,nucleus~NUCLEUS) 15.460641919999999 #original 0.0002272micro mole/L  #PhosphorylatedNFATinnucleus #NFAT_Pi_Nuc
+	@nucleus:ActiveCalcineurinin(cytosol~0,nfat!193,nucleus~NUCLEUS,phosphorylatednfatin).NFAT(_cyt~0,_nuc~_NUC,activecalcineurinin!193) 64.48965822 #original 0.0009477micro mole/L  #NFATCalcineurincomplexinnucleus #NFAT_Act_C_Nuc
+	@nucleus:ActiveCalcineurinin(cytosol~0,nfat,nucleus~NUCLEUS,phosphorylatednfatin!194).PhosphorylatedNFATin(activecalcineurinin!194,cytosol~0,nucleus~NUCLEUS) 0.17012150000000004 #original 2.5e-06micro mole/L  #PhosphorylatedNFATCalcineurincomplexinnucleus #NFAT_Pi_Act_C_Nuc
+	@nucleus:InactiveCalcineurinin(cytosol~0,nucleus~NUCLEUS) 3347.8550228 #original 0.049198micro mole/L  #InactiveCalcineurininnucleus #Inact_C_Nuc
+	@cytosol:NFAT(_cyt~_CYT,_nuc~0,activecalcineurinin) 17.83529718 #original 0.0001101micro mole/L  #NFAT_Cyt #NFAT_Cyt
+	@cytosol:ActiveCalcineurinin(cytosol~CYTOSOL,nfat,nucleus~0,phosphorylatednfatin) 1.47412538 #original 9.1e-06micro mole/L  #ActiveCalcineurinincytosol #Act_C_Cyt
+	@cytosol:PhosphorylatedNFATin(activecalcineurinin,cytosol~CYTOSOL,nucleus~0) 1529.1539944600004 #original 0.0094397micro mole/L  #PhosphorylatedNFATincytosol #NFAT_Pi_Cyt
+	@cytosol:ActiveCalcineurinin(cytosol~CYTOSOL,nfat!193,nucleus~0,phosphorylatednfatin).NFAT(_cyt~_CYT,_nuc~0,activecalcineurinin!193) 0.9881499800000001 #original 6.1e-06micro mole/L  #NFATCalcineurincomplexincytosol #NFAT_Act_C_Cyt
+	@cytosol:ActiveCalcineurinin(cytosol~CYTOSOL,nfat,nucleus~0,phosphorylatednfatin!194).PhosphorylatedNFATin(activecalcineurinin!194,cytosol~CYTOSOL,nucleus~0) 0.35638196 #original 2.2e-06micro mole/L  #PhosphorylatedNFATCalcineurincomplexincytosol #NFAT_Pi_Act_C_Cyt
+	@cytosol:InactiveCalcineurinin(cytosol~CYTOSOL,nucleus~0) 1573.06997144 #original 0.0097108micro mole/L  #InactiveCalcineurinincytosol #Inact_C_Cyt
+end seed species
+begin observables
+	Species CalciuminNucleus_nucleus @nucleus:Calciumin(cytosol~0,nucleus~NUCLEUS) #Calcium in Nucleus
+	Species CalciuminCytosol_cytosol @cytosol:Calciumin(cytosol~CYTOSOL,nucleus~0) #Calcium in Cytosol
+	Species NFAT_nuc_nucleus @nucleus:NFAT(_cyt~0,_nuc~_NUC,activecalcineurinin) #NFAT_nuc
+	Species ActiveCalcineurininNucleus_nucleus @nucleus:ActiveCalcineurinin(cytosol~0,nfat,nucleus~NUCLEUS,phosphorylatednfatin) #Active Calcineurin in Nucleus
+	Species PhosphorylatedNFATinnucleus_nucleus @nucleus:PhosphorylatedNFATin(activecalcineurinin,cytosol~0,nucleus~NUCLEUS) #Phosphorylated NFAT in nucleus
+	Species NFATCalcineurincomplexinnucleus_nucleus @nucleus:ActiveCalcineurinin(cytosol~0,nfat!193,nucleus~NUCLEUS,phosphorylatednfatin).NFAT(_cyt~0,_nuc~_NUC,activecalcineurinin!193) #NFAT Calcineurin complex in nucleus
+	Species PhosphorylatedNFATCalcineurincomplexinnucleus_nucleus @nucleus:ActiveCalcineurinin(cytosol~0,nfat,nucleus~NUCLEUS,phosphorylatednfatin!194).PhosphorylatedNFATin(activecalcineurinin!194,cytosol~0,nucleus~NUCLEUS) #Phosphorylated NFAT Calcineurin complex in nucleus
+	Species InactiveCalcineurininnucleus_nucleus @nucleus:InactiveCalcineurinin(cytosol~0,nucleus~NUCLEUS) #Inactive Calcineurin in nucleus
+	Species NFAT_Cyt_cytosol @cytosol:NFAT(_cyt~_CYT,_nuc~0,activecalcineurinin) #NFAT_Cyt
+	Species ActiveCalcineurinincytosol_cytosol @cytosol:ActiveCalcineurinin(cytosol~CYTOSOL,nfat,nucleus~0,phosphorylatednfatin) #Active Calcineurin in cytosol
+	Species PhosphorylatedNFATincytosol_cytosol @cytosol:PhosphorylatedNFATin(activecalcineurinin,cytosol~CYTOSOL,nucleus~0) #Phosphorylated NFAT in cytosol
+	Species NFATCalcineurincomplexincytosol_cytosol @cytosol:ActiveCalcineurinin(cytosol~CYTOSOL,nfat!193,nucleus~0,phosphorylatednfatin).NFAT(_cyt~_CYT,_nuc~0,activecalcineurinin!193) #NFAT Calcineurin complex in cytosol
+	Species PhosphorylatedNFATCalcineurincomplexincytosol_cytosol @cytosol:ActiveCalcineurinin(cytosol~CYTOSOL,nfat,nucleus~0,phosphorylatednfatin!194).PhosphorylatedNFATin(activecalcineurinin!194,cytosol~CYTOSOL,nucleus~0) #Phosphorylated NFAT Calcineurin complex in cytosol
+	Species InactiveCalcineurinincytosol_cytosol @cytosol:InactiveCalcineurinin(cytosol~CYTOSOL,nucleus~0) #Inactive Calcineurin in cytosol
+end observables
+begin functions
+	fRate0() = -NFAT_nuc_nucleus*k2 + PhosphorylatedNFATinnucleus_nucleus*k1
+	fRate2() = 3717472118959.11*k18
+	fRate2m() = 8849557522123.89*k17
+	fRate3() = 3717472118959.11*k6
+	fRate3m() = 8849557522123.89*k5
+	fRate6() = 3717472118959.11*k10
+	fRate6m() = 8849557522123.89*k9
+	fRate9() = 8849557522123.89*k3
+	fRate9m() = 3717472118959.11*k4
+	fRate11() = 8849557522123.89*k7
+	fRate11m() = 3717472118959.11*k8
+	fRate12() = -NFAT_Cyt_cytosol*k2 + PhosphorylatedNFATincytosol_cytosol*k1
+	fRate13() = -ActiveCalcineurinincytosol_cytosol*k20 + CalciuminCytosol_cytosol^3*InactiveCalcineurinincytosol_cytosol*k19
+	fRate14() = -ActiveCalcineurininNucleus_nucleus*k20 + CalciuminNucleus_nucleus^3*InactiveCalcineurininnucleus_nucleus*k19
+	fRate15() = 8849557522123.89*k5
+	fRate15m() = 3717472118959.11*k6
+	fRate16() = 8849557522123.89*k21
+	fRate16m() = 3717472118959.11*k22
+end functions
+begin reaction rules
+	R1_reactants_0: 0  -> PhosphorylatedNFATin(activecalcineurinin,cytosol~0,nucleus~NUCLEUS)@nucleus -1*(fRate0())
+	R1_reactants_1: 0  -> ActiveCalcineurinin(cytosol~0,nfat,nucleus~NUCLEUS,phosphorylatednfatin)@nucleus -1*(fRate0())
+	R1_products_0: 0  -> ActiveCalcineurinin(cytosol~0,nfat,nucleus~NUCLEUS,phosphorylatednfatin)@nucleus fRate0()
+	R1_products_1: 0  -> NFAT(_cyt~0,_nuc~_NUC,activecalcineurinin)@nucleus fRate0()
+	R2: ActiveCalcineurinin(cytosol~0,nfat,nucleus~NUCLEUS,phosphorylatednfatin)@nucleus + NFAT(_cyt~0,_nuc~_NUC,activecalcineurinin)@nucleus <-> ActiveCalcineurinin(cytosol~0,nfat!193,nucleus~NUCLEUS,phosphorylatednfatin)@nucleus.NFAT(_cyt~0,_nuc~_NUC,activecalcineurinin!193)@nucleus k16,k15
+	R3: NFAT(_cyt~0,_nuc~_NUC,activecalcineurinin)@nucleus <-> NFAT(_cyt~_CYT,_nuc~0,activecalcineurinin)@cytosol fRate2(),fRate2m()
+	R4: ActiveCalcineurinin(cytosol~0,nfat,nucleus~NUCLEUS,phosphorylatednfatin)@nucleus <-> ActiveCalcineurinin(cytosol~CYTOSOL,nfat,nucleus~0,phosphorylatednfatin)@cytosol fRate3(),fRate3m()
+	R5: ActiveCalcineurinin(cytosol~0,nfat!193,nucleus~NUCLEUS,phosphorylatednfatin)@nucleus.NFAT(_cyt~0,_nuc~_NUC,activecalcineurinin!193)@nucleus <-> ActiveCalcineurinin(cytosol~0,nfat,nucleus~NUCLEUS,phosphorylatednfatin!194)@nucleus.PhosphorylatedNFATin(activecalcineurinin!194,cytosol~0,nucleus~NUCLEUS)@nucleus k14,k13
+	R6: ActiveCalcineurinin(cytosol~0,nfat,nucleus~NUCLEUS,phosphorylatednfatin!194)@nucleus.PhosphorylatedNFATin(activecalcineurinin!194,cytosol~0,nucleus~NUCLEUS)@nucleus <-> ActiveCalcineurinin(cytosol~0,nfat,nucleus~NUCLEUS,phosphorylatednfatin)@nucleus + PhosphorylatedNFATin(activecalcineurinin,cytosol~0,nucleus~NUCLEUS)@nucleus k12,k11
+	R7: ActiveCalcineurinin(cytosol~0,nfat!193,nucleus~NUCLEUS,phosphorylatednfatin)@nucleus.NFAT(_cyt~0,_nuc~_NUC,activecalcineurinin!193)@nucleus <-> ActiveCalcineurinin(cytosol~CYTOSOL,nfat!193,nucleus~0,phosphorylatednfatin)@cytosol.NFAT(_cyt~_CYT,_nuc~0,activecalcineurinin!193)@cytosol fRate6(),fRate6m()
+	R8: ActiveCalcineurinin(cytosol~CYTOSOL,nfat!193,nucleus~0,phosphorylatednfatin)@cytosol.NFAT(_cyt~_CYT,_nuc~0,activecalcineurinin!193)@cytosol <-> ActiveCalcineurinin(cytosol~CYTOSOL,nfat,nucleus~0,phosphorylatednfatin!194)@cytosol.PhosphorylatedNFATin(activecalcineurinin!194,cytosol~CYTOSOL,nucleus~0)@cytosol k14,k13
+	R9: ActiveCalcineurinin(cytosol~CYTOSOL,nfat,nucleus~0,phosphorylatednfatin!194)@cytosol.PhosphorylatedNFATin(activecalcineurinin!194,cytosol~CYTOSOL,nucleus~0)@cytosol <-> ActiveCalcineurinin(cytosol~CYTOSOL,nfat,nucleus~0,phosphorylatednfatin)@cytosol + PhosphorylatedNFATin(activecalcineurinin,cytosol~CYTOSOL,nucleus~0)@cytosol k12,k11
+	R10: PhosphorylatedNFATin(activecalcineurinin,cytosol~CYTOSOL,nucleus~0)@cytosol <-> PhosphorylatedNFATin(activecalcineurinin,cytosol~0,nucleus~NUCLEUS)@nucleus fRate9(),fRate9m()
+	R11: ActiveCalcineurinin(cytosol~CYTOSOL,nfat!193,nucleus~0,phosphorylatednfatin)@cytosol.NFAT(_cyt~_CYT,_nuc~0,activecalcineurinin!193)@cytosol <-> ActiveCalcineurinin(cytosol~CYTOSOL,nfat,nucleus~0,phosphorylatednfatin)@cytosol + NFAT(_cyt~_CYT,_nuc~0,activecalcineurinin)@cytosol k15,k16
+	R17: ActiveCalcineurinin(cytosol~CYTOSOL,nfat,nucleus~0,phosphorylatednfatin!194)@cytosol.PhosphorylatedNFATin(activecalcineurinin!194,cytosol~CYTOSOL,nucleus~0)@cytosol <-> ActiveCalcineurinin(cytosol~0,nfat,nucleus~NUCLEUS,phosphorylatednfatin!194)@nucleus.PhosphorylatedNFATin(activecalcineurinin!194,cytosol~0,nucleus~NUCLEUS)@nucleus fRate11(),fRate11m()
+	R12_reactants_0: 0  -> PhosphorylatedNFATin(activecalcineurinin,cytosol~CYTOSOL,nucleus~0)@cytosol -1*(fRate12())
+	R12_reactants_1: 0  -> ActiveCalcineurinin(cytosol~CYTOSOL,nfat,nucleus~0,phosphorylatednfatin)@cytosol -1*(fRate12())
+	R12_products_0: 0  -> ActiveCalcineurinin(cytosol~CYTOSOL,nfat,nucleus~0,phosphorylatednfatin)@cytosol fRate12()
+	R12_products_1: 0  -> NFAT(_cyt~_CYT,_nuc~0,activecalcineurinin)@cytosol fRate12()
+	R13_reactants_0: 0  -> Calciumin(cytosol~CYTOSOL,nucleus~0)@cytosol -1*3.0*(fRate13())
+	R13_reactants_1: 0  -> InactiveCalcineurinin(cytosol~CYTOSOL,nucleus~0)@cytosol -1*(fRate13())
+	R13_products_0: 0  -> ActiveCalcineurinin(cytosol~CYTOSOL,nfat,nucleus~0,phosphorylatednfatin)@cytosol fRate13()
+	R14_reactants_0: 0  -> Calciumin(cytosol~0,nucleus~NUCLEUS)@nucleus -1*3.0*(fRate14())
+	R14_reactants_1: 0  -> InactiveCalcineurinin(cytosol~0,nucleus~NUCLEUS)@nucleus -1*(fRate14())
+	R14_products_0: 0  -> ActiveCalcineurinin(cytosol~0,nfat,nucleus~NUCLEUS,phosphorylatednfatin)@nucleus fRate14()
+	R15: InactiveCalcineurinin(cytosol~CYTOSOL,nucleus~0)@cytosol <-> InactiveCalcineurinin(cytosol~0,nucleus~NUCLEUS)@nucleus fRate15(),fRate15m()
+	R16: Calciumin(cytosol~CYTOSOL,nucleus~0)@cytosol <-> Calciumin(cytosol~0,nucleus~NUCLEUS)@nucleus fRate16(),fRate16m()
+end reaction rules
+end model

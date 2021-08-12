@@ -1,0 +1,101 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/28859112']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/mp/MP:0002499', 'http://identifiers.org/ncit/C4345']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1911120005', 'http://identifiers.org/biomodels.db/BIOMD0000000852']
+#@creatorEmail:'johannes.p.meyer@gmail.com'
+#@creatorName:'Meyer Johannes'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 6 molecules and 15 reactions. The translated model has 5 molecules and 15 rules'
+###
+begin model
+begin parameters
+	rx 0.00087
+	ax 1.1e-05
+	Ax 47000000000000.0
+	dx0 0.002
+	dx1 129.0
+	cxx 7.5e-05
+	es 2.0
+	rm 2e-08
+	inflammation 7.0
+	ry 0.0013
+	rs 0.0003
+	ea 2000000000.0
+	ModelValue_2 (47000000000000.0)
+	ModelValue_1 (1.1e-05)
+	ModelValue_5 (7.5e-05)
+	ModelValue_6 (7.5e-05)
+	ModelValue_15 (7.5e-05)
+	ModelValue_16 (7.5e-05)
+	ModelValue_3 (0.002)
+	ModelValue_4 (129.0)
+end parameters
+begin molecule types
+	#^ bqbiol:is go:GO:0006954
+	s()
+	#^ bqbiol:isVersionOf cl:CL:0000037, bto:BTO:0002312
+	x1()
+	#^ bqbiol:isVersionOf cl:CL:0000000
+	#^ bqbiol:hasProperty ncit:C28554
+	a()
+	#^ bqbiol:is cl:CL:0000037
+	x0(y0~y0~0)
+	#^ bqbiol:isVersionOf ncit:C12922, bto:BTO:0002312
+	#^ bqbiol:hasProperty ncit:C4345
+	y1()
+end molecule types
+begin seed species
+	x0(y0~0) 6.08222e+27 # 10100.0mol/L * 6.022e23/mol *1.0L #x0 #x0
+	x1() 2.312448e+34 #original 38400000000.0substance/volume #x1 #x1
+	a() 4.209378e+26 #original 699.0substance/volume #a #a
+	s() 2.173942e+24 #original 3.61substance/volume #s #s
+end seed species
+begin observables
+	Species x0 x0(y0~0) #x0
+	Species x1 x1() #x1
+	Species y0 x0(y0~y0) #y0
+	Species y1 y1() #y1
+	Species a a() #a
+	Species s s() #s
+end observables
+begin functions
+	y1_e10() = y1/10000000000
+	x1_e10() = x1/10000000000
+	x1_y1() = x1_e10 + y1_e10
+	y0_e4() = y0/10000
+	x0_e4() = x0/10000
+	x0_y0() = x0_e4 + y0_e4
+	Ay() = ModelValue_2
+	ay() = ModelValue_1
+	dy1() = ModelValue_4
+	psi_x() = 1/((ModelValue_5*x0 + ModelValue_6*y0)^2 + 1)
+	cxy() = ModelValue_5
+	psi_y() = 1/((ModelValue_15*x0 + ModelValue_16*y0)^2 + 1)
+	cyx() = ModelValue_5
+	cyy() = ModelValue_5
+	dy0() = ModelValue_3
+	fRate0() = psi_x*rx*s*x0
+	fRate3() = rm*s
+	fRate4() = Ax*ax*x0
+	fRate6() = psi_y*ry*s*y0
+	fRate9() = Ay*ay*y0
+	fRate11() = ea*s
+	fRate12() = a*rs
+end functions
+begin reaction rules
+	HSC_Self_Renewal: 0  -> x0(y0~0) fRate0() #Modifiers(s)
+	HSC_Death: x0(y0~0) -> a() dx0
+	HSC_Proliferation: x0(y0~0) -> 0  ax
+	HSC_MPN_Mutation: x0(y0~0) -> x0(y0~y0) fRate3() #Modifiers(s)
+	HSC_Proliferation_HMC: 0  -> x1() fRate4() #Modifiers(x0)
+	HMC_Death: x1() -> a() dx1
+	MPN_SC_Self_Renewal: 0  -> x0(y0~y0) fRate6() #Modifiers(s)
+	MPN_SC_Death: x0(y0~y0) -> a() dy0
+	MPN_SC_Proliferation: x0(y0~y0) -> 0  ay
+	MPN_SC_Proliferation_MPN_MC: 0  -> y1() fRate9() #Modifiers(y0)
+	MPN_MC_Death: y1() -> a() dy1
+	Dead_Cells_Elimination_Per_Cytokine: a() -> 0  fRate11() #Modifiers(s)
+	Phagocyte_Upregulation_Dead_Cells: 0  -> s() fRate12() #Modifiers(a)
+	Cytokine_Elimination: s() -> 0  es
+	Cytokines_Inflammation: 0  -> s() inflammation
+end reaction rules
+end model

@@ -1,0 +1,55 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/doi/10.1080/17486700802373540']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/ncit/C17050']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000910', 'http://identifiers.org/biomodels.db/MODEL2001140001']
+#@creatorEmail:'msharifshohan@ebi.ac.uk'
+#@creatorName:'Sharif Shohan Mohammad Umer'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 3 molecules and 5 reactions. The translated model has 3 molecules and 5 rules'
+###
+begin model
+begin parameters
+	alpha_T 0.22
+	beta_T 8.4e-08
+	gama_prime_L 4e-07
+	VL 79000.0
+	alpha_L 9.9e-09
+	beta_L 0.33
+	alpha_I2 12500000.0
+	alpha_bar_L 6.6e-08
+	gama_T 6.6e-07
+	K_T 52000.0
+end parameters
+begin molecule types
+	#^ bqbiol:hasProperty ncit:C12543
+	L()
+	#^ bmbiol:isInstanceOf uniprot:P60568
+	I2()
+	#^ bmbiol:hasInstance ncit:C12922
+	T()
+end molecule types
+begin seed species
+	L() 1.4452800000000001e+26 # (240000.0 * 0.001)mol/L * 6.022e23/mol *1.0L #L #L
+	T() 1.2044e+26 #original 200000.0substance/volume  #T #T
+	I2() 2.1679200000000002e+28 #original 36000000.0substance/volume  #I2 #I2
+end seed species
+begin observables
+	Species L L() #L
+	Species T T() #T
+	Species I2 I2() #I2
+end observables
+begin functions
+	fRate0() = 1.0*I2*L*alpha_L + VL
+	fRate2() = 1.0*L*T*gama_prime_L + 1.0*T*alpha_T*ln(T*beta_T/alpha_T)
+	fRate3() = T*alpha_I2/(K_T + T)
+	fRate4() = 1.0*I2*L*alpha_bar_L + 1.0*I2*T*gama_T
+end functions
+begin reaction rules
+	Activation_and_transfer_of_cytotoxic_T_lymphocyte_at_the_site_of_tumor: 0  -> L() fRate0() #Modifiers(I2)
+	Deactivation_and_removal_of_cytotoxic_T_lymphocyte_from_the_site_of_action: L() -> 0  beta_L
+	Formation_and_removal_of_tumor_reactants_0: 0  -> T() -1*(fRate2()) #Modifiers(L)
+	Secretion_of_interleukin_2: 0  -> I2() fRate3() #Modifiers(T)
+	Removal_of_interleukin_2_from_site_of_tumor_reactants_0: 0  -> I2() -1*(fRate4()) #Modifiers(L, T)
+end reaction rules
+end model

@@ -1,0 +1,68 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/18445337']
+#@BQB_IS:['http://identifiers.org/ncit/C39128']
+#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000775']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/go/GO:0050670']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL2010160001', 'http://identifiers.org/biomodels.db/BIOMD0000000968']
+#@creatorEmail:'gladys.langi@umb.edu.pl'
+#@creatorName:'Langi Gladys'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 10 molecules and 7 reactions. The translated model has 6 molecules and 7 rules'
+###
+begin model
+begin parameters
+	Kf1 1.0
+	Kr1 0.1
+	K2 0.1
+	Kf3 1.0
+	Kr3 0.1
+	K3 1.0
+	K4 0.1
+	Kf5 1.0
+	K6 0.1
+	K7 0.1
+end parameters
+begin molecule types
+	#^ bqbiol:hasProperty uniprot:P13232, uniprot:P23458, uniprot:P51692, uniprot:P16871, uniprot:P31785, uniprot:P42229
+	IL7IL7RpJAK1STAT5()
+	#^ bqbiol:is uniprot:P13232
+	IL7(jak1)
+	#^ bqbiol:hasProperty uniprot:P51692, uniprot:P42229
+	STAT5(p~P~0)
+	#^ bqbiol:hasProperty uniprot:P16871, uniprot:O15524, uniprot:P13232, uniprot:P23458
+	IL7IL7RpJAK1SOCS1()
+	#^ bqbiol:hasProperty uniprot:O15524
+	SOCS1()
+	JAK1(IL7RJAK1~IL7RJAK1~0,il7,p~P~0)
+end molecule types
+begin seed species
+	IL7(jak1) 602200000000000.1 # (1.0 * 1e-09)mol/L * 6.022e23/mol *1.0L #IL7 #IL7
+	STAT5(p~0) 1499964915217860.0 #original 2.49080856064075substance/volume #STAT5 #STAT5
+	JAK1(IL7RJAK1~IL7RJAK1,il7,p~0) 999976610145235.9 #original 1.66053904042716substance/volume #IL7RJAK1 #IL7RJAK1
+end seed species
+begin observables
+	Species IL7 IL7(jak1) #IL7
+	Species pJAK1 JAK1(IL7RJAK1~0,il7,p~P) #pJAK1
+	Species STAT5 STAT5(p~0) #STAT5
+	Species pSTAT5 STAT5(p~P) #pSTAT5
+	Species SOCS1 SOCS1() #SOCS1
+	Species IL7IL7RJAK1 JAK1(IL7RJAK1~IL7RJAK1,il7!123,p~0).IL7(jak1!123) #IL7IL7RJAK1
+	Species IL7RJAK1 JAK1(IL7RJAK1~IL7RJAK1,il7,p~0) #IL7RJAK1
+	Species IL7IL7RpJAK1 JAK1(IL7RJAK1~IL7RJAK1,il7!123,p~P).IL7(jak1!123) #IL7IL7RpJAK1
+	Species IL7IL7RpJAK1STAT5 IL7IL7RpJAK1STAT5() #IL7IL7RpJAK1STAT5
+	Species IL7IL7RpJAK1SOCS1 IL7IL7RpJAK1SOCS1() #IL7IL7RpJAK1SOCS1
+end observables
+begin functions
+	RatiopSTAT5() = pSTAT5/(IL7IL7RpJAK1STAT5 + STAT5 + pSTAT5)
+	fRate4() = K4*pSTAT5
+end functions
+begin reaction rules
+	IL7bindIL7RJAK1: IL7(jak1) + JAK1(IL7RJAK1~IL7RJAK1,il7,p~0) <-> JAK1(IL7RJAK1~IL7RJAK1,il7!123,p~0).IL7(jak1!123) Kf1,Kr1
+	JAK1phosphorylation: JAK1(IL7RJAK1~IL7RJAK1,il7!123,p~0).IL7(jak1!123) <-> JAK1(IL7RJAK1~IL7RJAK1,il7!123,p~P).IL7(jak1!123) K2,K6
+	STAT5bind: JAK1(IL7RJAK1~IL7RJAK1,il7!123,p~P).IL7(jak1!123) + STAT5(p~0) <-> IL7IL7RpJAK1STAT5() Kf3,Kr3
+	pSTAT5dephosph: STAT5(p~P) -> STAT5(p~0) K7
+	SOCS1production: 0  -> SOCS1() fRate4() #Modifiers(pSTAT5)
+	SOCS1bind: JAK1(IL7RJAK1~IL7RJAK1,il7!123,p~P).IL7(jak1!123) + SOCS1() -> IL7IL7RpJAK1SOCS1() Kf5
+	STAT5phosph: IL7IL7RpJAK1STAT5() -> JAK1(IL7RJAK1~IL7RJAK1,il7!123,p~P).IL7(jak1!123) + STAT5(p~P) K3
+end reaction rules
+end model

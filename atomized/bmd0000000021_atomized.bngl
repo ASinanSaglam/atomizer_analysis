@@ -1,0 +1,144 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL6617834203', 'http://identifiers.org/biomodels.db/BIOMD0000000021']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/10366496']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/BIOMD0000000171']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/7227']
+#@BQB_IS:['http://identifiers.org/kegg.pathway/dme04710']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0042752']
+#@creatorEmail:'lenov@ebi.ac.uk'
+#@creatorName:'Le Novère Nicolas'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 10 molecules and 24 reactions. The translated model has 7 molecules and 24 rules'
+###
+begin model
+begin parameters
+	V_mT 0.7
+	V_dT 2.0
+	r1_K1_P 2.000000
+	r1_V_1P 8.000000
+	r2_K_1T 2.000000
+	r2_V_1T 8.000000
+	r3_K_2P 2.000000
+	r3_V_2P 1.000000
+	r4_K_2T 2.000000
+	r4_V_2T 1.000000
+	r5_K_3P 2.000000
+	r5_V_3P 8.000000
+	r6_K_3T 2.000000
+	r6_V_3T 8.000000
+	r7_K_4P 2.000000
+	r7_V_4P 1.000000
+	r8_K_4T 2.000000
+	r8_V_4T 1.000000
+	r9_k_d 0.010000
+	r10_k_d 0.010000
+	r11_k_d 0.010000
+	r12_k_d 0.010000
+	r13_k_d 0.010000
+	r13_V_dP 2.000000
+	r13_K_dP 0.200000
+	r14_k_d 0.010000
+	r14_K_dT 0.200000
+	r15_k3 1.200000
+	r15_k4 0.600000
+	r16_k1 0.600000
+	r16_k2 0.200000
+	r17_k_dC 0.010000
+	r18_k_dN 0.010000
+	r19_v_sP 1.000000
+	r19_K_IP 1.000000
+	r19_n 4.000000
+	r20_V_sT 1.000000
+	r20_K_IT 1.000000
+	r20_n 4.000000
+	r21_k_sP 0.900000
+	r22_k_sT 0.900000
+	r23_k_d 0.010000
+	r23_V_mP 0.700000
+	r23_K_mP 0.200000
+	r24_k_d 0.010000
+	r24_K_mT 0.200000
+end parameters
+begin compartments
+	#volume units: L
+	Cell 3 1.0 #cytoplasm
+	compartment_0000002 3 1.0 #nucleus
+end compartments
+begin molecule types
+	#^ bqbiol:isVersionOf chebi:CHEBI:33699, kegg.compound:C00046
+	PERmRNA()
+	#^ bqbiol:hasPart uniprot:P49021, uniprot:P07663
+	NuclearPER_TIMComplex()
+	#^ bqbiol:isVersionOf chebi:CHEBI:33699, kegg.compound:C00046
+	TIMmRNA()
+	#^ bqbiol:isVersionOf uniprot:P49021
+	TIMProtein__bi_phosphorylated__(perprotein__bi_phosphorylated__)
+	#^ bqbiol:isVersionOf uniprot:P49021
+	TIMProtein__unphosphorylated__(TIMProtein__mono_phosphorylated__~TIMProtein__mono_phosphorylated__~0)
+	#^ bqbiol:isVersionOf uniprot:P07663
+	PERProtein__bi_phosphorylated__(timprotein__bi_phosphorylated__)
+	#^ bqbiol:isVersionOf uniprot:P07663
+	PERProtein__unphosphorylated__(PERProtein__mono_phosphorylated__~PERProtein__mono_phosphorylated__~0)
+end molecule types
+begin seed species
+end seed species
+begin observables
+	Species PERProtein__unphosphorylated___Cell @Cell:PERProtein__unphosphorylated__(PERProtein__mono_phosphorylated__~0) #PER Protein (unphosphorylated)
+	Species TIMProtein__unphosphorylated___Cell @Cell:TIMProtein__unphosphorylated__(TIMProtein__mono_phosphorylated__~0) #TIM Protein (unphosphorylated)
+	Species PERProtein__mono_phosphorylated___Cell @Cell:PERProtein__unphosphorylated__(PERProtein__mono_phosphorylated__~PERProtein__mono_phosphorylated__) #PER Protein (mono-phosphorylated)
+	Species TIMProtein__mono_phosphorylated___Cell @Cell:TIMProtein__unphosphorylated__(TIMProtein__mono_phosphorylated__~TIMProtein__mono_phosphorylated__) #TIM Protein (mono-phosphorylated)
+	Species PERProtein__bi_phosphorylated___Cell @Cell:PERProtein__bi_phosphorylated__(timprotein__bi_phosphorylated__) #PER Protein (bi-phosphorylated)
+	Species TIMProtein__bi_phosphorylated___Cell @Cell:TIMProtein__bi_phosphorylated__(perprotein__bi_phosphorylated__) #TIM Protein (bi-phosphorylated)
+	Species CytosolicPER_TIMComplex_Cell @Cell:TIMProtein__bi_phosphorylated__(perprotein__bi_phosphorylated__!33).PERProtein__bi_phosphorylated__(timprotein__bi_phosphorylated__!33) #Cytosolic PER-TIM Complex
+	Species NuclearPER_TIMComplex_compartment_0000002 @compartment_0000002:NuclearPER_TIMComplex() #Nuclear PER-TIM Complex
+	Species PERmRNA_Cell @Cell:PERmRNA() #PER mRNA
+	Species TIMmRNA_Cell @Cell:TIMmRNA() #TIM mRNA
+end observables
+begin functions
+	Tt() = CytosolicPER_TIMComplex_Cell + NuclearPER_TIMComplex_compartment_0000002 + TIMProtein__bi_phosphorylated___Cell + TIMProtein__mono_phosphorylated___Cell + TIMProtein__unphosphorylated___Cell
+	Pt() = CytosolicPER_TIMComplex_Cell + NuclearPER_TIMComplex_compartment_0000002 + PERProtein__bi_phosphorylated___Cell + PERProtein__mono_phosphorylated___Cell + PERProtein__unphosphorylated___Cell
+	fRate0() = 8.0/(PERProtein__unphosphorylated___Cell + 2.0)
+	fRate1() = 8.0/(TIMProtein__unphosphorylated___Cell + 2.0)
+	fRate2() = 1.0/(PERProtein__mono_phosphorylated___Cell + 2.0)
+	fRate3() = 1.0/(TIMProtein__mono_phosphorylated___Cell + 2.0)
+	fRate4() = 8.0/(PERProtein__mono_phosphorylated___Cell + 2.0)
+	fRate5() = 8.0/(TIMProtein__mono_phosphorylated___Cell + 2.0)
+	fRate6() = 1.0/(PERProtein__bi_phosphorylated___Cell + 2.0)
+	fRate7() = 1.0/(TIMProtein__bi_phosphorylated___Cell + 2.0)
+	fRate12() = 0.01*PERProtein__bi_phosphorylated___Cell + 2.0*PERProtein__bi_phosphorylated___Cell/(PERProtein__bi_phosphorylated___Cell + 0.2)
+	fRate13() = 1.0*TIMProtein__bi_phosphorylated___Cell*V_dT/(TIMProtein__bi_phosphorylated___Cell + 0.2) + 0.01*TIMProtein__bi_phosphorylated___Cell
+	fRate15() = 0.6
+	fRate15m() = 0.2
+	fRate18() = 1.0/(NuclearPER_TIMComplex_compartment_0000002^4.0 + 1.0)
+	fRate19() = 1.0/(NuclearPER_TIMComplex_compartment_0000002^4.0 + 1.0)
+	fRate20() = 0.9*PERmRNA_Cell
+	fRate21() = 0.9*TIMmRNA_Cell
+	fRate22() = 0.01*PERmRNA_Cell + 0.7*PERmRNA_Cell/(PERmRNA_Cell + 0.2)
+	fRate23() = 1.0*TIMmRNA_Cell*V_mT/(TIMmRNA_Cell + 0.2) + 0.01*TIMmRNA_Cell
+end functions
+begin reaction rules
+	P0_to_P1: PERProtein__unphosphorylated__(PERProtein__mono_phosphorylated__~0)@Cell -> PERProtein__unphosphorylated__(PERProtein__mono_phosphorylated__~PERProtein__mono_phosphorylated__)@Cell fRate0()
+	T0_to_T1: TIMProtein__unphosphorylated__(TIMProtein__mono_phosphorylated__~0)@Cell -> TIMProtein__unphosphorylated__(TIMProtein__mono_phosphorylated__~TIMProtein__mono_phosphorylated__)@Cell fRate1()
+	P1_to_P0: PERProtein__unphosphorylated__(PERProtein__mono_phosphorylated__~PERProtein__mono_phosphorylated__)@Cell -> PERProtein__unphosphorylated__(PERProtein__mono_phosphorylated__~0)@Cell fRate2()
+	T1_to_T0: TIMProtein__unphosphorylated__(TIMProtein__mono_phosphorylated__~TIMProtein__mono_phosphorylated__)@Cell -> TIMProtein__unphosphorylated__(TIMProtein__mono_phosphorylated__~0)@Cell fRate3()
+	P1_to_P2: PERProtein__unphosphorylated__(PERProtein__mono_phosphorylated__~PERProtein__mono_phosphorylated__)@Cell -> PERProtein__bi_phosphorylated__(timprotein__bi_phosphorylated__)@Cell fRate4()
+	T1_to_T2: TIMProtein__unphosphorylated__(TIMProtein__mono_phosphorylated__~TIMProtein__mono_phosphorylated__)@Cell -> TIMProtein__bi_phosphorylated__(perprotein__bi_phosphorylated__)@Cell fRate5()
+	P2_to_P1: PERProtein__bi_phosphorylated__(timprotein__bi_phosphorylated__)@Cell -> PERProtein__unphosphorylated__(PERProtein__mono_phosphorylated__~PERProtein__mono_phosphorylated__)@Cell fRate6()
+	T2_to_T1: TIMProtein__bi_phosphorylated__(perprotein__bi_phosphorylated__)@Cell -> TIMProtein__unphosphorylated__(TIMProtein__mono_phosphorylated__~TIMProtein__mono_phosphorylated__)@Cell fRate7()
+	P0_degradation: PERProtein__unphosphorylated__(PERProtein__mono_phosphorylated__~0)@Cell -> 0  r9_k_d
+	T0_degradation: TIMProtein__unphosphorylated__(TIMProtein__mono_phosphorylated__~0)@Cell -> 0  r10_k_d
+	P1_degradation: PERProtein__unphosphorylated__(PERProtein__mono_phosphorylated__~PERProtein__mono_phosphorylated__)@Cell -> 0  r11_k_d
+	T1_degradation: TIMProtein__unphosphorylated__(TIMProtein__mono_phosphorylated__~TIMProtein__mono_phosphorylated__)@Cell -> 0  r12_k_d
+	P2_degradation_reactants_0: 0  -> PERProtein__bi_phosphorylated__(timprotein__bi_phosphorylated__)@Cell -1*(fRate12())
+	T2_degradation_reactants_0: 0  -> TIMProtein__bi_phosphorylated__(perprotein__bi_phosphorylated__)@Cell -1*(fRate13())
+	PT_complex_formation: PERProtein__bi_phosphorylated__(timprotein__bi_phosphorylated__)@Cell + TIMProtein__bi_phosphorylated__(perprotein__bi_phosphorylated__)@Cell <-> TIMProtein__bi_phosphorylated__(perprotein__bi_phosphorylated__!33)@Cell.PERProtein__bi_phosphorylated__(timprotein__bi_phosphorylated__!33)@Cell r15_k3,r15_k4
+	PT_complex_nucleation: TIMProtein__bi_phosphorylated__(perprotein__bi_phosphorylated__!33)@Cell.PERProtein__bi_phosphorylated__(timprotein__bi_phosphorylated__!33)@Cell <-> NuclearPER_TIMComplex()@compartment_0000002 fRate15(),fRate15m()
+	PT_complex_degradation: TIMProtein__bi_phosphorylated__(perprotein__bi_phosphorylated__!33)@Cell.PERProtein__bi_phosphorylated__(timprotein__bi_phosphorylated__!33)@Cell -> 0  r17_k_dC
+	PTnucl_complex_degradation: NuclearPER_TIMComplex()@compartment_0000002 -> 0  r18_k_dN
+	Mp_production: 0  -> PERmRNA()@Cell fRate18() #Modifiers(Cn)
+	Mt_production: 0  -> TIMmRNA()@Cell fRate19() #Modifiers(Cn)
+	P0_production: 0  -> PERProtein__unphosphorylated__(PERProtein__mono_phosphorylated__~0)@Cell fRate20() #Modifiers(Mp)
+	T0_production: 0  -> TIMProtein__unphosphorylated__(TIMProtein__mono_phosphorylated__~0)@Cell fRate21() #Modifiers(Mt)
+	Mp_degradation_reactants_0: 0  -> PERmRNA()@Cell -1*(fRate22())
+	Mt_degradation_reactants_0: 0  -> TIMmRNA()@Cell -1*(fRate23())
+end reaction rules
+end model

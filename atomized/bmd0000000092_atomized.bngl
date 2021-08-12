@@ -1,0 +1,36 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000092', 'http://identifiers.org/biomodels.db/MODEL6623597435']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/15634334']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/7558']
+#@BQB_IS:['http://identifiers.org/go/GO:0031638']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/131567']
+#@creatorEmail:'jls@sun.ac.za'
+#@creatorName:'Snoep Jacky L'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 4 molecules and 3 reactions. The translated model has 2 molecules and 3 rules'
+###
+begin model
+begin parameters
+	r1_k1 0.004000
+	r2_k21 1000.000000
+	r2_k22 0.000210
+	r3_k3 0.000540
+end parameters
+begin molecule types
+	Peptide(enzyme,enzyme)
+	Enzyme(peptide)
+end molecule types
+begin seed species
+	Peptide(enzyme!156,enzyme).Enzyme(peptide!156) 1.44528e+19 # 2.4e-05mol/L * 6.022e23/mol *1.0L #Zymogen #z
+end seed species
+begin observables
+	Species Zymogen Peptide(enzyme!156,enzyme).Enzyme(peptide!156) #Zymogen
+	Species Enzyme Enzyme(peptide) #Enzyme
+	Species Peptide Peptide(enzyme,enzyme) #Peptide
+	Species Enzyme_Substratecomplex Peptide(enzyme!156,enzyme!157).Enzyme(peptide!156).Enzyme(peptide!157) #Enzyme-Substrate complex
+end observables
+begin reaction rules
+	v1: Peptide(enzyme!156,enzyme).Enzyme(peptide!156) -> Peptide(enzyme,enzyme) + Enzyme(peptide) r1_k1
+	v2: Peptide(enzyme!156,enzyme).Enzyme(peptide!156) + Enzyme(peptide) <-> Peptide(enzyme!156,enzyme!157).Enzyme(peptide!156).Enzyme(peptide!157) r2_k21,r2_k22
+	v3: Peptide(enzyme!156,enzyme!157).Enzyme(peptide!156).Enzyme(peptide!157) -> Peptide(enzyme,enzyme) + Enzyme(peptide) + Enzyme(peptide) r3_k3
+end reaction rules
+end model

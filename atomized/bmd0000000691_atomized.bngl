@@ -1,0 +1,129 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1006230022', 'http://identifiers.org/biomodels.db/BIOMD0000000691']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/10702114']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0006096', 'http://identifiers.org/kegg.pathway/map00010', 'http://identifiers.org/reactome/R-HSA-70171']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/go/GO:0009061']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/4930']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/10702114']
+#@creatorEmail:'mroberts@ebi.ac.uk'
+#@creatorName:'Roberts Matthew Grant'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 19 molecules and 18 reactions. The translated model has 9 molecules and 22 rules'
+###
+begin model
+begin parameters
+	k1 100.0
+	K_I 0.52
+	q 4.0
+	k2 6.0
+	k3 16.0
+	k4 100.0
+	k5 1.28
+	k6 12.0
+	k 1.5
+	J0 3.0
+	kappa 13.0
+	phi 0.1
+	A_Compartment 2.4088e+21 #original 4.0substance/volume
+	A 2.4088e+21 #original 4.0substance/volume
+	N_Compartment 6.022e+20 #original 1.0substance/volume
+	N 6.022e+20 #original 1.0substance/volume
+end parameters
+begin compartments
+	#volume units: volume
+	Cell_1 3 1.0 #Cell 1
+	Cell_2 3 1.0 #Cell 2
+	Compartment 3 1.0
+end compartments
+begin molecule types
+	#^ bqbiol:isVersionOf chebi:CHEBI:15846, kegg.compound:C00003, kegg.compound:C00003, chebi:CHEBI:15846
+	N1()
+	#^ bqbiol:isVersionOf chebi:CHEBI:16761, kegg.compound:C00008, chebi:CHEBI:16761, kegg.compound:C00008
+	A2()
+	#^ bqbiol:isVersionOf kegg.compound:C00004, chebi:CHEBI:16908, chebi:CHEBI:16908, kegg.compound:C00004
+	N2()
+	#^ bqbiol:isVersionOf chebi:CHEBI:89363, kegg.compound:C00236, chebi:CHEBI:89363, kegg.compound:C00236
+	S3()
+	#^ bqbiol:isVersionOf chebi:CHEBI:17234, kegg.compound:C00031, chebi:CHEBI:17234, kegg.compound:C00031
+	S1()
+	#^ bqbiol:hasPart kegg.compound:C00022, kegg.compound:C00084, kegg.compound:C00084, kegg.compound:C00022
+	S4()
+	#^ bqbiol:hasPart kegg.compound:C00661, kegg.compound:C00111, kegg.compound:C00661, kegg.compound:C00111
+	S2()
+	#^ bqbiol:isVersionOf chebi:CHEBI:15422, kegg.compound:C00002, chebi:CHEBI:15422, kegg.compound:C00002
+	A3()
+	S4_ex()
+end molecule types
+begin seed species
+	@Cell_1:S1() 3.4927599999999997e+21 # (5.8 * 0.001)mol/L * 6.022e23/mol *1.0L #S1 #S1__Cell_1_
+	@Cell_2:S1() 1.7463799999999999e+21 #original 2.9substance/volume #S1 #S1__Cell_2_
+	@Cell_1:S2() 5.4198000000000007e+20 #original 0.9substance/volume #S2 #S2__Cell_1_
+	@Cell_2:S2() 2.7099000000000003e+20 #original 0.45substance/volume #S2 #S2__Cell_2_
+	@Cell_1:S3() 1.2044000000000002e+20 #original 0.2substance/volume #S3 #S3__Cell_1_
+	@Cell_2:S3() 6.022000000000001e+19 #original 0.1substance/volume #S3 #S3__Cell_2_
+	@Cell_1:S4() 1.2044000000000002e+20 #original 0.2substance/volume #S4 #S4__Cell_1_
+	@Cell_2:S4() 6.022000000000001e+19 #original 0.1substance/volume #S4 #S4__Cell_2_
+	@Cell_1:N2() 6.022000000000001e+19 #original 0.1substance/volume #N2 #N2__Cell_1_
+	@Cell_2:N2() 3.0110000000000004e+19 #original 0.05substance/volume #N2 #N2__Cell_2_
+	@Cell_1:A3() 1.9270400000000003e+21 #original 3.2substance/volume #A3 #A3__Cell_1_
+	@Cell_2:A3() 1.2044000000000002e+20 #original 0.2substance/volume #A3 #A3__Cell_2_
+	@Compartment:S4_ex() 6.022000000000001e+19 #original 0.1substance/volume #S4_ex #S4_ex
+	@Cell_1:N1() 5.4198000000000007e+20 #original 0.9substance/volume #N1 #N1__Cell_1_
+	@Cell_2:N1() 5.7209e+20 #original 0.95substance/volume #N1 #N1__Cell_2_
+	@Cell_1:A2() 4.8176000000000007e+20 #original 0.8substance/volume #A2 #A2__Cell_1_
+	@Cell_2:A2() 2.28836e+21 #original 3.8substance/volume #A2 #A2__Cell_2_
+end seed species
+begin observables
+	Species S1_Cell_1 @Cell_1:S1() #S1
+	Species S1_Cell_2 @Cell_2:S1() #S1
+	Species S2_Cell_1 @Cell_1:S2() #S2
+	Species S2_Cell_2 @Cell_2:S2() #S2
+	Species S3_Cell_1 @Cell_1:S3() #S3
+	Species S3_Cell_2 @Cell_2:S3() #S3
+	Species S4_Cell_1 @Cell_1:S4() #S4
+	Species S4_Cell_2 @Cell_2:S4() #S4
+	Species N2_Cell_1 @Cell_1:N2() #N2
+	Species N2_Cell_2 @Cell_2:N2() #N2
+	Species A3_Cell_1 @Cell_1:A3() #A3
+	Species A3_Cell_2 @Cell_2:A3() #A3
+	Species S4_ex_Compartment @Compartment:S4_ex() #S4_ex
+	Species N1_Cell_1 @Cell_1:N1() #N1
+	Species N1_Cell_2 @Cell_2:N1() #N1
+	Species A2_Cell_1 @Cell_1:A2() #A2
+	Species A2_Cell_2 @Cell_2:A2() #A2
+end observables
+begin functions
+	A2_ar() = -A3_Cell_2 + A_Compartment
+	N1_ar() = -N2_Cell_2 + N_Compartment
+	J_cell_1() = kappa*(S4_Cell_2 - S4_ex_Compartment)
+	j_cell_2() = kappa*(S4_Cell_2 - S4_ex_Compartment)
+	fRate0() = A3_Cell_1*S1_Cell_1*k1/((A3_Cell_1/K_I)^q + 1)
+	fRate1() = A3_Cell_2*S1_Cell_2*k1/((A3_Cell_2/K_I)^q + 1)
+	fRate15() = J_cell_1
+	fRate16() = j_cell_2
+	fRate17() = 0.5*phi*(J_cell_1 + j_cell_2)
+end functions
+begin reaction rules
+	v1_cell_1_reactants_0: 0  -> S1()@Cell_1 -1*(fRate0())
+	v1_cell_1_reactants_1: 0  -> A3()@Cell_1 -1*2.0*(fRate0())
+	v1_cell_1_products_0: 0  -> S2()@Cell_1 2.0*fRate0()
+	v1_cell_2_reactants_0: 0  -> S1()@Cell_2 -1*(fRate1())
+	v1_cell_2_reactants_1: 0  -> A3()@Cell_2 -1*2.0*(fRate1())
+	v1_cell_2_products_0: 0  -> S2()@Cell_2 2.0*fRate1()
+	v2_cell_1: S2()@Cell_1 + N1()@Cell_1 -> S3()@Cell_1 + N2()@Cell_1 k2
+	v2_cell_2: S2()@Cell_2 + N1()@Cell_2 -> S3()@Cell_2 + N2()@Cell_2 k2
+	v3_cell_1: S3()@Cell_1 + A2()@Cell_1 -> S4()@Cell_1 + A3()@Cell_1 + A3()@Cell_1 k3
+	v3_cell_2: S3()@Cell_2 + A2()@Cell_2 -> S4()@Cell_2 + A3()@Cell_2 + A3()@Cell_2 k3
+	v4_cell_1: S4()@Cell_1 + N2()@Cell_1 -> 0  k4
+	v4_cell_2: S4()@Cell_2 + N2()@Cell_2 -> 0  k4
+	v5_cell_1: A3()@Cell_1 -> 0  k5
+	v5_cell_2: A3()@Cell_2 -> 0  k5
+	v6_cell_1: S2()@Cell_1 + N2()@Cell_1 -> 0  k6
+	v6_cell_2: S2()@Cell_2 + N2()@Cell_2 -> 0  k6
+	v7: S4_ex()@Compartment -> 0  k
+	S1_cell_1_glucose_influx: 0  -> S1()@Cell_1 J0
+	S1_cell_2_glucose_influx: 0  -> S1()@Cell_2 J0
+	S4_cell_1_export_reactants_0: 0  -> S4()@Cell_1 -1*(fRate15())
+	S4_cell_2_export_reactants_0: 0  -> S4()@Cell_2 -1*(fRate16())
+	S4_ex_import: 0  -> S4_ex()@Compartment fRate17()
+end reaction rules
+end model

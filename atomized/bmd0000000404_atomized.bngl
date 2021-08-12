@@ -1,0 +1,190 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000404', 'http://identifiers.org/biomodels.db/MODEL6929313478']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/8334303']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/562']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0006935', 'http://identifiers.org/kegg.pathway/map02030']
+#@creatorEmail:'lenov@ebi.ac.uk'
+#@creatorName:'Le Novère Nicolas'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 29 molecules and 35 reactions. The translated model has 9 molecules and 35 rules'
+###
+begin model
+begin parameters
+	alpha 0.14
+	kappa 2.25e-07
+	ka 0.1
+	parameter_1 1e-07
+	parameter_3 0.0003
+	ATP 6.022000000000001e+22 #original 0.1mol/L
+	r1_kcat 0.001000
+	r2_kcat 75000.000000
+	r3_kcat 200000.000000
+	r4_k1 100000000.000000
+	r5_k1 200000.000000
+	r6_kcat 0.000000
+	r7_k1 0.037000
+	r8_k1 500000.000000
+	r9_k1 1000000.000000
+	r10_k1 1.000000
+	r11_k1 1000000.000000
+	r11_k2 1.000000
+	r12_k1 1000.000000
+	r12_k2 1.000000
+	r13_k1 100000.000000
+	r13_k2 1.000000
+	r14_k1 10000.000000
+	r14_k2 1.000000
+	r15_k1 100000.000000
+	r15_k2 1.000000
+	r16_k1 400000.000000
+	r16_k2 1.000000
+	r17_k1 400000.000000
+	r17_k2 1.000000
+	r18_k1 400000.000000
+	r18_k2 1.000000
+	r19_k1 100000.000000
+	r19_k2 1.000000
+	r20_k1 10000.000000
+	r20_k2 1.000000
+	r21_k1 400000.000000
+	r21_k2 1.000000
+	r22_k1 400000.000000
+	r22_k2 1.000000
+	r23_k1 400000.000000
+	r23_k2 1.000000
+	r24_k1 0.100000
+	r24_k2 1.000000
+	r25_k1 0.010000
+	r25_k2 1.000000
+	r26_k1 0.400000
+	r26_k2 1.000000
+	r27_k1 0.400000
+	r27_k2 1.000000
+	r28_k1 0.400000
+	r28_k2 1.000000
+	r33_k1 1000000.000000
+	r33_k2 1.000000
+	r34_k1 1000000.000000
+	r34_k2 1.000000
+	r35_k1 1000000.000000
+	r35_k2 1.000000
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf uniprot:P0AE67
+	Y(m,p~P~0)
+	#^ bqbiol:isVersionOf uniprot:P07330
+	B(p~P~0)
+	#^ bqbiol:is uniprot:P0A9H9
+	Z()
+	#^ bqbiol:is uniprot:P06974
+	M(y,y,y,y)
+	#^ bqbiol:is obo.chebi:CHEBI:49786
+	ni(t)
+	#^ bqbiol:is obo.chebi:CHEBI:35391
+	asp(t)
+	#^ bqbiol:is uniprot:P07017
+	T(a,asp,ni,w)
+	#^ bqbiol:isVersionOf uniprot:P07363
+	A(p~P~0,t,w)
+	#^ bqbiol:is uniprot:P0A964
+	W(a,t)
+end molecule types
+begin seed species
+	T(a,asp,ni,w) 1.8788640000000003e+18 # 3.12e-06mol/L * 6.022e23/mol *1.0L #T #T
+	W(a,t) 1.740358e+18 #original 2.89e-06mol/L #W #W
+	T(a,asp,ni,w!680).W(a,t!680) 3.5590020000000006e+17 #original 5.91e-07mol/L #TW #TW
+	T(a!681,asp,ni,w).A(p~0,t!681,w) 2.673768e+17 #original 4.44e-07mol/L #TA #TA
+	A(p~0,t,w!682).W(a!682,t) 4.082916e+17 #original 6.78e-07mol/L #WA #WA
+	T(a!681,asp,ni,w!680).A(p~0,t!681,w!682).W(a!682,t!680) 5.100634e+17 #original 8.47e-07mol/L #TWA #TWA
+	A(p~0,t,w) 1.8066e+18 #original 3e-06mol/L #A #A
+	A(p~P,t,w) 2.095656e+16 #original 3.48e-08mol/L #Ap #Ap
+	B(p~0) 1.1622460000000003e+18 #original 1.93e-06mol/L #B #B
+	B(p~P) 4.137114e+16 #original 6.87e-08mol/L #Bp #Bp
+	Z() 1.2044000000000002e+19 #original 2e-05mol/L #Z #Z
+	Y(m,p~0) 5.96178e+18 #original 9.9e-06mol/L #Y #Y
+	Y(m,p~P) 4215400000000000.0 #original 7e-09mol/L #Yp #Yp
+	M(y,y,y,y) 3757728000000000.0 #original 6.24e-09mol/L #M #M
+	M(y!685,y,y,y).Y(m!685,p~P) 467909400000000.0 #original 7.77e-10mol/L #MYp #MYp
+	M(y!685,y!686,y,y).Y(m!685,p~P).Y(m!686,p~P) 180057800000000.0 #original 2.99e-10mol/L #MYpYp #MYpYp
+	M(y!685,y!686,y!687,y).Y(m!685,p~P).Y(m!686,p~P).Y(m!687,p~P) 227631600000000.0 #original 3.78e-10mol/L #MYpYpYp #MYpYpYp
+	M(y!685,y!686,y!687,y!688).Y(m!685,p~P).Y(m!686,p~P).Y(m!687,p~P).Y(m!688,p~P) 1391082000000000.0 #original 2.31e-09mol/L #MYpYpYpYp #MYpYpYpYp
+end seed species
+begin observables
+	Species asp asp(t) #asp
+	Species ni ni(t) #ni
+	Species T T(a,asp,ni,w) #T
+	Species Tasp T(a,asp!684,ni,w).asp(t!684) #Tasp
+	Species Tni T(a,asp,ni!683,w).ni(t!683) #Tni
+	Species W W(a,t) #W
+	Species TW T(a,asp,ni,w!680).W(a,t!680) #TW
+	Species Tasp_W T(a,asp!684,ni,w!680).W(a,t!680).asp(t!684) #Tasp_W
+	Species Tni_W T(a,asp,ni!683,w!680).W(a,t!680).ni(t!683) #Tni_W
+	Species TA T(a!681,asp,ni,w).A(p~0,t!681,w) #TA
+	Species Tasp_A T(a!681,asp!684,ni,w).A(p~0,t!681,w).asp(t!684) #Tasp_A
+	Species Tni_A T(a!681,asp,ni!683,w).A(p~0,t!681,w).ni(t!683) #Tni_A
+	Species WA A(p~0,t,w!682).W(a!682,t) #WA
+	Species TWA T(a!681,asp,ni,w!680).A(p~0,t!681,w!682).W(a!682,t!680) #TWA
+	Species Tasp_WA T(a!681,asp!684,ni,w!680).A(p~0,t!681,w!682).W(a!682,t!680).asp(t!684) #Tasp_WA
+	Species Tni_WA T(a!681,asp,ni!683,w!680).A(p~0,t!681,w!682).W(a!682,t!680).ni(t!683) #Tni_WA
+	Species A A(p~0,t,w) #A
+	Species Ap A(p~P,t,w) #Ap
+	Species B B(p~0) #B
+	Species Bp B(p~P) #Bp
+	Species Z Z() #Z
+	Species Y Y(m,p~0) #Y
+	Species Yp Y(m,p~P) #Yp
+	Species M M(y,y,y,y) #M
+	Species MYp M(y!685,y,y,y).Y(m!685,p~P) #MYp
+	Species MYpYp M(y!685,y!686,y,y).Y(m!685,p~P).Y(m!686,p~P) #MYpYp
+	Species MYpYpYp M(y!685,y!686,y!687,y).Y(m!685,p~P).Y(m!686,p~P).Y(m!687,p~P) #MYpYpYp
+	Species MYpYpYpYp M(y!685,y!686,y!687,y!688).Y(m!685,p~P).Y(m!686,p~P).Y(m!687,p~P).Y(m!688,p~P) #MYpYpYpYp
+end observables
+begin functions
+	parameter_2() = ATP/(ATP + parameter_3)
+	Bias() = (M + MYp)/(M + MYp + MYpYp + MYpYpYp + MYpYpYpYp)
+	fRate0() = 0.001*parameter_2
+	fRate1() = 75000.0*TWA*parameter_2
+	fRate2() = 200000.0*Tni_WA*parameter_2
+	fRate5() = 0
+	fRate28m() = 0.25*ka*kappa
+	fRate29m() = 0.666666666666667*alpha*ka*kappa
+	fRate30m() = 1.5*alpha^2*ka*kappa
+	fRate31m() = 4.0*alpha^3*ka*kappa
+end functions
+begin reaction rules
+	phosphorylation_r1: A(p~0,t,w) -> A(p~P,t,w) fRate0()
+	phosphorylation_r2: A(p~0,t,w) -> A(p~P,t,w) fRate1() #Modifiers(TWA)
+	phosphorylation_r3: A(p~0,t,w) -> A(p~P,t,w) fRate2() #Modifiers(Tni_WA)
+	phosphorylation_r4: T(a!681,asp!684,ni,w!680).A(p~0,t!681,w!682).W(a!682,t!680).asp(t!684) + Y(m,p~P) -> T(a!681,asp!684,ni,w!680).A(p~0,t!681,w!682).W(a!682,t!680).asp(t!684) + Y(m,p~0) r4_k1
+	phosphorylation_r5: A(p~P,t,w) + Y(m,p~0) -> A(p~0,t,w) + Y(m,p~P) r5_k1
+	phosphorylation_r6: Y(m,p~0) -> Y(m,p~P) fRate5()
+	phosphorylation_r7: Y(m,p~P) -> Y(m,p~0) r7_k1
+	phosphorylation_r8: Y(m,p~P) + Z() -> Y(m,p~0) + Z() r8_k1
+	phosphorylation_r9: A(p~P,t,w) + B(p~0) -> A(p~0,t,w) + B(p~P) r9_k1
+	phosphorylation_r10: B(p~P) -> B(p~0) r10_k1
+	regulatory_r1: T(a,asp,ni,w) + asp(t) <-> T(a,asp!684,ni,w).asp(t!684) r11_k1,r11_k2
+	regulatory_r2: T(a,asp,ni,w) + ni(t) <-> T(a,asp,ni!683,w).ni(t!683) r12_k1,r12_k2
+	regulatory_r3: T(a,asp,ni,w) + W(a,t) <-> T(a,asp,ni,w!680).W(a,t!680) r13_k1,r13_k2
+	regulatory_r4: T(a,asp,ni,w) + A(p~0,t,w) <-> T(a!681,asp,ni,w).A(p~0,t!681,w) r14_k1,r14_k2
+	regulatory_r5: W(a,t) + A(p~0,t,w) <-> A(p~0,t,w!682).W(a!682,t) r15_k1,r15_k2
+	regulatory_r6: T(a,asp,ni,w!680).W(a,t!680) + A(p~0,t,w) <-> T(a!681,asp,ni,w!680).A(p~0,t!681,w!682).W(a!682,t!680) r16_k1,r16_k2
+	regulatory_r7: T(a!681,asp,ni,w).A(p~0,t!681,w) + W(a,t) <-> T(a!681,asp,ni,w!680).A(p~0,t!681,w!682).W(a!682,t!680) r17_k1,r17_k2
+	regulatory_r8: T(a,asp,ni,w) + A(p~0,t,w!682).W(a!682,t) <-> T(a!681,asp,ni,w!680).A(p~0,t!681,w!682).W(a!682,t!680) r18_k1,r18_k2
+	regulatory_r9: T(a,asp!684,ni,w).asp(t!684) + W(a,t) <-> T(a,asp!684,ni,w!680).W(a,t!680).asp(t!684) r19_k1,r19_k2
+	regulatory_r10: T(a,asp!684,ni,w).asp(t!684) + A(p~0,t,w) <-> T(a!681,asp!684,ni,w).A(p~0,t!681,w).asp(t!684) r20_k1,r20_k2
+	regulatory_r11: T(a,asp!684,ni,w!680).W(a,t!680).asp(t!684) + A(p~0,t,w) <-> T(a!681,asp!684,ni,w!680).A(p~0,t!681,w!682).W(a!682,t!680).asp(t!684) r21_k1,r21_k2
+	regulatory_r12: T(a!681,asp!684,ni,w).A(p~0,t!681,w).asp(t!684) + W(a,t) <-> T(a!681,asp!684,ni,w!680).A(p~0,t!681,w!682).W(a!682,t!680).asp(t!684) r22_k1,r22_k2
+	regulatory_r13: T(a,asp!684,ni,w).asp(t!684) + A(p~0,t,w!682).W(a!682,t) <-> T(a!681,asp!684,ni,w!680).A(p~0,t!681,w!682).W(a!682,t!680).asp(t!684) r23_k1,r23_k2
+	regulatory_r14: T(a,asp,ni!683,w).ni(t!683) + W(a,t) <-> T(a,asp,ni!683,w!680).W(a,t!680).ni(t!683) r24_k1,r24_k2
+	regulatory_r15: T(a,asp,ni!683,w).ni(t!683) + A(p~0,t,w) <-> T(a!681,asp,ni!683,w).A(p~0,t!681,w).ni(t!683) r25_k1,r25_k2
+	regulatory_r16: T(a,asp,ni!683,w!680).W(a,t!680).ni(t!683) + A(p~0,t,w) <-> T(a!681,asp,ni!683,w!680).A(p~0,t!681,w!682).W(a!682,t!680).ni(t!683) r26_k1,r26_k2
+	regulatory_r17: T(a!681,asp,ni!683,w).A(p~0,t!681,w).ni(t!683) + W(a,t) <-> T(a!681,asp,ni!683,w!680).A(p~0,t!681,w!682).W(a!682,t!680).ni(t!683) r27_k1,r27_k2
+	regulatory_r18: T(a,asp,ni!683,w).ni(t!683) + A(p~0,t,w!682).W(a!682,t) <-> T(a!681,asp,ni!683,w!680).A(p~0,t!681,w!682).W(a!682,t!680).ni(t!683) r28_k1,r28_k2
+	motor_r1: M(y,y,y,y) + Y(m,p~P) <-> M(y!685,y,y,y).Y(m!685,p~P) ka,fRate28m()
+	motor_r2: M(y!685,y,y,y).Y(m!685,p~P) + Y(m,p~P) <-> M(y!685,y!686,y,y).Y(m!685,p~P).Y(m!686,p~P) ka,fRate29m()
+	motor_r3: M(y!685,y!686,y,y).Y(m!685,p~P).Y(m!686,p~P) + Y(m,p~P) <-> M(y!685,y!686,y!687,y).Y(m!685,p~P).Y(m!686,p~P).Y(m!687,p~P) ka,fRate30m()
+	motor_r4: M(y!685,y!686,y!687,y).Y(m!685,p~P).Y(m!686,p~P).Y(m!687,p~P) + Y(m,p~P) <-> M(y!685,y!686,y!687,y!688).Y(m!685,p~P).Y(m!686,p~P).Y(m!687,p~P).Y(m!688,p~P) ka,fRate31m()
+	reaction_1: T(a!681,asp,ni,w).A(p~0,t!681,w) + asp(t) <-> T(a!681,asp!684,ni,w).A(p~0,t!681,w).asp(t!684) r33_k1,r33_k2
+	reaction_2: T(a,asp,ni,w!680).W(a,t!680) + asp(t) <-> T(a,asp!684,ni,w!680).W(a,t!680).asp(t!684) r34_k1,r34_k2
+	reaction_3: T(a!681,asp,ni,w!680).A(p~0,t!681,w!682).W(a!682,t!680) + asp(t) <-> T(a!681,asp!684,ni,w!680).A(p~0,t!681,w!682).W(a!682,t!680).asp(t!684) r35_k1,r35_k2
+end reaction rules
+end model

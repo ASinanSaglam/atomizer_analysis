@@ -1,0 +1,81 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000236', 'http://identifiers.org/biomodels.db/MODEL9574422639']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/12829470']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/6271617']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0006096']
+#@BQB_IS_PART_OF:['http://identifiers.org/kegg.pathway/map00010', 'http://identifiers.org/reactome/REACT_1383']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/40674']
+#@creatorEmail:'lukas@ebi.ac.uk'
+#@creatorName:'Endler Lukas'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 7 molecules and 4 reactions. The translated model has 4 molecules and 7 rules'
+###
+begin model
+begin parameters
+	hGK 1.7 #units:dimensionless
+	KeqGPI 0.3 #units:dimensionless
+	KeqTPI 0.045455 #units:dimensionless
+	Sgk 8.0 #units:mM
+	Spfk 4.0 #units:mM
+	Sfba 0.005 #units:mM
+	Sgapdh 0.005 #units:mM
+	Xpfk 0.01 #units:mM
+	alpha 5.0 #units:dimensionless
+	hx 2.5 #units:dimensionless
+	hpfk 2.5 #units:dimensionless
+	hact 1.0 #units:dimensionless
+	dw_per_ml 0.3333 #units:g_per_ml
+	min_to_sec 60.0 #units:dimensionless
+	Vgk_min 10.0 #units:mmole_per_min_g
+	Vpfk_min 100.0 #units:mmole_per_min_g
+	Vfba_min 25.0 #units:mmole_per_min_g
+	Vgapdh_min 250.0 #units:mmole_per_min_g
+	Pfba 0.5 #units:mM
+	Qfba 0.275 #units:mM
+	KeqFBA 0.1 #units:mM
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf chebi:CHEBI:17234, kegg.compound:C00293
+	intracellularglucose()
+	#^ bqbiol:isVersionOf chebi:CHEBI:16905, kegg.compound:C00354
+	fructose_1_6_biphosphate()
+	#^ bqbiol:hasPart chebi:CHEBI:16108, chebi:CHEBI:29052, kegg.compound:C00111, kegg.compound:C00118, chebi:CHEBI:16108
+	DHAP_G3Ppool()
+	#^ bqbiol:hasPart kegg.compound:C00092, kegg.compound:C00085, chebi:CHEBI:4170, chebi:CHEBI:14314, chebi:CHEBI:15946
+	G6P_F6P()
+end molecule types
+begin seed species
+	$intracellularglucose() 6.022e+21 # (10.0 * 0.001)mol/L * 6.022e23/mol *1.0L #intracellularglucose #GLC
+	G6P_F6P() 2.2385460160000004e+21 #original 3.71728mmole/L #G6P_F6P #G6P_F6P
+	fructose_1_6_biphosphate() 3.8307146400000006e+17 #original 0.00063612mmole/L #fructose_1_6_biphosphate #FBP
+	DHAP_G3Ppool() 1.583581252e+18 #original 0.00262966mmole/L #DHAP_G3Ppool #DHAP_G3P
+end seed species
+begin observables
+	Species intracellularglucose intracellularglucose() #intracellular glucose
+	Species G6P_F6P G6P_F6P() #G6P_F6P
+	Species fructose_1_6_biphosphate fructose_1_6_biphosphate() #fructose-1,6-biphosphate
+	Species DHAP_G3Ppool DHAP_G3Ppool() #DHAP-G3P pool
+end observables
+begin functions
+	glyceraldehyde__phosphate_ar() = DHAP_G3Ppool*KeqTPI/(KeqTPI + 1)
+	dihydroxyacetone_phosphate_ar() = DHAP_G3Ppool - glyceraldehyde__phosphate_ar
+	fructose_6_phosphate_ar() = G6P_F6P*KeqGPI/(KeqGPI + 1)
+	sigma() = fructose_6_phosphate_ar/Spfk
+	Vgapdh() = Vgapdh_min*dw_per_ml/min_to_sec
+	Vfba() = Vfba_min*dw_per_ml/min_to_sec
+	Vpfk() = Vpfk_min*dw_per_ml/min_to_sec
+	Vgk() = Vgk_min*dw_per_ml/min_to_sec
+	fRate0() = Vgk*(intracellularglucose/Sgk)^hGK/((intracellularglucose/Sgk)^hGK + 1)
+	fRate1() = Vpfk*(fructose_6_phosphate_ar/Spfk)^(hpfk - fructose_1_6_biphosphate*(-hact + hpfk)/(Sfba*(1 + fructose_1_6_biphosphate/Sfba)))/((fructose_6_phosphate_ar/Spfk)^(hpfk - fructose_1_6_biphosphate*(-hact + hpfk)/(Sfba*(1 + fructose_1_6_biphosphate/Sfba))) + ((fructose_1_6_biphosphate/Xpfk)^hx + 1)/(alpha^(hpfk - fructose_1_6_biphosphate*(-hact + hpfk)/(Sfba*(1 + fructose_1_6_biphosphate/Sfba)))*(fructose_1_6_biphosphate/Xpfk)^hx + 1))
+	fRate2() = Vfba*(fructose_1_6_biphosphate/Sfba - dihydroxyacetone_phosphate_ar*glyceraldehyde__phosphate_ar/(KeqFBA*Pfba*Qfba))/(1 + fructose_1_6_biphosphate/Sfba + dihydroxyacetone_phosphate_ar/Qfba + dihydroxyacetone_phosphate_ar*glyceraldehyde__phosphate_ar/(Pfba*Qfba))
+	fRate3() = Vgapdh*glyceraldehyde__phosphate_ar/(Sgapdh + glyceraldehyde__phosphate_ar)
+end functions
+begin reaction rules
+	vgk_reactants_0: 0  -> intracellularglucose() -1*(fRate0())
+	vgk_products_0: 0  -> G6P_F6P() fRate0()
+	vpfk_reactants_0: 0  -> G6P_F6P() -1*(fRate1()) #Modifiers(F6P)
+	vpfk_products_0: 0  -> fructose_1_6_biphosphate() fRate1() #Modifiers(F6P)
+	vfba_reactants_0: 0  -> fructose_1_6_biphosphate() -1*(fRate2()) #Modifiers(G3P, DHAP)
+	vfba_products_0: 0  -> DHAP_G3Ppool() 2.0*fRate2() #Modifiers(G3P, DHAP)
+	vgapdh_reactants_0: 0  -> DHAP_G3Ppool() -1*(fRate3()) #Modifiers(G3P)
+end reaction rules
+end model

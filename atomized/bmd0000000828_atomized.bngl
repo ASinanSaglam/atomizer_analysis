@@ -1,0 +1,79 @@
+###
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/31009513']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/ncit/C3058', 'http://identifiers.org/go/GO:0023052', 'http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/efo/0000311', 'http://identifiers.org/ncit/C17132']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1909300005', 'http://identifiers.org/biomodels.db/BIOMD0000000828']
+#@creatorEmail:'muffet0307@gmail.com'
+#@creatorName:'Ng Szeyi'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 6 molecules and 12 reactions. The translated model has 5 molecules and 12 rules'
+###
+begin model
+begin parameters
+	myu_G 0.5
+	l_1 4.0
+	l_2 1.0
+	alpha 1.6
+	l_3 4.0
+	l_4 1.0
+	beta 1.0
+	S_1 0.2
+	epsilon_1 0.02
+	l_5 4.0
+	l_6 1.0
+	gamma 1.0
+	S_2 1.2
+	epsilon_2 0.02
+	myu_D 1.316
+	u_1 0
+	u_2 0
+	deltaD exp(0) #original 1.0substance/volume
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf cco:CCO:2475, ncit:C38928, uniprot:P42345
+	mTORR()
+	#^ bqbiol:isVersionOf ncit:C82834, uniprot:P56211
+	miR_451M()
+	#^ bqbiol:isVersionOf chebi:CHEBI:23888
+	DrugD()
+	#^ bqbiol:isVersionOf uniprot:P54646, ncit:C94701
+	AMPKA()
+	#^ bqbiol:isVersionOf chebi:CHEBI:17234
+	GlucoseG()
+end molecule types
+begin seed species
+	GlucoseG() 0.39999064405809553 # (6.64215616170866e-22 * 0.001)mol/L * 6.022e23/mol *1.0L #GlucoseG #Glucose_G
+	miR_451M() 1.8399569626672374 #original 3.05539183438598e-21substance/volume #miR_451M #miR_451_M
+	AMPKA() 1.2499707626815508 #original 2.07567380053396e-21substance/volume #AMPKA #AMPK_A
+	mTORR() 2.759935444000856 #original 4.58308775157897e-21substance/volume #mTORR #mTOR_R
+end seed species
+begin observables
+	Species GlucoseG GlucoseG() #Glucose G
+	Species DrugD DrugD() #Drug D
+	Species miR_451M miR_451M() #miR-451 M
+	Species AMPKA AMPKA() #AMPK A
+	Species mTORR mTORR() #mTOR R
+end observables
+begin functions
+	deltaD_ar() = exp(-DrugD)
+	fRate4() = (1.0*GlucoseG*(AMPKA^2*alpha + l_2^2) + l_1*l_2^2)/(1.0*AMPKA^2*alpha + 1.0*l_2^2)
+	fRate6() = S_1/epsilon_1
+	fRate7() = l_3*l_4^2/(epsilon_1*(beta*miR_451M^2 + l_4^2))
+	fRate8() = 1/epsilon_1
+	fRate9() = S_2/epsilon_2
+	fRate10() = l_5*l_6^2/(epsilon_2*(AMPKA^2*deltaD_ar*gamma + l_6^2))
+	fRate11() = 1/epsilon_2
+end functions
+begin reaction rules
+	Dose_for_Glucose: 0  -> GlucoseG() u_1
+	Dose_for_Drug: 0  -> DrugD() u_2
+	Consumption_of_Glucose: GlucoseG() -> 0  myu_G
+	Decay_of_Drug: DrugD() -> 0  myu_D
+	Production_of_miR_451: 0  -> miR_451M() fRate4() #Modifiers(Glucose_G, AMPK_A)
+	loss_of_miR_451: miR_451M() -> 0  1.00000000000000
+	signal_source_of_AMPK: 0  -> AMPKA() fRate6()
+	Production_of_AMPK: 0  -> AMPKA() fRate7() #Modifiers(miR_451_M)
+	loss_of_AMPK: AMPKA() -> 0  fRate8()
+	signal_source_of_mTOR: 0  -> mTORR() fRate9()
+	Production_of_mTOR: 0  -> mTORR() fRate10() #Modifiers(deltaD, AMPK_A)
+	loss_of_mTOR: mTORR() -> 0  fRate11() #Modifiers(mTOR_R)
+end reaction rules
+end model

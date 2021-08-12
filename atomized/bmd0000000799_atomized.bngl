@@ -1,0 +1,44 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/doi/10.1080/17486700902973751']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/ncit/C3171']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1908190002', 'http://identifiers.org/biomodels.db/BIOMD0000000799']
+#@creatorEmail:'johannes.p.meyer@gmail.com'
+#@creatorName:'Meyer Johannes'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 2 molecules and 4 reactions. The translated model has 2 molecules and 4 rules'
+###
+begin model
+begin parameters
+	a 0.3
+	b 0.5
+	c 0.1
+	A 0.3
+	B 0.5
+	C 0.1
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf bto:BTO:0004178
+	#^ bqbiol:occursIn bto:BTO:0000141
+	y_Leukemic_Cell()
+	#^ bqbiol:is cl:CL:0000037
+	#^ bqbiol:occursIn bto:BTO:0000141
+	x_Normal_Hematopoietic_Stem_Cell()
+end molecule types
+begin seed species
+	x_Normal_Hematopoietic_Stem_Cell() 2.7099000000000003e+24 # 4.5mol/L * 6.022e23/mol *1.0L #x_Normal_Hematopoietic_Stem_Cell #x_Normal_Hematopoietic_Stem_Cell
+	y_Leukemic_Cell() 9.033e+23 #original 1.5substance/volume  #y_Leukemic_Cell #y_Leukemic_Cell
+end seed species
+begin observables
+	Species x_Normal_Hematopoietic_Stem_Cell x_Normal_Hematopoietic_Stem_Cell() #x_Normal_Hematopoietic_Stem_Cell
+	Species y_Leukemic_Cell y_Leukemic_Cell() #y_Leukemic_Cell
+end observables
+begin functions
+	fRate0() = a*x_Normal_Hematopoietic_Stem_Cell/(b*x_Normal_Hematopoietic_Stem_Cell + b*y_Leukemic_Cell + 1.0)
+	fRate2() = A*y_Leukemic_Cell/(B*x_Normal_Hematopoietic_Stem_Cell + B*y_Leukemic_Cell + 1.0)
+end functions
+begin reaction rules
+	Normal_Cells_Growth: 0  -> x_Normal_Hematopoietic_Stem_Cell() fRate0() #Modifiers(y_Leukemic_Cell)
+	Normal_Cells_Removal: x_Normal_Hematopoietic_Stem_Cell() -> 0  c
+	Leukemic_Cells_Growth: 0  -> y_Leukemic_Cell() fRate2() #Modifiers(x_Normal_Hematopoietic_Stem_Cell)
+	Leukemic_Cells_Removal: y_Leukemic_Cell() -> 0  C
+end reaction rules
+end model

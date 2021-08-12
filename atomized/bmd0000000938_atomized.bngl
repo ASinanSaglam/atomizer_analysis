@@ -1,0 +1,63 @@
+###
+#@BQB_HAS_PART:['http://identifiers.org/go/GO:0051726']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10090']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/23528096', 'http://identifiers.org/doi/10.1016/j.bpj.2013.02.012']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000938', 'http://identifiers.org/biomodels.db/MODEL1809050001']
+#@creatorEmail:'ahmad.azd@hotmail.com'
+#@creatorName:'Zyoud Ahmad'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 5 molecules and 8 reactions. The translated model has 3 molecules and 8 rules'
+###
+begin model
+begin parameters
+	V_scdk 0.06
+	k_d1cdk 0.01
+	k_dcdk 0.35
+	K_dcdk 0.01
+	K_dsec 0.001
+	k_2APC 0.3
+	K_2APC 0.01
+	V_1APC 0.15
+	K_1APC 0.01
+	V_ssec 0.1
+	k_d1sec 0.01
+	k_dsec 0.4
+	Anaphase_promoting_complex 6.022e+20 #original 1.0substance/volume
+	Anaphase_promoting_complex_total 6.022e+20 #original 1.0substance/volume
+end parameters
+begin molecule types
+	#^ bqbiol:isVersionOf go:GO:0005680
+	#^ bqbiol:hasProperty pato:PATO:0002220
+	Anaphase_promoting_complex_Phosphorylated()
+	#^ bqbiol:isHomologTo uniprot:P11440
+	Cdk()
+	#^ bqbiol:isHomologTo uniprot:Q9CQJ7
+	Securin()
+end molecule types
+begin seed species
+	Cdk() 1.8066e+20 # (0.3 * 0.001)mol/L * 6.022e23/mol *1.0L #Cdk #Cdk
+	Securin() 2.1077e+20 #original 0.35substance/volume #Securin #Securin
+end seed species
+begin observables
+	Species Cdk Cdk() #Cdk
+	Species Anaphase_promoting_complex_Phosphorylated Anaphase_promoting_complex_Phosphorylated() #Anaphase_promoting_complex_Phosphorylated
+	Species Securin Securin() #Securin
+end observables
+begin functions
+	Anaphase_promoting_complex_ar() = -Anaphase_promoting_complex_Phosphorylated + Anaphase_promoting_complex_total
+	fRate2() = Anaphase_promoting_complex_Phosphorylated*K_dsec*k_dcdk/(K_dcdk*Securin + K_dsec*(Cdk + K_dcdk))
+	fRate3() = Anaphase_promoting_complex_ar*Cdk*k_2APC/(Anaphase_promoting_complex_ar + K_2APC)
+	fRate4() = V_1APC/(Anaphase_promoting_complex_Phosphorylated + K_1APC)
+	fRate7() = Anaphase_promoting_complex_Phosphorylated*K_dcdk*k_dsec/(Cdk*K_dsec + K_dcdk*(K_dsec + Securin))
+end functions
+begin reaction rules
+	Synthesis_Cdk: 0  -> Cdk() V_scdk
+	Degradation_Cdk: Cdk() -> 0  k_d1cdk
+	Degradation_Cdk_mediated_by_APC_P: Cdk() -> 0  fRate2() #Modifiers(Anaphase_promoting_complex_Phosphorylated, Securin)
+	Phosphorylation_of_APC: 0  -> Anaphase_promoting_complex_Phosphorylated() fRate3() #Modifiers(Cdk, Anaphase_promoting_complex)
+	Dephosphorylation_of_APC: Anaphase_promoting_complex_Phosphorylated() -> 0  fRate4()
+	Synthesis_of_Securin: 0  -> Securin() V_ssec
+	Degradation_of_Sec: Securin() -> 0  k_d1sec
+	Degradation_of_Sec_mediated_by_APC_P: Securin() -> 0  fRate7() #Modifiers(Anaphase_promoting_complex_Phosphorylated, Cdk)
+end reaction rules
+end model

@@ -1,0 +1,51 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000178', 'http://identifiers.org/biomodels.db/MODEL8472829123']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/18551355']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/6243359', 'http://identifiers.org/biomodels.db/BIOMD0000000267']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0033264', 'http://identifiers.org/go/GO:0032223', 'http://identifiers.org/go/GO:0006898', 'http://identifiers.org/go/GO:0009405', 'http://identifiers.org/reactome/REACT_11184.1']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10116', 'http://identifiers.org/taxonomy/10090', 'http://identifiers.org/taxonomy/9606']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:11976']
+#@creatorEmail:'lukas@ebi.ac.uk'
+#@creatorName:'Endler Lukas'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 6 molecules and 4 reactions. The translated model has 2 molecules and 4 rules'
+###
+begin model
+begin parameters
+	r1_kT 0.141000
+	r2_kL 0.013000
+	r3_kB 0.058000
+	r4_kS 0.000150
+end parameters
+begin compartments
+	#volume units: normalized volume
+	extracellular 3 1.0
+	endosome 3 1.0
+	neuroplasm 3 1.0
+end compartments
+begin molecule types
+	#^ bqbiol:is kegg.compound:C07946
+	bulk_BoNT_A(bound_BoNT_A~bound_BoNT_A~0,free_BoNT_A~free_BoNT_A~0,transloc_BoNT_A~transloc_BoNT_A~0)
+	#^ bqbiol:isVersionOf kegg.compound:C07946
+	lytic_BoNT_A()
+end molecule types
+begin seed species
+	@extracellular:bulk_BoNT_A(bound_BoNT_A~0,free_BoNT_A~0,transloc_BoNT_A~0) 6.022e+23 # 1.0mol/L * 6.022e23/mol *1.0L #bulk_BoNT_A #bulk
+end seed species
+begin observables
+	Species bulk_BoNT_A_extracellular @extracellular:bulk_BoNT_A(bound_BoNT_A~0,free_BoNT_A~0,transloc_BoNT_A~0) #bulk_BoNT/A
+	Species free_BoNT_A_extracellular @extracellular:bulk_BoNT_A(bound_BoNT_A~0,free_BoNT_A~free_BoNT_A,transloc_BoNT_A~0) #free_BoNT/A
+	Species bound_BoNT_A_extracellular @extracellular:bulk_BoNT_A(bound_BoNT_A~bound_BoNT_A,free_BoNT_A~0,transloc_BoNT_A~0) #bound_BoNT/A
+	Species transloc_BoNT_A_endosome @endosome:bulk_BoNT_A(bound_BoNT_A~0,free_BoNT_A~0,transloc_BoNT_A~transloc_BoNT_A) #transloc_BoNT/A
+	Species lytic_BoNT_A_neuroplasm @neuroplasm:lytic_BoNT_A() #lytic_BoNT/A
+end observables
+begin functions
+	tot_free_BoNT_A_ar() = bulk_BoNT_A_extracellular + free_BoNT_A_extracellular
+	tension() = 1 - lytic_BoNT_A_neuroplasm
+end functions
+begin reaction rules
+	endocytosis: bulk_BoNT_A(bound_BoNT_A~bound_BoNT_A,free_BoNT_A~0,transloc_BoNT_A~0)@extracellular -> bulk_BoNT_A(bound_BoNT_A~0,free_BoNT_A~0,transloc_BoNT_A~transloc_BoNT_A)@endosome r1_kT
+	translocation: bulk_BoNT_A(bound_BoNT_A~0,free_BoNT_A~0,transloc_BoNT_A~transloc_BoNT_A)@endosome -> lytic_BoNT_A()@neuroplasm r2_kL
+	binding: bulk_BoNT_A(bound_BoNT_A~0,free_BoNT_A~free_BoNT_A,transloc_BoNT_A~0)@extracellular -> bulk_BoNT_A(bound_BoNT_A~bound_BoNT_A,free_BoNT_A~0,transloc_BoNT_A~0)@extracellular r3_kB
+	bulk_movement: bulk_BoNT_A(bound_BoNT_A~0,free_BoNT_A~0,transloc_BoNT_A~0)@extracellular -> bulk_BoNT_A(bound_BoNT_A~0,free_BoNT_A~free_BoNT_A,transloc_BoNT_A~0)@extracellular r4_kS
+end reaction rules
+end model

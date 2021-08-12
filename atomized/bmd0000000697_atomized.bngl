@@ -1,0 +1,131 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000697', 'http://identifiers.org/biomodels.db/MODEL0913242281']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/12914904']
+#@BQB_HAS_PART:['http://identifiers.org/go/GO:0051726']
+#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000379']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_HAS_TAXON:['http://identifiers.org/ncit/C61089']
+#@creatorEmail:'sheriff@ebi.ac.uk'
+#@creatorName:'Sheriff Rahuman'
+#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 16 molecules and 30 reactions. The translated model has 5 molecules and 32 rules'
+###
+begin model
+begin parameters
+	Jwact 0.01
+	Jwinact 0.01 #units:unit_0
+	kwact 0.75 #units:unit_1
+	kwinact 1.5 #units:unit_1
+	Jiact 0.01
+	Jiinact 0.01
+	kiact 0.15 #units:unit_1
+	kiinact 0.6 #units:unit_1
+	kdact 0.023 #units:unit_1
+	theta 0.3
+	kwee 1.5 #units:unit_1
+	k25A 0.1 #units:unit_1
+	kon 0.02 #units:unit_1
+	koff 0.0001 #units:unit_1
+	kassoc 0.1 #units:unit_1
+	kdissoc 0.001 #units:unit_1
+	kedeg 0.017 #units:unit_1
+	kxdeg 0.01 #units:unit_1
+	epsilon 0.001
+	n 4.0
+	L 0.4
+	Wee1_total 4.817599999999987e+21 #original 7.99999999999998substance/volume
+	Cyc_total 6.022e+20 #original 1.0substance/volume
+	Xic_total 6.02199999999996e+20 #original 0.999999999999993substance/volume
+end parameters
+begin molecule types
+	#^ bqbiol:hasPart uniprot:P50756, uniprot:P23437
+	#^ bqbiol:isVersionOf go:GO:0097134
+	Cdk2_CycE(p~P~0,rem~REM~0,xic)
+	#^ bqbiol:isVersionOf uniprot:P50756
+	#^ bqbiol:hasProperty ncit:C18104
+	Deg_CycE()
+	#^ bqbiol:hasVersion uniprot:Q8QGV2
+	#^ bqbiol:hasProperty urn:miriam:pato:PATO_0002354
+	Wee1_a()
+	#^ bqbiol:isVersionOf ncit:C28597
+	Kin_a()
+	#^ bqbiol:isHomologTo ncbiprotein:NP_001108275.1
+	Xic(cdk2_cyce,rem~REM~0)
+end molecule types
+begin seed species
+	Cdk2_CycE(p~P,rem~0,xic) 5.66068e+20 # (0.94 * 0.001)mol/L * 6.022e23/mol *1.0L #PCdk2_CycE #PCdk2_CycE
+	Cdk2_CycE(p~0,rem~0,xic) 3.6131999999999943e+19 #original 0.0599999999999999substance/volume #Cdk2_CycE #Cdk2_CycE
+	Wee1_a() 6.142440000000001e+20 #original 1.02substance/volume #Wee1_a #Wee1_a
+	Xic(cdk2_cyce,rem~0) 1.8065999999999882e+21 #original 2.99999999999998substance/volume #Xic #Xic
+	Kin_a() 3.6132e+20 #original 0.6substance/volume #Kin_a #Kin_a
+end seed species
+begin observables
+	Species PCdk2_CycE Cdk2_CycE(p~P,rem~0,xic) #PCdk2_CycE
+	Species Cdk2_CycE Cdk2_CycE(p~0,rem~0,xic) #Cdk2_CycE
+	Species Wee1_a Wee1_a() #Wee1_a
+	Species Cdk2_CycErem Cdk2_CycE(p~0,rem~REM,xic) #Cdk2_CycErem
+	Species PCdk2_CycErem Cdk2_CycE(p~P,rem~REM,xic) #PCdk2_CycErem
+	Species Deg_CycE Deg_CycE() #Deg_CycE
+	Species Xic Xic(cdk2_cyce,rem~0) #Xic
+	Species Xic_Cdk2_CycE Cdk2_CycE(p~0,rem~0,xic!711).Xic(cdk2_cyce!711,rem~0) #Xic_Cdk2_CycE
+	Species Xic_PCdk2_CycE Cdk2_CycE(p~P,rem~0,xic!711).Xic(cdk2_cyce!711,rem~0) #Xic_PCdk2_CycE
+	Species Xic_Cdk2_CycErem Cdk2_CycE(p~0,rem~REM,xic!711).Xic(cdk2_cyce!711,rem~0) #Xic_Cdk2_CycErem
+	Species Xic_PCdk2_CycErem Cdk2_CycE(p~P,rem~REM,xic!711).Xic(cdk2_cyce!711,rem~0) #Xic_PCdk2_CycErem
+	Species Xicrem Xic(cdk2_cyce,rem~REM) #Xicrem
+	Species Kin_a Kin_a() #Kin_a
+end observables
+begin functions
+	pool() = Cdk2_CycErem + PCdk2_CycErem + Xic_Cdk2_CycErem + Xic_PCdk2_CycErem
+	phi() = (epsilon + pool^n)/(L^n + pool^n)
+	Heav() =  if((x<0),(0),(1))
+	x() = Cdk2_CycErem - theta
+	Xic_total_ar() = Xic/3 + Xic_Cdk2_CycE/3 + Xic_Cdk2_CycErem/3 + Xic_PCdk2_CycE/3 + Xic_PCdk2_CycErem/3 + Xicrem/3
+	Cyc_total_ar() = Cdk2_CycE + Cdk2_CycErem + PCdk2_CycE + PCdk2_CycErem + Xic_Cdk2_CycE + Xic_Cdk2_CycErem + Xic_PCdk2_CycE + Xic_PCdk2_CycErem
+	fRate6() = kon*phi
+	fRate7() = kon*phi
+	fRate10() = Deg_CycE*kedeg
+	fRate11() = Deg_CycE*kedeg
+	fRate14() = Heav*kdact
+	fRate15() = Wee1_a*kwee
+	fRate16() = Wee1_a*kwee
+	fRate17() = -1.0*Cdk2_CycE*Kin_a*kiinact/(Jiinact + Kin_a) + 1.0*kiact*(1 - Kin_a)/(Jiact - Kin_a + 1)
+	fRate22() = Deg_CycE*kedeg
+	fRate23() = Deg_CycE*kedeg
+	fRate27() = kon*phi
+	fRate28() = kon*phi
+	fRate29() = -1.0*Kin_a*Wee1_a*kwinact/(Jwinact + Wee1_a) + 1.0*kwact*(-Wee1_a + Wee1_total)/(Jwact - Wee1_a + Wee1_total)
+end functions
+begin reaction rules
+	Xic_Cdk2_CycE_association: Xic(cdk2_cyce,rem~0) + Cdk2_CycE(p~0,rem~0,xic) -> Cdk2_CycE(p~0,rem~0,xic!711).Xic(cdk2_cyce!711,rem~0) kassoc
+	Xic_Cdk2_CycErem_association: Xic(cdk2_cyce,rem~0) + Cdk2_CycE(p~0,rem~REM,xic) -> Cdk2_CycE(p~0,rem~REM,xic!711).Xic(cdk2_cyce!711,rem~0) kassoc
+	Xic_Cdk2_CycE_dissociation: Cdk2_CycE(p~0,rem~0,xic!711).Xic(cdk2_cyce!711,rem~0) -> Xic(cdk2_cyce,rem~0) + Cdk2_CycE(p~0,rem~0,xic) kdissoc
+	Xic_Cdk2_CycErem_dissociation: Cdk2_CycE(p~0,rem~REM,xic!711).Xic(cdk2_cyce!711,rem~0) -> Xic(cdk2_cyce,rem~0) + Cdk2_CycE(p~0,rem~REM,xic) kdissoc
+	Cdk2_CycErem_to_not_rem: Cdk2_CycE(p~0,rem~REM,xic) -> Cdk2_CycE(p~0,rem~0,xic) koff
+	PCdk2_CycE_to_not_rem: Cdk2_CycE(p~P,rem~REM,xic) -> Cdk2_CycE(p~P,rem~0,xic) koff
+	Cdk2_CycE_to_rem: Cdk2_CycE(p~0,rem~0,xic) -> Cdk2_CycE(p~0,rem~REM,xic) fRate6()
+	PCdk2_CycE_to_rem: Cdk2_CycE(p~P,rem~0,xic) -> Cdk2_CycE(p~P,rem~REM,xic) fRate7()
+	X_degadation: Cdk2_CycE(p~0,rem~REM,xic!711).Xic(cdk2_cyce!711,rem~0) -> Cdk2_CycE(p~0,rem~REM,xic) kxdeg
+	X_degradation_phosphorylated_complex: Cdk2_CycE(p~P,rem~REM,xic!711).Xic(cdk2_cyce!711,rem~0) -> Cdk2_CycE(p~P,rem~REM,xic) kxdeg
+	Degradation_XicPCdk2_CycErem: Cdk2_CycE(p~P,rem~REM,xic!711).Xic(cdk2_cyce!711,rem~0) -> Xic(cdk2_cyce,rem~REM) fRate10() #Modifiers(Deg_a)
+	Degradation_XicCdk2_CycErem: Cdk2_CycE(p~0,rem~REM,xic!711).Xic(cdk2_cyce!711,rem~0) -> Xic(cdk2_cyce,rem~REM) fRate11() #Modifiers(Deg_a)
+	Dephos_Xic_PCdk2_CycE: Cdk2_CycE(p~P,rem~0,xic!711).Xic(cdk2_cyce!711,rem~0) -> Cdk2_CycE(p~0,rem~0,xic!711).Xic(cdk2_cyce!711,rem~0) k25A
+	Dephos_PCdk2_CycE: Cdk2_CycE(p~P,rem~0,xic) -> Cdk2_CycE(p~0,rem~0,xic) k25A
+	Degradation_increase: 0  -> Deg_CycE() fRate14()
+	Phos_Xic_PCdk2_CycE: Cdk2_CycE(p~0,rem~0,xic!711).Xic(cdk2_cyce!711,rem~0) -> Cdk2_CycE(p~P,rem~0,xic!711).Xic(cdk2_cyce!711,rem~0) fRate15() #Modifiers(Wee1_a)
+	Phos_PCdk2_CycE: Cdk2_CycE(p~0,rem~0,xic) -> Cdk2_CycE(p~P,rem~0,xic) fRate16() #Modifiers(Wee1_a)
+	Kinase__regulation_reactants_0: 0  -> Cdk2_CycE(p~0,rem~0,xic) -1*(fRate17()) #Modifiers(Cdk2_CycE)
+	Kinase__regulation_products_0: 0  -> Kin_a() fRate17() #Modifiers(Cdk2_CycE)
+	Kinase__regulation_products_1: 0  -> Cdk2_CycE(p~0,rem~0,xic) fRate17() #Modifiers(Cdk2_CycE)
+	Xic_PCdk2_CycE_association: Xic(cdk2_cyce,rem~0) + Cdk2_CycE(p~P,rem~0,xic) -> Cdk2_CycE(p~P,rem~0,xic!711).Xic(cdk2_cyce!711,rem~0) kassoc
+	Xic_PCdk2_CycErem_association: Xic(cdk2_cyce,rem~0) + Cdk2_CycE(p~P,rem~REM,xic) -> Cdk2_CycE(p~P,rem~REM,xic!711).Xic(cdk2_cyce!711,rem~0) kassoc
+	Xic_PCdk2_CycE_dissociation: Cdk2_CycE(p~P,rem~0,xic!711).Xic(cdk2_cyce!711,rem~0) -> Xic(cdk2_cyce,rem~0) + Cdk2_CycE(p~P,rem~0,xic) kdissoc
+	Xic_PCdk2_CycErem_dissociation: Cdk2_CycE(p~P,rem~REM,xic!711).Xic(cdk2_cyce!711,rem~0) -> Xic(cdk2_cyce,rem~0) + Cdk2_CycE(p~P,rem~REM,xic) kdissoc
+	Degradation_Cdk2_CycErem: Cdk2_CycE(p~0,rem~REM,xic) -> 0  fRate22() #Modifiers(Deg_a)
+	Degradation_PCdk2_CycErem: Cdk2_CycE(p~P,rem~REM,xic) -> 0  fRate23() #Modifiers(Deg_a)
+	Xicrem_degradation: Xic(cdk2_cyce,rem~REM) -> 0  kxdeg
+	Xic_PCdk2_CycErem_to_not_rem: Cdk2_CycE(p~P,rem~REM,xic!711).Xic(cdk2_cyce!711,rem~0) -> Cdk2_CycE(p~P,rem~0,xic!711).Xic(cdk2_cyce!711,rem~0) koff
+	Xic_Cdk2_CycErem_to_not_rem: Cdk2_CycE(p~0,rem~REM,xic!711).Xic(cdk2_cyce!711,rem~0) -> Cdk2_CycE(p~0,rem~0,xic!711).Xic(cdk2_cyce!711,rem~0) koff
+	Xic_PCdk2_CycE_to_rem: Cdk2_CycE(p~P,rem~0,xic!711).Xic(cdk2_cyce!711,rem~0) -> Cdk2_CycE(p~P,rem~REM,xic!711).Xic(cdk2_cyce!711,rem~0) fRate27()
+	Xic_Cdk2_CycE_to_rem: Cdk2_CycE(p~0,rem~0,xic!711).Xic(cdk2_cyce!711,rem~0) -> Cdk2_CycE(p~0,rem~REM,xic!711).Xic(cdk2_cyce!711,rem~0) fRate28()
+	Wee1_regulation_products_0: 0  -> Wee1_a() fRate29() #Modifiers(Kin_a, Wee1_total)
+end reaction rules
+end model
