@@ -1,0 +1,210 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000498', 'http://identifiers.org/biomodels.db/MODEL1302260000']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/24244122']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_IS_PART_OF:['http://identifiers.org/go/GO:0036333']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:2352', 'http://identifiers.org/mamo/MAMO_0000046']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 21 molecules and 44 reactions. The translated model has 21 molecules and 46 rules'
+###
+begin model
+begin parameters
+	r1_a 2.000000
+	r1_n 1.000000
+	r1_K 0.000003
+	r2_a 0.000000
+	r2_n 1.000000
+	r2_K 0.000001
+	r3_k1 0.000008
+	r4_a 0.000000
+	r4_n 1.000000
+	r4_K 0.000005
+	r5_a 0.000000
+	r5_n 1.000000
+	r5_K 0.000001
+	r6_k1 0.000016
+	r7_a 0.000231
+	r7_n 5.000000
+	r7_K 0.000000
+	r8_k1 0.000064
+	r9_v 0.000000
+	r10_v 0.000000
+	r11_a 0.000032
+	r11_n 1.000000
+	r11_K 0.000003
+	r12_basal 0.000000
+	r12_a 0.000000
+	r12_n 5.000000
+	r12_K 0.000000
+	r12_a1 0.000000
+	r12_K1 0.000001
+	r13_k1 0.000560
+	r14_k1 1102000.000000
+	r15_k1 0.080000
+	r16_k1 837400.000000
+	r17_k1 0.000914
+	r18_k1 394380000000.000000
+	r19_k1 0.001800
+	r20_k1 222390.000000
+	r21_k1 0.006100
+	r22_k1 121400.000000
+	r23_k1 0.003535
+	r24_k1 1102000.000000
+	r25_k1 0.080000
+	r26_k1 69600.000000
+	r27_k1 0.024000
+	r28_k1 0.833300
+	r29_k1 0.833300
+	r30_k1 0.000400
+	r31_k1 47100000000.000000
+	r32_k1 22922.000000
+	r33_k1 108000.000000
+	r34_kloss 13.112000
+	r35_a 0.000000
+	r35_n 1.000000
+	r35_K 0.000001
+	r36_k1 0.000012
+	r37_K 0.000012
+	r38_k1 0.000001
+	r39_k1 0.000084
+	r40_Km 0.000125
+	r40_V 0.000010
+	r41_Km 0.000018
+	r41_V 0.000022
+	r42_a 0.000000
+	r42_K 0.000000
+	r43_k1 0.000032
+	r44_C 17777.700000
+	r44_K 0.000002
+end parameters
+begin compartments
+	#volume units: L
+	compartment_1 3 1.0 #LiverCell
+	compartment_3 3 1.0 #intercell
+end compartments
+begin molecule types
+	Heme_intercell()
+	s2__Tf_Fe___TfR1()
+	FT1()
+	Tf_Fe_intercell()
+	Tf_Fe_TfR1()
+	HFE_TfR()
+	Fe_FT()
+	FT()
+	s2HFE_TfR2()
+	s2HFE_TfR()
+	Tf_Fe_TfR2()
+	HO_1()
+	TfR()
+	Hamp()
+	Heme()
+	Fpn()
+	s2__Tf_Fe___TfR2()
+	LIP()
+	TfR2()
+	HFE()
+	IRP()
+end molecule types
+begin seed species
+	@compartment_1:Hamp() 3011000000000000.0 # 5e-09mol/L * 6.022e23/mol *1.0L #Hamp #species_7
+	@compartment_1:FT() 99965200000000.0 #original 1.66e-10mol/L #FT #species_25
+	@compartment_1:HO_1() 21438320000000.0 #original 3.56e-11mol/L #HO_1 #species_1
+	@compartment_1:Heme() 602200000000000.1 #original 1e-09mol/L #Heme #species_5
+	@compartment_1:LIP() 7.8286e+17 #original 1.3e-06mol/L #LIP #species_2
+	@compartment_1:Fpn() 602200000000000.1 #original 1e-09mol/L #Fpn #species_4
+	@compartment_1:IRP() 6.98552e+17 #original 1.16e-06mol/L #IRP #species_6
+	@compartment_3:$Tf_Fe_intercell() 3.0110000000000005e+18 #original 5e-06mol/L #Tf_Fe_intercell #species_43
+	@compartment_3:TfR() 2.4088e+17 #original 4e-07mol/L #TfR #species_3
+	@compartment_3:HFE() 1.2044e+17 #original 2e-07mol/L #HFE #species_8
+	@compartment_3:TfR2() 1.8066e+18 #original 3e-06mol/L #TfR2 #species_10
+	@compartment_3:$Heme_intercell() 6.022e+16 #original 1e-07mol/L #Heme_intercell #species_11
+end seed species
+begin observables
+	Species Hamp_compartment_1 @compartment_1:Hamp() #Hamp
+	Species Fe_FT_compartment_1 @compartment_1:Fe_FT() #Fe-FT
+	Species FT_compartment_1 @compartment_1:FT() #FT
+	Species FT1_compartment_1 @compartment_1:FT1() #FT1
+	Species HO_1_compartment_1 @compartment_1:HO_1() #HO-1
+	Species Heme_compartment_1 @compartment_1:Heme() #Heme
+	Species LIP_compartment_1 @compartment_1:LIP() #LIP
+	Species Fpn_compartment_1 @compartment_1:Fpn() #Fpn
+	Species IRP_compartment_1 @compartment_1:IRP() #IRP
+	Species Tf_Fe_intercell_compartment_3 @compartment_3:Tf_Fe_intercell() #Tf-Fe_intercell
+	Species TfR_compartment_3 @compartment_3:TfR() #TfR
+	Species Tf_Fe_TfR1_compartment_3 @compartment_3:Tf_Fe_TfR1() #Tf-Fe-TfR1
+	Species HFE_compartment_3 @compartment_3:HFE() #HFE
+	Species HFE_TfR_compartment_3 @compartment_3:HFE_TfR() #HFE-TfR
+	Species Tf_Fe_TfR2_compartment_3 @compartment_3:Tf_Fe_TfR2() #Tf-Fe-TfR2
+	Species s2__Tf_Fe___TfR1_compartment_3 @compartment_3:s2__Tf_Fe___TfR1() #2(Tf-Fe)-TfR1
+	Species s2HFE_TfR_compartment_3 @compartment_3:s2HFE_TfR() #2HFE-TfR
+	Species s2HFE_TfR2_compartment_3 @compartment_3:s2HFE_TfR2() #2HFE-TfR2
+	Species s2__Tf_Fe___TfR2_compartment_3 @compartment_3:s2__Tf_Fe___TfR2() #2(Tf-Fe)-TfR2
+	Species TfR2_compartment_3 @compartment_3:TfR2() #TfR2
+	Species Heme_intercell_compartment_3 @compartment_3:Heme_intercell() #Heme_intercell
+end observables
+begin functions
+	parameter_1() =  if((0.0001-5.0e-13*(time()-40000)^2<1.0e-7),(1.0e-7),(0.0001-5.0e-13*(time()-40000)^2))
+	fRate0() = 2.0*Fpn_compartment_1^1.0*LIP_compartment_1/(Fpn_compartment_1^1.0 + 3.0e-6)
+	fRate1() = 6.0e-12*IRP_compartment_1^1.0/(IRP_compartment_1^1.0 + 1.0e-6)
+	fRate3() = -1.0e-9*IRP_compartment_1^1.0/(IRP_compartment_1^1.0 + 5.0e-6) + 1.0e-9
+	fRate4() = -4.0e-11*LIP_compartment_1^1.0/(LIP_compartment_1^1.0 + 1.0e-6) + 4.0e-11
+	fRate6() = 0.0002315*Hamp_compartment_1^5.0/(Hamp_compartment_1^5.0 + 3.125e-42)
+	fRate10m() = 3.2e-5*TfR2_compartment_3*Tf_Fe_intercell_compartment_3^1.0/(Tf_Fe_intercell_compartment_3^1.0 + 2.5e-6)
+	fRate11() = (5.0e-12*s2HFE_TfR2_compartment_3^5.0*(s2__Tf_Fe___TfR2_compartment_3 + 6.0e-7) + 5.0e-12*s2__Tf_Fe___TfR2_compartment_3*(s2HFE_TfR2_compartment_3^5.0 + 4.4840334375e-35))/((1.0*s2HFE_TfR2_compartment_3^5.0 + 4.4840334375e-35)*(s2__Tf_Fe___TfR2_compartment_3 + 6.0e-7))
+	fRate33() = 13.112*FT1_compartment_1*(0.048*FT1_compartment_1/(FT_compartment_1*(FT1_compartment_1/FT_compartment_1 + 1)) + 1)
+	fRate34() = -2.312e-13*IRP_compartment_1^1.0/(IRP_compartment_1^1.0 + 1.0e-6) + 2.312e-13
+	fRate39() = 1.034e-5/(Heme_intercell_compartment_3 + 0.000125)
+	fRate40() = 2.18e-5/(Heme_compartment_1 + 1.78e-5)
+	fRate41() = 2.1432e-15*Heme_compartment_1/(Heme_compartment_1 + 1.0e-9)
+	fRate43() = 17777.7*HO_1_compartment_1/(Heme_compartment_1 + 2.0e-6)
+end functions
+begin reaction rules
+	reaction_1_reactants_0: 0  -> LIP()@compartment_1 -1*2.0*(fRate0()) #Modifiers(species_4, species_4, species_2, species_4, species_2)
+	reaction_1_products_0: 0  -> Tf_Fe_intercell()@compartment_3 fRate0() #Modifiers(species_4, species_4, species_2, species_4, species_2)
+	reaction_2: 0  -> TfR()@compartment_3 fRate1() #Modifiers(species_6, species_6, species_6)
+	reaction_3: TfR()@compartment_3 -> 0  r3_k1 #Modifiers(species_3, species_3)
+	reaction_4_products_0: 0  -> Fpn()@compartment_1 fRate3() #Modifiers(species_6, species_6, species_6)
+	reaction_8_products_0: 0  -> IRP()@compartment_1 fRate4() #Modifiers(species_2, species_2, species_2)
+	reaction_9: IRP()@compartment_1 -> 0  r6_k1 #Modifiers(species_6, species_6)
+	reaction_11: Fpn()@compartment_1 -> 0  fRate6() #Modifiers(species_7, species_7, species_4, species_7, species_4)
+	reaction_12: HFE()@compartment_3 -> 0  r8_k1 #Modifiers(species_8, species_8)
+	reaction_13: 0  -> HFE()@compartment_3 r9_v
+	reaction_14: 0  -> TfR2()@compartment_3 r10_v
+	reaction_15: TfR2()@compartment_3 <-> 0  r11_a,fRate10m() #Modifiers(species_43, species_43, species_10, species_43, species_10)
+	reaction_17: 0  -> Hamp()@compartment_1 fRate11() #Modifiers(species_18, species_19, species_18, species_19, species_18, species_19)
+	reaction_18: Hamp()@compartment_1 -> 0  r13_k1 #Modifiers(species_7, species_7)
+	reaction_21: HFE()@compartment_3 + TfR()@compartment_3 -> HFE_TfR()@compartment_3 r14_k1 #Modifiers(species_8, species_3, species_8, species_3)
+	reaction_22: HFE_TfR()@compartment_3 -> HFE()@compartment_3 + TfR()@compartment_3 r15_k1 #Modifiers(species_9, species_9)
+	reaction_23: Tf_Fe_intercell()@compartment_3 + TfR()@compartment_3 -> Tf_Fe_TfR1()@compartment_3 r16_k1 #Modifiers(species_43, species_3, species_43, species_3)
+	reaction_24: Tf_Fe_TfR1()@compartment_3 -> Tf_Fe_intercell()@compartment_3 + TfR()@compartment_3 r17_k1 #Modifiers(species_12, species_12)
+	reaction_25: HFE()@compartment_3 + HFE()@compartment_3 + TfR2()@compartment_3 -> s2HFE_TfR2()@compartment_3 r18_k1 #Modifiers(species_8, species_10, species_8, species_10)
+	reaction_26: s2HFE_TfR2()@compartment_3 -> HFE()@compartment_3 + HFE()@compartment_3 + TfR2()@compartment_3 r19_k1 #Modifiers(species_18, species_18)
+	reaction_27: Tf_Fe_intercell()@compartment_3 + TfR2()@compartment_3 -> Tf_Fe_TfR2()@compartment_3 r20_k1 #Modifiers(species_43, species_10, species_43, species_10)
+	reaction_28: Tf_Fe_TfR2()@compartment_3 -> Tf_Fe_intercell()@compartment_3 + TfR2()@compartment_3 r21_k1 #Modifiers(species_15, species_15)
+	reaction_29: Tf_Fe_TfR1()@compartment_3 + Tf_Fe_intercell()@compartment_3 -> s2__Tf_Fe___TfR1()@compartment_3 r22_k1 #Modifiers(species_12, species_43, species_12, species_43)
+	reaction_30: s2__Tf_Fe___TfR1()@compartment_3 -> Tf_Fe_TfR1()@compartment_3 + Tf_Fe_intercell()@compartment_3 r23_k1 #Modifiers(species_16, species_16)
+	reaction_31: HFE_TfR()@compartment_3 + HFE()@compartment_3 -> s2HFE_TfR()@compartment_3 r24_k1 #Modifiers(species_9, species_8, species_9, species_8)
+	reaction_32: s2HFE_TfR()@compartment_3 -> HFE_TfR()@compartment_3 + HFE()@compartment_3 r25_k1 #Modifiers(species_17, species_17)
+	reaction_35: Tf_Fe_TfR2()@compartment_3 + Tf_Fe_intercell()@compartment_3 -> s2__Tf_Fe___TfR2()@compartment_3 r26_k1 #Modifiers(species_15, species_43, species_15, species_43)
+	reaction_36: s2__Tf_Fe___TfR2()@compartment_3 -> Tf_Fe_TfR2()@compartment_3 + Tf_Fe_intercell()@compartment_3 r27_k1 #Modifiers(species_19, species_19)
+	reaction_6: s2__Tf_Fe___TfR1()@compartment_3 -> LIP()@compartment_1 + LIP()@compartment_1 + LIP()@compartment_1 + LIP()@compartment_1 + TfR()@compartment_3 r28_k1 #Modifiers(species_16, species_16)
+	reaction_7: s2__Tf_Fe___TfR2()@compartment_3 -> LIP()@compartment_1 + LIP()@compartment_1 + LIP()@compartment_1 + LIP()@compartment_1 + TfR2()@compartment_3 r29_k1 #Modifiers(species_19, species_19)
+	reaction_44: LIP()@compartment_1 -> 0  r30_k1 #Modifiers(species_2, species_2)
+	reaction_45: LIP()@compartment_1 + FT()@compartment_1 -> Fe_FT()@compartment_1 r31_k1 #Modifiers(species_2, species_25, species_2, species_25)
+	reaction_46: Fe_FT()@compartment_1 -> LIP()@compartment_1 + FT()@compartment_1 r32_k1 #Modifiers(species_24, species_24)
+	reaction_47: Fe_FT()@compartment_1 -> FT1()@compartment_1 + FT()@compartment_1 r33_k1 #Modifiers(species_24, species_24)
+	reaction_48_reactants_0: 0  -> FT1()@compartment_1 -1*(fRate33()) #Modifiers(species_26, species_25, species_26, species_25, species_26, species_25)
+	reaction_48_products_0: 0  -> LIP()@compartment_1 fRate33() #Modifiers(species_26, species_25, species_26, species_25, species_26, species_25)
+	reaction_49_products_0: 0  -> FT()@compartment_1 fRate34() #Modifiers(species_6, species_6, species_6)
+	reaction_67: FT()@compartment_1 -> 0  r36_k1 #Modifiers(species_25, species_25)
+	reaction_73: FT1()@compartment_1 -> LIP()@compartment_1 r37_K #Modifiers(species_26, species_25, species_26, species_25, species_26, species_25)
+	reaction_5: s2HFE_TfR()@compartment_3 -> 0  r38_k1 #Modifiers(species_17, species_17)
+	reaction_10: s2HFE_TfR2()@compartment_3 -> 0  r39_k1 #Modifiers(species_18, species_18)
+	reaction_16: Heme_intercell()@compartment_3 -> Heme()@compartment_1 fRate39() #Modifiers(species_11, species_11)
+	reaction_19: Heme()@compartment_1 -> Heme_intercell()@compartment_3 fRate40() #Modifiers(species_5, species_5)
+	reaction_20: 0  -> HO_1()@compartment_1 fRate41() #Modifiers(species_5, species_5, species_5)
+	reaction_33: HO_1()@compartment_1 -> 0  r43_k1 #Modifiers(species_1, species_1)
+	reaction_34: Heme()@compartment_1 -> LIP()@compartment_1 fRate43() #Modifiers(species_1, species_1, species_5, species_1, species_5)
+end reaction rules
+end model

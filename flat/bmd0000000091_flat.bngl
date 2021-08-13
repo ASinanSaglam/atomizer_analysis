@@ -1,0 +1,110 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL2223638385', 'http://identifiers.org/biomodels.db/BIOMD0000000091']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/15610770']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0009408', 'http://identifiers.org/go/GO:0007569', 'http://identifiers.org/go/GO:0051085']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/131567']
+#@BQB_HAS_VERSION:['http://identifiers.org/doid/DOID:83', 'http://identifiers.org/doid/DOID:10652', 'http://identifiers.org/doid/DOID:14330']
+#@creatorEmail:'c.j.proctor@ncl.ac.uk'
+#@creatorName:'Proctor Carole'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 16 molecules and 23 reactions. The translated model has 15 molecules and 25 rules'
+###
+begin model
+begin parameters
+	k1 10.0
+	k2 2e-05
+	k3 50.0
+	k4 1e-05
+	k5 4e-06
+	k6 6e-07
+	k7 1e-07
+	k8 500.0
+	k9 1.0
+	k10 0.01
+	k11 100.0
+	k12 0.5
+	k13 0.5
+	k14 0.05
+	k15 0.08
+	k16 1000.0
+	k17 8.02e-09
+	k18 12.0
+	k19 0.02
+	k20 0.1
+	k21 0.001
+end parameters
+begin molecule types
+	TriH()
+	MCom()
+	DiH()
+	AggP()
+	HSE()
+	HSETriH()
+	MisP()
+	ROS()
+	ADP()
+	HSF1()
+	HCom()
+	Hsp90()
+	NatP()
+	ATP()
+	X()
+end molecule types
+begin seed species
+	Hsp90() 300000.0 #Hsp90 #Hsp90
+	HCom() 5900.0 #HCom #HCom
+	HSF1() 100.0 #HSF1 #HSF1
+	NatP() 6000000.0 #NatP #NatP
+	HSE() 1.0 #HSE #HSE
+	ROS() 100.0 #ROS #ROS
+	ATP() 10000.0 #ATP #ATP
+	ADP() 1000.0 #ADP #ADP
+end seed species
+begin observables
+	Species Hsp90 Hsp90() #Hsp90
+	Species HCom HCom() #HCom
+	Species HSF1 HSF1() #HSF1
+	Species MisP MisP() #MisP
+	Species MCom MCom() #MCom
+	Species TriH TriH() #TriH
+	Species DiH DiH() #DiH
+	Species NatP NatP() #NatP
+	Species AggP AggP() #AggP
+	Species HSE HSE() #HSE
+	Species HSETriH HSETriH() #HSETriH
+	Species X X() #X
+	Species ROS ROS() #ROS
+	Species ATP ATP() #ATP
+	Species ADP ADP() #ADP
+end observables
+begin functions
+	fRate6() = MisP*k7*(MisP - 1)/2
+	fRate10() = HSF1*k10*(HSF1 - 1)/2
+end functions
+begin reaction rules
+	proteinSynthesis: 0  -> NatP() k1
+	misfolding: NatP() + ROS() -> MisP() + ROS() k2
+	Hsp90MisPBinding: MisP() + Hsp90() -> MCom() k3
+	unsuccessulRefolding: MCom() -> MisP() + Hsp90() k4
+	refolding: MCom() + ATP() -> Hsp90() + NatP() + ADP() k5
+	proteinDegradation: MisP() + ATP() -> ADP() k6
+	proteinAggregation1_reactants_0: 0  -> MisP() -1*2.0*(fRate6())
+	proteinAggregation1_products_0: 0  -> AggP() fRate6()
+	proteinAggregation2: MisP() + AggP() -> AggP() + AggP() k7
+	Hsp90HSF1Binding: Hsp90() + HSF1() -> HCom() k8
+	Hsp90HSF1Release: HCom() -> Hsp90() + HSF1() k9
+	dimerisation_reactants_0: 0  -> HSF1() -1*2.0*(fRate10())
+	dimerisation_products_0: 0  -> DiH() fRate10()
+	trimerisation: HSF1() + DiH() -> TriH() k11
+	deTrimerisation: TriH() -> HSF1() + DiH() k12
+	deDimerisation: DiH() -> HSF1() + HSF1() k13
+	HSETriHBinding: TriH() + HSE() -> HSETriH() k14
+	HSETriHRelease: HSETriH() -> HSE() + TriH() k15
+	Hsp90Transcription: HSETriH() -> HSETriH() + Hsp90() k16
+	Hsp90Degradation: Hsp90() + ATP() -> ADP() k17
+	countTime: 0  -> X() 1.00000000000000
+	ATPformation: ADP() -> ATP() k18
+	ATPconsumption: ATP() -> ADP() k19
+	radicalFormation: 0  -> ROS() k20
+	radicalScavenging: ROS() -> 0  k21
+end reaction rules
+end model

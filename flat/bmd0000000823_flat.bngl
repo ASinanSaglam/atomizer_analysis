@@ -1,0 +1,131 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/29330362']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/pw/PW:0000180', 'http://identifiers.org/ncit/C101595', 'http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000823', 'http://identifiers.org/biomodels.db/MODEL1909250003']
+#@creatorEmail:'johannes.p.meyer@gmail.com'
+#@creatorName:'Meyer Johannes'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 16 molecules and 18 reactions. The translated model has 15 molecules and 20 rules'
+###
+begin model
+begin parameters
+	V1 1.0
+	Km1 95.0
+	V2 1.0
+	Km2 35.0
+	k3c 0.1
+	Km3 50.0
+	V4 1.0
+	Km4 50.0
+	k5ca 0.05
+	Km5a 7.0
+	k5cb 1.5
+	Km5b 4.0
+	V6 2.0
+	Km6 34.0
+	k7c 0.1
+	Km7 2.0
+	V8 6.0
+	Km8 1.0
+	k9c 0.3
+	Km9 160.0
+	V10 3.0
+	Km10 7.0
+	k11ca 0.1
+	Km11a 120.0
+	k11cb 0.13
+	Km11b 11.0
+	V12 4.0
+	Km12 7.0
+	k13f 0.001
+	k13r 0.006
+	k14f 0.007
+	k14r 0.006
+	k15c 0.1
+	Km15 50.0
+	V16 1.0
+	Km16 50.0
+	ks17 0
+	kd18 0
+end parameters
+begin molecule types
+	IR()
+	IRS()
+	Akt()
+	pAkt()
+	pDEPTOR()
+	pIR()
+	pmTORC2()
+	mTORC2_DEPTOR()
+	iIRS()
+	mTORC1()
+	mTORC2()
+	DEPTOR()
+	mTORC1_DEPTOR()
+	pIRS()
+	pmTORC1()
+end molecule types
+begin seed species
+	IR() 3.0110000000000005e+22 # (50.0 * 0.001)mol/L * 6.022e23/mol *1.0L #IR #IR
+	IRS() 6.022000000000001e+22 #original 100.0substance/volume  #IRS #IRS
+	Akt() 6.022000000000001e+22 #original 100.0substance/volume  #Akt #Akt
+	mTORC1() 1.5055e+23 #original 250.0substance/volume  #mTORC1 #mTORC1
+	mTORC2() 1.2044000000000002e+23 #original 200.0substance/volume  #mTORC2 #mTORC2
+	DEPTOR() 2.1077000000000003e+23 #original 350.0substance/volume  #DEPTOR #DEPTOR
+end seed species
+begin observables
+	Species IR IR() #IR
+	Species pIR pIR() #pIR
+	Species IRS IRS() #IRS
+	Species pIRS pIRS() #pIRS
+	Species iIRS iIRS() #iIRS
+	Species Akt Akt() #Akt
+	Species pAkt pAkt() #pAkt
+	Species mTORC1 mTORC1() #mTORC1
+	Species pmTORC1 pmTORC1() #pmTORC1
+	Species mTORC2 mTORC2() #mTORC2
+	Species pmTORC2 pmTORC2() #pmTORC2
+	Species mTORC1_DEPTOR mTORC1_DEPTOR() #mTORC1_DEPTOR
+	Species mTORC2_DEPTOR mTORC2_DEPTOR() #mTORC2_DEPTOR
+	Species DEPTOR DEPTOR() #DEPTOR
+	Species pDEPTOR pDEPTOR() #pDEPTOR
+end observables
+begin functions
+	fRate0() = V1/(IR + Km1)
+	fRate1() = V2/(Km2 + pIR)
+	fRate2() = k3c*pIR/(IRS + Km3)
+	fRate3() = V4/(Km4 + pIRS)
+	fRate4() = 1.0*Akt*k5ca*pIRS/(Akt + Km5a) + 1.0*Akt*k5cb*pmTORC2/(Akt + Km5b)
+	fRate5() = V6/(Km6 + pAkt)
+	fRate6() = k7c*pAkt/(Km7 + mTORC1)
+	fRate7() = V8/(Km8 + pmTORC1)
+	fRate8() = k9c*pIR/(Km9 + mTORC2)
+	fRate9() = V10/(Km10 + pmTORC2)
+	fRate10() = 1.0*DEPTOR*k11ca*pmTORC1/(Km11a + pDEPTOR) + 1.0*DEPTOR*k11cb*pmTORC2/(DEPTOR + Km11b)
+	fRate11() = V12/(Km12 + pDEPTOR)
+	fRate14() = k15c*pmTORC1/(IRS + Km15)
+	fRate15() = V16/(Km16 + iIRS)
+end functions
+begin reaction rules
+	v1: IR() -> pIR() fRate0()
+	v2: pIR() -> IR() fRate1()
+	v3: IRS() -> pIRS() fRate2() #Modifiers(pIR)
+	v4: pIRS() -> IRS() fRate3()
+	v5_reactants_0: 0  -> Akt() -1*(fRate4()) #Modifiers(pIRS, pmTORC2)
+	v5_products_0: 0  -> pAkt() fRate4() #Modifiers(pIRS, pmTORC2)
+	v6: pAkt() -> Akt() fRate5()
+	v7: mTORC1() -> pmTORC1() fRate6() #Modifiers(pAkt)
+	v8: pmTORC1() -> mTORC1() fRate7()
+	v9: mTORC2() -> pmTORC2() fRate8() #Modifiers(pIR)
+	v10: pmTORC2() -> mTORC2() fRate9()
+	v11_reactants_0: 0  -> DEPTOR() -1*(fRate10()) #Modifiers(pmTORC1, pmTORC2)
+	v11_products_0: 0  -> pDEPTOR() fRate10() #Modifiers(pmTORC1, pmTORC2)
+	v12: pDEPTOR() -> DEPTOR() fRate11()
+	v13: mTORC1() + DEPTOR() <-> mTORC1_DEPTOR() k13f,k13r
+	v14: mTORC2() + DEPTOR() <-> mTORC2_DEPTOR() k14f,k14r
+	v15: IRS() -> iIRS() fRate14() #Modifiers(pmTORC1)
+	v16: iIRS() -> IRS() fRate15()
+	v17: 0  -> DEPTOR() ks17
+	v18: pDEPTOR() -> 0  kd18
+end reaction rules
+end model

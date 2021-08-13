@@ -1,0 +1,61 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/doi/10.1088/1757-899X/546/3/032025']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/ncit/C15632', 'http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/ncit/C62713']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1911270004', 'http://identifiers.org/biomodels.db/BIOMD0000000877']
+#@creatorEmail:'johannes.p.meyer@gmail.com'
+#@creatorName:'Meyer Johannes'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 4 molecules and 9 reactions. The translated model has 4 molecules and 9 rules'
+###
+begin model
+begin parameters
+	r 0.1
+	K 2139.0
+	beta 0.01
+	alpha 0.5
+	delta_u 50.0
+	K_c 10000.0
+	delta 0.5
+	delta_i 60.0
+	b 0.5
+	gamma 0.1
+	mu 150.0
+	psi 4.17
+end parameters
+begin molecule types
+	U()
+	C()
+	V()
+	I()
+end molecule types
+begin seed species
+	U() 6.022e+25 # 100.0mol/L * 6.022e23/mol *1.0L #U #U
+	I() 6.022e+24 #original 10.0substance/volume  #I #I
+	V() 6.022e+24 #original 10.0substance/volume  #V #V
+	C() 1.8066000000000001e+25 #original 30.0substance/volume  #C #C
+end seed species
+begin observables
+	Species U U() #U
+	Species I I() #I
+	Species V V() #V
+	Species C C() #C
+end observables
+begin functions
+	fRate0() = U*r*(1 - (I + U)/K)
+	fRate1() = beta/(I + U + alpha)
+	fRate2() = C*delta_u/(C + K_c)
+	fRate3() = C*delta_i/(C + K_c)
+	fRate5() = I*b*delta
+end functions
+begin reaction rules
+	Tumor_Growth_products_0: 0  -> U() fRate0() #Modifiers(I)
+	Tumor_Cell_Infection: U() + V() -> I() fRate1()
+	Uninfected_Tumor_Lysis_Drug: U() -> 0  fRate2() #Modifiers(C)
+	Infected_Tumor_Lysis_Drug: I() -> 0  fRate3() #Modifiers(C)
+	Infected_Tumor_Death: I() -> 0  delta
+	Virus_Production: 0  -> V() fRate5() #Modifiers(I)
+	Virus_Decay: V() -> 0  gamma
+	Drug_Injection: 0  -> C() mu
+	Drug_Decay: C() -> 0  psi
+end reaction rules
+end model

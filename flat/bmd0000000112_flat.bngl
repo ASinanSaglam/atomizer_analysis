@@ -1,0 +1,82 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000112', 'http://identifiers.org/biomodels.db/MODEL4024559990']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/17186703']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/452646']
+#@BQB_IS_PART_OF:['http://identifiers.org/kegg.pathway/hsa04350']
+#@BQB_IS:['http://identifiers.org/obo.go/GO:0007179']
+#@creatorEmail:'hdharuri@cds.caltech.edu'
+#@creatorName:'Dharuri Harish'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 10 molecules and 8 reactions. The translated model has 10 molecules and 8 rules'
+###
+begin model
+begin parameters
+	r1_KCAT 3.510000
+	r1_K1 289000.000000
+	r2_k5nc 5.630000
+	r2_k5cn 0.563000
+	r3_k4nc 0.783000
+	r3_k4cn 0.004970
+	r4_k2a 0.000065
+	r4_k2d 0.039900
+	r5_k3 16.600000
+	r6_k6d 0.049200
+	r6_k6a 0.000144
+	r7_Vmax7 17100.000000
+	r7_K7 8950.000000
+end parameters
+begin compartments
+	#volume units: L
+	cytoplasm 3 1.0
+	nucleus 3 1.0
+end compartments
+begin molecule types
+	R_Smad_P_cyt()
+	R_Smad_cyt()
+	R_Smad_P_nuc()
+	Smad4_nuc()
+	receptors()
+	Pi()
+	R_Smad_nuc()
+	Smad4_cyt()
+	R_Smad_P_Smad4_nuc()
+	R_Smad_P_Smad4_cyt()
+end molecule types
+begin seed species
+	@cytoplasm:receptors() 10000.0 #receptors #receptor
+	@cytoplasm:R_Smad_cyt() 162000.0 #R_Smad_cyt #R_smad_cyt
+	@cytoplasm:Smad4_cyt() 120000.0 #Smad4_cyt #smad4_cyt
+	@nucleus:R_Smad_nuc() 18000.0 #R_Smad_nuc #R_smad_nuc
+	@nucleus:Smad4_nuc() 30000.0 #Smad4_nuc #smad4_nuc
+end seed species
+begin observables
+	Species receptors_cytoplasm @cytoplasm:receptors() #receptors
+	Species R_Smad_cyt_cytoplasm @cytoplasm:R_Smad_cyt() #R-Smad_cyt
+	Species R_Smad_P_cyt_cytoplasm @cytoplasm:R_Smad_P_cyt() #R-Smad-P_cyt
+	Species Smad4_cyt_cytoplasm @cytoplasm:Smad4_cyt() #Smad4_cyt
+	Species R_Smad_P_Smad4_cyt_cytoplasm @cytoplasm:R_Smad_P_Smad4_cyt() #R-Smad-P-Smad4_cyt
+	Species R_Smad_P_Smad4_nuc_nucleus @nucleus:R_Smad_P_Smad4_nuc() #R-Smad-P-Smad4_nuc
+	Species R_Smad_nuc_nucleus @nucleus:R_Smad_nuc() #R-Smad_nuc
+	Species R_Smad_P_nuc_nucleus @nucleus:R_Smad_P_nuc() #R-Smad-P_nuc
+	Species Smad4_nuc_nucleus @nucleus:Smad4_nuc() #Smad4_nuc
+	Species Pi_nucleus @nucleus:Pi() #Pi
+end observables
+begin functions
+	sum_smad4_cyt() = R_Smad_P_Smad4_cyt_cytoplasm + Smad4_cyt_cytoplasm
+	sum_R_smad_cyt() = R_Smad_P_Smad4_cyt_cytoplasm + R_Smad_P_cyt_cytoplasm + R_Smad_cyt_cytoplasm
+	sum_smad4_nuc() = R_Smad_P_Smad4_nuc_nucleus + Smad4_nuc_nucleus
+	sum_R_smad_nuc() = R_Smad_P_Smad4_nuc_nucleus + R_Smad_P_nuc_nucleus + R_Smad_nuc_nucleus
+	fRate0() = 3.51*receptors_cytoplasm/(R_Smad_cyt_cytoplasm + 289000.0)
+	fRate6() = 17100.0/(R_Smad_P_nuc_nucleus + 8950.0)
+	fRate7() = 100*exp(-time()/90)
+end functions
+begin reaction rules
+	reaction_1: R_Smad_cyt()@cytoplasm -> R_Smad_P_cyt()@cytoplasm fRate0() #Modifiers(receptor)
+	reaction_5: R_Smad_nuc()@nucleus <-> R_Smad_cyt()@cytoplasm r2_k5nc,r2_k5cn
+	reaction_4: Smad4_nuc()@nucleus <-> Smad4_cyt()@cytoplasm r3_k4nc,r3_k4cn
+	reaction_2: R_Smad_P_cyt()@cytoplasm + Smad4_cyt()@cytoplasm <-> R_Smad_P_Smad4_cyt()@cytoplasm r4_k2a,r4_k2d
+	reaction_3: R_Smad_P_Smad4_cyt()@cytoplasm -> R_Smad_P_Smad4_nuc()@nucleus r5_k3
+	reaction_6: R_Smad_P_Smad4_nuc()@nucleus <-> Smad4_nuc()@nucleus + R_Smad_P_nuc()@nucleus r6_k6d,r6_k6a
+	reaction_7: R_Smad_P_nuc()@nucleus -> R_Smad_nuc()@nucleus + Pi()@nucleus fRate6()
+	reaction_0_reactants_0: 0  -> receptors()@cytoplasm -1*(fRate7())
+end reaction rules
+end model

@@ -1,0 +1,46 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/23820037']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/ncit/C17132', 'http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/efo/0004354', 'http://identifiers.org/ncit/C16348']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1912160002', 'http://identifiers.org/biomodels.db/BIOMD0000000893']
+#@creatorEmail:'johannes.p.meyer@gmail.com'
+#@creatorName:'Meyer Johannes'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 3 molecules and 6 reactions. The translated model has 3 molecules and 6 rules'
+###
+begin model
+begin parameters
+	A 0.007
+	B 954.5
+	C 0.035
+	epsilon 2e-05
+	delta 0.029
+	r4_k1 1.000000
+end parameters
+begin molecule types
+	x()
+	z()
+	y()
+end molecule types
+begin seed species
+end seed species
+begin observables
+	Species x x() #x
+	Species y y() #y
+	Species z z() #z
+end observables
+begin functions
+	fRate0() = A/(epsilon + z)
+	fRate0m() = A/(epsilon + z)
+	fRate1() = B*z/(delta + x)
+	fRate2() = x^2
+	fRate5() = C/(epsilon + z)
+	fRate5m() = C*x*z/(epsilon + z)
+end functions
+begin reaction rules
+	x_Formation: 0  <-> x() fRate0(),fRate0m() #Modifiers(z)
+	x_Consumption: x() -> 0  fRate1() #Modifiers(z)
+	y_Formation: 0  -> y() fRate2() #Modifiers(x)
+	y_Consumption: y() -> 0  r4_k1
+	z_Formation: 0  -> z() y #Modifiers(y)
+	z_Consumption: z() <-> 0  fRate5(),fRate5m() #Modifiers(x)
+end reaction rules
+end model

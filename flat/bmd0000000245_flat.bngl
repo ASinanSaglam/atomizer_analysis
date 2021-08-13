@@ -1,0 +1,150 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1003250000', 'http://identifiers.org/biomodels.db/BIOMD0000000245']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/11434967']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/4932']
+#@BQB_HAS_VERSION:['http://identifiers.org/obo.go/GO:0006099', 'http://identifiers.org/obo.go/GO:0006006', 'http://identifiers.org/kegg.pathway/sce00020', 'http://identifiers.org/kegg.pathway/sce00010']
+#@creatorEmail:'lukas@ebi.ac.uk'
+#@creatorName:'Endler Lukas'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 11 molecules and 20 reactions. The translated model has 13 molecules and 41 rules'
+###
+begin model
+begin parameters
+	k_1h 0.584 #units:g_per_l_per_h
+	K_1h 0.0116 #units:g_per_l
+	k_1l 1.43 #units:g_per_l_per_h
+	K_1l 0.94 #units:g_per_l
+	k_1e 47.1 #units:g_per_l_per_h
+	K_1e 0.12 #units:g_per_l
+	K_1i 14.2 #units:l_per_g
+	k_2 0.501 #units:g_per_l_per_h
+	K_2 2e-05 #units:g_per_l
+	K_2i 0.101 #units:l_per_g
+	k_3 5.81 #units:g_per_l_per_h
+	K_3 5e-07 #units:g_per_l
+	k_4 4.8 #units:g_per_l_per_h
+	K_4 0.000264 #units:g_per_l
+	k_5 0.0104 #units:g_per_l_per_h
+	K_5 0.0102 #units:g_per_l
+	k_5e 0.775 #units:g_per_l_per_h
+	K_5e 0.1 #units:g_per_l
+	K_5i 440.0 #units:l_per_g
+	k_6 2.82 #units:g_per_l_per_h
+	K_6 0.034 #units:g_per_l
+	k_6r 0.0125 #units:dimensionless
+	K_6e 0.057 #units:g_per_l
+	k_7 1.203 #units:g_per_l_per_h
+	K_7 0.0101 #units:g_per_l
+	k_8 0.589 #units:g_per_l_per_h
+	k_9 0.008 #units:g_per_l_per_h
+	K_9 1e-06 #units:g_per_l
+	k_9e 0.0751 #units:g_per_l_per_h
+	K_9e 13.0 #units:g_per_l
+	K_9i 25.0 #units:l_per_g
+	k_9c 0.00399 #units:g_per_l_per_h
+	k_10 0.392 #units:g_per_l_per_h
+	K_10 0.0023 #units:g_per_l
+	k_10e 0.00339 #units:g_per_l_per_h
+	K_10e 0.0018 #units:g_per_l
+	k_11 0.02 #units:g_per_l_per_h
+	D 0.1 #units:per_h
+end parameters
+begin molecule types
+	EtOH()
+	Glucose__feed__()
+	Red_Equ___NADH__()
+	Acetate()
+	BM__active__()
+	BM__AcDH__()
+	Pyruvate()
+	Acetaldehyde()
+	CO2()
+	BM()
+	Glucose()
+	X_a
+	X_AcDH
+end molecule types
+begin seed species
+	Glucose() 9.033e+21 # (15.0 * 0.001)mol/L * 6.022e23/mol *1.0L #Glucose #s_glu
+	BM() 1.2044e+18 #original 0.002gram/liter #BM #x
+	Glucose__feed__() 9.033e+21 #original 15.0gram/liter #Glucose__feed__ #S_f
+	X_a 0.1 #units:dimensionless
+	X_AcDH 0.0075 #units:dimensionless
+end seed species
+begin observables
+	Species Glucose Glucose() #Glucose
+	Species Pyruvate Pyruvate() #Pyruvate
+	Species Acetate Acetate() #Acetate
+	Species Acetaldehyde Acetaldehyde() #Acetaldehyde
+	Species EtOH EtOH() #EtOH
+	Species BM BM() #BM
+	Species BM__active__ BM__active__() #BM(active)
+	Species BM__AcDH__ BM__AcDH__() #BM(AcDH)
+	Species CO2 CO2() #CO2
+	Species Red_Equ___NADH__ Red_Equ___NADH__() #Red. Equ. (NADH)
+	Species Glucose__feed__ Glucose__feed__() #Glucose(feed)
+	Species X_a X_a
+	Species X_AcDH X_AcDH
+end observables
+begin functions
+	arRateX_AcDH() = 1.0*(-X_AcDH*(0.732*r7 + 0.619*r8) - r11 + r9)/BM
+	arRateX_a() = 1.0*(-r10 - r9 + (1 - X_a)*(0.732*r7 + 0.619*r8))/BM
+	qCO2() = 1.0*(34.0604408089071*r2 + 11.3610543058396*r3 + 33.3106112247217*r5 + 2.88570779368325*r7 + 7.38468529879573*r8)/BM
+	qO2() = 1.0*(5.5625*r1 + 28.375*r2 + 11.34375*r4 + 33.3125*r5 - 11.34375*r6 + 1.96875*r7 + 6.6875*r8)/BM
+	BM__AcDH___ar() = BM*X_AcDH
+	BM__active___ar() = BM*X_a
+	fRate0() = BM*X_a*(Acetaldehyde*Glucose*k_1e/(Glucose*(Acetaldehyde*K_1i + 1) + K_1e) + Glucose*k_1h/(Glucose + K_1h) + Glucose*k_1l/(Glucose + K_1l))
+	fRate1() = BM*Pyruvate*X_a*k_2/((K_2 + Pyruvate)*(Glucose*K_2i + 1))
+	fRate2() = BM*Pyruvate^4*X_a*k_3/(K_3 + Pyruvate^4)
+	fRate3() = Acetaldehyde*BM*X_AcDH*X_a*k_4/(Acetaldehyde + K_4)
+	fRate4() = BM*X_a*(Acetate*k_5/(Acetate + K_5) + Acetate*k_5e/((Acetate + K_5e)*(Glucose*K_5i + 1)))
+	fRate5() = BM*X_a*k_6*(Acetaldehyde - EtOH*k_6r)/(Acetaldehyde + EtOH*K_6e + K_6)
+	fRate6() = BM*Glucose*X_a*k_7/(Glucose + K_7)
+	fRate7() = Acetate*BM*X_a*k_8/((Acetate + K_5e)*(Glucose*K_5i + 1))
+	fRate8() = BM*X_a*(Glucose*k_9c/(Glucose + K_9) + (EtOH*k_9e/(EtOH + K_9e) + Glucose*k_9/(Glucose + K_9))/(Glucose*K_9i + 1))
+	fRate9() = BM*X_a*(EtOH*k_10e/(EtOH + K_10e) + Glucose*k_10/(Glucose + K_10))
+	fRate10() = BM*X_AcDH*k_11
+end functions
+begin reaction rules
+	r1_reactants_0: 0  -> Glucose() -1*(fRate0()) #Modifiers(s_acetald, x)
+	r1_products_0: 0  -> Pyruvate() 0.978*fRate0() #Modifiers(s_acetald, x)
+	r1_products_1: 0  -> Red_Equ___NADH__() 0.178*fRate0() #Modifiers(s_acetald, x)
+	r2_reactants_0: 0  -> Pyruvate() -1*(fRate1()) #Modifiers(x, s_glu)
+	r2_products_0: 0  -> CO2() fRate1() #Modifiers(x, s_glu)
+	r2_products_1: 0  -> Red_Equ___NADH__() 0.908*fRate1() #Modifiers(x, s_glu)
+	r3_reactants_0: 0  -> Pyruvate() -1*(fRate2()) #Modifiers(x)
+	r3_products_0: 0  -> Acetaldehyde() 0.5*fRate2() #Modifiers(x)
+	r3_products_1: 0  -> CO2() 0.33*fRate2() #Modifiers(x)
+	r4_reactants_0: 0  -> Acetaldehyde() -1*(fRate3()) #Modifiers(x, s_EtOH)
+	r4_products_0: 0  -> Acetate() fRate3() #Modifiers(x, s_EtOH)
+	r4_products_1: 0  -> Red_Equ___NADH__() 0.363*fRate3() #Modifiers(x, s_EtOH)
+	r5_reactants_0: 0  -> Acetate() -1*(fRate4()) #Modifiers(x, s_glu)
+	r5_products_0: 0  -> CO2() fRate4() #Modifiers(x, s_glu)
+	r5_products_1: 0  -> Red_Equ___NADH__() fRate4() #Modifiers(x, s_glu)
+	r6_reactants_0: 0  -> Acetaldehyde() -1*(fRate5()) #Modifiers(x)
+	r6_reactants_1: 0  -> Red_Equ___NADH__() -1*0.363*(fRate5()) #Modifiers(x)
+	r6_products_0: 0  -> EtOH() fRate5() #Modifiers(x)
+	r7_reactants_0: 0  -> Glucose() -1*(fRate6()) #Modifiers(x)
+	r7_products_0: 0  -> BM() 0.732*fRate6() #Modifiers(x)
+	r7_products_1: 0  -> CO2() 0.127*fRate6() #Modifiers(x)
+	r7_products_2: 0  -> Red_Equ___NADH__() 0.063*fRate6() #Modifiers(x)
+	r8_reactants_0: 0  -> Acetate() -1*(fRate7()) #Modifiers(x, s_glu)
+	r8_products_0: 0  -> BM() 0.619*fRate7() #Modifiers(x, s_glu)
+	r8_products_1: 0  -> CO2() 0.325*fRate7() #Modifiers(x, s_glu)
+	r8_products_2: 0  -> Red_Equ___NADH__() 0.214*fRate7() #Modifiers(x, s_glu)
+	r9_reactants_0: 0  -> BM__active__() -1*(fRate8()) #Modifiers(x, s_glu, s_EtOH)
+	r9_products_0: 0  -> BM__AcDH__() fRate8() #Modifiers(x, s_glu, s_EtOH)
+	r10_reactants_0: 0  -> BM__active__() -1*(fRate9()) #Modifiers(x, s_glu, s_EtOH)
+	r11_reactants_0: 0  -> BM__AcDH__() -1*(fRate10()) #Modifiers(x)
+	s_glu_in: Glucose__feed__() -> Glucose() D
+	s_glu_out: Glucose() -> 0  D
+	s_pyr_out: Pyruvate() -> 0  D
+	s_acetate_out: Acetate() -> 0  D
+	s_acetald_out: Acetaldehyde() -> 0  D
+	s_EtOH_out: EtOH() -> 0  D
+	a_out: BM__active__() -> 0  D
+	x_out: BM() -> 0  D
+	AcDH_out: BM__AcDH__() -> 0  D
+	0  -> X_a() arRateX_a #rateLaw
+	0  -> X_AcDH() arRateX_AcDH #rateLaw
+end reaction rules
+end model

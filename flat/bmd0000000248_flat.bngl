@@ -1,0 +1,122 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000248', 'http://identifiers.org/biomodels.db/MODEL1004170000']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/17380394']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/16636861', 'http://identifiers.org/pubmed/10898733']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0072592', 'http://identifiers.org/go/GO:0015671', 'http://identifiers.org/go/GO:0071453']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@creatorEmail:'nicola.lai@case.edu'
+#@creatorName:'Lai Nicola'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 9 molecules and 5 reactions. The translated model has 8 molecules and 10 rules'
+###
+begin model
+begin parameters
+	KatpaseW 0.3207601 #units:perMin
+	Kadp 0.058 #units:mM
+	Kia 0.135 #units:mM
+	Kiq 3.5 #units:mM
+	Kib 3.9 #units:mM
+	Kp 3.8 #units:mM
+	Kb 1.11 #units:mM
+	Km 0.0007 #units:mM
+	VfCK 6000.0 #units:mMperMin
+	VrCK 3008.65837589001 #units:mMperMin
+	QRm 0.688 #units:LperMin
+	QWm 3.118 #units:LperMin
+	Qc 8.0 #units:LperMin
+	PSR 134.2828 #units:LperMin
+	PSE 20000.0 #units:LperMin
+	nH 2.7 #units:dimensionless
+	Hct 0.45 #units:dimensionless
+	Wmc 0.8064 #units:dimensionless
+	CmcMb 0.5 #units:mM
+	CrbcHb 5.18 #units:mM
+	KMb 308.642 #units:permM
+	KHb 7800.7 #units:mM
+	tE 3.0 #units:time_min
+	CTart 9.199981 #units:mM
+	VmaxM 53.5150933 #units:mMperMin
+	VmaxH 34.68714 #units:mMperMin
+	VmaxVH 23.11702 #units:mMperMin
+	KatpaseM 1.71080439028658 #units:perMin
+	KatpaseH 2.2581564 #units:perMin
+	KatpaseVH 3.3423645 #units:perMin
+	dQMmM 7.9167374 #units:LperMin
+	dQMmH 9.42198 #units:LperMin
+	dQMmVH 12.74981 #units:LperMin
+	tauQmM 0.32 #units:time_min
+	tauQmH 0.396 #units:time_min
+	tauQmVH 0.42 #units:time_min
+	StO2mW 81.17123516 #units:dimensionless
+	exercise_level 3.0 #units:dimensionless
+	Pi_Tissue 8.39228931e+21 #original 0.5substance/L
+	Pi 8.39228931e+21 #original 0.5substance/L
+end parameters
+begin compartments
+	#volume units: L
+	Capillary 3 2.0979
+	Tissue 3 27.8721
+end compartments
+begin molecule types
+	CTcap()
+	CFtis()
+	PCr()
+	CFcap()
+	ATP()
+	ADP()
+	CTtis()
+	Cr()
+end molecule types
+begin seed species
+	@Tissue:ATP() 1.3761435991063736e+23 # (8.198857 * 0.001)mol/L * 6.022e23/mol *27.8721L #ATP #ATP
+	@Tissue:PCr() 6.879901425782005e+23 #original 40.98942substance/L #PCr #PCr
+	@Tissue:ADP() 1.916798878404e+19 #original 0.001142substance/L #ADP #ADP
+	@Tissue:Cr() 1.6961823770227199e+22 #original 1.01056substance/L #Cr #Cr
+	@Capillary:CTcap() 6.672445550065259e+21 #original 5.281527substance/L #CTcap #CTcap
+	@Tissue:CTtis() 6.856204957686288e+21 #original 0.4084824substance/L #CTtis #CTtis
+	@Capillary:CFcap() 5.01425750322e+19 #original 0.03969substance/L #CFcap #CFcap
+	@Tissue:CFtis() 6.27743240388e+20 #original 0.0374substance/L #CFtis #CFtis
+end seed species
+begin observables
+	Species ATP_Tissue @Tissue:ATP() #ATP
+	Species PCr_Tissue @Tissue:PCr() #PCr
+	Species ADP_Tissue @Tissue:ADP() #ADP
+	Species Cr_Tissue @Tissue:Cr() #Cr
+	Species CTcap_Capillary @Capillary:CTcap() #CTcap
+	Species CTtis_Tissue @Tissue:CTtis() #CTtis
+	Species CFcap_Capillary @Capillary:CFcap() #CFcap
+	Species CFtis_Tissue @Tissue:CFtis() #CFtis
+end observables
+begin functions
+	Qm() =  if((time()<=tE),(QWm),(QWm+dQMm*(1-exp((tE-time())/tauQm))))
+	PSm() = PSR + (1 - exp((QRm - Qm)/Qc))*(PSE - PSR)
+	Vmax() =  if((exercise_level==1),(VmaxM),(if((exercise_level==2),(VmaxH),(VmaxVH))))
+	arRateCFtis() = (-ADP_Tissue*CFtis_Tissue*Vmax/((ADP_Tissue + Kadp)*(CFtis_Tissue + Km)) + 0.0358781720788889*PSm*(CFcap_Capillary - CFtis_Tissue))/(CmcMb*KMb*Wmc/(CFtis_Tissue*KMb + 1)^2 + 1)
+	arRateCFcap() = (-PSm*(CFcap_Capillary - CFtis_Tissue) + Qm*(CTart - CTcap_Capillary))/(8.3916*CFcap_Capillary^(nH - 1)*CrbcHb*Hct*KHb*nH/(CFcap_Capillary^nH*KHb + 1)^2 + 2.0979)
+	StO2m() = (209.79*CFcap_Capillary^nH*CrbcHb*Hct*KHb/(CFcap_Capillary^nH*KHb + 1) + 2787.21*CFtis_Tissue*CmcMb*KMb*Wmc/(CFtis_Tissue*KMb + 1))/(27.8721*CmcMb*Wmc + 2.0979*CrbcHb*Hct)
+	RStO2m() = StO2m/StO2mW - 1
+	oxygen_phosph() = 0.215269032473334*OxidativePhosphorylation
+	CK_flux_mM() = 0.0358781720788889*CreatineKinase
+	ATPase_flux_mM() = 0.0358781720788889*ATPase
+	tauQm() =  if((exercise_level==1),(tauQmM),(if((exercise_level==2),(tauQmH),(tauQmVH))))
+	dQMm() =  if((exercise_level==1),(dQMmM),(if((exercise_level==2),(dQMmH),(dQMmVH))))
+	KatpaseE() =  if((exercise_level==1),(KatpaseM),(if((exercise_level==2),(KatpaseH),(KatpaseVH))))
+	Katpase() =  if((time()<=tE),(KatpaseW),(KatpaseE))
+	fRate1() = ADP_Tissue*CFtis_Tissue*Vmax/((ADP_Tissue + Kadp)*(CFtis_Tissue + Km))
+	fRate2() = CTart*Qm
+	fRate3() = PSm*(CFcap_Capillary - CFtis_Tissue)
+	fRate4() = Kib*Kiq*Kp*VfCK/(ATP_Tissue*Cr_Tissue*Kb*Kia*Kib + ATP_Tissue*Kb*Kia*Kib*Kp + Kb*Kia*Kiq*Kp*PCr_Tissue + Kib*Kiq*Kp*(ADP_Tissue*Kb + ADP_Tissue*PCr_Tissue + Kb*Kia))
+	fRate4m() = Kb*Kia*Kib*VrCK/(ADP_Tissue*Kb*Kib*Kiq*Kp + ADP_Tissue*Kib*Kiq*Kp*PCr_Tissue + Kb*Kia*Kib*(ATP_Tissue*Cr_Tissue + ATP_Tissue*Kp + Kiq*Kp) + Kb*Kia*Kiq*Kp*PCr_Tissue)
+end functions
+begin reaction rules
+	ATPase: ATP()@Tissue -> ADP()@Tissue Katpase
+	OxidativePhosphorylation_reactants_0: 0  -> ADP()@Tissue -1*6.0*(fRate1()) #Modifiers(Pi, CFtis)
+	OxidativePhosphorylation_reactants_1: 0  -> CTtis()@Tissue -1*(fRate1()) #Modifiers(Pi, CFtis)
+	OxidativePhosphorylation_products_0: 0  -> ATP()@Tissue 6.0*fRate1() #Modifiers(Pi, CFtis)
+	ConvectionTransport: 0  <-> CTcap()@Capillary fRate2(),Qm
+	DiffusionTransport_reactants_0: 0  -> CTcap()@Capillary -1*(fRate3()) #Modifiers(CFcap, CFtis)
+	DiffusionTransport_products_0: 0  -> CTtis()@Tissue fRate3() #Modifiers(CFcap, CFtis)
+	CreatineKinase: ADP()@Tissue + PCr()@Tissue <-> ATP()@Tissue + Cr()@Tissue fRate4(),fRate4m()
+	0  -> CFcap()@Capillary arRateCFcap #rateLaw
+	0  -> CFtis()@Tissue arRateCFtis #rateLaw
+end reaction rules
+end model

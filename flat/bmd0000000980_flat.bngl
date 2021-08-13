@@ -1,0 +1,54 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/32982082']
+#@BQB_IS:['http://identifiers.org/doid/DOID:0080600']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606', 'http://identifiers.org/taxonomy/2697049']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000028']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL2012070001', 'http://identifiers.org/biomodels.db/BIOMD0000000980']
+#@creatorEmail:'kramachandran@ebi.ac.uk'
+#@creatorName:'Ramachandran Kausthubh'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 5 molecules and 4 reactions. The translated model has 4 molecules and 4 rules'
+###
+begin model
+begin parameters
+	omega 0.01667
+	sigma 0.19231
+	gamma 0.05556
+	R_1_0 3.0
+	R_2_0 3.0
+	R_1_f 1.6
+	R_2_f 1.6
+	eta 0
+	Total_population 1.98757892512e+32 #original 330052960.0substance/volume
+end parameters
+begin molecule types
+	Exposed()
+	Infected()
+	Susceptible()
+	Recovered()
+end molecule types
+begin seed species
+	Exposed() 8.6956577974e+30 #original 14439817.0substance/volume #Exposed #Exposed
+	Infected() 1.9875789251200002e+29 #original 330052.96substance/volume #Infected #Infected
+	Susceptible()() (330052960.0) -(0.0) -(14439817.0) -(330052.96) #Susceptible
+end seed species
+begin observables
+	Species Susceptible Susceptible() #Susceptible
+	Species Exposed Exposed() #Exposed
+	Species Infected Infected() #Infected
+	Species Recovered Recovered() #Recovered
+end observables
+begin functions
+	R_1() = R_1_0*exp(-eta*time()) + R_1_f*(1 - exp(-eta*time()))
+	R_2() = R_2_0*exp(-eta*time()) + R_2_f*(1 - exp(-eta*time()))
+	R_fixed() = R_1/2 + R_2/2
+	beta() = R_fixed*gamma
+	Fraction_infected() = Infected/Total_population
+	fRate0() = Infected*beta/Total_population
+end functions
+begin reaction rules
+	Susceptible_to_Exposed: Susceptible() -> Exposed() fRate0() #Modifiers(Total_population, Infected)
+	Exposed_to_Infected: Exposed() -> Infected() sigma
+	Infected_to_Recovered: Infected() -> Recovered() gamma
+	Recovered_to_Susceptible__Reinfection: Recovered() -> Susceptible() omega
+end reaction rules
+end model

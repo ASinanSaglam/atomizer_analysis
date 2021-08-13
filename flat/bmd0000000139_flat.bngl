@@ -1,0 +1,189 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL7157773062', 'http://identifiers.org/biomodels.db/BIOMD0000000139']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/12424381']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10090']
+#@BQB_IS_PART_OF:['http://identifiers.org/kegg.pathway/mmu04660', 'http://identifiers.org/obo.go/GO:0007249']
+#@creatorEmail:'hdharuri@cds.caltech.edu'
+#@creatorName:'Dharuri Harish'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 24 molecules and 45 reactions. The translated model has 25 molecules and 47 rules'
+###
+begin model
+begin parameters
+	a4 30.0
+	d4 0.03
+	a5 30.0
+	d5 0.03
+	a6 30.0
+	d6 0.03
+	r4 1.224
+	r5 0.45
+	r6 0.66
+	deg4 0.00135
+	k1 5.4
+	k01 0.0048
+	tr2a 9.25e-05
+	tr2 0.99
+	tr3 0.0168
+	a1 1.35
+	d1 0.075
+	tr1 0.2448
+	deg1 0.00678
+	tp1 0.018
+	tp2 0.012
+	a2 0.36
+	d2 0.105
+	a3 0.54
+	d3 0.105
+	a7 11.1
+	k2 0.828
+	a8 2.88
+	k2_beta 0.624
+	a9 4.2
+	k2_eps 0.624
+	r1 0.2442
+	r2 0.09
+	r3 0.132
+	k02 0.0072
+	fr 1.0
+	flag_for_after_trigger 0.5
+	tr2b 0
+	tr2e 0
+	trigger_value 0
+	r39_k2_IkBbeta_nuc_NFkB_nuc 0.006900
+end parameters
+begin compartments
+	#volume units: L
+	cytoplasm 3 1.0
+	nucleus 3 1.0
+end compartments
+begin molecule types
+	IKK_IkBeps_NFkB()
+	IKK_IkBeps()
+	IkBeps_nuc()
+	IkBbeta()
+	IkBeps_NFkB()
+	IkBalpha_NFkB()
+	NFkB()
+	IkBbeta_nuc()
+	IkBalpha()
+	IkBeps_transcript()
+	IkBalpha_transcript()
+	IKK_IkBbeta_NFkB()
+	IKK_IkBalpha_NFkB()
+	IkBeps_nuc_NFkB_nuc()
+	IkBbeta_NFkB()
+	IkBalpha_nuc()
+	IkBeps()
+	NFkB_nuc()
+	IkBbeta_nuc_NFkB_nuc()
+	IkBbeta_transcript()
+	IKK_IkBbeta()
+	IkBalpha_nuc_NFkB_nuc()
+	IKK_IkBalpha()
+	IKK()
+	fr_after_trigger
+end molecule types
+begin seed species
+	@cytoplasm:IkBalpha() 6.022e+16 # (0.1 * 1e-06)mol/L * 6.022e23/mol *1.0L #IkBalpha #IkBalpha
+	@cytoplasm:NFkB() 6.022e+16 #original 0.1micro mole/L #NFkB #NFkB
+	@nucleus:NFkB_nuc() 602200000000000.1 #original 0.001micro mole/L #NFkB_nuc #NFkB_nuc
+	fr_after_trigger@cytoplasm 0.5
+end seed species
+begin observables
+	Species IkBalpha_cytoplasm @cytoplasm:IkBalpha() #IkBalpha
+	Species NFkB_cytoplasm @cytoplasm:NFkB() #NFkB
+	Species IkBalpha_NFkB_cytoplasm @cytoplasm:IkBalpha_NFkB() #IkBalpha_NFkB
+	Species IkBbeta_cytoplasm @cytoplasm:IkBbeta() #IkBbeta
+	Species IkBbeta_NFkB_cytoplasm @cytoplasm:IkBbeta_NFkB() #IkBbeta_NFkB
+	Species IkBeps_cytoplasm @cytoplasm:IkBeps() #IkBeps
+	Species IkBeps_NFkB_cytoplasm @cytoplasm:IkBeps_NFkB() #IkBeps_NFkB
+	Species IKK_IkBalpha_cytoplasm @cytoplasm:IKK_IkBalpha() #IKK_IkBalpha
+	Species IKK_IkBalpha_NFkB_cytoplasm @cytoplasm:IKK_IkBalpha_NFkB() #IKK_IkBalpha_NFkB
+	Species IKK_cytoplasm @cytoplasm:IKK() #IKK
+	Species IKK_IkBbeta_cytoplasm @cytoplasm:IKK_IkBbeta() #IKK_IkBbeta
+	Species IKK_IkBbeta_NFkB_cytoplasm @cytoplasm:IKK_IkBbeta_NFkB() #IKK_IkBbeta_NFkB
+	Species IKK_IkBeps_cytoplasm @cytoplasm:IKK_IkBeps() #IKK_IkBeps
+	Species IKK_IkBeps_NFkB_cytoplasm @cytoplasm:IKK_IkBeps_NFkB() #IKK_IkBeps_NFkB
+	Species NFkB_nuc_nucleus @nucleus:NFkB_nuc() #NFkB_nuc
+	Species IkBalpha_nuc_nucleus @nucleus:IkBalpha_nuc() #IkBalpha_nuc
+	Species IkBalpha_nuc_NFkB_nuc_nucleus @nucleus:IkBalpha_nuc_NFkB_nuc() #IkBalpha_nuc_NFkB_nuc
+	Species IkBbeta_nuc_nucleus @nucleus:IkBbeta_nuc() #IkBbeta_nuc
+	Species IkBbeta_nuc_NFkB_nuc_nucleus @nucleus:IkBbeta_nuc_NFkB_nuc() #IkBbeta_nuc_NFkB_nuc
+	Species IkBeps_nuc_nucleus @nucleus:IkBeps_nuc() #IkBeps_nuc
+	Species IkBalpha_transcript_nucleus @nucleus:IkBalpha_transcript() #IkBalpha_transcript
+	Species IkBbeta_transcript_nucleus @nucleus:IkBbeta_transcript() #IkBbeta_transcript
+	Species IkBeps_transcript_nucleus @nucleus:IkBeps_transcript() #IkBeps_transcript
+	Species IkBeps_nuc_NFkB_nuc_nucleus @nucleus:IkBeps_nuc_NFkB_nuc() #IkBeps_nuc_NFkB_nuc
+	Species fr_after_trigger fr_after_trigger
+end observables
+begin functions
+	arRatefr_after_trigger() = -0.5*trigger_value/(time()^2 - 3998.0*time() + 3996001.0)
+	Total_NFkBn() = IkBbeta_nuc_NFkB_nuc_nucleus + NFkB_nuc_nucleus
+	Total_IkBalpha() = IKK_IkBalpha_NFkB_cytoplasm + IKK_IkBalpha_cytoplasm + IkBalpha_NFkB_cytoplasm + IkBalpha_cytoplasm
+	Total_IkBeps() = IKK_IkBeps_NFkB_cytoplasm + IKK_IkBeps_cytoplasm + IkBeps_NFkB_cytoplasm + IkBeps_cytoplasm
+	Total_IkBbeta() = IKK_IkBbeta_NFkB_cytoplasm + IKK_IkBbeta_cytoplasm + IkBbeta_NFkB_cytoplasm + IkBbeta_cytoplasm
+	fRate12() = 1.0*k1
+	fRate12m() = 1.0*k01
+	fRate17() = NFkB_nuc_nucleus^2*tr2
+	fRate24() = IkBalpha_transcript_nucleus*tr1
+	fRate26() = 1.0*tp1
+	fRate26m() = 1.0*tp2
+	fRate28() = IkBbeta_transcript_nucleus*tr1
+	fRate30() = 0.5*tp1
+	fRate30m() = 0.5*tp2
+	fRate32() = IkBeps_transcript_nucleus*tr1
+	fRate34() = 0.5*tp1
+	fRate34m() = 0.5*tp2
+	fRate38() = 0.0069*IkBbeta_nuc_NFkB_nuc_nucleus*(flag_for_after_trigger + fr_after_trigger)
+	fRate40() = 0.5*k2_eps
+end functions
+begin reaction rules
+	v1: NFkB()@cytoplasm + IkBalpha()@cytoplasm <-> IkBalpha_NFkB()@cytoplasm a4,d4
+	v2: NFkB()@cytoplasm + IkBbeta()@cytoplasm <-> IkBbeta_NFkB()@cytoplasm a5,d5
+	v3: NFkB()@cytoplasm + IkBeps()@cytoplasm <-> IkBeps_NFkB()@cytoplasm a6,d6
+	v4: NFkB()@cytoplasm + IKK_IkBalpha()@cytoplasm <-> IKK_IkBalpha_NFkB()@cytoplasm a4,d4
+	v5: IKK_IkBalpha_NFkB()@cytoplasm -> NFkB()@cytoplasm + IKK()@cytoplasm r4
+	v6: NFkB()@cytoplasm + IKK_IkBbeta()@cytoplasm <-> IKK_IkBbeta_NFkB()@cytoplasm a5,d5
+	v7: IKK_IkBbeta_NFkB()@cytoplasm -> NFkB()@cytoplasm + IKK()@cytoplasm r5
+	v8: NFkB()@cytoplasm + IKK_IkBeps()@cytoplasm <-> IKK_IkBeps_NFkB()@cytoplasm a6,d6
+	v9: IKK_IkBeps_NFkB()@cytoplasm -> NFkB()@cytoplasm + IKK()@cytoplasm r6
+	v10: IkBalpha_NFkB()@cytoplasm -> NFkB()@cytoplasm deg4
+	v11: IkBbeta_NFkB()@cytoplasm -> NFkB()@cytoplasm deg4
+	v12: IkBeps_NFkB()@cytoplasm -> NFkB()@cytoplasm deg4
+	v13: NFkB()@cytoplasm <-> NFkB_nuc()@nucleus fRate12(),fRate12m()
+	v14: NFkB_nuc()@nucleus + IkBalpha_nuc()@nucleus <-> IkBalpha_nuc_NFkB_nuc()@nucleus a4,d4
+	v15: NFkB_nuc()@nucleus + IkBbeta_nuc()@nucleus <-> IkBbeta_nuc_NFkB_nuc()@nucleus a5,d5
+	v16: NFkB_nuc()@nucleus + IkBeps_nuc()@nucleus <-> IkBeps_nuc_NFkB_nuc()@nucleus a6,d6
+	v17: 0  -> IkBalpha_transcript()@nucleus tr2a
+	v18: 0  -> IkBalpha_transcript()@nucleus fRate17() #Modifiers(NFkB_nuc)
+	v19: IkBalpha_transcript()@nucleus -> 0  tr3
+	v20: 0  -> IkBbeta_transcript()@nucleus tr2b
+	v21: IkBbeta_transcript()@nucleus -> 0  tr3
+	v22: 0  -> IkBeps_transcript()@nucleus tr2e
+	v23: IkBeps_transcript()@nucleus -> 0  tr3
+	v24: IKK()@cytoplasm + IkBalpha()@cytoplasm <-> IKK_IkBalpha()@cytoplasm a1,d1
+	v25: 0  -> IkBalpha()@cytoplasm fRate24() #Modifiers(IkBalpha_transcript)
+	v26: IkBalpha()@cytoplasm -> 0  deg1
+	v27: IkBalpha()@cytoplasm <-> IkBalpha_nuc()@nucleus fRate26(),fRate26m()
+	v28: IKK()@cytoplasm + IkBbeta()@cytoplasm <-> IKK_IkBbeta()@cytoplasm a2,d2
+	v29: 0  -> IkBbeta()@cytoplasm fRate28() #Modifiers(IkBbeta_transcript)
+	v30: IkBbeta()@cytoplasm -> 0  deg1
+	v31: IkBbeta()@cytoplasm <-> IkBbeta_nuc()@nucleus fRate30(),fRate30m()
+	v32: IKK()@cytoplasm + IkBeps()@cytoplasm <-> IKK_IkBeps()@cytoplasm a3,d3
+	v33: 0  -> IkBeps()@cytoplasm fRate32() #Modifiers(IkBeps_transcript)
+	v34: IkBeps()@cytoplasm -> 0  deg1
+	v35: IkBeps()@cytoplasm <-> IkBeps_nuc()@nucleus fRate34(),fRate34m()
+	v36: IKK()@cytoplasm + IkBalpha_NFkB()@cytoplasm <-> IKK_IkBalpha_NFkB()@cytoplasm a7,d1
+	v37: IkBalpha_nuc_NFkB_nuc()@nucleus -> IkBalpha_NFkB()@cytoplasm k2
+	v38: IKK()@cytoplasm + IkBbeta_NFkB()@cytoplasm <-> IKK_IkBbeta_NFkB()@cytoplasm a8,d2
+	v39_reactants_0: 0  -> IkBbeta_nuc_NFkB_nuc()@nucleus -1*(fRate38())
+	v39_products_0: 0  -> IkBbeta_NFkB()@cytoplasm fRate38()
+	v40: IKK()@cytoplasm + IkBeps_NFkB()@cytoplasm <-> IKK_IkBeps_NFkB()@cytoplasm a9,d3
+	v41: IkBeps_nuc_NFkB_nuc()@nucleus -> IkBeps_NFkB()@cytoplasm fRate40()
+	v42: IKK_IkBalpha()@cytoplasm -> IKK()@cytoplasm r1
+	v43: IKK_IkBbeta()@cytoplasm -> IKK()@cytoplasm r2
+	v44: IKK_IkBeps()@cytoplasm -> IKK()@cytoplasm r3
+	v45: IKK()@cytoplasm -> 0  k02
+	0  -> fr_after_trigger()@cytoplasm arRatefr_after_trigger #rateLaw
+end reaction rules
+end model

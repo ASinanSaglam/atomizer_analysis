@@ -1,0 +1,387 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000634', 'http://identifiers.org/biomodels.db/MODEL1704060000']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/24098635']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/BIOMD0000000286', 'http://identifiers.org/biomodels.db/BIOMD0000000462']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:10652', 'http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_HAS_PART:['http://identifiers.org/pw/PW:0000015']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0030330', 'http://identifiers.org/go/GO:0070841']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 69 molecules and 112 reactions. The translated model has 66 molecules and 118 rules'
+###
+begin model
+begin parameters
+	ksynp53mRNA 0.001
+	kdegp53mRNA 0.0001
+	ksynMdm2mRNA 0.0005
+	kdegMdm2mRNA 0.0005
+	ksynMdm2mRNAGSK3bp53 0.0007
+	ksynp53 0.007
+	kdegp53 0.005
+	kbinMdm2p53 0.001155
+	krelMdm2p53 1.155e-05
+	kbinGSK3bp53 2e-06
+	krelGSK3bp53 0.002
+	ksynMdm2 0.000495
+	kdegMdm2 0.01
+	kbinE1Ub 0.0002
+	kbinE2Ub 0.001
+	kp53Ub 5e-05
+	kp53PolyUb 0.01
+	kbinProt 2e-06
+	kactDUBp53 1e-07
+	kactDUBProtp53 0.0001
+	kactDUBMdm2 1e-07
+	kMdm2Ub 4.56e-06
+	kMdm2PUb 6.84e-06
+	kMdm2PolyUb 0.00456
+	kdam 0.08
+	krepair 2e-05
+	kactATM 0.0001
+	kinactATM 0.0005
+	kphosp53 0.0002
+	kdephosp53 0.5
+	kphosMdm2 2.0
+	kdephosMdm2 0.5
+	kphosMdm2GSK3b 0.005
+	kphosMdm2GSK3bp53 0.5
+	kphospTauGSK3bp53 0.1
+	kphospTauGSK3b 0.0002
+	kdephospTau 0.01
+	kbinMTTau 0.1
+	krelMTTau 0.0001
+	ksynTau 8e-05
+	kbinTauProt 1.925e-07
+	kdegTau20SProt 0.01
+	kaggTau 1e-08
+	kaggTauP1 1e-08
+	kaggTauP2 1e-07
+	ktangfor 0.001
+	kinhibprot 1e-07
+	ksynp53mRNAAbeta 1e-05
+	kdamROS 1e-05
+	kgenROSAbeta 2e-05
+	kgenROSPlaque 1e-05
+	kgenROSGlia 1e-05
+	kproteff 1.0
+	kremROS 7e-05
+	kprodAbeta 1.86e-05
+	kprodAbeta2 1.86e-05
+	kdegAbeta 1.5e-05
+	kaggAbeta 3e-06
+	kdisaggAbeta 1e-06
+	kdisaggAbeta1 0.0002
+	kdisaggAbeta2 1e-06
+	kdegAbetaGlia 0.005
+	kpf 0.2
+	kpg 0.15
+	kpghalf 10.0
+	kactglia1 6e-07
+	kactglia2 6e-07
+	kinactglia1 5e-06
+	kinactglia2 5e-06
+	kbinAbetaGlia 1e-05
+	krelAbetaGlia 5e-05
+	kdegAntiAb 2.75e-06
+	kbinAbantiAb 1e-06
+	DUB 200.0
+	Source 1.0
+	Sink 1.0
+end parameters
+begin molecule types
+	Abeta_antiAb()
+	antiAb()
+	Mdm2_Ub3()
+	Mdm2_Ub2()
+	p53_mRNA()
+	MT_Tau()
+	AMP()
+	Mdm2_P1_p53_Ub4()
+	Mdm2_P_Ub3()
+	Mdm2_P_Ub2()
+	Mdm2_P_Ub4()
+	Mdm2_Ub()
+	disaggPlaque2()
+	NFT()
+	GSK3b()
+	AbetaPlaque_GliaA()
+	GliaM2()
+	Mdm2_Ub4_Proteasome()
+	Mdm2_p53()
+	Mdm2_p53_Ub2()
+	AggTau()
+	Proteasome_Tau()
+	GSK3b_p53_P()
+	Mdm2_p53_Ub4()
+	Abeta()
+	degAbetaGlia()
+	AggTau_Proteasome()
+	ATMI()
+	IR()
+	Mdm2_P_Ub4_Proteasome()
+	Mdm2_p53_Ub()
+	Tau_P1()
+	Tau()
+	GliaA()
+	Mdm2DUB()
+	Mdm2()
+	E2_Ub()
+	damDNA()
+	ADP()
+	AbetaDimer()
+	p53_Ub4_Proteasome()
+	Mdm2_Ub4()
+	Mdm2_P_Ub()
+	AbetaPlaque()
+	p53()
+	E1_Ub()
+	Mdm2_mRNA()
+	p53_P()
+	ATP()
+	GSK3b_p53()
+	p53DUB()
+	AggAbeta_Proteasome()
+	Tau_P2()
+	AbetaDimer_antiAb()
+	ATMA()
+	Mdm2_P()
+	ROS()
+	PP1()
+	GliaM1()
+	E2()
+	disaggPlaque1()
+	Ub()
+	Mdm2_p53_Ub3()
+	Proteasome()
+	E1()
+	GliaI()
+end molecule types
+begin seed species
+	Mdm2() 5.0 #Mdm2 #Mdm2
+	p53() 5.0 #p53 #p53
+	Mdm2_p53() 95.0 #Mdm2_p53 #Mdm2_p53
+	Mdm2_mRNA() 10.0 #Mdm2_mRNA #Mdm2_mRNA
+	p53_mRNA() 10.0 #p53_mRNA #p53_mRNA
+	ATMI() 200.0 #ATMI #ATMI
+	E1() 100.0 #E1 #E1
+	E2() 100.0 #E2 #E2
+	Proteasome() 500.0 #Proteasome #Proteasome
+	Ub() 4000.0 #Ub #Ub
+	p53DUB() 200.0 #p53DUB #p53DUB
+	Mdm2DUB() 200.0 #Mdm2DUB #Mdm2DUB
+	GSK3b() 500.0 #GSK3b #GSK3b
+	MT_Tau() 100.0 #MT_Tau #MT_Tau
+	PP1() 50.0 #PP1 #PP1
+	$ATP() 10000.0 #ATP #ATP
+	$ADP() 1000.0 #ADP #ADP
+	$AMP() 1000.0 #AMP #AMP
+	GliaI() 100.0 #GliaI #GliaI
+end seed species
+begin observables
+	Species Mdm2 Mdm2() #Mdm2
+	Species p53 p53() #p53
+	Species Mdm2_p53 Mdm2_p53() #Mdm2_p53
+	Species Mdm2_mRNA Mdm2_mRNA() #Mdm2_mRNA
+	Species p53_mRNA p53_mRNA() #p53_mRNA
+	Species ATMA ATMA() #ATMA
+	Species ATMI ATMI() #ATMI
+	Species p53_P p53_P() #p53_P
+	Species Mdm2_P Mdm2_P() #Mdm2_P
+	Species IR IR() #IR
+	Species ROS ROS() #ROS
+	Species damDNA damDNA() #damDNA
+	Species E1 E1() #E1
+	Species E2 E2() #E2
+	Species E1_Ub E1_Ub() #E1_Ub
+	Species E2_Ub E2_Ub() #E2_Ub
+	Species Proteasome Proteasome() #Proteasome
+	Species Ub Ub() #Ub
+	Species p53DUB p53DUB() #p53DUB
+	Species Mdm2DUB Mdm2DUB() #Mdm2DUB
+	Species Mdm2_p53_Ub Mdm2_p53_Ub() #Mdm2_p53_Ub
+	Species Mdm2_p53_Ub2 Mdm2_p53_Ub2() #Mdm2_p53_Ub2
+	Species Mdm2_p53_Ub3 Mdm2_p53_Ub3() #Mdm2_p53_Ub3
+	Species Mdm2_p53_Ub4 Mdm2_p53_Ub4() #Mdm2_p53_Ub4
+	Species Mdm2_P1_p53_Ub4 Mdm2_P1_p53_Ub4() #Mdm2_P1_p53_Ub4
+	Species Mdm2_Ub Mdm2_Ub() #Mdm2_Ub
+	Species Mdm2_Ub2 Mdm2_Ub2() #Mdm2_Ub2
+	Species Mdm2_Ub3 Mdm2_Ub3() #Mdm2_Ub3
+	Species Mdm2_Ub4 Mdm2_Ub4() #Mdm2_Ub4
+	Species Mdm2_P_Ub Mdm2_P_Ub() #Mdm2_P_Ub
+	Species Mdm2_P_Ub2 Mdm2_P_Ub2() #Mdm2_P_Ub2
+	Species Mdm2_P_Ub3 Mdm2_P_Ub3() #Mdm2_P_Ub3
+	Species Mdm2_P_Ub4 Mdm2_P_Ub4() #Mdm2_P_Ub4
+	Species p53_Ub4_Proteasome p53_Ub4_Proteasome() #p53_Ub4_Proteasome
+	Species Mdm2_Ub4_Proteasome Mdm2_Ub4_Proteasome() #Mdm2_Ub4_Proteasome
+	Species Mdm2_P_Ub4_Proteasome Mdm2_P_Ub4_Proteasome() #Mdm2_P_Ub4_Proteasome
+	Species GSK3b GSK3b() #GSK3b
+	Species GSK3b_p53 GSK3b_p53() #GSK3b_p53
+	Species GSK3b_p53_P GSK3b_p53_P() #GSK3b_p53_P
+	Species Abeta Abeta() #Abeta
+	Species AggAbeta_Proteasome AggAbeta_Proteasome() #AggAbeta_Proteasome
+	Species AbetaPlaque AbetaPlaque() #AbetaPlaque
+	Species Tau Tau() #Tau
+	Species Tau_P1 Tau_P1() #Tau_P1
+	Species Tau_P2 Tau_P2() #Tau_P2
+	Species MT_Tau MT_Tau() #MT_Tau
+	Species AggTau AggTau() #AggTau
+	Species AggTau_Proteasome AggTau_Proteasome() #AggTau_Proteasome
+	Species Proteasome_Tau Proteasome_Tau() #Proteasome_Tau
+	Species PP1 PP1() #PP1
+	Species NFT NFT() #NFT
+	Species ATP ATP() #ATP
+	Species ADP ADP() #ADP
+	Species AMP AMP() #AMP
+	Species AbetaDimer AbetaDimer() #AbetaDimer
+	Species AbetaPlaque_GliaA AbetaPlaque_GliaA() #AbetaPlaque_GliaA
+	Species GliaI GliaI() #GliaI
+	Species GliaM1 GliaM1() #GliaM1
+	Species GliaM2 GliaM2() #GliaM2
+	Species GliaA GliaA() #GliaA
+	Species antiAb antiAb() #antiAb
+	Species Abeta_antiAb Abeta_antiAb() #Abeta_antiAb
+	Species AbetaDimer_antiAb AbetaDimer_antiAb() #AbetaDimer_antiAb
+	Species degAbetaGlia degAbetaGlia() #degAbetaGlia
+	Species disaggPlaque1 disaggPlaque1() #disaggPlaque1
+	Species disaggPlaque2 disaggPlaque2() #disaggPlaque2
+end observables
+begin functions
+	fRate0() = Source*ksynp53mRNA
+	fRate14() = kbinE1Ub/(ATP + 5000.0)
+	fRate25() = kdegMdm2*kproteff
+	fRate39() = kdegp53*kproteff/(ATP + 5000.0)
+	fRate50() = 0.5*Tau_P1*kaggTauP1*(Tau_P1 - 1)
+	fRate52() = 0.5*Tau_P2*kaggTauP2*(Tau_P2 - 1)
+	fRate54() = 0.5*Tau*kaggTau*(Tau - 1)
+	fRate56() = 0.5*AggTau*ktangfor*(AggTau - 1)
+	fRate59() = Source*kprodAbeta
+	fRate81() = kdegMdm2*kproteff
+	fRate87() = Source*ksynTau
+	fRate90() = 0.5*Abeta*kaggAbeta*(Abeta - 1)
+	fRate91() = 0.5*AbetaDimer*kpf*(AbetaDimer - 1)
+	fRate92() = AbetaPlaque*kpg/(AbetaPlaque^2 + kpghalf^2)
+	fRate98() = 10.0*kdegAbeta
+	fRate99() = 10.0*kdegAbeta
+end functions
+begin reaction rules
+	p53mRNASynthesis: 0  -> p53_mRNA() fRate0() #Modifiers(Source)
+	p53mRNADegradation: p53_mRNA() -> 0  kdegp53mRNA #Modifiers(p53_mRNA)
+	Mdm2Synthesis: Mdm2_mRNA() -> Mdm2_mRNA() + Mdm2() ksynMdm2 #Modifiers(Mdm2_mRNA)
+	Mdm2mRNASynthesis1: p53() -> p53() + Mdm2_mRNA() ksynMdm2mRNA #Modifiers(p53)
+	Mdm2mRNASynthesis2: p53_P() -> p53_P() + Mdm2_mRNA() ksynMdm2mRNA #Modifiers(p53_P)
+	Mdm2mRNASynthesis3: GSK3b_p53() -> GSK3b_p53() + Mdm2_mRNA() ksynMdm2mRNAGSK3bp53 #Modifiers(GSK3b_p53)
+	Mdm2mRNASynthesis4: GSK3b_p53_P() -> GSK3b_p53_P() + Mdm2_mRNA() ksynMdm2mRNAGSK3bp53 #Modifiers(GSK3b_p53_P)
+	Mdm2mRNADegradation: Mdm2_mRNA() -> 0  kdegMdm2mRNA #Modifiers(Mdm2_mRNA)
+	P53Mdm2Binding: p53() + Mdm2() -> Mdm2_p53() kbinMdm2p53 #Modifiers(p53, Mdm2)
+	P53Mdm2Release: Mdm2_p53() -> p53() + Mdm2() krelMdm2p53 #Modifiers(Mdm2_p53)
+	GSK3p53Binding: GSK3b() + p53() -> GSK3b_p53() kbinGSK3bp53 #Modifiers(GSK3b, p53)
+	GSK3p53Release: GSK3b_p53() -> GSK3b() + p53() krelGSK3bp53 #Modifiers(GSK3b_p53)
+	GSK3p53PBinding: GSK3b() + p53_P() -> GSK3b_p53_P() kbinGSK3bp53 #Modifiers(GSK3b, p53_P)
+	GSK3_p53PRelease: GSK3b_p53_P() -> GSK3b() + p53_P() krelGSK3bp53 #Modifiers(GSK3b_p53_P)
+	E1UbBinding: E1() + Ub() + ATP() -> E1_Ub() + AMP() fRate14() #Modifiers(E1, Ub, ATP)
+	E2UbBinding: E2() + E1_Ub() -> E2_Ub() + E1() kbinE2Ub #Modifiers(E2, E1_Ub)
+	Mdm2Ubiquitination: Mdm2() + E2_Ub() -> Mdm2_Ub() + E2() kMdm2Ub #Modifiers(Mdm2, E2_Ub)
+	Mdm2polyUbiquitination1: Mdm2_Ub() + E2_Ub() -> Mdm2_Ub2() + E2() kMdm2PolyUb #Modifiers(Mdm2_Ub, E2_Ub)
+	Mdm2polyUbiquitination2: Mdm2_Ub2() + E2_Ub() -> Mdm2_Ub3() + E2() kMdm2PolyUb #Modifiers(Mdm2_Ub2, E2_Ub)
+	Mdm2polyUbiquitination3: Mdm2_Ub3() + E2_Ub() -> Mdm2_Ub4() + E2() kMdm2PolyUb #Modifiers(Mdm2_Ub3, E2_Ub)
+	Mdm2Deubiquitination4: Mdm2_Ub4() + Mdm2DUB() -> Mdm2_Ub3() + Mdm2DUB() + Ub() kactDUBMdm2 #Modifiers(Mdm2_Ub4, Mdm2DUB)
+	Mdm2Deubiquitination3: Mdm2_Ub3() + Mdm2DUB() -> Mdm2_Ub2() + Mdm2DUB() + Ub() kactDUBMdm2 #Modifiers(Mdm2_Ub3, Mdm2DUB)
+	Mdm2Deubiquitination2: Mdm2_Ub2() + Mdm2DUB() -> Mdm2_Ub() + Mdm2DUB() + Ub() kactDUBMdm2 #Modifiers(Mdm2_Ub2, Mdm2DUB)
+	Mdm2Deubiquitination1: Mdm2_Ub() + Mdm2DUB() -> Mdm2() + Mdm2DUB() + Ub() kactDUBMdm2 #Modifiers(Mdm2_Ub, Mdm2DUB)
+	Mdm2ProteasomeBinding1: Mdm2_Ub4() + Proteasome() -> Mdm2_Ub4_Proteasome() kbinProt #Modifiers(Mdm2_Ub4, Proteasome)
+	Mdm2Degradation: Mdm2_Ub4_Proteasome() -> Proteasome() + Ub() + Ub() + Ub() + Ub() fRate25() #Modifiers(Mdm2_Ub4_Proteasome)
+	p53Synthesis: p53_mRNA() -> p53() + p53_mRNA() ksynp53 #Modifiers(p53_mRNA)
+	p53Monoubiquitination: E2_Ub() + Mdm2_p53() -> Mdm2_p53_Ub() + E2() kp53Ub #Modifiers(E2_Ub, Mdm2_p53)
+	p53Polyubiquitination1: Mdm2_p53_Ub() + E2_Ub() -> Mdm2_p53_Ub2() + E2() kp53PolyUb #Modifiers(Mdm2_p53_Ub, E2_Ub)
+	p53Polyubiquitination2: Mdm2_p53_Ub2() + E2_Ub() -> Mdm2_p53_Ub3() + E2() kp53PolyUb #Modifiers(Mdm2_p53_Ub2, E2_Ub)
+	p53Polyubiquitination3: Mdm2_p53_Ub3() + E2_Ub() -> Mdm2_p53_Ub4() + E2() kp53PolyUb #Modifiers(Mdm2_p53_Ub3, E2_Ub)
+	p53Deubiqutination4: Mdm2_p53_Ub4() + p53DUB() -> Mdm2_p53_Ub3() + p53DUB() + Ub() kactDUBp53 #Modifiers(Mdm2_p53_Ub4, p53DUB)
+	p53Deubiquitination3: Mdm2_p53_Ub3() + p53DUB() -> Mdm2_p53_Ub2() + p53DUB() + Ub() kactDUBp53 #Modifiers(Mdm2_p53_Ub3, p53DUB)
+	p53Deubiquitination2: Mdm2_p53_Ub2() + p53DUB() -> Mdm2_p53_Ub() + p53DUB() + Ub() kactDUBp53 #Modifiers(Mdm2_p53_Ub2, p53DUB)
+	p53Deubiquitination1: Mdm2_p53_Ub() + p53DUB() -> Mdm2_p53() + p53DUB() + Ub() kactDUBp53 #Modifiers(Mdm2_p53_Ub, p53DUB)
+	Mdm2GSK3phosphorylation1: Mdm2_p53_Ub4() + GSK3b() -> Mdm2_P1_p53_Ub4() + GSK3b() kphosMdm2GSK3b #Modifiers(Mdm2_p53_Ub4, GSK3b)
+	Mdm2GSK3phosphorylation2: Mdm2_p53_Ub4() + GSK3b_p53() -> Mdm2_P1_p53_Ub4() + GSK3b_p53() kphosMdm2GSK3bp53 #Modifiers(Mdm2_p53_Ub4, GSK3b_p53)
+	Mdm2GSK3phosphorylation3: Mdm2_p53_Ub4() + GSK3b_p53_P() -> Mdm2_P1_p53_Ub4() + GSK3b_p53_P() kphosMdm2GSK3bp53 #Modifiers(Mdm2_p53_Ub4, GSK3b_p53_P)
+	p53ProteasomeBinding1: Mdm2_P1_p53_Ub4() + Proteasome() -> p53_Ub4_Proteasome() + Mdm2() kbinProt #Modifiers(Mdm2_P1_p53_Ub4, Proteasome)
+	Degradationp53_Ub4: p53_Ub4_Proteasome() + ATP() -> Ub() + Ub() + Ub() + Ub() + Proteasome() + ADP() fRate39() #Modifiers(p53_Ub4_Proteasome, ATP)
+	TauMTbinding: Tau() -> MT_Tau() kbinMTTau #Modifiers(Tau)
+	TauMTrelease: MT_Tau() -> Tau() krelMTTau #Modifiers(MT_Tau)
+	Tauphosphorylation1: GSK3b_p53() + Tau() -> GSK3b_p53() + Tau_P1() kphospTauGSK3bp53 #Modifiers(GSK3b_p53, Tau)
+	Tauphosphorylation2: GSK3b_p53() + Tau_P1() -> GSK3b_p53() + Tau_P2() kphospTauGSK3bp53 #Modifiers(GSK3b_p53, Tau_P1)
+	Tauphosphorylation3: GSK3b_p53_P() + Tau() -> GSK3b_p53_P() + Tau_P1() kphospTauGSK3bp53 #Modifiers(GSK3b_p53_P, Tau)
+	Tauphosphorylation4: GSK3b_p53_P() + Tau_P1() -> GSK3b_p53_P() + Tau_P2() kphospTauGSK3bp53 #Modifiers(GSK3b_p53_P, Tau_P1)
+	Tauphosphorylation5: GSK3b() + Tau() -> GSK3b() + Tau_P1() kphospTauGSK3b #Modifiers(GSK3b, Tau)
+	Tauphosphorylation6: GSK3b() + Tau_P1() -> GSK3b() + Tau_P2() kphospTauGSK3b #Modifiers(GSK3b, Tau_P1)
+	Taudephosphorylation1: Tau_P2() + PP1() -> Tau_P1() + PP1() kdephospTau #Modifiers(Tau_P2, PP1)
+	Taudephosphorylation2: Tau_P1() + PP1() -> Tau() + PP1() kdephospTau #Modifiers(Tau_P1, PP1)
+	TauP1Aggregation1_reactants_0: 0  -> Tau_P1() -1*2.0*(fRate50()) #Modifiers(Tau_P1)
+	TauP1Aggregation1_products_0: 0  -> AggTau() 2.0*fRate50() #Modifiers(Tau_P1)
+	TauP1Aggregation2: Tau_P1() + AggTau() -> AggTau() + AggTau() kaggTauP1 #Modifiers(Tau_P1, AggTau)
+	TauP2Aggregation1_reactants_0: 0  -> Tau_P2() -1*2.0*(fRate52()) #Modifiers(Tau_P2)
+	TauP2Aggregation1_products_0: 0  -> AggTau() 2.0*fRate52() #Modifiers(Tau_P2)
+	TauP2Aggregation2: Tau_P2() + AggTau() -> AggTau() + AggTau() kaggTauP2 #Modifiers(Tau_P2, AggTau)
+	TauAggregation1_reactants_0: 0  -> Tau() -1*2.0*(fRate54()) #Modifiers(Tau)
+	TauAggregation1_products_0: 0  -> AggTau() 2.0*fRate54() #Modifiers(Tau)
+	TauAggregation2: Tau() + AggTau() -> AggTau() + AggTau() kaggTau #Modifiers(Tau, AggTau)
+	TangleFormation1_reactants_0: 0  -> AggTau() -1*2.0*(fRate56()) #Modifiers(AggTau)
+	TangleFormation1_products_0: 0  -> NFT() 2.0*fRate56() #Modifiers(AggTau)
+	TangleFormation2: AggTau() + NFT() -> NFT() + NFT() ktangfor #Modifiers(AggTau, NFT)
+	ProteasomeInhibitionAggTau: AggTau() + Proteasome() -> AggTau_Proteasome() kinhibprot #Modifiers(AggTau, Proteasome)
+	Abetaproduction1: 0  -> Abeta() fRate59() #Modifiers(Source)
+	Abetaproduction2: GSK3b_p53() -> Abeta() + GSK3b_p53() kprodAbeta2 #Modifiers(GSK3b_p53)
+	Abetaproduction3: GSK3b_p53_P() -> Abeta() + GSK3b_p53_P() kprodAbeta2 #Modifiers(GSK3b_p53_P)
+	ProteasomeInhibitionAbeta: AbetaDimer() + Proteasome() -> AggAbeta_Proteasome() kinhibprot #Modifiers(AbetaDimer, Proteasome)
+	AbetaDegradation: Abeta() -> 0  kdegAbeta #Modifiers(Abeta)
+	p53transcriptionViaAbeta: Abeta() -> p53_mRNA() + Abeta() ksynp53mRNAAbeta #Modifiers(Abeta)
+	DNAdamage: IR() -> IR() + damDNA() kdam #Modifiers(IR)
+	DNArepair: damDNA() -> 0  krepair #Modifiers(damDNA)
+	ATMactivation: damDNA() + ATMI() -> damDNA() + ATMA() kactATM #Modifiers(damDNA, ATMI)
+	p53phosphorylation: p53() + ATMA() -> p53_P() + ATMA() kphosp53 #Modifiers(p53, ATMA)
+	p53dephosphorylation: p53_P() -> p53() kdephosp53 #Modifiers(p53_P)
+	Mdm2phosphorylation: Mdm2() + ATMA() -> Mdm2_P() + ATMA() kphosMdm2 #Modifiers(Mdm2, ATMA)
+	Mdm2dephosphorylation: Mdm2_P() -> Mdm2() kdephosMdm2 #Modifiers(Mdm2_P)
+	Mdm2PUbiquitination: Mdm2_P() + E2_Ub() -> Mdm2_P_Ub() + E2() kMdm2PUb #Modifiers(Mdm2_P, E2_Ub)
+	Mdm2PpolyUbiquitination1: Mdm2_P_Ub() + E2_Ub() -> Mdm2_P_Ub2() + E2() kMdm2PolyUb #Modifiers(Mdm2_P_Ub, E2_Ub)
+	Mdm2PpolyUbiquitination2: Mdm2_P_Ub2() + E2_Ub() -> Mdm2_P_Ub3() + E2() kMdm2PolyUb #Modifiers(Mdm2_P_Ub2, E2_Ub)
+	Mdm2PpolyUbiquitination3: Mdm2_P_Ub3() + E2_Ub() -> Mdm2_P_Ub4() + E2() kMdm2PolyUb #Modifiers(Mdm2_P_Ub3, E2_Ub)
+	Mdm2PDeubiquitination4: Mdm2_P_Ub4() + Mdm2DUB() -> Mdm2_P_Ub3() + Mdm2DUB() + Ub() kactDUBMdm2 #Modifiers(Mdm2_P_Ub4, Mdm2DUB)
+	Mdm2PDeubiquitination3: Mdm2_P_Ub3() + Mdm2DUB() -> Mdm2_P_Ub2() + Mdm2DUB() + Ub() kactDUBMdm2 #Modifiers(Mdm2_P_Ub3, Mdm2DUB)
+	Mdm2PDeubiquitination2: Mdm2_P_Ub2() + Mdm2DUB() -> Mdm2_P_Ub() + Mdm2DUB() + Ub() kactDUBMdm2 #Modifiers(Mdm2_P_Ub2, Mdm2DUB)
+	Mdm2PDeubiquitination1: Mdm2_P_Ub() + Mdm2DUB() -> Mdm2_P() + Mdm2DUB() + Ub() kactDUBMdm2 #Modifiers(Mdm2_P_Ub, Mdm2DUB)
+	Mdm2PProteasomeBinding1: Mdm2_P_Ub4() + Proteasome() -> Mdm2_P_Ub4_Proteasome() kbinProt #Modifiers(Mdm2_P_Ub4, Proteasome)
+	Mdm2PDegradation: Mdm2_P_Ub4_Proteasome() -> Proteasome() + Ub() + Ub() + Ub() + Ub() fRate81() #Modifiers(Mdm2_P_Ub4_Proteasome)
+	ATMInactivation: ATMA() -> ATMI() kinactATM #Modifiers(ATMA)
+	AbetaROSproduction1: Abeta() -> Abeta() + ROS() kgenROSAbeta #Modifiers(Abeta)
+	PlaqueROSproduction: AbetaPlaque() -> AbetaPlaque() + ROS() kgenROSPlaque #Modifiers(AbetaPlaque)
+	AggAbetaROSproduction2: AggAbeta_Proteasome() -> AggAbeta_Proteasome() + ROS() kgenROSAbeta #Modifiers(AggAbeta_Proteasome)
+	ROSDNAdamage: ROS() -> ROS() + damDNA() kdamROS #Modifiers(ROS)
+	TauSynthesis: 0  -> Tau() fRate87() #Modifiers(Source)
+	TauProteasomeBinding: Tau() + Proteasome() -> Proteasome_Tau() kbinTauProt #Modifiers(Tau, Proteasome)
+	Tau20SProteasomeDegradation: Proteasome_Tau() -> Proteasome() kdegTau20SProt #Modifiers(Proteasome_Tau)
+	AbetaAggregation1_reactants_0: 0  -> Abeta() -1*2.0*(fRate90()) #Modifiers(Abeta)
+	AbetaAggregation1_products_0: 0  -> AbetaDimer() fRate90() #Modifiers(Abeta)
+	AbetaPlaqueFormation1_reactants_0: 0  -> AbetaDimer() -1*2.0*(fRate91()) #Modifiers(AbetaDimer)
+	AbetaPlaqueFormation1_products_0: 0  -> AbetaPlaque() fRate91() #Modifiers(AbetaDimer)
+	AbetaPlaqueGrowth: AbetaDimer() + AbetaPlaque() -> AbetaPlaque() + AbetaPlaque() fRate92() #Modifiers(AbetaDimer, AbetaPlaque)
+	AbetaDisaggregation1: AbetaDimer() -> Abeta() + Abeta() kdisaggAbeta #Modifiers(AbetaDimer)
+	AbetaDisaggregation3: AbetaPlaque() -> AbetaDimer() + disaggPlaque1() kdisaggAbeta1 #Modifiers(AbetaPlaque)
+	AbetaDisaggregation4: AbetaPlaque() + antiAb() -> AbetaDimer() + antiAb() + disaggPlaque2() kdisaggAbeta2 #Modifiers(antiAb, AbetaPlaque)
+	Abeta_antiAbBinding: Abeta() + antiAb() -> Abeta_antiAb() kbinAbantiAb #Modifiers(Abeta, antiAb)
+	AbetaDimer_antiAbBinding: AbetaDimer() + antiAb() -> AbetaDimer_antiAb() kbinAbantiAb #Modifiers(AbetaDimer, antiAb)
+	Abeta_antiAbDegredation: Abeta_antiAb() -> antiAb() fRate98() #Modifiers(Abeta_antiAb)
+	AbetaDimer_antiAbDegredation: AbetaDimer_antiAb() -> antiAb() fRate99() #Modifiers(AbetaDimer_antiAb)
+	GliaActivationStep1: GliaI() + AbetaPlaque() -> GliaM1() + AbetaPlaque() kactglia1 #Modifiers(GliaI, AbetaPlaque)
+	GliaActivationStep2: GliaM1() + AbetaPlaque() -> GliaM2() + AbetaPlaque() kactglia1 #Modifiers(GliaM1, AbetaPlaque)
+	GliaActivationStep3: GliaM2() + antiAb() -> GliaA() + antiAb() kactglia2 #Modifiers(GliaM2, antiAb)
+	GliaInactivationStep1: GliaA() -> GliaM2() kinactglia1 #Modifiers(GliaA)
+	GliaInactivationStep2: GliaM2() -> GliaM1() kinactglia2 #Modifiers(GliaM2)
+	GliaInactivationStep3: GliaM1() -> GliaI() kinactglia2 #Modifiers(GliaM1)
+	AbetaBindingToGlia: AbetaPlaque() + GliaA() -> AbetaPlaque_GliaA() kbinAbetaGlia #Modifiers(AbetaPlaque, GliaA)
+	AbetaReleaseFromGlia: AbetaPlaque_GliaA() -> AbetaPlaque() + GliaA() krelAbetaGlia #Modifiers(AbetaPlaque_GliaA)
+	AbetaPlaqueClearanceByGlia: AbetaPlaque_GliaA() -> GliaA() + degAbetaGlia() kdegAbetaGlia #Modifiers(AbetaPlaque_GliaA)
+	ROSgenerationByGlia: AbetaPlaque_GliaA() -> AbetaPlaque_GliaA() + ROS() kgenROSGlia #Modifiers(AbetaPlaque_GliaA)
+	antiAbRemoval: antiAb() -> 0  kdegAntiAb #Modifiers(antiAb)
+	ROSremoval: ROS() -> 0  kremROS #Modifiers(ROS)
+end reaction rules
+end model

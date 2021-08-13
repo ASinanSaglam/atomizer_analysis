@@ -1,0 +1,55 @@
+###
+#@BQM_HAS_INSTANCE:['http://identifiers.org/biomodels.db/MODEL1609100000', 'http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/ncit/C540', 'http://identifiers.org/taxonomy/9606']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/23805169', 'http://identifiers.org/ncit/C540']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/biomodels.db/MODEL1609100000', 'http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000830', 'http://identifiers.org/biomodels.db/MODEL1609100000']
+#@creatorEmail:'msharifshohan@ebi.ac.uk'
+#@creatorName:'Mohammad Umer Sharif Shohan'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 7 molecules and 7 reactions. The translated model has 7 molecules and 7 rules'
+###
+begin model
+begin parameters
+	r1_k3 0.960000
+	r2_k1 0.050000
+	r3_k2 0.050000
+	r4_k6 0.010000
+	r5_k7 0.010000
+	r6_k8 0.005000
+	r7_k4 0.033000
+end parameters
+begin molecule types
+	release()
+	HSsurface()
+	lysosome()
+	golgi()
+	shedding()
+	lateendosome()
+	earlyendosome()
+end molecule types
+begin seed species
+	HSsurface() 6.022000000000001e+22 # 0.1mol/L * 6.022e23/mol *1.0L #HSsurface #s1
+	earlyendosome() 2.4088000000000004e+23 #original 0.4mol/L  #earlyendosome #s2
+	lateendosome() 2.4088000000000004e+23 #original 0.4mol/L  #lateendosome #s3
+	$golgi() 3.0110000000000005e+22 #original 0.05mol/L  #golgi #s6
+	lysosome() 7.40706e+23 #original 1.23mol/L  #lysosome #s4
+end seed species
+begin observables
+	Species HSsurface HSsurface() #HS surface
+	Species earlyendosome earlyendosome() #early endosome
+	Species lateendosome lateendosome() #late endosome
+	Species golgi golgi() #golgi
+	Species lysosome lysosome() #lysosome
+	Species release release() #release
+	Species shedding shedding() #shedding
+end observables
+begin reaction rules
+	k_golgi: golgi() -> HSsurface() r1_k3
+	k_endo: HSsurface() -> earlyendosome() r2_k1
+	k_exo: earlyendosome() -> HSsurface() r3_k2
+	k_le: earlyendosome() -> lateendosome() r4_k6
+	k_lys: lateendosome() -> lysosome() r5_k7
+	k_deg: lysosome() -> release() r6_k8
+	k_shed: HSsurface() -> shedding() r7_k4
+end reaction rules
+end model

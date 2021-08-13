@@ -1,0 +1,80 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000067', 'http://identifiers.org/biomodels.db/MODEL6624231052']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/15875027']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0045990']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/83333']
+#@creatorEmail:'hdharuri@cds.caltech.edu'
+#@creatorName:'Dharuri Harish'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 8 molecules and 13 reactions. The translated model has 8 molecules and 13 rules'
+###
+begin model
+begin parameters
+	S0 0.5
+	kTCA 10.0
+	k1 80.0
+	KM1 0.06
+	k2 0.8
+	KM2 0.1
+	kAck_f 1.0
+	kAck_r 1.0
+	C 100.0
+	H 1e-07
+	Keq 0.0005
+	k3 0.01
+	alpha1 0.1
+	alpha2 2.0
+	alpha3 2.0
+	Kg1 10.0
+	Kg2 10.0
+	Kg3 0.001
+	n 2.0
+	kd 0.06
+	alpha0 0
+end parameters
+begin molecule types
+	Acetylphosphate()
+	Phosphateacetyltransferase()
+	Acetyl_CoAsynthase()
+	Acetate()
+	Acetyl_CoA()
+	lacrepressor()
+	protonatedacetate()
+	acetateexport()
+end molecule types
+begin seed species
+end seed species
+begin observables
+	Species Acetyl_CoA Acetyl_CoA() #Acetyl-CoA
+	Species Acetylphosphate Acetylphosphate() #Acetyl phosphate
+	Species Acetate Acetate() #Acetate
+	Species protonatedacetate protonatedacetate() #protonated acetate
+	Species lacrepressor lacrepressor() #lac repressor
+	Species Acetyl_CoAsynthase Acetyl_CoAsynthase() #Acetyl-CoA synthase
+	Species Phosphateacetyltransferase Phosphateacetyltransferase() #Phosphate acetyl transferase
+	Species acetateexport acetateexport() #acetate export
+end observables
+begin functions
+	fRate3() = Phosphateacetyltransferase*k1/(Acetyl_CoA + KM1)
+	fRate5() = Acetyl_CoAsynthase*k2/(Acetate + KM2)
+	fRate6() = C*H
+	fRate6m() = C*Keq
+	fRate7() = (alpha0*((Acetylphosphate/Kg1)^n + 1.0) + alpha1*(Acetylphosphate/Kg1)^n)/((Acetylphosphate/Kg1)^n + 1.0)
+	fRate8() = (alpha0*((Acetylphosphate/Kg2)^n + 1.0) + alpha2*(Acetylphosphate/Kg2)^n)/((Acetylphosphate/Kg2)^n + 1.0)
+	fRate9() = alpha0 + alpha3/((lacrepressor/Kg3)^n + 1.0)
+end functions
+begin reaction rules
+	V_gly: 0  -> Acetyl_CoA() S0
+	V_TCA: Acetyl_CoA() -> 0  kTCA
+	V_out: protonatedacetate() <-> acetateexport() k3,k3
+	V_Pta: Acetyl_CoA() -> Acetylphosphate() fRate3() #Modifiers(Pta)
+	V_Ack: Acetylphosphate() <-> Acetate() kAck_f,kAck_r
+	V_Acs: Acetate() -> Acetyl_CoA() fRate5() #Modifiers(Acs)
+	V_Ace: Acetate() <-> protonatedacetate() fRate6(),fRate6m()
+	R_LacI: 0  -> lacrepressor() fRate7() #Modifiers(AcP)
+	R_Acs: 0  -> Acetyl_CoAsynthase() fRate8() #Modifiers(AcP)
+	R_Pta: 0  -> Phosphateacetyltransferase() fRate9() #Modifiers(LacI)
+	R_dLacI: lacrepressor() -> 0  kd
+	R_dAcs: Acetyl_CoAsynthase() -> 0  kd
+	R_dPta: Phosphateacetyltransferase() -> 0  kd
+end reaction rules
+end model

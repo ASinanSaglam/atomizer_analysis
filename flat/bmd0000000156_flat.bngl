@@ -1,0 +1,50 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL0076384106', 'http://identifiers.org/biomodels.db/BIOMD0000000156']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/16773083']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/15725723']
+#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000093']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_IS_PART_OF:['http://identifiers.org/go/GO:0030330', 'http://identifiers.org/kegg.pathway/hsa04115']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@creatorEmail:'hdharuri@cds.caltech.edu'
+#@creatorName:'Dharuri Harish'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 3 molecules and 5 reactions. The translated model has 3 molecules and 5 rules'
+###
+begin model
+begin parameters
+	psi 1.0
+	alpha_xy 3.7
+	beta_y 1.5
+	alpha_y 0.9
+	alpha_0 1.1
+	Theta 2.0
+	alpha_x 0
+end parameters
+begin molecule types
+	precursorMdm2()
+	Mdm2()
+	p53()
+end molecule types
+begin seed species
+	p53() 1.2044e+22 # 0.02mol/L * 6.022e23/mol *1.0L #p53 #x
+	Mdm2() 1.2044000000000002e+23 #original 0.2dimensionless/L  #Mdm2 #y
+	precursorMdm2() 3.011e+23 #original 0.5dimensionless/L  #precursorMdm2 #y0
+end seed species
+begin observables
+	Species p53 p53() #p53
+	Species Mdm2 Mdm2() #Mdm2
+	Species precursorMdm2 precursorMdm2() #precursor Mdm2
+end observables
+begin functions
+	fRate0() = Theta*p53*psi
+	fRate1() = Mdm2*alpha_xy
+	fRate2() = beta_y*p53*psi
+end functions
+begin reaction rules
+	R1: 0  -> p53() fRate0()
+	R3: p53() -> 0  fRate1() #Modifiers(y)
+	R4: 0  -> precursorMdm2() fRate2() #Modifiers(x)
+	R5: precursorMdm2() -> Mdm2() alpha_0
+	R6: Mdm2() -> 0  alpha_y
+end reaction rules
+end model

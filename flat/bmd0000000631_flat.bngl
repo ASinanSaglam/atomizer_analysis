@@ -1,0 +1,167 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000631', 'http://identifiers.org/biomodels.db/MODEL1601130000']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/26904049']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/GO/GO:0042752', 'http://identifiers.org/go/GO:0043153', 'http://identifiers.org/go/GO:0042752']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/3702']
+#@creatorEmail:'rgutenk@email.arizona.edu'
+#@creatorName:'Gutenkunst Ryan'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 12 molecules and 33 reactions. The translated model has 12 molecules and 33 rules'
+###
+begin model
+begin parameters
+	v1 4.58
+	v1L 3.0
+	v2A 1.27
+	v2B 1.48
+	v3 1.0
+	v4 1.47
+	k1L 0.53
+	v2L 5.0
+	k1D 0.21
+	k2 0.35
+	k3 0.56
+	k4 0.57
+	p1 0.76
+	p1L 0.42
+	p2 1.01
+	p3 0.64
+	p4 1.01
+	d1 0.68
+	d2D 0.5
+	d2L 0.29
+	d3D 0.48
+	d3L 0.78
+	d4D 1.21
+	d4L 0.38
+	K1 0.16
+	K2 1.18
+	K3 0.24
+	K4 0.23
+	K5 0.3
+	K6 0.46
+	K7 2.0
+	K8 0.36
+	K9 1.9
+	K10 1.9
+	v5 0.1
+	k5 0.14
+	p5 0.62
+	d5L 4.0
+	d5D 0.52
+	g1 0.01
+	g2 0.12
+	K11 0.21
+	K12 0.56
+	PP 12.0
+	T 24.0
+	L 1.0
+	D 0
+end parameters
+begin molecule types
+	ELF4_LUXmRNA()
+	CCA1_LHYprotein()
+	Hypocotyllength()
+	PRR9_PRR7protein()
+	PRR5_TOC1mRNA()
+	PRR5_TOC1protein()
+	PIF4_PIF5protein()
+	P()
+	ELF4_LUXprotein()
+	PRR9_PRR7mRNA()
+	PIF4_PIF5mRNA()
+	CCA1_LHYmRNA()
+end molecule types
+begin seed species
+	CCA1_LHYmRNA() 6.022e+23 # 1.0mol/L * 6.022e23/mol *1.0L #CCA1_LHYmRNA #CL_m
+	CCA1_LHYprotein() 6.022e+23 #original 1.0mol/L  #CCA1_LHYprotein #CL_p
+	PRR9_PRR7mRNA() 6.022e+23 #original 1.0mol/L  #PRR9_PRR7mRNA #P97_m
+	PRR9_PRR7protein() 6.022e+23 #original 1.0mol/L  #PRR9_PRR7protein #P97_p
+	PRR5_TOC1mRNA() 6.022e+23 #original 1.0mol/L  #PRR5_TOC1mRNA #P51_m
+	PRR5_TOC1protein() 6.022e+23 #original 1.0mol/L  #PRR5_TOC1protein #P51_p
+	ELF4_LUXmRNA() 6.022e+23 #original 1.0mol/L  #ELF4_LUXmRNA #EL_m
+	ELF4_LUXprotein() 6.022e+23 #original 1.0mol/L  #ELF4_LUXprotein #EL_p
+	PIF4_PIF5mRNA() 6.022e+23 #original 1.0mol/L  #PIF4_PIF5mRNA #PIF_m
+	PIF4_PIF5protein() 6.022e+23 #original 1.0mol/L  #PIF4_PIF5protein #PIF_p
+	Hypocotyllength() 6.022e+23 #original 1.0mol/L  #Hypocotyllength #hypocotyl
+	P() 6.022e+23 #original 1.0mol/L  #P #P
+end seed species
+begin observables
+	Species CCA1_LHYmRNA CCA1_LHYmRNA() #CCA1/LHY mRNA
+	Species CCA1_LHYprotein CCA1_LHYprotein() #CCA1/LHY protein
+	Species PRR9_PRR7mRNA PRR9_PRR7mRNA() #PRR9/PRR7 mRNA
+	Species PRR9_PRR7protein PRR9_PRR7protein() #PRR9/PRR7 protein
+	Species PRR5_TOC1mRNA PRR5_TOC1mRNA() #PRR5/TOC1 mRNA
+	Species PRR5_TOC1protein PRR5_TOC1protein() #PRR5/TOC1 protein
+	Species ELF4_LUXmRNA ELF4_LUXmRNA() #ELF4/LUX mRNA
+	Species ELF4_LUXprotein ELF4_LUXprotein() #ELF4/LUX protein
+	Species PIF4_PIF5mRNA PIF4_PIF5mRNA() #PIF4/PIF5 mRNA
+	Species PIF4_PIF5protein PIF4_PIF5protein() #PIF4/PIF5 protein
+	Species Hypocotyllength Hypocotyllength() #Hypocotyl length
+	Species P P() #P
+end observables
+begin functions
+	fRate0() = v1/(1.0 + PRR5_TOC1protein^2/K2^2 + PRR9_PRR7protein^2/K1^2)
+	fRate1() = L*P*v1L/(1.0 + PRR5_TOC1protein^2/K2^2 + PRR9_PRR7protein^2/K1^2)
+	fRate2() = L*k1L
+	fRate3() = D*k1D
+	fRate4() = CCA1_LHYmRNA*p1
+	fRate5() = CCA1_LHYmRNA*L*p1L
+	fRate7() = L*P*v2L/(ELF4_LUXprotein^2/K5^2 + 1.0 + PRR5_TOC1protein^2/K4^2)
+	fRate8() = v2A/(ELF4_LUXprotein^2/K5^2 + 1.0 + PRR5_TOC1protein^2/K4^2)
+	fRate9() = CCA1_LHYprotein^2*K4^2*K5^2*v2B/((CCA1_LHYprotein^2 + K3^2)*(ELF4_LUXprotein^2*K4^2 + K4^2*K5^2 + K5^2*PRR5_TOC1protein^2))
+	fRate11() = PRR9_PRR7mRNA*p2
+	fRate12() = D*d2D
+	fRate13() = L*d2L
+	fRate14() = v3/(CCA1_LHYprotein^2/K6^2 + 1.0 + PRR5_TOC1protein^2/K7^2)
+	fRate16() = PRR5_TOC1mRNA*p3
+	fRate17() = D*d3D
+	fRate18() = L*d3L
+	fRate19() = L*v4/(CCA1_LHYprotein^2/K8^2 + ELF4_LUXprotein^2/K10^2 + 1.0 + PRR5_TOC1protein^2/K9^2)
+	fRate21() = ELF4_LUXmRNA*p4
+	fRate22() = D*d4D
+	fRate23() = L*d4L
+	fRate24() = 0.3*D
+	fRate24m() = 0.3*D
+	fRate26() = K11^2*v5/(ELF4_LUXprotein^2 + 1.0*K11^2)
+	fRate28() = PIF4_PIF5mRNA*p5
+	fRate29() = D*d5D
+	fRate30() = L*d5L
+	fRate32() = PIF4_PIF5protein^2*g2/(K12^2 + PIF4_PIF5protein^2)
+end functions
+begin reaction rules
+	CL_transcription: 0  -> CCA1_LHYmRNA() fRate0() #Modifiers(P51_p, P97_p)
+	CL_light_transcription: 0  -> CCA1_LHYmRNA() fRate1() #Modifiers(P51_p, P97_p, P)
+	CLm_light_degradation: CCA1_LHYmRNA() -> 0  fRate2()
+	CLm_dark_degradation: CCA1_LHYmRNA() -> 0  fRate3()
+	CL_translation: 0  -> CCA1_LHYprotein() fRate4() #Modifiers(CL_m)
+	CL_light_translation: 0  -> CCA1_LHYprotein() fRate5() #Modifiers(CL_m)
+	CLp_degradation: CCA1_LHYprotein() -> 0  d1
+	P97_light_transcription: 0  -> PRR9_PRR7mRNA() fRate7() #Modifiers(P51_p, EL_p, P)
+	P97_transcription: 0  -> PRR9_PRR7mRNA() fRate8() #Modifiers(P51_p, EL_p)
+	P97_CL_transcription: 0  -> PRR9_PRR7mRNA() fRate9() #Modifiers(P51_p, CL_p, EL_p)
+	P97m_degradation: PRR9_PRR7mRNA() -> 0  k2
+	P97_translation: 0  -> PRR9_PRR7protein() fRate11() #Modifiers(P97_m)
+	P97_dark_degradation: PRR9_PRR7protein() -> 0  fRate12()
+	P97_light_degradation: PRR9_PRR7protein() -> 0  fRate13()
+	P51_transcription: 0  -> PRR5_TOC1mRNA() fRate14() #Modifiers(P51_p, CL_p)
+	P51m_degradation: PRR5_TOC1mRNA() -> 0  k3
+	P51_translation: 0  -> PRR5_TOC1protein() fRate16() #Modifiers(P51_m)
+	P51_dark_degradation: PRR5_TOC1protein() -> 0  fRate17()
+	P51_light_degradation: PRR5_TOC1protein() -> 0  fRate18()
+	EL_light_transcription: 0  -> ELF4_LUXmRNA() fRate19() #Modifiers(P51_p, CL_p, EL_p)
+	ELm_degradation: ELF4_LUXmRNA() -> 0  k4
+	EL_translation: 0  -> ELF4_LUXprotein() fRate21() #Modifiers(EL_m)
+	EL_dark_degradation: ELF4_LUXprotein() -> 0  fRate22()
+	EL_light_degradation: ELF4_LUXprotein() -> 0  fRate23()
+	P_dark_accumulation: 0  <-> P() fRate24(),fRate24m()
+	P_light_degradation: P() -> 0  L
+	PIF_transcription: 0  -> PIF4_PIF5mRNA() fRate26() #Modifiers(EL_p)
+	PIFm_degradation: PIF4_PIF5mRNA() -> 0  k5
+	PIF_translation: 0  -> PIF4_PIF5protein() fRate28() #Modifiers(PIF_m)
+	PIF_dark_degradation: PIF4_PIF5protein() -> 0  fRate29()
+	PIF_light_degradation: PIF4_PIF5protein() -> 0  fRate30()
+	basal_growth: 0  -> Hypocotyllength() g1
+	PIF_induced_growth: 0  -> Hypocotyllength() fRate32() #Modifiers(PIF_p)
+end reaction rules
+end model

@@ -1,0 +1,123 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL3897395081', 'http://identifiers.org/biomodels.db/BIOMD0000000169']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/10619492']
+#@BQB_IS_PART_OF:['http://identifiers.org/reactome/REACT_1538.1']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0031575']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/40674']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@creatorEmail:'hdharuri@cds.caltech.edu'
+#@creatorName:'Dharuri Harish'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 11 molecules and 27 reactions. The translated model has 11 molecules and 29 rules'
+###
+begin model
+begin parameters
+	k1p_1 0.5
+	k1pp_1 0.5
+	k1_1 0.1
+	k2_1 0.1
+	kminus2_1 1.0
+	k3_1 1.42
+	k4_1 1e-06
+	kminus4_1 0.016
+	kminus1_1 0.001
+	k5_1 0.02
+	k6_1 0.018
+	kminus6_1 5.0
+	k7_1 1e-05
+	k8_1 2.0
+	k9_1 2.0
+	K10_1 0.035
+	k17_1 3.5
+	k18_1 1e-05
+	k19_1 0.05
+	k20_1 0.01
+	k21_1 0.1
+	k22_1 0.001
+	k23_1 0.2
+	k24_1 0.1
+	k25_1 0.01
+	k25p_1 0.02
+	k26_1 0.01
+	k26p_1 0.1
+	k27_1 0.01
+	k28_1 0.01
+	k29_1 0.001
+	k3p_1 0
+end parameters
+begin molecule types
+	pRB()
+	E2F()
+	cycD_CDK4_p27()
+	pRB_P()
+	a_cyclinE_CDK2()
+	CycD_CDK4()
+	i_cyclinE_CDK2()
+	p16()
+	cycE_CDK2_p27()
+	p27()
+	pRB_E2F()
+end molecule types
+begin seed species
+	pRB_E2F() 1.95 #pRB_E2F #Y3_1
+	pRB_P() 0.01 #pRB_P #Y11_1
+	i_cyclinE_CDK2() 0.01 #i_cyclinE_CDK2 #Y2_1
+	pRB() 0.05 #pRB #Y5_1
+	p27() 15.0 #p27 #Y7_1
+	cycE_CDK2_p27() 1.0 #cycE_CDK2_p27 #Y8_1
+	p16() 5.0 #p16 #Y10_1
+end seed species
+begin observables
+	Species pRB_E2F pRB_E2F() #pRB_E2F
+	Species E2F E2F() #E2F
+	Species pRB_P pRB_P() #pRB_P
+	Species i_cyclinE_CDK2 i_cyclinE_CDK2() #i_cyclinE_CDK2
+	Species a_cyclinE_CDK2 a_cyclinE_CDK2() #a_cyclinE_CDK2
+	Species pRB pRB() #pRB
+	Species CycD_CDK4 CycD_CDK4() #CycD_CDK4
+	Species p27 p27() #p27
+	Species cycE_CDK2_p27 cycE_CDK2_p27() #cycE_CDK2_p27
+	Species p16 p16() #p16
+	Species cycD_CDK4_p27 cycD_CDK4_p27() #cycD_CDK4_p27
+end observables
+begin functions
+	fRate0() = CycD_CDK4*k1p_1*pRB_E2F + a_cyclinE_CDK2*k1_1*pRB_E2F + cycD_CDK4_p27*k1pp_1*pRB_E2F
+	fRate2() = a_cyclinE_CDK2*k2_1
+	fRate4() = E2F*k3_1 + k3p_1
+	fRate11() = a_cyclinE_CDK2*k8_1
+	fRate15() = E2F*k18_1
+	fRate18() = a_cyclinE_CDK2*k21_1
+	fRate22() = k25_1/(k25p_1*pRB + 1.0)
+	fRate23() = k26_1/(k26p_1*p16 + 1.0)
+end functions
+begin reaction rules
+	_1_reactants_0: 0  -> pRB_E2F() -1*(fRate0()) #Modifiers(Y3_1, Y1_1, Y6_1, Y9_1)
+	_1_products_0: 0  -> E2F() fRate0() #Modifiers(Y3_1, Y1_1, Y6_1, Y9_1)
+	_1_products_1: 0  -> pRB_P() fRate0() #Modifiers(Y3_1, Y1_1, Y6_1, Y9_1)
+	pRBE2Fcomplexformation_1: pRB() + E2F() -> pRB_E2F() kminus1_1
+	cycECDK2activation_1: i_cyclinE_CDK2() -> a_cyclinE_CDK2() fRate2()
+	cycECDK2deactivation_1: a_cyclinE_CDK2() -> i_cyclinE_CDK2() kminus2_1
+	cycECDK2synthesis_1: 0  -> i_cyclinE_CDK2() fRate4() #Modifiers(Y4_1)
+	E2Fsynthesis_1: 0  -> E2F() k4_1
+	E2Fdegradation_1: E2F() -> 0  kminus4_1
+	cycECDK2degradation_1: i_cyclinE_CDK2() -> 0  k5_1
+	cycDCDK4synthesis_1: 0  -> CycD_CDK4() k6_1
+	cycDCDK4degradation_1: CycD_CDK4() -> 0  kminus6_1
+	p27synthesis_1: 0  -> p27() k7_1
+	p27degradationviacycECDK2_1: p27() -> 0  fRate11() #Modifiers(Y1_1)
+	cycECDK2p27complexformation_1: a_cyclinE_CDK2() + p27() -> cycE_CDK2_p27() k9_1
+	cycECDK2p27deassociation_1: cycE_CDK2_p27() -> a_cyclinE_CDK2() + p27() K10_1
+	cycDCDK4p16complexformation_1: CycD_CDK4() + p16() -> 0  k17_1
+	E2Fautostimulation_1: 0  -> E2F() fRate15()
+	cycDCDK4p27complexformation_1: p27() + CycD_CDK4() -> cycD_CDK4_p27() k19_1
+	cycDCDK4p27complexdeassociation_1: cycD_CDK4_p27() -> p27() + CycD_CDK4() k20_1
+	acycECDK2degradation_1: a_cyclinE_CDK2() -> 0  fRate18()
+	p27degradation_1: p27() -> 0  k22_1
+	_20: 0  -> p16() k23_1
+	p16degradation_1: p16() -> 0  k24_1
+	p16synthesisinhibitedbypRB_1: 0  -> p16() fRate22() #Modifiers(Y5_1)
+	pRBpdephosphorilation_1: 0  -> pRB() fRate23() #Modifiers(Y10_1)
+	pRBsynthesis_1: 0  -> pRB() k27_1
+	pRBdegradation_1: pRB() -> 0  k28_1
+	pRBpdephosphorylation_1: pRB_P() -> pRB() k29_1
+end reaction rules
+end model

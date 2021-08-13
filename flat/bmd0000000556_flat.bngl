@@ -1,0 +1,74 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1409240000', 'http://identifiers.org/biomodels.db/BIOMD0000000556']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/23152503']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0034205', 'http://identifiers.org/go/GO:0042987']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:10652']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@creatorEmail:'lloret@ebi.ac.uk'
+#@creatorName:'Lloret i Villas Audald'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 6 molecules and 8 reactions. The translated model has 5 molecules and 13 rules'
+###
+begin model
+begin parameters
+	v0 1.0
+	km1 0.186
+	vm1 1.1
+	km3 28.8
+	vm3 14.6
+	km4 0.915
+	vm4 1.71
+	km5 0.0672
+	vm5 0.0223
+	km2 1.64
+	vm2 0.153
+	kic 0.173
+	kiu1 145.0
+	kiu2 7.31
+end parameters
+begin molecule types
+	C83()
+	APP()
+	p3()
+	AB()
+	C99()
+end molecule types
+begin seed species
+end seed species
+begin observables
+	Species APP APP() #APP
+	Species C83 C83() #C83
+	Species C99 C99() #C99
+	Species AB AB() #AB
+	Species p3 p3() #p3
+end observables
+begin functions
+	arRatep3() = r3__D
+	arRateAB() = r4__D
+	arRateC99() = r2 - r4__D - r5
+	arRateC83() = r1 - r3__D + r5
+	arRateAPP() = r0 - r1 - r2
+	den() = C83*(X/kiu1 + 1)/(km3*(X/kic + 1)) + C99*(X/kiu2 + 1)/(km4*(X/kic + 1)) + 1
+	fRate1() = km5*vm1/(C99*km1 + km5*(APP + km1))
+	fRate2() = vm2/(APP + km2)
+	fRate3() = km4*vm3/(C99*km3 + km4*(C83 + km3))
+	fRate4() = km3*vm4/(C83*km4 + km3*(C99 + km4))
+	fRate5() = km1*vm5/(APP*km5 + km1*(C99 + km5))
+	fRate6() = kic*vm3/(den*km3*(X + kic))
+	fRate7() = kic*vm4/(den*km4*(X + kic))
+end functions
+begin reaction rules
+	r0: 0  -> APP() v0
+	r1: APP() -> C83() fRate1() #Modifiers(C99, APP, C99)
+	r2: APP() -> C99() fRate2() #Modifiers(APP)
+	r3__ND: C83() -> p3() fRate3() #Modifiers(C99, C83, C99)
+	r4__ND: C99() -> AB() fRate4() #Modifiers(C83, C99, C83)
+	r5: C99() -> C83() fRate5() #Modifiers(APP, C99, APP)
+	r3__D: C83() -> p3() fRate6() #Modifiers(X, X, C83)
+	r4__D: C99() -> AB() fRate7() #Modifiers(X, X, C99)
+	0  -> APP() arRateAPP #rateLaw
+	0  -> C83() arRateC83 #rateLaw
+	0  -> C99() arRateC99 #rateLaw
+	0  -> AB() arRateAB #rateLaw
+	0  -> p3() arRatep3 #rateLaw
+end reaction rules
+end model

@@ -1,0 +1,43 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL5573812715', 'http://identifiers.org/biomodels.db/BIOMD0000000131']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/15484883']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/40674']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0019228']
+#@creatorEmail:'enuo@caltech.edu'
+#@creatorName:'He Enuo'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 0 molecules and 0 reactions. The translated model has 2 molecules and 2 rules'
+###
+begin model
+begin parameters
+	a 0.03
+	b 0.25
+	c -52.0
+	Vthresh 30.0
+	d 0
+	i 0
+end parameters
+begin compartments
+	#volume units: L
+	cell 3 1.0
+end compartments
+begin molecule types
+	v
+	u
+end molecule types
+begin seed species
+	v@cell -64.0
+	u@cell -16.0
+end seed species
+begin observables
+	Species v v
+	Species u u
+end observables
+begin functions
+	arRateu() = a*(b*v - u)
+	arRatev() = i - u + 0.04*v^2 + 5*v + 140
+end functions
+begin reaction rules
+	0  -> v()@cell arRatev #rateLaw
+	0  -> u()@cell arRateu #rateLaw
+end reaction rules
+end model

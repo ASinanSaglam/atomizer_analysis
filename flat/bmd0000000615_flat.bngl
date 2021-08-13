@@ -1,0 +1,74 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1608150000', 'http://identifiers.org/biomodels.db/BIOMD0000000615']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/27211070']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0070841']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:14330']
+#@creatorEmail:'tvarusai@ebi.ac.uk'
+#@creatorName:'Varusai Thawfeek'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 4 molecules and 17 reactions. The translated model has 4 molecules and 17 rules'
+###
+begin model
+begin parameters
+	nA 2.91e-20
+	k1 3e-07
+	k2 2e-09
+	qA 4.17e-08
+	TAh1 72000.0
+	TBh1 720000.0
+	Vs 4.19e-15
+	Vsyn 4.19e-15
+	QBs 0
+	QBsyn 0
+	t1 0
+	t2 0
+end parameters
+begin molecule types
+	Asyn()
+	As()
+	Bs()
+	Bsyn()
+end molecule types
+begin seed species
+	As() 3.6132e+21 # 0.006mol/L * 6.022e23/mol *1.0L #As #As
+end seed species
+begin observables
+	Species As As() #As
+	Species Bs Bs() #Bs
+	Species Asyn Asyn() #Asyn
+	Species Bsyn Bsyn() #Bsyn
+end observables
+begin functions
+	fRate2() = Bs*k2
+	fRate3() = 0.693147180559945/TAh1
+	fRate4() = nA/Vs
+	fRate6() = As*k1
+	fRate7() = As*Bs*k2
+	fRate8() = 0.693147180559945/TBh1
+	fRate9() = As*nA/Vsyn
+	fRate11() = Bsyn*k2
+	fRate12() = 0.693147180559945/TAh1
+	fRate14() = Asyn*k1
+	fRate15() = Asyn*Bsyn*k2
+	fRate16() = 0.693147180559945/TBh1
+end functions
+begin reaction rules
+	R1: 0  -> As() qA
+	R2: As() -> 0  k1
+	R3: As() -> 0  fRate2() #Modifiers(Bs)
+	R4: As() -> 0  fRate3()
+	R5: As() -> 0  fRate4()
+	R6: 0  -> Bs() QBs
+	R7: 0  -> Bs() fRate6() #Modifiers(As)
+	R8: 0  -> Bs() fRate7() #Modifiers(As)
+	R9: Bs() -> 0  fRate8()
+	R10: 0  -> Asyn() fRate9() #Modifiers(As)
+	R11: Asyn() -> 0  k1
+	R12: Asyn() -> 0  fRate11() #Modifiers(Bsyn)
+	R13: Asyn() -> 0  fRate12()
+	R14: 0  -> Bsyn() QBsyn
+	R15: 0  -> Bsyn() fRate14() #Modifiers(Asyn)
+	R16: 0  -> Bsyn() fRate15() #Modifiers(Asyn)
+	R17: Bsyn() -> 0  fRate16()
+end reaction rules
+end model

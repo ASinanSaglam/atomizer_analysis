@@ -1,0 +1,138 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000389', 'http://identifiers.org/biomodels.db/MODEL1109270006']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/22001849']
+#@BQB_ENCODES:['http://identifiers.org/obo.go/GO:0019253']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/33090']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 22 molecules and 18 reactions. The translated model has 22 molecules and 22 rules'
+###
+begin model
+begin parameters
+	r 3e-05
+	D 0.0001
+	phi 0.0001
+	r1_k1 0.006000
+	r2_k1 0.020700
+	r3_k1 4.000000
+	r3_k2 0.000000
+	r4_k1 0.031000
+	r5_k1 3.100000
+	r6_k1 0.310000
+	r7_k1 6.200000
+	r8_k1 0.031000
+	r9_k1 0.279000
+	r10_k1 0.002000
+	r11_k1 0.000040
+	r12_k1 0.500000
+	r13_k1 1.550000
+	r15_k1 0.007550
+end parameters
+begin compartments
+	#volume units: 
+	chloroplast 3 1.0
+	cytosol 3 1.0
+	vacuole 3 1.0
+	phloem 3 1.0
+end compartments
+begin molecule types
+	HePc()
+	HeP()
+	Ru5P()
+	GG()
+	UTP()
+	TP()
+	Suc()
+	UDP()
+	RuBP()
+	ADP()
+	Pi()
+	Resp()
+	ATP()
+	TPc()
+	E4P()
+	SucV()
+	S7P()
+	CO2()
+	Pic()
+	E()
+	PGA()
+	TPGA()
+end molecule types
+begin seed species
+	@chloroplast:RuBP() 1.2044e+21 # (2.0 * 0.001)mol/L * 6.022e23/mol *1.0L #RuBP #RuBP
+	@chloroplast:PGA() 1.44528e+21 #original 2.4/ #PGA #PGA
+	@chloroplast:TP() 3.011e+20 #original 0.5/ #TP #TP
+	@chloroplast:HeP() 1.3248400000000003e+21 #original 2.2/ #HeP #HeP
+	@chloroplast:TPGA() 1.2044000000000002e+20 #original 0.2/ #TPGA #TPGA
+	@chloroplast:E4P() 3.0110000000000004e+19 #original 0.05/ #E4P #E4P
+	@chloroplast:S7P() 1.2044e+21 #original 2.0/ #S7P #S7P
+	@chloroplast:Ru5P() 3.0110000000000004e+19 #original 0.05/ #Ru5P #Ru5P
+	@chloroplast:GG() 6.021999999999995e+22 #original 99.9999999999999/ #GG #GG
+	@chloroplast:ATP() 2.333525e+21 #original 3.875/ #ATP #ATP
+	@chloroplast:ADP() 3.1916600000000007e+20 #original 0.53/ #ADP #ADP
+	@chloroplast:UTP() 2.3311162e+21 #original 3.871/ #UTP #UTP
+	@chloroplast:UDP() 9.713486e+20 #original 1.613/ #UDP #UDP
+	@chloroplast:Pi() 1.5055e+21 #original 2.5/ #Pi #Pi
+	@chloroplast:$CO2() 1.86682e+22 #original 31.0/ #CO2 #CO2
+	@cytosol:TPc() 6.865080000000001e+19 #original 0.114/ #TPc #TPc
+	@cytosol:HePc() 6.022000000000001e+19 #original 0.1/ #HePc #HePc
+	@cytosol:Suc() 4.655608200000001e+22 #original 77.31/ #Suc #Suc
+	@cytosol:Pic() 4.8176000000000007e+20 #original 0.8/ #Pic #Pic
+	@vacuole:SucV() 4.655608200000001e+22 #original 77.31/ #SucV #SucV
+	@phloem:$E() 3.011e+20 #original 0.5/ #E #E
+	@chloroplast:$Resp() 6.022e+20 #original 1.0/ #Resp #Resp
+end seed species
+begin observables
+	Species RuBP_chloroplast @chloroplast:RuBP() #RuBP
+	Species PGA_chloroplast @chloroplast:PGA() #PGA
+	Species TP_chloroplast @chloroplast:TP() #TP
+	Species HeP_chloroplast @chloroplast:HeP() #HeP
+	Species TPGA_chloroplast @chloroplast:TPGA() #TPGA
+	Species E4P_chloroplast @chloroplast:E4P() #E4P
+	Species S7P_chloroplast @chloroplast:S7P() #S7P
+	Species Ru5P_chloroplast @chloroplast:Ru5P() #Ru5P
+	Species GG_chloroplast @chloroplast:GG() #GG
+	Species ATP_chloroplast @chloroplast:ATP() #ATP
+	Species ADP_chloroplast @chloroplast:ADP() #ADP
+	Species UTP_chloroplast @chloroplast:UTP() #UTP
+	Species UDP_chloroplast @chloroplast:UDP() #UDP
+	Species Pi_chloroplast @chloroplast:Pi() #Pi
+	Species CO2_chloroplast @chloroplast:CO2() #CO2
+	Species TPc_cytosol @cytosol:TPc() #TPc
+	Species HePc_cytosol @cytosol:HePc() #HePc
+	Species Suc_cytosol @cytosol:Suc() #Suc
+	Species Pic_cytosol @cytosol:Pic() #Pic
+	Species SucV_vacuole @vacuole:SucV() #SucV
+	Species E_phloem @phloem:E() #E
+	Species Resp_chloroplast @chloroplast:Resp() #Resp
+end observables
+begin functions
+	v_15() = 0.0258*HePc_cytosol*UTP_chloroplast
+	fRate13() = v_15
+end functions
+begin reaction rules
+	RuBisCO: RuBP()@chloroplast + CO2()@chloroplast -> PGA()@chloroplast + PGA()@chloroplast r1_k1
+	PGA_red: PGA()@chloroplast + ATP()@chloroplast -> TP()@chloroplast + ADP()@chloroplast + Pi()@chloroplast r2_k1
+	FBP_A_ase: TP()@chloroplast + TP()@chloroplast <-> HeP()@chloroplast + Pi()@chloroplast r3_k1,r3_k2
+	F6P_TK1: HeP()@chloroplast -> TPGA()@chloroplast + E4P()@chloroplast r4_k1
+	SBP_A_ase: E4P()@chloroplast + TP()@chloroplast -> S7P()@chloroplast + Pi()@chloroplast r5_k1
+	S7P_TK1_R5P_I: S7P()@chloroplast -> TPGA()@chloroplast + Ru5P()@chloroplast r6_k1
+	TK2_Ru5P_E: TPGA()@chloroplast + TP()@chloroplast -> Ru5P()@chloroplast r7_k1
+	Ru5P_K: Ru5P()@chloroplast + ATP()@chloroplast -> RuBP()@chloroplast + ADP()@chloroplast r8_k1
+	ATP_S: ADP()@chloroplast + Pi()@chloroplast -> ATP()@chloroplast r9_k1
+	Starch_S: ATP()@chloroplast + HeP()@chloroplast -> GG()@chloroplast + ADP()@chloroplast + Pi()@chloroplast + Pi()@chloroplast r10_k1
+	Starch_P: GG()@chloroplast + Pi()@chloroplast -> HeP()@chloroplast r11_k1
+	TPT: TP()@chloroplast + Pic()@cytosol -> TPc()@cytosol + Pi()@chloroplast r12_k1
+	FBPc_A_ase: TPc()@cytosol + TPc()@cytosol -> HePc()@cytosol + Pic()@cytosol r13_k1
+	Suc_S_reactants_0: 0  -> HePc()@cytosol -1*2.0*(fRate13())
+	Suc_S_reactants_1: 0  -> UTP()@chloroplast -1*(fRate13())
+	Suc_S_products_0: 0  -> Suc()@cytosol fRate13()
+	Suc_S_products_1: 0  -> UDP()@chloroplast fRate13()
+	Suc_S_products_2: 0  -> Pic()@cytosol 3.0*fRate13()
+	UTP_S: UDP()@chloroplast + Pic()@cytosol -> UTP()@chloroplast r15_k1
+	Respi: Suc()@cytosol -> Resp()@chloroplast r
+	Diffu: Suc()@cytosol <-> SucV()@vacuole D,D
+	Transl: Suc()@cytosol <-> E()@phloem phi,phi
+end reaction rules
+end model

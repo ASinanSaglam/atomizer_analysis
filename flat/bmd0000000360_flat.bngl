@@ -1,0 +1,64 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1108260007', 'http://identifiers.org/biomodels.db/BIOMD0000000360', 'http://identifiers.org/go/GO:0007596']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/11985578']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/2759']
+#@creatorEmail:'schubert@ebi.ac.uk'
+#@creatorName:'Schubert Michael'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 9 molecules and 8 reactions. The translated model has 9 molecules and 8 rules'
+###
+begin model
+begin parameters
+	r1_k1 5.000000
+	r1_k2 770.000000
+	r2_k1 420.000000
+	r3_k1 770.000000
+	r3_k2 5.000000
+	r4_k1 0.054000
+	r4_k2 0.020000
+	r5_k1 0.440000
+	r5_k2 0.066000
+	r6_k1 10.000000
+	r6_k2 0.000000
+	r7_k1 0.000000
+	r7_k2 0.000000
+	r8_k1 0.000000
+	r8_k2 0.000000
+end parameters
+begin molecule types
+	Xa()
+	VIIa_TF_Xa()
+	VIIa_TF_X()
+	Xa_TFPI_VIIa_TF()
+	TFPI()
+	VIIa_TF()
+	Xa_TFPI()
+	VIIa_TF_Xa_TFPI()
+	X()
+end molecule types
+begin seed species
+	VIIa_TF() 602199819340000.1 # (0.9999997 * 1e-09)mol/L * 6.022e23/mol *1.0L #VIIa_TF #VIIa_TF
+	X() 1.0237393978e+17 #original 169.9999substance/L  #X #X
+	TFPI() 1445279397800000.2 #original 2.399999substance/L  #TFPI #TFPI
+end seed species
+begin observables
+	Species VIIa_TF VIIa_TF() #VIIa_TF
+	Species X X() #X
+	Species VIIa_TF_X VIIa_TF_X() #VIIa_TF_X
+	Species VIIa_TF_Xa VIIa_TF_Xa() #VIIa_TF_Xa
+	Species Xa Xa() #Xa
+	Species TFPI TFPI() #TFPI
+	Species Xa_TFPI Xa_TFPI() #Xa_TFPI
+	Species Xa_TFPI_VIIa_TF Xa_TFPI_VIIa_TF() #Xa_TFPI_VIIa_TF
+	Species VIIa_TF_Xa_TFPI VIIa_TF_Xa_TFPI() #VIIa_TF_Xa_TFPI
+end observables
+begin reaction rules
+	reaction_1: X() + VIIa_TF() <-> VIIa_TF_X() r1_k1,r1_k2
+	reaction_2: VIIa_TF_X() -> VIIa_TF_Xa() r2_k1
+	reaction_3: VIIa_TF_Xa() <-> Xa() + VIIa_TF() r3_k1,r3_k2
+	reaction_4: Xa() + TFPI() <-> Xa_TFPI() r4_k1,r4_k2
+	reaction_5: VIIa_TF() + Xa_TFPI() <-> Xa_TFPI_VIIa_TF() r5_k1,r5_k2
+	reaction_6: VIIa_TF_Xa() + TFPI() <-> VIIa_TF_Xa_TFPI() r6_k1,r6_k2
+	reaction_7: VIIa_TF_Xa_TFPI() <-> VIIa_TF() + Xa_TFPI() r7_k1,r7_k2
+	reaction_8: VIIa_TF_Xa_TFPI() <-> Xa_TFPI_VIIa_TF() r8_k1,r8_k2
+end reaction rules
+end model

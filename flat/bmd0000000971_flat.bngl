@@ -1,0 +1,86 @@
+###
+#@BQB_IS:['http://identifiers.org/doid/DOID:0080600']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/2697049', 'http://identifiers.org/taxonomy/9606']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/32046137']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000028']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL2011020001', 'http://identifiers.org/biomodels.db/BIOMD0000000971']
+#@creatorEmail:'kramachandran@ebi.ac.uk'
+#@creatorName:'Ramachandran Kausthubh'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 8 molecules and 13 reactions. The translated model has 8 molecules and 17 rules'
+###
+begin model
+begin parameters
+	c 14.781
+	beta 2.1011e-08
+	q 1.8887e-07
+	sigma 0.142857
+	lambda 0.0714285
+	rho 0.86834
+	delta_I 0.13266
+	delta_q 0.1259
+	gamma_I 0.33029
+	gamma_A 0.13978
+	gamma_H 0.11624
+	alpha 1.7826e-05
+	theta 1.0
+	c_lockdown 14.781
+	q_lockdown 1.8887e-07
+end parameters
+begin molecule types
+	Exposed()
+	Exposed_quarantined()
+	Infected()
+	Susceptible_quarantined()
+	Susceptible()
+	Recovered()
+	Asymptomatic()
+	Hospitalised()
+end molecule types
+begin seed species
+	Susceptible() 6.6729782e+30 # 11081000.0mol/L * 6.022e23/mol *1.0L #Susceptible #Susceptible
+	Exposed() 6.329122e+25 #original 105.1substance/volume #Exposed #Exposed
+	Infected() 1.66682938e+25 #original 27.679substance/volume #Infected #Infected
+	Asymptomatic() 3.22411858e+25 #original 53.539substance/volume #Asymptomatic #Asymptomatic
+	Susceptible_quarantined() 4.450258e+26 #original 739.0substance/volume #Susceptible_quarantined #Susceptible_quarantined
+	Exposed_quarantined() 7.010812399999999e+23 #original 1.1642substance/volume #Exposed_quarantined #Exposed_quarantined
+	Hospitalised() 6.022e+23 #original 1.0substance/volume #Hospitalised #Hospitalised
+	Recovered() 1.2044e+24 #original 2.0substance/volume #Recovered #Recovered
+end seed species
+begin observables
+	Species Susceptible Susceptible() #Susceptible
+	Species Exposed Exposed() #Exposed
+	Species Infected Infected() #Infected
+	Species Asymptomatic Asymptomatic() #Asymptomatic
+	Species Susceptible_quarantined Susceptible_quarantined() #Susceptible_quarantined
+	Species Exposed_quarantined Exposed_quarantined() #Exposed_quarantined
+	Species Hospitalised Hospitalised() #Hospitalised
+	Species Recovered Recovered() #Recovered
+end observables
+begin functions
+	Infected_0() = Asymptomatic + Infected
+	fRate0() = Susceptible*beta*c*(1 - q)*(Asymptomatic*theta + Infected)
+	fRate1() = Susceptible*c*q*(1 - beta)*(Asymptomatic*theta + Infected)
+	fRate3() = rho*sigma
+	fRate4() = Exposed*sigma*(1 - rho)
+	fRate11() = Susceptible*beta*c*q*(Asymptomatic*theta + Infected)
+end functions
+begin reaction rules
+	Susceptible_to_Exposed_reactants_0: 0  -> Susceptible() -1*(fRate0()) #Modifiers(Infected, Asymptomatic)
+	Susceptible_to_Exposed_products_0: 0  -> Exposed() fRate0() #Modifiers(Infected, Asymptomatic)
+	Susceptible_to_Susceptible_quarantined_reactants_0: 0  -> Susceptible() -1*(fRate1()) #Modifiers(Infected, Asymptomatic)
+	Susceptible_to_Susceptible_quarantined_products_0: 0  -> Susceptible_quarantined() fRate1() #Modifiers(Infected, Asymptomatic)
+	Quarantined_to_Susceptible: Susceptible_quarantined() -> Susceptible() lambda
+	Exposed_to_Infected: Exposed() -> Infected() fRate3()
+	Exposed_to_Asymptomatic_reactants_0: 0  -> Exposed() -1*(fRate4())
+	Exposed_to_Asymptomatic_products_0: 0  -> Asymptomatic() fRate4()
+	Infected_to_Hospitalised: Infected() -> Hospitalised() delta_I
+	Infected_to_Recovered: Infected() -> Recovered() gamma_I
+	Asymptomatic_to_Recovered: Asymptomatic() -> Recovered() gamma_A
+	Hospitalised_to_Recovered: Hospitalised() -> Recovered() gamma_H
+	Infected_to_Deceased: Infected() -> 0  alpha
+	Hospitalised_to_Deceased: Hospitalised() -> 0  alpha
+	Susceptible_to_Exposed_quarantined_reactants_0: 0  -> Susceptible() -1*(fRate11()) #Modifiers(Infected, Asymptomatic)
+	Susceptible_to_Exposed_quarantined_products_0: 0  -> Exposed_quarantined() fRate11() #Modifiers(Infected, Asymptomatic)
+	Exposed_quarantined_to_Hospitalised: Exposed_quarantined() -> Hospitalised() delta_q
+end reaction rules
+end model

@@ -1,0 +1,173 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1107220000', 'http://identifiers.org/biomodels.db/BIOMD0000000347']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/21772264']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10090', 'http://identifiers.org/obo.bto/BTO:0004911']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0046425']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 26 molecules and 36 reactions. The translated model has 25 molecules and 39 rules'
+###
+begin model
+begin parameters
+	CISEqc 432.871
+	CISEqcOE 0.530261
+	CISInh 784653000.0
+	CISRNADelay 0.144775
+	CISRNAEqc 1.0
+	CISRNATurn 1000.0
+	CISTurn 0.00839842
+	EpoRActJAK2 0.267308
+	EpoRCISInh 1000000.0
+	EpoRCISRemove 5.42932
+	JAK2ActEpo 633253.0
+	JAK2EpoRDeaSHP1 142.722
+	SHP1ActEpoR 0.001
+	SHP1Dea 0.00816391
+	SOCS3Eqc 173.653
+	SOCS3EqcOE 0.679157
+	SOCS3Inh 10.408
+	SOCS3RNADelay 1.06465
+	SOCS3RNAEqc 1.0
+	SOCS3RNATurn 0.00830844
+	SOCS3Turn 10000.0
+	STAT5ActEpoR 38.9757
+	STAT5ActJAK2 0.0780965
+	STAT5Exp 0.0745155
+	STAT5Imp 0.0268889
+	epo_level 1.24997e-07
+	init_EpoRJAK2 3.97622
+	init_SHP1 26.7251
+	init_STAT5 79.7535
+	ActD 0
+	CISoe 0
+	SOCS3oe 0
+	Epo_cyt 3.010927736e+16 #original 1.24997e-07mol/L
+	Epo 3.010927736e+16 #original 1.24997e-07mol/L
+end parameters
+begin compartments
+	#volume units: L
+	cyt 3 0.4
+	nuc 3 0.275
+end compartments
+begin molecule types
+	EpoRJAK2_CIS()
+	CIS()
+	EpoRJAK2()
+	SOCS3nRNA4()
+	SOCS3nRNA5()
+	SOCS3nRNA3()
+	CISnRNA2()
+	CISnRNA3()
+	CISRNA()
+	SHP1()
+	p1EpoRpJAK2()
+	p2EpoRpJAK2()
+	CISnRNA4()
+	EpoRpJAK2()
+	CISnRNA5()
+	SOCS3RNA()
+	SOCS3nRNA1()
+	SHP1Act()
+	SOCS3nRNA2()
+	SOCS3()
+	CISnRNA1()
+	STAT5()
+	pSTAT5()
+	p12EpoRpJAK2()
+	npSTAT5()
+end molecule types
+begin seed species
+	@cyt:EpoRJAK2() 9.577918736e+23 # 3.97622mol/L * 6.022e23/mol *0.4L #EpoRJAK2 #EpoRJAK2
+	@cyt:SHP1() 6.437542088000001e+24 #original 26.7251mol/L  #SHP1 #SHP1
+	@cyt:STAT5() 1.9211023080000004e+25 #original 79.7535mol/L  #STAT5 #STAT5
+end seed species
+begin observables
+	Species EpoRJAK2_cyt @cyt:EpoRJAK2() #EpoRJAK2
+	Species EpoRpJAK2_cyt @cyt:EpoRpJAK2() #EpoRpJAK2
+	Species p1EpoRpJAK2_cyt @cyt:p1EpoRpJAK2() #p1EpoRpJAK2
+	Species p2EpoRpJAK2_cyt @cyt:p2EpoRpJAK2() #p2EpoRpJAK2
+	Species p12EpoRpJAK2_cyt @cyt:p12EpoRpJAK2() #p12EpoRpJAK2
+	Species EpoRJAK2_CIS_cyt @cyt:EpoRJAK2_CIS() #EpoRJAK2_CIS
+	Species SHP1_cyt @cyt:SHP1() #SHP1
+	Species SHP1Act_cyt @cyt:SHP1Act() #SHP1Act
+	Species STAT5_cyt @cyt:STAT5() #STAT5
+	Species pSTAT5_cyt @cyt:pSTAT5() #pSTAT5
+	Species npSTAT5_nuc @nuc:npSTAT5() #npSTAT5
+	Species CISnRNA1_nuc @nuc:CISnRNA1() #CISnRNA1
+	Species CISnRNA2_nuc @nuc:CISnRNA2() #CISnRNA2
+	Species CISnRNA3_nuc @nuc:CISnRNA3() #CISnRNA3
+	Species CISnRNA4_nuc @nuc:CISnRNA4() #CISnRNA4
+	Species CISnRNA5_nuc @nuc:CISnRNA5() #CISnRNA5
+	Species CISRNA_cyt @cyt:CISRNA() #CISRNA
+	Species CIS_cyt @cyt:CIS() #CIS
+	Species SOCS3nRNA1_nuc @nuc:SOCS3nRNA1() #SOCS3nRNA1
+	Species SOCS3nRNA2_nuc @nuc:SOCS3nRNA2() #SOCS3nRNA2
+	Species SOCS3nRNA3_nuc @nuc:SOCS3nRNA3() #SOCS3nRNA3
+	Species SOCS3nRNA4_nuc @nuc:SOCS3nRNA4() #SOCS3nRNA4
+	Species SOCS3nRNA5_nuc @nuc:SOCS3nRNA5() #SOCS3nRNA5
+	Species SOCS3RNA_cyt @cyt:SOCS3RNA() #SOCS3RNA
+	Species SOCS3_cyt @cyt:SOCS3() #SOCS3
+end observables
+begin functions
+	fRate0() = Epo_cyt*JAK2ActEpo*SOCS3Eqc/(1.0*SOCS3Eqc + SOCS3Inh*SOCS3_cyt)
+	fRate1() = JAK2EpoRDeaSHP1*SHP1Act_cyt/init_SHP1
+	fRate2() = EpoRActJAK2*SOCS3Eqc/(1.0*SOCS3Eqc + SOCS3Inh*SOCS3_cyt)
+	fRate3() = 3.0*EpoRActJAK2*SOCS3Eqc/(EpoRCISInh*EpoRJAK2_CIS_cyt*SOCS3Inh*SOCS3_cyt + SOCS3Eqc*(EpoRCISInh*EpoRJAK2_CIS_cyt + 1.0) + SOCS3Inh*SOCS3_cyt)
+	fRate4() = 3.0*EpoRActJAK2*SOCS3Eqc/(EpoRCISInh*EpoRJAK2_CIS_cyt*SOCS3Inh*SOCS3_cyt + SOCS3Eqc*(EpoRCISInh*EpoRJAK2_CIS_cyt + 1.0) + SOCS3Inh*SOCS3_cyt)
+	fRate5() = EpoRActJAK2*SOCS3Eqc/(1.0*SOCS3Eqc + SOCS3Inh*SOCS3_cyt)
+	fRate6() = JAK2EpoRDeaSHP1*SHP1Act_cyt/init_SHP1
+	fRate7() = JAK2EpoRDeaSHP1*SHP1Act_cyt/init_SHP1
+	fRate8() = JAK2EpoRDeaSHP1*SHP1Act_cyt/init_SHP1
+	fRate9() = EpoRCISRemove*EpoRJAK2_CIS_cyt*(p12EpoRpJAK2_cyt + p1EpoRpJAK2_cyt)/init_EpoRJAK2
+	fRate10() = SHP1ActEpoR*SHP1_cyt*(EpoRpJAK2_cyt + p12EpoRpJAK2_cyt + p1EpoRpJAK2_cyt + p2EpoRpJAK2_cyt)/init_EpoRJAK2
+	fRate12() = STAT5ActJAK2*STAT5_cyt*(EpoRpJAK2_cyt + p12EpoRpJAK2_cyt + p1EpoRpJAK2_cyt + p2EpoRpJAK2_cyt)/(init_EpoRJAK2*(1 + SOCS3Inh*SOCS3_cyt/SOCS3Eqc))
+	fRate13() = STAT5ActEpoR*STAT5_cyt*(p12EpoRpJAK2_cyt + p1EpoRpJAK2_cyt)^2/(init_EpoRJAK2^2*(1 + CISInh*CIS_cyt/CISEqc)*(1 + SOCS3Inh*SOCS3_cyt/SOCS3Eqc))
+	fRate16() = -CISRNAEqc*CISRNATurn*npSTAT5_nuc*(ActD - 1)/init_STAT5
+	fRate23() = CISEqc*CISRNA_cyt*CISTurn/CISRNAEqc
+	fRate25() = CISEqc*CISEqcOE*CISTurn*CISoe
+	fRate26() = -SOCS3RNAEqc*SOCS3RNATurn*npSTAT5_nuc*(ActD - 1)/init_STAT5
+	fRate33() = SOCS3Eqc*SOCS3RNA_cyt*SOCS3Turn/SOCS3RNAEqc
+	fRate35() = SOCS3Eqc*SOCS3EqcOE*SOCS3Turn*SOCS3oe
+end functions
+begin reaction rules
+	reaction_1: EpoRJAK2()@cyt -> EpoRpJAK2()@cyt fRate0() #Modifiers(Epo, SOCS3)
+	reaction_2: EpoRpJAK2()@cyt -> EpoRJAK2()@cyt fRate1() #Modifiers(SHP1Act)
+	reaction_3: EpoRpJAK2()@cyt -> p1EpoRpJAK2()@cyt fRate2() #Modifiers(SOCS3)
+	reaction_4: EpoRpJAK2()@cyt -> p2EpoRpJAK2()@cyt fRate3() #Modifiers(EpoRJAK2_CIS, SOCS3)
+	reaction_5: p1EpoRpJAK2()@cyt -> p12EpoRpJAK2()@cyt fRate4() #Modifiers(EpoRJAK2_CIS, SOCS3)
+	reaction_6: p2EpoRpJAK2()@cyt -> p12EpoRpJAK2()@cyt fRate5() #Modifiers(SOCS3)
+	reaction_7: p1EpoRpJAK2()@cyt -> EpoRJAK2()@cyt fRate6() #Modifiers(SHP1Act)
+	reaction_8: p2EpoRpJAK2()@cyt -> EpoRJAK2()@cyt fRate7() #Modifiers(SHP1Act)
+	reaction_9: p12EpoRpJAK2()@cyt -> EpoRJAK2()@cyt fRate8() #Modifiers(SHP1Act)
+	reaction_10_reactants_0: 0  -> EpoRJAK2_CIS()@cyt -1*(fRate9()) #Modifiers(p12EpoRpJAK2, p1EpoRpJAK2)
+	reaction_11_reactants_0: 0  -> SHP1()@cyt -1*(fRate10()) #Modifiers(EpoRpJAK2, p12EpoRpJAK2, p1EpoRpJAK2, p2EpoRpJAK2)
+	reaction_11_products_0: 0  -> SHP1Act()@cyt fRate10() #Modifiers(EpoRpJAK2, p12EpoRpJAK2, p1EpoRpJAK2, p2EpoRpJAK2)
+	reaction_12: SHP1Act()@cyt -> SHP1()@cyt SHP1Dea
+	reaction_13_reactants_0: 0  -> STAT5()@cyt -1*(fRate12()) #Modifiers(EpoRpJAK2, SOCS3, p12EpoRpJAK2, p1EpoRpJAK2, p2EpoRpJAK2)
+	reaction_13_products_0: 0  -> pSTAT5()@cyt fRate12() #Modifiers(EpoRpJAK2, SOCS3, p12EpoRpJAK2, p1EpoRpJAK2, p2EpoRpJAK2)
+	reaction_14_reactants_0: 0  -> STAT5()@cyt -1*(fRate13()) #Modifiers(CIS, SOCS3, p12EpoRpJAK2, p1EpoRpJAK2)
+	reaction_14_products_0: 0  -> pSTAT5()@cyt fRate13() #Modifiers(CIS, SOCS3, p12EpoRpJAK2, p1EpoRpJAK2)
+	reaction_15: pSTAT5()@cyt -> npSTAT5()@nuc STAT5Imp
+	reaction_16: npSTAT5()@nuc -> STAT5()@cyt STAT5Exp
+	reaction_17_products_0: 0  -> CISnRNA1()@nuc fRate16() #Modifiers(npSTAT5)
+	reaction_18: CISnRNA1()@nuc -> CISnRNA2()@nuc CISRNADelay
+	reaction_19: CISnRNA2()@nuc -> CISnRNA3()@nuc CISRNADelay
+	reaction_20: CISnRNA3()@nuc -> CISnRNA4()@nuc CISRNADelay
+	reaction_21: CISnRNA4()@nuc -> CISnRNA5()@nuc CISRNADelay
+	reaction_22: CISnRNA5()@nuc -> CISRNA()@cyt CISRNADelay
+	reaction_23: CISRNA()@cyt -> 0  CISRNATurn
+	reaction_24: 0  -> CIS()@cyt fRate23() #Modifiers(CISRNA)
+	reaction_25: CIS()@cyt -> 0  CISTurn
+	reaction_26: 0  -> CIS()@cyt fRate25()
+	reaction_27_products_0: 0  -> SOCS3nRNA1()@nuc fRate26() #Modifiers(npSTAT5)
+	reaction_28: SOCS3nRNA1()@nuc -> SOCS3nRNA2()@nuc SOCS3RNADelay
+	reaction_29: SOCS3nRNA2()@nuc -> SOCS3nRNA3()@nuc SOCS3RNADelay
+	reaction_30: SOCS3nRNA3()@nuc -> SOCS3nRNA4()@nuc SOCS3RNADelay
+	reaction_31: SOCS3nRNA4()@nuc -> SOCS3nRNA5()@nuc SOCS3RNADelay
+	reaction_32: SOCS3nRNA5()@nuc -> SOCS3RNA()@cyt SOCS3RNADelay
+	reaction_33: SOCS3RNA()@cyt -> 0  SOCS3RNATurn
+	reaction_34: 0  -> SOCS3()@cyt fRate33() #Modifiers(SOCS3RNA)
+	reaction_35: SOCS3()@cyt -> 0  SOCS3Turn
+	reaction_36: 0  -> SOCS3()@cyt fRate35()
+end reaction rules
+end model

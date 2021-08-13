@@ -1,0 +1,47 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL6614715255', 'http://identifiers.org/biomodels.db/BIOMD0000000006']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/1831270']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/33154']
+#@BQB_IS:['http://identifiers.org/kegg.pathway/sce04111']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0000278']
+#@BQB_HAS_VERSION:['http://identifiers.org/reactome/REACT_152']
+#@creatorEmail:'bshapiro@jpl.nasa.gov'
+#@creatorName:'Shapiro Bruce'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 4 molecules and 3 reactions. The translated model has 3 molecules and 6 rules'
+###
+begin model
+begin parameters
+	kappa 0.015
+	k6 1.0
+	k4 180.0
+	k4prime 0.018
+	EmptySet 1.0
+end parameters
+begin molecule types
+	z()
+	u()
+	v()
+end molecule types
+begin seed species
+end seed species
+begin observables
+	Species u u() #u
+	Species z z() #z
+	Species v v() #v
+end observables
+begin functions
+	alpha() = k4prime/k4
+	arRateu() = k4*(alpha + u^2)*(-u + v) - k6*u
+	arRatev() = -k6*u + kappa
+	z_ar() = -u + v
+	fRate2() = k4*z_ar*(u^2 + k4prime/k4)
+end functions
+begin reaction rules
+	Reaction1: 0  -> z() kappa
+	Reaction2: u() -> 0  k6
+	Reaction3_reactants_0: 0  -> z() -1*(fRate2())
+	Reaction3_products_0: 0  -> u() fRate2()
+	0  -> u() arRateu #rateLaw
+	0  -> v() arRatev #rateLaw
+end reaction rules
+end model

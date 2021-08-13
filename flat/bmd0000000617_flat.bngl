@@ -1,0 +1,61 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1609120000', 'http://identifiers.org/biomodels.db/BIOMD0000000617']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/25374788']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0042987']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:10652']
+#@creatorEmail:'tvarusai@ebi.ac.uk'
+#@creatorName:'Varusai Thawfeek'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 1 molecules and 4 reactions. The translated model has 1 molecules and 4 rules'
+###
+begin model
+begin parameters
+	S 61.0
+	H1 1.71
+	H2 2.69
+	K3s 605.01
+	V2 443.68
+	Ii 1000.0
+	Hxx 0.96
+	Kxx1 70.93
+	K2 225.49
+	K2i 118.41
+	V1 20.06
+	V1is 451.78
+	Hx1 1.02
+	Kx1 30.18
+	Hx2 2.69
+	Kx2 553.64
+	K1 177.76
+	K1is 29.52
+	K1ii 34.05
+	V2i 0
+	V1ii 0
+	V3 0
+end parameters
+begin molecule types
+	v()
+end molecule types
+begin seed species
+	v() 6.022e+20 # (1.0 * 0.001)mol/L * 6.022e23/mol *1.0L #v #v
+end seed species
+begin observables
+	Species v v() #v
+end observables
+begin functions
+	V2s() = -Ii^Hxx*(V2 - V2i)/(Ii^Hxx + Kxx1^Hxx) + V2
+	K1s() = -Ii^Hx1*(K1 - K1is)/(Ii^Hx1 + Kx1^Hx1) - Ii^Hx2*(K1 - K1ii)/(Ii^Hx2 + Kx2^Hx2) + Ii^Hx2*(K1 - K1is)/(Ii^Hx2 + Kx2^Hx2) + K1
+	V1s() = -Ii^Hx1*(V1 - V1is)/(Ii^Hx1 + Kx1^Hx1) - Ii^Hx2*(V1 - V1ii)/(Ii^Hx2 + Kx2^Hx2) + Ii^Hx2*(V1 - V1is)/(Ii^Hx2 + Kx2^Hx2) + V1
+	K2s() = -Ii^Hxx*(K2 - K2i)/(Ii^Hxx + Kxx1^Hxx) + K2
+	fRate0() = S*V1s/(K1s + S)
+	fRate1() = S^H1*V2s/(K2s^H1 + S^H1)
+	fRate2() = S^H1*V1s/(K2s^H1 + S^H1)
+	fRate3() = S^H2*V2s/(K3s^H2 + S^H2)
+end functions
+begin reaction rules
+	R1: 0  -> v() fRate0()
+	R2: 0  -> v() fRate1()
+	R3_reactants_0: 0  -> v() -1*(fRate2())
+	R4_reactants_0: 0  -> v() -1*(fRate3())
+end reaction rules
+end model

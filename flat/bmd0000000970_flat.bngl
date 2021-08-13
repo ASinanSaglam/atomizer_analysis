@@ -1,0 +1,48 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/32243599']
+#@BQB_IS:['http://identifiers.org/doid/DOID:0080600']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/2697049', 'http://identifiers.org/taxonomy/9606']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000028']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000970', 'http://identifiers.org/biomodels.db/MODEL2010280001']
+#@creatorEmail:'kramachandran@ebi.ac.uk'
+#@creatorName:'Ramachandran Kausthubh'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 5 molecules and 3 reactions. The translated model has 4 molecules and 4 rules'
+###
+begin model
+begin parameters
+	r_1 6.0
+	r_2 18.0
+	beta_1 0.04
+	beta_2 0.02
+	alpha 0.14
+	gamma 0.048
+	Total_Population 6.6729782e+30 #original 11081000.0substance/volume
+end parameters
+begin molecule types
+	Exposed()
+	Infected()
+	Susceptible()
+	Recovered()
+end molecule types
+begin seed species
+	Exposed() 1.162246e+26 #original 193.0substance/volume  #Exposed #Exposed
+	Infected() 1.62594e+25 #original 27.0substance/volume  #Infected #Infected
+	Recovered() 1.2044e+24 #original 2.0substance/volume  #Recovered #Recovered
+	Susceptible()() (11081000.0) -(193.0) -(27.0) -(2.0) #Susceptible
+end seed species
+begin observables
+	Species Susceptible Susceptible() #Susceptible
+	Species Exposed Exposed() #Exposed
+	Species Infected Infected() #Infected
+	Species Recovered Recovered() #Recovered
+end observables
+begin functions
+	fRate0() = (Exposed*Susceptible*beta_2*r_2 + Infected*Susceptible*beta_1*r_1)/Total_Population
+end functions
+begin reaction rules
+	Susceptible_to_Exposed_reactants_0: 0  -> Susceptible() -1*(fRate0()) #Modifiers(Infected, Total_Population)
+	Susceptible_to_Exposed_products_0: 0  -> Exposed() fRate0() #Modifiers(Infected, Total_Population)
+	Exposed_to_Infected: Exposed() -> Infected() alpha
+	Infected_to_Recovered: Infected() -> Recovered() gamma
+end reaction rules
+end model

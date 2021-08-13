@@ -1,0 +1,258 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1604270002', 'http://identifiers.org/biomodels.db/BIOMD0000000620']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/24918743']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/MODEL1112110003']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:9352']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0050702']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 35 molecules and 20 reactions. The translated model has 33 molecules and 44 rules'
+###
+begin model
+begin parameters
+	Kxg 1.6e-05
+	Kxi 0.05
+	Gh 9.0
+	vh 4.0
+	Ktr 0.12
+	Kin 1.05
+	lambda 0.743
+	Kglucose 0.000292
+	vs 0.7
+	kms 0.021
+	taus 0.5
+	kmf 0.021
+	tauf 0.5
+	vfg 4.0
+	xfg 4.0
+	kmfg 9.0
+	vf 0.4
+	vlr 1.8
+	kmlr 0.0011
+	xlr 3.0
+	vhr 2.7
+	kmhr 0.018
+	xhr 0.5
+	vla 0.65
+	kmla 0.00018
+	xla 3.0
+	vha 4.6
+	kmha 0.155
+	xha 0.6666666667
+	km 8.5
+	ki 1.7
+	ka 0.000552022
+	kr 0.000376393
+	kf 0.00957754
+	ks 0.291008
+	Tgl 0.025405
+	Kxgi 2.24e-05
+	il1bH 0.05
+	il1b0 5.0
+	kplacebo 0.00137
+	k1 0.2
+	k2 0.0025
+	kab 3.94
+	CL 432.0
+	Vp 48.0
+	Ana_on 1.0
+	Anakinra_dose_counter 0.5
+	placebo_on 0
+	IL1Ra 2.4088e+25 #original 40.0/
+	hba1c 8.68215151125858 #original 8.7/
+end parameters
+begin molecule types
+	a1c2()
+	rbc4()
+	rbc7()
+	Proinsulin()
+	TigB()
+	B()
+	rbc1()
+	IL1b()
+	a1c3()
+	rbc6()
+	Anakinra()
+	rbc11()
+	rbc2()
+	rbc9()
+	rbc3()
+	rbc8()
+	a1c11()
+	a1c12()
+	rbc10()
+	f()
+	a1c10()
+	a1c6()
+	a1c7()
+	a1c8()
+	rbc5()
+	Glucose()
+	a1c4()
+	Insulin()
+	rbc12()
+	a1c9()
+	Anakinrasc()
+	a1c5()
+	a1c1()
+end molecule types
+begin seed species
+	IL1b() 3.011e+24 # 5.0mol/L * 6.022e23/mol *1.0L #IL1b #IL1b
+	Proinsulin() 2.5894600000000002e+25 #original 43.0/ #Proinsulin #Proinsulin
+	Insulin() 6.022e+25 #original 100.0/ #Insulin #Insulin
+	TigB() 1.123103e+23 #original 0.1865/ #TigB #TigB
+	B() 2.4088e+25 #original 40.0/ #B #B
+	f() 2.576067072e+22 #original 0.0427776/ #f #f
+	Glucose() 6.50376e+24 #original 10.8/ #Glucose #Glucose
+	a1c1() 7.40687934e+22 #original 0.122997/ #a1c1 #a1c1
+	rbc1() 5.1951794e+24 #original 8.627/ #rbc1 #rbc1
+	a1c2() 1.4709698520000002e+23 #original 0.244266/ #a1c2 #a1c2
+	rbc2() 5.122150606000001e+24 #original 8.50573/ #rbc2 #rbc2
+	a1c3() 2.190978238e+23 #original 0.363829/ #a1c3 #a1c3
+	rbc3() 5.050151574e+24 #original 8.38617/ #rbc3 #rbc3
+	a1c4() 2.900869664e+23 #original 0.481712/ #a1c4 #a1c4
+	rbc4() 4.979164238000001e+24 #original 8.26829/ #rbc4 #rbc4
+	a1c5() 3.600782636e+23 #original 0.597938/ #a1c5 #a1c5
+	rbc5() 4.909170532000001e+24 #original 8.15206/ #rbc5 #rbc5
+	a1c6() 4.2908556600000005e+23 #original 0.71253/ #a1c6 #a1c6
+	rbc6() 4.840164434000001e+24 #original 8.03747/ #rbc6 #rbc6
+	a1c7() 4.9712332640000006e+23 #original 0.825512/ #a1c7 #a1c7
+	rbc7() 4.772127878e+24 #original 7.92449/ #rbc7 #rbc7
+	a1c8() 5.64204191e+23 #original 0.936905/ #a1c8 #a1c8
+	rbc8() 4.7050488200000004e+24 #original 7.8131/ #rbc8 #rbc8
+	a1c9() 6.30340806e+23 #original 1.04673/ #a1c9 #a1c9
+	rbc9() 4.638909194e+24 #original 7.70327/ #rbc9 #rbc9
+	a1c10() 6.95553044e+23 #original 1.15502/ #a1c10 #a1c10
+	rbc10() 4.573696956e+24 #original 7.59498/ #rbc10 #rbc10
+	a1c11() 7.59843916e+23 #original 1.26178/ #a1c11 #a1c11
+	rbc11() 4.509406084e+24 #original 7.48822/ #rbc11 #rbc11
+	a1c12() 8.232314880000001e+23 #original 1.36704/ #a1c12 #a1c12
+	rbc12() 4.446018512e+24 #original 7.38296/ #rbc12 #rbc12
+end seed species
+begin observables
+	Species IL1b IL1b() #IL1b
+	Species Anakinra Anakinra() #Anakinra
+	Species Proinsulin Proinsulin() #Proinsulin
+	Species Insulin Insulin() #Insulin
+	Species TigB TigB() #TigB
+	Species B B() #B
+	Species f f() #f
+	Species Anakinrasc Anakinrasc() #Anakinrasc
+	Species Glucose Glucose() #Glucose
+	Species a1c1 a1c1() #a1c1
+	Species rbc1 rbc1() #rbc1
+	Species a1c2 a1c2() #a1c2
+	Species rbc2 rbc2() #rbc2
+	Species a1c3 a1c3() #a1c3
+	Species rbc3 rbc3() #rbc3
+	Species a1c4 a1c4() #a1c4
+	Species rbc4 rbc4() #rbc4
+	Species a1c5 a1c5() #a1c5
+	Species rbc5 rbc5() #rbc5
+	Species a1c6 a1c6() #a1c6
+	Species rbc6 rbc6() #rbc6
+	Species a1c7 a1c7() #a1c7
+	Species rbc7 rbc7() #rbc7
+	Species a1c8 a1c8() #a1c8
+	Species rbc8 rbc8() #rbc8
+	Species a1c9 a1c9() #a1c9
+	Species rbc9 rbc9() #rbc9
+	Species a1c10 a1c10() #a1c10
+	Species rbc10 rbc10() #rbc10
+	Species a1c11 a1c11() #a1c11
+	Species rbc11 rbc11() #rbc11
+	Species a1c12 a1c12() #a1c12
+	Species rbc12 rbc12() #rbc12
+end observables
+begin functions
+	IL1R() = IL1b/(IL1b + km*(1 + (Anakinra + IL1Ra)/ki))
+	replication() = kr*(-IL1R^xhr*vhr/(IL1R^xhr + kmhr^xhr) + IL1R^xlr*vlr/(IL1R^xlr + kmlr^xlr) + 1)
+	apoptosis() = ka*(IL1R^xha*vha/(IL1R^xha + kmha^xha) - IL1R^xla*vla/(IL1R^xla + kmla^xla) + 1)
+	arRaterbc12() =  -Glucose^lambda*Kglucose*rbc12 + Ktr*rbc11 -Ktr*rbc12
+	arRatea1c12() =  Glucose^lambda*Kglucose*rbc12 + Ktr*a1c11 -Ktr*a1c12
+	arRaterbc11() =  -Glucose^lambda*Kglucose*rbc11 + Ktr*rbc10 -Ktr*rbc11
+	arRatea1c11() =  Glucose^lambda*Kglucose*rbc11 + Ktr*a1c10 -Ktr*a1c11
+	arRaterbc10() =  -Glucose^lambda*Kglucose*rbc10 -Ktr*rbc10 + Ktr*rbc9
+	arRatea1c10() =  Glucose^lambda*Kglucose*rbc10 -Ktr*a1c10 + Ktr*a1c9
+	arRaterbc9() =  -Glucose^lambda*Kglucose*rbc9 + Ktr*rbc8 -Ktr*rbc9
+	arRatea1c9() =  Glucose^lambda*Kglucose*rbc9 + Ktr*a1c8 -Ktr*a1c9
+	arRaterbc8() =  -Glucose^lambda*Kglucose*rbc8 + Ktr*rbc7 -Ktr*rbc8
+	arRatea1c8() =  Glucose^lambda*Kglucose*rbc8 + Ktr*a1c7 -Ktr*a1c8
+	arRaterbc7() =  -Glucose^lambda*Kglucose*rbc7 + Ktr*rbc6 -Ktr*rbc7
+	arRatea1c7() =  Glucose^lambda*Kglucose*rbc7 + Ktr*a1c6 -Ktr*a1c7
+	arRaterbc6() =  -Glucose^lambda*Kglucose*rbc6 + Ktr*rbc5 -Ktr*rbc6
+	arRatea1c6() =  Glucose^lambda*Kglucose*rbc6 + Ktr*a1c5 -Ktr*a1c6
+	arRaterbc5() =  -Glucose^lambda*Kglucose*rbc5 + Ktr*rbc4 -Ktr*rbc5
+	arRatea1c5() =  Glucose^lambda*Kglucose*rbc5 + Ktr*a1c4 -Ktr*a1c5
+	arRaterbc4() =  -Glucose^lambda*Kglucose*rbc4 + Ktr*rbc3 -Ktr*rbc4
+	arRatea1c4() =  Glucose^lambda*Kglucose*rbc4 + Ktr*a1c3 -Ktr*a1c4
+	arRaterbc3() =  -Glucose^lambda*Kglucose*rbc3 + Ktr*rbc2 -Ktr*rbc3
+	arRatea1c3() =  Glucose^lambda*Kglucose*rbc3 + Ktr*a1c2 -Ktr*a1c3
+	arRaterbc2() =  -Glucose^lambda*Kglucose*rbc2 + Ktr*rbc1 -Ktr*rbc2
+	arRatea1c2() =  Glucose^lambda*Kglucose*rbc2 + Ktr*a1c1 -Ktr*a1c2
+	arRaterbc1() =  -Glucose^lambda*Kglucose*rbc1 + Kin -Ktr*rbc1
+	arRatea1c1() =  Glucose^lambda*Kglucose*rbc1 -Ktr*a1c1
+	PI_I() = Proinsulin/Insulin
+	hba1c_ar() = (100*a1c1 + 100*a1c10 + 100*a1c11 + 100*a1c12 + 100*a1c2 + 100*a1c3 + 100*a1c4 + 100*a1c5 + 100*a1c6 + 100*a1c7 + 100*a1c8 + 100*a1c9)/(a1c1 + a1c10 + a1c11 + a1c12 + a1c2 + a1c3 + a1c4 + a1c5 + a1c6 + a1c7 + a1c8 + a1c9 + rbc1 + rbc10 + rbc11 + rbc12 + rbc2 + rbc3 + rbc4 + rbc5 + rbc6 + rbc7 + rbc8 + rbc9)
+	fRate0() = ks*taus*(-IL1R*vs/(IL1R + kms) + 1)
+	fRate2() = B*replication
+	fRate4() = kf*tauf*(Glucose^xfg*IL1R*vf*vfg + Glucose^xfg*IL1R*vf + Glucose^xfg*IL1R*vfg + Glucose^xfg*IL1R + Glucose^xfg*kmf*vfg + Glucose^xfg*kmf + IL1R*kmfg^xfg*vf + IL1R*kmfg^xfg + kmf*kmfg^xfg)/(Glucose^xfg*IL1R + Glucose^xfg*kmf + IL1R*kmfg^xfg + kmf*kmfg^xfg)
+	fRate6 =  if((time()<91),(il1bH*k1*(1-placebo_on)),(k2*(-il1b0*placebo_on+il1b0-kplacebo*placebo_on*time()+kplacebo*time())))
+	fRate7 =  if((time()<91),(IL1b*k1*(1-placebo_on)),(IL1b*k2*(1-placebo_on)))
+	fRate8() = kplacebo*placebo_on
+	fRate10() = Anakinrasc*kab/Vp
+	fRate11() = CL/Vp
+	fRate14() = Insulin*Kxgi
+	fRate15() = 0.1*Kxgi*Proinsulin
+	fRate16() = B*TigB*(Glucose/Gh)^vh/((Glucose/Gh)^vh + 1.0)
+	fRate18() = B*TigB*f*(Glucose/Gh)^vh/((Glucose/Gh)^vh + 1.0)
+	fRate19() = 0.1*Kxi
+end functions
+begin reaction rules
+	TigB_up_products_0: 0  -> TigB() fRate0()
+	TigB_down: TigB() -> 0  taus
+	Bcell_replication: 0  -> B() fRate2()
+	Bcell_apoptosis: B() -> 0  apoptosis
+	proinsulin_sec_up: 0  -> f() fRate4() #Modifiers(Glucose)
+	proinsulin_sec_down: f() -> 0  tauf
+	IL1b_treatment: 0  -> IL1b() fRate6()
+	IL1b_degradation_reactants_0: 0  -> IL1b() -1*(fRate7())
+	IL1b_placebo: 0  -> IL1b() fRate8()
+	AnakinraSC_elimination: Anakinrasc() -> 0  kab
+	Anakinra_absorption: 0  -> Anakinra() fRate10() #Modifiers(Anakinrasc)
+	Anakinra_elimination: Anakinra() -> 0  fRate11()
+	Glucose_production: 0  -> Glucose() Tgl
+	Basal_glucose_uptake: Glucose() -> 0  Kxg
+	Insulin_dependent_glucose_uptake: Glucose() -> 0  fRate14() #Modifiers(Insulin)
+	Proinsulin_dependent_glucose_uptake: Glucose() -> 0  fRate15() #Modifiers(Proinsulin)
+	Glucose_dependent_insulin_secretion: 0  -> Insulin() fRate16() #Modifiers(TigB, B, Glucose)
+	Insulin_elimination: Insulin() -> 0  Kxi
+	Glucose_dependent_proinsulin_secretion: 0  -> Proinsulin() fRate18() #Modifiers(TigB, B, f, Glucose)
+	Proinsulin_elimination: Proinsulin() -> 0  fRate19()
+	0  -> a1c1() arRatea1c1 #rateLaw
+	0  -> rbc1() arRaterbc1 #rateLaw
+	0  -> a1c2() arRatea1c2 #rateLaw
+	0  -> rbc2() arRaterbc2 #rateLaw
+	0  -> a1c3() arRatea1c3 #rateLaw
+	0  -> rbc3() arRaterbc3 #rateLaw
+	0  -> a1c4() arRatea1c4 #rateLaw
+	0  -> rbc4() arRaterbc4 #rateLaw
+	0  -> a1c5() arRatea1c5 #rateLaw
+	0  -> rbc5() arRaterbc5 #rateLaw
+	0  -> a1c6() arRatea1c6 #rateLaw
+	0  -> rbc6() arRaterbc6 #rateLaw
+	0  -> a1c7() arRatea1c7 #rateLaw
+	0  -> rbc7() arRaterbc7 #rateLaw
+	0  -> a1c8() arRatea1c8 #rateLaw
+	0  -> rbc8() arRaterbc8 #rateLaw
+	0  -> a1c9() arRatea1c9 #rateLaw
+	0  -> rbc9() arRaterbc9 #rateLaw
+	0  -> a1c10() arRatea1c10 #rateLaw
+	0  -> rbc10() arRaterbc10 #rateLaw
+	0  -> a1c11() arRatea1c11 #rateLaw
+	0  -> rbc11() arRaterbc11 #rateLaw
+	0  -> a1c12() arRatea1c12 #rateLaw
+	0  -> rbc12() arRaterbc12 #rateLaw
+end reaction rules
+end model

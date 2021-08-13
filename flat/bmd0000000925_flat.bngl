@@ -1,0 +1,111 @@
+###
+#@BQB_IS:['http://identifiers.org/biomodels.db/MODEL1808140001']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0007596']
+#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000089']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/doi/10.1093/imamat/hxw007']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000925', 'http://identifiers.org/biomodels.db/MODEL1808140001']
+#@creatorEmail:'ahmad.azd@hotmail.com'
+#@creatorName:'Zyoud Ahmad'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 16 molecules and 16 reactions. The translated model has 14 molecules and 16 rules'
+###
+begin model
+begin parameters
+	k1a 150.0
+	gamma1a 0.77
+	k1b 0.19
+	k2a 2.0
+	k2am 7.2
+	k2b 0.013
+	k3a 150.0
+	q3a 1.0
+	k3b 0.038
+	k3c 1.0
+	k4a 0.12
+	q4a 0.004
+	k4b 530.0
+	k4bm 3.6
+	k5a 0.0011
+	k5b 0.27
+	k6 1500.0
+	kx 385.0
+	kb 0.0005
+	Ix 7.69
+	Ib 0.05
+end parameters
+begin molecule types
+	Prothrombin__II__()
+	FactorXa()
+	APC()
+	FactorVa()
+	ProteinC()
+	Thrombin__IIa__()
+	Fibrin()
+	Prothrombinase__Va_Xa__()
+	Fibrinogen()
+	InactiveThrombin()
+	FactorXi()
+	InactiveproteinC()
+	VInactive()
+	FactorV()
+end molecule types
+begin seed species
+	FactorV() 1.8066e+21 # (3.0 * 0.001)mol/L * 6.022e23/mol *1.0L #FactorV #Factor_V
+	Prothrombin__II__() 1.02374e+22 #original 17.0substance/volume #Prothrombin__II__ #Prothrombin__II
+	ProteinC() 5.54024e+22 #original 92.0substance/volume #ProteinC #Protein_C
+	Fibrinogen() 3.011e+21 #original 5.0substance/volume #Fibrinogen #Fibrinogen
+end seed species
+begin observables
+	Species FactorXa FactorXa() #Factor Xa
+	Species Thrombin__IIa__ Thrombin__IIa__() #Thrombin (IIa)
+	Species FactorV FactorV() #Factor V
+	Species FactorVa FactorVa() #Factor Va
+	Species APC APC() #APC
+	Species VInactive VInactive() #VInactive
+	Species Prothrombinase__Va_Xa__ Prothrombinase__Va_Xa__() #Prothrombinase (Va:Xa)
+	Species Prothrombin__II__ Prothrombin__II__() #Prothrombin (II)
+	Species ProteinC ProteinC() #Protein C
+	Species InactiveproteinC InactiveproteinC() #Inactive protein C
+	Species Fibrin Fibrin() #Fibrin
+	Species Fibrinogen Fibrinogen() #Fibrinogen
+	Species InactiveThrombin InactiveThrombin() #Inactive Thrombin
+	Species FactorXi FactorXi() #Factor Xi
+end observables
+begin functions
+	log_time() = log10(time())/log10(10)
+	Xa_L_ar() = 0.5*FactorXa + 0.5*Ix + 0.5*kx - 0.5*sqrt(-4*FactorXa*Ix + (FactorXa + Ix + kx)^2)
+	Va_Xa_L_ar() = 0.5*Ib + 0.5*Prothrombinase__Va_Xa__ + 0.5*kb - 0.5*sqrt(-4*Ib*Prothrombinase__Va_Xa__ + (Ib + Prothrombinase__Va_Xa__ + kb)^2)
+	fRate0() = gamma1a*k1a*exp(-gamma1a*time())
+	fRate1() = FactorV*FactorXa*k2b/(1.0*FactorV + 1.0*Prothrombin__II__ + 1.0) + FactorV*Thrombin__IIa__/(FactorV + Fibrinogen*k2am + k2am) + 1.0*Prothrombinase__Va_Xa__*k3b/q3a
+	fRate1m() = 1.0*FactorXa
+	fRate3() = APC/(FactorVa + 1.0)
+	fRate4() = FactorVa*k3a
+	fRate4m() = APC*Prothrombinase__Va_Xa__*k3a*k3c/(1.0*Prothrombinase__Va_Xa__ + 1.0)
+	fRate5m() = 1.0*FactorVa*FactorXa*q3a
+	fRate6() = APC*k3c*q3a/(Prothrombinase__Va_Xa__ + 1.0)
+	fRate7() = Xa_L_ar*q4a/(FactorV + Prothrombin__II__ + 1.0)
+	fRate11() = 1.0*FactorV*FactorXa*k2a*k2b/(FactorV + Prothrombinase__Va_Xa__ + 1) + 1.0*FactorV*Thrombin__IIa__*k2a/(FactorV + k2a*k2am*(Fibrinogen + 1))
+	fRate13() = Prothrombin__II__*Va_Xa_L_ar*k4b/(Prothrombin__II__ + k4bm)
+	fRate14() = Va_Xa_L_ar*k4b/(Prothrombin__II__ + k4bm)
+	fRate15() = FactorXa*k1b + 1.0*Prothrombinase__Va_Xa__*k2a*k3b/q3a
+end functions
+begin reaction rules
+	Reaction_for_Generation_of_Xa: 0  -> FactorXa() fRate0()
+	Reaction_for_Generation_of_Va: 0  <-> FactorVa() fRate1(),fRate1m() #Modifiers(Thrombin__IIa, Factor_V, Fibrinogen, Factor_Xa, Prothrombin__II, Prothrombinase__Va_Xa)
+	Reaction_for_Inactivation_of_Xa: FactorXa() -> 0  k1b
+	Reaction_for_Inactivation_of_Va: FactorVa() -> VInactive() fRate3() #Modifiers(APC)
+	Reaction_for_Formation_of_Prothrombinase: FactorXa() <-> 0  fRate4(),fRate4m() #Modifiers(Factor_Va, APC, Prothrombinase__Va_Xa)
+	Reaction_for_Inactivation_of_prothrombinase_1: Prothrombinase__Va_Xa__() <-> 0  k3b,fRate5m() #Modifiers(Factor_Xa, Factor_Va)
+	reaction_for_Inactivation_of_prothrombinase_2: Prothrombinase__Va_Xa__() -> VInactive() fRate6() #Modifiers(APC)
+	reaction_for_Generation_of_thrombin: Prothrombin__II__() -> Thrombin__IIa__() fRate7() #Modifiers(Xa_L, Factor_V, Va_Xa_L, Thrombin__IIa)
+	reaction_for_Generation_of_protein_C: ProteinC() -> APC() k5a
+	Reaction_for_Inactivation_of_protein_C: APC() -> InactiveproteinC() k5b
+	reaction_for_Generation_of__Fibrin: Fibrinogen() -> Fibrin() k6
+	Reaction_of_V_Inactivation_reactants_0: 0  -> FactorV() -1*(fRate11()) #Modifiers(Thrombin__IIa, Fibrinogen, Factor_Xa, Prothrombinase__Va_Xa)
+	Reaction_for_Thrombin_Generation: Thrombin__IIa__() -> InactiveThrombin() 1.00000000000000
+	Reaction_for_Thrombin_Inactivation: 0  -> Thrombin__IIa__() fRate13() #Modifiers(Va_Xa_L, Prothrombin__II)
+	Reaction_for_Prothrombin_inactivation: Prothrombin__II__() -> 0  fRate14() #Modifiers(Va_Xa_L)
+	Reaction_for_Inactive_Xa: 0  -> FactorXi() fRate15() #Modifiers(Factor_Xa, Prothrombinase__Va_Xa)
+end reaction rules
+end model

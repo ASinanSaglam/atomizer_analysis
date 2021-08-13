@@ -1,0 +1,61 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL0466937756', 'http://identifiers.org/biomodels.db/BIOMD0000000117']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/1647878']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/131567']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0048763', 'http://identifiers.org/obo.go/GO:0019722']
+#@creatorEmail:'enuo@caltech.edu'
+#@creatorName:'He Enuo'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 2 molecules and 6 reactions. The translated model has 2 molecules and 8 rules'
+###
+begin model
+begin parameters
+	v0 1.0
+	v1 7.3
+	VM2 65.0
+	VM3 500.0
+	KR 2.0
+	KA 0.9
+	K2 1.0
+	kf 1.0
+	k 10.0
+	n 2.0
+	m 2.0
+	p 4.0
+	tstim 4.0
+	flag 0
+end parameters
+begin compartments
+	#volume units: L
+	extracellular 3 1.0
+	Cytosol 3 1.0
+	intracellular_Ca_storepool 3 1.0
+end compartments
+begin molecule types
+	CaintheInsP3_insensitivepool()
+	Cainthecytosol()
+end molecule types
+begin seed species
+	@Cytosol:Cainthecytosol() 6.022e+16 # (0.1 * 1e-06)mol/L * 6.022e23/mol *1.0L #Cainthecytosol #z
+	@intracellular_Ca_storepool:CaintheInsP3_insensitivepool() 8.4308e+17 #original 1.4microM/L #CaintheInsP3_insensitivepool #y
+end seed species
+begin observables
+	Species Cainthecytosol_Cytosol @Cytosol:Cainthecytosol() #Ca in the cytosol
+	Species CaintheInsP3_insensitivepool_intracellular_Ca_storepool @intracellular_Ca_storepool:CaintheInsP3_insensitivepool() #Ca in the InsP3-insensitive pool
+end observables
+begin functions
+	beta() = 0.96*flag*exp(0.2*tstim - 0.2*time())
+	fRate0() = beta*v1
+	fRate3() = Cainthecytosol_Cytosol^n*VM2/(Cainthecytosol_Cytosol^n + K2^n)
+	fRate4() = CaintheInsP3_insensitivepool_intracellular_Ca_storepool^m*Cainthecytosol_Cytosol^p*VM3/((CaintheInsP3_insensitivepool_intracellular_Ca_storepool^m + KR^m)*(Cainthecytosol_Cytosol^p + KA^p))
+end functions
+begin reaction rules
+	reaction_0000001: 0  -> Cainthecytosol()@Cytosol fRate0()
+	reaction_0000002: 0  -> Cainthecytosol()@Cytosol v0
+	reaction_0000003: CaintheInsP3_insensitivepool()@intracellular_Ca_storepool -> Cainthecytosol()@Cytosol kf
+	reaction_0000004_reactants_0: 0  -> Cainthecytosol()@Cytosol -1*(fRate3())
+	reaction_0000004_products_0: 0  -> CaintheInsP3_insensitivepool()@intracellular_Ca_storepool fRate3()
+	reaction_0000005_reactants_0: 0  -> CaintheInsP3_insensitivepool()@intracellular_Ca_storepool -1*(fRate4())
+	reaction_0000005_products_0: 0  -> Cainthecytosol()@Cytosol fRate4()
+	reaction_0000006: Cainthecytosol()@Cytosol -> 0  k
+end reaction rules
+end model

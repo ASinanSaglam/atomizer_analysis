@@ -1,0 +1,86 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1004060002', 'http://identifiers.org/biomodels.db/BIOMD0000000263']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/20664065']
+#@BQB_HAS_VERSION:['http://identifiers.org/reactome/REACT_12056', 'http://identifiers.org/go/GO:0048011', 'http://identifiers.org/reactome/REACT_12464.1', 'http://identifiers.org/go/GO:0043491']
+#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0001009']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10116']
+#@creatorEmail:'lukas@ebi.ac.uk'
+#@creatorName:'Endler Lukas'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 11 molecules and 11 reactions. The translated model has 11 molecules and 11 rules'
+###
+begin model
+begin parameters
+	pTrkA_scaleFactor 0.848783474941268 #units:ng
+	pAkt_scaleFactor 2.42381211094508 #units:ng
+	pS6_scaleFactor 0.525842718263069 #units:ng
+	NGF_conc_ramp 30.0 #units:ng_per_ml
+	TrkA_turnover 0.0011032440769796 #units:per_sec
+	pulse_time 60.0 #units:time
+	ramp_time 3600.0 #units:time
+	NGF_conc_step 0
+	NGF_conc_pulse 0
+	r1_k1 0.002694
+	r1_k2 0.013375
+	r2_k1 0.088270
+	r2_k2 0.000000
+	r3_k1 0.020252
+	r4_k1 0.068408
+	r5_k1 68.366600
+	r5_k2 5.235190
+	r6_k1 0.005652
+	r7_k1 1.281350
+	r8_k1 0.000293
+	r10_k1 0.008332
+end parameters
+begin molecule types
+	Akt()
+	TrkA()
+	pAkt()
+	pro_TrkA()
+	pS6()
+	NGF_TrkA()
+	NGF()
+	S6()
+	pTrkA_Akt()
+	pTrkA()
+	pAkt_S6()
+end molecule types
+begin seed species
+	Akt() 6.961124752706088e+23 #original 1.15594897919397arbitrary_amount/ml #Akt #Akt
+	S6() 2.139216763020021e+24 #original 3.552336039555arbitrary_amount/ml #S6 #S6
+	$pro_TrkA() 5.131135975101059e+24 #original 8.52065090518276arbitrary_amount/ml #pro_TrkA #pro_TrkA
+	TrkA()() (8.52065090518276) #TrkA
+end seed species
+begin observables
+	Species NGF NGF() #NGF
+	Species TrkA TrkA() #TrkA
+	Species pTrkA pTrkA() #pTrkA
+	Species pTrkA_Akt pTrkA_Akt() #pTrkA_Akt
+	Species Akt Akt() #Akt
+	Species pAkt pAkt() #pAkt
+	Species S6 S6() #S6
+	Species pAkt_S6 pAkt_S6() #pAkt_S6
+	Species pS6 pS6() #pS6
+	Species pro_TrkA pro_TrkA() #pro_TrkA
+	Species NGF_TrkA NGF_TrkA() #NGF_TrkA
+end observables
+begin functions
+	NGF_ar() =  NGF_conc_ramp*time()/ramp_time+NGF_conc_step+if((time()<=pulse_time),(NGF_conc_pulse),(0))
+	pTrkA_total() = pTrkA_scaleFactor*(pTrkA + pTrkA_Akt)
+	pAkt_total() = pAkt_scaleFactor*(pAkt + pAkt_S6)
+	pS6_total() = pS6*pS6_scaleFactor
+end functions
+begin reaction rules
+	reaction_1: NGF() + TrkA() <-> NGF_TrkA() r1_k1,r1_k2
+	reaction_2: pTrkA() + Akt() <-> pTrkA_Akt() r2_k1,r2_k2
+	reaction_3: pTrkA_Akt() -> pTrkA() + pAkt() r3_k1
+	reaction_4: pTrkA() -> 0  r4_k1
+	reaction_5: pAkt() + S6() <-> pAkt_S6() r5_k1,r5_k2
+	reaction_6: pAkt_S6() -> pAkt() + pS6() r6_k1
+	reaction_7: pAkt() -> Akt() r7_k1
+	reaction_8: pS6() -> S6() r8_k1
+	reaction_9: pro_TrkA() -> TrkA() TrkA_turnover
+	reaction_10: NGF_TrkA() -> pTrkA() r10_k1
+	reaction_11: TrkA() -> 0  TrkA_turnover
+end reaction rules
+end model

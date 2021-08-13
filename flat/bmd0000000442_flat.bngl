@@ -1,0 +1,107 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000442', 'http://identifiers.org/biomodels.db/MODEL1112190005']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/22694947']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/BIOMD0000000441']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0000165']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/131567']
+#@creatorEmail:'juty@ebi.ac.uk'
+#@creatorName:'Juty Nick'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 13 molecules and 12 reactions. The translated model has 10 molecules and 14 rules'
+###
+begin model
+begin parameters
+	P1 6.021999420013666e+16 #original 99.9999903688752substance/volume
+	P2 3.0109997100068384e+17 #original 499.999951844377substance/volume
+	P3 3.0109997100068384e+17 #original 499.999951844377substance/volume
+	r1_A 100.000000
+	r1_K1 15.000000
+	r1_Ka 500.000000
+	r1_V1 6.000000
+	r2_K3 20.000000
+	r2_KI 9.000000
+	r2_k3 0.100000
+	r3_K4 20.000000
+	r3_KI 9.000000
+	r3_k4 0.100000
+	r4_K7 20.000000
+	r4_k7 0.100000
+	r5_K8 20.000000
+	r5_k8 0.100000
+	r6_K2 100.000000
+	r6_k2 0.100000
+	r7_K5 20.000000
+	r7_k5 0.020000
+	r8_K6 20.000000
+	r8_k6 0.020000
+	r9_K9 20.000000
+	r9_k9 0.020000
+	r10_K10 20.000000
+	r10_k10 0.020000
+	r11_V11 0.100000
+	r11_K11 50.000000
+	r11_A 100.000000
+	r11_Ka 500.000000
+	r12_V12 0.500000
+	r12_K12 50.000000
+end parameters
+begin molecule types
+	X()
+	MKKK()
+	MKK_PP()
+	M_PP()
+	MKK()
+	M_P()
+	MKK_P()
+	MKKK_P()
+	M()
+	X_P()
+end molecule types
+begin seed species
+	MKKK() 6.021999420013672e+17 # (999.999903688753 * 1e-09)mol/L * 6.022e23/mol *1.0L #MKKK #species_0
+	MKK() 2.408799768005467e+18 #original 3999.99961475501substance/volume  #MKK #species_2
+	M() 6.021999420013672e+17 #original 999.999903688753substance/volume  #M #species_5
+	X() 6.021999420013666e+16 #original 99.9999903688752substance/volume  #X #species_11
+end seed species
+begin observables
+	Species MKKK MKKK() #MKKK
+	Species MKKK_P MKKK_P() #MKKK_P
+	Species MKK MKK() #MKK
+	Species MKK_P MKK_P() #MKK_P
+	Species MKK_PP MKK_PP() #MKK_PP
+	Species M M() #M
+	Species M_P M_P() #M_P
+	Species M_PP M_PP() #M_PP
+	Species X X() #X
+	Species X_P X_P() #X_P
+end observables
+begin functions
+	fRate0() = 6.0*MKKK*(0.2*M_PP + 1)/((1.0*MKKK + 15.0)*(0.002*M_PP + 1))
+	fRate1() = 0.9*MKKK_P/(MKK*M_PP + 9.0*MKK + MKK_P*M_PP + 9.0*MKK_P + 20.0*M_PP + 180.0)
+	fRate2() = 0.9*MKKK_P/(MKK*M_PP + 9.0*MKK + MKK_P*M_PP + 9.0*MKK_P + 20.0*M_PP + 180.0)
+	fRate3() = 0.1*MKK_PP/(M + M_P + 20.0)
+	fRate4() = 0.1*MKK_PP/(M + M_P + 20.0)
+	fRate5() = 0.1*P1/(MKKK_P + 100.0)
+	fRate6() = 0.02*P2/(MKK_P + MKK_PP + 20.0)
+	fRate7() = 0.02*P2/(MKK_P + MKK_PP + 20.0)
+	fRate8() = 0.02*P3/(M_P + M_PP + 20.0)
+	fRate9() = 0.02*P3/(M_P + M_PP + 20.0)
+	fRate10() = 0.1*X*(0.2*M_PP + 1)/((0.002*M_PP + 1)*(1.0*X + 50.0))
+	fRate11() = 0.5/(X_P + 50.0)
+end functions
+begin reaction rules
+	reaction_0_reactants_0: 0  -> MKKK() -1*(fRate0()) #Modifiers(species_7, species_0, species_7, species_0, species_7)
+	reaction_0_products_0: 0  -> MKKK_P() fRate0() #Modifiers(species_7, species_0, species_7, species_0, species_7)
+	reaction_1: MKK() -> MKK_P() fRate1() #Modifiers(species_1, species_3, species_7, species_1, species_2, species_3, species_7, species_1, species_2, species_3, species_7)
+	reaction_2: MKK_P() -> MKK_PP() fRate2() #Modifiers(species_1, species_2, species_7, species_1, species_2, species_3, species_7, species_1, species_2, species_3, species_7)
+	reaction_3: M() -> M_P() fRate3() #Modifiers(species_4, species_6, species_4, species_5, species_6, species_4, species_5, species_6)
+	reaction_4: M_P() -> M_PP() fRate4() #Modifiers(species_4, species_5, species_4, species_5, species_6, species_4, species_5, species_6)
+	reaction_5: MKKK_P() -> MKKK() fRate5() #Modifiers(species_8, species_1, species_8, species_1, species_8)
+	reaction_6: MKK_PP() -> MKK_P() fRate6() #Modifiers(species_9, species_3, species_3, species_4, species_9, species_3, species_4, species_9)
+	reaction_7: MKK_P() -> MKK() fRate7() #Modifiers(species_9, species_4, species_3, species_4, species_9, species_3, species_4, species_9)
+	reaction_8: M_PP() -> M_P() fRate8() #Modifiers(species_10, species_6, species_5, species_10, species_6, species_7, species_10, species_6, species_7)
+	reaction_9: M_P() -> M() fRate9() #Modifiers(species_10, species_7, species_5, species_10, species_6, species_7, species_10, species_6, species_7)
+	reaction_10_reactants_0: 0  -> X() -1*(fRate10()) #Modifiers(species_7, species_11, species_7, species_11, species_7)
+	reaction_10_products_0: 0  -> X_P() fRate10() #Modifiers(species_7, species_11, species_7, species_11, species_7)
+	reaction_11: X_P() -> X() fRate11() #Modifiers(species_12, species_12)
+end reaction rules
+end model

@@ -1,0 +1,75 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000300', 'http://identifiers.org/biomodels.db/MODEL1008170000']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/20955552']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0001666', 'http://identifiers.org/go/GO:0070482']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:2835', 'http://identifiers.org/mamo/MAMO_0000046']
+#@creatorEmail:'Bernhard.Schmierer@ymail.com'
+#@creatorName:'Schmierer Bernhard'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 16 molecules and 10 reactions. The translated model has 3 molecules and 10 rules'
+###
+begin model
+begin parameters
+	parameter_1 0.33 #units:dimensionless
+	parameter_2 1.0 #units:dimensionless
+	parameter_3 1.0 #units:dimensionless
+	parameter_4 1.0 #units:dimensionless
+	parameter_5 0.3 #units:dimensionless
+	parameter_8 500.0 #units:dimensionless
+	parameter_10 1.0 #units:dimensionless
+	parameter_11 5.0 #units:dimensionless
+	parameter_17 1.0 #units:dimensionless
+	parameter_18 1.0 #units:dimensionless
+	parameter_6 0
+	Atot 6.022e+25 #original 100.0/
+	Ftot 6.022e+23 #original 1.0/
+	Ptot 1.2044000000000002e+23 #original 0.2/
+	FIHfree 5.962376237623762e+21 #original 0.0099009900990099/
+	Aforplotting 6.022e+23 #original 1.0/
+end parameters
+begin molecule types
+	H()
+	Htot()
+	A()
+end molecule types
+begin seed species
+	A() 6.022e+25 # 100.0mol/L * 6.022e23/mol *1.0L #A #species_3
+end seed species
+begin observables
+	Species Htot Htot() #Htot
+	Species H H() #H
+	Species A A() #A
+end observables
+begin functions
+	parameter_7() = parameter_2*(A + parameter_3 + parameter_6*(-A + Atot))/parameter_3
+	HF_ar() = -0.5*Ftot + 0.5*H - 0.5*parameter_7 + 0.5*sqrt(4*H*parameter_7 + (Ftot - H + parameter_7)^2)
+	FIHfree_ar() = (HF_ar + parameter_2)/(HF_ar + parameter_7)
+	parameter_9() = parameter_3*(HF_ar + parameter_2)/parameter_2
+	parameter_13() = parameter_10*parameter_8
+	parameter_16() = Atot/parameter_11
+	parameter_14() = 1/parameter_11
+	CADOH_ar() = (-H + Htot)/(Htot + parameter_5)
+	Aforplotting_ar() = A/Atot
+	NAD_ar() = Htot/(Htot + parameter_5)
+	CAD_ar() = H/(Htot + parameter_5)
+	HP_ar() = 0.5*Htot - 0.5*Ptot - 0.5*parameter_4 + 0.5*sqrt(4*Htot*parameter_4 + (-Htot + Ptot + parameter_4)^2)
+	AOH_ar() = -A + Atot
+	HOH_ar() = -H + Htot
+	fRate2() = O2*Ptot*parameter_8/(HP_ar*O2 + HP_ar + O2*Ptot + O2*parameter_4 + Ptot + parameter_4)
+	fRate5() = O2*Ptot*parameter_8/(HP_ar*O2 + HP_ar + O2*Ptot + O2*parameter_4 + Ptot + parameter_4)
+	fRate6() = Ftot*O2*parameter_13/(Ftot*O2 + Ftot*parameter_1 + HF_ar*O2 + HF_ar*parameter_1 + O2*parameter_7 + parameter_1*parameter_7)
+	fRate9() = Ftot*O2*parameter_13/(-A*O2*parameter_6 + A*O2 - A*parameter_1*parameter_6 + A*parameter_1 + Atot*O2*parameter_6 + Atot*parameter_1*parameter_6 + O2*parameter_9 + parameter_1*parameter_9)
+end functions
+begin reaction rules
+	reaction_1: 0  -> Htot() parameter_18
+	reaction_2: Htot() -> 0  parameter_17
+	reaction_3: Htot() -> 0  fRate2() #Modifiers(species_8, species_11, species_10)
+	reaction_4: 0  -> H() parameter_18
+	reaction_5: H() -> 0  parameter_17
+	reaction_6: H() -> 0  fRate5() #Modifiers(species_8, species_11, species_10)
+	reaction_7: H() -> 0  fRate6() #Modifiers(species_7, species_11, species_9)
+	reaction_8: 0  -> A() parameter_16
+	reaction_9: A() -> 0  parameter_14
+	reaction_10: A() -> 0  fRate9() #Modifiers(species_7, species_11, species_5)
+end reaction rules
+end model

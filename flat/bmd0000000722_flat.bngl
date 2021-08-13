@@ -1,0 +1,97 @@
+###
+#@BQB_OCCURS_IN:['http://identifiers.org/go/GO:0001946']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/omit/0015769', 'http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/go/GO:0042060']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10090', 'http://identifiers.org/taxonomy/10116']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/26254217']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000722', 'http://identifiers.org/biomodels.db/MODEL1811210001']
+#@creatorEmail:'sarubini.kananathan@hotmail.co.uk'
+#@creatorName:'Kananathan Sarubini'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 5 molecules and 15 reactions. The translated model has 5 molecules and 16 rules'
+###
+begin model
+begin parameters
+	a_p 0.029
+	p_0 250000.0
+	a_M 0.45
+	T_L 18.0
+	r1 3e-05
+	d1 500.0
+	s_M 542.0
+	alpha 0.5
+	b1 800000000.0
+	b2 8100000000.0
+	beta 0.005
+	r2 1.22
+	k1 600000.0
+	d2 0.2
+	rho 1e-05
+	S_V 1.9
+	r3 0.0019
+	d3 11.0
+	gamma 0.0014
+	c1 0.42
+	c2 42.0
+	c3 4.1
+	c4 0.24
+	S_L 500.0
+	b3 10000000.0
+	b4 8100000000.0
+	C 10000.0
+	k2 471000.0
+	L 10000.0
+	delta1 0.05
+	delta2 0.001
+end parameters
+begin molecule types
+	Macrophages()
+	VEGF()
+	LECs()
+	ActiveTGF_beta()
+	Capillaries()
+end molecule types
+begin seed species
+	ActiveTGF_beta() 1.8066e+22 # (30.0 * 0.001)mol/L * 6.022e23/mol *1.0L #ActiveTGF_beta #Active_TGF_beta
+	Macrophages() 1.1291250000000001e+24 #original 1875.0substance/volume #Macrophages #Macrophages
+	VEGF() 3.011e+20 #original 0.5substance/volume #VEGF #VEGF
+end seed species
+begin observables
+	Species ActiveTGF_beta ActiveTGF_beta() #Active TGF-beta
+	Species Macrophages Macrophages() #Macrophages
+	Species VEGF VEGF() #VEGF
+	Species LECs LECs() #LECs
+	Species Capillaries Capillaries() #Capillaries
+end observables
+begin functions
+	sigma() =  if((Capillaries+LECs<L),(0),(1))
+	f() =  if((Capillaries<C),(1-Capillaries/C),(0))
+	fRate0() = Macrophages^2*a_M*r1 + Macrophages*T_L*a_M + Macrophages*a_p*p_0*r1*exp(-T_L*a_p*time()) + T_L*a_p*p_0*exp(-T_L*a_p*time())
+	fRate3() = ActiveTGF_beta^2*alpha*b1/(ActiveTGF_beta^4 + b2)
+	fRate4() = Macrophages*beta*r2
+	fRate4m() = Macrophages*beta*r2/k1
+	fRate6() = Capillaries*rho
+	fRate8() = Macrophages*r3
+	fRate10() = LECs*gamma
+	fRate11() = 1.0*LECs*(VEGF*c1*c3 + VEGF + c1*c2)/(ActiveTGF_beta*VEGF*c3*c4 + ActiveTGF_beta*c2*c4 + VEGF*c3 + c2)
+	fRate12() = f*(S_L*(VEGF^4 + b4) + VEGF^2*b3)/(VEGF^4 + b4)
+	fRate13() = LECs*(Capillaries + LECs + Macrophages)/k2
+	fRate14() = LECs*sigma*(VEGF*delta2 + delta1)
+end functions
+begin reaction rules
+	Activation_of_TGF_beta_by_enzymes_and_Macrophages: 0  -> ActiveTGF_beta() fRate0() #Modifiers(Macrophages)
+	Decay_of_TGF_beta: ActiveTGF_beta() -> 0  d1
+	Flux_of_macrophages_from_source: 0  -> Macrophages() s_M
+	Chemotaxis_by_TGF_beta: 0  -> Macrophages() fRate3() #Modifiers(Active_TGF_beta)
+	Logistic_growth_of_Macrophages: 0  <-> Macrophages() fRate4(),fRate4m()
+	Removal_of_Macrophages: Macrophages() -> 0  d2
+	Differentiation_of_Macrophages: Macrophages() -> 0  fRate6() #Modifiers(Capillaries)
+	Flux_of_VEGF_from_source: 0  -> VEGF() S_V
+	Production_of_VEGF_by_macrophages: 0  -> VEGF() fRate8() #Modifiers(Macrophages)
+	Decay_of_VEGF: VEGF() -> 0  d3
+	VEGF_used_by_LECs: VEGF() -> 0  fRate10() #Modifiers(LECs)
+	Growth_of_LECs_upregulated_by_VEGF_and_downregulated_by_TGF_beta: 0  -> LECs() fRate11() #Modifiers(VEGF, Active_TGF_beta)
+	Inflow_and_chemotaxis_of_LECs_by_VEGF: 0  -> LECs() fRate12() #Modifiers(VEGF)
+	Crowding_effect_and_apoptosis_of_LECs_reactants_0: 0  -> LECs() -1*(fRate13()) #Modifiers(Macrophages, Capillaries)
+	Transdifferentiation_of_LECs_into_the_capillaries_reactants_0: 0  -> LECs() -1*(fRate14()) #Modifiers(VEGF)
+	Transdifferentiation_of_LECs_into_the_capillaries_products_0: 0  -> Capillaries() fRate14() #Modifiers(VEGF)
+end reaction rules
+end model

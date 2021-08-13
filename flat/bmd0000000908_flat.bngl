@@ -1,0 +1,112 @@
+###
+#@BQM_HAS_INSTANCE:['http://identifiers.org/ncit/C17837', 'http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/taxonomy/9606']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/ncit/C17837', 'http://identifiers.org/doi/10.1080/17486700802216301', 'http://identifiers.org/doi/10.3934/dcdsb.2013.18.915']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000908', 'http://identifiers.org/biomodels.db/MODEL2001060001']
+#@creatorEmail:'msharifshohan@ebi.ac.uk'
+#@creatorName:'Sharif Shohan Mohammad Umer'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 7 molecules and 13 reactions. The translated model has 7 molecules and 13 rules'
+###
+begin model
+begin parameters
+	d 1.7
+	l 1.7
+	s 0.035
+	a 0.2065
+	b 2.145e-10
+	c 8.68e-10
+	delta_T 1.59e-09
+	e_f 0.1168
+	f 0.0125
+	p 6.682e-14
+	p_N 0.0668
+	C_0 2140000000.0
+	g_N 250360.0
+	m 0.009
+	q 3.422e-10
+	r_1 6.682e-12
+	r_2 1e-15
+	p_I 1.111
+	g_I 2503.6
+	z 2.3085e-13
+	kappa 2503.6
+	j 0.1245
+	k 20190000.0
+	w_u 0.0122
+	u 0.03851
+	p_R 0.03598
+	g_R 11.027
+	H_R 0.227
+	delta_R 50.02
+	alpha_beta 2140000000.0
+	beta 0.0063
+	mu_I 11.7427
+	w 0.05314
+	phi 3.594e-07
+	zeta 2503.6
+	n 0.277
+	Metabolite_2 (526800.0)
+	Metabolite_0 (4662000000.0)
+	ModelValue_1 (1.7)
+	ModelValue_2 (1.7)
+	ModelValue_3 (0.035)
+	vs 0
+end parameters
+begin molecule types
+	N()
+	I()
+	S()
+	L()
+	R()
+	T()
+	C()
+end molecule types
+begin seed species
+	T() 2.8074564000000004e+30 # (4662000000.0 * 0.001)mol/L * 6.022e23/mol *1.0L #T #T
+	N() 1.5055e+29 #original 250000000.0substance/volume #N #N
+	L() 3.1723895999999996e+26 #original 526800.0substance/volume #L #L
+	R() 2.1197440000000003e+29 #original 352000000.0substance/volume #R #R
+	C() 1.288708e+30 #original 2140000000.0substance/volume #C #C
+	I() 7.063806e+23 #original 1173.0substance/volume #I #I
+end seed species
+begin observables
+	Species T T() #T
+	Species N N() #N
+	Species L L() #L
+	Species R R() #R
+	Species C C() #C
+	Species I I() #I
+	Species S S() #S
+end observables
+begin functions
+	D() = ModelValue_1*(Metabolite_2/Metabolite_0)^ModelValue_2/(ModelValue_3 + (Metabolite_2/Metabolite_0)^ModelValue_2)
+	fRate0() = T*a
+	fRate0m() = T*a*b
+	fRate1() = 1.0*D*T + 1.0*N*T*c*exp(-R*delta_T)
+	fRate2() = (1.0*C*e_f*f*(I + g_N) + I*N*p_N)/(1.0*I + 1.0*g_N)
+	fRate3() = T*p
+	fRate4() = (I*L*p_I*(T + k) + L*T*j*(I + g_I) + 1.0*T*(I + g_I)*(T + k)*(C*r_2 + N*r_1))/((1.0*I + 1.0*g_I)*(T + k))
+	fRate5() = 1.0*I*L^2*R*z/(I + kappa) + 1.0*L*T*q + 1.0*L*m
+	fRate6() = (1.0*C*u*w_u*(I + g_R) + I*R*p_R)/(1.0*I + 1.0*g_R)
+	fRate7m() = H_R*R*exp(-S*delta_R)
+	fRate8() = alpha_beta*beta
+	fRate9() = (1.0*C*phi*(I + zeta) + I*L*w)/(1.0*I + 1.0*zeta)
+	fRate12() = -n
+end functions
+begin reaction rules
+	Increase_in_total_tumor_cell_population_in_number_of_cells: 0  <-> T() fRate0(),fRate0m()
+	Removal_of_tumor_cell_from_the_system_by_immune_cells_reactants_0: 0  -> T() -1*(fRate1()) #Modifiers(R, N)
+	Increase_in_number_of_Natural_killer_cell_per_litre_of_blood: 0  <-> N() fRate2(),f #Modifiers(C, I)
+	Removal_of_natural_killer_cell_from_the_system: N() -> 0  fRate3() #Modifiers(T)
+	Increase_in_the_number_of_CD8__T_cell_per_litre_of_blood: 0  -> L() fRate4() #Modifiers(N, C, T, I)
+	Decrease_in_the_number_of_CD8__T_cell_reactants_0: 0  -> L() -1*(fRate5()) #Modifiers(T, R, I)
+	Increase_in_the_number_of_Treg_cells_per_litre_of_blood: 0  <-> R() fRate6(),u #Modifiers(C, I)
+	Decrease_in_the_number_of_Treg_cells: R() <-> 0  H_R,fRate7m() #Modifiers(S)
+	Increase_in_the_concentration_of_lymphocyte_per_litre_of_blood_not_including_NK_cells__CD8__T_cells_and_regulatory_T_cells: 0  <-> C() fRate8(),beta
+	Increase_in_the_concentration_of_IL_2_per_litre_of_blood: 0  -> I() fRate9() #Modifiers(C, L)
+	Decrease_in_the_concentration_of_IL_2_per_lite_of_blood: I() -> 0  mu_I
+	Injecting_the_concentration_of_sunitinib_per_litre_of_body_volume: 0  -> S() vs
+	Sunitinib_not_working_per_day_per_litre_of_body_volume: S() -> 0  fRate12()
+end reaction rules
+end model

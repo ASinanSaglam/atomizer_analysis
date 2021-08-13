@@ -1,0 +1,393 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000344', 'http://identifiers.org/biomodels.db/MODEL1005280000']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/21779370']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/BIOMD0000000091']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0003773', 'http://identifiers.org/go/GO:0006915', 'http://identifiers.org/go/GO:0051085', 'http://identifiers.org/go/GO:0070841']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/7711']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:1289', 'http://identifiers.org/mamo/MAMO_0000046']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 54 molecules and 80 reactions. The translated model has 52 molecules and 84 rules'
+###
+begin model
+begin parameters
+	ksynNatP 0.042
+	kmisfold 2e-06
+	kbinMisPProt 1e-07
+	kdegMisP 0.01
+	kagg 1e-08
+	kseqagg 7e-07
+	kbinAggPProt 1e-05
+	kbinHspMisp 8e-06
+	krelHspMisp 8e-05
+	krefold 0.00055
+	kbinHsf1Hsp90 0.02
+	krelHsf1Hsp90 0.5
+	kdimerHsf1 8e-05
+	ktrimerHsf1 0.01
+	kdetrimerHsf1 0.5
+	kdedimerHsf1 0.5
+	kbinHSEHsf1 0.05
+	krelHSEHsf1 0.08
+	kupregHsp 0.2
+	kbasalsynHsp70 0.008
+	kbasalsynHsp90 0.008
+	kbinHsp70Prot 1.2e-08
+	kbinHsp90Prot 1e-08
+	kdegHsp70 0.01
+	kdegHsp90 0.01
+	kgenROS 0.01
+	kremROS 0.001
+	kbinHsp70client 0.0002
+	krelHsp70client 5.0
+	kbinHsp90client 0.0002
+	krelHsp90client 5.0
+	kphosJnk 0.02
+	kdephosJnkMkp1 0.05
+	kbinHsp70Ppx 0.2
+	krelHsp70Ppx 5.0
+	kphosHsf1 0.03
+	kdephosHsf1 0.01
+	kbinHSEPhosTriH 0.1
+	krelHSEPhosTriH 0.08
+	kphosp38 0.02
+	kdephosp38Mkp1 0.05
+	kgenROSAggP 1e-06
+	ksynAkt 0.0015
+	kbinAktHsp90 0.00037
+	krelAktHsp90 7.0
+	kbinAktProt 6e-08
+	krelAktProt 1e-08
+	kdegAkt 0.01
+	kbinCHIP 2e-07
+	krelCHIP 1e-08
+	ksynMkp1 1e-05
+	kbinMkp1Prot 9.6e-09
+	kdegMkp1 0.01
+	kphosMkp1 0.02
+	kdephosMkp1 0.001
+	kgenROSp38 0.0001
+	kdamHsp 1e-08
+	kp38death 1.5e-07
+	kJnkdeath 1.5e-07
+	kPIdeath 2e-08
+	kp38act 1.0
+	kalive 1.0
+	Source_cytosol 1.0
+	Source 1.0
+	Sink_cytosol 1.0
+	Sink 1.0
+end parameters
+begin compartments
+	#volume units: L
+	cytosol 3 1.0
+	nucleus 3 1.0
+end compartments
+begin molecule types
+	p38Death()
+	Akt_CHIP_Hsp90()
+	Hsp90_MisP()
+	HSEHsp90_Hsf1_Hsf1_Hsf1_P()
+	AggP()
+	PIDeath()
+	Akt_Hsp90()
+	SeqAggP()
+	Pkc()
+	MisP_Proteasome()
+	Hsp70_dam()
+	JNKDeath()
+	Hsp70_Hsp70Client()
+	HSEHsp70()
+	HSEHsp70_Hsf1_Hsf1_Hsf1_P()
+	p38()
+	Hsp70()
+	Ppx()
+	Akt_Proteasome()
+	Hsp90_Proteasome()
+	Mkp1_Proteasome()
+	Hsp90_dam()
+	NatP()
+	Mkp1()
+	CellDeath()
+	CHIP()
+	Hsp70_Ppx()
+	Hsf1()
+	Hsf1_Hsf1_Hsf1()
+	HSEHsp70_Hsf1_Hsf1_Hsf1()
+	Hsf1_Hsp90()
+	Hsf1_Hsf1_Hsf1_P()
+	HSEHsp90()
+	MisP()
+	ADP()
+	Jnk_P()
+	Mkp1_P()
+	Hsp90()
+	Jnk()
+	Hsf1_Hsf1()
+	ATP()
+	Hsp70Client()
+	p38_P()
+	Hsp90Client()
+	Akt()
+	ROS()
+	HSEHsp90_Hsf1_Hsf1_Hsf1()
+	AggP_Proteasome()
+	Hsp70_MisP()
+	Hsp70_Proteasome()
+	Hsp90_Hsp90Client()
+	Proteasome()
+end molecule types
+begin seed species
+	@cytosol:NatP() 17600.0 #NatP #NatP
+	@cytosol:Hsp70() 1400.0 #Hsp70 #Hsp70
+	@cytosol:Hsp90() 1850.0 #Hsp90 #Hsp90
+	@cytosol:Hsp70Client() 490.0 #Hsp70Client #Hsp70Client
+	@cytosol:Hsp90Client() 590.0 #Hsp90Client #Hsp90Client
+	@cytosol:Hsp70_Hsp70Client() 10.0 #Hsp70_Hsp70Client #Hsp70_Hsp70Client
+	@cytosol:Hsp90_Hsp90Client() 10.0 #Hsp90_Hsp90Client #Hsp90_Hsp90Client
+	@cytosol:Akt() 340.0 #Akt #Akt
+	@cytosol:Akt_Hsp90() 30.0 #Akt_Hsp90 #Akt_Hsp90
+	@cytosol:CHIP() 255.0 #CHIP #CHIP
+	@cytosol:Akt_CHIP_Hsp90() 80.0 #Akt_CHIP_Hsp90 #Akt_CHIP_Hsp90
+	@cytosol:Hsf1() 5.0 #Hsf1 #Hsf1
+	@cytosol:Hsf1_Hsp90() 95.0 #Hsf1_Hsp90 #Hsf1_Hsp90
+	@cytosol:Hsp90_MisP() 470.0 #Hsp90_MisP #Hsp90_MisP
+	@cytosol:Hsp70_MisP() 410.0 #Hsp70_MisP #Hsp70_MisP
+	@nucleus:HSEHsp70() 2.0 #HSEHsp70 #HSEHsp70
+	@nucleus:HSEHsp90() 2.0 #HSEHsp90 #HSEHsp90
+	@cytosol:Jnk() 100.0 #Jnk #Jnk
+	@cytosol:Mkp1_P() 100.0 #Mkp1_P #Mkp1_P
+	@cytosol:Hsp70_Ppx() 100.0 #Hsp70_Ppx #Hsp70_Ppx
+	@cytosol:Pkc() 100.0 #Pkc #Pkc
+	@cytosol:p38() 100.0 #p38 #p38
+	@cytosol:Proteasome() 500.0 #Proteasome #Proteasome
+	@cytosol:ROS() 10.0 #ROS #ROS
+	@cytosol:ATP() 10000.0 #ATP #ATP
+	@cytosol:ADP() 1000.0 #ADP #ADP
+end seed species
+begin observables
+	Species NatP_cytosol @cytosol:NatP() #NatP
+	Species MisP_cytosol @cytosol:MisP() #MisP
+	Species Hsp70_cytosol @cytosol:Hsp70() #Hsp70
+	Species Hsp90_cytosol @cytosol:Hsp90() #Hsp90
+	Species Hsp70_dam_cytosol @cytosol:Hsp70_dam() #Hsp70_dam
+	Species Hsp90_dam_cytosol @cytosol:Hsp90_dam() #Hsp90_dam
+	Species Hsp90_Proteasome_cytosol @cytosol:Hsp90_Proteasome() #Hsp90_Proteasome
+	Species Hsp70_Proteasome_cytosol @cytosol:Hsp70_Proteasome() #Hsp70_Proteasome
+	Species Hsp70Client_cytosol @cytosol:Hsp70Client() #Hsp70Client
+	Species Hsp90Client_cytosol @cytosol:Hsp90Client() #Hsp90Client
+	Species Hsp70_Hsp70Client_cytosol @cytosol:Hsp70_Hsp70Client() #Hsp70_Hsp70Client
+	Species Hsp90_Hsp90Client_cytosol @cytosol:Hsp90_Hsp90Client() #Hsp90_Hsp90Client
+	Species Akt_cytosol @cytosol:Akt() #Akt
+	Species Akt_Hsp90_cytosol @cytosol:Akt_Hsp90() #Akt_Hsp90
+	Species CHIP_cytosol @cytosol:CHIP() #CHIP
+	Species Akt_CHIP_Hsp90_cytosol @cytosol:Akt_CHIP_Hsp90() #Akt_CHIP_Hsp90
+	Species Akt_Proteasome_cytosol @cytosol:Akt_Proteasome() #Akt_Proteasome
+	Species Hsf1_cytosol @cytosol:Hsf1() #Hsf1
+	Species Hsf1_Hsp90_cytosol @cytosol:Hsf1_Hsp90() #Hsf1_Hsp90
+	Species Hsp90_MisP_cytosol @cytosol:Hsp90_MisP() #Hsp90_MisP
+	Species Hsp70_MisP_cytosol @cytosol:Hsp70_MisP() #Hsp70_MisP
+	Species Hsf1_Hsf1_Hsf1_nucleus @nucleus:Hsf1_Hsf1_Hsf1() #Hsf1_Hsf1_Hsf1
+	Species Hsf1_Hsf1_Hsf1_P_nucleus @nucleus:Hsf1_Hsf1_Hsf1_P() #Hsf1_Hsf1_Hsf1_P
+	Species Hsf1_Hsf1_cytosol @cytosol:Hsf1_Hsf1() #Hsf1_Hsf1
+	Species HSEHsp70_nucleus @nucleus:HSEHsp70() #HSEHsp70
+	Species HSEHsp90_nucleus @nucleus:HSEHsp90() #HSEHsp90
+	Species HSEHsp70_Hsf1_Hsf1_Hsf1_nucleus @nucleus:HSEHsp70_Hsf1_Hsf1_Hsf1() #HSEHsp70_Hsf1_Hsf1_Hsf1
+	Species HSEHsp70_Hsf1_Hsf1_Hsf1_P_nucleus @nucleus:HSEHsp70_Hsf1_Hsf1_Hsf1_P() #HSEHsp70_Hsf1_Hsf1_Hsf1_P
+	Species HSEHsp90_Hsf1_Hsf1_Hsf1_nucleus @nucleus:HSEHsp90_Hsf1_Hsf1_Hsf1() #HSEHsp90_Hsf1_Hsf1_Hsf1
+	Species HSEHsp90_Hsf1_Hsf1_Hsf1_P_nucleus @nucleus:HSEHsp90_Hsf1_Hsf1_Hsf1_P() #HSEHsp90_Hsf1_Hsf1_Hsf1_P
+	Species Jnk_cytosol @cytosol:Jnk() #Jnk
+	Species Jnk_P_cytosol @cytosol:Jnk_P() #Jnk_P
+	Species Ppx_cytosol @cytosol:Ppx() #Ppx
+	Species Mkp1_cytosol @cytosol:Mkp1() #Mkp1
+	Species Mkp1_P_cytosol @cytosol:Mkp1_P() #Mkp1_P
+	Species Mkp1_Proteasome_cytosol @cytosol:Mkp1_Proteasome() #Mkp1_Proteasome
+	Species Hsp70_Ppx_cytosol @cytosol:Hsp70_Ppx() #Hsp70_Ppx
+	Species Pkc_cytosol @cytosol:Pkc() #Pkc
+	Species p38_cytosol @cytosol:p38() #p38
+	Species p38_P_cytosol @cytosol:p38_P() #p38_P
+	Species Proteasome_cytosol @cytosol:Proteasome() #Proteasome
+	Species MisP_Proteasome_cytosol @cytosol:MisP_Proteasome() #MisP_Proteasome
+	Species AggP_cytosol @cytosol:AggP() #AggP
+	Species SeqAggP_cytosol @cytosol:SeqAggP() #SeqAggP
+	Species AggP_Proteasome_cytosol @cytosol:AggP_Proteasome() #AggP_Proteasome
+	Species ROS_cytosol @cytosol:ROS() #ROS
+	Species ATP_cytosol @cytosol:ATP() #ATP
+	Species ADP_cytosol @cytosol:ADP() #ADP
+	Species p38Death_cytosol @cytosol:p38Death() #p38Death
+	Species JNKDeath_cytosol @cytosol:JNKDeath() #JNKDeath
+	Species PIDeath_cytosol @cytosol:PIDeath() #PIDeath
+	Species CellDeath_cytosol @cytosol:CellDeath() #CellDeath
+end observables
+begin functions
+	tot_MisP() = Hsp70_MisP_cytosol + Hsp90_MisP_cytosol + MisP_cytosol
+	tot_Hsp70() = Hsp70_Hsp70Client_cytosol + Hsp70_MisP_cytosol + Hsp70_Ppx_cytosol + Hsp70_Proteasome_cytosol + Hsp70_cytosol + Hsp70_dam_cytosol
+	tot_Hsp90() = Akt_CHIP_Hsp90_cytosol + Akt_Hsp90_cytosol + Hsf1_Hsp90_cytosol + Hsp90_Hsp90Client_cytosol + Hsp90_MisP_cytosol + Hsp90_Proteasome_cytosol + Hsp90_cytosol + Hsp90_dam_cytosol
+	fRate0() = Source_cytosol*kalive*ksynNatP
+	fRate1() = kalive*kmisfold
+	fRate2() = kalive*kbinHspMisp
+	fRate3() = kalive*krelHspMisp
+	fRate4() = kalive*krefold/(ATP_cytosol + 5000.0)
+	fRate5() = kalive*kbinHspMisp
+	fRate6() = kalive*krelHspMisp
+	fRate7() = kalive*krefold/(ATP_cytosol + 5000.0)
+	fRate8() = kalive*kbinHsp70client
+	fRate9() = kalive*krelHsp70client
+	fRate10() = kalive*kbinHsp90client
+	fRate11() = kalive*krelHsp90client
+	fRate12() = kalive*kbinHsf1Hsp90
+	fRate13() = kalive*krelHsf1Hsp90
+	fRate14() = Hsf1_cytosol*kalive*kdimerHsf1*(Hsf1_cytosol - 1)/2
+	fRate15() = kalive*ktrimerHsf1
+	fRate16() = kalive*kdetrimerHsf1
+	fRate17() = kalive*kdedimerHsf1
+	fRate18() = kalive*kbinHSEHsf1
+	fRate19() = kalive*krelHSEHsf1
+	fRate20() = kalive*kbinHSEHsf1
+	fRate21() = kalive*krelHSEHsf1
+	fRate22() = kalive*kphosHsf1
+	fRate23() = kalive*kdephosHsf1
+	fRate24() = kalive*kbinHSEPhosTriH
+	fRate25() = kalive*krelHSEPhosTriH
+	fRate26() = kalive*kbinHSEPhosTriH
+	fRate27() = kalive*krelHSEPhosTriH
+	fRate28() = kalive*kbasalsynHsp90
+	fRate29() = kalive*kupregHsp
+	fRate30() = kalive*kbinHsp90Prot
+	fRate31() = kalive*kdegHsp90/(ATP_cytosol + 5000.0)
+	fRate32() = kalive*kbasalsynHsp70
+	fRate33() = kalive*kupregHsp
+	fRate34() = kalive*kbinHsp70Prot
+	fRate35() = kalive*kdegHsp70/(ATP_cytosol + 5000.0)
+	fRate36() = kalive*kbinMisPProt
+	fRate37() = kalive*kbinMisPProt
+	fRate38() = kalive*kdegMisP/(ATP_cytosol + 5000.0)
+	fRate39() = Source_cytosol*kalive*kgenROS
+	fRate40() = kalive*kremROS
+	fRate41() = kalive*kbinHsp70Ppx
+	fRate42() = kalive*krelHsp70Ppx
+	fRate43() = kalive*kphosJnk
+	fRate44() = kalive*kdephosJnkMkp1
+	fRate45() = kalive*kphosp38
+	fRate46() = kalive*kdephosp38Mkp1
+	fRate47() = 0.5*MisP_cytosol*kagg*kalive*(MisP_cytosol - 1)
+	fRate48() = kagg*kalive
+	fRate49() = kalive*kseqagg
+	fRate50() = kalive*kbinAggPProt
+	fRate51() = kalive*kgenROSAggP
+	fRate52() = kalive*kgenROSAggP
+	fRate53() = Source_cytosol*kalive*ksynAkt
+	fRate54() = kalive*kbinAktHsp90
+	fRate55() = kalive*krelAktHsp90
+	fRate56() = kalive*kbinCHIP
+	fRate57() = kalive*krelCHIP
+	fRate58() = kalive*kbinAktProt
+	fRate59() = kalive*krelAktProt
+	fRate60() = kalive*kdegAkt/(ATP_cytosol + 5000.0)
+	fRate61() = Source_cytosol*kalive*ksynMkp1
+	fRate62() = kalive*kbinMkp1Prot
+	fRate63() = kalive*kdegMkp1/(ATP_cytosol + 5000.0)
+	fRate64() = kalive*kphosMkp1
+	fRate65() = kalive*kdephosMkp1
+	fRate66() = kalive*kgenROSp38*kp38act
+	fRate67() = kalive*kdamHsp
+	fRate68() = kalive*kdamHsp
+	fRate69() = kalive*kbinHsp70Prot
+	fRate70() = kalive*kbinHsp90Prot
+	fRate71() = 0.5*Hsp70_dam_cytosol*kagg*kalive*(Hsp70_dam_cytosol - 1)
+	fRate72() = kagg*kalive
+	fRate73() = 0.5*Hsp90_dam_cytosol*kagg*kalive*(Hsp90_dam_cytosol - 1)
+	fRate74() = kagg*kalive
+	fRate75() = kalive*kseqagg
+	fRate76() = kalive*kseqagg
+	fRate77() = kalive*kp38act*kp38death
+	fRate78() = kJnkdeath*kalive
+	fRate79() = kPIdeath*kalive
+end functions
+begin reaction rules
+	ProteinSynthesis: 0  -> NatP()@cytosol fRate0()
+	Misfolding: NatP()@cytosol + ROS()@cytosol -> MisP()@cytosol + ROS()@cytosol fRate1()
+	Hsp90MisPBinding: MisP()@cytosol + Hsp90()@cytosol -> Hsp90_MisP()@cytosol fRate2()
+	Hsp90unsuccessulRefolding: Hsp90_MisP()@cytosol -> MisP()@cytosol + Hsp90()@cytosol fRate3()
+	Hsp90refolding: Hsp90_MisP()@cytosol + ATP()@cytosol -> Hsp90()@cytosol + NatP()@cytosol + ADP()@cytosol fRate4()
+	Hsp70MisPBinding: MisP()@cytosol + Hsp70()@cytosol -> Hsp70_MisP()@cytosol fRate5()
+	Hsp70unsuccessulRefolding: Hsp70_MisP()@cytosol -> MisP()@cytosol + Hsp70()@cytosol fRate6()
+	Hsp70refolding: Hsp70_MisP()@cytosol + ATP()@cytosol -> Hsp70()@cytosol + NatP()@cytosol + ADP()@cytosol fRate7()
+	Hsp70ClientBinding: Hsp70()@cytosol + Hsp70Client()@cytosol -> Hsp70_Hsp70Client()@cytosol fRate8()
+	Hsp70ClientRelease: Hsp70_Hsp70Client()@cytosol -> Hsp70()@cytosol + Hsp70Client()@cytosol fRate9()
+	Hsp90ClientBinding: Hsp90()@cytosol + Hsp90Client()@cytosol -> Hsp90_Hsp90Client()@cytosol fRate10()
+	Hsp90ClientRelease: Hsp90_Hsp90Client()@cytosol -> Hsp90()@cytosol + Hsp90Client()@cytosol fRate11()
+	Hsp90HSF1Binding: Hsp90()@cytosol + Hsf1()@cytosol -> Hsf1_Hsp90()@cytosol fRate12()
+	Hsp90HSF1Release: Hsf1_Hsp90()@cytosol -> Hsp90()@cytosol + Hsf1()@cytosol fRate13()
+	dimerisation_reactants_0: 0  -> Hsf1()@cytosol -1*2.0*(fRate14())
+	dimerisation_products_0: 0  -> Hsf1_Hsf1()@cytosol fRate14()
+	trimerisation: Hsf1()@cytosol + Hsf1_Hsf1()@cytosol -> Hsf1_Hsf1_Hsf1()@nucleus fRate15()
+	deTrimerisation: Hsf1_Hsf1_Hsf1()@nucleus -> Hsf1()@cytosol + Hsf1_Hsf1()@cytosol fRate16()
+	deDimerisation: Hsf1_Hsf1()@cytosol -> Hsf1()@cytosol + Hsf1()@cytosol fRate17()
+	HSE70TriHBinding: Hsf1_Hsf1_Hsf1()@nucleus + HSEHsp70()@nucleus -> HSEHsp70_Hsf1_Hsf1_Hsf1()@nucleus fRate18()
+	HSE70TriHRelease: HSEHsp70_Hsf1_Hsf1_Hsf1()@nucleus -> HSEHsp70()@nucleus + Hsf1_Hsf1_Hsf1()@nucleus fRate19()
+	HSE90TriHBinding: Hsf1_Hsf1_Hsf1()@nucleus + HSEHsp90()@nucleus -> HSEHsp90_Hsf1_Hsf1_Hsf1()@nucleus fRate20()
+	HSE90TriHRelease: HSEHsp90_Hsf1_Hsf1_Hsf1()@nucleus -> HSEHsp90()@nucleus + Hsf1_Hsf1_Hsf1()@nucleus fRate21()
+	Hsf1_Hsf1_Hsf1Phosphorylation: Hsf1_Hsf1_Hsf1()@nucleus + Pkc()@cytosol -> Hsf1_Hsf1_Hsf1_P()@nucleus + Pkc()@cytosol fRate22()
+	Hsf1_Hsf1_Hsf1DePhosphorylation: Hsf1_Hsf1_Hsf1_P()@nucleus + Hsp70_Ppx()@cytosol -> Hsf1_Hsf1_Hsf1()@nucleus + Hsp70_Ppx()@cytosol fRate23()
+	HSE70PhosTriHBinding: Hsf1_Hsf1_Hsf1_P()@nucleus + HSEHsp70()@nucleus -> HSEHsp70_Hsf1_Hsf1_Hsf1_P()@nucleus fRate24()
+	HSE70PhosTriHRelease: HSEHsp70_Hsf1_Hsf1_Hsf1_P()@nucleus -> Hsf1_Hsf1_Hsf1_P()@nucleus + HSEHsp70()@nucleus fRate25()
+	HSE90PhosTriHBinding: Hsf1_Hsf1_Hsf1_P()@nucleus + HSEHsp90()@nucleus -> HSEHsp90_Hsf1_Hsf1_Hsf1_P()@nucleus fRate26()
+	HSE90PhosTriHRelease: HSEHsp90_Hsf1_Hsf1_Hsf1_P()@nucleus -> Hsf1_Hsf1_Hsf1_P()@nucleus + HSEHsp90()@nucleus fRate27()
+	Hsp90BasalSynthesis: 0  -> Hsp90()@cytosol fRate28()
+	Hsp90Upregulation: HSEHsp90_Hsf1_Hsf1_Hsf1_P()@nucleus -> HSEHsp90_Hsf1_Hsf1_Hsf1_P()@nucleus + Hsp90()@cytosol fRate29()
+	Hsp90ProteasomeBinding: Hsp90()@cytosol + Proteasome()@cytosol -> Hsp90_Proteasome()@cytosol fRate30()
+	Hsp90Degradation: Hsp90_Proteasome()@cytosol + ATP()@cytosol -> Proteasome()@cytosol + ADP()@cytosol fRate31()
+	Hsp70BasalSynthesis: 0  -> Hsp70()@cytosol fRate32()
+	Hsp70Upregulation: HSEHsp70_Hsf1_Hsf1_Hsf1_P()@nucleus -> HSEHsp70_Hsf1_Hsf1_Hsf1_P()@nucleus + Hsp70()@cytosol fRate33()
+	Hsp70ProteasomeBinding: Hsp70()@cytosol + Proteasome()@cytosol -> Hsp70_Proteasome()@cytosol fRate34()
+	Hsp70Degradation: Hsp70_Proteasome()@cytosol + ATP()@cytosol -> Proteasome()@cytosol + ADP()@cytosol fRate35()
+	MisPProteasomeBinding1: Hsp70_MisP()@cytosol + Proteasome()@cytosol -> MisP_Proteasome()@cytosol + Hsp70()@cytosol fRate36()
+	MisPProteasomeBinding2: Hsp90_MisP()@cytosol + Proteasome()@cytosol -> MisP_Proteasome()@cytosol + Hsp90()@cytosol fRate37()
+	MisPDegradation: MisP_Proteasome()@cytosol + ATP()@cytosol -> Proteasome()@cytosol + ADP()@cytosol fRate38()
+	radicalFormation: 0  -> ROS()@cytosol fRate39()
+	radicalScavenging: ROS()@cytosol -> 0  fRate40()
+	Hsp70_PpxBinding: Hsp70()@cytosol + Ppx()@cytosol -> Hsp70_Ppx()@cytosol fRate41()
+	Hsp70_PPXRelease: Hsp70_Ppx()@cytosol -> Hsp70()@cytosol + Ppx()@cytosol fRate42()
+	JnkPhosphorylation: ROS()@cytosol + Jnk()@cytosol -> ROS()@cytosol + Jnk_P()@cytosol fRate43()
+	JNKDephosphorylatioByMkp1: Jnk_P()@cytosol + Mkp1_P()@cytosol -> Jnk()@cytosol + Mkp1_P()@cytosol fRate44()
+	p38Phosphorylation: ROS()@cytosol + p38()@cytosol -> ROS()@cytosol + p38_P()@cytosol fRate45()
+	p38DePhosphorylationByMkp1: p38_P()@cytosol + Mkp1_P()@cytosol -> p38()@cytosol + Mkp1_P()@cytosol fRate46()
+	Aggregation1_reactants_0: 0  -> MisP()@cytosol -1*2.0*(fRate47())
+	Aggregation1_products_0: 0  -> AggP()@cytosol fRate47()
+	SequesteringOfAggregate: MisP()@cytosol + AggP()@cytosol -> SeqAggP()@cytosol fRate48()
+	InclusionGrowth: SeqAggP()@cytosol + MisP()@cytosol -> SeqAggP()@cytosol + SeqAggP()@cytosol fRate49()
+	ProteasomeInhibtion: AggP()@cytosol + Proteasome()@cytosol -> AggP_Proteasome()@cytosol fRate50()
+	ROSgenerationSmallAggP: AggP()@cytosol -> AggP()@cytosol + ROS()@cytosol fRate51()
+	ROSgenerationAggPProteasome: AggP_Proteasome()@cytosol -> AggP_Proteasome()@cytosol + ROS()@cytosol fRate52()
+	AktSynthesis: 0  -> Akt()@cytosol fRate53()
+	Hsp90AktBinding: Hsp90()@cytosol + Akt()@cytosol -> Akt_Hsp90()@cytosol fRate54()
+	Hsp90AktRelease: Akt_Hsp90()@cytosol -> Akt()@cytosol + Hsp90()@cytosol fRate55()
+	CHIPbinding: CHIP()@cytosol + Akt_Hsp90()@cytosol -> Akt_CHIP_Hsp90()@cytosol fRate56()
+	CHIPrelease: Akt_CHIP_Hsp90()@cytosol -> CHIP()@cytosol + Akt_Hsp90()@cytosol fRate57()
+	AktProteasomeBinding: Akt_CHIP_Hsp90()@cytosol + Proteasome()@cytosol -> Akt_Proteasome()@cytosol + CHIP()@cytosol + Hsp90()@cytosol fRate58()
+	AktProteasomeRelease: Akt_Proteasome()@cytosol -> Akt()@cytosol + Proteasome()@cytosol fRate59()
+	AktDegradation: Akt_Proteasome()@cytosol + ATP()@cytosol -> Proteasome()@cytosol + ADP()@cytosol fRate60()
+	Mkp1Synthesis: 0  -> Mkp1()@cytosol fRate61()
+	Mkp1ProteasomeBinding: Mkp1()@cytosol + Proteasome()@cytosol -> Mkp1_Proteasome()@cytosol fRate62()
+	Mkp1Degradation: Mkp1_Proteasome()@cytosol + ATP()@cytosol -> Proteasome()@cytosol + ADP()@cytosol fRate63()
+	Mkp1Phosphorylation: Mkp1()@cytosol + Hsp70()@cytosol -> Mkp1_P()@cytosol + Hsp70()@cytosol fRate64()
+	Mkp1Dephosphorylation: Mkp1_P()@cytosol + ROS()@cytosol -> Mkp1()@cytosol + ROS()@cytosol fRate65()
+	p38ROSproduction: p38_P()@cytosol -> p38_P()@cytosol + ROS()@cytosol fRate66()
+	Hsp70Damage: Hsp70()@cytosol + ROS()@cytosol -> Hsp70_dam()@cytosol + ROS()@cytosol fRate67()
+	Hsp90Damage: Hsp90()@cytosol + ROS()@cytosol -> Hsp90_dam()@cytosol + ROS()@cytosol fRate68()
+	Hsp70DamProteasomeBinding: Hsp70_dam()@cytosol + Proteasome()@cytosol -> Hsp70_Proteasome()@cytosol fRate69()
+	Hsp90DamProteasomeBinding: Hsp90_dam()@cytosol + Proteasome()@cytosol -> Hsp90_Proteasome()@cytosol fRate70()
+	Hsp70DamAggregation1_reactants_0: 0  -> Hsp70_dam()@cytosol -1*2.0*(fRate71())
+	Hsp70DamAggregation1_products_0: 0  -> AggP()@cytosol fRate71()
+	Hsp70DamInclusionFormation: Hsp70_dam()@cytosol + AggP()@cytosol -> SeqAggP()@cytosol fRate72()
+	Hsp90DamAggregation_reactants_0: 0  -> Hsp90_dam()@cytosol -1*2.0*(fRate73())
+	Hsp90DamAggregation_products_0: 0  -> AggP()@cytosol fRate73()
+	Hsp90DamInclusionFormation: Hsp90_dam()@cytosol + AggP()@cytosol -> SeqAggP()@cytosol fRate74()
+	Hsp70DamSequestering: Hsp70_dam()@cytosol + SeqAggP()@cytosol -> SeqAggP()@cytosol + SeqAggP()@cytosol fRate75()
+	Hsp90DamSequestering: Hsp90_dam()@cytosol + SeqAggP()@cytosol -> SeqAggP()@cytosol + SeqAggP()@cytosol fRate76()
+	p38CellDeath: p38_P()@cytosol -> p38_P()@cytosol + p38Death()@cytosol + CellDeath()@cytosol fRate77()
+	JnkCellDeath: Jnk_P()@cytosol -> Jnk_P()@cytosol + JNKDeath()@cytosol + CellDeath()@cytosol fRate78()
+	PICellDeath: AggP_Proteasome()@cytosol -> AggP_Proteasome()@cytosol + PIDeath()@cytosol + CellDeath()@cytosol fRate79()
+end reaction rules
+end model

@@ -1,0 +1,249 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL6540028317', 'http://identifiers.org/biomodels.db/BIOMD0000000105']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/17408507']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/BIOMD0000000091']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:1289']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0043161']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/2759']
+#@creatorEmail:'c.j.proctor@ncl.ac.uk'
+#@creatorName:'Proctor Carole'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 39 molecules and 94 reactions. The translated model has 38 molecules and 103 rules'
+###
+begin model
+begin parameters
+	k1 0.01
+	k2 2e-06
+	k3 4e-06
+	k61 1.7e-05
+	k61r 0.0002
+	k62 0.0002
+	k63 0.001
+	k64 0.001
+	k65 0.01
+	k66 1e-05
+	k67 1e-05
+	k68 1e-05
+	k71 1e-08
+	k72 1e-08
+	k73 0.001
+	k74 1e-05
+	k69 0
+	Source 1.0
+end parameters
+begin molecule types
+	MisP_Ub2()
+	degUb4()
+	AggP()
+	degUb7()
+	AMP()
+	SeqAggP()
+	totMisP()
+	MisP_Ub3()
+	MisP_Ub7_Proteasome()
+	degUb8()
+	MisP_Ub7()
+	NatP()
+	MisP_Ub5_Proteasome()
+	MisP_Ub8()
+	DUB()
+	MisP_Ub()
+	E3_MisP()
+	degUb5()
+	MisP()
+	E2_Ub()
+	MisP_Ub4_Proteasome()
+	MisP_Ub5()
+	ADP()
+	E3()
+	ATP()
+	E1_Ub()
+	degUb6()
+	MisP_Ub4()
+	MisP_Ub6_Proteasome()
+	ROS()
+	AggP_Proteasome()
+	refNatP()
+	MisP_Ub8_Proteasome()
+	E2()
+	MisP_Ub6()
+	Ub()
+	Proteasome()
+	E1()
+end molecule types
+begin seed species
+	NatP() 500.0 #NatP #NatP
+	Ub() 500.0 #Ub #Ub
+	E1() 100.0 #E1 #E1
+	E2() 100.0 #E2 #E2
+	E3() 100.0 #E3 #E3
+	DUB() 200.0 #DUB #DUB
+	Proteasome() 100.0 #Proteasome #Proteasome
+	ROS() 10.0 #ROS #ROS
+	$ATP() 10000.0 #ATP #ATP
+	$ADP() 1000.0 #ADP #ADP
+	$AMP() 1000.0 #AMP #AMP
+end seed species
+begin observables
+	Species NatP NatP() #NatP
+	Species MisP MisP() #MisP
+	Species Ub Ub() #Ub
+	Species E1 E1() #E1
+	Species E2 E2() #E2
+	Species E3 E3() #E3
+	Species DUB DUB() #DUB
+	Species Proteasome Proteasome() #Proteasome
+	Species ROS ROS() #ROS
+	Species E1_Ub E1_Ub() #E1_Ub
+	Species E2_Ub E2_Ub() #E2_Ub
+	Species E3_MisP E3_MisP() #E3_MisP
+	Species MisP_Ub MisP_Ub() #MisP_Ub
+	Species MisP_Ub2 MisP_Ub2() #MisP_Ub2
+	Species MisP_Ub3 MisP_Ub3() #MisP_Ub3
+	Species MisP_Ub4 MisP_Ub4() #MisP_Ub4
+	Species MisP_Ub5 MisP_Ub5() #MisP_Ub5
+	Species MisP_Ub6 MisP_Ub6() #MisP_Ub6
+	Species MisP_Ub7 MisP_Ub7() #MisP_Ub7
+	Species MisP_Ub8 MisP_Ub8() #MisP_Ub8
+	Species MisP_Ub4_Proteasome MisP_Ub4_Proteasome() #MisP_Ub4_Proteasome
+	Species MisP_Ub5_Proteasome MisP_Ub5_Proteasome() #MisP_Ub5_Proteasome
+	Species MisP_Ub6_Proteasome MisP_Ub6_Proteasome() #MisP_Ub6_Proteasome
+	Species MisP_Ub7_Proteasome MisP_Ub7_Proteasome() #MisP_Ub7_Proteasome
+	Species MisP_Ub8_Proteasome MisP_Ub8_Proteasome() #MisP_Ub8_Proteasome
+	Species ATP ATP() #ATP
+	Species ADP ADP() #ADP
+	Species AMP AMP() #AMP
+	Species degUb4 degUb4() #degUb4
+	Species degUb5 degUb5() #degUb5
+	Species degUb6 degUb6() #degUb6
+	Species degUb7 degUb7() #degUb7
+	Species degUb8 degUb8() #degUb8
+	Species totMisP totMisP() #totMisP
+	Species refNatP refNatP() #refNatP
+	Species AggP AggP() #AggP
+	Species SeqAggP SeqAggP() #SeqAggP
+	Species AggP_Proteasome AggP_Proteasome() #AggP_Proteasome
+end observables
+begin functions
+	fRate0() = Source*k1
+	fRate5() = k62/(ATP + 5000.0)
+	fRate33() = k69/(ATP + 5000.0)
+	fRate34() = k69/(ATP + 5000.0)
+	fRate35() = k69/(ATP + 5000.0)
+	fRate36() = k69/(ATP + 5000.0)
+	fRate37() = k69/(ATP + 5000.0)
+	fRate38() = 0.5*MisP*k71*(MisP - 1)
+	fRate40() = 0.5*MisP_Ub*k72*(MisP_Ub - 1)
+	fRate41() = 0.5*MisP_Ub2*k72*(MisP_Ub2 - 1)
+	fRate42() = 0.5*MisP_Ub3*k72*(MisP_Ub3 - 1)
+	fRate43() = 0.5*MisP_Ub4*k72*(MisP_Ub4 - 1)
+	fRate44() = 0.5*MisP_Ub5*k72*(MisP_Ub5 - 1)
+	fRate45() = 0.5*MisP_Ub6*k72*(MisP_Ub6 - 1)
+	fRate46() = 0.5*MisP_Ub7*k72*(MisP_Ub7 - 1)
+	fRate47() = 0.5*MisP_Ub8*k72*(MisP_Ub8 - 1)
+end functions
+begin reaction rules
+	ProteinSynthesis: 0  -> NatP() fRate0()
+	Misfolding: NatP() + ROS() -> MisP() + ROS() + totMisP() k2
+	Refolding: MisP() -> NatP() + refNatP() k3
+	MisPE3Binding: MisP() + E3() -> E3_MisP() k61
+	MisPE3Release: E3_MisP() -> MisP() + E3() k61r
+	E1UbBinding: E1() + Ub() + ATP() -> E1_Ub() + AMP() fRate5()
+	E2UbBinding: E2() + E1_Ub() -> E2_Ub() + E1() k63
+	Monoubiquitination: E2_Ub() + E3_MisP() -> MisP_Ub() + E2() + E3() k64
+	Polyubiquitination1: MisP_Ub() + E2_Ub() -> MisP_Ub2() + E2() k65
+	Polyubiquitination2: MisP_Ub2() + E2_Ub() -> MisP_Ub3() + E2() k65
+	Polyubiquitination3: MisP_Ub3() + E2_Ub() -> MisP_Ub4() + E2() k65
+	Polyubiquitination4: MisP_Ub4() + E2_Ub() -> MisP_Ub5() + E2() k65
+	Polyubiquitination5: MisP_Ub5() + E2_Ub() -> MisP_Ub6() + E2() k65
+	Polyubiquitination6: MisP_Ub6() + E2_Ub() -> MisP_Ub7() + E2() k65
+	Polyubiquitination7: MisP_Ub7() + E2_Ub() -> MisP_Ub8() + E2() k65
+	Deubiqutination1: MisP_Ub8() + DUB() -> MisP_Ub7() + DUB() + Ub() k66
+	Deubiqutination2: MisP_Ub7() + DUB() -> MisP_Ub6() + DUB() + Ub() k66
+	Deubiqutination3: MisP_Ub6() + DUB() -> MisP_Ub5() + DUB() + Ub() k66
+	Deubiqutination4: MisP_Ub5() + DUB() -> MisP_Ub4() + DUB() + Ub() k66
+	Deubiqutination5: MisP_Ub4() + DUB() -> MisP_Ub3() + DUB() + Ub() k66
+	Deubiqutination6: MisP_Ub3() + DUB() -> MisP_Ub2() + DUB() + Ub() k66
+	Deubiqutination7: MisP_Ub2() + DUB() -> MisP_Ub() + DUB() + Ub() k66
+	Deubiqutination8: MisP_Ub() + DUB() -> MisP() + DUB() + Ub() k66
+	ProteasomeBinding1: MisP_Ub4() + Proteasome() -> MisP_Ub4_Proteasome() k67
+	ProteasomeBinding2: MisP_Ub5() + Proteasome() -> MisP_Ub5_Proteasome() k67
+	ProteasomeBinding3: MisP_Ub6() + Proteasome() -> MisP_Ub6_Proteasome() k67
+	ProteasomeBinding4: MisP_Ub7() + Proteasome() -> MisP_Ub7_Proteasome() k67
+	ProteasomeBinding5: MisP_Ub8() + Proteasome() -> MisP_Ub8_Proteasome() k67
+	DeubiquitinationBoundMisP5: MisP_Ub8_Proteasome() + DUB() -> MisP_Ub7_Proteasome() + Ub() + DUB() k68
+	DeubiquitinationBoundMisP4: MisP_Ub7_Proteasome() + DUB() -> MisP_Ub6_Proteasome() + Ub() + DUB() k68
+	DeubiquitinationBoundMisP3: MisP_Ub6_Proteasome() + DUB() -> MisP_Ub5_Proteasome() + Ub() + DUB() k68
+	DeubiquitinationBoundMisP2: MisP_Ub5_Proteasome() + DUB() -> MisP_Ub4_Proteasome() + Ub() + DUB() k68
+	DeubiquitinationBoundMisP1: MisP_Ub4_Proteasome() + DUB() -> MisP_Ub3() + Proteasome() + Ub() + DUB() k68
+	ProteasomeActivity1: MisP_Ub4_Proteasome() + ATP() -> Ub() + Ub() + Ub() + Ub() + Proteasome() + ADP() + degUb4() fRate33()
+	ProteasomeActivity2: MisP_Ub5_Proteasome() + ATP() -> Ub() + Ub() + Ub() + Ub() + Ub() + Proteasome() + ADP() + degUb5() fRate34()
+	ProteasomeActivity3: MisP_Ub6_Proteasome() + ATP() -> Ub() + Ub() + Ub() + Ub() + Ub() + Ub() + Proteasome() + ADP() + degUb6() fRate35()
+	ProteasomeActivity4: MisP_Ub7_Proteasome() + ATP() -> Ub() + Ub() + Ub() + Ub() + Ub() + Ub() + Ub() + Proteasome() + ADP() + degUb7() fRate36()
+	ProteasomeActivity5: MisP_Ub8_Proteasome() + ATP() -> Ub() + Ub() + Ub() + Ub() + Ub() + Ub() + Ub() + Ub() + Proteasome() + ADP() + degUb8() fRate37()
+	Aggregation1_reactants_0: 0  -> MisP() -1*2.0*(fRate38())
+	Aggregation1_products_0: 0  -> AggP() fRate38()
+	Aggregation2: MisP() + AggP() -> AggP() + AggP() k71
+	Aggregation3_reactants_0: 0  -> MisP_Ub() -1*2.0*(fRate40())
+	Aggregation3_products_0: 0  -> AggP() fRate40()
+	Aggregation4_reactants_0: 0  -> MisP_Ub2() -1*2.0*(fRate41())
+	Aggregation4_products_0: 0  -> AggP() fRate41()
+	Aggregation5_reactants_0: 0  -> MisP_Ub3() -1*2.0*(fRate42())
+	Aggregation5_products_0: 0  -> AggP() fRate42()
+	Aggregation6_reactants_0: 0  -> MisP_Ub4() -1*2.0*(fRate43())
+	Aggregation6_products_0: 0  -> AggP() fRate43()
+	Aggregation7_reactants_0: 0  -> MisP_Ub5() -1*2.0*(fRate44())
+	Aggregation7_products_0: 0  -> AggP() fRate44()
+	Aggregation8_reactants_0: 0  -> MisP_Ub6() -1*2.0*(fRate45())
+	Aggregation8_products_0: 0  -> AggP() fRate45()
+	Aggregation9_reactants_0: 0  -> MisP_Ub7() -1*2.0*(fRate46())
+	Aggregation9_products_0: 0  -> AggP() fRate46()
+	Aggregation10_reactants_0: 0  -> MisP_Ub8() -1*2.0*(fRate47())
+	Aggregation10_products_0: 0  -> AggP() fRate47()
+	Aggregation11: MisP_Ub() + MisP() -> AggP() k72
+	Aggregation12: MisP_Ub2() + MisP() -> AggP() k72
+	Aggregation13: MisP_Ub3() + MisP() -> AggP() k72
+	Aggregation14: MisP_Ub4() + MisP() -> AggP() k72
+	Aggregation15: MisP_Ub5() + MisP() -> AggP() k72
+	Aggregation16: MisP_Ub6() + MisP() -> AggP() k72
+	Aggregation17: MisP_Ub7() + MisP() -> AggP() k72
+	Aggregation18: MisP_Ub8() + MisP() -> AggP() k72
+	Aggregation19: MisP_Ub() + AggP() -> AggP() + AggP() k72
+	Aggregation20: MisP_Ub2() + AggP() -> AggP() + AggP() k72
+	Aggregation21: MisP_Ub3() + AggP() -> AggP() + AggP() k72
+	Aggregation22: MisP_Ub4() + AggP() -> AggP() + AggP() k72
+	Aggregation23: MisP_Ub5() + AggP() -> AggP() + AggP() k72
+	Aggregation24: MisP_Ub6() + AggP() -> AggP() + AggP() k72
+	Aggregation25: MisP_Ub7() + AggP() -> AggP() + AggP() k72
+	Aggregation26: MisP_Ub8() + AggP() -> AggP() + AggP() k72
+	Aggregation27: MisP_Ub() + MisP_Ub2() -> AggP() k72
+	Aggregation28: MisP_Ub() + MisP_Ub3() -> AggP() k72
+	Aggregation29: MisP_Ub() + MisP_Ub4() -> AggP() k72
+	Aggregation30: MisP_Ub() + MisP_Ub5() -> AggP() k72
+	Aggregation31: MisP_Ub() + MisP_Ub6() -> AggP() k72
+	Aggregation32: MisP_Ub() + MisP_Ub7() -> AggP() k72
+	Aggregation33: MisP_Ub() + MisP_Ub8() -> AggP() k72
+	Aggregation34: MisP_Ub2() + MisP_Ub3() -> AggP() k72
+	Aggregation35: MisP_Ub2() + MisP_Ub4() -> AggP() k72
+	Aggregation36: MisP_Ub2() + MisP_Ub5() -> AggP() k72
+	Aggregation37: MisP_Ub2() + MisP_Ub6() -> AggP() k72
+	Aggregation38: MisP_Ub2() + MisP_Ub7() -> AggP() k72
+	Aggregation39: MisP_Ub2() + MisP_Ub8() -> AggP() k72
+	Aggregation40: MisP_Ub3() + MisP_Ub4() -> AggP() k72
+	Aggregation41: MisP_Ub3() + MisP_Ub5() -> AggP() k72
+	Aggregation42: MisP_Ub3() + MisP_Ub6() -> AggP() k72
+	Aggregation43: MisP_Ub3() + MisP_Ub7() -> AggP() k72
+	Aggregation44: MisP_Ub3() + MisP_Ub8() -> AggP() k72
+	Aggregation45: MisP_Ub4() + MisP_Ub5() -> AggP() k72
+	Aggregation46: MisP_Ub4() + MisP_Ub6() -> AggP() k72
+	Aggregation47: MisP_Ub4() + MisP_Ub7() -> AggP() k72
+	Aggregation48: MisP_Ub4() + MisP_Ub8() -> AggP() k72
+	Aggregation49: MisP_Ub5() + MisP_Ub6() -> AggP() k72
+	Aggregation50: MisP_Ub5() + MisP_Ub7() -> AggP() k72
+	Aggregation51: MisP_Ub5() + MisP_Ub8() -> AggP() k72
+	Aggregation52: MisP_Ub6() + MisP_Ub7() -> AggP() k72
+	Aggregation53: MisP_Ub6() + MisP_Ub8() -> AggP() k72
+	Aggregation54: MisP_Ub7() + MisP_Ub8() -> AggP() k72
+	SequesteringOfAggregates: AggP() -> SeqAggP() k73
+	ProteasomeInhibtion: AggP() + Proteasome() -> AggP_Proteasome() k74
+end reaction rules
+end model

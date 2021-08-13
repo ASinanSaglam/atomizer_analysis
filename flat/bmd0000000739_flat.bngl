@@ -1,0 +1,141 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/22607732']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0007596']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1807020001', 'http://identifiers.org/biomodels.db/BIOMD0000000739']
+#@creatorEmail:'mroberts@ebi.ac.uk'
+#@creatorName:'Roberts Matthew Grant'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 24 molecules and 23 reactions. The translated model has 24 molecules and 23 rules'
+###
+begin model
+begin parameters
+	R01_koff 0.7
+	R01_kon 100000000.0
+	R02_kcat 1.0
+	R03_kcat 0.192
+	R04_koff 0.7
+	R04_kon 100000000.0
+	R05_koff 0.7
+	R05_kon 100000000.0
+	R06_kcat 0.192
+	R07_kcat 1.0
+	R08_kdis 0.028
+	R09_kdis 0.028
+	R10_koff 0.7
+	R10_kon 100000000.0
+	R11_koff 0.075
+	R11_kon 150000000.0
+	R12_koff 0.15
+	R12_kon 150000000.0
+	R13_koff 0.15
+	R13_kon 150000000.0
+	R14_koff 0.15
+	R14_kon 150000000.0
+	R15_kdis 0.0035
+	R16_kdis 0.0035
+	R17_koff 70.0
+	R17_kon 100000000.0
+	R19_koff 103.0
+	R19_kon 100000000.0
+	R20_koff 103.0
+	R20_kon 100000000.0
+	R21_koff 103.0
+	R21_kon 100000000.0
+	R22_koff 103.0
+	R22_kon 100000000.0
+	R23_dis 0.0035
+	R24_dis 0.0035
+	Metabolite_19 (0.0)
+	Metabolite_2 (2e-08)
+	Metabolite_13 (0.0)
+end parameters
+begin molecule types
+	Xa()
+	Xa_Va_i_306_PT()
+	APC_Va_i_306()
+	Va_307_506()
+	APC_Va_1_306_Va_LC()
+	Va()
+	Xa_Va()
+	Xa_Va_PT()
+	Va_i_306()
+	APC_Va()
+	Va_i_506()
+	Va_i_306_506()
+	Xa_Va_i_506()
+	Va_507_679_709()
+	Xa_Va_i_306_506_PT()
+	APC_Va_i_506()
+	Va_1_306_Va_LC()
+	PT()
+	Xa_Va_i_306_506()
+	Va_307_679_709()
+	APC()
+	Xa_Va_i_306()
+	Xa_Va_i_506_PT()
+	Va_PT()
+end molecule types
+begin seed species
+	APC() 1204400000000000.2 # 2e-09mol/L * 6.022e23/mol *1.0L #APC #APC
+	Va() 1.2044e+16 #original 2e-08mol/volume #Va #Va
+end seed species
+begin observables
+	Species APC APC() #APC
+	Species APC_Va APC_Va() #APC:Va
+	Species Va Va() #Va
+	Species Va_i_506 Va_i_506() #Va_i_506
+	Species Va_i_306 Va_i_306() #Va_i_306
+	Species APC_Va_i_506 APC_Va_i_506() #APC:Va_i_506
+	Species APC_Va_i_306 APC_Va_i_306() #APC:Va_i_306
+	Species Va_i_306_506 Va_i_306_506() #Va_i_306/506
+	Species Va_1_306_Va_LC Va_1_306_Va_LC() #Va_1-306:Va_LC
+	Species Va_307_506 Va_307_506() #Va_307-506
+	Species Va_507_679_709 Va_507_679_709() #Va_507-679/709
+	Species APC_Va_1_306_Va_LC APC_Va_1_306_Va_LC() #APC:Va_1-306:Va_LC
+	Species Xa Xa() #Xa
+	Species Xa_Va Xa_Va() #Xa:Va
+	Species Xa_Va_i_506 Xa_Va_i_506() #Xa:Va_i_506
+	Species Xa_Va_i_306_506 Xa_Va_i_306_506() #Xa:Va_i_306/506
+	Species Xa_Va_i_306 Xa_Va_i_306() #Xa:Va_i_306
+	Species Va_307_679_709 Va_307_679_709() #Va_307-679/709
+	Species PT PT() #PT
+	Species Va_PT Va_PT() #Va:PT
+	Species Xa_Va_PT Xa_Va_PT() #Xa:Va:PT
+	Species Xa_Va_i_506_PT Xa_Va_i_506_PT() #Xa:Va_i_506:PT
+	Species Xa_Va_i_306_PT Xa_Va_i_306_PT() #Xa:Va_i_306:PT
+	Species Xa_Va_i_306_506_PT Xa_Va_i_306_506_PT() #Xa:Va_i_306/506:PT
+end observables
+begin functions
+	param_for_curve_va_i_506_normalise() =  if((Metabolite_19<3.0e-7),(5.9e-9),(if((Metabolite_19<6.0e-7),(1.08e-7),(2.01e-7))))
+	Curve_va_i_506() = Va_i_506/param_for_curve_va_i_506_normalise
+	Curve_Va() = Va/Metabolite_2
+	Curve_Va_Xa() = Xa_Va/Metabolite_13
+	time_minutes() = time()/60
+end functions
+begin reaction rules
+	R01: APC() + Va() <-> APC_Va() R01_kon,R01_koff
+	R02: APC_Va() -> APC() + Va_i_506() R02_kcat
+	R03: APC_Va() -> APC() + Va_i_306() R03_kcat
+	R04: APC() + Va_i_506() <-> APC_Va_i_506() R04_kon,R04_koff
+	R05: APC() + Va_i_306() <-> APC_Va_i_306() R05_kon,R05_koff
+	R06: APC_Va_i_506() -> APC() + Va_i_306_506() R06_kcat
+	R07: APC_Va_i_306() -> APC() + Va_i_306_506() R07_kcat
+	R08: Va_i_306() -> Va_1_306_Va_LC() + Va_307_679_709() R08_kdis
+	R09: Va_i_306_506() -> Va_1_306_Va_LC() + Va_307_506() + Va_507_679_709() R09_kdis
+	R10: APC() + Va_1_306_Va_LC() <-> APC_Va_1_306_Va_LC() R10_kon,R10_koff
+	R11: Xa() + Va() <-> Xa_Va() R11_kon,R11_koff
+	R12: Xa() + Va_i_506() <-> Xa_Va_i_506() R12_kon,R12_koff
+	R13: Xa() + Va_i_306() <-> Xa_Va_i_306() R13_kon,R13_koff
+	R14: Xa() + Va_i_306_506() <-> Xa_Va_i_306_506() R14_kon,R14_koff
+	R15: Xa_Va_i_306() -> Xa() + Va_1_306_Va_LC() + Va_307_679_709() R15_kdis
+	R16: Xa_Va_i_306_506() -> Xa() + Va_1_306_Va_LC() + Va_307_506() + Va_507_679_709() R16_kdis
+	R17: Va() + PT() <-> Va_PT() R17_kon,R17_koff
+	R19: Xa_Va() + PT() <-> Xa_Va_PT() R19_kon,R19_koff
+	R20: Xa_Va_i_506() + PT() <-> Xa_Va_i_506_PT() R20_kon,R20_koff
+	R21: Xa_Va_i_306() + PT() <-> Xa_Va_i_306_PT() R21_kon,R21_koff
+	R22: Xa_Va_i_306_506() + PT() <-> Xa_Va_i_306_506_PT() R22_kon,R22_kon
+	R23: Xa_Va_i_306_PT() -> Xa() + Va_1_306_Va_LC() + Va_307_679_709() + PT() R23_dis
+	R24: Xa_Va_i_306_506_PT() -> Xa() + PT() + Va_1_306_Va_LC() + Va_307_506() + Va_507_679_709() R24_dis
+end reaction rules
+end model

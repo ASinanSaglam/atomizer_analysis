@@ -1,0 +1,92 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000587', 'http://identifiers.org/biomodels.db/MODEL1512100001']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/26764732']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0010468']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/4932']
+#@creatorEmail:'juty@ebi.ac.uk'
+#@creatorName:'Juty Nick'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 10 molecules and 23 reactions. The translated model has 10 molecules and 23 rules'
+###
+begin model
+begin parameters
+	Theta 0.02
+	rho_f 0.8928
+	beta 14.109
+	delta_m 0.0159
+	delta_p 0.0077
+	gamma 0.025
+	epsilon 0.024
+	epsilon_1 6.0
+	f 3.63
+	ModelValue_17 (0)
+	ModelValue_1 (0.000249202551834131)
+	ModelValue_0 (0.02)
+	ModelValue_18 (3.63)
+	ModelValue_3 (0.245950413223141)
+	ModelValue_2 (0.8928)
+	_3sites 0
+end parameters
+begin molecule types
+	RI()
+	R2()
+	I()
+	G3()
+	rR()
+	G2()
+	G1()
+	R()
+	rI()
+	G0()
+end molecule types
+begin seed species
+	G0() 6.022e+23 # 1.0mol/L * 6.022e23/mol *1.0L #G0 #G0
+end seed species
+begin observables
+	Species G0 G0() #G0
+	Species G1 G1() #G1
+	Species rR rR() #rR
+	Species I I() #I
+	Species rI rI() #rI
+	Species R R() #R
+	Species RI RI() #RI
+	Species R2 R2() #R2
+	Species G2 G2() #G2
+	Species G3 G3() #G3
+end observables
+begin functions
+	t_32() =  if((ModelValue_17==1),(3*ModelValue_0),(0))
+	t_21() =  if((ModelValue_17==1),(2*ModelValue_0),(0))
+	t_10() = ModelValue_0
+	a_23() =  if((ModelValue_17==1),(ModelValue_1),(0))
+	a_12() =  if((ModelValue_17==1),(2*ModelValue_1),(0))
+	a_01() =  if((ModelValue_17==1),(3*ModelValue_1),(ModelValue_1))
+	rho_0() = sqrt(ModelValue_2*ModelValue_3)
+	rho_b() = ModelValue_2/ModelValue_18
+	Alpha() = 0.0124601275917065*ModelValue_0
+end functions
+begin reaction rules
+	G1____G0___R2: G1() -> G0() + R2() t_10 #Modifiers(G1)
+	G0___R2____G1: G0() + R2() -> G1() a_01 #Modifiers(G0, R2)
+	G0____G0___rR: G0() -> G0() + rR() rho_f #Modifiers(G0)
+	G1____G1___rR: G1() -> G1() + rR() rho_b #Modifiers(G1)
+	rR___: rR() -> 0  delta_m #Modifiers(rR)
+	____rI: 0  -> rI() rho_0
+	rI___: rI() -> 0  delta_m #Modifiers(rI)
+	rR____rR___R: rR() -> rR() + R() beta #Modifiers(rR)
+	I___: I() -> 0  delta_p #Modifiers(I)
+	rI____rI___I: rI() -> rI() + I() beta #Modifiers(rI)
+	R___: R() -> 0  delta_p #Modifiers(R)
+	R___I____RI: R() + I() -> RI() gamma #Modifiers(R, I)
+	_2___R____R2: R() + R() -> R2() gamma #Modifiers(R)
+	R2____2___R: R2() -> R() + R() epsilon_1 #Modifiers(R2)
+	RI____R___I: RI() -> R() + I() epsilon #Modifiers(RI)
+	RI___: RI() -> 0  delta_p #Modifiers(RI)
+	R2___: R2() -> 0  delta_p #Modifiers(R2)
+	G1___R2____G2: G1() + R2() -> G2() a_12 #Modifiers(G1, R2)
+	G2____G1___R2: G2() -> G1() + R2() t_21 #Modifiers(G2)
+	G2____G2___rR: G2() -> G2() + rR() rho_b #Modifiers(G2)
+	G2___R2____G3: G2() + R2() -> G3() a_23 #Modifiers(G2, R2)
+	G3____G2___R2: G3() -> G2() + R2() t_32 #Modifiers(G3)
+	G3____G3___rR: G3() -> G3() + rR() rho_b #Modifiers(G3)
+end reaction rules
+end model

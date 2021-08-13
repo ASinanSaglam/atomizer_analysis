@@ -1,0 +1,71 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/doi/10.1063/1.5062816']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/go/GO:0006955', 'http://identifiers.org/ncit/C9305', 'http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000880', 'http://identifiers.org/biomodels.db/MODEL1911280003']
+#@creatorEmail:'johannes.p.meyer@gmail.com'
+#@creatorName:'Meyer Johannes'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 4 molecules and 11 reactions. The translated model has 4 molecules and 11 rules'
+###
+begin model
+begin parameters
+	a_1 0.431
+	a_2 0.234
+	a_3 0.017
+	b_1__1 1.02e-09
+	b_2__1 1.25e-05
+	b_3__1 0.0005
+	__e__ 1.04e-08
+	alpha_1 4.2e-08
+	alpha_2 8e-10
+	beta_1 2e-05
+	beta_2 2e-05
+	beta_3 2e-05
+	u_1 0
+	u_2 0
+end parameters
+begin molecule types
+	T_Tumor_Cells()
+	H_CD4_T_Cells()
+	L_CD8_T_Cells()
+	D_Dendritic_Cells()
+end molecule types
+begin seed species
+	T_Tumor_Cells() 6.022e+29 # 1000000.0mol/L * 6.022e23/mol *1.0L #T_Tumor_Cells #T_Tumor_Cells
+	L_CD8_T_Cells() 6.022e+24 #original 10.0substance/volume  #L_CD8_T_Cells #L_CD8_T_Cells
+	D_Dendritic_Cells() 6.022e+24 #original 10.0substance/volume  #D_Dendritic_Cells #D_Dendritic_Cells
+	H_CD4_T_Cells() 3.011e+24 #original 5.0substance/volume  #H_CD4_T_Cells #H_CD4_T_Cells
+end seed species
+begin observables
+	Species T_Tumor_Cells T_Tumor_Cells() #T_Tumor_Cells
+	Species L_CD8_T_Cells L_CD8_T_Cells() #L_CD8_T_Cells
+	Species D_Dendritic_Cells D_Dendritic_Cells() #D_Dendritic_Cells
+	Species H_CD4_T_Cells H_CD4_T_Cells() #H_CD4_T_Cells
+end observables
+begin functions
+	fRate0() = T_Tumor_Cells*a_1
+	fRate0m() = T_Tumor_Cells*a_1*b_1__1
+	fRate1() = L_CD8_T_Cells*alpha_1
+	fRate3() = L_CD8_T_Cells*beta_1*(D_Dendritic_Cells + H_CD4_T_Cells)
+	fRate4() = T_Tumor_Cells*alpha_2
+	fRate6() = D_Dendritic_Cells*a_2
+	fRate6m() = D_Dendritic_Cells*a_2*b_2__1
+	fRate7() = L_CD8_T_Cells*beta_2
+	fRate9() = H_CD4_T_Cells*a_3
+	fRate9m() = H_CD4_T_Cells*a_3*b_3__1
+	fRate10() = L_CD8_T_Cells*beta_3
+end functions
+begin reaction rules
+	Tumor_Growth: 0  <-> T_Tumor_Cells() fRate0(),fRate0m()
+	Tumor_Death_CD8: T_Tumor_Cells() -> 0  fRate1() #Modifiers(L_CD8_T_Cells)
+	Tumor_Death_Chemotherapy: T_Tumor_Cells() -> 0  u_1
+	CD8_Activation: 0  -> L_CD8_T_Cells() fRate3() #Modifiers(D_Dendritic_Cells, H_CD4_T_Cells)
+	CD8_Inactivation: L_CD8_T_Cells() -> 0  fRate4() #Modifiers(T_Tumor_Cells)
+	CD8_Death: L_CD8_T_Cells() -> 0  e
+	DC_Growth: 0  <-> D_Dendritic_Cells() fRate6(),fRate6m()
+	DC_Inactivation: D_Dendritic_Cells() -> 0  fRate7() #Modifiers(L_CD8_T_Cells)
+	DC_Immunotherapy: 0  -> D_Dendritic_Cells() u_2
+	CD4_Growth: 0  <-> H_CD4_T_Cells() fRate9(),fRate9m()
+	CD4_Inactivation: H_CD4_T_Cells() -> 0  fRate10() #Modifiers(L_CD8_T_Cells)
+end reaction rules
+end model

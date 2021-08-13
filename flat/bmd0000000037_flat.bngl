@@ -1,0 +1,81 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000037', 'http://identifiers.org/biomodels.db/MODEL6621175859']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/12750324']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0010018', 'http://identifiers.org/go/GO:0042173']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/5791']
+#@creatorEmail:'lenov@ebi.ac.uk'
+#@creatorName:'Le Novère Nicolas'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 12 molecules and 12 reactions. The translated model has 12 molecules and 12 rules'
+###
+begin model
+begin parameters
+	r1_IfrSfrPfr 0.100000
+	r2_IrSrPr 0.000000
+	r3_kia 0.100000
+	r4_kai 0.800000
+	r5_kx 0.200000
+	r6_ky 1.000000
+	r7_kG 0.100000
+	r8_alpha1 30.000000
+	r9_alpha2 50.000000
+	r10_kd_s 1.000000
+	r11_kd_v 1.000000
+	r12_kd 0.100000
+end parameters
+begin molecule types
+	Xa()
+	Yi()
+	Pr()
+	V()
+	S()
+	prepreS()
+	Gluc()
+	Pi()
+	Ya()
+	Xi()
+	Pfr()
+	preS()
+end molecule types
+begin seed species
+	Pfr() 10.0 #Pfr #Pfr
+	Xi() 6.0 #Xi #Xi
+	prepreS() 200.0 #prepreS #prepreS
+	Ya() 0.9 #Ya #Ya
+	V() 30.0 #V #V
+end seed species
+begin observables
+	Species Pfr Pfr() #Pfr
+	Species Pr Pr() #Pr
+	Species Xi Xi() #Xi
+	Species Xa Xa() #Xa
+	Species prepreS prepreS() #prepreS
+	Species preS preS() #preS
+	Species Ya Ya() #Ya
+	Species S S() #S
+	Species Gluc Gluc() #Gluc
+	Species Yi Yi() #Yi
+	Species V V() #V
+	Species Pi Pi() #Pi
+end observables
+begin functions
+	fRate2() = 0.1*Pr
+	fRate4() = 0.2*Xa
+	fRate5() = 1.0*Ya
+	fRate7() = 30.0/(V^3 + 1.0)
+	fRate8() = 50.0/(S^3 + 1.0)
+end functions
+begin reaction rules
+	Photoreceptor_activation: Pfr() -> Pr() r1_IfrSfrPfr
+	Photoreceptor_inactivation: Pr() -> Pfr() r2_IrSrPr
+	Transducer_activation: Xi() -> Xa() fRate2() #Modifiers(Pr)
+	Transducer_inactivation: Xa() -> Xi() r4_kai
+	preS_formation: prepreS() -> preS() fRate4() #Modifiers(Xa)
+	S_generation: preS() -> S() fRate5() #Modifiers(Ya)
+	Glucose_sensor_inactivation: Ya() + Gluc() -> Yi() r7_kG
+	S_formation: 0  -> S() fRate7() #Modifiers(V)
+	V_formation: 0  -> V() fRate8() #Modifiers(S)
+	S_degradation: S() -> 0  r10_kd_s
+	V_degradation: V() -> 0  r11_kd_v
+	Photoreceptor_decay: Pr() -> Pi() r12_kd
+end reaction rules
+end model

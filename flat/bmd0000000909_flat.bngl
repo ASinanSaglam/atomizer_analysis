@@ -1,0 +1,69 @@
+###
+#@BQM_HAS_INSTANCE:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/ncit/C48686', 'http://identifiers.org/taxonomy/9606']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/doi/10.1016/S0895-7177(03)00133-X', 'http://identifiers.org/ncit/C48686']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/doi/10.1007/bf02460644']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000909', 'http://identifiers.org/biomodels.db/MODEL2001080003']
+#@creatorEmail:'msharifshohan@ebi.ac.uk'
+#@creatorName:'Sharif Shohan Mohammad Umer'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 4 molecules and 8 reactions. The translated model has 4 molecules and 8 rules'
+###
+begin model
+begin parameters
+	a1 0.2
+	a2 0.3
+	a3 0.1
+	b1 1.0
+	b2 1.0
+	alpha 0.3
+	c1 1.0
+	c2 0.5
+	c3 1.0
+	c4 1.0
+	d1 0.2
+	d2 1.0
+	r1 1.5
+	r2 1.0
+	s 0.33
+	p 0.01
+	v 0
+end parameters
+begin molecule types
+	T()
+	N()
+	u()
+	I()
+end molecule types
+begin seed species
+	N() 6.022e+20 # (1.0 * 0.001)mol/L * 6.022e23/mol *1.0L #N #N
+	T() 1.5055e+20 #original 0.25substance/volume  #T #T
+	I() 9.033e+19 #original 0.15substance/volume  #I #I
+end seed species
+begin observables
+	Species N N() #N
+	Species T T() #T
+	Species I I() #I
+	Species u u() #u
+end observables
+begin functions
+	fRate0() = N*r2
+	fRate0m() = N*b2*r2
+	fRate1() = 1.0*N*T*c4 + 1.0*N*a3*(1 - exp(-u))
+	fRate2() = T*r1
+	fRate2m() = T*b1*r1
+	fRate3() = 1.0*I*T*c2 + 1.0*N*T*c3 + 1.0*T*a2*(1 - exp(-u))
+	fRate4() = (I*T*p + 1.0*s*(T + alpha))/(1.0*T + 1.0*alpha)
+	fRate5() = 1.0*I*T*c1 + 1.0*I*a1*(1 - exp(-u)) + 1.0*I*d1
+end functions
+begin reaction rules
+	Presence_of_Normal_Cell: 0  <-> N() fRate0(),fRate0m()
+	Normal_cells_attacked_and_removed_reactants_0: 0  -> N() -1*(fRate1()) #Modifiers(T, u)
+	Induction_of_tumor_cell: 0  <-> T() fRate2(),fRate2m()
+	Tumor_cells_removed_by_immune_system_reactants_0: 0  -> T() -1*(fRate3()) #Modifiers(I, N, u)
+	Initiation_immune_response_against_tumor: 0  -> I() fRate4() #Modifiers(T)
+	Removal_of_immune_response_components_reactants_0: 0  -> I() -1*(fRate5()) #Modifiers(T, u)
+	Increase_in_amount_of_drug_at_tumor_site: 0  -> u() v
+	Decrease_of_chemotherapeutic_drug_at_tumor_site: u() -> 0  d2
+end reaction rules
+end model

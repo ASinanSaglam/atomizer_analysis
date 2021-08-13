@@ -1,0 +1,147 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000171', 'http://identifiers.org/biomodels.db/MODEL0243843132']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/9486845']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/BIOMD0000000016']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/7227']
+#@BQB_IS_PART_OF:['http://identifiers.org/kegg.pathway/dme04710']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0042752']
+#@creatorEmail:'lukas@ebi.ac.uk'
+#@creatorName:'Endler Lukas'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 12 molecules and 26 reactions. The translated model has 10 molecules and 26 rules'
+###
+begin model
+begin parameters
+	n 4.0 #units:dimensionless
+	kd 0.01 #units:perh
+	l_d 12.0 #units:time
+	v_dT_fac 2.0 #units:dimensionless
+	v_dT_dark 2.0 #units:nMph
+	r1_v_sP 0.800000
+	r1_Ki_P 1.000000
+	r2_v_sT 1.000000
+	r2_Ki_T 1.000000
+	r3_v_mT 0.700000
+	r3_K_mT 0.200000
+	r4_v_mP 0.800000
+	r4_K_mP 0.200000
+	r5_k_sP 0.900000
+	r6_k_sT 0.900000
+	r13_k3 1.200000
+	r13_k4 0.600000
+	r14_kd_C 0.010000
+	r15_kd_CN 0.010000
+	r16_k1 1.200000
+	r16_k2 0.200000
+	r17_V_1P 8.000000
+	r17_K_1P 2.000000
+	r18_V_3P 8.000000
+	r18_K_3P 2.000000
+	r19_K_2P 2.000000
+	r19_V_2P 1.000000
+	r20_V_4P 1.000000
+	r20_K_4P 2.000000
+	r21_V_1T 8.000000
+	r21_K_1T 2.000000
+	r22_V_3T 8.000000
+	r22_K_3T 2.000000
+	r23_K_2T 2.000000
+	r23_V_2T 1.000000
+	r24_V_4T 1.000000
+	r24_K_4T 2.000000
+	r25_K_dT 0.200000
+	r26_v_dP 2.000000
+	r26_K_dP 0.200000
+end parameters
+begin compartments
+	#volume units: L
+	nucleus 3 1.0
+	cytoplasm 3 1.0
+end compartments
+begin molecule types
+	TIM_p()
+	PER_TIMcomplexnuclear()
+	PER_TIMcomplexcytoplasm()
+	PER_pp()
+	timmRNA()
+	permRNA()
+	PER_p()
+	TIM()
+	TIM_pp()
+	PER()
+end molecule types
+begin seed species
+	@cytoplasm:timmRNA() 849102000000000.1 # (1.41 * 1e-09)mol/L * 6.022e23/mol *1.0L #timmRNA #M_T
+	@cytoplasm:permRNA() 54198000000000.0 #original 0.09nanomolar/L #permRNA #M_P
+	@cytoplasm:TIM() 325188000000000.06 #original 0.54nanomolar/L #TIM #T0
+	@cytoplasm:TIM_p() 475738000000000.06 #original 0.79nanomolar/L #TIM_p #T1
+	@cytoplasm:TIM_pp() 2800230000000000.5 #original 4.65nanomolar/L #TIM_pp #T2
+	@cytoplasm:PER() 12044000000000.002 #original 0.02nanomolar/L #PER #P0
+	@cytoplasm:PER_p() 12044000000000.002 #original 0.02nanomolar/L #PER_p #P1
+	@cytoplasm:PER_pp() 6022000000000.001 #original 0.01nanomolar/L #PER_pp #P2
+	@cytoplasm:PER_TIMcomplexcytoplasm() 108396000000000.0 #original 0.18nanomolar/L #PER_TIMcomplexcytoplasm #C
+	@nucleus:PER_TIMcomplexnuclear() 722640000000000.0 #original 1.2nanomolar/L #PER_TIMcomplexnuclear #CN
+end seed species
+begin observables
+	Species timmRNA_cytoplasm @cytoplasm:timmRNA() #tim mRNA
+	Species permRNA_cytoplasm @cytoplasm:permRNA() #per mRNA
+	Species TIM_cytoplasm @cytoplasm:TIM() #TIM
+	Species TIM_p_cytoplasm @cytoplasm:TIM_p() #TIM-p
+	Species TIM_pp_cytoplasm @cytoplasm:TIM_pp() #TIM-pp
+	Species PER_cytoplasm @cytoplasm:PER() #PER
+	Species PER_p_cytoplasm @cytoplasm:PER_p() #PER-p
+	Species PER_pp_cytoplasm @cytoplasm:PER_pp() #PER-pp
+	Species PER_TIMcomplexcytoplasm_cytoplasm @cytoplasm:PER_TIMcomplexcytoplasm() #PER_TIM complex cytoplasm
+	Species PER_TIMcomplexnuclear_nucleus @nucleus:PER_TIMcomplexnuclear() #PER_TIM complex nuclear
+end observables
+begin functions
+	v_dT() = v_dT_dark*((v_dT_fac - 1)*min(rint(0.9*sin(3.1415926535*time()/l_d) + 0.5), rint(0.9*sin(3.1415926535*time()/l_d) + 1)) + 1)
+	totalPER_ar() = PER_TIMcomplexcytoplasm_cytoplasm + 1.0*PER_TIMcomplexnuclear_nucleus + PER_cytoplasm + PER_p_cytoplasm + PER_pp_cytoplasm
+	totalTIM_ar() = PER_TIMcomplexcytoplasm_cytoplasm + 1.0*PER_TIMcomplexnuclear_nucleus + TIM_cytoplasm + TIM_p_cytoplasm + TIM_pp_cytoplasm
+	fRate0() = 0.8*1.0^n/(1.0^n + PER_TIMcomplexnuclear_nucleus^n)
+	fRate1() = 1.0*1.0^n/(1.0^n + PER_TIMcomplexnuclear_nucleus^n)
+	fRate2() = timmRNA_cytoplasm*(kd + 0.7/(timmRNA_cytoplasm + 0.2))
+	fRate3() = permRNA_cytoplasm*(kd + 0.8/(permRNA_cytoplasm + 0.2))
+	fRate4() = 0.9*permRNA_cytoplasm
+	fRate5() = 0.9*timmRNA_cytoplasm
+	fRate15() = 1.2
+	fRate15m() = 0.2
+	fRate16() = 8.0/(PER_cytoplasm + 2.0)
+	fRate17() = 8.0/(PER_p_cytoplasm + 2.0)
+	fRate18() = 1.0/(PER_p_cytoplasm + 2.0)
+	fRate19() = 1.0/(PER_pp_cytoplasm + 2.0)
+	fRate20() = 8.0/(TIM_cytoplasm + 2.0)
+	fRate21() = 8.0/(TIM_p_cytoplasm + 2.0)
+	fRate22() = 1.0/(TIM_p_cytoplasm + 2.0)
+	fRate23() = 1.0/(TIM_pp_cytoplasm + 2.0)
+	fRate24() = v_dT/(TIM_pp_cytoplasm + 0.2)
+	fRate25() = 2.0/(PER_pp_cytoplasm + 0.2)
+end functions
+begin reaction rules
+	per_trans: 0  -> permRNA()@cytoplasm fRate0() #Modifiers(CN)
+	tim_trans: 0  -> timmRNA()@cytoplasm fRate1() #Modifiers(CN)
+	M_T_decay_reactants_0: 0  -> timmRNA()@cytoplasm -1*(fRate2())
+	M_P_decay_reactants_0: 0  -> permRNA()@cytoplasm -1*(fRate3())
+	PER_transl: 0  -> PER()@cytoplasm fRate4() #Modifiers(M_P)
+	TIM_transl: 0  -> TIM()@cytoplasm fRate5() #Modifiers(M_T)
+	PO_decay: PER()@cytoplasm -> 0  kd
+	P1_decay: PER_p()@cytoplasm -> 0  kd
+	P2_decay: PER_pp()@cytoplasm -> 0  kd
+	T0_decay: TIM()@cytoplasm -> 0  kd
+	T1_decay: TIM_p()@cytoplasm -> 0  kd
+	T2_decay: TIM_pp()@cytoplasm -> 0  kd
+	C_form: PER_pp()@cytoplasm + TIM_pp()@cytoplasm <-> PER_TIMcomplexcytoplasm()@cytoplasm r13_k3,r13_k4
+	C_decay: PER_TIMcomplexcytoplasm()@cytoplasm -> 0  r14_kd_C
+	CN_decay: PER_TIMcomplexnuclear()@nucleus -> 0  r15_kd_CN
+	C_transp: PER_TIMcomplexcytoplasm()@cytoplasm <-> PER_TIMcomplexnuclear()@nucleus fRate15(),fRate15m()
+	P_pho: PER()@cytoplasm -> PER_p()@cytoplasm fRate16()
+	P1_pho: PER_p()@cytoplasm -> PER_pp()@cytoplasm fRate17()
+	P1_depho: PER_p()@cytoplasm -> PER()@cytoplasm fRate18()
+	P2_depho: PER_pp()@cytoplasm -> PER_p()@cytoplasm fRate19()
+	T_pho: TIM()@cytoplasm -> TIM_p()@cytoplasm fRate20()
+	T1_pho: TIM_p()@cytoplasm -> TIM_pp()@cytoplasm fRate21()
+	T1_depho: TIM_p()@cytoplasm -> TIM()@cytoplasm fRate22()
+	T2_depho: TIM_pp()@cytoplasm -> TIM_p()@cytoplasm fRate23()
+	T2_light_deact: TIM_pp()@cytoplasm -> 0  fRate24()
+	P2_light_deact: PER_pp()@cytoplasm -> 0  fRate25()
+end reaction rules
+end model

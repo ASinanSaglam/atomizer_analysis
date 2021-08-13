@@ -1,0 +1,87 @@
+###
+#@BQM_UNKNOWN:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/17245126']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/pw/PW:0000718', 'http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/pw/PW:0001360']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000001009', 'http://identifiers.org/biomodels.db/MODEL2106230001']
+#@creatorEmail:'tiwarik@babraham.ac.uk'
+#@creatorName:'Tiwari Krishna'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 6 molecules and 8 reactions. The translated model has 4 molecules and 8 rules'
+###
+begin model
+begin parameters
+	kd53 0.3
+	kin 0.4
+	kout 0.05
+	kd2 0.1
+	ks2 0.182
+	Js2 0.7
+	m 3.0
+	Q 0.8
+	J1 0.1
+	J2 0.1
+	krepair 0.05
+	kd53_ 8.0
+	ks2_ 3.0
+	kd2_ 0.7
+	ks53 0.6
+	k_inact 0.1
+	k_act_ 5.0
+	J_act 0.2
+	k_act_0 0.2
+	Dam0 0.8
+	Tdam 50.0
+	ModelValue_28_0 (50.0)
+	p53_total_nuc 1.2044e+23 # 0.2mol/L * 6.022e23/mol *1.0L
+	p53_total 1.2044e+23 # 0.2mol/L * 6.022e23/mol *1.0L
+end parameters
+begin compartments
+	#volume units: volume
+	cyt 3 1.0
+	nuc 3 1.0
+end compartments
+begin molecule types
+	MDM2nuc()
+	p53_act()
+	p53_inact()
+	MDM2cyt()
+end molecule types
+begin seed species
+	@cyt:MDM2cyt() 1.26462e+23 #original 0.21substance/volume #MDM2cyt #MDM2cyt
+	@nuc:MDM2nuc() 3.3121000000000005e+23 #original 0.55substance/volume #MDM2nuc #MDM2nuc
+	@nuc:p53_inact() 1.14418e+23 #original 0.19substance/volume #p53_inact #p53_inact
+	@nuc:p53_act() 6.022e+21 #original 0.01substance/volume #p53_act #p53_act
+end seed species
+begin observables
+	Species MDM2cyt_cyt @cyt:MDM2cyt() #MDM2cyt
+	Species MDM2nuc_nuc @nuc:MDM2nuc() #MDM2nuc
+	Species p53_inact_nuc @nuc:p53_inact() #p53_inact
+	Species p53_act_nuc @nuc:p53_act() #p53_act
+end observables
+begin functions
+	v() = Q
+	p53_total_ar() = p53_act_nuc + p53_inact_nuc
+	r() = J2/p53_total_ar
+	q() = J1/p53_total_ar
+	u() = MDM2nuc_nuc
+	G_u_v_q_r() = 2*r*u/(q*v + r*u - u + v + (-4*r*u*(-u + v) + (q*v + r*u - u + v)^2)^0.5)
+	max() =   if(( ( 0 )   >= ( Dam0-krepair*(-Tdam+time()) )   ),( ( 0 )   ),( ( Dam0-krepair*(-Tdam+time()) )   )) 
+	heav_x() =  if((x<0),(0),(if((x>0),(1),(0))))
+	DNAdamage_ar() = heav_x*max
+	kd2_0() = kd2*(DNAdamage_ar + 1)
+	kd53_0() = G_u_v_q_r*kd53_ + kd53
+	x() = -ModelValue_28_0 + time()
+	k_act() = k_act_*p53_act_nuc^3/(J_act^3 + p53_act_nuc^3) + k_act_0
+	fRate0() = (ks2*(Js2^m + p53_act_nuc^m) + ks2_*p53_act_nuc^m)/(Js2^m + p53_act_nuc^m)
+end functions
+begin reaction rules
+	MDM2cyt_production: 0  -> MDM2cyt()@cyt fRate0() #Modifiers(p53_act)
+	MDM2cyt_translocation: MDM2cyt()@cyt <-> MDM2nuc()@nuc kin,kout
+	MDM2cyt_degradation: MDM2cyt()@cyt -> 0  kd2_
+	MDM2nuc_degradation: MDM2nuc()@nuc -> 0  kd2_0
+	p53_inact_production: 0  -> p53_inact()@nuc ks53
+	p53_activation: p53_inact()@nuc <-> p53_act()@nuc k_act,k_inact
+	p53_inact_degradation: p53_inact()@nuc -> 0  kd53_0
+	p53_act_degradation: p53_act()@nuc -> 0  kd53_0
+end reaction rules
+end model

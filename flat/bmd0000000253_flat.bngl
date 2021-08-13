@@ -1,0 +1,78 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000253', 'http://identifiers.org/biomodels.db/MODEL1007200002']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/9612078']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/4932']
+#@BQB_IS_HOMOLOG_TO:['http://identifiers.org/reactome/REACT_1383']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0006096', 'http://identifiers.org/kegg.pathway/sce00010']
+#@creatorEmail:'kieran.smallbone@manchester.ac.uk'
+#@creatorName:'Smallbone Kieran'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 6 molecules and 4 reactions. The translated model has 5 molecules and 8 rules'
+###
+begin model
+begin parameters
+	KRHMP 1.0 #units:mM
+	gR 10.0
+	c1 0.0005
+	L0 1000.0
+	KRATP 0.06 #units:mM
+	gT 1.0
+	c2 1.0
+	KiATP 10.0 #units:mM
+	ci 10.0
+	r1_VHK 68.000000
+	r1_KATP 0.150000
+	r1_KGlc 1.000000
+	r1_KiTre6P 4.422000
+	r1_wild_type 1.000000
+	r2_VPFK 30.000000
+	r3_Vlower 20.000000
+	r3_KFru16P2 1.000000
+	r3_KADP 0.100000
+	r4_VATPase 68.000000
+	r4_KATP 3.000000
+end parameters
+begin molecule types
+	glucose()
+	fructose1_6_bisphosphate()
+	ADP()
+	hexosemonophosphate()
+	ATP()
+end molecule types
+begin seed species
+	hexosemonophosphate() 6.022000000000001e+19 # (0.1 * 0.001)mol/L * 6.022e23/mol *1.0L #hexosemonophosphate #HMP
+	fructose1_6_bisphosphate() 6.022e+20 #original 1.0mmol/L #fructose1_6_bisphosphate #Fru16P2
+	ATP() 2.4088e+21 #original 4.0mmol/L #ATP #ATP
+	glucose() 6.022e+21 #original 10.0mmol/L #glucose #Glc
+end seed species
+begin observables
+	Species hexosemonophosphate hexosemonophosphate() #hexose monophosphate
+	Species fructose1_6_bisphosphate fructose1_6_bisphosphate() #fructose 1,6-bisphosphate
+	Species ATP ATP() #ATP
+	Species glucose glucose() #glucose
+	Species ADP ADP() #ADP
+end observables
+begin functions
+	lambda2() = ATP/KRATP
+	lambda1() = hexosemonophosphate/KRHMP
+	T() = c1*c2*gT*lambda1*lambda2 + c1*lambda1 + c2*lambda2 + 1
+	R() = gR*lambda1*lambda2 + lambda1 + lambda2 + 1
+	lambda3() = ATP/KiATP
+	L() = L0*(ci*lambda3 + 1)^2/(lambda3 + 1)^2
+	ADP_ar() = 5 - ATP
+	trehalose6_phosphate_ar() = hexosemonophosphate^2
+	fRate0() = 300.696/(4.422*ATP*glucose + 1.0*ATP*trehalose6_phosphate_ar + 4.422*ATP + 0.6633*glucose + 0.15*trehalose6_phosphate_ar + 0.6633)
+	fRate1() = 30.0*R*gR*lambda1*lambda2/(L*T^2 + R^2)
+	fRate2() = 20.0*ADP_ar*fructose1_6_bisphosphate/((1.0*ADP_ar + 0.1)*(1.0*fructose1_6_bisphosphate + 1))
+	fRate3() = 68.0/(ATP + 3.0)
+end functions
+begin reaction rules
+	HK: glucose() + ATP() -> hexosemonophosphate() fRate0() #Modifiers(Tre6P)
+	PFK_reactants_0: 0  -> hexosemonophosphate() -1*(fRate1())
+	PFK_reactants_1: 0  -> ATP() -1*(fRate1())
+	PFK_products_0: 0  -> fructose1_6_bisphosphate() fRate1()
+	lower_reactants_0: 0  -> fructose1_6_bisphosphate() -1*(fRate2())
+	lower_reactants_1: 0  -> ADP() -1*4.0*(fRate2())
+	lower_products_0: 0  -> ATP() 4.0*fRate2()
+	ATPase: ATP() -> ADP() fRate3()
+end reaction rules
+end model

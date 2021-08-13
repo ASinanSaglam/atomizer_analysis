@@ -1,0 +1,72 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1303060000', 'http://identifiers.org/biomodels.db/BIOMD0000000626']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/23631506']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0051321', 'http://identifiers.org/go/GO:0040020']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/4932']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/eco/ECO:0000362']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@creatorEmail:'kothamav@babraham.ac.uk'
+#@creatorName:'Kothamachu Varun'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 6 molecules and 6 reactions. The translated model has 6 molecules and 6 rules'
+###
+begin model
+begin parameters
+	r1_prim_11 0.010000
+	r1_urim_11 0.100000
+	r2_pume_6 0.300000
+	r2_uume_6 0.010000
+	r3_csok_2 0.050000
+	r3_psok_2 0.700000
+	r3_usok_2 1.000000
+	r4_c_1 0.010000
+	r4_cime_1 0.010000
+	r4_dime_1 1.000000
+	r4_dprimeime_1 1.000000
+	r4_pime_1 2.000000
+	r4_sime_1 10.000000
+	r5_dpime_1 1.000000
+	r5_pime_1 2.000000
+	r6_c_2 1.400000
+	r6_c_3 2.000000
+	r6_dime_2 8.000000
+	r6_sime_2 10.000000
+	r6_sprimeime_2 3.000000
+end parameters
+begin molecule types
+	Rim11()
+	pSok2()
+	pIme1()
+	Ime2()
+	pUme6()
+	Ime1()
+end molecule types
+begin seed species
+	pSok2() 6.021999999999826e+23 # 0.999999999999971mol/L * 6.022e23/mol *1.0L #pSok2 #pSok2
+end seed species
+begin observables
+	Species Rim11 Rim11() #Rim11
+	Species pUme6 pUme6() #pUme6
+	Species pSok2 pSok2() #pSok2
+	Species Ime1 Ime1() #Ime1
+	Species pIme1 pIme1() #pIme1
+	Species Ime2 Ime2() #Ime2
+end observables
+begin functions
+	fRate0() = 0.1 - 0.11*Rim11
+	fRate1() = 0.3*Rim11*(1 - pUme6) - 0.01*pUme6
+	fRate2() = -1.0*pSok2 + 1.0*(0.035 - 0.035*pSok2)/(Ime1 + 0.05)
+	fRate3() = -1.0*Ime1*Ime2/(Ime1 + 0.01) - 2.0*Ime1*Rim11 - 1.0*Ime1 + 0.1/(pSok2 + 0.01)
+	fRate4() = 2.0*Ime1*Rim11
+	fRate4m() = 1.0
+	fRate5() = (3.0*Ime2^5 + 10.0*pIme1*pUme6*(Ime2^5 + 5.37824))/(1.0*Ime2^5 + 5.37824)
+	fRate5m() = 8.0/(1.0*Ime2 + 2.0)
+end functions
+begin reaction rules
+	rim11_1_products_0: 0  -> Rim11() fRate0() #Modifiers(Rim11)
+	pume6_1_products_0: 0  -> pUme6() fRate1() #Modifiers(Rim11)
+	sok2_1_products_0: 0  -> pSok2() fRate2() #Modifiers(Ime1, pSok2)
+	ime1_1_products_0: 0  -> Ime1() fRate3() #Modifiers(pSok2, Rim11, Ime2)
+	pime1_1: 0  <-> pIme1() fRate4(),fRate4m() #Modifiers(Ime1, Rim11, pIme1)
+	ime2_1: 0  <-> Ime2() fRate5(),fRate5m() #Modifiers(pUme6, pIme1)
+end reaction rules
+end model

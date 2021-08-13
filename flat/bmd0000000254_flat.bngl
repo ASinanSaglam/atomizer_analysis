@@ -1,0 +1,50 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000254', 'http://identifiers.org/biomodels.db/MODEL1007260000']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/10692299']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/4932']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0006096']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 4 molecules and 0 reactions. The translated model has 4 molecules and 4 rules'
+###
+begin model
+begin parameters
+	V_in 0.36
+	k1 0.02
+	kp 6.0
+	km 13.0
+	epsilon 0.01
+end parameters
+begin molecule types
+	Glucose_1()
+	ATP_2()
+	Glucose_2()
+	ATP_1()
+end molecule types
+begin seed species
+	Glucose_1() 3.97452e+24 # 6.6mol/L * 6.022e23/mol *1.0L #Glucose_1 #G1
+	ATP_1() 4.57672e+24 #original 7.6mol/L #ATP_1 #T1
+	Glucose_2() 6.202660000000001e+24 #original 10.3mol/L #Glucose_2 #G2
+	ATP_2() 2.46902e+23 #original 0.41mol/L #ATP_2 #T2
+end seed species
+begin observables
+	Species Glucose_1 Glucose_1() #Glucose_1
+	Species ATP_1 ATP_1() #ATP_1
+	Species Glucose_2 Glucose_2() #Glucose_2
+	Species ATP_2 ATP_2() #ATP_2
+end observables
+begin functions
+	arRateT2() = 2*ATP_2*Glucose_2*k1 - ATP_2*kp/(ATP_2 + km) - epsilon*(-ATP_1 + ATP_2)
+	arRateT1() = 2*ATP_1*Glucose_1*k1 - ATP_1*kp/(ATP_1 + km) + epsilon*(-ATP_1 + ATP_2)
+	arRateG2() = -ATP_2*Glucose_2*k1 + V_in
+	arRateG1() = -ATP_1*Glucose_1*k1 + V_in
+	Tdiff() = -ATP_1 + ATP_2
+	Tsum() = ATP_1 + ATP_2
+end functions
+begin reaction rules
+	0  -> Glucose_1() arRateG1 #rateLaw
+	0  -> Glucose_2() arRateG2 #rateLaw
+	0  -> ATP_1() arRateT1 #rateLaw
+	0  -> ATP_2() arRateT2 #rateLaw
+end reaction rules
+end model

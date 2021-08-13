@@ -1,0 +1,34 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000614', 'http://identifiers.org/biomodels.db/MODEL1608100002']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/10850796']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:1902903']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@creatorEmail:'tvarusai@ebi.ac.uk'
+#@creatorName:'Varusai Thawfeek'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 1 molecules and 4 reactions. The translated model has 1 molecules and 4 rules'
+###
+begin model
+begin parameters
+	k1 2.79e-06
+	k2 2.29
+	a 5.85e-05
+end parameters
+begin molecule types
+	fibrilfraction()
+end molecule types
+begin seed species
+end seed species
+begin observables
+	Species fibrilfraction fibrilfraction() #fibril fraction
+end observables
+begin functions
+	fRate1() = a*fibrilfraction*k2
+	fRate3() = a*fibrilfraction*k2
+end functions
+begin reaction rules
+	R1: 0  -> fibrilfraction() k1
+	R2: 0  -> fibrilfraction() fRate1()
+	R3: fibrilfraction() -> 0  k1
+	R4: fibrilfraction() -> 0  fRate3()
+end reaction rules
+end model

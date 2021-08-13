@@ -1,0 +1,76 @@
+###
+#@BQB_HAS_PART:['http://identifiers.org/chebi/CHEBI:63632', 'http://identifiers.org/chebi/CHEBI:70727']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/pw/PW:0002367']
+#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000093']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/doi/10.1002/acs.856']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/obi/OBI:0001285', 'http://identifiers.org/mamo/MAMO_0000046']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1805210001', 'http://identifiers.org/biomodels.db/BIOMD0000000946']
+#@creatorEmail:'mroberts@ebi.ac.uk'
+#@creatorName:'Roberts Matthew Grant'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 7 molecules and 0 reactions. The translated model has 7 molecules and 7 rules'
+###
+begin model
+begin parameters
+	k_mi 1.3974e-06
+	k_mo 0.085551
+	k_i 0.02211
+	k_e 0.0078915
+	k_b 0.00038085
+	k_dl 0.055522
+	k_dh 1.5639e-07
+	B_T 89.972
+	V_c 829.0
+	V_n 326.0
+	v0 1.5045e-05
+	D 10.0
+	k_om 0.00015599
+	k_cm 0.00029553
+	alpha 24125.0
+	k_oc 0.00012913
+	k_cc 0.00031578
+end parameters
+begin molecule types
+	L_e()
+	H_c()
+	L_c()
+	L_m()
+	L_n()
+	H_e()
+	H_m()
+end molecule types
+begin seed species
+	L_m()() (1 + (1.5045e-05)) * (10.0) #L_m
+end seed species
+begin observables
+	Species L_m L_m() #L_m
+	Species H_m H_m() #H_m
+	Species L_e L_e() #L_e
+	Species H_e H_e() #H_e
+	Species L_c L_c() #L_c
+	Species H_c H_c() #H_c
+	Species L_n L_n() #L_n
+end observables
+begin functions
+	v1() = alpha*v0/(v0 + 1)
+	v2() = V_n/V_c
+	arRateL_c() = H_c*k_cc - L_c*k_b*(B_T - L_n) - L_c*(k_e + k_oc) + L_e*k_i*v1 + L_n*k_dl*v2
+	arRateL_n() = L_c*k_b*(B_T - L_n)/v2 - L_n*(k_dh + k_dl)
+	arRateH_c() = -H_c*k_cc + L_c*k_oc + L_n*k_dh*v2
+	arRateL_e() = H_e*k_cm + L_c*k_e/v1 - L_e*(k_i + k_mo + k_om) + L_m*k_mi/v0
+	V_e() = 2000000000000*v0/(v0 + 1)
+	V_m() = 2000000000000 - V_e
+	arRateH_e() = -H_e*(k_cm + k_mo) + H_m*k_mi/v0 + L_e*k_om
+	arRateH_m() = H_e*k_mo*v0 - H_m*(k_cm + k_mi) + L_m*k_om
+	arRateL_m() = H_m*k_cm + L_e*k_mo*v0 + L_m*(-k_mi - k_om)
+end functions
+begin reaction rules
+	0  -> L_m() arRateL_m #rateLaw
+	0  -> H_m() arRateH_m #rateLaw
+	0  -> L_e() arRateL_e #rateLaw
+	0  -> H_e() arRateH_e #rateLaw
+	0  -> L_c() arRateL_c #rateLaw
+	0  -> H_c() arRateH_c #rateLaw
+	0  -> L_n() arRateL_n #rateLaw
+end reaction rules
+end model

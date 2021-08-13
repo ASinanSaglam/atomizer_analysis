@@ -1,0 +1,70 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/26976483']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/go/GO:0002418', 'http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/ncit/C62713']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1908060001', 'http://identifiers.org/biomodels.db/BIOMD0000000780']
+#@creatorEmail:'jm2187@cam.ac.uk'
+#@creatorName:'Men Jinghao'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 4 molecules and 12 reactions. The translated model has 4 molecules and 12 rules'
+###
+begin model
+begin parameters
+	a 0.02 #units:unit_0
+	d 0.02 #units:unit_0
+	u1 0.2 #units:unit_0
+	u2 0.4 #units:unit_0
+	r1 0.8 #units:unit_0
+	e1 0.01 #units:unit_0
+	r2 0.8 #units:unit_0
+	e2 0.04 #units:unit_0
+	u3 0.1 #units:unit_0
+	b 0.001 #units:unit_0
+	r3 0.5 #units:unit_0
+	e3 0.01 #units:unit_0
+end parameters
+begin molecule types
+	T()
+	N()
+	M()
+	S()
+end molecule types
+begin seed species
+	S() 6.022000000000001e+19 # (0.1 * 0.001)mol/L * 6.022e23/mol *1.0L #S #S
+	N() 1.2044000000000002e+20 #original 0.2substance/volume #N #N
+	T() 6.022000000000001e+19 #original 0.1substance/volume #T #T
+end seed species
+begin observables
+	Species S S() #S
+	Species N N() #N
+	Species T T() #T
+	Species M M() #M
+end observables
+begin functions
+	Q2() = a*r2*u2/(d*(d + e2))
+	Q1() = a*r1*u1/(d*(d + e1))
+	B0() = d*(-Q1 + Q2)*(d + e1)*(d + e2)*(d + e3)/(a*r1*u1*u3)
+	fRate2() = N*u1
+	fRate3() = T*u2
+	fRate4() = N*S*r1*u1
+	fRate5() = N*(d + e1)
+	fRate6() = S*T*r2*u2
+	fRate7() = T*(d + e2)
+	fRate8() = M*u3
+	fRate10() = M*T*r3*u3
+	fRate11() = M*(d + e3)
+end functions
+begin reaction rules
+	nutrient_supply: 0  -> S() a
+	nutrient_decay: S() -> 0  d
+	nutrient_consumption_N: S() -> 0  fRate2() #Modifiers(N)
+	nutrient_consumption_T: S() -> 0  fRate3() #Modifiers(T)
+	normal_cell_growth: 0  -> N() fRate4() #Modifiers(S)
+	normal_cell_death_reactants_0: 0  -> N() -1*(fRate5())
+	tumor_growth: 0  -> T() fRate6() #Modifiers(S)
+	tumor_death_reactants_0: 0  -> T() -1*(fRate7())
+	tumor_killing: T() -> 0  fRate8() #Modifiers(M)
+	virus_therapy: 0  -> M() b
+	virus_burst: 0  -> M() fRate10() #Modifiers(T)
+	virus_clearance_reactants_0: 0  -> M() -1*(fRate11())
+end reaction rules
+end model

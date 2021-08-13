@@ -1,0 +1,72 @@
+###
+#@BQM_HAS_INSTANCE:['http://identifiers.org/ncit/C25218', 'http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/taxonomy/9606']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/pubmed/31687042']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/ncit/C25218', 'http://identifiers.org/taxonomy/9606']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000888', 'http://identifiers.org/biomodels.db/MODEL1912100006']
+#@creatorEmail:'msharifshohan@ebi.ac.uk'
+#@creatorName:'Sharif Shohan Mohammad Umer'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 4 molecules and 8 reactions. The translated model has 4 molecules and 8 rules'
+###
+begin model
+begin parameters
+	a 0.431
+	b 2.17e-08
+	c_1 3.5e-06
+	c_2 1e-07
+	d_1 1e-06
+	d_2 4e-06
+	d_3 0.0001
+	__e__ 0.0412
+	f_1 1e-08
+	f_2 0.01
+	g 0.024
+	h 3.42e-10
+	i 0.02
+	j 1e-07
+	k 1e-07
+	s_1 13000.0
+	s_2 480.0
+	u 1.8e-08
+	r_1 0
+	g_1 0
+	h_1 0
+end parameters
+begin molecule types
+	L()
+	T()
+	N()
+	D()
+end molecule types
+begin seed species
+	T() 6.022000000000001e+22 # (100.0 * 0.001)mol/L * 6.022e23/mol *1.0L #T #T
+	N() 6.022e+20 #original 1.0substance/volume  #N #N
+	D() 6.022e+20 #original 1.0substance/volume  #D #D
+	L() 6.022e+20 #original 1.0substance/volume  #L #L
+end seed species
+begin observables
+	Species T T() #T
+	Species N N() #N
+	Species D D() #D
+	Species L L() #L
+end observables
+begin functions
+	fRate0() = T*a
+	fRate0m() = T*a*b
+	fRate1() = T*(D*j + L*k + N*c_1)
+	fRate2() = (N*T^2*g_1 + 1.0*s_1*(T^2 + h_1))/(1.0*T^2 + 1.0*h_1)
+	fRate3() = 1.0*N*__e__ + 1.0*N*(D*d_1 + T*c_2)
+	fRate5() = -1.0*D*g + 1.0*D*(L*f_1 + N*d_2 - T*d_3)
+	fRate6() = 1.0*T*(1.0*D*f_2 + N*r_1)
+	fRate7() = 1.0*L^2*N*u + 1.0*L*T*h + 1.0*L*i
+end functions
+begin reaction rules
+	Growth_of_tumor_cell: 0  <-> T() fRate0(),fRate0m()
+	Impact_on_the_growth_of_tumor_cell_by_dendritic_cell__natural_killer_cell__CD8__cell_reactants_0: 0  -> T() -1*(fRate1()) #Modifiers(N, D, L)
+	Production_of_Natural_killer_cell: 0  -> N() fRate2() #Modifiers(T)
+	Removal_of_natural_killer_cell_reactants_0: 0  -> N() -1*(fRate3()) #Modifiers(T, D)
+	Formation_of_Dendritic_cell: 0  -> D() s_2
+	Impact_on_the_formation_of_dendritic_cell_reactants_0: 0  -> D() -1*(fRate5()) #Modifiers(L, N, T)
+	Formation_of_cytotoxic_CD8__T_cell: 0  -> L() fRate6() #Modifiers(D, T, N)
+	Removal_of_cytotoxic_CD8__T_cell_reactants_0: 0  -> L() -1*(fRate7()) #Modifiers(T, N)
+end reaction rules
+end model

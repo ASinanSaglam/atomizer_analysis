@@ -1,0 +1,102 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1107140000', 'http://identifiers.org/biomodels.db/BIOMD0000000343']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/20421297']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_IS_PART_OF:['http://identifiers.org/go/GO:0008286']
+#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000443']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0038016']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:9351']
+#@creatorEmail:'ajmera@ebi.ac.uk'
+#@creatorName:'Ajmera Ishan'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 26 molecules and 0 reactions. The translated model has 9 molecules and 9 rules'
+###
+begin model
+begin parameters
+	k1a 0.3892881852
+	k1abasic 0.012452744
+	k1b 0.02000224505
+	k1e 4.38334e-05
+	k1f 20.0726035037
+	k1g 286.6994648072
+	k1r 3.6327773442
+	k21 1.6722503302
+	k22 0.036381619
+	km2 32.5942371891
+	k3 1.6286590231
+	km3 0.1131073982
+	ky1 152.9631668536
+	ky2 8936.219557405
+	kyanna 16760.1203140926
+	kyDosR 13740.4321729991
+	ins 100.0
+	k1c 0.3635167928
+	k1d 1580.6782649401
+	V1a 389.41271264 #original 389.41271264mol/L
+	measIRp 6.022e+23 #original 1.0mol/L
+end parameters
+begin molecule types
+	IRS()
+	IRip()
+	X()
+	IR()
+	Xp()
+	IRSip()
+	IRins()
+	IRi()
+	IRp()
+end molecule types
+begin seed species
+	IR() 10.0 #IR #IR
+	IRS() 6.022e+24 # 10.0mol/L * 6.022e23/mol *1.0L #IRS #IRS
+	X() 10.0 #X #X
+end seed species
+begin observables
+	Species IR IR() #IR
+	Species IRins IRins() #IRins
+	Species IRp IRp() #IRp
+	Species IRip IRip() #IRip
+	Species IRi IRi() #IRi
+	Species IRS IRS() #IRS
+	Species IRSip IRSip() #IRSip
+	Species X X() #X
+	Species Xp Xp() #Xp
+end observables
+begin functions
+	v1r_ar() = IRi*k1r
+	V1a_ar() = IR*ins*k1a + IR*k1abasic
+	V1b_ar() = IRins*k1b
+	V1g_ar() = IRp*k1g
+	arRateIR() = -V1a_ar + V1b_ar + V1g_ar + v1r_ar
+	V1d_ar() = IRp*k1d
+	V1c_ar() = IRins*k1c
+	arRateIRp() = V1c_ar - V1d_ar - V1g_ar
+	arRateIRins() = V1a_ar - V1b_ar - V1c_ar
+	V3_ar() = IRSip*X*k3
+	Vm3_ar() = Xp*km3
+	arRateXp() = V3_ar - Vm3_ar
+	arRateX() = -V3_ar + Vm3_ar
+	Vm2_ar() = IRSip*km2
+	V2_ar() = IRS*k21*(IRip*k22 + IRp)
+	arRateIRSip() = V2_ar - Vm2_ar
+	arRateIRS() = -V2_ar + Vm2_ar
+	V1e_ar() = IRip*(Xp*k1f/(Xp + 1) + k1e)
+	arRateIRi() = V1e_ar - v1r_ar
+	arRateIRip() = V1d_ar - V1e_ar
+	intamount_ar() = IRi/10 + IRip/10
+	simXp_ar() = Xp
+	measdoublestep_ar() = IRSip*ky2
+	measdosR_ar() = IRSip*kyDosR
+	measanna_ar() = IRSip*kyanna
+end functions
+begin reaction rules
+	0  -> IR() arRateIR #rateLaw
+	0  -> IRins() arRateIRins #rateLaw
+	0  -> IRp() arRateIRp #rateLaw
+	0  -> IRip() arRateIRip #rateLaw
+	0  -> IRi() arRateIRi #rateLaw
+	0  -> IRS() arRateIRS #rateLaw
+	0  -> IRSip() arRateIRSip #rateLaw
+	0  -> X() arRateX #rateLaw
+	0  -> Xp() arRateXp #rateLaw
+end reaction rules
+end model

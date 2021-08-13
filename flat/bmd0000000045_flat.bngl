@@ -1,0 +1,69 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL6623009547', 'http://identifiers.org/biomodels.db/BIOMD0000000045']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/17029867']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0019722', 'http://identifiers.org/obo.go/GO:0048016']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10114']
+#@BQB_IS:['http://identifiers.org/kegg.pathway/rno04020']
+#@creatorEmail:'lenov@ebi.ac.uk'
+#@creatorName:'Le Novère Nicolas'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 4 molecules and 8 reactions. The translated model has 4 molecules and 9 rules'
+###
+begin model
+begin parameters
+	beta 1.0
+	r1_v0 0.015000
+	r1_v1 0.012000
+	r2_Vm2i 3.100000
+	r2_K2i 0.005000
+	r3_Vm3i 25.000000
+	r3_K3y 0.065000
+	r3_K3z 0.022000
+	r4_Kf 0.500000
+	r5_K 1.000000
+	r6_Kf 0.500000
+	r7_Vm2s 1.500000
+	r7_K2s 0.026500
+	r8_Vm3s 0.169000
+	r8_K3s 0.100000
+end parameters
+begin compartments
+	#volume units: L
+	extracellular 3 1.0
+	cytosol 3 1.0
+	intravesicular1 3 1.0
+	intravesicular2 3 1.0
+end compartments
+begin molecule types
+	Z()
+	EC()
+	X()
+	Y()
+end molecule types
+begin seed species
+	@intravesicular1:X() 3.011e+17 # (0.5 * 1e-06)mol/L * 6.022e23/mol *1.0L #X #X
+end seed species
+begin observables
+	Species EC_extracellular @extracellular:EC() #EC
+	Species Z_cytosol @cytosol:Z() #Z
+	Species Y_intravesicular2 @intravesicular2:Y() #Y
+	Species X_intravesicular1 @intravesicular1:X() #X
+end observables
+begin functions
+	fRate0() = 0.012*beta + 0.015
+	fRate1() = 3.1*Z_cytosol/(Z_cytosol^2 + 2.5e-5)
+	fRate2() = 25.0*Y_intravesicular2*Z_cytosol^2/(Y_intravesicular2^2*Z_cytosol^2 + 0.000484*Y_intravesicular2^2 + 0.004225*Z_cytosol^2 + 2.0449e-6)
+	fRate6() = 1.5*Z_cytosol/(Z_cytosol^2 + 0.00070225)
+	fRate7() = 0.169*X_intravesicular1*beta/(X_intravesicular1^2 + 0.01)
+end functions
+begin reaction rules
+	vin_reactants_0: 0  -> EC()@extracellular -1*(fRate0())
+	vin_products_0: 0  -> Z()@cytosol fRate0()
+	v2i: Z()@cytosol -> Y()@intravesicular2 fRate1()
+	v3i: Y()@intravesicular2 -> Z()@cytosol fRate2()
+	v4: Y()@intravesicular2 -> Z()@cytosol r4_Kf
+	v5: Z()@cytosol -> EC()@extracellular r5_K
+	v6: X()@intravesicular1 -> Z()@cytosol r6_Kf
+	v2s: Z()@cytosol -> X()@intravesicular1 fRate6()
+	v3s: X()@intravesicular1 -> Z()@cytosol fRate7()
+end reaction rules
+end model

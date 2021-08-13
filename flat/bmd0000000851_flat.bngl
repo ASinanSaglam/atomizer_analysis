@@ -1,0 +1,62 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/31128142']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/ncit/C71292', 'http://identifiers.org/ncit/C53482', 'http://identifiers.org/mamo/MAMO_0000046']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1911120003', 'http://identifiers.org/biomodels.db/BIOMD0000000851']
+#@creatorEmail:'johannes.p.meyer@gmail.com'
+#@creatorName:'Meyer Johannes'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 5 molecules and 4 reactions. The translated model has 5 molecules and 6 rules'
+###
+begin model
+begin parameters
+	alpha 127.0
+	r 0.0155
+	A 0.1155
+	beta 2.7516
+	gamma 2.1272
+	w 0.45
+	T 3.29
+	R_0 1.2935
+	R_0_x 1.2607
+	ModelValue_3 (2.7516)
+	ModelValue_5 (0.45)
+end parameters
+begin molecule types
+	V()
+	I()
+	S()
+	R()
+	V_e()
+end molecule types
+begin seed species
+	S() 5.6751328000000005e+23 # 0.9424mol/L * 6.022e23/mol *1.0L #S #S
+	V() 3.4024300000000004e+22 #original 0.0565substance/volume #V #V
+	V_e() 3.4024300000000004e+22 #original 0.0565substance/volume #V_e #V_e
+	I() 7.2264e+20 #original 0.0012substance/volume #I #I
+end seed species
+begin observables
+	Species S S() #S
+	Species V V() #V
+	Species V_e V_e() #V_e
+	Species I I() #I
+	Species R R() #R
+end observables
+begin functions
+	fraction_total() = I + R + S + V + V_e
+	fraction_S() = S/fraction_total
+	fraction_I() = I/fraction_total
+	fraction_R() = R/fraction_total
+	fraction_V() = V/fraction_total
+	k() = ModelValue_3*(1 - ModelValue_5)
+	fRate0() = I*beta
+	fRate1() = r*(1 - V_e/A)
+	fRate2() = I*k
+end functions
+begin reaction rules
+	Susceptible_Individual_Transmission: S() -> I() fRate0()
+	Vaccinated_Population_Growth_reactants_0: 0  -> S() -1*(fRate1())
+	Vaccinated_Population_Growth_products_0: 0  -> V() fRate1()
+	Vaccinated_Population_Growth_products_1: 0  -> V_e() fRate1()
+	Vaccinated_Population_Infection: V() -> I() fRate2()
+	Infected_Recovery: I() -> R() gamma
+end reaction rules
+end model

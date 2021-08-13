@@ -1,0 +1,213 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000482', 'http://identifiers.org/biomodels.db/MODEL1301020001']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/23670537']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/MODEL1204060000']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:9351', 'http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000608']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0061178']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10114']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 23 molecules and 29 reactions. The translated model has 23 molecules and 45 rules'
+###
+begin model
+begin parameters
+	V1 8.97
+	K1 0.0451
+	V2_G6P 7.71
+	K2_G6P 925.0
+	V2_F16P 0.0839
+	K2_F16P 0.597
+	V3 0.00229
+	K3 2.92
+	V6 0.00247
+	K6 0.996
+	V7 2.84e-05
+	K7 8.43
+	V4_PYR 23.6
+	K4_PYR 56.4
+	V4_LAC 1.2e-06
+	K4_LAC 0.0154
+	V8_G6P 2.02e-05
+	K8_G6P 0.791
+	V8_G1P 0.04
+	K8_G1P 69.8
+	V5 0.00112
+	K5 0.228
+	V9_G1P 0.488
+	K9_G1P 2.69
+	V9_GLY 1.02e-06
+	K9_GLY 0.000623
+	k3 112.76
+	k4 1.9448
+	s1 1.722
+	s2 214.7
+	s3 46.54
+	s4 1.19
+	k1_PEPCK 0.12225
+	k2_PEPCK 0.0045985
+	k3_PEPCK 486.28
+	k4_PEPCK 0.0046101
+	k5_PEPCK 0.00010958
+	k6_PEPCK 0.0018592
+	param1 5.5702
+	param2 2.3969
+	param3 0.020934
+	param4 1.214e-05
+	param5 0.2751
+	param6 0.0072509
+	param7 758.12
+	param8 0.91758
+	param9 0.041292
+	param10 0.00013032
+	param11 0.000192
+	param12 0.029311
+	param13 4.4307e-05
+	param14 0.35211
+	param15 3.1385e-05
+	param16 0.0095934
+	proIRS 888.77
+	insulin 100.0 #units:MWDERIVEDUNIT_nanomole__litre
+end parameters
+begin compartments
+	#volume units: L
+	default 3 1.0
+	Vex 3 0.004
+	Vin 3 2.64e-05
+end compartments
+begin molecule types
+	pmTOR()
+	p1p2IRS()
+	IRS()
+	pAkt()
+	p1IRS()
+	GP()
+	PYRin()
+	mRNA()
+	pGP()
+	p2IRS()
+	PEPCK()
+	GLCex()
+	PYRout()
+	LAC()
+	F16P()
+	pFoxo()
+	Akt()
+	G1P()
+	mTOR()
+	G6P()
+	OAA()
+	Foxo()
+	GLY()
+end molecule types
+begin seed species
+	@default:GP() 0.4726 #GP #GP
+	@default:pGP() 0.1723 #pGP #pGP
+	@default:mRNA() 2.905 #mRNA #mRNA
+	@default:PEPCK() 0.7686 #PEPCK #PEPCK
+	@default:IRS() 888.77 #IRS #IRS
+	@default:Akt() 1.1182 #Akt #Akt
+	@default:mTOR() 880.25 #mTOR #mTOR
+	@default:Foxo() 1.069e-05 #Foxo #Foxo
+	@Vex:PYRout() 34375.0 #PYRout #PYRout
+	@Vex:GLCex() 28725.0 #GLCex #GLCex
+	@Vin:F16P() 362537.8787878788 #F16P #F16P
+	@Vin:PYRin() 37393.93939393939 #PYRin #PYRin
+	@Vin:LAC() 37916666.666666664 #LAC #LAC
+	@Vin:OAA() 83.33333333333333 #OAA #OAA
+	@Vin:GLY() 182757.57575757575 #GLY #GLY
+	@Vin:G1P() 200871.2121212121 #G1P #G1P
+	@Vin:G6P() 19651.515151515152 #G6P #G6P
+end seed species
+begin observables
+	Species GP_default @default:GP() #GP
+	Species pGP_default @default:pGP() #pGP
+	Species mRNA_default @default:mRNA() #mRNA
+	Species PEPCK_default @default:PEPCK() #PEPCK
+	Species IRS_default @default:IRS() #IRS
+	Species p1IRS_default @default:p1IRS() #p1IRS
+	Species p2IRS_default @default:p2IRS() #p2IRS
+	Species p1p2IRS_default @default:p1p2IRS() #p1p2IRS
+	Species Akt_default @default:Akt() #Akt
+	Species pAkt_default @default:pAkt() #pAkt
+	Species mTOR_default @default:mTOR() #mTOR
+	Species pmTOR_default @default:pmTOR() #pmTOR
+	Species Foxo_default @default:Foxo() #Foxo
+	Species pFoxo_default @default:pFoxo() #pFoxo
+	Species PYRout_Vex @Vex:PYRout() #PYRout
+	Species GLCex_Vex @Vex:GLCex() #GLCex
+	Species F16P_Vin @Vin:F16P() #F16P
+	Species PYRin_Vin @Vin:PYRin() #PYRin
+	Species LAC_Vin @Vin:LAC() #LAC
+	Species OAA_Vin @Vin:OAA() #OAA
+	Species GLY_Vin @Vin:GLY() #GLY
+	Species G1P_Vin @Vin:G1P() #G1P
+	Species G6P_Vin @Vin:G6P() #G6P
+end observables
+begin functions
+	fRate0() = V1/(G6P_Vin + GLCex_Vex + K1)
+	fRate0m() = V1/(G6P_Vin + GLCex_Vex + K1)
+	fRate1() = (-F16P_Vin*V2_F16P/K2_F16P + G6P_Vin*V2_G6P*(pAkt_default*s1 + 1)/K2_G6P)/(F16P_Vin/K2_F16P + G6P_Vin/K2_G6P + 1)
+	fRate2() = V3/(F16P_Vin + K3)
+	fRate3() = K4_LAC*V4_PYR/(K4_LAC*(K4_PYR + PYRin_Vin) + K4_PYR*LAC_Vin)
+	fRate3m() = K4_PYR*V4_LAC/(K4_LAC*PYRin_Vin + K4_PYR*(K4_LAC + LAC_Vin))
+	fRate4() = V5/(K5 + PYRin_Vin + PYRout_Vex)
+	fRate4m() = V5/(K5 + PYRin_Vin + PYRout_Vex)
+	fRate5() = V6/(K6 + PYRin_Vin)
+	fRate6() = OAA_Vin*V7*(PEPCK_default*s3 + 1)/(K7 + OAA_Vin)
+	fRate7() = (-G1P_Vin*V8_G1P/K8_G1P + G6P_Vin*V8_G6P*(pAkt_default*s4 + 1)/K8_G6P)/(G1P_Vin/K8_G1P + G6P_Vin/K8_G6P + 1)
+	fRate8() = (G1P_Vin*V9_G1P/K9_G1P - GLY_Vin*V9_GLY*(pGP_default*s2 + 1)/K9_GLY)/(G1P_Vin/K9_G1P + GLY_Vin/K9_GLY + 1)
+	fRate10() = param1*proIRS
+	fRate11() = insulin*param2
+	fRate18() = insulin*param10
+	fRate25() = Foxo_default*k3_PEPCK - k4_PEPCK*mRNA_default
+	fRate26() = -PEPCK_default*k6_PEPCK + k5_PEPCK*mRNA_default
+end functions
+begin reaction rules
+	v1: GLCex()@Vex <-> G6P()@Vin fRate0(),fRate0m() #Modifiers(GLCex, G6P)
+	v2_reactants_0: 0  -> pAkt()@default -1*(fRate1()) #Modifiers(pAkt, G6P, F16P)
+	v2_reactants_1: 0  -> G6P()@Vin -1*(fRate1()) #Modifiers(pAkt, G6P, F16P)
+	v2_products_0: 0  -> pAkt()@default fRate1() #Modifiers(pAkt, G6P, F16P)
+	v2_products_1: 0  -> F16P()@Vin fRate1() #Modifiers(pAkt, G6P, F16P)
+	v3: F16P()@Vin -> PYRin()@Vin fRate2() #Modifiers(F16P)
+	v4: PYRin()@Vin <-> LAC()@Vin fRate3(),fRate3m() #Modifiers(PYRin, LAC)
+	v5: PYRout()@Vex <-> PYRin()@Vin fRate4(),fRate4m() #Modifiers(PYRout, PYRin)
+	v6: PYRin()@Vin -> OAA()@Vin fRate5() #Modifiers(PYRin)
+	v7_reactants_0: 0  -> PEPCK()@default -1*(fRate6()) #Modifiers(PEPCK, OAA)
+	v7_reactants_1: 0  -> OAA()@Vin -1*(fRate6()) #Modifiers(PEPCK, OAA)
+	v7_products_0: 0  -> PEPCK()@default fRate6() #Modifiers(PEPCK, OAA)
+	v7_products_1: 0  -> F16P()@Vin fRate6() #Modifiers(PEPCK, OAA)
+	v8_reactants_0: 0  -> pAkt()@default -1*(fRate7()) #Modifiers(pAkt, G6P, G1P)
+	v8_reactants_1: 0  -> G6P()@Vin -1*(fRate7()) #Modifiers(pAkt, G6P, G1P)
+	v8_products_0: 0  -> pAkt()@default fRate7() #Modifiers(pAkt, G6P, G1P)
+	v8_products_1: 0  -> G1P()@Vin fRate7() #Modifiers(pAkt, G6P, G1P)
+	v9_reactants_0: 0  -> pGP()@default -1*(fRate8()) #Modifiers(G1P, pGP, GLY)
+	v9_reactants_1: 0  -> G1P()@Vin -1*(fRate8()) #Modifiers(G1P, pGP, GLY)
+	v9_products_0: 0  -> pGP()@default fRate8() #Modifiers(G1P, pGP, GLY)
+	v9_products_1: 0  -> GLY()@Vin fRate8() #Modifiers(G1P, pGP, GLY)
+	metabolicENZ: pGP()@default + G6P()@Vin -> GP()@default + G6P()@Vin k4 #Modifiers(pGP, G6P)
+	reaction1: 0  <-> IRS()@default fRate10(),param1 #Modifiers(IRS)
+	reaction2: IRS()@default <-> p1IRS()@default fRate11(),param3 #Modifiers(IRS, p1IRS)
+	reaction3: p1IRS()@default -> 0  param4 #Modifiers(p1IRS)
+	reaction4: p1IRS()@default + pmTOR()@default -> p1p2IRS()@default + pmTOR()@default param5 #Modifiers(p1IRS, pmTOR)
+	reaction5: p1p2IRS()@default -> p1IRS()@default param6 #Modifiers(p1p2IRS)
+	reaction6: IRS()@default + pmTOR()@default -> p2IRS()@default + pmTOR()@default param7 #Modifiers(IRS, pmTOR)
+	reaction7: p2IRS()@default -> IRS()@default param8 #Modifiers(p2IRS)
+	reaction8: p2IRS()@default -> 0  param9 #Modifiers(p2IRS)
+	reaction9: p2IRS()@default <-> p1p2IRS()@default fRate18(),param11 #Modifiers(p2IRS, p1p2IRS)
+	reaction10: p1p2IRS()@default -> 0  param12 #Modifiers(p1p2IRS)
+	reaction11: Akt()@default + p1IRS()@default -> pAkt()@default + p1IRS()@default param13 #Modifiers(p1IRS, Akt)
+	reaction12: pAkt()@default -> Akt()@default param14 #Modifiers(pAkt)
+	reaction13: mTOR()@default + pAkt()@default -> pmTOR()@default + pAkt()@default param15 #Modifiers(mTOR, pAkt)
+	reaction14: pmTOR()@default -> mTOR()@default param16 #Modifiers(pmTOR)
+	reaction15: Foxo()@default + pAkt()@default -> pFoxo()@default + pAkt()@default k1_PEPCK #Modifiers(pAkt, Foxo)
+	reactionPEP1_reactants_0: 0  -> Foxo()@default -1*(fRate25()) #Modifiers(Foxo, mRNA)
+	reactionPEP1_products_0: 0  -> mRNA()@default fRate25() #Modifiers(Foxo, mRNA)
+	reactionPEP1_products_1: 0  -> Foxo()@default fRate25() #Modifiers(Foxo, mRNA)
+	reactionPEP2_reactants_0: 0  -> mRNA()@default -1*(fRate26()) #Modifiers(mRNA, PEPCK)
+	reactionPEP2_products_0: 0  -> PEPCK()@default fRate26() #Modifiers(mRNA, PEPCK)
+	reactionPEP2_products_1: 0  -> mRNA()@default fRate26() #Modifiers(mRNA, PEPCK)
+	mw7c079c91_51e3_4732_8dca_23fb3cd716a7: pFoxo()@default -> Foxo()@default k2_PEPCK #Modifiers(pFoxo)
+	mwfc720c89_b1b3_416a_8958_e9d0aff9f4a6: GP()@default -> pGP()@default k3 #Modifiers(GP)
+end reaction rules
+end model

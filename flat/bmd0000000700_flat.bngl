@@ -1,0 +1,232 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1703030000', 'http://identifiers.org/biomodels.db/BIOMD0000000700']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/29463760']
+#@BQM_UNKNOWN:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_HAS_PART:['http://identifiers.org/go/GO:0051726', 'http://identifiers.org/go/GO:0042769']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@creatorEmail:'stefan.heldt@bioch.ox.ac.uk'
+#@creatorName:'Heldt Frank Stefan'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 30 molecules and 49 reactions. The translated model has 23 molecules and 63 rules'
+###
+begin model
+begin parameters
+	Cd 0.65
+	Skp2 1.0
+	Cdt2 1.0
+	kSyE2f 0.03
+	kSyE2fE2f 0.04
+	jSyE2f 0.2
+	kAsRbE2f 5.0
+	kDsRbE2f 0.005
+	kDeE2f 0.05
+	kPhRbCd 0.2
+	kPhRbCe 0.3
+	kPhRbCa 0.3
+	kDpRb 0.05
+	kSyE1 0.005
+	kDeE1C1 0.005
+	kDeE1 0.0005
+	kPhC1Ce 0.01
+	kPhC1Ca 1.0
+	kDpC1 0.05
+	kAsE1C1 10.0
+	kDsE1C1 0.01
+	kSyP21 0.002
+	kSyP21P53 0.008
+	kDeP21 0.0025
+	kDeP21Cy 0.007
+	kDeP21aRc 1.0
+	kSyCe 0.01
+	kSyCa 0.02
+	kAsCyP21 1.0
+	kDsCyP21 0.05
+	kDeCe 0.004
+	kDeCa 0.01
+	kDeCeCa 0.015
+	kDeCaC1 2.0
+	kImPc 0.003
+	kExPc 0.006
+	kPhRc 0.1
+	kDpRc 0.05
+	jCy 1.8
+	n 6.0
+	kAsRcPc 0.01
+	kDsRcPc 0.001
+	kAsPcP21 100.0
+	kDsPcP21 0.01
+	kSyDna 0.0093
+	kSyP53 0.05
+	kDeP53 0.05
+	jP53 0.01
+	kGeDam 0.001
+	kGeDamArc 0.012
+	kReDam 0.001
+	kReDamP53 0.005
+	jDam 0.5
+	kSyPr 0.01
+	kDePr 0.0001
+	kPhC1 0
+	Retinoblastoma_protein_total 3.011e+21 #original 5.0substance/volume
+	C_Cdh1_APC_total 6.022e+20 #original 1.0substance/volume
+	CyclinE_Cdk2_total 3.011e+20 #original 0.5substance/volume
+	CyclinA_Cdk2_total 7.2264e+20 #original 1.2substance/volume
+	P21_total 3.6132e+20 #original 0.6substance/volume
+end parameters
+begin molecule types
+	Emi1()
+	CyclinE_Cdk2_P21_complex_inactive()
+	P53()
+	Retinoblastoma_protein_E2f_complex_inactive()
+	Emi1_C_Cdh1_complex_inactive()
+	Pre_Replication_complex_active()
+	Retinoblastoma_protein_hyperphosphorylated()
+	Activity_probe_of_APC_C_Cdh1()
+	Dna()
+	Dna_damage()
+	Pre_Replication_complex_primed()
+	C_Cdh1_APC_phosphorylated_inactive()
+	Pre_Replication_complex_inactive()
+	P21()
+	E2f_active()
+	Retinoblastoma_protein()
+	CyclinA_Cdk2()
+	CyclinE_Cdk2_active()
+	Cdh1_C_APC_active()
+	Pre_Replication_complex()
+	Pcna_nuclear_active()
+	CyclinA_Cdk2_P21_complex_inactive()
+	PCNA_Nuclear_inactive()
+end molecule types
+begin seed species
+	Retinoblastoma_protein_hyperphosphorylated() 3.011e+21 # (5.0 * 0.001)mol/L * 6.022e23/mol *1.0L #Retinoblastoma_protein_hyperphosphorylated #pRb
+	C_Cdh1_APC_phosphorylated_inactive() 6.022e+20 #original 1.0substance/volume #C_Cdh1_APC_phosphorylated_inactive #pC1
+	P21() 3.6132e+20 #original 0.6substance/volume #P21 #P21
+	CyclinE_Cdk2_active() 3.011e+20 #original 0.5substance/volume #CyclinE_Cdk2_active #Ce
+	CyclinA_Cdk2() 7.2264e+20 #original 1.2substance/volume #CyclinA_Cdk2 #Ca
+	Pcna_nuclear_active() 3.011e+20 #original 0.5substance/volume #Pcna_nuclear_active #aPcna
+	Pre_Replication_complex() 6.022e+20 #original 1.0substance/volume #Pre_Replication_complex #Rc
+	Activity_probe_of_APC_C_Cdh1() 3.011e+20 #original 0.5substance/volume #Activity_probe_of_APC_C_Cdh1 #Pr
+end seed species
+begin observables
+	Species Retinoblastoma_protein Retinoblastoma_protein() #Retinoblastoma_protein
+	Species Retinoblastoma_protein_hyperphosphorylated Retinoblastoma_protein_hyperphosphorylated() #Retinoblastoma_protein_hyperphosphorylated
+	Species E2f_active E2f_active() #E2f_active
+	Species Retinoblastoma_protein_E2f_complex_inactive Retinoblastoma_protein_E2f_complex_inactive() #Retinoblastoma_protein_E2f_complex_inactive
+	Species Emi1 Emi1() #Emi1
+	Species Cdh1_C_APC_active Cdh1_C_APC_active() #Cdh1_C_APC_active
+	Species C_Cdh1_APC_phosphorylated_inactive C_Cdh1_APC_phosphorylated_inactive() #C_Cdh1_APC_phosphorylated_inactive
+	Species Emi1_C_Cdh1_complex_inactive Emi1_C_Cdh1_complex_inactive() #Emi1_C_Cdh1_complex_inactive
+	Species P21 P21() #P21
+	Species CyclinE_Cdk2_active CyclinE_Cdk2_active() #CyclinE_Cdk2_active
+	Species CyclinA_Cdk2 CyclinA_Cdk2() #CyclinA_Cdk2
+	Species CyclinE_Cdk2_P21_complex_inactive CyclinE_Cdk2_P21_complex_inactive() #CyclinE_Cdk2_P21_complex_inactive
+	Species CyclinA_Cdk2_P21_complex_inactive CyclinA_Cdk2_P21_complex_inactive() #CyclinA_Cdk2_P21_complex_inactive
+	Species Pcna_nuclear_active Pcna_nuclear_active() #Pcna_nuclear_active
+	Species PCNA_Nuclear_inactive PCNA_Nuclear_inactive() #PCNA_Nuclear_inactive
+	Species Pre_Replication_complex Pre_Replication_complex() #Pre_Replication_complex
+	Species Pre_Replication_complex_primed Pre_Replication_complex_primed() #Pre_Replication_complex_primed
+	Species Pre_Replication_complex_active Pre_Replication_complex_active() #Pre_Replication_complex_active
+	Species Pre_Replication_complex_inactive Pre_Replication_complex_inactive() #Pre_Replication_complex_inactive
+	Species Dna Dna() #Dna
+	Species P53 P53() #P53
+	Species Dna_damage Dna_damage() #Dna_damage
+	Species Activity_probe_of_APC_C_Cdh1 Activity_probe_of_APC_C_Cdh1() #Activity_probe_of_APC_C_Cdh1
+end observables
+begin functions
+	P21_total_ar() = CyclinA_Cdk2_P21_complex_inactive + CyclinE_Cdk2_P21_complex_inactive + P21 + PCNA_Nuclear_inactive + Pre_Replication_complex_inactive
+	CyclinA_Cdk2_total_ar() = CyclinA_Cdk2 + CyclinA_Cdk2_P21_complex_inactive
+	CyclinE_Cdk2_total_ar() = CyclinE_Cdk2_P21_complex_inactive + CyclinE_Cdk2_active
+	C_Cdh1_APC_total_ar() = C_Cdh1_APC_phosphorylated_inactive + Cdh1_C_APC_active + Emi1_C_Cdh1_complex_inactive
+	Emi1_total_ar() = Emi1 + Emi1_C_Cdh1_complex_inactive
+	E2f_total_ar() = E2f_active + Retinoblastoma_protein_E2f_complex_inactive
+	Retinoblastoma_protein_total_ar() = Retinoblastoma_protein + Retinoblastoma_protein_E2f_complex_inactive + Retinoblastoma_protein_hyperphosphorylated
+	fRate0() = Retinoblastoma_protein*(Cd*kPhRbCd + CyclinA_Cdk2*kPhRbCa + CyclinE_Cdk2_active*kPhRbCe)
+	fRate1() = Retinoblastoma_protein_E2f_complex_inactive*(Cd*kPhRbCd + CyclinA_Cdk2*kPhRbCa + CyclinE_Cdk2_active*kPhRbCe)
+	fRate3() = (E2f_active*kSyE2fE2f + 1.0*kSyE2f*(E2f_active + jSyE2f))/(1.0*E2f_active + 1.0*jSyE2f)
+	fRate7() = 1.0*P53*kSyP21P53 + kSyP21
+	fRate12() = CyclinE_Cdk2_P21_complex_inactive*(Cdt2*Pre_Replication_complex_active*kDeP21aRc + Skp2*kDeP21Cy*(CyclinA_Cdk2 + CyclinE_Cdk2_active) + kDeP21)
+	fRate13() = CyclinA_Cdk2_P21_complex_inactive*(Cdt2*Pre_Replication_complex_active*kDeP21aRc + Skp2*kDeP21Cy*(CyclinA_Cdk2 + CyclinE_Cdk2_active) + kDeP21)
+	fRate14() = CyclinE_Cdk2_active*(CyclinA_Cdk2*kDeCeCa + kDeCe)
+	fRate15() = CyclinE_Cdk2_P21_complex_inactive*(CyclinA_Cdk2*kDeCeCa + kDeCe)
+	fRate16() = CyclinA_Cdk2*(Cdh1_C_APC_active*kDeCaC1 + kDeCa)
+	fRate17() = CyclinA_Cdk2_P21_complex_inactive*(Cdh1_C_APC_active*kDeCaC1 + kDeCa)
+	fRate18() = P21*(Cdt2*Pre_Replication_complex_active*kDeP21aRc + Skp2*kDeP21Cy*(CyclinA_Cdk2 + CyclinE_Cdk2_active) + kDeP21)
+	fRate23() = Cdh1_C_APC_active*(CyclinA_Cdk2*kPhC1Ca + CyclinE_Cdk2_active*kPhC1Ce + kPhC1)
+	fRate24() = Emi1_C_Cdh1_complex_inactive*(CyclinA_Cdk2*kPhC1Ca + CyclinE_Cdk2_active*kPhC1Ce + kPhC1)
+	fRate30() = PCNA_Nuclear_inactive*(Cdt2*Pre_Replication_complex_active*kDeP21aRc + Skp2*kDeP21Cy*(CyclinA_Cdk2 + CyclinE_Cdk2_active) + kDeP21)
+	fRate33() = kPhRc*(CyclinA_Cdk2 + CyclinE_Cdk2_active)^n/(jCy^n + (CyclinA_Cdk2 + CyclinE_Cdk2_active)^n)
+	fRate36() = Pre_Replication_complex_inactive*(Cdt2*Pre_Replication_complex_active*kDeP21aRc + Skp2*kDeP21Cy*(CyclinA_Cdk2 + CyclinE_Cdk2_active) + kDeP21)
+	fRate37 =   if(( ( Dna )   <1),(0),(if(( ( Dna )   >1),(1* ( Pre_Replication_complex )   ),(0.5* ( Pre_Replication_complex )   )))) 
+	fRate38 =   if(( ( Dna )   <1),(0),(if(( ( Dna )   >1),(1* ( Pre_Replication_complex_primed )   ),(0.5* ( Pre_Replication_complex_primed )   )))) 
+	fRate39 =   if(( ( Dna )   <1),(0),(if(( ( Dna )   >1),(1* ( Pre_Replication_complex_active )   ),(0.5* ( Pre_Replication_complex_active )   )))) 
+	fRate40 =   if(( ( Dna )   <1),(0),(if(( ( Dna )   >1),(1* ( Pre_Replication_complex_inactive )   ),(0.5* ( Pre_Replication_complex_inactive )   )))) 
+	fRate43() = kDeP53/(Dna_damage + jP53)
+	fRate47() = Activity_probe_of_APC_C_Cdh1*(Cdh1_C_APC_active*kDeCaC1 + kDePr)
+	fRate48() = Dna_damage*(P53*kReDamP53/(Dna_damage + jDam) + kReDam)
+end functions
+begin reaction rules
+	Phosphorylation_of_Rb_reactants_0: 0  -> Retinoblastoma_protein() -1*(fRate0()) #Modifiers(Ce, Ca)
+	Phosphorylation_of_Rb_products_0: 0  -> Retinoblastoma_protein_hyperphosphorylated() fRate0() #Modifiers(Ce, Ca)
+	Phosphorylation_Rb_in_Rb_E2F_complexes_reactants_0: 0  -> Retinoblastoma_protein_E2f_complex_inactive() -1*(fRate1()) #Modifiers(Ce, Ca)
+	Phosphorylation_Rb_in_Rb_E2F_complexes_products_0: 0  -> Retinoblastoma_protein_hyperphosphorylated() fRate1() #Modifiers(Ce, Ca)
+	Phosphorylation_Rb_in_Rb_E2F_complexes_products_1: 0  -> E2f_active() fRate1() #Modifiers(Ce, Ca)
+	Dephosphorylation_of_Rb: Retinoblastoma_protein_hyperphosphorylated() -> Retinoblastoma_protein() kDpRb
+	Synthesis_of_E2F: 0  -> E2f_active() fRate3() #Modifiers(E2f)
+	Degradation_of_E2F: E2f_active() -> 0  kDeE2f
+	Degradation_of_E2F_in_Rb_E2F_complexes: Retinoblastoma_protein_E2f_complex_inactive() -> Retinoblastoma_protein() kDeE2f
+	Association_dissociation_of_Rb_and_E2F: Retinoblastoma_protein() + E2f_active() <-> Retinoblastoma_protein_E2f_complex_inactive() kAsRbE2f,kDsRbE2f
+	Synthesis_of_p21: 0  -> P21() fRate7() #Modifiers(P53)
+	Synthesis_of_CycE: E2f_active() -> E2f_active() + CyclinE_Cdk2_active() kSyCe
+	Synthesis_of_CycA: E2f_active() -> E2f_active() + CyclinA_Cdk2() kSyCa
+	Association_dissociation_of_CycE_Cdk2_and_p21: CyclinE_Cdk2_active() + P21() <-> CyclinE_Cdk2_P21_complex_inactive() kAsCyP21,kDsCyP21
+	Association_dissociation_of_CycA_Cdk2_and_p21: CyclinA_Cdk2() + P21() <-> CyclinA_Cdk2_P21_complex_inactive() kAsCyP21,kDsCyP21
+	Degradation_of_p21_in_CycE_Cdk2_p21_complexes_reactants_0: 0  -> CyclinE_Cdk2_P21_complex_inactive() -1*(fRate12()) #Modifiers(Ce, Ca, aRc)
+	Degradation_of_p21_in_CycE_Cdk2_p21_complexes_products_0: 0  -> CyclinE_Cdk2_active() fRate12() #Modifiers(Ce, Ca, aRc)
+	Degradation_of_p21_in_CycA_Cdk2_p21_complexes_reactants_0: 0  -> CyclinA_Cdk2_P21_complex_inactive() -1*(fRate13()) #Modifiers(Ce, Ca, aRc)
+	Degradation_of_p21_in_CycA_Cdk2_p21_complexes_products_0: 0  -> CyclinA_Cdk2() fRate13() #Modifiers(Ce, Ca, aRc)
+	Degradation_of_CycE_in_CycE_Cdk2_complexes_reactants_0: 0  -> CyclinE_Cdk2_active() -1*(fRate14()) #Modifiers(Ca)
+	Degradation_of_CycE_in_CycE_Cdk2_p21_complexes_reactants_0: 0  -> CyclinE_Cdk2_P21_complex_inactive() -1*(fRate15()) #Modifiers(Ca)
+	Degradation_of_CycE_in_CycE_Cdk2_p21_complexes_products_0: 0  -> P21() fRate15() #Modifiers(Ca)
+	Degradation_of_CycA_in_CycA_Cdk2_complexes_reactants_0: 0  -> CyclinA_Cdk2() -1*(fRate16()) #Modifiers(C1)
+	Degradation_of_CycA_in_CycA_Cdk2_p21_complexes_reactants_0: 0  -> CyclinA_Cdk2_P21_complex_inactive() -1*(fRate17()) #Modifiers(C1)
+	Degradation_of_CycA_in_CycA_Cdk2_p21_complexes_products_0: 0  -> P21() fRate17() #Modifiers(C1)
+	Degradation_of_free_p21_reactants_0: 0  -> P21() -1*(fRate18()) #Modifiers(Ce, Ca, aRc)
+	Synthesis_of_Emi1: E2f_active() -> E2f_active() + Emi1() kSyE1
+	Degradation_of_Emi1: Emi1() -> 0  kDeE1
+	Association_dissociation_of_Emi1_APC_C_Cdh1_complexes: Emi1() + Cdh1_C_APC_active() <-> Emi1_C_Cdh1_complex_inactive() kAsE1C1,kDsE1C1
+	Degradation_of_Emi1_in_Emi1_APC_C_Cdh1_complexes: Emi1_C_Cdh1_complex_inactive() -> Cdh1_C_APC_active() kDeE1C1
+	Phosphorylation_of_free_APC_C_Cdh1_reactants_0: 0  -> Cdh1_C_APC_active() -1*(fRate23()) #Modifiers(Ce, Ca)
+	Phosphorylation_of_free_APC_C_Cdh1_products_0: 0  -> C_Cdh1_APC_phosphorylated_inactive() fRate23() #Modifiers(Ce, Ca)
+	Phosphorylation_of_APC_C_Cdh1_in_Emi1_APC_C_Cdh1_complexes_reactants_0: 0  -> Emi1_C_Cdh1_complex_inactive() -1*(fRate24()) #Modifiers(Ce, Ca)
+	Phosphorylation_of_APC_C_Cdh1_in_Emi1_APC_C_Cdh1_complexes_products_0: 0  -> Emi1() fRate24() #Modifiers(Ce, Ca)
+	Phosphorylation_of_APC_C_Cdh1_in_Emi1_APC_C_Cdh1_complexes_products_1: 0  -> C_Cdh1_APC_phosphorylated_inactive() fRate24() #Modifiers(Ce, Ca)
+	Dephosphorylation_of_APC_C_Cdh1: C_Cdh1_APC_phosphorylated_inactive() -> Cdh1_C_APC_active() kDpC1
+	Nuclear_import_of_active_PCNA: 0  -> Pcna_nuclear_active() kImPc
+	Nuclear_export_of_active_PCNA: Pcna_nuclear_active() -> 0  kExPc
+	Nuclear_export_of_inactive_PCNA: PCNA_Nuclear_inactive() -> P21() kExPc
+	Association_dissociation_of_PCNA_and_p21: Pcna_nuclear_active() + P21() <-> PCNA_Nuclear_inactive() kAsPcP21,kDsPcP21
+	Degradation_of_p21_in_PCNA_p21_complexes_reactants_0: 0  -> PCNA_Nuclear_inactive() -1*(fRate30()) #Modifiers(Ce, Ca, aRc)
+	Degradation_of_p21_in_PCNA_p21_complexes_products_0: 0  -> Pcna_nuclear_active() fRate30() #Modifiers(Ce, Ca, aRc)
+	Association_dissociation_of_active_PCNA_and_replication_complexes: Pcna_nuclear_active() + Pre_Replication_complex_primed() <-> Pre_Replication_complex_active() kAsRcPc,kDsRcPc
+	Association_dissociation_of_inactive_PCNA_and_replication_complexes: PCNA_Nuclear_inactive() + Pre_Replication_complex_primed() <-> Pre_Replication_complex_inactive() kAsRcPc,kDsRcPc
+	Phosphorylation_priming_of_replication_complexes: Pre_Replication_complex() -> Pre_Replication_complex_primed() fRate33() #Modifiers(Ce, Ca)
+	Dephosphorylation_of_replication_complexes: Pre_Replication_complex_primed() -> Pre_Replication_complex() kDpRc
+	Association_dissociation_of_p21_and_replication_complexes: Pre_Replication_complex_active() + P21() <-> Pre_Replication_complex_inactive() kAsPcP21,kDsPcP21
+	Degradation_of_p21_in_inactive_replication_complexes_reactants_0: 0  -> Pre_Replication_complex_inactive() -1*(fRate36()) #Modifiers(Ce, Ca, aRc)
+	Degradation_of_p21_in_inactive_replication_complexes_products_0: 0  -> Pre_Replication_complex_active() fRate36() #Modifiers(Ce, Ca, aRc)
+	Dissassembly_of_RC_reactants_0: 0  -> Pre_Replication_complex() -1*(fRate37()) #Modifiers(Dna)
+	Dissassembly_of_pRC_reactants_0: 0  -> Pre_Replication_complex_primed() -1*(fRate38()) #Modifiers(Dna)
+	Dissassembly_of_aRC_reactants_0: 0  -> Pre_Replication_complex_active() -1*(fRate39()) #Modifiers(Dna)
+	Dissassembly_of_aRC_products_0: 0  -> Pcna_nuclear_active() fRate39() #Modifiers(Dna)
+	Dissassembly_of_iRC_reactants_0: 0  -> Pre_Replication_complex_inactive() -1*(fRate40()) #Modifiers(Dna)
+	Dissassembly_of_iRC_products_0: 0  -> PCNA_Nuclear_inactive() fRate40() #Modifiers(Dna)
+	Synthesis_of_DNA: Pre_Replication_complex_active() -> Pre_Replication_complex_active() + Dna() kSyDna
+	Synthesis_of_p53: 0  -> P53() kSyP53
+	Degradation_of_p53: P53() -> 0  fRate43() #Modifiers(Dam)
+	Induction_of_DNA_damage: 0  -> Dna_damage() kGeDam
+	Induction_of_DNA_damage_by_replication: Pre_Replication_complex_active() -> Pre_Replication_complex_active() + Dna_damage() kGeDamArc
+	Synthesis_of_APC_C_Cdh1_activity_probe: 0  -> Activity_probe_of_APC_C_Cdh1() kSyPr
+	Degradation_of_APC_C_Cdh1_activity_probe_reactants_0: 0  -> Activity_probe_of_APC_C_Cdh1() -1*(fRate47()) #Modifiers(C1)
+	Repair_of_DNA_damage_reactants_0: 0  -> Dna_damage() -1*(fRate48()) #Modifiers(P53)
+end reaction rules
+end model

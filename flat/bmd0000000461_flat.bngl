@@ -1,0 +1,43 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1212180000', 'http://identifiers.org/biomodels.db/BIOMD0000000461']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/22511268']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/1423']
+#@BQB_IS:['http://identifiers.org/go/GO:0030162']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 4 molecules and 3 reactions. The translated model has 4 molecules and 3 rules'
+###
+begin model
+begin parameters
+	kbd 0.044
+	kbs 100.0
+	kxd 9.0
+	kxs 0.76
+	kzd 0.041
+	kzs 0.0004
+end parameters
+begin molecule types
+	x()
+	sigb()
+	IPTG()
+	lacz()
+end molecule types
+begin seed species
+	$IPTG() 6.022e+25 # 100.0mol/L * 6.022e23/mol *1.0L #IPTG #IPTG
+end seed species
+begin observables
+	Species IPTG IPTG() #IPTG
+	Species sigb sigb() #sigb
+	Species lacz lacz() #lacz
+	Species x x() #x
+end observables
+begin functions
+	fRate1() = kzs/(x + 1.0)
+	fRate2() = kxs/(x + 1.0)
+end functions
+begin reaction rules
+	v1: IPTG() <-> sigb() kbs,kbd #Modifiers(IPTG, sigb)
+	v2: sigb() <-> lacz() fRate1(),kzd #Modifiers(x, lacz, sigb, x)
+	v3: sigb() <-> x() fRate2(),kxd #Modifiers(x, sigb)
+end reaction rules
+end model

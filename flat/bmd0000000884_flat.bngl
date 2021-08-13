@@ -1,0 +1,54 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/31525321']
+#@BQB_IS:['http://identifiers.org/biomodels.db/MODEL1912040001']
+#@BQB_IS_PROPERTY_OF:['http://identifiers.org/ncit/C61367']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1912040001', 'http://identifiers.org/biomodels.db/BIOMD0000000884']
+#@creatorEmail:'msharifshohan@ebi.ac.uk'
+#@creatorName:'Sharif Shohan Mohammad Umer'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 3 molecules and 6 reactions. The translated model has 3 molecules and 6 rules'
+###
+begin model
+begin parameters
+	r 0.99
+	delta 0.0001
+	p 0.3
+	alpha 1e-07
+	g 1.0
+	b 150.0
+	gamma 0.001
+end parameters
+begin molecule types
+	U()
+	V()
+	L()
+end molecule types
+begin seed species
+	L() 6.022e+24 # (10000.0 * 0.001)mol/L * 6.022e23/mol *1.0L #L #L
+	U() 5.96178e+26 #original 990000.0substance/volume #U #U
+end seed species
+begin observables
+	Species L L() #L
+	Species U U() #U
+	Species V V() #V
+end observables
+begin functions
+	K() = L + U
+	phi() = (L*(-delta + r) - U*V*alpha*(1 - p) + U*g)/K
+	fRate0() = L*r + 1.0*U*V*alpha*p
+	fRate1() = 1.0*L*delta + 1.0*L*phi
+	fRate2() = U*g
+	fRate3() = 1.0*U*V*alpha + 1.0*U*phi
+	fRate4() = 1.0*b*(L*delta + 1.0*U*V*alpha)
+	fRate4m() = U*alpha*b*p
+	fRate5() = 1.0*L*V*alpha + 1.0*V*gamma
+end functions
+begin reaction rules
+	Production_of_Lysogens: 0  -> L() fRate0() #Modifiers(U, V)
+	Removal_of_Lysogens_reactants_0: 0  -> L() -1*(fRate1())
+	Production_of_uninfected_cells: 0  -> U() fRate2()
+	Removal_of_uninfected_cells_reactants_0: 0  -> U() -1*(fRate3()) #Modifiers(V)
+	Production_of_viruses: 0  <-> V() fRate4(),fRate4m() #Modifiers(U, L)
+	Removal_of_viruses_reactants_0: 0  -> V() -1*(fRate5()) #Modifiers(L)
+end reaction rules
+end model

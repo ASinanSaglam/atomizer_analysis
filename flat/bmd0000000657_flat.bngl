@@ -1,0 +1,61 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1710040001', 'http://identifiers.org/biomodels.db/BIOMD0000000657']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/27768873']
+#@BQM_UNKNOWN:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_HAS_PART:['http://identifiers.org/pw/PW:0000092']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/biomodels.teddy/TEDDY_0000035']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/27768873']
+#@creatorEmail:'sheriff@ebi.ac.uk'
+#@creatorName:'Sheriff Rahuman'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 3 molecules and 3 reactions. The translated model has 3 molecules and 3 rules'
+###
+begin model
+begin parameters
+	Ks 0.1
+	Adeg 0.001
+	Bdeg 0.02
+	Acdc 0.5
+	Bcdc 1.5
+	EC50cdc 30.0
+	n_cdc 10.0
+	Awee 0.5
+	Bwee 1.0
+	EC50wee 30.0
+	n_wee 10.0
+	EC50apc 0.5
+	n_apc 10.0
+	BK 0.25
+	EC50K 0.18
+	n_K 5.0
+	AP 0.025
+	BP 0.5
+	EC50P 0.18
+	n_P 5.0
+	AK 0
+end parameters
+begin molecule types
+	CycB()
+	APC()
+	Cdk1CycB()
+end molecule types
+begin seed species
+	Cdk1CycB() 1.2044e+16 # (20.0 * 1e-09)mol/L * 6.022e23/mol *1.0L #Cdk1CycB #Cdk1CycB
+	CycB() 3.6131999999999944e+16 #original 59.9999999999999substance/volume  #CycB #CycB
+end seed species
+begin observables
+	Species Cdk1CycB Cdk1CycB() #Cdk1CycB
+	Species APC APC() #APC
+	Species CycB CycB() #CycB
+end observables
+begin functions
+	fRate0() = -1.0*APC^n_apc*Bdeg*Cdk1CycB/(APC^n_apc + EC50apc^n_apc) - 1.0*Adeg*Cdk1CycB - 1.0*Cdk1CycB*(Awee + Bwee*EC50wee^n_wee/(Cdk1CycB^n_wee + EC50wee^n_wee)) + 1.0*Ks + 1.0*(Acdc + Bcdc*Cdk1CycB^n_cdc/(Cdk1CycB^n_cdc + EC50cdc^n_cdc))*(-Cdk1CycB + CycB)
+	fRate1() = -1.0*APC^n_apc*Bdeg*CycB/(APC^n_apc + EC50apc^n_apc) - 1.0*Adeg*CycB + 1.0*Ks
+	fRate2() = -1.0*APC*(AP + BP*EC50P^n_P/(APC^n_P + EC50P^n_P)) + 1.0*(1.0 - 1.0*APC)*(AK + BK*(Cdk1CycB/200)^n_K/(EC50K^n_K + (Cdk1CycB/200)^n_K))
+end functions
+begin reaction rules
+	R1_products_0: 0  -> Cdk1CycB() fRate0() #Modifiers(APC, CycB)
+	R2_products_0: 0  -> CycB() fRate1() #Modifiers(APC)
+	R3_products_0: 0  -> APC() fRate2() #Modifiers(Cdk1CycB)
+end reaction rules
+end model

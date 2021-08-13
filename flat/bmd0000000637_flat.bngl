@@ -1,0 +1,123 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1610220000', 'http://identifiers.org/biomodels.db/BIOMD0000000637']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/28034910']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/go/GO:0000772', 'http://identifiers.org/mamo/MAMO_0000003', 'http://identifiers.org/go/GO:0001664']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/4932']
+#@creatorEmail:'abush84@gmail.com'
+#@creatorName:'Bush Alan'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 12 molecules and 22 reactions. The translated model has 12 molecules and 22 rules'
+###
+begin model
+begin parameters
+	K_d_L_R 5.6
+	lambda 1.0
+	lambda_t 1.0
+	lambda_d 1.0
+	K_d_R_G 36.0
+	eta 1.0
+	rho 1.0
+	k_Hf_Gt 0.002
+	k_Ef_RG 0.00062
+	k_Ef_LRG 1.5
+	k_Hf_RGt 0.11
+	Rtot 3308.0
+	Gtot 2042.0
+	k_off_L_R 0.001
+	k_off_R_G 0.1
+	k_Ef_Gd 0.00062
+	K_d_Gd_Gbg 0.01
+	ModelValue_47 (0.00062)
+	L 0
+end parameters
+begin molecule types
+	RG()
+	LRG()
+	Gd()
+	LRGt()
+	RGd()
+	G()
+	R()
+	LR()
+	Gt()
+	Gbg()
+	RGt()
+	LRGd()
+end molecule types
+begin seed species
+	R()() (3308.0) / PM #R
+	G()() (2042.0) / PM #G
+end seed species
+begin observables
+	Species R R() #R
+	Species LR LR() #LR
+	Species G G() #G
+	Species Gt Gt() #Gt
+	Species Gd Gd() #Gd
+	Species RG RG() #RG
+	Species Gbg Gbg() #Gbg
+	Species LRG LRG() #LRG
+	Species LRGt LRGt() #LRGt
+	Species RGd RGd() #RGd
+	Species RGt RGt() #RGt
+	Species LRGd LRGd() #LRGd
+end observables
+begin functions
+	k_Af_Gd() = 0.2158
+	k_Af_RGd() = k_Af_Gd
+	k_Ar_RGd() = 0.602409638554217*K_d_Gd_Gbg*k_Af_RGd/rho
+	k_Ar_Gd() = 0.602409638554217*K_d_Gd_Gbg*k_Af_Gd
+	k_off_LR_Gd() = k_off_R_G
+	k_on_LR_Gd() = 1.66*k_off_LR_Gd/(K_d_R_G*lambda_d*rho)
+	k_off_R_Gd() = k_off_R_G
+	k_on_R_Gd() = 1.66*k_off_R_Gd/(K_d_R_G*rho)
+	k_off_LR_Gt() = k_off_R_G
+	k_on_LR_Gt() = 1.66*k_off_LR_Gt/(K_d_R_G*eta*lambda_t)
+	k_off_R_Gt() = k_off_R_G
+	k_on_R_Gt() = 1.66*k_off_R_Gt/(K_d_R_G*eta)
+	k_off_L_RGd() = k_off_L_R
+	k_on_L_RGd() = L*k_off_L_RGd/(K_d_L_R*lambda_d)
+	k_Af_LRGd() = k_Af_Gd
+	k_off_L_RGt() = k_off_L_R
+	k_on_L_RGt() = L*k_off_L_RGt/(K_d_L_R*lambda_t)
+	tot_Gt() = Gt + LRGt + RGt
+	tot_Gd() = Gd + LRGd + RGd
+	tot_G() = G + LRG + RG
+	tot_RG() = LRG + LRGd + LRGt + RG + RGd + RGt
+	tot_LR() = LR + LRG + LRGd + LRGt
+	k_Ar_LRGd() =  0.602409638554217*K_d_Gd_Gbg*lambda*k_Af_LRGd/(lambda_d*rho)
+	k_on_LR_G() =  1.66*k_off_LR_G/(K_d_R_G*lambda)
+	k_off_LR_G() = k_off_R_G
+	k_on_R_G() = 1.66*k_off_R_G/K_d_R_G
+	k_Ef_LRGd() = k_Ef_LRG
+	k_Ef_RGd() = k_Ef_RG
+	k_on_L_RG() =  L*k_off_L_RG/(K_d_L_R*lambda)
+	k_on_L_R() = L*k_off_L_R/K_d_L_R
+	k_Hf_LRGt() = k_Hf_RGt
+	k_Ef_G() = ModelValue_47
+	k_off_L_RG() = k_off_L_R
+end functions
+begin reaction rules
+	binding_R_G: R() + G() <-> RG() k_on_R_G,k_off_R_G
+	binding_L_R: R() <-> LR() k_on_L_R,k_off_L_R
+	binding_R_Gt: R() + Gt() <-> RGt() k_on_R_Gt,k_off_R_Gt
+	binding_R_Gd: R() + Gd() <-> RGd() k_on_R_Gd,k_off_R_Gd
+	binding_LR_G: LR() + G() <-> LRG() k_on_LR_G,k_off_LR_G
+	binding_LR_Gt: LR() + Gt() <-> LRGt() k_on_LR_Gt,k_off_LR_Gt
+	binding_LR_Gd: LR() + Gd() <-> LRGd() k_on_LR_Gd,k_off_LR_Gd
+	binding_L_RG: RG() <-> LRG() k_on_L_RG,k_off_L_RG
+	binding_L_RGt: RGt() <-> LRGt() k_on_L_RGt,k_off_L_RGt
+	exchange_G: G() -> Gt() + Gbg() k_Ef_G
+	hydrolysis_Gt: Gt() -> Gd() k_Hf_Gt
+	association_Gd: Gd() + Gbg() <-> G() k_Af_Gd,k_Ar_Gd
+	exchange_RG: RG() -> RGt() + Gbg() k_Ef_RG
+	exchange_LRG: LRG() -> LRGt() + Gbg() k_Ef_LRG
+	hydrolysis_RGt: RGt() -> RGd() k_Hf_RGt
+	hydrolysis_LRGt: LRGt() -> LRGd() k_Hf_LRGt
+	association_RGd: RGd() + Gbg() <-> RG() k_Af_RGd,k_Ar_RGd
+	association_LRGd: LRGd() + Gbg() <-> LRG() k_Af_LRGd,k_Ar_LRGd
+	binding_L_RGd: RGd() <-> LRGd() k_on_L_RGd,k_off_L_RGd
+	exchange_Gd: Gd() -> Gt() k_Ef_Gd
+	exchange_RGd: RGd() -> RGt() k_Ef_RGd
+	exchange_LRGd: LRGd() -> LRGt() k_Ef_LRGd
+end reaction rules
+end model

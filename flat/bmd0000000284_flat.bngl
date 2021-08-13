@@ -1,0 +1,68 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1010190003', 'http://identifiers.org/biomodels.db/BIOMD0000000284']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/3450367']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0008652']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/2']
+#@creatorEmail:'lukas@ebi.ac.uk'
+#@creatorName:'Endler Lukas'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 9 molecules and 8 reactions. The translated model has 9 molecules and 8 rules'
+###
+begin model
+begin parameters
+end parameters
+begin molecule types
+	X()
+	Y()
+	A()
+	B()
+	Z()
+	E()
+	C()
+	D()
+	F()
+end molecule types
+begin seed species
+	$X() 6.022e+24 # 10.0mol/L * 6.022e23/mol *1.0L #X #X
+	$Y() 1.2044e+24 #original 2.0/L  #Y #Y
+	$Z() 6.022e+23 #original 1.0/L  #Z #Z
+end seed species
+begin observables
+	Species A A() #A
+	Species B B() #B
+	Species C C() #C
+	Species D D() #D
+	Species E E() #E
+	Species F F() #F
+	Species X X() #X
+	Species Y Y() #Y
+	Species Z Z() #Z
+end observables
+begin functions
+	fRate0() = 10.0/(A + B^2 + X + 1.0)
+	fRate0m() = 1/(A + B^2 + X + 1.0)
+	fRate1() = 2.0/(A + B + 1.0)
+	fRate1m() = 1/(A + B + 1.0)
+	fRate2() = 1/(B + C + D^2 + 1.0)
+	fRate2m() = 1/(B + C + D^2 + 1.0)
+	fRate3() = 5.0/(C + D + 1.0)
+	fRate3m() = 1/(C + D + 1.0)
+	fRate4() = 10.0/(D + Y + 1.0)
+	fRate4m() = 1/(D + Y + 1.0)
+	fRate5() = 1/(B + E + F^2 + 1.0)
+	fRate5m() = 1/(B + E + F^2 + 1.0)
+	fRate6() = 5.0/(E + F + 1.0)
+	fRate6m() = 1/(E + F + 1.0)
+	fRate7() = 10.0/(F + Z + 1.0)
+	fRate7m() = 1/(F + Z + 1.0)
+end functions
+begin reaction rules
+	R1: X() <-> A() fRate0(),fRate0m() #Modifiers(B)
+	R2: A() <-> B() fRate1(),fRate1m()
+	R3: B() <-> C() fRate2(),fRate2m() #Modifiers(D)
+	R4: C() <-> D() fRate3(),fRate3m()
+	R5: D() <-> Y() fRate4(),fRate4m()
+	R6: B() <-> E() fRate5(),fRate5m() #Modifiers(F)
+	R7: E() <-> F() fRate6(),fRate6m()
+	R8: F() <-> Z() fRate7(),fRate7m()
+end reaction rules
+end model

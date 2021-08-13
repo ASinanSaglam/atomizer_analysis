@@ -1,0 +1,44 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL6618241436', 'http://identifiers.org/biomodels.db/BIOMD0000000024']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/9870936']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/7227', 'http://identifiers.org/taxonomy/10036']
+#@BQB_IS:['http://identifiers.org/kegg.pathway/dme04711']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0042752']
+#@creatorEmail:'lenov@ebi.ac.uk'
+#@creatorName:'Le Novère Nicolas'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 3 molecules and 4 reactions. The translated model has 2 molecules and 4 rules'
+###
+begin model
+begin parameters
+	r1_rM 1.000000
+	r1_k 1.000000
+	r1_n 2.000000
+	r2_rP 1.000000
+	r2_m 3.000000
+	r2_parameter_0000009 4.000000
+	r3_qM 0.210000
+	r4_qP 0.210000
+end parameters
+begin molecule types
+	mRNA()
+	protein()
+end molecule types
+begin seed species
+	mRNA() 1.0 #mRNA #M
+	protein() 1.0 #protein #P
+end seed species
+begin observables
+	Species mRNA mRNA() #mRNA
+	Species protein protein() #protein
+end observables
+begin functions
+	fRate0() = 1.0/(1.0*protein^2.0 + 1.0)
+	fRate1() = 1.0*delay(mRNA, 4.0)^3.0
+end functions
+begin reaction rules
+	TC: 0  -> mRNA() fRate0() #Modifiers(P)
+	TL: 0  -> protein() fRate1() #Modifiers(M)
+	Md: mRNA() -> 0  r3_qM
+	Pd: protein() -> 0  r4_qP
+end reaction rules
+end model

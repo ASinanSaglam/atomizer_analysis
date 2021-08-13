@@ -1,0 +1,109 @@
+###
+#@BQB_HAS_PART:['http://identifiers.org/go/GO:0051726']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/8355']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/17189866']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000942', 'http://identifiers.org/biomodels.db/MODEL1809060005']
+#@creatorEmail:'ahmad.azd@hotmail.com'
+#@creatorName:'Zyoud Ahmad'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 18 molecules and 15 reactions. The translated model has 7 molecules and 15 rules'
+###
+begin model
+begin parameters
+	k1 1.0
+	v2 0.005
+	v2_ 0.25
+	k3 0.005
+	v25 0.017
+	v25_ 0.17
+	vwee 0.01
+	vwee_ 1.0
+	ka 0.02
+	KKa 0.1
+	kb 0.1
+	KKb 1.0
+	kc 0.13
+	KKc 0.01
+	kd 0.13
+	KKd 1.0
+	ke 0.02
+	KKe 0.1
+	kf 0.1
+	KKf 1.0
+	kg 0.02
+	KKg 0.01
+	kh 0.15
+	KKh 0.01
+	Cdc25 6.022e+20 # (1.0 * 0.001)mol/L * 6.022e23/mol *1.0L
+	Wee1 6.022e+20 #original 1.0substance/volume
+	Cdk1 6.022e+22 #original 100.0substance/volume
+	Cdk1_total 6.022000000000001e+22 #original 100.0substance/volume
+	Cdc25_total 6.022e+20 #original 1.0substance/volume
+	Wee1_total 6.022e+20 #original 1.0substance/volume
+	IE_total 6.022e+20 #original 1.0substance/volume
+	APC_total 6.022e+20 #original 1.0substance/volume
+	ppase 6.022e+20 #original 1.0substance/volume
+end parameters
+begin molecule types
+	IE_phosphorylated()
+	Cyclin()
+	Cyclin_Cdk1_MPF()
+	Wee1_phosphorylated()
+	Cdc25_phosphorylated()
+	Cyclin_Cdk1_preMPF()
+	APC_active()
+end molecule types
+begin seed species
+	IE_phosphorylated() 6.022e+20 #original 1.0substance/volume #IE_phosphorylated #IE_phosphorylated
+	APC_active() 6.022e+20 #original 1.0substance/volume #APC_active #APC_active
+end seed species
+begin observables
+	Species Cdc25_phosphorylated Cdc25_phosphorylated() #Cdc25_phosphorylated
+	Species Cyclin_Cdk1_MPF Cyclin_Cdk1_MPF() #Cyclin_Cdk1_MPF
+	Species Cyclin_Cdk1_preMPF Cyclin_Cdk1_preMPF() #Cyclin_Cdk1_preMPF
+	Species Wee1_phosphorylated Wee1_phosphorylated() #Wee1_phosphorylated
+	Species Cyclin Cyclin() #Cyclin
+	Species IE_phosphorylated IE_phosphorylated() #IE_phosphorylated
+	Species APC_active APC_active() #APC_active
+end observables
+begin functions
+	k2() = APC_active*v2_ + v2*(-APC_active + APC_total)
+	k25() = Cdc25_phosphorylated*v25_ + v25*(-Cdc25_phosphorylated + Cdc25_total)
+	kwee() = Wee1_phosphorylated*vwee + vwee_*(-Wee1_phosphorylated + Wee1_total)
+	Cyclin_total_ar() = Cyclin + Cyclin_Cdk1_MPF + Cyclin_Cdk1_preMPF
+	Cdc25_ar() = -Cdc25_phosphorylated + Cdc25_total
+	IE_ar() = -IE_phosphorylated + IE_total
+	Cdk1_ar() = Cdk1_total
+	Wee1_ar() = -Wee1_phosphorylated + Wee1_total
+	fRate0() = kb*ppase/(Cdc25_phosphorylated + KKb)
+	fRate1() = Cdc25_total*Cyclin_Cdk1_MPF*ka/(-Cdc25_phosphorylated + Cdc25_total + KKa)
+	fRate1m() = Cyclin_Cdk1_MPF*ka/(-Cdc25_phosphorylated + Cdc25_total + KKa)
+	fRate4() = kf*ppase/(KKf + Wee1_phosphorylated)
+	fRate5() = Cyclin_Cdk1_MPF*Wee1_total*ke/(KKe - Wee1_phosphorylated + Wee1_total)
+	fRate5m() = Cyclin_Cdk1_MPF*ke/(KKe - Wee1_phosphorylated + Wee1_total)
+	fRate6() = Cdk1_ar*k3
+	fRate8() = kh*ppase/(IE_phosphorylated + KKh)
+	fRate9() = Cyclin_Cdk1_MPF*IE_total*kg/(-IE_phosphorylated + IE_total + KKg)
+	fRate9m() = Cyclin_Cdk1_MPF*kg/(-IE_phosphorylated + IE_total + KKg)
+	fRate10() = kd*ppase/(APC_active + KKd)
+	fRate11() = APC_total*IE_phosphorylated*kc/(-APC_active + APC_total + KKc)
+	fRate11m() = IE_phosphorylated*kc/(-APC_active + APC_total + KKc)
+end functions
+begin reaction rules
+	R1_Dephosphorylation: Cdc25_phosphorylated() -> 0  fRate0() #Modifiers(ppase)
+	R2_Phosphorylation: 0  <-> Cdc25_phosphorylated() fRate1(),fRate1m() #Modifiers(Cyclin_Cdk1_MPF, Cdc25_total)
+	R3_Dephosphorylation: Cyclin_Cdk1_preMPF() -> Cyclin_Cdk1_MPF() k25 #Modifiers(Cdc25_phosphorylated)
+	R4_Phosphorylation: Cyclin_Cdk1_MPF() -> Cyclin_Cdk1_preMPF() kwee #Modifiers(Wee1)
+	R5_Dephosphorylation: Wee1_phosphorylated() -> 0  fRate4() #Modifiers(ppase)
+	R6_Phosphorylation: 0  <-> Wee1_phosphorylated() fRate5(),fRate5m() #Modifiers(Cyclin_Cdk1_MPF, Wee1_total)
+	R7_Protein_Complex__Formation_by_binding: Cyclin() -> Cyclin_Cdk1_MPF() fRate6() #Modifiers(Cdk1)
+	R8_Synthesis: 0  -> Cyclin() k1
+	R9_Dephosphorylation: IE_phosphorylated() -> 0  fRate8() #Modifiers(ppase)
+	R10_Phosphorylation: 0  <-> IE_phosphorylated() fRate9(),fRate9m() #Modifiers(Cyclin_Cdk1_MPF, IE_total)
+	R11_Inactivation: APC_active() -> 0  fRate10() #Modifiers(ppase)
+	R12_Activation: 0  <-> APC_active() fRate11(),fRate11m() #Modifiers(IE_phosphorylated, APC_total)
+	R13_Degradation: Cyclin_Cdk1_MPF() -> 0  k2
+	R14_Degradation: Cyclin() -> 0  k2
+	R15_Degradation: Cyclin_Cdk1_preMPF() -> 0  k2
+end reaction rules
+end model

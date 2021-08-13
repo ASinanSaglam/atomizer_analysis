@@ -1,0 +1,113 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/27022405']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/go/GO:0002418', 'http://identifiers.org/efo/0000519', 'http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000757', 'http://identifiers.org/biomodels.db/MODEL1907240001']
+#@creatorEmail:'jm2187@cam.ac.uk'
+#@creatorName:'Men Jinghao'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 10 molecules and 18 reactions. The translated model has 7 molecules and 18 rules'
+###
+begin model
+begin parameters
+	r1 0.001 #units:unit_0
+	k1 100000000.0 #units:unit_1
+	at 0.12 #units:unit_0
+	et 50.0 #units:unit_1
+	atb 0.69 #units:unit_1
+	etb 10000.0 #units:unit_1
+	ht 500000000.0 #units:unit_1
+	r2 0.1 #units:unit_0
+	k2 10000000.0 #units:unit_1
+	ra 0.006 #units:unit_0
+	uc 0.007 #units:unit_0
+	gb 63945.0 #units:unit_0
+	abt 5.75e-06 #units:unit_0
+	ub 7.0 #units:unit_0
+	gm1 1.44 #units:unit_0
+	am1y 2.88 #units:unit_0
+	em1y 338000.0 #units:unit_1
+	um1 0.0144 #units:unit_0
+	am2y 8660.0 #units:unit_0
+	em2y 1420.0 #units:unit_1
+	am2b 0.012 #units:unit_1
+	em2b 100000.0 #units:unit_1
+	um2 0.0144 #units:unit_0
+	ayc 0.000102 #units:unit_0
+	uy 0.102 #units:unit_0
+	N 0
+	TumorPlot 421540000000000.0 #original 7e-07substance/volume
+	CSCPlot 1806600000000000.0 #original 3e-06substance/volume
+	CTLPlot 1.5055e+21 #original 2.5substance/volume
+end parameters
+begin molecule types
+	TGFb()
+	CytotoxicTcell()
+	IFNy()
+	MHC1()
+	MHC2()
+	CancerStemCell()
+	Tumor()
+end molecule types
+begin seed species
+	Tumor() 4.215400000000001e+22 # (70.0 * 0.001)mol/L * 6.022e23/mol *1.0L #Tumor #Tumor
+	CancerStemCell() 1.8066e+22 #original 30.0substance/volume #CancerStemCell #CancerStemCell
+	CytotoxicTcell() 1.5055e+23 #original 250.0substance/volume #CytotoxicTcell #CytotoxicTcell
+	TGFb() 3.0110000000000005e+22 #original 50.0substance/volume #TGFb #TGFb
+	IFNy() 3.0110000000000005e+22 #original 50.0substance/volume #IFNy #IFNy
+	MHC1() 3.0110000000000005e+22 #original 50.0substance/volume #MHC1 #MHC1
+	MHC2() 3.0110000000000005e+22 #original 50.0substance/volume #MHC2 #MHC2
+end seed species
+begin observables
+	Species Tumor Tumor() #Tumor
+	Species CancerStemCell CancerStemCell() #CancerStemCell
+	Species CytotoxicTcell CytotoxicTcell() #CytotoxicTcell
+	Species TGFb TGFb() #TGFb
+	Species IFNy IFNy() #IFNy
+	Species MHC1 MHC1() #MHC1
+	Species MHC2 MHC2() #MHC2
+end observables
+begin functions
+	abs() = abt
+	hs() = ht
+	esb() = etb
+	asb() = atb
+	es() = et
+	as() = 0.1*at
+	CTLPlot_ar() = CytotoxicTcell/100
+	CSCPlot_ar() = CancerStemCell/10000000
+	TumorPlot_ar() = Tumor/100000000
+	fRate0() = Tumor*r1
+	fRate0m() = Tumor*r1/k1
+	fRate1() = Tumor*ra/k2
+	fRate1m() = CancerStemCell*Tumor*ra/(k1*k2)
+	fRate2() = CytotoxicTcell*MHC1*Tumor*at*(atb + etb*(1 - atb)/(TGFb + etb))/((MHC1 + etb)*(Tumor + ht))
+	fRate3() = CancerStemCell*r2
+	fRate3m() = CancerStemCell*r2/k2
+	fRate4 =  CancerStemCell*CytotoxicTcell*MHC1*as*(asb + esb*(1 -asb)/(TGFb + esb))/((CancerStemCell + hs)*(MHC1 + esb))
+	fRate8() = Tumor*abt
+	fRate9() = CancerStemCell*abs
+	fRate11() = CytotoxicTcell*ayc
+	fRate15() = IFNy*am1y/(IFNy + em1y)
+	fRate16() = IFNy*am2y*(am2b + em2b*(1 - am2b)/(TGFb + em2b))/(IFNy + em2y)
+end functions
+begin reaction rules
+	tumor_growth: 0  <-> Tumor() fRate0(),fRate0m()
+	tumor_transformation: CancerStemCell() <-> Tumor() fRate1(),fRate1m()
+	tumor_killing_reactants_0: 0  -> Tumor() -1*(fRate2()) #Modifiers(MHC1, TGFb, CytotoxicTcell)
+	csc_growth: 0  <-> CancerStemCell() fRate3(),fRate3m()
+	csc_killing_reactants_0: 0  -> CancerStemCell() -1*(fRate4()) #Modifiers(MHC1, TGFb, CytotoxicTcell)
+	ctl_death: CytotoxicTcell() -> 0  uc
+	ctl_source: 0  -> CytotoxicTcell() N
+	tgfb_source: 0  -> TGFb() gb
+	tgfb_by_tumor: 0  -> TGFb() fRate8() #Modifiers(Tumor)
+	tgfb_by_csc: 0  -> TGFb() fRate9() #Modifiers(CancerStemCell)
+	tgfb_decay: TGFb() -> 0  ub
+	ifny_production: 0  -> IFNy() fRate11() #Modifiers(CytotoxicTcell)
+	ifny_decay: IFNy() -> 0  uy
+	mhc1_source: 0  -> MHC1() gm1
+	mhc1_decay: MHC1() -> 0  um1
+	mhc1_stimulation: 0  -> MHC1() fRate15() #Modifiers(IFNy)
+	mhc2_production_products_0: 0  -> MHC2() fRate16() #Modifiers(IFNy, TGFb)
+	mhc2_decay: MHC2() -> 0  um2
+end reaction rules
+end model

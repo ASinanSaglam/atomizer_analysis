@@ -1,0 +1,84 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/19327370']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/ncit/C16672', 'http://identifiers.org/ncit/C17132', 'http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/ncit/C21065']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1912160005', 'http://identifiers.org/biomodels.db/BIOMD0000000896']
+#@creatorEmail:'johannes.p.meyer@gmail.com'
+#@creatorName:'Meyer Johannes'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 9 molecules and 15 reactions. The translated model has 9 molecules and 15 rules'
+###
+begin model
+begin parameters
+	k_1 0.42
+	l_1 0.005
+	k_2 0.42
+	l_2 0.005
+	k_3 0.023
+	l_3 0.00575
+	k_4 0.035
+	k_6 0.023
+	l_6 0.00036
+	k_10 0.014
+	l_10 0.013
+	k_8 0.035
+	k_7 0.035
+	l_7 0.035
+	F_T_Scale 5.5
+end parameters
+begin molecule types
+	Hsp70()
+	S()
+	HSE()
+	Hsp70_S()
+	HSF_3()
+	HSF()
+	Hsp70_HSF()
+	HSF_3_HSE()
+	mRNA()
+end molecule types
+begin seed species
+	Hsp70() 1.647294012e+21 # (2.73546 * 0.001)mol/L * 6.022e23/mol *1.0L #Hsp70 #Hsp70
+	HSF() 1.999418418e+20 #original 0.332019substance/volume #HSF #HSF
+	S() 18607.980000000003 #original 3.09e-17substance/volume #S #S
+	Hsp70_HSF() 4.604379046e+22 #original 76.4593substance/volume #Hsp70_HSF #Hsp70_HSF
+	Hsp70_S() 10525372.040000001 #original 1.74782e-14substance/volume #Hsp70_S #Hsp70_S
+	HSF_3() 3.2229924660000002e+19 #original 0.0535203substance/volume #HSF_3 #HSF_3
+	HSE() 1.14321648e+22 #original 18.984substance/volume #HSE #HSE
+	HSF_3_HSE() 6.11853266e+20 #original 1.01603substance/volume #HSF_3_HSE #HSF_3_HSE
+	mRNA() 6.11853266e+20 #original 1.01603substance/volume #mRNA #mRNA
+end seed species
+begin observables
+	Species Hsp70 Hsp70() #Hsp70
+	Species HSF HSF() #HSF
+	Species S S() #S
+	Species Hsp70_HSF Hsp70_HSF() #Hsp70_HSF
+	Species Hsp70_S Hsp70_S() #Hsp70_S
+	Species HSF_3 HSF_3() #HSF_3
+	Species HSE HSE() #HSE
+	Species HSF_3_HSE HSF_3_HSE() #HSF_3_HSE
+	Species mRNA mRNA() #mRNA
+end observables
+begin functions
+	Temperature() =  if((time()<=10),(37),(42))
+	V_den() = 1.4^(Temperature - 37)*(0.03 - 0.012/exp(Temperature - 37))
+	F_T() = F_T_Scale*V_den
+	fRate13() = HSF_3_HSE*k_8
+end functions
+begin reaction rules
+	Hsp70_Substrate_Association: Hsp70() + HSF() -> Hsp70_HSF() k_1
+	Hsp70_Substrate_Dissociation: Hsp70_HSF() -> Hsp70() + HSF() l_1
+	Hsp70_S_Association: Hsp70() + S() -> Hsp70_S() k_2
+	Hsp70_S_Dissociation: Hsp70_S() -> Hsp70() + S() l_2
+	Trimer_Formation: HSF() + HSF() + HSF() -> HSF_3() k_3
+	Trimer_Dissociation: HSF_3() + Hsp70() -> HSF() + HSF() + Hsp70_HSF() l_3
+	Hsp70_Synthesis: mRNA() -> Hsp70() k_4
+	Hsp70_S_Substrate_Refolding: Hsp70_S() -> Hsp70() k_10
+	Hsp70_Degradation: Hsp70() -> 0  l_10
+	Hsp70_S_Formation: S() + Hsp70_HSF() -> Hsp70_S() + HSF() k_6
+	Hsp70_S_Substrate_Dissociation: Hsp70_S() + HSF() -> Hsp70_HSF() + S() l_6
+	HSF_HSE_Association: HSF_3() + HSE() -> HSF_3_HSE() k_7
+	HSF_HSE_Dissociation: HSF_3_HSE() -> HSE() + HSF_3() l_7
+	mRNA_Transcription: 0  -> mRNA() fRate13() #Modifiers(HSF_3_HSE)
+	Protein_Denaturation: 0  -> S() F_T
+end reaction rules
+end model

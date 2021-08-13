@@ -1,0 +1,88 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/30843136']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/go/GO:0002418', 'http://identifiers.org/mamo/MAMO_0000046']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1908130001', 'http://identifiers.org/biomodels.db/BIOMD0000000792']
+#@creatorEmail:'johannes.p.meyer@gmail.com'
+#@creatorName:'Meyer Johannes'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 6 molecules and 14 reactions. The translated model has 6 molecules and 14 rules'
+###
+begin model
+begin parameters
+	r_1 0.0195
+	b_1 1.02e-11
+	beta_1 1.7857e-12
+	m_1 1000000000.0
+	delta_1 0.96
+	r_2 0.00195
+	beta_2 0.125
+	k_2 56000000000.0
+	b_2 1.7857e-09
+	mu_2 0.015
+	beta_3 124.5
+	k_3 20000000000.0
+	m_3 1000000.0
+	r_3 3500.0
+	mu_3 0.02
+	beta_4 5.85
+	k_4 1000000.0
+	mu_4 0.034
+	r_4 12500.0
+	m_4 89000000000.0
+	beta_5 7.3
+	k_5 1000000.0
+	mu_5 0.034
+	D_0 50000000000.0
+	p 0.9
+	k 1.0
+	mu_6 0.66
+	r8_v 0.100000
+end parameters
+begin molecule types
+	w_TPC()
+	R_siRNA()
+	y_PSC()
+	v_TSC()
+	z_Effector_Cells()
+	x_PCC()
+end molecule types
+begin seed species
+	x_PCC() 6.022e+32 # 1000000000.0mol/L * 6.022e23/mol *1.0L #x_PCC #x_PCC
+	y_PSC() 3.37232e+30 #original 5600000.0substance/L  #y_PSC #y_PSC
+	z_Effector_Cells() 1.14418e+32 #original 190000000.0substance/L  #z_Effector_Cells #z_Effector_Cells
+	w_TPC() 3.0110000000000003e+28 #original 50000.0substance/L  #w_TPC #w_TPC
+	v_TSC() 5.66068e+24 #original 9.4substance/L  #v_TSC #v_TSC
+	R_siRNA() 6.022e+23 #original 1.0substance/L  #R_siRNA #R_siRNA
+end seed species
+begin observables
+	Species x_PCC x_PCC() #x_PCC
+	Species y_PSC y_PSC() #y_PSC
+	Species z_Effector_Cells z_Effector_Cells() #z_Effector_Cells
+	Species w_TPC w_TPC() #w_TPC
+	Species v_TSC v_TSC() #v_TSC
+	Species R_siRNA R_siRNA() #R_siRNA
+end observables
+begin functions
+	fRate0() = x_PCC*(-b_1*x_PCC + 1)*(beta_1*y_PSC + r_1)
+	fRate1() = delta_1*z_Effector_Cells/(m_1 + w_TPC)
+	fRate2() = y_PSC*(-b_2*y_PSC + 1)*(beta_2*w_TPC/(k_2 + w_TPC) + r_2)
+	fRate4() = beta_3*v_TSC*z_Effector_Cells/(k_3*m_3 + k_3*w_TPC + m_3*v_TSC + v_TSC*w_TPC)
+	fRate9() = r_4*x_PCC*y_PSC/(m_4 + v_TSC)
+	fRate10() = beta_5*x_PCC*z_Effector_Cells/(k_5 + x_PCC)
+end functions
+begin reaction rules
+	PCC_Tumor_Growth_products_0: 0  -> x_PCC() fRate0() #Modifiers(y_PSC)
+	PCC_Tumor_Killing: x_PCC() -> 0  fRate1() #Modifiers(z_Effector_Cells, w_TPC)
+	PSC_Tumor_Growth_products_0: 0  -> y_PSC() fRate2() #Modifiers(w_TPC)
+	PSC_Natural_Death: y_PSC() -> 0  mu_2
+	Effector_Cells_Production: 0  -> z_Effector_Cells() fRate4() #Modifiers(v_TSC, w_TPC)
+	Effector_Cells_Apoptosis: z_Effector_Cells() -> 0  mu_3
+	Effector_Cells_Production_Constant: 0  -> z_Effector_Cells() r_3
+	TPC_Production: 0  -> w_TPC() r8_v #Modifiers(x_PCC, z_Effector_Cells)
+	TPC_Decay: w_TPC() -> 0  mu_4
+	TPC_Production_PSC: 0  -> w_TPC() fRate9() #Modifiers(x_PCC, y_PSC, v_TSC)
+	TSC_Production: 0  -> v_TSC() fRate10() #Modifiers(x_PCC, z_Effector_Cells)
+	TSC_Decay: v_TSC() -> 0  mu_5
+	siRNA_Decay: R_siRNA() -> 0  mu_6
+	siRNA_Dose: 0  -> R_siRNA() D_0
+end reaction rules
+end model

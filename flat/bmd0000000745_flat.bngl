@@ -1,0 +1,73 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1907050004', 'http://identifiers.org/biomodels.db/BIOMD0000000745']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/30239754']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0002418']
+#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000149']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/efo/0000305']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10090']
+#@creatorEmail:'jm2187@cam.ac.uk'
+#@creatorName:'Men Jinghao'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 5 molecules and 10 reactions. The translated model has 5 molecules and 10 rules'
+###
+begin model
+begin parameters
+	g 0.044 #units:unit_0
+	an 0.2 #units:unit_0
+	av 0.199 #units:unit_0
+	ut 0.187 #units:unit_0
+	ui 0.722 #units:unit_0
+	at 0.101 #units:unit_0
+	ai 0.045 #units:unit_0
+	uv 1.723 #units:unit_0
+	beta 0.027 #units:unit_0
+	un 0.911 #units:unit_0
+	gamma 0.743 #units:unit_0
+	delta 0.284 #units:unit_1
+	rho 1.523 #units:unit_1
+end parameters
+begin molecule types
+	H()
+	N()
+	V()
+	I()
+	T()
+end molecule types
+begin seed species
+	T() 1.2044000000000002e+20 # (0.2 * 0.001)mol/L * 6.022e23/mol *1.0L #T #T
+	I() 4.27562e+19 #original 0.071substance/volume  #I #I
+	V() 7.226400000000001e+19 #original 0.12substance/volume  #V #V
+	N() 6.022000000000001e+19 #original 0.1substance/volume  #N #N
+	H() 1.08396e+20 #original 0.18substance/volume  #H #H
+end seed species
+begin observables
+	Species T T() #T
+	Species I I() #I
+	Species V V() #V
+	Species N N() #N
+	Species H H() #H
+end observables
+begin functions
+	fRate0() = I*ut
+	fRate1() = T*g*(H*rho + 1)
+	fRate2() = 1.0*N*an + V*av
+	fRate3() = 1.0*I*N*an + 1.0*I*T*ui + 1.0*I*V*av
+	fRate4() = 1.0*I*ai + T*at
+	fRate5() = 1.0*I*V*ai + 1.0*T*V*at + 1.0*T*V*uv
+	fRate6() = 1.0*beta*(N*V + 1.0)
+	fRate7() = 1.0*I*N*un + 1.0*N*beta + 1.0*V*beta
+	fRate8() = 1.0*H*gamma*(H*V + 1.0*delta)
+	fRate9() = 1.0*H^2*delta*gamma + 1.0*H*V*gamma
+end functions
+begin reaction rules
+	tumor_death: T() -> 0  fRate0() #Modifiers(I)
+	tumor_growth: 0  -> T() fRate1() #Modifiers(H)
+	immune_stimulation: 0  -> I() fRate2() #Modifiers(V, N)
+	immune_inhibition_reactants_0: 0  -> I() -1*(fRate3()) #Modifiers(V, N, T)
+	vasc_increase: 0  -> V() fRate4() #Modifiers(T, I)
+	vasc_decrease_reactants_0: 0  -> V() -1*(fRate5()) #Modifiers(T, I)
+	necrotise: 0  -> N() fRate6() #Modifiers(V)
+	de_necrotise_reactants_0: 0  -> N() -1*(fRate7()) #Modifiers(V, I)
+	hypoxia: 0  -> H() fRate8() #Modifiers(V)
+	normoxia_reactants_0: 0  -> H() -1*(fRate9()) #Modifiers(V)
+end reaction rules
+end model

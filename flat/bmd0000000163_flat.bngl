@@ -1,0 +1,121 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL3388742457', 'http://identifiers.org/biomodels.db/BIOMD0000000163']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/17895977']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/131567']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0017015']
+#@BQB_IS_PART_OF:['http://identifiers.org/kegg.pathway/hsa04350']
+#@creatorEmail:'hdharuri@cds.caltech.edu'
+#@creatorName:'Dharuri Harish'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 16 molecules and 26 reactions. The translated model has 16 molecules and 26 rules'
+###
+begin model
+begin parameters
+	v_T1R 0.0103
+	v_T2R 0.02869
+	ki_EE 0.33
+	kr_EE 0.033
+	ki_Cave 0.33
+	kr_Cave 0.03742
+	Kcd 0.005
+	k_LRC 2197.0
+	Klid 0.02609
+	Kdeg_T1R_EE 0.005
+	Kdeg_T2R_EE 0.025
+	Kimp_Smad2c 0.16
+	Kexp_Smad2n 1.0
+	Kimp_Smad4c 0.08
+	Kexp_Smad4n 0.5
+	k_Smads_Complex_c 6.85e-05
+	Kimp_Smads_Complex_c 0.16
+	Kdiss_Smads_Complex_n 0.1174
+end parameters
+begin compartments
+	#volume units: L
+	V_medium 3 1.0 #Medium
+	V_nuc 3 0.00035 #Nucleus
+	V_cyt 3 0.00105 #Cytoplasm
+end compartments
+begin molecule types
+	T1R_Surf()
+	LRC_EE()
+	Smad4c()
+	Smads_Complex_c()
+	Smad2c()
+	T2R_EE()
+	T1R_Cave()
+	T1R_EE()
+	T2R_Cave()
+	LRC_Cave()
+	Smads_Complex_n()
+	T2R_Surf()
+	TGF_beta()
+	LRC_Surf()
+	Smad2n()
+	Smad4n()
+end molecule types
+begin seed species
+	@V_cyt:Smad2c() 311482229100000.0 # (492.61 * 1e-09)mol/L * 6.022e23/mol *0.00105L #Smad2c #Smad2c
+	@V_nuc:Smad2n() 49836566500000.01 #original 236.45nano mole/L #Smad2n #Smad2n
+	@V_cyt:Smad4c() 726777114000000.1 #original 1149.4nano mole/L #Smad4c #Smad4c
+	@V_nuc:Smad4n() 116286024400000.02 #original 551.72nano mole/L #Smad4n #Smad4n
+	@V_cyt:T1R_Surf() 149857470000.0 #original 0.237nano mole/L #T1R_Surf #T1R_Surf
+	@V_cyt:T1R_Cave() 1322792520000.0002 #original 2.092nano mole/L #T1R_Cave #T1R_Cave
+	@V_cyt:T1R_EE() 1302558600000.0002 #original 2.06nano mole/L #T1R_EE #T1R_EE
+	@V_cyt:T2R_Surf() 127726620000.00002 #original 0.202nano mole/L #T2R_Surf #T2R_Surf
+	@V_cyt:T2R_Cave() 1124247180000.0 #original 1.778nano mole/L #T2R_Cave #T2R_Cave
+	@V_cyt:T2R_EE() 725891880000.0 #original 1.148nano mole/L #T2R_EE #T2R_EE
+	@V_medium:TGF_beta() 48176000000000.01 #original 0.08nano mole/L #TGF_beta #TGF_beta
+end seed species
+begin observables
+	Species Smad2c_V_cyt @V_cyt:Smad2c() #Smad2c
+	Species Smad2n_V_nuc @V_nuc:Smad2n() #Smad2n
+	Species Smad4c_V_cyt @V_cyt:Smad4c() #Smad4c
+	Species Smad4n_V_nuc @V_nuc:Smad4n() #Smad4n
+	Species T1R_Surf_V_cyt @V_cyt:T1R_Surf() #T1R_Surf
+	Species T1R_Cave_V_cyt @V_cyt:T1R_Cave() #T1R_Cave
+	Species T1R_EE_V_cyt @V_cyt:T1R_EE() #T1R_EE
+	Species T2R_Surf_V_cyt @V_cyt:T2R_Surf() #T2R_Surf
+	Species T2R_Cave_V_cyt @V_cyt:T2R_Cave() #T2R_Cave
+	Species T2R_EE_V_cyt @V_cyt:T2R_EE() #T2R_EE
+	Species LRC_Surf_V_cyt @V_cyt:LRC_Surf() #LRC_Surf
+	Species LRC_Cave_V_cyt @V_cyt:LRC_Cave() #LRC_Cave
+	Species LRC_EE_V_cyt @V_cyt:LRC_EE() #LRC_EE
+	Species Smads_Complex_c_V_cyt @V_cyt:Smads_Complex_c() #Smads_Complex_c
+	Species Smads_Complex_n_V_nuc @V_nuc:Smads_Complex_n() #Smads_Complex_n
+	Species TGF_beta_V_medium @V_medium:TGF_beta() #TGF_beta
+end observables
+begin functions
+	Total_Smad2c() = Smad2c_V_cyt + Smads_Complex_c_V_cyt
+	Total_Smad2n() = Smad2n_V_nuc + Smads_Complex_n_V_nuc
+	fRate22() = LRC_EE_V_cyt*k_Smads_Complex_c
+	fRate25() = Klid*Smads_Complex_n_V_nuc
+end functions
+begin reaction rules
+	R1_Smad2_import: Smad2c()@V_cyt -> Smad2n()@V_nuc Kimp_Smad2c
+	R2_Smad2_export: Smad2n()@V_nuc -> Smad2c()@V_cyt Kexp_Smad2n
+	R3_Smad4_import: Smad4c()@V_cyt -> Smad4n()@V_nuc Kimp_Smad4c
+	R4_Smad4_export: Smad4n()@V_nuc -> Smad4c()@V_cyt Kexp_Smad4n
+	R5_T1R_production: 0  -> T1R_Surf()@V_cyt v_T1R
+	R6_T1R_Cave_formation: T1R_Surf()@V_cyt -> T1R_Cave()@V_cyt ki_Cave
+	R7_T1R_Cave_recycling: T1R_Cave()@V_cyt -> T1R_Surf()@V_cyt kr_Cave
+	R8_T1R_EE_formation: T1R_Surf()@V_cyt -> T1R_EE()@V_cyt ki_EE
+	R9_T1R_EE_recycling: T1R_EE()@V_cyt -> T1R_Surf()@V_cyt kr_EE
+	R10_T1R_EE_degradation: T1R_EE()@V_cyt -> 0  Kdeg_T1R_EE
+	R11_T2R_production: 0  -> T2R_Surf()@V_cyt v_T2R
+	R12_T2R_Cave_formation: T2R_Surf()@V_cyt -> T2R_Cave()@V_cyt ki_Cave
+	R13_T2R_Cave_recycling: T2R_Cave()@V_cyt -> T2R_Surf()@V_cyt kr_Cave
+	R14_T2R_EE_formation: T2R_Surf()@V_cyt -> T2R_EE()@V_cyt ki_EE
+	R15_T2R_EE_recycling: T2R_EE()@V_cyt -> T2R_Surf()@V_cyt + TGF_beta()@V_medium kr_EE
+	R16_T2R_EE_degradation: T2R_EE()@V_cyt -> 0  Kdeg_T2R_EE
+	R17_LRC_formation: TGF_beta()@V_medium + T2R_Surf()@V_cyt + T1R_Surf()@V_cyt -> LRC_Surf()@V_cyt k_LRC
+	R18_LRC_Cave_formation: LRC_Surf()@V_cyt -> LRC_Cave()@V_cyt ki_Cave
+	R19_LRC_Cave_recycling: LRC_Cave()@V_cyt -> T1R_Surf()@V_cyt + TGF_beta()@V_medium + T2R_Surf()@V_cyt kr_Cave
+	R20_LRC_EE_formation: LRC_Surf()@V_cyt -> LRC_EE()@V_cyt ki_EE
+	R21_LRC_EE_recycling: LRC_EE()@V_cyt -> T1R_Surf()@V_cyt + T2R_Surf()@V_cyt + TGF_beta()@V_medium kr_EE
+	R22_LRC_EE_degradation: LRC_EE()@V_cyt -> 0  Kcd
+	R23_Smads_Complex_formation: Smad2c()@V_cyt + Smad4c()@V_cyt -> Smads_Complex_c()@V_cyt fRate22() #Modifiers(LRC_EE)
+	R24_Smads_Complex_import: Smads_Complex_c()@V_cyt -> Smads_Complex_n()@V_nuc Kimp_Smads_Complex_c
+	R25_Smads_Complex_Dissociation: Smads_Complex_n()@V_nuc -> Smad4n()@V_nuc + Smad2n()@V_nuc Kdiss_Smads_Complex_n
+	R26_LRC_Cave_degradation: LRC_Cave()@V_cyt -> 0  fRate25() #Modifiers(Smads_Complex_n)
+end reaction rules
+end model

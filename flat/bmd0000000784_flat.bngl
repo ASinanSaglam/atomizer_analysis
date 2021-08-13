@@ -1,0 +1,63 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/25348062']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/go/GO:0002286']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10090']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1908090001', 'http://identifiers.org/biomodels.db/BIOMD0000000784']
+#@creatorEmail:'johannes.p.meyer@gmail.com'
+#@creatorName:'Meyer Johannes'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 3 molecules and 9 reactions. The translated model has 3 molecules and 9 rules'
+###
+begin model
+begin parameters
+	a_12 0.195
+	d 5.0
+	lambda 0.21
+	s 11.5
+	r_2 0.35
+	a_21 0.954
+	d_3 0.112
+	g 0.29
+	h 7.95e-11
+	a_31 5.25
+	ModelValue_1 (5.0)
+	ModelValue_2 (0.21)
+	ModelValue_3 (11.5)
+	r6_v 1.000000
+end parameters
+begin molecule types
+	x_Tumor_Cells()
+	z_Effector_Cells()
+	y_Healthy_Cells()
+end molecule types
+begin seed species
+	x_Tumor_Cells() 6.022000000000001e+22 # 0.1mol/L * 6.022e23/mol *1.0L #x_Tumor_Cells #x_Tumor_Cells
+	y_Healthy_Cells() 5.4198e+23 #original 0.9substance/L #y_Healthy_Cells #y_Healthy_Cells
+	z_Effector_Cells() 1.2044000000000002e+23 #original 0.2substance/L #z_Effector_Cells #z_Effector_Cells
+end seed species
+begin observables
+	Species x_Tumor_Cells x_Tumor_Cells() #x_Tumor_Cells
+	Species y_Healthy_Cells y_Healthy_Cells() #y_Healthy_Cells
+	Species z_Effector_Cells z_Effector_Cells() #z_Effector_Cells
+end observables
+begin functions
+	h_x() = ModelValue_3*x_Tumor_Cells^ModelValue_2
+	D_x_z() = ModelValue_1*z_Effector_Cells^ModelValue_2/(h_x + z_Effector_Cells^ModelValue_2)
+	fRate1() = a_12*y_Healthy_Cells
+	fRate3() = r_2*y_Healthy_Cells
+	fRate3m() = r_2*y_Healthy_Cells
+	fRate4() = a_21*x_Tumor_Cells
+	fRate7() = D_x_z^2*g*x_Tumor_Cells^2/(D_x_z^2*x_Tumor_Cells^2 + h)
+	fRate8() = a_31*x_Tumor_Cells
+end functions
+begin reaction rules
+	Tumor_Growth: 0  <-> x_Tumor_Cells() x_Tumor_Cells,x_Tumor_Cells
+	Tumor_Competition_Healthy_Cells: x_Tumor_Cells() -> 0  fRate1() #Modifiers(y_Healthy_Cells)
+	Tumor_Killing: x_Tumor_Cells() -> 0  D_x_z
+	Healthy_Cells_Production: 0  <-> y_Healthy_Cells() fRate3(),fRate3m()
+	Healthy_Cells_Competition_Tumor: y_Healthy_Cells() -> 0  fRate4() #Modifiers(x_Tumor_Cells)
+	Effector_Production_Constant: 0  -> z_Effector_Cells() r6_v
+	Effector_Death: z_Effector_Cells() -> 0  d_3
+	Effector_Recruitment: 0  -> z_Effector_Cells() fRate7() #Modifiers(x_Tumor_Cells)
+	Effector_Competition_Tumor: z_Effector_Cells() -> 0  fRate8() #Modifiers(x_Tumor_Cells)
+end reaction rules
+end model

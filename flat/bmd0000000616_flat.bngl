@@ -1,0 +1,54 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000616', 'http://identifiers.org/biomodels.db/MODEL1608160000']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/25053556']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0006954']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_HAS_PROPERTY:['urn:miriam:doid:DOID%3A+2914']
+#@creatorEmail:'tvarusai@ebi.ac.uk'
+#@creatorName:'Varusai Thawfeek'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 4 molecules and 10 reactions. The translated model has 4 molecules and 10 rules'
+###
+begin model
+begin parameters
+	vt 0.1
+	Gat 1.0
+	Tt 0.001
+	Gmt 0.01
+	alt 0.05
+	Bat 0.1
+	A 1.0
+	t1 10.0
+end parameters
+begin molecule types
+	a()
+	m()
+	c()
+	n()
+end molecule types
+begin seed species
+end seed species
+begin observables
+	Species n n() #n
+	Species c c() #c
+	Species a a() #a
+	Species m m() #m
+end observables
+begin functions
+	fRate2() = n*vt
+	fRate4() = Tt*m
+	fRate7 =    ( alt )   *if(( ( time() )   < ( A )   *3.1415926535),(((sin( ( time() )   ))^(2))),(0))*if(( ( time() )   < ( t1 )   ),(1),(0))/ ( 1.0 )    
+	fRate8() = Gat*a^2/(Bat^2 + a^2)
+end functions
+begin reaction rules
+	R1: 0  -> n() c #Modifiers(c)
+	R2: n() -> 0  vt
+	R3: 0  -> a() fRate2() #Modifiers(n)
+	R4: a() -> 0  Gat
+	R5: a() -> 0  fRate4() #Modifiers(m)
+	R6: 0  -> m() c #Modifiers(c)
+	R7: m() -> 0  Gmt
+	R8: 0  -> c() fRate7()
+	R9: 0  -> c() fRate8() #Modifiers(a)
+	R10: c() -> 0  1.00000000000000
+end reaction rules
+end model

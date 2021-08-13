@@ -1,0 +1,79 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1311130001', 'http://identifiers.org/biomodels.db/BIOMD0000000500']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/24413774']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10090']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0060333']
+#@creatorEmail:'juty@ebi.ac.uk'
+#@creatorName:'Juty Nick'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 14 molecules and 18 reactions. The translated model has 14 molecules and 18 rules'
+###
+begin model
+begin parameters
+	Kon_P1 60000.0
+	Koff_P1 100.0
+	Kon_G1 20000000000.0
+	Koff_G1 100.0
+	Kon_NG1 20000000000.0
+	Koff_NG1 20000.0
+end parameters
+begin molecule types
+	DNA_1B10()
+	DNA_100()
+	DNA_01B1()
+	DNA_010()
+	DNA_110()
+	DNA_011()
+	S1()
+	DNA_11B1()
+	DNA_1B1B1()
+	DNA_101()
+	DNA_111()
+	DNA_001()
+	DNA_1B11()
+	DNA_000()
+end molecule types
+begin seed species
+	S1() 60220000000000.01 # 1e-10mol/L * 6.022e23/mol *1.0L #S1 #S1
+	DNA_000() 60220000000000.01 #original 1e-10mol/L #DNA_000 #DNA_000
+end seed species
+begin observables
+	Species S1 S1() #S1
+	Species DNA_000 DNA_000() #DNA_000
+	Species DNA_100 DNA_100() #DNA_100
+	Species DNA_010 DNA_010() #DNA_010
+	Species DNA_001 DNA_001() #DNA_001
+	Species DNA_110 DNA_110() #DNA_110
+	Species DNA_101 DNA_101() #DNA_101
+	Species DNA_011 DNA_011() #DNA_011
+	Species DNA_111 DNA_111() #DNA_111
+	Species DNA_1B10 DNA_1B10() #DNA_1B10
+	Species DNA_01B1 DNA_01B1() #DNA_01B1
+	Species DNA_1B11 DNA_1B11() #DNA_1B11
+	Species DNA_11B1 DNA_11B1() #DNA_11B1
+	Species DNA_1B1B1 DNA_1B1B1() #DNA_1B1B1
+end observables
+begin functions
+	parameter_1() = DNA_010 + DNA_011 + DNA_01B1 + DNA_110 + DNA_111 + DNA_11B1 + DNA_1B10 + DNA_1B11 + DNA_1B1B1
+end functions
+begin reaction rules
+	DNA1: DNA_000() + S1() <-> DNA_100() Kon_NG1,Koff_NG1 #Modifiers(DNA_000, DNA_100, S1)
+	DNA2: DNA_000() + S1() <-> DNA_010() Kon_G1,Koff_G1 #Modifiers(DNA_000, DNA_010, S1)
+	DNA3: DNA_000() + S1() <-> DNA_001() Kon_NG1,Koff_NG1 #Modifiers(DNA_000, DNA_001, S1)
+	DNA4: DNA_100() + S1() <-> DNA_110() Kon_G1,Koff_G1 #Modifiers(DNA_100, DNA_110, S1)
+	DNA5: DNA_100() + S1() <-> DNA_101() Kon_NG1,Koff_NG1 #Modifiers(DNA_100, DNA_101, S1)
+	DNA6: DNA_010() + S1() <-> DNA_110() Kon_NG1,Koff_NG1 #Modifiers(DNA_010, DNA_110, S1)
+	DNA7: DNA_010() + S1() <-> DNA_011() Kon_NG1,Koff_NG1 #Modifiers(DNA_010, DNA_011, S1)
+	DNA8: DNA_001() + S1() <-> DNA_101() Kon_NG1,Koff_NG1 #Modifiers(DNA_001, DNA_101, S1)
+	DNA9: DNA_001() + S1() <-> DNA_011() Kon_G1,Koff_G1 #Modifiers(DNA_001, DNA_011, S1)
+	DNA10: DNA_110() + S1() <-> DNA_111() Kon_NG1,Koff_NG1 #Modifiers(DNA_110, DNA_111, S1)
+	DNA11: DNA_101() + S1() <-> DNA_111() Kon_G1,Koff_G1 #Modifiers(DNA_101, DNA_111, S1)
+	DNA12: DNA_011() + S1() <-> DNA_111() Kon_NG1,Koff_NG1 #Modifiers(DNA_011, DNA_111, S1)
+	DNA49: DNA_110() <-> DNA_1B10() Kon_P1,Koff_P1 #Modifiers(DNA_110, DNA_1B10)
+	DNA50: DNA_011() <-> DNA_01B1() Kon_P1,Koff_P1 #Modifiers(DNA_011, DNA_01B1)
+	DNA51: DNA_111() <-> DNA_11B1() Kon_P1,Koff_P1 #Modifiers(DNA_111, DNA_11B1)
+	DNA52: DNA_111() <-> DNA_1B11() Kon_P1,Koff_P1 #Modifiers(DNA_111, DNA_1B11)
+	DNA53: DNA_11B1() <-> DNA_1B1B1() Kon_P1,Koff_P1 #Modifiers(DNA_11B1, DNA_1B1B1)
+	DNA54: DNA_1B11() <-> DNA_1B1B1() Kon_P1,Koff_P1 #Modifiers(DNA_1B11, DNA_1B1B1)
+end reaction rules
+end model

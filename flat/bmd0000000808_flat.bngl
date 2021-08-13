@@ -1,0 +1,97 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/17823798']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/ncit/C15351', 'http://identifiers.org/mamo/MAMO_0000046']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000808', 'http://identifiers.org/biomodels.db/MODEL1909090001']
+#@creatorEmail:'johannes.p.meyer@gmail.com'
+#@creatorName:'Meyer Johannes'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 6 molecules and 15 reactions. The translated model has 6 molecules and 15 rules'
+###
+begin model
+begin parameters
+	r 0.00035
+	K 100000000000.0
+	a_T 0.12
+	e_T 50.0
+	a_T_beta 0.69
+	e_T_beta 10000.0
+	h_T 500000000.0
+	a_C_M2 4.8e-11
+	e_C_M2 100000000000000.0
+	a_C_beta 0.8
+	e_C_beta 10000.0
+	mu_C 0.007
+	g_beta 63945.0
+	a_beta_T 5.75e-06
+	mu_beta 7.0
+	a_gamma_C 0.000102
+	mu_gamma 0.102
+	g_M1 1.44
+	a_M1_gamma 2.88
+	e_M1_gamma 338000.0
+	mu_M1 0.0144
+	a_M2_gamma 8660.0
+	e_M2_gamma 1420.0
+	a_M2_beta 0.012
+	e_M2_beta 100000.0
+	mu_M2 0.0144
+	S_dose 300000000.0
+	S_interval 10.0
+	ModelValue_28 (300000000.0)
+	ModelValue_30 (10.0)
+	r12_v 0.100000
+	r14_v 0.100000
+end parameters
+begin molecule types
+	M1()
+	F_beta()
+	F_gamma()
+	M2()
+	T()
+	C()
+end molecule types
+begin seed species
+	T() 6.022e+30 # (10000000000.0 * 0.001)mol/L * 6.022e23/mol *1.0L #T #T
+	C() 1.2044000000000001e+27 #original 2000000.0substance/volume #C #C
+end seed species
+begin observables
+	Species T T() #T
+	Species C C() #C
+	Species F_beta F_beta() #F_beta
+	Species F_gamma F_gamma() #F_gamma
+	Species M1 M1() #M1
+	Species M2 M2() #M2
+end observables
+begin functions
+	S_5() =  if(((0)&&(ModelValue_30)&&time()>5760&&time()<6120),(ModelValue_28/ModelValue_30),(0))
+	S_1() =  if(((0)&&(ModelValue_30)&&time()<360),(S_dose/ModelValue_30),(0))
+	S_4() =  if(((0)&&(ModelValue_30)&&time()>4320&&time()<4680),(ModelValue_28/ModelValue_30),(0))
+	S_2() =  if(((0)&&(ModelValue_30)&&time()>1440&&time()<1800),(ModelValue_28/ModelValue_30),(0))
+	S_3() =  if(((0)&&(ModelValue_30)&&time()>2880&&time()<3240),(ModelValue_28/ModelValue_30),(0))
+	S() = S_1 + S_2 + S_3 + S_4 + S_5
+	C_e7() = C/10000000
+	T_e9() = T/100000000
+	fRate0() = T*r
+	fRate0m() = T*r/K
+	fRate1() = C*M1*T*a_T*(a_T_beta + e_T_beta*(1 - a_T_beta)/(F_beta + e_T_beta))/((M1 + e_T)*(T + h_T))
+	fRate2() = M2*T*a_C_M2*(a_C_beta + e_C_beta*(1 - a_C_beta)/(F_beta + e_C_beta))/(M2*T + e_C_M2)
+	fRate6() = T*a_T_beta
+	fRate8() = C*a_gamma_C
+end functions
+begin reaction rules
+	Tumor_Growth: 0  <-> T() fRate0(),fRate0m()
+	Tumor_Elimination_CTL_reactants_0: 0  -> T() -1*(fRate1()) #Modifiers(M1, C, F_beta)
+	CTL_Recruitment_products_0: 0  -> C() fRate2() #Modifiers(M2, T, F_beta)
+	CTL_Death: C() -> 0  mu_C
+	CTL_Infusion: 0  -> C() S
+	F_beta_Basal_Production: 0  -> F_beta() g_beta
+	F_beta_Tumor_Production: 0  -> F_beta() fRate6() #Modifiers(T)
+	F_beta_Degradation: F_beta() -> 0  mu_beta
+	F_gamma_CTL_Production: 0  -> F_gamma() fRate8() #Modifiers(C)
+	F_gamma_Degradation: F_gamma() -> 0  mu_gamma
+	M1_Receptor_Expression_Basal: 0  -> M1() g_M1
+	M1_Expression_Stimulated: 0  -> M1() r12_v
+	M1_Degradation: M1() -> 0  mu_M1
+	M2_Production: 0  -> M2() r14_v
+	M2_Degradation: M2() -> 0  mu_M2
+end reaction rules
+end model

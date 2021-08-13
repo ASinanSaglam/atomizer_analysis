@@ -400,8 +400,9 @@ class AtomizerAnalyzer:
                 struct_rat = float(sdo.getvalue().split(":")[-1].strip())
             except ValueError as e:
                 struct_rat = 0.0
-            self.database.set_trans_struct_rat(test_no, struct_rat)
-            self.database.set_trans_log(test_no, sde.getvalue())
+            if atomize:
+                self.database.set_trans_struct_rat(test_no, struct_rat)
+                self.database.set_trans_log(test_no, sde.getvalue())
             # now we can update the database too
             if atomize:
                 self.database.set_bngl_atom(test_no, rarray.finalString)
@@ -445,9 +446,20 @@ class AtomizerAnalyzer:
         return result, names
 
 if __name__ == "__main__":
+    # Initialize database, connect if exists
     a = AtomizerDatabase()
+    
+    # Create tables
+    # TODO: Need to create tables if need be
+    
+    # Get models, if we don't have them
     # a.get_models() # only run when you don't have models setup already, takes a while
+    
+    # Initialize analyzer tool    
     aa = AtomizerAnalyzer(a, copasi_path="/home/monoid/apps/copasi/4.27/bin/CopasiSE")
+    
+    ## ATOMIZED TRANSLATION
+    # these are atomized translation problems
     known_translation_issues = [599, # key error "C4Beii"
         480, # key error "TotalDC"
         749, # key error "0"
@@ -460,15 +472,31 @@ if __name__ == "__main__":
     too_much_memory = [542,554,703]
     doesnt_translate = [70,183,247,255,426]
     too_much = too_long + too_much_memory + doesnt_translate
+    
+    ## FLAT TRANSLATION
+    # if we have problems in flat translations add here
+    # fails: 480, 607, 610, 649, 691, 694, 766, 789, 811,
+    # 983, 992, 993
+    
+    ## MAIN TRANSLATION LOOP
+    # for i in range(1,aa.database.current_max_models+1):
+    #     print(f"Working on translating model: {i}")
+    #     if i in too_much:
+    #         aa.database.set_trans_status(i, aa.database.TRANSLATION_MAJOR_ERROR)
+    #         continue
+    #     # select the type of translation here
+    #     translation = aa.translate(i, overwrite=False, atomize=False)
+    #     if translation is None:
+    #         print(f"We failed translating model: {i}")
+    
+    ## MAIN VALIDATION LOOP
     for i in range(1,aa.database.current_max_models+1):
-        print(f"Working on model: {i}")
-        if i in too_much:
-            aa.database.set_trans_status(i, aa.database.TRANSLATION_MAJOR_ERROR)
-            continue
-        translation = aa.translate(i, overwrite=True)
-        # translation = aa.translate(i, overwrite=False)
-        if translation is None:
-            print(f"We failed model: {i}")
+        print(f"Working on validating model: {i}")
+        # 
+        result = None
+        #
+        if result is None:
+            print(f"We failed translating model: {i}")
 
 
 #     def run_test_data(self, test_no, t_end=1000, n_steps=200):

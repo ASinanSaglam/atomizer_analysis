@@ -1,0 +1,144 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000226', 'http://identifiers.org/biomodels.db/MODEL7743386835']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/18854041']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/BIOMD0000000140', 'http://identifiers.org/pubmed/15094015', 'http://identifiers.org/biomodels.db/BIOMD0000000139']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10090']
+#@BQB_IS_PART_OF:['http://identifiers.org/kegg.pathway/mmu04660']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0007249']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 24 molecules and 24 reactions. The translated model has 20 molecules and 31 rules'
+###
+begin model
+begin parameters
+	k1 0.0025
+	k2 0.000125
+	k3 2.5e-06
+	k4 0.1
+	k5 0.0015
+	k6 0.000125
+	k7 0.2
+	k8 0.1
+	k9 1.0
+	k10 0.1
+	k11 0.000125
+	k12 2e-05
+	kf13 18.4
+	kf14 18.4
+	kf15 0.0025
+	k16 0.5
+	k17 0.0004
+	k18 0.0003
+	k20 5e-07
+	k21 0.0001
+	k22 0.5
+	kf23 0.001
+	kr23 0.0005
+	k27 0.0004
+	kf28 0.01
+	k26 5e-07
+	kr13 0
+	kr14 0
+	kr15 0
+	k19 0
+	kr28 0
+end parameters
+begin compartments
+	#volume units: L
+	default 3 1.0
+	c2 3 1.0 #nucleus
+end compartments
+begin molecule types
+	sa20_degraded()
+	IKKa_IKBa()
+	NFkB_IkB_alpha()
+	sa97_degraded()
+	sa19_degraded()
+	IkB_alpha()
+	NFkB()
+	NFkB_Ikb_alpha_IKKa()
+	sa13_degraded()
+	sa96_degraded()
+	mRNAIKBA()
+	IKKa()
+	mRNAA20()
+	sa12_degraded()
+	IKKi()
+	IKBA()
+	A20()
+	IKKn()
+	sa444_degraded()
+	IKK()
+end molecule types
+begin seed species
+	@default:NFkB_IkB_alpha() 0.06 #NFkB_IkB_alpha #s135
+end seed species
+begin observables
+	Species IKBA_c2 @c2:IKBA() #IKBA
+	Species sa13_degraded_default @default:sa13_degraded() #sa13_degraded
+	Species sa12_degraded_default @default:sa12_degraded() #sa12_degraded
+	Species mRNAIKBA_default @default:mRNAIKBA() #mRNAIKBA
+	Species A20_c2 @c2:A20() #A20
+	Species mRNAA20_default @default:mRNAA20() #mRNAA20
+	Species A20_default @default:A20() #A20
+	Species sa444_degraded_default @default:sa444_degraded() #sa444_degraded
+	Species IKKi_default @default:IKKi() #IKKi
+	Species sa19_degraded_default @default:sa19_degraded() #sa19_degraded
+	Species IKKa_default @default:IKKa() #IKKa
+	Species IKKn_default @default:IKKn() #IKKn
+	Species sa20_degraded_default @default:sa20_degraded() #sa20_degraded
+	Species NFkB_IkB_alpha_default @default:NFkB_IkB_alpha() #NFkB:IkB_alpha
+	Species IKKa_IKBa_default @default:IKKa_IKBa() #IKKa/IKBa
+	Species IKK_c2 @c2:IKK() #IKK
+	Species NFkB_Ikb_alpha_IKKa_default @default:NFkB_Ikb_alpha_IKKa() #NFkB/Ikb_alpha/IKKa
+	Species sa96_degraded_default @default:sa96_degraded() #sa96_degraded
+	Species sa97_degraded_default @default:sa97_degraded() #sa97_degraded
+	Species NFkB_IkB_alpha_c2 @c2:NFkB_IkB_alpha() #NFkB/IkB_alpha
+	Species IkB_alpha_default @default:IkB_alpha() #IkB_alpha
+	Species NFkB_default @default:NFkB() #NFkB
+	Species NFkB_c2 @c2:NFkB() #NFkB
+	Species IkB_alpha_c2 @c2:IkB_alpha() #IkB_alpha
+end observables
+begin functions
+	fRate0() = NFkB_c2*k26
+	fRate4() = NFkB_c2*k20 + k19
+	fRate14() = A20_default*IKKa_default*k4 + IKKa_default*k5
+	fRate15() = k3
+	fRate18() = -NFkB_c2*kr15 + NFkB_default*kf15
+	fRate19() = NFkB_IkB_alpha_c2*kf28 - NFkB_IkB_alpha_default*kr28
+	fRate23() = -IkB_alpha_c2*kr23 + IkB_alpha_default*kf23
+end functions
+begin reaction rules
+	re44_reactants_0: 0  -> IKBA()@c2 -1*(fRate0()) #Modifiers(s164)
+	re44_products_0: 0  -> mRNAIKBA()@default fRate0() #Modifiers(s164)
+	re45: mRNAIKBA()@default -> sa12_degraded()@default k27
+	re46: IkB_alpha()@default -> sa13_degraded()@default k21
+	re47: mRNAIKBA()@default -> IkB_alpha()@default + mRNAIKBA()@default k22
+	re48_reactants_0: 0  -> A20()@c2 -1*(fRate4()) #Modifiers(s164)
+	re48_products_0: 0  -> mRNAA20()@default fRate4() #Modifiers(s164)
+	re49: IKKn()@default -> IKKa()@default k1
+	re52: NFkB_IkB_alpha()@default -> NFkB()@default k12 #Modifiers(s132)
+	re53: IKKn()@default -> sa19_degraded()@default k2
+	re56: IKKa()@default -> sa20_degraded()@default k6
+	re57: IKKa_IKBa()@default -> IKKa()@default k8
+	re58: IKKa()@default + NFkB_IkB_alpha()@default -> NFkB_Ikb_alpha_IKKa()@default k9
+	re59: NFkB_Ikb_alpha_IKKa()@default -> NFkB()@default + IKKa()@default k10
+	re60: IKKi()@default -> sa444_degraded()@default k11
+	re61: mRNAA20()@default -> A20()@default + mRNAA20()@default k16
+	re63_reactants_0: 0  -> IKKa()@default -1*(fRate14()) #Modifiers(s128)
+	re63_products_0: 0  -> IKKi()@default fRate14() #Modifiers(s128)
+	re64_reactants_0: 0  -> IKK()@c2 -1*(fRate15())
+	re64_products_0: 0  -> IKKn()@default fRate15()
+	re65: IkB_alpha()@default + NFkB()@default <-> NFkB_IkB_alpha()@default kf13,kr13
+	re66: IkB_alpha()@default + IKKa()@default -> IKKa_IKBa()@default k7
+	re67_reactants_0: 0  -> NFkB()@default -1*(fRate18())
+	re67_products_0: 0  -> NFkB()@c2 5.0*fRate18()
+	re68_reactants_0: 0  -> NFkB_IkB_alpha()@c2 -1*5.0*(fRate19())
+	re68_products_0: 0  -> NFkB_IkB_alpha()@default fRate19()
+	re69: NFkB()@c2 + IkB_alpha()@c2 <-> NFkB_IkB_alpha()@c2 kf14,kr14
+	re70: mRNAA20()@default -> sa96_degraded()@default k17
+	re71: A20()@default -> sa97_degraded()@default k18
+	re72_reactants_0: 0  -> IkB_alpha()@default -1*(fRate23())
+	re72_products_0: 0  -> IkB_alpha()@c2 5.0*fRate23()
+end reaction rules
+end model

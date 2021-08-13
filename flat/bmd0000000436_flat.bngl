@@ -1,0 +1,159 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000436', 'http://identifiers.org/biomodels.db/MODEL1204240001']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/19486676']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/obo.pw/PW:0000565', 'http://identifiers.org/obo.go/GO:0006690']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/40674']
+#@creatorEmail:'rbyrnes@sdsc.edu'
+#@creatorName:'Robert Byrnes'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 13 molecules and 22 reactions. The translated model has 12 molecules and 24 rules'
+###
+begin model
+begin parameters
+	k1 355.637 #units:perh
+	k2 1e-15 #units:perh
+	k3 1e-15 #units:perh
+	k4 1e-15 #units:perh
+	k5 1e-15 #units:ugDNAperh
+	k6 0.33 #units:perh
+	k7 1e-15 #units:perh
+	k8 0.007 #units:perh
+	k9 0.187 #units:perh
+	k10 0.024 #units:ugDNAperh
+	k11 0.111 #units:perh
+	k12 0.098 #units:perh
+	k13 0.204 #units:perh
+	k14 1e-15 #units:perh
+	k15 0.061 #units:perh
+	k16 1e-15 #units:perh
+	k17 3.116 #units:perh
+	k18 0.054 #units:perh
+	k19 0.029 #units:perh
+	k20 0.014 #units:perh
+	k21 0.034 #units:perh
+	k22 0.116 #units:perh
+	DNA 1.0 #units:ug
+	DGperDNA 1.0 #units:pmolperugDNA
+	onepmol 1.0 #units:pmol
+	t1 0.5 #units:time
+	t2 1.0 #units:time
+	t3 2.0 #units:time
+	t4 4.0 #units:time
+	t5 8.0 #units:time
+	t6 12.0 #units:time
+	LPSslopezero 2.0 #units:perh
+	LPSslope1 -0.6667 #units:perh
+	LPSint1 1.3335 #units:dimensionless
+	DGint 1.0 #units:dimensionless
+	DGslope 1.0 #units:perh
+	DGslopezero 0.3014 #units:perh
+	DGslope1 -0.1572 #units:perh
+	DGslope2 0.0439 #units:perh
+	DGslope3 -0.0913 #units:perh
+	DGslope4 0.0976 #units:perh
+	DGslope5 0.0711 #units:perh
+	DGslope6 0.0846 #units:perh
+	DGintzero 1.0 #units:dimensionless
+	DGint1 1.2292 #units:dimensionless
+	DGint2 1.0282 #units:dimensionless
+	DGint3 1.2987 #units:dimensionless
+	DGint4 0.543 #units:dimensionless
+	DGint5 0.7549 #units:dimensionless
+	DGint6 0.5927 #units:dimensionless
+	GPChoint 315.3137 #units:pmol
+	GPChoslope -158.43 #units:pmolperh
+	GPChoslopezero -158.43 #units:pmolperh
+	GPChoslope1 112.28 #units:pmolperh
+	GPChoslope2 24.31 #units:pmolperh
+	GPChoslope3 -39.93 #units:pmolperh
+	GPChoslope4 5.48 #units:pmolperh
+	GPChoslope5 27.08 #units:pmolperh
+	GPChoslope6 -4.874 #units:pmolperh
+	GPChointzero 315.3137 #units:pmol
+	GPChoint1 179.96 #units:pmol
+	GPChoint2 267.93 #units:pmol
+	GPChoint3 396.41 #units:pmol
+	GPChoint4 214.77 #units:pmol
+	GPChoint5 41.93 #units:pmol
+	GPChoint6 425.43 #units:pmol
+	t0 0
+	zero 0
+	LPSslope 0
+	LPSint 0
+	LPSslope3 0
+	LPSintzero 0
+	LPSint3 0
+	LPS 0.5
+end parameters
+begin molecule types
+	PGF2a()
+	FA()
+	PGH2()
+	dPGD2()
+	PGE2()
+	PGJ2()
+	PGD2()
+	Arachidonicacid()
+	dPGJ2()
+	HETE()
+	GPCho()
+	DG()
+end molecule types
+begin seed species
+	$FA() 1.0 #FA #FA
+	Arachidonicacid() 25.0 #Arachidonicacid #AA
+	GPCho() 1.0 #GPCho #GPCho
+end seed species
+begin observables
+	Species FA FA() #FA
+	Species HETE HETE() #HETE
+	Species PGH2 PGH2() #PGH2
+	Species PGE2 PGE2() #PGE2
+	Species PGF2a PGF2a() #PGF2a
+	Species PGD2 PGD2() #PGD2
+	Species PGJ2 PGJ2() #PGJ2
+	Species dPGJ2 dPGJ2() #dPGJ2
+	Species Arachidonicacid Arachidonicacid() #Arachidonic acid
+	Species DG DG() #DG
+	Species GPCho GPCho() #GPCho
+	Species dPGD2 dPGD2() #dPGD2
+end observables
+begin functions
+	timevalue() = t0 + time()
+	GPChoratio() = GPChoint + GPChoslope*timevalue/GPChointzero
+	DGactivity() = DGint + DGslope*timevalue
+	LPSactivity() = LPSint + LPSslope*timevalue
+	fRate1() = DGactivity*DGperDNA*DNA*k3
+	fRate2() = GPChoratio*k7
+	fRate3() = DGactivity*GPChoratio*k5/DNA
+	fRate5() = DGactivity*k10/DNA
+	fRate19() = LPSactivity*k1*onepmol
+	fRate20() = GPChoratio*LPSactivity*k6
+	fRate21() = LPSactivity*k12
+end functions
+begin reaction rules
+	r2: FA() -> Arachidonicacid() k2
+	r3_reactants_0: 0  -> DG() -1*(fRate1())
+	r3_products_0: 0  -> Arachidonicacid() fRate1()
+	r7: GPCho() -> Arachidonicacid() fRate2()
+	r5: GPCho() -> Arachidonicacid() fRate3() #Modifiers(DG)
+	r11: Arachidonicacid() -> PGH2() k11 #Modifiers(LPS)
+	r10: Arachidonicacid() -> PGH2() fRate5() #Modifiers(DG)
+	r8: Arachidonicacid() -> HETE() k8
+	r4: Arachidonicacid() -> 0  k4
+	r9: HETE() -> 0  k9
+	r13: PGH2() -> PGE2() k13
+	r14: PGE2() -> 0  k14
+	r15: PGH2() -> PGF2a() k15
+	r16: PGF2a() -> 0  k16
+	r17: PGH2() -> PGD2() k17
+	r18: PGD2() -> PGJ2() k18
+	r19: PGD2() -> dPGD2() k19
+	r20: dPGD2() -> 0  k20
+	r21: PGJ2() -> dPGJ2() k21
+	r22: dPGJ2() -> 0  k22
+	r1_reactants_0: 0  -> FA() -1*(fRate19()) #Modifiers(LPS)
+	r1_products_0: 0  -> Arachidonicacid() fRate19() #Modifiers(LPS)
+	r6: GPCho() -> Arachidonicacid() fRate20() #Modifiers(LPS)
+	r12: Arachidonicacid() -> PGH2() fRate21()
+end reaction rules
+end model

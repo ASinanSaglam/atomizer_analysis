@@ -1,0 +1,98 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/31539528']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000839', 'http://identifiers.org/biomodels.db/MODEL1910290001']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/go/GO:0007623', 'http://identifiers.org/mamo/MAMO_0000046']
+#@creatorEmail:'johannes.p.meyer@gmail.com'
+#@creatorName:'Meyer Johannes'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 8 molecules and 20 reactions. The translated model has 8 molecules and 20 rules'
+###
+begin model
+begin parameters
+	V_R 44.4
+	k_R 3.54
+	k_R_r 80.1
+	V_E 30.3
+	k_E 214.0
+	k_E_r 1.24
+	V_D 202.0
+	k_D 5.32
+	k_D_r 94.7
+	gamma_ror 2.55
+	gamma_rev 0.241
+	gamma_p 0.844
+	gamma_c 2.34
+	gamma_db 0.156
+	gamma_E4 0.295
+	gamma_pc 0.191
+	gamma_cp 0.141
+	gamma_bp 2.58
+	ModelValue_6 (202.0)
+	ModelValue_3 (30.3)
+	ModelValue_0 (44.4)
+	ModelValue_8 (94.7)
+	ModelValue_4 (214.0)
+	ModelValue_5 (1.24)
+	ModelValue_1 (3.54)
+	ModelValue_2 (80.1)
+end parameters
+begin molecule types
+	CRY()
+	BMAL1()
+	ROR()
+	DBP()
+	REV()
+	E4BP4()
+	PERCRY()
+	PER()
+end molecule types
+begin seed species
+	BMAL1() 6.022e+23 # 1.0mol/L * 6.022e23/mol *1.0L #BMAL1 #BMAL1
+	ROR() 6.022e+23 #original 1.0substance/volume #ROR #ROR
+	REV() 6.6242e+25 #original 110.0substance/volume #REV #REV
+	DBP() 6.022e+23 #original 1.0substance/volume #DBP #DBP
+	E4BP4() 4.8176e+25 #original 80.0substance/volume #E4BP4 #E4BP4
+	CRY() 6.022e+23 #original 1.0substance/volume #CRY #CRY
+	PER() 1.5055e+25 #original 25.0substance/volume #PER #PER
+end seed species
+begin observables
+	Species BMAL1 BMAL1() #BMAL1
+	Species ROR ROR() #ROR
+	Species REV REV() #REV
+	Species DBP DBP() #DBP
+	Species E4BP4 E4BP4() #E4BP4
+	Species CRY CRY() #CRY
+	Species PER PER() #PER
+	Species PERCRY PERCRY() #PERCRY
+end observables
+begin functions
+	R_box() = ModelValue_0*ModelValue_2^2*ROR/((ModelValue_1 + ROR)*(ModelValue_2^2 + REV^2))
+	E_box() = BMAL1*ModelValue_3/(BMAL1*CRY*ModelValue_5 + BMAL1 + ModelValue_4)
+	D_box() = DBP*ModelValue_6*ModelValue_8/((DBP + k_D)*(E4BP4 + ModelValue_8))
+	fRate1() = PERCRY*gamma_bp
+	fRate5() = 2.0*R_box
+	fRate6() = 2.0*E_box
+	fRate19() = BMAL1*gamma_bp
+end functions
+begin reaction rules
+	v4_1: 0  -> BMAL1() R_box
+	v4_2: BMAL1() -> 0  fRate1() #Modifiers(PERCRY)
+	v5_1: 0  -> ROR() E_box
+	v5_2: 0  -> ROR() R_box
+	v5_3: ROR() -> 0  gamma_ror
+	v8_1: 0  -> E4BP4() + CRY() fRate5()
+	v6_1: 0  -> REV() fRate6()
+	v6_2: 0  -> REV() D_box
+	v6_3: REV() -> 0  gamma_rev
+	v7_1: 0  -> DBP() E_box
+	v7_2: DBP() -> 0  gamma_db
+	v8_2: E4BP4() -> 0  gamma_E4
+	v9_1: 0  -> CRY() E_box
+	v9_3: PER() + CRY() -> PERCRY() gamma_pc
+	v9_4: PERCRY() -> PER() + CRY() gamma_cp
+	v9_5: CRY() -> 0  gamma_c
+	v10_1: 0  -> PER() E_box
+	v10_2: 0  -> PER() D_box
+	v10_5: PER() -> 0  gamma_p
+	v11_3: PERCRY() -> 0  fRate19() #Modifiers(BMAL1)
+end reaction rules
+end model

@@ -1,0 +1,85 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/26578352']
+#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0005655']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10095']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/go/GO:0072539', 'http://identifiers.org/go/GO:0002250', 'http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/go/GO:0019221']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000001004', 'http://identifiers.org/biomodels.db/MODEL2102260001']
+#@creatorEmail:'tiwarik@babraham.ac.uk'
+#@creatorName:'Tiwari Krishna'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 10 molecules and 18 reactions. The translated model has 10 molecules and 18 rules'
+###
+begin model
+begin parameters
+	r1_k1 0.062700
+	r2_v 1.022200
+	r3_k1 14.814800
+	r4_k1 2.204700
+	r5_k1 0.084600
+	r6_k1 16.364700
+	r7_k1 0.022100
+	r8_k1 2.789300
+	r9_k1 19.374300
+	r10_k1 773.782000
+	r11_k1 0.047900
+	r12_v 0.000000
+	r13_k1 0.073400
+	r14_k1 7.423700
+	r15_k1 0.809200
+	r16_k1 0.005300
+	r17_k1 1.320500
+	r18_k1 4.967000
+end parameters
+begin molecule types
+	TGFb_ext()
+	FOXP3_mRNA()
+	STAT3()
+	IL6_ext()
+	FOXP3_act()
+	RORgt_mRNA()
+	IL6_int()
+	STAT3_act()
+	STAT3_mRNA()
+	TGFb_int()
+end molecule types
+begin seed species
+	IL6_ext() 6.022e+20 # (1.0 * 0.001)mol/L * 6.022e23/mol *1.0L #IL6_ext #IL6ext
+	STAT3_mRNA() 2.7556672000000003e+20 #original 0.4576substance/volume  #STAT3_mRNA #STAT3mRNA
+	STAT3() 6.022e+20 #original 1.0substance/volume  #STAT3 #STAT3prot
+	TGFb_ext() 6.022e+20 #original 1.0substance/volume  #TGFb_ext #TGFbext
+	RORgt_mRNA() 1.56572e+18 #original 0.0026substance/volume  #RORgt_mRNA #RORgtmRNA
+	FOXP3_act() 6.022e+20 #original 1.0substance/volume  #FOXP3_act #FOXP3prot_star
+	FOXP3_mRNA() 8.7319e+19 #original 0.145substance/volume  #FOXP3_mRNA #FOXP3mRNA
+end seed species
+begin observables
+	Species IL6_ext IL6_ext() #IL6_ext
+	Species IL6_int IL6_int() #IL6_int
+	Species STAT3_mRNA STAT3_mRNA() #STAT3_mRNA
+	Species STAT3_act STAT3_act() #STAT3_act
+	Species STAT3 STAT3() #STAT3
+	Species TGFb_ext TGFb_ext() #TGFb_ext
+	Species TGFb_int TGFb_int() #TGFb_int
+	Species RORgt_mRNA RORgt_mRNA() #RORgt_mRNA
+	Species FOXP3_act FOXP3_act() #FOXP3_act
+	Species FOXP3_mRNA FOXP3_mRNA() #FOXP3_mRNA
+end observables
+begin reaction rules
+	IL6_conversion: IL6_ext() -> IL6_int() r1_k1
+	STAT3_basal_expression: 0  -> STAT3_mRNA() r2_v
+	STAT3_autoactivation: STAT3_act() -> STAT3_mRNA() + STAT3_act() r3_k1
+	STAT3_mRNA_degradation: STAT3_mRNA() -> 0  r4_k1
+	STAT3_translation: STAT3_mRNA() -> STAT3_mRNA() + STAT3() r5_k1
+	STAT3_activation: STAT3() + IL6_int() -> STAT3_act() + IL6_int() r6_k1
+	STAT3_protein_degradation: STAT3() -> 0  r7_k1
+	STAT3_phosphoprotein_degradation: STAT3_act() -> 0  r8_k1
+	TGFb_conversion: TGFb_ext() -> TGFb_int() r9_k1
+	RORgt_inhibition_by_FOXP3: RORgt_mRNA() + FOXP3_act() -> FOXP3_act() r10_k1
+	RORgt_degradation: RORgt_mRNA() -> 0  r11_k1
+	FOXP3_basal_expression: 0  -> FOXP3_mRNA() r12_v
+	FOXP3_activation_by_TGFb: TGFb_int() -> FOXP3_mRNA() + TGFb_int() r13_k1
+	FOXP3_inhibition_by_STAT3: FOXP3_mRNA() + STAT3_act() -> STAT3_act() r14_k1
+	FOXP3_mRNA_degradation: FOXP3_mRNA() -> 0  r15_k1
+	FOXP3_translation_activation: FOXP3_mRNA() -> FOXP3_mRNA() + FOXP3_act() r16_k1
+	FOXP3_protein_degradation: FOXP3_act() -> 0  r17_k1
+	RORgt_activation_by_TGFb_and_STAT3: TGFb_int() + STAT3_act() -> RORgt_mRNA() + TGFb_int() + STAT3_act() r18_k1
+end reaction rules
+end model

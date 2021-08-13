@@ -1,0 +1,258 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1505190001', 'http://identifiers.org/biomodels.db/BIOMD0000000594']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/26264748']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:162']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000567']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0007173']
+#@creatorEmail:'fabrizio.capuani@ifom.eu'
+#@creatorName:'Capuani Fabrizio'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 33 molecules and 120 reactions. The translated model has 29 molecules and 120 rules'
+###
+begin model
+begin parameters
+	RT 0.833
+	CblT 0.01464
+	Grb2T 3.32
+	kptp 0.016
+	kkinbase 0.0759155
+	nH 1.13
+	xT 4.59181
+	K45 0.201361
+	Kcg 0.006356
+	ku45 0.001011
+	kucg 0.309271
+	PYMax 2.279493223
+	UbMax 0.014306
+	floc 20000.0
+	CblWT 0.01464
+	CblFactor 1.0
+	Ltot 0
+end parameters
+begin molecule types
+	EGFR_01UG()
+	EGFR_10LU()
+	EGFR_11CG()
+	EGFR_11UG()
+	EGFR_02UU()
+	EGFR_12LU()
+	EGFR_11UU()
+	Grb2()
+	EGFR_11LU()
+	EGFR_10CU()
+	EGFR_12UG()
+	EGFR_01UU()
+	EGFR_11CU()
+	EGFR_11UL()
+	EGFR_00UU()
+	EGFR_02UL()
+	EGFR_12CG()
+	CG()
+	EGFR_12UL()
+	EGFR_12CC()
+	EGFR_02UG()
+	Cbl()
+	EGFR_11LG()
+	EGFR_12UU()
+	EGFR_10UU()
+	EGFR_12LG()
+	EGFR_01UL()
+	EGFR_11CC()
+	EGFR_12CU()
+end molecule types
+begin seed species
+	Cbl() 1.6920334542073352e+19 # 2.80975332814237e-05mol/L * 6.022e23/mol *1.0L #Cbl #Cbl
+	Grb2() 1.9905047123345414e+24 #original 3.30538809753328mol/L #Grb2 #Grb2
+	CG() 8.799287665457942e+21 #original 0.0146119024667186mol/L #CG #CG
+	EGFR_00UU() 5.016326e+23 #original 0.833mol/L #EGFR_00UU #EGFR_00UU
+end seed species
+begin observables
+	Species Cbl Cbl() #Cbl
+	Species Grb2 Grb2() #Grb2
+	Species CG CG() #CG
+	Species EGFR_00UU EGFR_00UU() #EGFR_00UU
+	Species EGFR_10UU EGFR_10UU() #EGFR_10UU
+	Species EGFR_10CU EGFR_10CU() #EGFR_10CU
+	Species EGFR_10LU EGFR_10LU() #EGFR_10LU
+	Species EGFR_01UU EGFR_01UU() #EGFR_01UU
+	Species EGFR_01UG EGFR_01UG() #EGFR_01UG
+	Species EGFR_01UL EGFR_01UL() #EGFR_01UL
+	Species EGFR_11UU EGFR_11UU() #EGFR_11UU
+	Species EGFR_11CU EGFR_11CU() #EGFR_11CU
+	Species EGFR_11LU EGFR_11LU() #EGFR_11LU
+	Species EGFR_11UG EGFR_11UG() #EGFR_11UG
+	Species EGFR_11UL EGFR_11UL() #EGFR_11UL
+	Species EGFR_11CG EGFR_11CG() #EGFR_11CG
+	Species EGFR_11CC EGFR_11CC() #EGFR_11CC
+	Species EGFR_11LG EGFR_11LG() #EGFR_11LG
+	Species EGFR_02UU EGFR_02UU() #EGFR_02UU
+	Species EGFR_02UG EGFR_02UG() #EGFR_02UG
+	Species EGFR_02UL EGFR_02UL() #EGFR_02UL
+	Species EGFR_12UU EGFR_12UU() #EGFR_12UU
+	Species EGFR_12CU EGFR_12CU() #EGFR_12CU
+	Species EGFR_12LU EGFR_12LU() #EGFR_12LU
+	Species EGFR_12UG EGFR_12UG() #EGFR_12UG
+	Species EGFR_12UL EGFR_12UL() #EGFR_12UL
+	Species EGFR_12CG EGFR_12CG() #EGFR_12CG
+	Species EGFR_12CC EGFR_12CC() #EGFR_12CC
+	Species EGFR_12LG EGFR_12LG() #EGFR_12LG
+end observables
+begin functions
+	KcgP() = Kcg/floc
+	kucgM() = kucg
+	kbcgP() = kucgM/KcgP
+	ku45M() = ku45
+	K45P() = K45/floc
+	kb45P() = ku45M/K45P
+	Ub_ar() = EGFR_10CU + EGFR_10LU + EGFR_11CC + EGFR_11CG + EGFR_11CU + EGFR_11LG + EGFR_11LU + EGFR_12CC + EGFR_12CG + EGFR_12CU + EGFR_12LG + EGFR_12LU
+	UbNorm_ar() = Ub_ar/(CblFactor*UbMax)
+	Tyr_ar() = EGFR_01UG + EGFR_01UL + EGFR_01UU + 2*EGFR_02UG + 2*EGFR_02UL + 2*EGFR_02UU + EGFR_10CU + EGFR_10LU + EGFR_10UU + 2*EGFR_11CC + 2*EGFR_11CG + 2*EGFR_11CU + 2*EGFR_11LG + 2*EGFR_11LU + 2*EGFR_11UG + 2*EGFR_11UL + 2*EGFR_11UU + 3*EGFR_12CC + 3*EGFR_12CG + 3*EGFR_12CU + 3*EGFR_12LG + 3*EGFR_12LU + 3*EGFR_12UG + 3*EGFR_12UL + 3*EGFR_12UU
+	TyrNorm_ar() = Tyr_ar/PYMax
+	ku68M() = ku45M
+	kb68P() = kb45P
+	kb45() = ku45/K45
+	kb68() = kb45
+	kkin() = Ltot^nH*kkinbase/(Ltot^nH + xT^nH)
+	kkin68() = kkin
+	kbcg() = kucg/Kcg
+	ku68() = ku45
+	kptp68() = kptp
+	fRate8() = 2.0*kptp68
+	fRate12() = 2.0*kptp68
+	fRate13() = 2.0*kptp68
+	fRate14() = 2.0*kptp68
+	fRate23() = 2.0*kkin68
+	fRate24() = 2.0*kkin68
+	fRate25() = 2.0*kkin68
+	fRate26() = 2.0*kkin68
+	fRate86() = 2.0*kb68
+	fRate88() = 2.0*kb68
+	fRate96() = 2.0*kb68
+	fRate98() = 2.0*kb68
+	fRate102() = 2.0*kb68
+	fRate104() = 2.0*kb68
+	fRate106() = 2.0*kb68P
+end functions
+begin reaction rules
+	r1: EGFR_10UU() -> EGFR_00UU() kptp #Modifiers(EGFR_10UU)
+	r2: EGFR_01UU() -> EGFR_00UU() kptp68 #Modifiers(EGFR_01UU)
+	r3: EGFR_11UU() -> EGFR_01UU() kptp #Modifiers(EGFR_11UU)
+	r4: EGFR_11UU() -> EGFR_10UU() kptp68 #Modifiers(EGFR_11UU)
+	r5: EGFR_11CU() -> EGFR_10CU() kptp68 #Modifiers(EGFR_11CU)
+	r6: EGFR_11LU() -> EGFR_10LU() kptp68 #Modifiers(EGFR_11LU)
+	r7: EGFR_11UG() -> EGFR_01UG() kptp #Modifiers(EGFR_11UG)
+	r8: EGFR_11UL() -> EGFR_01UL() kptp #Modifiers(EGFR_11UL)
+	r9: EGFR_02UU() -> EGFR_01UU() fRate8() #Modifiers(EGFR_02UU)
+	r10: EGFR_02UG() -> EGFR_01UG() kptp68 #Modifiers(EGFR_02UG)
+	r11: EGFR_02UL() -> EGFR_01UL() kptp68 #Modifiers(EGFR_02UL)
+	r12: EGFR_12UU() -> EGFR_02UU() kptp #Modifiers(EGFR_12UU)
+	r13: EGFR_12UU() -> EGFR_11UU() fRate12() #Modifiers(EGFR_12UU)
+	r14: EGFR_12CU() -> EGFR_11CU() fRate13() #Modifiers(EGFR_12CU)
+	r15: EGFR_12LU() -> EGFR_11LU() fRate14() #Modifiers(EGFR_12LU)
+	r16: EGFR_12UG() -> EGFR_02UG() kptp #Modifiers(EGFR_12UG)
+	r17: EGFR_12UG() -> EGFR_11UG() kptp68 #Modifiers(EGFR_12UG)
+	r18: EGFR_12UL() -> EGFR_02UL() kptp #Modifiers(EGFR_12UL)
+	r19: EGFR_12UL() -> EGFR_11UL() kptp68 #Modifiers(EGFR_12UL)
+	r20: EGFR_12CG() -> EGFR_11CG() kptp68 #Modifiers(EGFR_12CG)
+	r21: EGFR_12CC() -> EGFR_11CC() kptp68 #Modifiers(EGFR_12CC)
+	r22: EGFR_12LG() -> EGFR_11LG() kptp68 #Modifiers(EGFR_12LG)
+	r23: EGFR_00UU() -> EGFR_10UU() kkin #Modifiers(EGFR_00UU)
+	r24: EGFR_00UU() -> EGFR_01UU() fRate23() #Modifiers(EGFR_00UU)
+	r25: EGFR_10UU() -> EGFR_11UU() fRate24() #Modifiers(EGFR_10UU)
+	r26: EGFR_10CU() -> EGFR_11CU() fRate25() #Modifiers(EGFR_10CU)
+	r27: EGFR_10LU() -> EGFR_11LU() fRate26() #Modifiers(EGFR_10LU)
+	r28: EGFR_01UU() -> EGFR_11UU() kkin #Modifiers(EGFR_01UU)
+	r29: EGFR_01UU() -> EGFR_02UU() kkin68 #Modifiers(EGFR_01UU)
+	r30: EGFR_01UG() -> EGFR_11UG() kkin #Modifiers(EGFR_01UG)
+	r31: EGFR_01UG() -> EGFR_02UG() kkin68 #Modifiers(EGFR_01UG)
+	r32: EGFR_01UL() -> EGFR_11UL() kkin #Modifiers(EGFR_01UL)
+	r33: EGFR_01UL() -> EGFR_02UL() kkin68 #Modifiers(EGFR_01UL)
+	r34: EGFR_11UU() -> EGFR_12UU() kkin68 #Modifiers(EGFR_11UU)
+	r35: EGFR_11CU() -> EGFR_12CU() kkin68 #Modifiers(EGFR_11CU)
+	r36: EGFR_11LU() -> EGFR_12LU() kkin68 #Modifiers(EGFR_11LU)
+	r37: EGFR_11UG() -> EGFR_12UG() kkin68 #Modifiers(EGFR_11UG)
+	r38: EGFR_11UL() -> EGFR_12UL() kkin68 #Modifiers(EGFR_11UL)
+	r39: EGFR_11CG() -> EGFR_12CG() kkin68 #Modifiers(EGFR_11CG)
+	r40: EGFR_11CC() -> EGFR_12CC() kkin68 #Modifiers(EGFR_11CC)
+	r41: EGFR_11LG() -> EGFR_12LG() kkin68 #Modifiers(EGFR_11LG)
+	r42: EGFR_02UU() -> EGFR_12UU() kkin #Modifiers(EGFR_02UU)
+	r43: EGFR_02UG() -> EGFR_12UG() kkin #Modifiers(EGFR_02UG)
+	r44: EGFR_02UL() -> EGFR_12UL() kkin #Modifiers(EGFR_02UL)
+	r45: Cbl() + Grb2() -> CG() kbcg #Modifiers(Cbl, Grb2)
+	r46: CG() -> Cbl() + Grb2() kucg #Modifiers(CG)
+	r47: Cbl() + EGFR_10UU() -> EGFR_10CU() kb45 #Modifiers(Cbl, EGFR_10UU)
+	r48: EGFR_10CU() -> Cbl() + EGFR_10UU() ku45 #Modifiers(EGFR_10CU)
+	r49: CG() + EGFR_10UU() -> EGFR_10LU() kb45 #Modifiers(CG, EGFR_10UU)
+	r50: EGFR_10LU() -> CG() + EGFR_10UU() ku45 #Modifiers(EGFR_10LU)
+	r51: Grb2() + EGFR_10CU() -> EGFR_10LU() kbcg #Modifiers(Grb2, EGFR_10CU)
+	r52: EGFR_10LU() -> Grb2() + EGFR_10CU() kucg #Modifiers(EGFR_10LU)
+	r53: Grb2() + EGFR_01UU() -> EGFR_01UG() kb68 #Modifiers(Grb2, EGFR_01UU)
+	r54: EGFR_01UG() -> Grb2() + EGFR_01UU() ku68 #Modifiers(EGFR_01UG)
+	r55: CG() + EGFR_01UU() -> EGFR_01UL() kb68 #Modifiers(CG, EGFR_01UU)
+	r56: EGFR_01UL() -> CG() + EGFR_01UU() ku68 #Modifiers(EGFR_01UL)
+	r57: Cbl() + EGFR_01UG() -> EGFR_01UL() kbcg #Modifiers(Cbl, EGFR_01UG)
+	r58: EGFR_01UL() -> Cbl() + EGFR_01UG() kucg #Modifiers(EGFR_01UL)
+	r59: Cbl() + EGFR_11UU() -> EGFR_11CU() kb45 #Modifiers(Cbl, EGFR_11UU)
+	r60: EGFR_11CU() -> Cbl() + EGFR_11UU() ku45 #Modifiers(EGFR_11CU)
+	r61: CG() + EGFR_11UU() -> EGFR_11LU() kb45 #Modifiers(CG, EGFR_11UU)
+	r62: EGFR_11LU() -> CG() + EGFR_11UU() ku45 #Modifiers(EGFR_11LU)
+	r63: Grb2() + EGFR_11UU() -> EGFR_11UG() kb68 #Modifiers(Grb2, EGFR_11UU)
+	r64: EGFR_11UG() -> Grb2() + EGFR_11UU() ku68 #Modifiers(EGFR_11UG)
+	r65: CG() + EGFR_11UU() -> EGFR_11UL() kb68 #Modifiers(CG, EGFR_11UU)
+	r66: EGFR_11UL() -> CG() + EGFR_11UU() ku68 #Modifiers(EGFR_11UL)
+	r67: Grb2() + EGFR_11CU() -> EGFR_11LU() kbcg #Modifiers(Grb2, EGFR_11CU)
+	r68: EGFR_11LU() -> Grb2() + EGFR_11CU() kucg #Modifiers(EGFR_11LU)
+	r69: Grb2() + EGFR_11CU() -> EGFR_11CG() kb68 #Modifiers(Grb2, EGFR_11CU)
+	r70: EGFR_11CG() -> Grb2() + EGFR_11CU() ku68 #Modifiers(EGFR_11CG)
+	r71: Grb2() + EGFR_11LU() -> EGFR_11LG() kb68 #Modifiers(Grb2, EGFR_11LU)
+	r72: EGFR_11LG() -> Grb2() + EGFR_11LU() ku68 #Modifiers(EGFR_11LG)
+	r73: EGFR_11LU() -> EGFR_11CC() kb68P #Modifiers(EGFR_11LU)
+	r74: EGFR_11CC() -> EGFR_11LU() ku68M #Modifiers(EGFR_11CC)
+	r75: Cbl() + EGFR_11UG() -> EGFR_11CG() kb45 #Modifiers(Cbl, EGFR_11UG)
+	r76: EGFR_11CG() -> Cbl() + EGFR_11UG() ku45 #Modifiers(EGFR_11CG)
+	r77: CG() + EGFR_11UG() -> EGFR_11LG() kb45 #Modifiers(CG, EGFR_11UG)
+	r78: EGFR_11LG() -> CG() + EGFR_11UG() ku45 #Modifiers(EGFR_11LG)
+	r79: Cbl() + EGFR_11UG() -> EGFR_11UL() kbcg #Modifiers(Cbl, EGFR_11UG)
+	r80: EGFR_11UL() -> Cbl() + EGFR_11UG() kucg #Modifiers(EGFR_11UL)
+	r81: EGFR_11UL() -> EGFR_11CC() kb45P #Modifiers(EGFR_11UL)
+	r82: EGFR_11CC() -> EGFR_11UL() ku45M #Modifiers(EGFR_11CC)
+	r83: EGFR_11CG() -> EGFR_11CC() kbcgP #Modifiers(EGFR_11CG)
+	r84: EGFR_11CC() -> EGFR_11CG() kucgM #Modifiers(EGFR_11CC)
+	r85: Grb2() + EGFR_11CG() -> EGFR_11LG() kbcg #Modifiers(Grb2, EGFR_11CG)
+	r86: EGFR_11LG() -> Grb2() + EGFR_11CG() kucg #Modifiers(EGFR_11LG)
+	r87: Grb2() + EGFR_02UU() -> EGFR_02UG() fRate86() #Modifiers(Grb2, EGFR_02UU)
+	r88: EGFR_02UG() -> Grb2() + EGFR_02UU() ku68 #Modifiers(EGFR_02UG)
+	r89: CG() + EGFR_02UU() -> EGFR_02UL() fRate88() #Modifiers(CG, EGFR_02UU)
+	r90: EGFR_02UL() -> CG() + EGFR_02UU() ku68 #Modifiers(EGFR_02UL)
+	r91: Cbl() + EGFR_02UG() -> EGFR_02UL() kbcg #Modifiers(Cbl, EGFR_02UG)
+	r92: EGFR_02UL() -> Cbl() + EGFR_02UG() kucg #Modifiers(EGFR_02UL)
+	r93: Cbl() + EGFR_12UU() -> EGFR_12CU() kb45 #Modifiers(Cbl, EGFR_12UU)
+	r94: EGFR_12CU() -> Cbl() + EGFR_12UU() ku45 #Modifiers(EGFR_12CU)
+	r95: CG() + EGFR_12UU() -> EGFR_12LU() kb45 #Modifiers(CG, EGFR_12UU)
+	r96: EGFR_12LU() -> CG() + EGFR_12UU() ku45 #Modifiers(EGFR_12LU)
+	r97: Grb2() + EGFR_12UU() -> EGFR_12UG() fRate96() #Modifiers(Grb2, EGFR_12UU)
+	r98: EGFR_12UG() -> Grb2() + EGFR_12UU() ku68 #Modifiers(EGFR_12UG)
+	r99: CG() + EGFR_12UU() -> EGFR_12UL() fRate98() #Modifiers(CG, EGFR_12UU)
+	r100: EGFR_12UL() -> CG() + EGFR_12UU() ku68 #Modifiers(EGFR_12UL)
+	r101: Grb2() + EGFR_12CU() -> EGFR_12LU() kbcg #Modifiers(Grb2, EGFR_12CU)
+	r102: EGFR_12LU() -> Grb2() + EGFR_12CU() kucg #Modifiers(EGFR_12LU)
+	r103: Grb2() + EGFR_12CU() -> EGFR_12CG() fRate102() #Modifiers(Grb2, EGFR_12CU)
+	r104: EGFR_12CG() -> Grb2() + EGFR_12CU() ku68 #Modifiers(EGFR_12CG)
+	r105: Grb2() + EGFR_12LU() -> EGFR_12LG() fRate104() #Modifiers(Grb2, EGFR_12LU)
+	r106: EGFR_12LG() -> Grb2() + EGFR_12LU() ku68 #Modifiers(EGFR_12LG)
+	r107: EGFR_12LU() -> EGFR_12CC() fRate106() #Modifiers(EGFR_12LU)
+	r108: EGFR_12CC() -> EGFR_12LU() ku68M #Modifiers(EGFR_12CC)
+	r109: Cbl() + EGFR_12UG() -> EGFR_12CG() kb45 #Modifiers(Cbl, EGFR_12UG)
+	r110: EGFR_12CG() -> Cbl() + EGFR_12UG() ku45 #Modifiers(EGFR_12CG)
+	r111: CG() + EGFR_12UG() -> EGFR_12LG() kb45 #Modifiers(CG, EGFR_12UG)
+	r112: EGFR_12LG() -> CG() + EGFR_12UG() ku45 #Modifiers(EGFR_12LG)
+	r113: Cbl() + EGFR_12UG() -> EGFR_12UL() kbcg #Modifiers(Cbl, EGFR_12UG)
+	r114: EGFR_12UL() -> Cbl() + EGFR_12UG() kucg #Modifiers(EGFR_12UL)
+	r115: EGFR_12UL() -> EGFR_12CC() kb45P #Modifiers(EGFR_12UL)
+	r116: EGFR_12CC() -> EGFR_12UL() ku45M #Modifiers(EGFR_12CC)
+	r117: EGFR_12CG() -> EGFR_12CC() kbcgP #Modifiers(EGFR_12CG)
+	r118: EGFR_12CC() -> EGFR_12CG() kucgM #Modifiers(EGFR_12CC)
+	r119: Grb2() + EGFR_12CG() -> EGFR_12LG() kbcg #Modifiers(Grb2, EGFR_12CG)
+	r120: EGFR_12LG() -> Grb2() + EGFR_12CG() kucg #Modifiers(EGFR_12LG)
+end reaction rules
+end model

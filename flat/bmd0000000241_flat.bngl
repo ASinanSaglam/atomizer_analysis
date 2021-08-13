@@ -1,0 +1,70 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000241', 'http://identifiers.org/biomodels.db/MODEL1001080000']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/8422743']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0031000', 'http://identifiers.org/go/GO:0008217']
+#@creatorEmail:'lukas@ebi.ac.uk'
+#@creatorName:'Endler Lukas'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 5 molecules and 0 reactions. The translated model has 5 molecules and 5 rules'
+###
+begin model
+begin parameters
+	CL 0.11
+	V_C 0.32 #units:l_per_kg
+	k_a 12.0 #units:per_hour
+	t_lag 0.15 #units:time
+	k10 0.34 #units:per_hour
+	k12 1.64 #units:per_hour
+	k21 1.19 #units:per_hour
+	t_half 3.98 #units:time
+	F 0.984
+	k_eo 2.03 #units:per_hour
+	k_tol 0.75 #units:per_hour
+	E_0 83.3 #units:mm_Hg
+	S 19.07 #units:mm_Hg_l_per_mg
+	T_50 0.26 #units:mg_per_l
+	t_int 2.0 #units:time
+	cupsize 90.0 #units:substance
+	bodyweight 80.0 #units:kilogram
+	cups 0
+end parameters
+begin compartments
+	#volume units: L
+	Gut 3 1.0
+	C 3 0.31
+	P 3 1.0
+	Tol 3 1.0
+	Eff 3 1.0
+end compartments
+begin molecule types
+	C_p()
+	C_per()
+	C_t()
+	C_e()
+	X_gut()
+end molecule types
+begin seed species
+end seed species
+begin observables
+	Species X_gut_Gut @Gut:X_gut() #X_gut
+	Species C_p_C @C:C_p() #C_p
+	Species C_per_P @P:C_per() #C_per
+	Species C_e_Eff @Eff:C_e() #C_e
+	Species C_t_Tol @Tol:C_t() #C_t
+end observables
+begin functions
+	arRateC_t() = k_tol*(C_p_C - C_t_Tol)
+	arRateC_e() = k_eo*(-C_e_Eff + C_p_C)
+	arRateC_per() = C_p_C*k12 - C_per_P*k21
+	arRateC_p() = -C_p_C*k10 - C_p_C*k12 + C_per_P*k21 + F*X_gut_Gut*k_a/V_C
+	arRateX_gut() = -X_gut_Gut*k_a
+	E() = C_e_Eff*S/(C_t_Tol/T_50 + 1) + E_0
+end functions
+begin reaction rules
+	0  -> X_gut()@Gut arRateX_gut #rateLaw
+	0  -> C_p()@C arRateC_p #rateLaw
+	0  -> C_per()@P arRateC_per #rateLaw
+	0  -> C_e()@Eff arRateC_e #rateLaw
+	0  -> C_t()@Tol arRateC_t #rateLaw
+end reaction rules
+end model

@@ -1,0 +1,83 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000665', 'http://identifiers.org/biomodels.db/MODEL1006230001']
+#@BQB_HAS_PART:['http://identifiers.org/go/GO:0006897']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/reactome/R-HSA-449836']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/11027188']
+#@creatorEmail:'mroberts@ebi.ac.uk'
+#@creatorName:'Roberts Matthew Grant'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 8 molecules and 13 reactions. The translated model has 8 molecules and 14 rules'
+###
+begin model
+begin parameters
+	kr 0.0138 #units:unit_0
+	kt 0.007 #units:unit_0
+	Vs 11.0 #units:unit_0
+	ksyn 0.0011 #units:unit_0
+	ke 0.04 #units:unit_0
+	kx 0.15 #units:unit_0
+	kh 0.035 #units:unit_0
+	Ve 1e-14 #units:unit_2
+	NA 602200000000.0 #units:unit_3
+	IL2 1.0 #units:unit_4
+end parameters
+begin molecule types
+	Ri()
+	L()
+	Rs()
+	Li()
+	Ld()
+	Cs()
+	Ci()
+	Y()
+end molecule types
+begin seed species
+	Rs() 9.033e+26 # 1500.0mol/L * 6.022e23/mol *1.0L #Rs #Rs_0
+	Cs() 6.022e+23 #original 1.0mol/L #Cs #Cs_0
+	Ri() 1.8066e+26 #original 300.0mol/L #Ri #Ri_0
+	Ci() 6.022e+23 #original 1.0mol/L #Ci #Ci_0
+	Li() 6.022e+21 #original 0.01mol/L #Li #Li_0
+	Ld() 6.022e+23 #original 1.0mol/L #Ld #Ld_0
+	L() 6.022e+24 #original 10.0mol/L #L #L_0
+	Y() 1.5055e+32 #original 250000000.0mol/L #Y #Y_0
+end seed species
+begin observables
+	Species Rs Rs() #Rs
+	Species Cs Cs() #Cs
+	Species Ri Ri() #Ri
+	Species Ci Ci() #Ci
+	Species Li Li() #Li
+	Species Ld Ld() #Ld
+	Species L L() #L
+	Species Y Y() #Y
+end observables
+begin functions
+	arRateY_0() =  if((400*(Cs-125)/(Cs+250)>0),(400000*(Cs-125)/(Cs+250)),(0))
+	kfe() =  if((IL2==1),(kre/1000),(kre/3000))
+	kre() =  if((IL2==1),(8*kr),(5*kr))
+	kf() =  if((IL2==1),(0.0900900900900901*kr),(0.121951219512195*kr))
+	fRate0() = L*kf
+	fRate2() = Cs*ksyn
+	fRate6 =  Li*kfe
+	fRate10() = Ri*kf/(NA*Ve)
+	fRate10m =  Ci*kre/(NA*Ve)
+	fRate12() = Rs*Y*kf/NA
+	fRate12m =  Y*(Cs*kr + Li*NA*Ve*kx)/NA
+end functions
+begin reaction rules
+	Receptor_binding_to_Ligand: Rs() -> Cs() fRate0() #Modifiers(L_0)
+	Receptor_Ligand_complex_dissocation: Cs() -> Rs() kr
+	Upregulation_of_Receptor_Synthesis: 0  -> Rs() fRate2() #Modifiers(Cs_0)
+	Receptor_Internalisation: Rs() -> Ri() kt
+	Receptor_Synthesis: 0  -> Rs() Vs
+	Endocytosis_of_Receptor_Ligand_complex: Cs() -> Ci() ke
+	IL_2_binding_to_free_BetaGamma_heterodimer_1: Ri() -> Ci() fRate6() #Modifiers(Li_0)
+	Dissocation_of_IL_2_Heterodimer_complex: Ci() -> Ri() kre
+	Degradation_of_heterodimer: Ri() -> 0  kh
+	Degradation_of_IL_2_heterodimer_complex: Ci() -> Ld() kh
+	IL_2_binding_dissociating: Li() <-> 0  fRate10(),fRate10m() #Modifiers(Ri_0, Ci_0)
+	Ligand_recycling: Li() -> 0  kx
+	Ligand_Binding_Dissociation_Recycling: L() <-> 0  fRate12(),fRate12m() #Modifiers(Rs_0, Cs_0, Li_0, Y_0)
+	0  -> Y() arRateY_0 #rateLaw
+end reaction rules
+end model

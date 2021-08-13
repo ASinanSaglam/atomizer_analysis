@@ -1,0 +1,57 @@
+###
+#@BQM_UNKNOWN:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/31161687']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/go/GO:0007596', 'http://identifiers.org/mamo/MAMO_0000046']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000755', 'http://identifiers.org/biomodels.db/MODEL1907180004']
+#@creatorEmail:'tiwarik@babraham.ac.uk'
+#@creatorName:'Tiwari Krishna'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 9 molecules and 7 reactions. The translated model has 9 molecules and 7 rules'
+###
+begin model
+begin parameters
+	r1_k1 121.267000
+	r2_k1 0.000000
+	r3_k1 2569840000000.000000
+	r4_k1 77540.200000
+	r5_k1 69679400000.000000
+	r6_k1 0.004727
+	r7_k1 0.020167
+end parameters
+begin molecule types
+	IIa_ATIII()
+	IIa()
+	mIIa()
+	TF()
+	mIIa_ATIII()
+	II()
+	Xa_Va()
+	Xa_Va_II()
+	X()
+end molecule types
+begin seed species
+	TF() 602200000000000.1 # 1e-09mol/L * 6.022e23/mol *1.0L #TF #TF
+	X() 9.6352e+16 #original 1.6e-07substance/volume  #X #X
+	II() 8.4308e+17 #original 1.4e-06substance/volume  #II #II
+end seed species
+begin observables
+	Species TF TF() #TF
+	Species X X() #X
+	Species Xa_Va Xa_Va() #Xa_Va
+	Species II II() #II
+	Species IIa IIa() #IIa
+	Species Xa_Va_II Xa_Va_II() #Xa_Va_II
+	Species mIIa mIIa() #mIIa
+	Species mIIa_ATIII mIIa_ATIII() #mIIa_ATIII
+	Species IIa_ATIII IIa_ATIII() #IIa_ATIII
+end observables
+begin reaction rules
+	reaction_1: TF() + X() -> Xa_Va() r1_k1
+	reaction_2: TF() + X() + II() -> TF() + X() + IIa() r2_k1
+	reaction_3: Xa_Va() + II() -> Xa_Va_II() r3_k1
+	reaction_4: Xa_Va_II() -> Xa_Va() + mIIa() r4_k1
+	reaction_5: Xa_Va() + mIIa() -> Xa_Va() + IIa() r5_k1
+	reaction_6: mIIa() -> mIIa_ATIII() r6_k1
+	reaction_7: IIa() -> IIa_ATIII() r7_k1
+end reaction rules
+end model

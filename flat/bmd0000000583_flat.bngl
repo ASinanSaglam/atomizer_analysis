@@ -1,0 +1,186 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000583', 'http://identifiers.org/biomodels.db/MODEL1507200000']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/26230099']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0030383', 'http://identifiers.org/go/GO:0006955']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10090', 'http://identifiers.org/taxonomy/1496']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:0060185']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 23 molecules and 30 reactions. The translated model has 18 molecules and 38 rules'
+###
+begin model
+begin parameters
+	nT_MLN 7.2264e+30 #original 12000000.0substance/volume
+	nT 7.2264e+30 #original 12000000.0substance/volume
+	r1_k1 0.506989
+	r2_k1 0.000017
+	r3_k1 2.396651
+	r4_k1 0.995057
+	r5_K 0.000000
+	r6_v 0.000002
+	r6_k1 0.000011
+	r6_k2 0.000002
+	r6_k3 62.591165
+	r7_k1 10.500000
+	r8_k 0.550000
+	r9_K 0.000000
+	r9_m2 594.896546
+	r9_m3 0.102703
+	r10_v 0.000053
+	r10_k1 0.120935
+	r10_k2 0.171191
+	r10_k3 0.129717
+	r11_K 0.000000
+	r12_k1 5.500000
+	r13_k1 1.459000
+	r14_k1 1.273932
+	r14_k2 0.002040
+	r15_k1 2.504544
+	r16_K 0.000171
+	r17_v 0.065000
+	r17_k1 0.006000
+	r17_k2 0.010670
+	r17_k3 0.000001
+	r18_K 0.000045
+	r18_e1 2.000000
+	r18_e2 0.092309
+	r19_k1 20.000000
+	r20_k1 0.000000
+	r20_k2 0.156287
+	r21_k1 4000.000000
+	r22_K 0.000200
+	r22_k1 559.297142
+	r22_k2 26.874733
+	r23_k1 3.650000
+	r24_k 0.000950
+	r25_k1 2255.804695
+	r26_K 0.043010
+	r26_k2 0.000097
+	r26_k1 0.064842
+	r27_k1 53.913057
+	r28_K 0.000023
+	r28_A1 0.004780
+	r28_A2 0.180000
+	r29_k1 0.093328
+	r30_k1 2.500000
+end parameters
+begin compartments
+	#volume units: volume
+	Lumen 3 1.0
+	Epithelium 3 4.0
+	LP 3 0.07
+	MLN 3 1.0
+end compartments
+begin molecule types
+	E_d()
+	tDC_MLN()
+	N_Lum()
+	N()
+	M_LP()
+	eDC()
+	Commensal_Beneficial()
+	iTreg()
+	Th1()
+	iDC_E()
+	Th17()
+	Commensal_Dead()
+	M0()
+	tDC_LP()
+	Commensal_Harmful()
+	Cdiff()
+	E()
+	E_i()
+end molecule types
+begin seed species
+	@Lumen:Cdiff() 2.914648e+26 # 484.0mol/L * 6.022e23/mol *1.0L #Cdiff #Cdiff
+	@Lumen:Commensal_Beneficial() 6.022e+23 #original 1.0substance/volume  #Commensal_Beneficial #Commensal_Beneficial
+	@Lumen:Commensal_Dead() 3.011e+34 #original 50000000000.0substance/volume  #Commensal_Dead #Commensal_Dead
+	@Lumen:Commensal_Harmful() 9.033000000000001e+33 #original 15000000000.0substance/volume  #Commensal_Harmful #Commensal_Harmful
+	@Epithelium:E() 2.535262e+30 #original 1052500.0substance/volume  #E #E
+	@Epithelium:$iDC_E() 1.2044e+30 #original 500000.0substance/volume  #iDC_E #iDC_E
+	@Epithelium:M_LP() 7.8286e+27 #original 3250.0substance/volume  #M_LP #M_LP
+	@LP:$M0() 7.226399999999983e+28 #original 1714285.71428571substance/volume  #M0 #M0
+	@LP:$N() 3.010999999999999e+28 #original 714285.714285714substance/volume  #N #N_LP
+end seed species
+begin observables
+	Species Cdiff_Lumen @Lumen:Cdiff() #Cdiff
+	Species Commensal_Beneficial_Lumen @Lumen:Commensal_Beneficial() #Commensal_Beneficial
+	Species Commensal_Dead_Lumen @Lumen:Commensal_Dead() #Commensal_Dead
+	Species tDC_LP_Lumen @Lumen:tDC_LP() #tDC_LP
+	Species tDC_MLN_Lumen @Lumen:tDC_MLN() #tDC_MLN
+	Species Commensal_Harmful_Lumen @Lumen:Commensal_Harmful() #Commensal_Harmful
+	Species N_Lum_Lumen @Lumen:N_Lum() #N_Lum
+	Species E_Epithelium @Epithelium:E() #E
+	Species E_d_Epithelium @Epithelium:E_d() #E_d
+	Species iDC_E_Epithelium @Epithelium:iDC_E() #iDC_E
+	Species E_i_Epithelium @Epithelium:E_i() #E_i
+	Species M_LP_Epithelium @Epithelium:M_LP() #M_LP
+	Species eDC_LP @LP:eDC() #eDC_LP
+	Species M0_LP @LP:M0() #M0
+	Species N_LP @LP:N() #N_LP
+	Species Th17_LP @LP:Th17() #Th17_LP
+	Species Th1_LP @LP:Th1() #Th1_LP
+	Species iTreg_LP @LP:iTreg() #iTreg_LP
+	Species eDC_MLN @MLN:eDC() #eDC_MLN
+	Species iTreg_MLN @MLN:iTreg() #iTreg_MLN
+	Species Th17_MLN @MLN:Th17() #Th17_MLN
+	Species Th1_MLN @MLN:Th1() #Th1_MLN
+end observables
+begin functions
+	fRate4() = 2.35932924820229e-7*Commensal_Beneficial_Lumen
+	fRate5() = 1.59920673150176e-6*E_Epithelium*(62.5911647602982*M_LP_Epithelium + 1.1e-5*N_Lum_Lumen + 2.3381277077344e-6*Th17_MLN)
+	fRate7() = 0.55*Cdiff_Lumen
+	fRate8() = 6.27092296294148e-10*Cdiff_Lumen*(-0.102702503781515*Commensal_Harmful_Lumen + M_LP_Epithelium + 594.896546415159*N_Lum_Lumen)
+	fRate9() = 5.29827880572231e-5*N_LP*(Cdiff_Lumen*(0.120935308788409*E_d_Epithelium + 0.171190728888258*Th17_MLN) - 0.129717307334483*iTreg_MLN)
+	fRate10() = 5.0e-11*Commensal_Harmful_Lumen
+	fRate13m() = 0.0291449431620486*Cdiff_Lumen
+	fRate15() = 0.000171079818745428*Cdiff_Lumen
+	fRate16() = 0.065*E_i_Epithelium*(1.16013457036959e-6*M_LP_Epithelium + 0.006*N_Lum_Lumen + 0.0106698310809694*Th17_MLN)
+	fRate17() = 4.5e-5*M0_LP*(Cdiff_Lumen + 2.0*Th17_MLN - 0.092308585205372*iTreg_MLN)
+	fRate19() = 4.5e-10*E_i_Epithelium*N_Lum_Lumen
+	fRate19m() = 0.156287382551622
+	fRate21() = 0.0002*Cdiff_Lumen*(559.297141527983*Commensal_Beneficial_Lumen/Commensal_Dead_Lumen + 26.8747332769592*E_Epithelium/(E_i_Epithelium + 100))
+	fRate25() = 0.0430096*Commensal_Dead_Lumen/(0.0648415756801505*Commensal_Beneficial_Lumen + 9.65568121975566e-5*E_Epithelium)
+	fRate27() = 2.33225e-5*Commensal_Harmful_Lumen*(0.18*E_i_Epithelium + 0.00478*N_LP)
+end functions
+begin reaction rules
+	Treg_Degradation: iTreg()@LP -> 0  r1_k1 #Modifiers(Cdiff, iTreg_LP, iTreg_LP)
+	eDC_Degradation: eDC()@MLN -> 0  r2_k1 #Modifiers(iTreg_MLN, eDC_MLN, eDC_MLN)
+	Th17_Degradation: Th17()@LP -> 0  r3_k1 #Modifiers(iTreg_LP, Th17_LP, Th17_LP)
+	Th1_Degradation: Th1()@LP -> 0  r4_k1 #Modifiers(iTreg_LP, Commensal_Dead, Th1_LP, Th1_LP)
+	N_Degradation: N_Lum()@Lumen -> 0  fRate4() #Modifiers(Commensal_Beneficial, N_Lum, Commensal_Beneficial, N_Lum, Commensal_Beneficial)
+	E_Damage_reactants_0: 0  -> E()@Epithelium -1*(fRate5()) #Modifiers(N_Lum, Th17_LP, M_LP, E, N_Lum, Th17_LP, M_LP, E, N_Lum, Th17_LP, M_LP)
+	E_Damage_products_0: 0  -> E_d()@Epithelium fRate5() #Modifiers(N_Lum, Th17_LP, M_LP, E, N_Lum, Th17_LP, M_LP, E, N_Lum, Th17_LP, M_LP)
+	eDC_Migration: eDC()@LP -> eDC()@MLN r7_k1 #Modifiers(eDC_LP, eDC_LP)
+	eDC_Production_reactants_0: 0  -> iDC_E()@Epithelium -1*(fRate7()) #Modifiers(Commensal_Dead, Commensal_Beneficial, Cdiff, Cdiff)
+	eDC_Production_reactants_1: 0  -> Cdiff()@Lumen -1*(fRate7()) #Modifiers(Commensal_Dead, Commensal_Beneficial, Cdiff, Cdiff)
+	eDC_Production_products_0: 0  -> eDC()@LP fRate7() #Modifiers(Commensal_Dead, Commensal_Beneficial, Cdiff, Cdiff)
+	Cdiff_Death_reactants_0: 0  -> Cdiff()@Lumen -1*(fRate8()) #Modifiers(M_LP, N_Lum, Commensal_Harmful, Cdiff, M_LP, N_Lum, Commensal_Harmful, Cdiff, M_LP, N_Lum, Commensal_Harmful)
+	N_Activation_Migration_reactants_0: 0  -> N()@LP -1*(fRate9()) #Modifiers(Cdiff, E_d, Th17_LP, iTreg_LP, N_LP, Cdiff, E_d, Th17_LP, iTreg_LP, N_LP, Cdiff, E_d, Th17_LP, iTreg_LP)
+	N_Activation_Migration_products_0: 0  -> N_Lum()@Lumen fRate9() #Modifiers(Cdiff, E_d, Th17_LP, iTreg_LP, N_LP, Cdiff, E_d, Th17_LP, iTreg_LP, N_LP, Cdiff, E_d, Th17_LP, iTreg_LP)
+	Cdiff_Growth: Cdiff()@Lumen -> Cdiff()@Lumen + Cdiff()@Lumen fRate10() #Modifiers(Commensal_Harmful, Commensal_Beneficial, Cdiff, Commensal_Harmful, Cdiff, Commensal_Harmful)
+	Treg_Migration: iTreg()@MLN -> iTreg()@LP r12_k1 #Modifiers(E_i, iTreg_MLN, iTreg_MLN)
+	Th1_Migration: Th1()@MLN -> Th1()@LP r13_k1 #Modifiers(E_i, Th1_MLN, Th1_MLN)
+	Th17_Plasticity: Th17()@LP <-> iTreg()@LP r14_k1,fRate13m() #Modifiers(Cdiff, Th17_LP, Cdiff, iTreg_LP, Th17_LP, Cdiff, iTreg_LP)
+	Th17_Migration: Th17()@MLN -> Th17()@LP r15_k1 #Modifiers(E_i, Th17_MLN, Th17_MLN)
+	E_Inflame: E()@Epithelium -> E_i()@Epithelium fRate15() #Modifiers(Cdiff, E, Cdiff, E, Cdiff)
+	E_i_Damage_reactants_0: 0  -> E_i()@Epithelium -1*(fRate16()) #Modifiers(N_Lum, Th17_LP, M_LP, E_i, N_Lum, Th17_LP, M_LP, E_i, N_Lum, Th17_LP, M_LP)
+	E_i_Damage_products_0: 0  -> E_d()@Epithelium fRate16() #Modifiers(N_Lum, Th17_LP, M_LP, E_i, N_Lum, Th17_LP, M_LP, E_i, N_Lum, Th17_LP, M_LP)
+	M_Activation_reactants_0: 0  -> M0()@LP -1*(fRate17()) #Modifiers(Th17_LP, Cdiff, iTreg_LP, M0, Th17_LP, Cdiff, iTreg_LP, M0, Th17_LP, Cdiff, iTreg_LP)
+	M_Activation_products_0: 0  -> M_LP()@Epithelium fRate17() #Modifiers(Th17_LP, Cdiff, iTreg_LP, M0, Th17_LP, Cdiff, iTreg_LP, M0, Th17_LP, Cdiff, iTreg_LP)
+	M_Death: M_LP()@Epithelium -> 0  r19_k1 #Modifiers(iTreg_LP, M_LP, M_LP)
+	Commensal_Regrowth: Commensal_Beneficial()@Lumen <-> Commensal_Dead()@Lumen fRate19(),fRate19m() #Modifiers(N_Lum, E_i, Commensal_Beneficial, N_Lum, E_i, Commensal_Dead, Commensal_Beneficial, N_Lum, E_i, Commensal_Dead)
+	E_Heal: E_d()@Epithelium -> E()@Epithelium r21_k1 #Modifiers(E_d, E_d)
+	tDC_Production_reactants_0: 0  -> iDC_E()@Epithelium -1*(fRate21()) #Modifiers(Commensal_Beneficial, Commensal_Dead, E, E_i, Cdiff, Commensal_Beneficial, Commensal_Dead, E, E_i, Cdiff, Commensal_Beneficial, Commensal_Dead, E, E_i)
+	tDC_Production_reactants_1: 0  -> Cdiff()@Lumen -1*(fRate21()) #Modifiers(Commensal_Beneficial, Commensal_Dead, E, E_i, Cdiff, Commensal_Beneficial, Commensal_Dead, E, E_i, Cdiff, Commensal_Beneficial, Commensal_Dead, E, E_i)
+	tDC_Production_products_0: 0  -> tDC_LP()@Lumen fRate21() #Modifiers(Commensal_Beneficial, Commensal_Dead, E, E_i, Cdiff, Commensal_Beneficial, Commensal_Dead, E, E_i, Cdiff, Commensal_Beneficial, Commensal_Dead, E, E_i)
+	tDC_Migration: tDC_LP()@Lumen -> tDC_MLN()@Lumen r23_k1 #Modifiers(tDC_LP, tDC_LP)
+	tDC_Degradation: tDC_MLN()@Lumen -> 0  r24_k #Modifiers(iTreg_MLN, tDC_MLN, tDC_MLN)
+	Th17_Differentiation: eDC()@MLN -> Th17()@MLN r25_k1 #Modifiers(eDC_MLN, eDC_MLN)
+	Th1_Differentiation: eDC()@MLN -> Th1()@MLN fRate25() #Modifiers(Commensal_Dead, Commensal_Beneficial, E, eDC_MLN, Commensal_Dead, Commensal_Beneficial, E, eDC_MLN, Commensal_Dead, Commensal_Beneficial, E)
+	Treg_Differentiation: tDC_MLN()@Lumen -> iTreg()@MLN r27_k1 #Modifiers(tDC_MLN, tDC_MLN)
+	Commensal_Harmful_Death_reactants_0: 0  -> Commensal_Harmful()@Lumen -1*(fRate27()) #Modifiers(N_LP, E_i, Commensal_Harmful, N_LP, E_i, Commensal_Harmful, N_LP, E_i)
+	Commensal_Death: Commensal_Dead()@Lumen -> 0  r29_k1 #Modifiers(Commensal_Dead, Commensal_Dead)
+	E_i_Natural_Death: E_i()@Epithelium -> E_d()@Epithelium r30_k1 #Modifiers(E_i, E_i)
+end reaction rules
+end model

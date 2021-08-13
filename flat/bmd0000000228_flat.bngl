@@ -1,0 +1,122 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000228', 'http://identifiers.org/biomodels.db/MODEL3897709120']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/15231543']
+#@BQB_IS_PART_OF:['http://identifiers.org/reactome/REACT_1783']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0000083']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/40674']
+#@creatorEmail:'lukas@ebi.ac.uk'
+#@creatorName:'Endler Lukas'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 9 molecules and 22 reactions. The translated model has 9 molecules and 22 rules'
+###
+begin model
+begin parameters
+	k1 1.0
+	Km1 0.5
+	J11 0.5
+	J61 5.0
+	k16 0.4
+	k61 0.3
+	phi_pRB 0.005
+	kp 0.05
+	k2 1.6
+	a 0.04
+	Km2 4.0
+	J12 5.0
+	J62 8.0
+	phi_E2F1 0.1
+	k3 0.05
+	k23 0.3
+	J13 0.002
+	J63 2.0
+	k34 0.04
+	Km4 0.3
+	phi_CycDi 0.023
+	k43 0.01
+	phi_CycDa 0.03
+	Fm 0.005
+	k25 0.9
+	J15 0.001
+	J65 6.0
+	phi_AP1 0.01
+	k67 0.7
+	k76 0.1
+	phi_pRBpp 0.04
+	phi_pRBp 0.06
+	k28 0.06
+	J18 0.6
+	J68 7.0
+	k89 0.07
+	Km9 0.005
+	k98 0.01
+	phi_CycEi 0.06
+	phi_CycEa 0.05
+end parameters
+begin molecule types
+	CycEa_cdk2__a__()
+	pRB()
+	CycE_cdk2__i__()
+	CycD_cdk4_6__a__()
+	CycD_cdk4_6__i__()
+	AP1()
+	E2F1()
+	pRBpp()
+	pRBp()
+end molecule types
+begin seed species
+	pRB() 6.022000000000001e+22 # 0.1mol/L * 6.022e23/mol *1.0L #pRB #pRB
+	pRBp() 6.022000000000001e+22 #original 0.1norm substance/norm. volume  #pRBp #pRBp
+	E2F1() 6.022000000000001e+22 #original 0.1norm substance/norm. volume  #E2F1 #E2F1
+	CycD_cdk4_6__i__() 6.022000000000001e+22 #original 0.1norm substance/norm. volume  #CycD_cdk4_6__i__ #CycDi
+	CycD_cdk4_6__a__() 6.022000000000001e+22 #original 0.1norm substance/norm. volume  #CycD_cdk4_6__a__ #CycDa
+	AP1() 6.022000000000001e+22 #original 0.1norm substance/norm. volume  #AP1 #AP1
+	pRBpp() 6.022000000000001e+22 #original 0.1norm substance/norm. volume  #pRBpp #pRBpp
+	CycE_cdk2__i__() 6.022000000000001e+22 #original 0.1norm substance/norm. volume  #CycE_cdk2__i__ #CycEi
+	CycEa_cdk2__a__() 6.022000000000001e+22 #original 0.1norm substance/norm. volume  #CycEa_cdk2__a__ #CycEa
+end seed species
+begin observables
+	Species pRB pRB() #pRB
+	Species pRBp pRBp() #pRBp
+	Species E2F1 E2F1() #E2F1
+	Species CycD_cdk4_6__i__ CycD_cdk4_6__i__() #CycD/cdk4,6(i)
+	Species CycD_cdk4_6__a__ CycD_cdk4_6__a__() #CycD/cdk4,6(a)
+	Species AP1 AP1() #AP1
+	Species pRBpp pRBpp() #pRBpp
+	Species CycE_cdk2__i__ CycE_cdk2__i__() #CycE/cdk2(i)
+	Species CycEa_cdk2__a__ CycEa_cdk2__a__() #CycEa/cdk2(a)
+end observables
+begin functions
+	fRate0() = E2F1*J11*J61*k1/(E2F1*J11*J61 + E2F1*J11*pRBp + E2F1*J61*pRB + E2F1*pRB*pRBp + J11*J61*Km1 + J11*Km1*pRBp + J61*Km1*pRB + Km1*pRB*pRBp)
+	fRate1() = CycD_cdk4_6__a__*k16
+	fRate4() = (E2F1^2*J12*J62*k2 + J12*J62*a^2*k2 + kp*(E2F1^2*J12*J62 + E2F1^2*J12*pRBp + E2F1^2*J62*pRB + E2F1^2*pRB*pRBp + J12*J62*Km2^2 + J12*Km2^2*pRBp + J62*Km2^2*pRB + Km2^2*pRB*pRBp))/(E2F1^2*J12*J62 + E2F1^2*J12*pRBp + E2F1^2*J62*pRB + E2F1^2*pRB*pRBp + J12*J62*Km2^2 + J12*Km2^2*pRBp + J62*Km2^2*pRB + Km2^2*pRB*pRBp)
+	fRate6() = (AP1*k3*(J13*J63 + J13*pRBp + J63*pRB + pRB*pRBp) + E2F1*J13*J63*k23)/(J13*J63 + J13*pRBp + J63*pRB + pRB*pRBp)
+	fRate8() = CycD_cdk4_6__a__*k34/(CycD_cdk4_6__a__ + Km4)
+	fRate11() = (E2F1*J15*J65*k25 + Fm*(J15*J65 + J15*pRBp + J65*pRB + pRB*pRBp))/(J15*J65 + J15*pRBp + J65*pRB + pRB*pRBp)
+	fRate13() = CycEa_cdk2__a__*k67
+	fRate17() = E2F1*J18*J68*k28/(J18*J68 + J18*pRBp + J68*pRB + pRB*pRBp)
+	fRate18() = CycEa_cdk2__a__*k89/(CycEa_cdk2__a__ + Km9)
+end functions
+begin reaction rules
+	pRB_synthesis: 0  -> pRB() fRate0() #Modifiers(pRB, pRBp, E2F1)
+	pRB_phosphorylation: pRB() -> pRBp() fRate1() #Modifiers(pRB, CycDa)
+	pRBp_dephosphorylation: pRBp() -> pRB() k61
+	pRB_degradation: pRB() -> 0  phi_pRB
+	E2F1_synthesis: 0  -> E2F1() fRate4() #Modifiers(E2F1, pRB, pRBp)
+	E2F1_degradation: E2F1() -> 0  phi_E2F1
+	CycD_synthesis: 0  -> CycD_cdk4_6__i__() fRate6() #Modifiers(E2F1, pRB, pRBp, AP1)
+	CycD_inibition: CycD_cdk4_6__a__() -> CycD_cdk4_6__i__() k43
+	CycD_activation: CycD_cdk4_6__i__() -> CycD_cdk4_6__a__() fRate8() #Modifiers(CycDi, CycDa)
+	CycD_degradation: CycD_cdk4_6__i__() -> 0  phi_CycDi
+	CycD_degradation2: CycD_cdk4_6__a__() -> 0  phi_CycDa
+	AP1_synthesis: 0  -> AP1() fRate11() #Modifiers(E2F1, pRB, pRBp)
+	Ap1_degradation: AP1() -> 0  phi_AP1
+	pRBp_phosphorylation: pRBp() -> pRBpp() fRate13() #Modifiers(pRBp, CycEa)
+	pRBpp_dephosphorylation: pRBpp() -> pRBp() k76
+	pRBpp_degradation: pRBpp() -> 0  phi_pRBpp
+	pRBp_degradation: pRBp() -> 0  phi_pRBp
+	CycE_synthesis: 0  -> CycE_cdk2__i__() fRate17() #Modifiers(E2F1, pRB, pRBp)
+	CycE_activation: CycE_cdk2__i__() -> CycEa_cdk2__a__() fRate18() #Modifiers(CycEi, CycEa)
+	CycE_inibition: CycEa_cdk2__a__() -> CycE_cdk2__i__() k98
+	CycE_degradation: CycE_cdk2__i__() -> 0  phi_CycEi
+	CycE_degradation2: CycEa_cdk2__a__() -> 0  phi_CycEa
+end reaction rules
+end model

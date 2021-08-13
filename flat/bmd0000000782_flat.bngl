@@ -1,0 +1,44 @@
+###
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/MODEL1908060002', 'http://identifiers.org/taxonomy/9606', 'http://identifiers.org/biomodels.db/BIOMD0000000780', 'http://identifiers.org/biomodels.db/BIOMD0000000781', 'http://identifiers.org/ncit/C62713', 'http://identifiers.org/go/GO:0002418', 'http://identifiers.org/biomodels.db/MODEL1908060001', 'http://identifiers.org/mamo/MAMO_0000046']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/biomodels.db/MODEL1908060002', 'http://identifiers.org/pubmed/26976483', 'http://identifiers.org/biomodels.db/BIOMD0000000780', 'http://identifiers.org/biomodels.db/BIOMD0000000781', 'http://identifiers.org/biomodels.db/MODEL1908060001']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/go/GO:0002418', 'http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/ncit/C62713']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000782', 'http://identifiers.org/biomodels.db/MODEL1908060003']
+#@creatorEmail:'jm2187@cam.ac.uk'
+#@creatorName:'Men Jinghao'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 2 molecules and 5 reactions. The translated model has 2 molecules and 5 rules'
+###
+begin model
+begin parameters
+	a 0.02 #units:unit_0
+	d 0.02 #units:unit_0
+	u1 0.2 #units:unit_0
+	r1 0.8 #units:unit_0
+	e1 0.01 #units:unit_0
+end parameters
+begin molecule types
+	N()
+	S()
+end molecule types
+begin seed species
+	S() 6.022000000000001e+19 # (0.1 * 0.001)mol/L * 6.022e23/mol *1.0L #S #S
+	N() 1.2044000000000002e+20 #original 0.2substance/volume #N #N
+end seed species
+begin observables
+	Species S S() #S
+	Species N N() #N
+end observables
+begin functions
+	Q1() = a*r1*u1/(d*(d + e1))
+	fRate2() = N*u1
+	fRate3() = N*S*r1*u1
+	fRate4() = N*(d + e1)
+end functions
+begin reaction rules
+	nutrient_supply: 0  -> S() a
+	nutrient_decay: S() -> 0  d
+	nutrient_consumption_N: S() -> 0  fRate2() #Modifiers(N)
+	normal_cell_growth: 0  -> N() fRate3() #Modifiers(S)
+	normal_cell_death_reactants_0: 0  -> N() -1*(fRate4())
+end reaction rules
+end model

@@ -1,0 +1,155 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1010010000', 'http://identifiers.org/biomodels.db/BIOMD0000000380']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/21943906']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/4932']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0005992']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 16 molecules and 8 reactions. The translated model has 15 molecules and 21 rules'
+###
+begin model
+begin parameters
+	glc_0 0.09765 #units:mM
+	g1p_0 0.1 #units:mM
+	g6p_0 2.675 #units:mM
+	trh_0 0.05 #units:mM
+	t6p_0 0.02 #units:mM
+	udg_0 0.7 #units:mM
+	heat 0
+	r1_Vmax 1071.000000
+	r1_Kg6p 1.400000
+	r1_Kf6p 0.290000
+	r1_Keq 0.300000
+	r1_shock 1.000000
+	r2_Vmax 97.240000
+	r2_Kglc 1.191800
+	r2_Ki 0.910000
+	r2_shock 8.000000
+	r3_Vmax 289.600000
+	r3_Kglc 0.080000
+	r3_Katp 0.150000
+	r3_Kg6p 30.000000
+	r3_Kadp 0.230000
+	r3_Keq 2000.000000
+	r3_Kit6p 0.040000
+	r3_shock 8.000000
+	r4_Vmax 0.354500
+	r4_Kg6p 0.050000
+	r4_Kg1p 0.023000
+	r4_Keq 0.166700
+	r4_shock 16.000000
+	r5_Vmax 6.500000
+	r5_Kt6p 0.500000
+	r5_shock 18.000000
+	r6_Vmax 1.371000
+	r6_Kg6p 3.800000
+	r6_Kudg 0.886000
+	r6_shock 12.000000
+	r6_activity 1.000000
+	r7_Vmax 15.200000
+	r7_Ktrh 2.990000
+	r7_shock 6.000000
+	r8_Vmax 36.820000
+	r8_Kutp 0.110000
+	r8_Kiutp 0.110000
+	r8_Kg1p 0.320000
+	r8_Kiudg 0.003500
+	r8_shock 16.000000
+end parameters
+begin compartments
+	#volume units: L
+	cell 3 1.0
+	medium 3 1.0
+end compartments
+begin molecule types
+	fructose6_phosphate()
+	phosphate()
+	glucose()
+	diphosphate()
+	glucose1_phosphate()
+	Hpl()
+	water()
+	UDPglucose()
+	ADP()
+	UTP()
+	trehalose6_phosphate()
+	trehalose()
+	glucose6_phosphate()
+	UDP()
+	ATP()
+end molecule types
+begin seed species
+	@cell:ADP() 7.720204e+20 #original 1.282mmol/L #ADP #adp
+	@cell:ATP() 1.520555e+21 #original 2.525mmol/L #ATP #atp
+	@cell:fructose6_phosphate() 3.76375e+20 #original 0.625mmol/L #fructose6_phosphate #f6p
+	@cell:UDP() 1.695193e+20 #original 0.2815mmol/L #UDP #udp
+	@cell:UTP() 3.9088802000000005e+20 #original 0.6491mmol/L #UTP #utp
+	@medium:glucose() 6.022000000000001e+22 #original 100.0mmol/L #glucose #glx
+	@cell:glucose()() (0.09765) #glc
+	@cell:glucose1_phosphate()() (0.1) #g1p
+	@cell:glucose6_phosphate()() (2.675) #g6p
+	@cell:trehalose()() (0.05) #trh
+	@cell:trehalose6_phosphate()() (0.02) #t6p
+	@cell:UDPglucose()() (0.7) #udg
+end seed species
+begin observables
+	Species glucose_cell @cell:glucose() #glucose
+	Species glucose1_phosphate_cell @cell:glucose1_phosphate() #glucose 1-phosphate
+	Species glucose6_phosphate_cell @cell:glucose6_phosphate() #glucose 6-phosphate
+	Species trehalose_cell @cell:trehalose() #trehalose
+	Species trehalose6_phosphate_cell @cell:trehalose6_phosphate() #trehalose 6-phosphate
+	Species UDPglucose_cell @cell:UDPglucose() #UDP glucose
+	Species ADP_cell @cell:ADP() #ADP
+	Species ATP_cell @cell:ATP() #ATP
+	Species diphosphate_cell @cell:diphosphate() #diphosphate
+	Species fructose6_phosphate_cell @cell:fructose6_phosphate() #fructose 6-phosphate
+	Species Hpl_cell @cell:Hpl() #H+
+	Species phosphate_cell @cell:phosphate() #phosphate
+	Species UDP_cell @cell:UDP() #UDP
+	Species UTP_cell @cell:UTP() #UTP
+	Species water_cell @cell:water() #water
+	Species glucose_medium @medium:glucose() #glucose
+end observables
+begin functions
+	udg_change() = log10(UDPglucose_cell/udg_0)
+	t6p_change() = log10(trehalose6_phosphate_cell/t6p_0)
+	trh_change() = log10(trehalose_cell/trh_0)
+	g6p_change() = log10(glucose6_phosphate_cell/g6p_0)
+	g1p_change() = log10(glucose1_phosphate_cell/g1p_0)
+	glc_change() = log10(glucose_medium/glc_0)
+	fRate0() = 310.59*1.0^heat/(1.4*fructose6_phosphate_cell + 0.29*glucose6_phosphate_cell + 0.406)
+	fRate0m() = 310.59*1.0^heat/(0.42*fructose6_phosphate_cell + 0.087*glucose6_phosphate_cell + 0.1218)
+	fRate1() = 115.890632*8.0^heat/(0.91*glucose_cell*glucose_medium + 1.1918*glucose_cell + 1.1918*glucose_medium + 1.42038724)
+	fRate1m() = 115.890632*8.0^heat/(0.91*glucose_cell*glucose_medium + 1.1918*glucose_cell + 1.1918*glucose_medium + 1.42038724)
+	fRate2() = 289.6*8.0^heat*(-0.0005*ADP_cell*glucose6_phosphate_cell + ATP_cell*glucose_cell)/((0.0521739130434783*ADP_cell + 0.08*ATP_cell + 0.012)*(0.0333333333333333*glucose6_phosphate_cell + 12.5*glucose_cell + 25.0*trehalose6_phosphate_cell + 1))
+	fRate3() = 0.0081535*16.0^heat/(0.05*glucose1_phosphate_cell + 0.023*glucose6_phosphate_cell + 0.00115)
+	fRate3m() = 0.0081535*16.0^heat/(0.008335*glucose1_phosphate_cell + 0.0038341*glucose6_phosphate_cell + 0.000191705)
+	fRate4() = 6.5*18.0^heat*trehalose6_phosphate_cell/(1.0*trehalose6_phosphate_cell + 0.5)
+	fRate5() = 1.371*12.0^heat/(UDPglucose_cell*glucose6_phosphate_cell + 3.8*UDPglucose_cell + 0.886*glucose6_phosphate_cell + 3.3668)
+	fRate6() = 15.2*6.0^heat*trehalose_cell/(1.0*trehalose_cell + 2.99)
+	fRate7() = 36.82*16.0^heat*UTP_cell*glucose1_phosphate_cell/(31.4285714285714*UDPglucose_cell*glucose1_phosphate_cell + 10.0571428571429*UDPglucose_cell + 1.0*UTP_cell*glucose1_phosphate_cell + 0.32*UTP_cell + 0.11*glucose1_phosphate_cell + 0.0352)
+end functions
+begin reaction rules
+	pgi: glucose6_phosphate()@cell <-> fructose6_phosphate()@cell fRate0(),fRate0m()
+	hxt: glucose()@medium <-> glucose()@cell fRate1(),fRate1m()
+	hxk_reactants_0: 0  -> glucose()@cell -1*(fRate2()) #Modifiers(t6p)
+	hxk_reactants_1: 0  -> ATP()@cell -1*(fRate2()) #Modifiers(t6p)
+	hxk_products_0: 0  -> glucose6_phosphate()@cell fRate2() #Modifiers(t6p)
+	hxk_products_1: 0  -> ADP()@cell fRate2() #Modifiers(t6p)
+	hxk_products_2: 0  -> Hpl()@cell fRate2() #Modifiers(t6p)
+	pgm: glucose6_phosphate()@cell <-> glucose1_phosphate()@cell fRate3(),fRate3m()
+	tpp_reactants_0: 0  -> trehalose6_phosphate()@cell -1*(fRate4())
+	tpp_reactants_1: 0  -> water()@cell -1*(fRate4())
+	tpp_products_0: 0  -> trehalose()@cell fRate4()
+	tpp_products_1: 0  -> phosphate()@cell fRate4()
+	tps: glucose6_phosphate()@cell + UDPglucose()@cell -> trehalose6_phosphate()@cell + UDP()@cell + Hpl()@cell fRate5()
+	nth_reactants_0: 0  -> trehalose()@cell -1*(fRate6())
+	nth_reactants_1: 0  -> water()@cell -1*(fRate6())
+	nth_products_0: 0  -> glucose()@cell 2.0*fRate6()
+	ugp_reactants_0: 0  -> glucose1_phosphate()@cell -1*(fRate7())
+	ugp_reactants_1: 0  -> UTP()@cell -1*(fRate7())
+	ugp_reactants_2: 0  -> Hpl()@cell -1*(fRate7())
+	ugp_products_0: 0  -> UDPglucose()@cell fRate7()
+	ugp_products_1: 0  -> diphosphate()@cell fRate7()
+end reaction rules
+end model

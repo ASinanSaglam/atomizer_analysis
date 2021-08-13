@@ -1,0 +1,69 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000174', 'http://identifiers.org/biomodels.db/MODEL5937037510']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/18628746']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/16890441', 'http://identifiers.org/pubmed/10591225']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0032313']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@creatorEmail:'pzerial@mpi-cbg.de'
+#@creatorName:'Del Conte-Zerial Perla'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 4 molecules and 10 reactions. The translated model has 4 molecules and 10 rules'
+###
+begin model
+begin parameters
+	r1_K1 1.000000
+	r2_ke 0.300000
+	r2_kg 0.100000
+	r2_kf 2.500000
+	r3_kminus1 1.000000
+	r4_K1 0.483000
+	r5_ke 0.210000
+	r5_h 3.000000
+	r5_kg 0.100000
+	r6_ke 0.021000
+	r6_kg 1.000000
+	r6_kf 3.000000
+	r7_ke 0.310000
+	r7_kg 0.300000
+	r7_kf 3.000000
+	r8_kminus1 0.483000
+	r9_kh 0.060000
+	r10_kh 0.150000
+end parameters
+begin molecule types
+	Rab7_GDP()
+	Rab5_GDP()
+	Rab5_GTP()
+	Rab7_GTP()
+end molecule types
+begin seed species
+	Rab5_GDP() 6.022e+23 # 1.0mol/L * 6.022e23/mol *1.0L #Rab5_GDP #r5
+	Rab5_GTP() 6.022e+20 #original 0.001mol/L  #Rab5_GTP #R5
+	Rab7_GDP() 6.022e+23 #original 1.0mol/L  #Rab7_GDP #r7
+	Rab7_GTP() 6.022e+20 #original 0.001mol/L  #Rab7_GTP #R7
+end seed species
+begin observables
+	Species Rab5_GDP Rab5_GDP() #Rab5-GDP
+	Species Rab5_GTP Rab5_GTP() #Rab5-GTP
+	Species Rab7_GDP Rab7_GDP() #Rab7-GDP
+	Species Rab7_GTP Rab7_GTP() #Rab7-GTP
+end observables
+begin functions
+	fRate1() = 0.3*time()/(time()*exp(0.25 - 2.5*Rab5_GTP) + time() + 100.0*exp(0.25 - 2.5*Rab5_GTP) + 100.0)
+	fRate4() = 0.21*Rab7_GTP^3.0/(Rab7_GTP^3.0 + 0.1)
+	fRate5() = 0.021/(exp(3.0 - 3.0*Rab5_GTP) + 1.0)
+	fRate6() = 0.31/(exp(0.9 - 3.0*Rab7_GTP) + 1.0)
+end functions
+begin reaction rules
+	reaction_0: 0  -> Rab5_GDP() r1_K1
+	reaction_1: Rab5_GDP() -> Rab5_GTP() fRate1() #Modifiers(R5)
+	reaction_2: Rab5_GDP() -> 0  r3_kminus1
+	reaction_3: 0  -> Rab7_GDP() r4_K1
+	reaction_4: Rab7_GDP() -> Rab7_GTP() fRate4() #Modifiers(R7)
+	reaction_5: Rab7_GDP() -> Rab7_GTP() fRate5() #Modifiers(R5)
+	reaction_6: Rab5_GTP() -> Rab5_GDP() fRate6() #Modifiers(R7)
+	reaction_7: Rab7_GDP() -> 0  r8_kminus1
+	reaction_8: Rab5_GTP() -> Rab5_GDP() r9_kh
+	reaction_9: Rab7_GTP() -> Rab7_GDP() r10_kh
+end reaction rules
+end model

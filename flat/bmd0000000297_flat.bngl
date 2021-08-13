@@ -1,0 +1,248 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL2504064544', 'http://identifiers.org/biomodels.db/BIOMD0000000297']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/14691135']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/4896']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0000078', 'http://identifiers.org/obo.go/GO:0009653']
+#@BQB_IS_PART_OF:['http://identifiers.org/kegg.pathway/ko04111']
+#@creatorEmail:'hdharuri@cds.caltech.edu'
+#@creatorName:'Dharuri Harish'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 19 molecules and 51 reactions. The translated model has 19 molecules and 55 rules'
+###
+begin model
+begin parameters
+	kswe_prime 2.0
+	kswe_doubleprime 0.01
+	kswe_tripleprime 0.2
+	kmih_prime 5.0
+	kmih_doubleprime 0.5
+	IEtot 1.0
+	Cdh1tot 1.0
+	Mih1tot 1.0
+	Mcmtot 1.0
+	SBFtot 1.0
+	kdiss 0.1
+	kdsic_prime 1.0
+	kdsic_doubleprime 3.0
+	kdsic 0.01
+	kdclb_doubleprime 1.0
+	kdclb_tripleprime 0.1
+	kdclb_prime 0.015
+	kass 300.0
+	ksclb 0.015
+	Jm 10.0
+	eps 0.5
+	kisbf_prime 1.0
+	kisbf_doubleprime 2.0
+	jisbf 0.01
+	kasbf_prime 1.0
+	jasbf 0.01
+	kiie 0.04
+	jiie 0.01
+	kaie 0.1
+	jaie 0.01
+	kicdc20 0.25
+	jicdc20 0.001
+	kdcdc20 0.1
+	kacdc20 1.0
+	jacdc20 0.001
+	kicdh 35.0
+	kicdh_prime 2.0
+	jicdh 0.01
+	Kacdh_prime 1.0
+	Kacdh_doubleprime 10.0
+	jacdh 0.01
+	khsl1 1.0
+	Viwee 1.0
+	Jiwee 0.05
+	kdswe_prime 0.007
+	khsl1r 0.01
+	Vawee 0.3
+	Jawee 0.05
+	ksswe 0.0025
+	Vimih 0.3
+	jimih 0.1
+	Vamih 1.0
+	Jamih 0.1
+	kimcm 0.15
+	jimcm 0.1
+	kamcm 1.0
+	jamcm 0.1
+	kdbud 0.1
+	ksbud 0.1
+	kssic 0.1
+	kdcln 0.1
+	kscln 0.1
+	kscdc20_prime 0.005
+	kscdc20_doubleprime 0.3
+	jscdc20 0.3
+	kdswe_doubleprime 0.05
+	mu 0.005
+	Mih_ast 0
+	Mih 0
+	kasbf_doubleprime 0
+	BUD 0
+	kssweC 0
+	flag 0
+end parameters
+begin molecule types
+	Cln()
+	PhosphorylatedCdc28_Clb2_Sic1Complex()
+	Sic1()
+	Swe1modified()
+	PhosphorylatedSwe1M()
+	PhosphorylatedClb2()
+	PhosphorylatedSwe1()
+	Mih1a()
+	SBF()
+	BE()
+	Cdh1()
+	IntermediaryEnzyme()
+	Swe1()
+	Cdc20activated()
+	Cdc20()
+	CDC28_Clb2_Sic1_Complex()
+	Clb2()
+	Mcm()
+	mass()
+end molecule types
+begin seed species
+	CDC28_Clb2_Sic1_Complex() 5.0832108485000005e+22 # 0.084410675mol/L * 6.022e23/mol *1.0L #CDC28_Clb2_Sic1_Complex #Trim
+	Clb2() 1.1112801880600002e+23 #original 0.18453673/L #Clb2 #Clb
+	Sic1() 2.1373152324800002e+21 #original 0.0035491784/L #Sic1 #Sic
+	PhosphorylatedCdc28_Clb2_Sic1Complex() 8.444734908000001e+18 #original 1.402314e-05/L #PhosphorylatedCdc28_Clb2_Sic1Complex #PTrim
+	PhosphorylatedClb2() 1.81882761078e+19 #original 3.0203049e-05/L #PhosphorylatedClb2 #PClb
+	SBF() 7.4705704208e+22 #original 0.12405464/L #SBF #SBF
+	IntermediaryEnzyme() 3.14473464896e+23 #original 0.52220768/L #IntermediaryEnzyme #IE
+	Cdc20activated() 8.6624615224e+23 #original 1.4384692/L #Cdc20activated #Cdc20a
+	Cdc20() 7.0592160316e+23 #original 1.1722378/L #Cdc20 #Cdc20
+	Cdh1() 5.97765736432e+23 #original 0.99263656/L #Cdh1 #Cdh1
+	Swe1() 1.9022645887e+20 #original 0.00031588585/L #Swe1 #Swe1
+	Swe1modified() 1.10564684794e+22 #original 0.018360127/L #Swe1modified #Swe1M
+	PhosphorylatedSwe1() 1.2345572727e+20 #original 0.00020500785/L #PhosphorylatedSwe1 #PSwe1
+	PhosphorylatedSwe1M() 8.0314101204e+21 #original 0.013336782/L #PhosphorylatedSwe1M #PSwe1M
+	Mih1a() 4.8663224965e+23 #original 0.80809075/L #Mih1a #Mih1a
+	Mcm() 5.6178789963200004e+23 #original 0.93289256/L #Mcm #Mcm
+	BE() 1.46311589938e+20 #original 0.00024296179/L #BE #BE
+	Cln() 3.22784999186e+22 #original 0.053600963/L #Cln #Cln
+	mass() 4.8311407078800005e+23 #original 0.80224854/L #mass #mass
+end seed species
+begin observables
+	Species CDC28_Clb2_Sic1_Complex CDC28_Clb2_Sic1_Complex() #CDC28_Clb2_Sic1_Complex
+	Species Clb2 Clb2() #Clb2
+	Species Sic1 Sic1() #Sic1
+	Species PhosphorylatedCdc28_Clb2_Sic1Complex PhosphorylatedCdc28_Clb2_Sic1Complex() #Phosphorylated Cdc28_Clb2_Sic1 Complex
+	Species PhosphorylatedClb2 PhosphorylatedClb2() #Phosphorylated Clb2
+	Species SBF SBF() #SBF
+	Species IntermediaryEnzyme IntermediaryEnzyme() #Intermediary Enzyme
+	Species Cdc20activated Cdc20activated() #Cdc20 activated
+	Species Cdc20 Cdc20() #Cdc20
+	Species Cdh1 Cdh1() #Cdh1
+	Species Swe1 Swe1() #Swe1
+	Species Swe1modified Swe1modified() #Swe1 modified
+	Species PhosphorylatedSwe1 PhosphorylatedSwe1() #Phosphorylated Swe1
+	Species PhosphorylatedSwe1M PhosphorylatedSwe1M() #Phosphorylated Swe1M
+	Species Mih1a Mih1a() #Mih1a
+	Species Mcm Mcm() #Mcm
+	Species BE BE() #BE
+	Species Cln Cln() #Cln
+	Species mass mass() #mass
+end observables
+begin functions
+	SBFin() = -SBF + SBFtot
+	Mcmin() = -Mcm + Mcmtot
+	Mih1() = -Mih1a + Mih1tot
+	Cdh1in() = -Cdh1 + Cdh1tot
+	IEin() = IEtot - IntermediaryEnzyme
+	Swe1T() = PhosphorylatedSwe1 + PhosphorylatedSwe1M + Swe1 + Swe1modified
+	kmih() = Mih*kmih_doubleprime + Mih_ast*kmih_prime
+	kswe() = PhosphorylatedSwe1*kswe_tripleprime + Swe1*kswe_prime + Swe1modified*kswe_doubleprime
+	fRate1() = CDC28_Clb2_Sic1_Complex*(Clb2*kdsic_doubleprime + Cln*kdsic_prime + kdsic)
+	fRate2() = CDC28_Clb2_Sic1_Complex*(Cdc20activated*kdclb_tripleprime + Cdh1*kdclb_doubleprime + kdclb_prime)
+	fRate6() = Clb2*(Cdc20activated*kdclb_tripleprime + Cdh1*kdclb_doubleprime + kdclb_prime)
+	fRate8() = Jm*ksclb*mass*(Mcm + eps)/(Jm + mass)
+	fRate10() = SBF*(Clb2*kisbf_doubleprime + kisbf_prime)/(SBF + jisbf)
+	fRate11() = SBFin*(Cln*kasbf_doubleprime + kasbf_prime*mass)/(SBFin + jasbf)
+	fRate12() = kiie/(IntermediaryEnzyme + jiie)
+	fRate13() = Clb2*IEin*kaie/(IEin + jaie)
+	fRate14() = kicdc20/(Cdc20activated + jicdc20)
+	fRate16() = IntermediaryEnzyme*kacdc20/(Cdc20 + jacdc20)
+	fRate17() = Cdh1*(Clb2*kicdh + Cln*kicdh_prime)/(Cdh1 + jicdh)
+	fRate18() = Cdh1in*(Cdc20activated*Kacdh_doubleprime + Kacdh_prime)/(Cdh1in + jacdh)
+	fRate19() = BUD*khsl1
+	fRate20() = BUD*khsl1
+	fRate21() = Clb2*Viwee/(Jiwee + Swe1)
+	fRate22() = Clb2*Viwee/(Jiwee + Swe1modified)
+	fRate26() = Vawee/(Jawee + PhosphorylatedSwe1)
+	fRate27() = Vawee/(Jawee + PhosphorylatedSwe1M)
+	fRate28() = SBF*ksswe
+	fRate32() = PhosphorylatedCdc28_Clb2_Sic1Complex*(Cdc20activated*kdclb_tripleprime + Cdh1*kdclb_doubleprime + kdclb_prime)
+	fRate33() = PhosphorylatedCdc28_Clb2_Sic1Complex*(Clb2*kdsic_doubleprime + Cln*kdsic_prime + kdsic)
+	fRate35() = Vimih/(Mih1a + jimih)
+	fRate36() = Clb2*Mih1*Vamih/(Jamih + Mih1)
+	fRate37() = kimcm/(Mcm + jimcm)
+	fRate38() = Clb2*Mcmin*kamcm/(Mcmin + jamcm)
+	fRate40() = Cln*ksbud
+	fRate41() = Sic1*(Clb2*kdsic_doubleprime + Cln*kdsic_prime + kdsic)
+	fRate44() = SBF*kscln
+	fRate47() = (Clb2^4*kscdc20_doubleprime + kscdc20_prime*(Clb2^4 + jscdc20^4))/(Clb2^4 + jscdc20^4)
+	fRate49() = PhosphorylatedClb2*(Cdc20activated*kdclb_tripleprime + Cdh1*kdclb_doubleprime + kdclb_prime)
+	fRate50() = mass*mu
+end functions
+begin reaction rules
+	R1: CDC28_Clb2_Sic1_Complex() -> Sic1() + Clb2() kdiss
+	R2_reactants_0: 0  -> CDC28_Clb2_Sic1_Complex() -1*(fRate1()) #Modifiers(Cln)
+	R2_products_0: 0  -> Clb2() fRate1() #Modifiers(Cln)
+	R3_reactants_0: 0  -> CDC28_Clb2_Sic1_Complex() -1*(fRate2()) #Modifiers(Cdh1, Cdc20a)
+	R3_products_0: 0  -> Sic1() fRate2() #Modifiers(Cdh1, Cdc20a)
+	R4: CDC28_Clb2_Sic1_Complex() -> PhosphorylatedCdc28_Clb2_Sic1Complex() kswe
+	R5: Sic1() + Clb2() -> CDC28_Clb2_Sic1_Complex() kass
+	R6: PhosphorylatedCdc28_Clb2_Sic1Complex() -> CDC28_Clb2_Sic1_Complex() kmih
+	R7_reactants_0: 0  -> Clb2() -1*(fRate6()) #Modifiers(Cdh1, Cdc20a)
+	R8: Clb2() -> PhosphorylatedClb2() kswe
+	R9: 0  -> Clb2() fRate8() #Modifiers(mass, Mcm)
+	R10: PhosphorylatedClb2() -> Clb2() kmih
+	R11_reactants_0: 0  -> SBF() -1*(fRate10()) #Modifiers(Clb)
+	R12: 0  -> SBF() fRate11() #Modifiers(mass, Cln)
+	R13: IntermediaryEnzyme() -> 0  fRate12()
+	R14: 0  -> IntermediaryEnzyme() fRate13() #Modifiers(Clb)
+	R15: Cdc20activated() -> Cdc20() fRate14()
+	R16: Cdc20activated() -> 0  kdcdc20
+	R18: Cdc20() -> Cdc20activated() fRate16() #Modifiers(IE)
+	R19_reactants_0: 0  -> Cdh1() -1*(fRate17()) #Modifiers(Clb, Cln)
+	R20: 0  -> Cdh1() fRate18() #Modifiers(Cdc20a)
+	R21: Swe1() -> Swe1modified() fRate19()
+	R22: PhosphorylatedSwe1() -> PhosphorylatedSwe1M() fRate20()
+	R23: Swe1() -> PhosphorylatedSwe1() fRate21() #Modifiers(Clb)
+	R24: Swe1modified() -> PhosphorylatedSwe1M() fRate22() #Modifiers(Clb)
+	R25: Swe1() -> 0  kdswe_prime
+	R26: Swe1modified() -> Swe1() khsl1r
+	R27: PhosphorylatedSwe1M() -> PhosphorylatedSwe1() khsl1r
+	R28: PhosphorylatedSwe1() -> Swe1() fRate26()
+	R29: PhosphorylatedSwe1M() -> Swe1modified() fRate27()
+	R30: 0  -> Swe1() fRate28() #Modifiers(SBF)
+	R31: 0  -> Swe1() kssweC
+	R32: PhosphorylatedSwe1() -> 0  kdswe_prime
+	R33: PhosphorylatedCdc28_Clb2_Sic1Complex() -> PhosphorylatedClb2() + Sic1() kdiss
+	R34_reactants_0: 0  -> PhosphorylatedCdc28_Clb2_Sic1Complex() -1*(fRate32()) #Modifiers(Cdh1, Cdc20a)
+	R34_products_0: 0  -> Sic1() fRate32() #Modifiers(Cdh1, Cdc20a)
+	R35_reactants_0: 0  -> PhosphorylatedCdc28_Clb2_Sic1Complex() -1*(fRate33()) #Modifiers(Cln, Clb)
+	R35_products_0: 0  -> PhosphorylatedClb2() fRate33() #Modifiers(Cln, Clb)
+	R36: Sic1() + PhosphorylatedClb2() -> PhosphorylatedCdc28_Clb2_Sic1Complex() kass
+	R37: Mih1a() -> 0  fRate35()
+	R38: 0  -> Mih1a() fRate36() #Modifiers(Clb)
+	R39: Mcm() -> 0  fRate37()
+	R40: 0  -> Mcm() fRate38() #Modifiers(Clb)
+	R41: BE() -> 0  kdbud
+	R42: 0  -> BE() fRate40() #Modifiers(Cln)
+	R43_reactants_0: 0  -> Sic1() -1*(fRate41()) #Modifiers(Cln, Clb)
+	R44: 0  -> Sic1() kssic
+	R45: Cln() -> 0  kdcln
+	R46: 0  -> Cln() fRate44() #Modifiers(SBF)
+	R47: Swe1modified() -> 0  kdswe_prime
+	R48: Cdc20() -> 0  kdcdc20
+	R49: 0  -> Cdc20() fRate47() #Modifiers(Clb)
+	R50: PhosphorylatedSwe1M() -> 0  kdswe_doubleprime
+	R51_reactants_0: 0  -> PhosphorylatedClb2() -1*(fRate49()) #Modifiers(Cdh1, Cdc20a)
+	R52: 0  -> mass() fRate50()
+end reaction rules
+end model

@@ -1,0 +1,64 @@
+###
+#@BQB_IS:['http://identifiers.org/biomodels.db/MODEL1006230025']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0022410']
+#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000146']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/17440218']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/ncit/C99553', 'http://identifiers.org/mamo/MAMO_0000046']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1006230025', 'http://identifiers.org/biomodels.db/BIOMD0000000917']
+#@creatorEmail:'c.lloyd@auckland.ac.nz'
+#@creatorName:'Lloyd Catherine'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 3 molecules and 3 reactions. The translated model has 3 molecules and 3 rules'
+###
+begin model
+begin parameters
+	tau_v 10.0
+	v_vm -1.9
+	Vao 1.0
+	tau_m 10.0
+	v_mv -1.9
+	v_maQao 1.0
+	chi 10.8
+	mu 3.6
+	c0 1.0
+	v_vc -6.3
+	v_vh 0.19
+	Qmax 100.0
+	theta 10.0
+	sigma 3.0
+end parameters
+begin molecule types
+	Monoaminergic__MA__voltage()
+	Ventrolateralpreopticarea__VLPO__voltage()
+	SomnogenlevelH()
+end molecule types
+begin seed species
+	Monoaminergic__MA__voltage() 6.022e+23 # 1.0mol/L * 6.022e23/mol *1.0L #Monoaminergic__MA__voltage #Monoaminergic__MA__voltage
+	SomnogenlevelH() 6.022e+24 #original 10.0substance/volume #SomnogenlevelH #Somnogen_level_H
+end seed species
+begin observables
+	Species Monoaminergic__MA__voltage Monoaminergic__MA__voltage() #Monoaminergic (MA) voltage
+	Species Ventrolateralpreopticarea__VLPO__voltage Ventrolateralpreopticarea__VLPO__voltage() #Ventrolateral preopticarea (VLPO) voltage
+	Species SomnogenlevelH SomnogenlevelH() #Somnogen level H
+end observables
+begin functions
+	omega() = 0.261799387791667
+	C() = c0 + cos(omega*time())
+	D() = C*v_vc + SomnogenlevelH*v_vh
+	Va() = Vao
+	Qa() = Qmax/(exp((-Va + theta)/sigma) + 1)
+	Qm() = Qmax/(exp((-Monoaminergic__MA__voltage + theta)/sigma) + 1)
+	Qv() = Qmax/(exp((-Ventrolateralpreopticarea__VLPO__voltage + theta)/sigma) + 1)
+	fRate0() = (3600.0*Qv*v_mv + 3600.0*v_maQao)/tau_m
+	fRate0m() = 3600.0/tau_m
+	fRate1() = (3600.0*D + 3600.0*Qm*v_vm)/tau_v
+	fRate1m() = 3600.0/tau_v
+	fRate2() = Qm*mu/chi
+	fRate2m() = 1/chi
+end functions
+begin reaction rules
+	Reaction_for_Monoaminergic__MA__voltage: 0  <-> Monoaminergic__MA__voltage() fRate0(),fRate0m()
+	Reaction_for_Ventrolateral_preopticarea__VLPO__voltage: 0  <-> Ventrolateralpreopticarea__VLPO__voltage() fRate1(),fRate1m()
+	Reaction_for_homeostatic_sleep: 0  <-> SomnogenlevelH() fRate2(),fRate2m()
+end reaction rules
+end model

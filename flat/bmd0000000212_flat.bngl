@@ -1,0 +1,176 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000212', 'http://identifiers.org/biomodels.db/MODEL3336584391']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/19455135']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/3702']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0006531']
+#@BQB_IS_PART_OF:['http://identifiers.org/kegg.pathway/ath00260']
+#@creatorEmail:'lukas@ebi.ac.uk'
+#@creatorName:'Endler Lukas'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 31 molecules and 18 reactions. The translated model has 14 molecules and 25 rules'
+###
+begin model
+begin parameters
+	V_AA_RS 0.43 #units:umole_per_litre_per_time
+	AK1 1.5055e+17 #original 0.25micromole/L
+	S_adenosyl_methionine 1.2044e+19 #original 20.0micromole/L
+	AK2 1.5055e+17 #original 0.25micromole/L
+	AKI_HSDHI 3.79386e+17 #original 0.63micromole/L
+	AKII_HSDHII 3.79386e+17 #original 0.63micromole/L
+	ASADH 6.98552e+18 #original 11.6micromole/L
+	DHDPS1 9.6352e+17 #original 1.6micromole/L
+	DHDPS2 9.6352e+17 #original 1.6micromole/L
+	HSK 2.4088e+18 #original 4.0micromole/L
+	TS1 4.4562800000000005e+18 #original 7.4micromole/L
+	Phosphate 6.022e+21 #original 10000.0micromole/L
+	Cysteine 9.033e+18 #original 15.0micromole/L
+	CGS 4.2154e+17 #original 0.7micromole/L
+	TD 2.16792e+17 #original 0.36micromole/L
+	Valine 6.022e+19 #original 100.0micromole/L
+	r1_AK1_kforward_app_exp 5.650000
+	r1_AK1_kreverse_app_exp 1.600000
+	r1_AK1_Lys_Ki_app_exp 550.000000
+	r1_AK1_AdoMet_Ka_app_exp 3.500000
+	r1_AK1_nH_exp 2.000000
+	r2_AK2_kforward_app_exp 3.150000
+	r2_AK2_kreverse_app_exp 0.860000
+	r2_AK2_Lys_Ki_app_exp 22.000000
+	r2_AK2_nH_exp 1.100000
+	r3_AKI_kforward_app_exp 0.360000
+	r3_AKI_kreverse_app_exp 0.150000
+	r3_AKI_Thr_Ki_app_exp 124.000000
+	r3_AKI_nH_exp 2.000000
+	r4_AKII_kforward_app_exp 1.350000
+	r4_AKII_kreverse_app_exp 0.220000
+	r4_AKII_Thr_Ki_app_exp 109.000000
+	r4_AKII_nH_exp 2.000000
+	r5_ASADH_kforward_app_exp 0.900000
+	r5_ASADH_kreverse_app_exp 0.230000
+	r6_DHDPS1_k_app_exp 1.000000
+	r6_DHDPS1_Lys_Ki_app_exp 10.000000
+	r6_DHDPS1_nH_exp 2.000000
+	r7_DHDPS2_k_app_exp 1.000000
+	r7_DHDPS2_Lys_Ki_app_exp 33.000000
+	r7_DHDPS2_nH_exp 2.000000
+	r8_HSDHI_kforward_app_exp 0.840000
+	r8_HSDHI_Thr_relative_residual_activity_app_exp 0.140000
+	r8_HSDHI_Thr_relative_inhibition_app_exp 0.860000
+	r8_HSDHI_Thr_Ki_app_exp 400.000000
+	r9_HSDHII_kforward_app_exp 0.640000
+	r9_HSDHII_Thr_relative_residual_activity_app_exp 0.250000
+	r9_HSDHII_Thr_relative_inhibition_app_exp 0.750000
+	r9_HSDHII_Thr_Ki_app_exp 8500.000000
+	r10_HSK_kcat_app_exp 2.800000
+	r10_HSK_Hser_app_exp 14.000000
+	r11_TS1_kcatmin_exp 0.420000
+	r11_TS1_AdoMet_kcatmax_exp 3.500000
+	r11_TS1_AdoMet_Ka1_exp 73.000000
+	r11_TS1_nH_exp 2.000000
+	r11_TS1_Phosphate_Ki_exp 1000.000000
+	r11_TS1_AdoMEt_Km_no_AdoMet_exp 250.000000
+	r11_TS1_AdoMet_Ka2_exp 0.500000
+	r11_TS1_AdoMet_Ka3_exp 1.090000
+	r11_TS1_AdoMet_Ka4_exp 140.000000
+	r12_CGS_kcat_exp 30.000000
+	r12_CGS_Cys_Km_exp 460.000000
+	r12_CGS_Phser_Km_exp 2500.000000
+	r12_CGS_Phosphate_Ki_exp 2000.000000
+	r13_TD_k_app_exp 0.012400
+	r13_TD_Ile_Ki_no_Val_app_exp 30.000000
+	r13_TD_Val_Ka1_app_exp 73.000000
+	r13_TD_Val_Ka2_app_exp 615.000000
+	r13_TD_nH_app_exp 3.000000
+	r14_Lys_tRNAS_Lys_Km 25.000000
+	r15_Thr_tRNAS_Thr_Km 100.000000
+	r16_Ile_tRNAS_Ile_Km 20.000000
+	r17_LKR_kcat_exp 3.100000
+	r17_LKR_Lys_Km_exp 13000.000000
+	r18_THA_kcat_exp 1.700000
+	r18_THA_Thr_Km_exp 7100.000000
+end parameters
+begin molecule types
+	Lysine()
+	Phosphohomoserine()
+	Aspartyl_P()
+	Ile_tRNA()
+	Glycine()
+	Isoleucine()
+	Cystathione()
+	Saccharopine()
+	Lys_tRNA()
+	Aspartate()
+	Aspartatesemialdehyde()
+	Thr_tRNA()
+	Homoserine()
+	Threonine()
+end molecule types
+begin seed species
+	Aspartate() 9.033e+20 # (1500.0 * 1e-06)mol/L * 6.022e23/mol *1.0L #Aspartate #Asp
+end seed species
+begin observables
+	Species Aspartate Aspartate() #Aspartate
+	Species Lysine Lysine() #Lysine
+	Species Aspartyl_P Aspartyl_P() #Aspartyl_P
+	Species Threonine Threonine() #Threonine
+	Species Aspartatesemialdehyde Aspartatesemialdehyde() #Aspartate semialdehyde
+	Species Homoserine Homoserine() #Homoserine
+	Species Phosphohomoserine Phosphohomoserine() #Phosphohomoserine
+	Species Cystathione Cystathione() #Cystathione
+	Species Isoleucine Isoleucine() #Isoleucine
+	Species Lys_tRNA Lys_tRNA() #Lys-tRNA
+	Species Thr_tRNA Thr_tRNA() #Thr-tRNA
+	Species Ile_tRNA Ile_tRNA() #Ile-tRNA
+	Species Saccharopine Saccharopine() #Saccharopine
+	Species Glycine Glycine() #Glycine
+end observables
+begin functions
+	V_Ile_RS() = V_AA_RS
+	V_Thr_RS() = V_AA_RS
+	V_Lys_RS() = V_AA_RS
+	fRate0() = AK1*(5.65 - 1.6*Aspartyl_P)/(3.30578512396694e-6*(Lysine*(0.285714285714286*S_adenosyl_methionine + 1))^2.0 + 1)
+	fRate1() = AK2*(3.15 - 0.86*Aspartyl_P)/(0.0333683745042907*Lysine^1.1 + 1)
+	fRate2() = AKI_HSDHI*(0.36 - 0.15*Aspartyl_P)/(6.50364203954214e-5*Threonine^2.0 + 1)
+	fRate3() = AKII_HSDHII*(1.35 - 0.22*Aspartyl_P)/(8.4167999326656e-5*Threonine^2.0 + 1)
+	fRate4() = 0.9*ASADH
+	fRate4m() = 0.23*ASADH
+	fRate5() = 1.0*DHDPS1/(0.01*Lysine^2.0 + 1.0)
+	fRate6() = 1.0*DHDPS2/(0.000918273645546373*Lysine^2.0 + 1.0)
+	fRate7() = 0.84*AKI_HSDHI*Aspartatesemialdehyde*(0.14 + 0.86/(0.0025*Threonine + 1))
+	fRate8() = 0.64*AKII_HSDHII*Aspartatesemialdehyde*(0.25 + 0.75/(0.000117647058823529*Threonine + 1))
+	fRate9() = 2.8*HSK/(Homoserine + 14.0)
+	fRate10() = Phosphohomoserine*TS1*(0.0479452054794521*S_adenosyl_methionine^2.0 + 0.42)/((Phosphohomoserine + (0.001*Phosphate + 1)*(500.0*S_adenosyl_methionine + 250.0)/((0.91743119266055*S_adenosyl_methionine + 1)*(0.00714285714285714*S_adenosyl_methionine^2.0 + 1)))*(0.0136986301369863*S_adenosyl_methionine^2.0 + 1))
+	fRate11() = 60000.0*CGS*Cysteine/(2500.0*Cysteine*Phosphate + 2000.0*Cysteine*Phosphohomoserine + 5000000.0*Cysteine + 920000.0*Phosphohomoserine)
+	fRate12() = 0.0124*TD/((Isoleucine*(Valine + 615.0)/(103.0*Valine + 18450.0))^3.0 + 1.0)
+	fRate13() = V_Lys_RS/(Lysine + 25.0)
+	fRate14() = V_Thr_RS/(Threonine + 100.0)
+	fRate15() = V_Ile_RS/(Isoleucine + 20.0)
+	fRate16() = 3.1*LKR/(Lysine + 13000.0)
+	fRate17() = 1.7*THA/(Threonine + 7100.0)
+end functions
+begin reaction rules
+	Vak1_reactants_0: 0  -> Aspartate() -1*(fRate0()) #Modifiers(AK1, Lys, AdoMet)
+	Vak1_products_0: 0  -> Aspartyl_P() fRate0() #Modifiers(AK1, Lys, AdoMet)
+	Vak2_reactants_0: 0  -> Aspartate() -1*(fRate1()) #Modifiers(AK2, Lys)
+	Vak2_products_0: 0  -> Aspartyl_P() fRate1() #Modifiers(AK2, Lys)
+	VakI_reactants_0: 0  -> Aspartate() -1*(fRate2()) #Modifiers(AKHSDHI, Thr)
+	VakI_products_0: 0  -> Aspartyl_P() fRate2() #Modifiers(AKHSDHI, Thr)
+	VakII_reactants_0: 0  -> Aspartate() -1*(fRate3()) #Modifiers(AKHSDHII, Thr)
+	VakII_products_0: 0  -> Aspartyl_P() fRate3() #Modifiers(AKHSDHII, Thr)
+	Vasadh: Aspartyl_P() <-> Aspartatesemialdehyde() fRate4(),fRate4m() #Modifiers(ASADH)
+	Vdhdps1: Aspartatesemialdehyde() -> Lysine() fRate5() #Modifiers(DHDPS1, Lys)
+	Vdhdps2: Aspartatesemialdehyde() -> Lysine() fRate6() #Modifiers(DHDPS2, Lys)
+	Vhsdh1_reactants_0: 0  -> Aspartatesemialdehyde() -1*(fRate7()) #Modifiers(AKHSDHI, Thr)
+	Vhsdh1_products_0: 0  -> Homoserine() fRate7() #Modifiers(AKHSDHI, Thr)
+	Vhsdh2_reactants_0: 0  -> Aspartatesemialdehyde() -1*(fRate8()) #Modifiers(AKHSDHII, Thr)
+	Vhsdh2_products_0: 0  -> Homoserine() fRate8() #Modifiers(AKHSDHII, Thr)
+	Vhsk: Homoserine() -> Phosphohomoserine() fRate9() #Modifiers(HSK)
+	Vts1_reactants_0: 0  -> Phosphohomoserine() -1*(fRate10()) #Modifiers(TS1, Phosphate, AdoMet)
+	Vts1_products_0: 0  -> Threonine() fRate10() #Modifiers(TS1, Phosphate, AdoMet)
+	Vcgs: Phosphohomoserine() -> Cystathione() fRate11() #Modifiers(CGS, Cys, Phosphate)
+	Vtd: Threonine() -> Isoleucine() fRate12() #Modifiers(TD, Val, Ile)
+	VlysTRNA: Lysine() -> Lys_tRNA() fRate13()
+	VthrTRNA: Threonine() -> Thr_tRNA() fRate14()
+	VileTRNA: Isoleucine() -> Ile_tRNA() fRate15()
+	VlysKR: Lysine() -> Saccharopine() fRate16() #Modifiers(LKR)
+	Vtha: Threonine() -> Glycine() fRate17() #Modifiers(THA)
+end reaction rules
+end model

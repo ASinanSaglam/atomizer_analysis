@@ -1,0 +1,164 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/doi/10.1101/565531']
+#@BQB_IS:['http://identifiers.org/biomodels.db/MODEL1910020003']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/ncit/C17997', 'http://identifiers.org/go/GO:0006955', 'http://identifiers.org/efo/0000311', 'http://identifiers.org/ncit/C19151', 'http://identifiers.org/mamo/MAMO_0000046']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1910020003', 'http://identifiers.org/biomodels.db/BIOMD0000000926']
+#@creatorEmail:''
+#@creatorName:'McCann Conor'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 8 molecules and 26 reactions. The translated model has 8 molecules and 26 rules'
+###
+begin model
+begin parameters
+	r_1 0.38
+	K_1 531960000.0 #units:unit_0
+	r_2 0.38
+	K_2 531960000.0 #units:unit_0
+	minC_1 0.2
+	maxC_1 0.1
+	upC_1 1101695.0
+	lowC_1 254237.0 #units:unit_0
+	minC_2 0.2
+	maxC_2 0.1
+	upC_2 1101695.0
+	lowC_2 254237.0 #units:unit_0
+	max_1 0.5
+	max_2 0.5
+	low_1 25424.0 #units:unit_0
+	low_2 25424.0 #units:unit_0
+	up_1 110169.0
+	up_2 110169.0
+	upD_1 110169.0
+	upD_2 110169.0
+	lowD_1 25424.0 #units:unit_0
+	lowD_2 25424.0 #units:unit_0
+	theta_1 65.67
+	theta_2 65.67
+	s_1 0.01
+	min_v 0.001
+	max_v 0.999
+	low_v 26600000.0 #units:unit_0
+	up_v 293000000.0
+	max_CT 100.0
+	lowEst_CT 254237.0 #units:unit_0
+	upEst_CT 1101695.0
+	minEst_TE 0.001
+	maxEst_TE 0.002
+	lowEst_TE 25424.0 #units:unit_0
+	upEst_TE 110169.0
+	myu_1 0.01
+	myu_2 0.05
+	alpha_1 1000000.0 #units:unit_1
+	alpha_2 1000000.0 #units:unit_1
+	a_11 0.524 #units:unit_1
+	a_12 0.524 #units:unit_1
+	a_21 0.786 #units:unit_1
+	a_22 0.786 #units:unit_1
+	b_11 161000.0 #units:unit_0
+	b_12 161000.0 #units:unit_0
+	b_21 161000.0 #units:unit_0
+	b_22 161000.0 #units:unit_0
+	a_31 0.04 #units:unit_1
+	a_32 0.04 #units:unit_1
+	b_31 160000.0 #units:unit_0
+	b_32 160000.0 #units:unit_0
+	omega_1 0.59
+	omega_2 0.59
+	rho_1 0.001
+	rho_2 0.01
+	chi_1 5e-05 #units:unit_1
+	chi_2 5e-05 #units:unit_1
+	tau_1 0.05 #units:unit_1
+	tau_2 0.05 #units:unit_1
+	tilde_s_1 0.05 #units:unit_1
+	p 0.0001
+end parameters
+begin molecule types
+	NecroticCell__v_1__()
+	CTimmuneCell__x_1__()
+	TumorCell__u_1__()
+	TEimmuneCell__y_2__()
+	TEimmuneCell__y_1__()
+	TumorCell__u_2__()
+	NecroticCell__v_2__()
+	CTimmuneCell__x_2__()
+end molecule types
+begin seed species
+	TumorCell__u_1__() 6.022e+20 # (1.0 * 0.001)mol/L * 6.022e23/mol *1.0L #TumorCell__u_1__ #Tumor_Cell_u_1
+	TEimmuneCell__y_1__() 6.022e+17 #original 0.001substance/volume #TEimmuneCell__y_1__ #TE_immune_Cell_y_1
+	TumorCell__u_2__() 602200000.0000001 #original 1e-12substance/volume #TumorCell__u_2__ #Tumor_Cell_u_2
+	TEimmuneCell__y_2__() 60220000000.00001 #original 1e-10substance/volume #TEimmuneCell__y_2__ #TE_immune_Cell_y_2
+	NecroticCell__v_1__() 6.022e+20 #original 1.0substance/volume #NecroticCell__v_1__ #Necrotic_Cell_v_1
+	NecroticCell__v_2__() 60220.0 #original 1e-16substance/volume #NecroticCell__v_2__ #Necrotic_Cell_v_2
+	CTimmuneCell__x_1__()() (1000000.0) / (0.59) #CT_immune_Cell_x_1
+	CTimmuneCell__x_2__()() (1000000.0) / (0.59) #CT_immune_Cell_x_2
+end seed species
+begin observables
+	Species TumorCell__u_1__ TumorCell__u_1__() #Tumor Cell(u_1)
+	Species TEimmuneCell__y_1__ TEimmuneCell__y_1__() #TE immune Cell(y_1)
+	Species CTimmuneCell__x_1__ CTimmuneCell__x_1__() #CT immune Cell(x_1)
+	Species TumorCell__u_2__ TumorCell__u_2__() #Tumor Cell(u_2)
+	Species CTimmuneCell__x_2__ CTimmuneCell__x_2__() #CT immune Cell(x_2)
+	Species TEimmuneCell__y_2__ TEimmuneCell__y_2__() #TE immune Cell(y_2)
+	Species NecroticCell__v_1__ NecroticCell__v_1__() #Necrotic Cell(v_1)
+	Species NecroticCell__v_2__ NecroticCell__v_2__() #Necrotic Cell(v_2)
+end observables
+begin functions
+	v_y2_minestte_maxestte_lowestte_upestte() = maxEst_TE*(-tanh((-3*lowEst_TE - 3*upEst_TE)/(-lowEst_TE + upEst_TE)) + tanh((6*TEimmuneCell__y_2__ - 3*lowEst_TE - 3*upEst_TE)/(-lowEst_TE + upEst_TE)))/2 + minEst_TE
+	e_x2_0_maxct_lowesstct_upestct() = max_CT*(1 - tanh((6*CTimmuneCell__x_2__ - 3*lowEst_CT - 3*upEst_CT)/(-lowEst_CT + upEst_CT)))/(1 - tanh((-3*lowEst_CT - 3*upEst_CT)/(-lowEst_CT + upEst_CT)))
+	v_v2_minv_maxv_lowv_upv() = max_v*(-tanh((-3*low_v - 3*up_v)/(-low_v + up_v)) + tanh((6*NecroticCell__v_2__ - 3*low_v - 3*up_v)/(-low_v + up_v)))/2 + min_v
+	est() = e_x2_0_maxct_lowesstct_upestct*v_v2_minv_maxv_lowv_upv*v_y2_minestte_maxestte_lowestte_upestte
+	f_2() = TumorCell__u_2__*a_32/(TumorCell__u_2__ + b_32)
+	f_1() = TumorCell__u_1__*a_31/(TumorCell__u_1__ + b_31)
+	ed_2() = TumorCell__u_2__*chi_2
+	lambda_2() = NecroticCell__v_2__*a_22/(NecroticCell__v_2__ + b_22) + TumorCell__u_2__*a_12/(TumorCell__u_2__ + b_12)
+	lambda_1() = NecroticCell__v_1__*a_21/(NecroticCell__v_1__ + b_21) + TumorCell__u_1__*a_11/(TumorCell__u_1__ + b_11)
+	ed_1() = TumorCell__u_1__*chi_1
+	gamma_2() = max_2*(-tanh((-3*low_2 - 3*up_2)/(-low_2 + up_2)) + tanh((6*TEimmuneCell__y_2__ - 3*low_2 - 3*up_2)/(-low_2 + up_2)))/2 + 1
+	sigma_2() = (1 - tanh((6*TEimmuneCell__y_2__ - 3*lowD_2 - 3*upD_2)/(-lowD_2 + upD_2)))*(maxC_2*(-tanh((-3*lowC_2 - 3*upC_2)/(-lowC_2 + upC_2)) + tanh((6*CTimmuneCell__x_2__ - 3*lowC_2 - 3*upC_2)/(-lowC_2 + upC_2)))/2 + minC_2)/(1 - tanh((-3*lowD_2 - 3*upD_2)/(-lowD_2 + upD_2)))
+	sigma_1() = (1 - tanh((6*TEimmuneCell__y_1__ - 3*lowD_1 - 3*upD_1)/(-lowD_1 + upD_1)))*(maxC_1*(-tanh((-3*lowC_1 - 3*upC_1)/(-lowC_1 + upC_1)) + tanh((6*CTimmuneCell__x_1__ - 3*lowC_1 - 3*upC_1)/(-lowC_1 + upC_1)))/2 + minC_1)/(1 - tanh((-3*lowD_1 - 3*upD_1)/(-lowD_1 + upD_1)))
+	g_2() = r_2*(1 - TumorCell__u_2__/K_2)
+	g_1() = r_1*(1 - TumorCell__u_1__/K_1)
+	gamma_1() = max_1*(-tanh((-3*low_1 - 3*up_1)/(-low_1 + up_1)) + tanh((6*TEimmuneCell__y_1__ - 3*low_1 - 3*up_1)/(-low_1 + up_1)))/2 + 1
+	fRate0() = TumorCell__u_1__*g_1*gamma_1
+	fRate1() = TumorCell__u_2__*g_2*gamma_2
+	fRate4() = TumorCell__u_1__*sigma_1*theta_1
+	fRate5() = TumorCell__u_2__*sigma_2*theta_2
+	fRate7() = TumorCell__u_1__*est*s_1
+	fRate12() = CTimmuneCell__x_1__*lambda_1
+	fRate13() = CTimmuneCell__x_2__*lambda_2
+	fRate16() = TumorCell__u_1__*rho_1
+	fRate17() = TumorCell__u_2__*rho_2
+	fRate23() = TEimmuneCell__y_1__*p*tilde_s_1
+	fRate24() = TEimmuneCell__y_1__*f_1
+	fRate25() = TEimmuneCell__y_2__*f_2
+end functions
+begin reaction rules
+	Tumor_Cell_u1__growth: 0  -> TumorCell__u_1__() fRate0()
+	Tumor_Cell_u2__growth: 0  -> TumorCell__u_2__() fRate1()
+	Tumor_Cell_u1__death: TumorCell__u_1__() -> 0  sigma_1
+	Tumor_Cell_u2__death: TumorCell__u_2__() -> 0  sigma_2
+	Necrotic_Cell_v1__rise: 0  -> NecroticCell__v_1__() fRate4() #Modifiers(Tumor_Cell_u_1)
+	Necrotic_Cell_v2__rise: 0  -> NecroticCell__v_2__() fRate5() #Modifiers(Tumor_Cell_u_2)
+	Tumor_Cell_u1__Shedding: TumorCell__u_1__() -> 0  s_1
+	Tumor_Cell_u2__Metastatic: 0  -> TumorCell__u_2__() fRate7() #Modifiers(Tumor_Cell_u_1)
+	Necrotic_Cell_v1__lysis: NecroticCell__v_1__() -> 0  myu_1
+	Necrotic_Cell_v2__lysis: NecroticCell__v_2__() -> 0  myu_2
+	CT_immune_Cell_x1__natural_influx: 0  -> CTimmuneCell__x_1__() alpha_1
+	CT_immune_Cell_x2__natural_influx: 0  -> CTimmuneCell__x_2__() alpha_2
+	CT_immune_Cell_x1__response: 0  -> CTimmuneCell__x_1__() fRate12()
+	CT_immune_Cell_x2__response: 0  -> CTimmuneCell__x_2__() fRate13()
+	CT_immune_Cell_x1__death: CTimmuneCell__x_1__() -> 0  omega_1
+	CT_immune_Cell_x2__death: CTimmuneCell__x_2__() -> 0  omega_2
+	CT_immune_Cell_x1__killed: CTimmuneCell__x_1__() -> 0  fRate16() #Modifiers(Tumor_Cell_u_1)
+	CT_immune_Cell_x2__killed: CTimmuneCell__x_2__() -> 0  fRate17() #Modifiers(Tumor_Cell_u_2)
+	CT_immune_Cell_x1__transition: CTimmuneCell__x_1__() -> TEimmuneCell__y_1__() ed_1
+	CT_immune_Cell_x2__transition: CTimmuneCell__x_2__() -> TEimmuneCell__y_2__() ed_2
+	TE_immune_Cell_y1__natural_death: TEimmuneCell__y_1__() -> 0  tau_1
+	TE_immune_Cell_y2__natural_death: TEimmuneCell__y_2__() -> 0  tau_2 #Modifiers(TE_immune_Cell_y_1)
+	TE_immune_Cell_y1__loss_in_circulatory: TEimmuneCell__y_1__() -> 0  tilde_s_1
+	TE_immune_Cell_y2__supplement: 0  -> TEimmuneCell__y_2__() fRate23() #Modifiers(TE_immune_Cell_y_1)
+	TE_immune_Cell_y1__recruitment: 0  -> TEimmuneCell__y_1__() fRate24()
+	TE_immune_Cell_y2__recruitment: 0  -> TEimmuneCell__y_2__() fRate25()
+end reaction rules
+end model

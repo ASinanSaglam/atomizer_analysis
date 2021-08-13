@@ -1,0 +1,62 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000435', 'http://identifiers.org/biomodels.db/MODEL1211010000']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/23193107']
+#@BQB_IS_PART_OF:['http://identifiers.org/obo.go/GO:0031016']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/39107']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0007267']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 4 molecules and 8 reactions. The translated model has 4 molecules and 8 rules'
+###
+begin model
+begin parameters
+	r1_theta 0.000100
+	r1_a 1.000000
+	r1_n 4.000000
+	r2_k1 1.000000
+	r3_theta 0.000100
+	r3_b 21.000000
+	r3_n 4.000000
+	r3_c 1.000000
+	r4_k1 1.000000
+	r5_theta 0.000100
+	r5_a 1.000000
+	r5_n 4.000000
+	r6_k1 1.000000
+	r7_theta 0.000100
+	r7_b 21.000000
+	r7_n 4.000000
+	r7_c 1.000000
+	r8_k1 1.000000
+end parameters
+begin molecule types
+	Xj()
+	Xi()
+	Yi()
+	Yj()
+end molecule types
+begin seed species
+end seed species
+begin observables
+	Species Xi Xi() #Xi
+	Species Yi Yi() #Yi
+	Species Xj Xj() #Xj
+	Species Yj Yj() #Yj
+end observables
+begin functions
+	fRate0() = 0.0001/(1.0*Xj^4.0 + 0.0001)
+	fRate2() = (21.0*(Yi*Yj)^4.0 + 0.0001)/(1.0*Xi^4.0 + 21.0*(Yi*Yj)^4.0 + 0.0001)
+	fRate4() = 0.0001/(1.0*Xi^4.0 + 0.0001)
+	fRate6() = (21.0*(Yi*Yj)^4.0 + 0.0001)/(1.0*Xj^4.0 + 21.0*(Yi*Yj)^4.0 + 0.0001)
+end functions
+begin reaction rules
+	reaction_1: 0  -> Xi() fRate0() #Modifiers(species_3, species_3)
+	reaction_2: Xi() -> 0  r2_k1 #Modifiers(species_1)
+	reaction_3: 0  -> Yi() fRate2() #Modifiers(species_2, species_4, species_1, species_2, species_4, species_1)
+	reaction_4: Yi() -> 0  r4_k1 #Modifiers(species_2)
+	reaction_5: 0  -> Xj() fRate4() #Modifiers(species_1, species_1)
+	reaction_6: Xj() -> 0  r6_k1 #Modifiers(species_3)
+	reaction_7: 0  -> Yj() fRate6() #Modifiers(species_2, species_4, species_3, species_2, species_4, species_3)
+	reaction_8: Yj() -> 0  r8_k1 #Modifiers(species_4)
+end reaction rules
+end model

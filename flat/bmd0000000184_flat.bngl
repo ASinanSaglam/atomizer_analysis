@@ -1,0 +1,62 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000184', 'http://identifiers.org/biomodels.db/MODEL9223106020']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/18275973']
+#@BQB_HAS_PART:['http://identifiers.org/obo.go/GO:0019722']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/40674']
+#@creatorEmail:'hdharuri@cds.caltech.edu'
+#@creatorName:'Dharuri Harish'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 3 molecules and 7 reactions. The translated model has 3 molecules and 7 rules'
+###
+begin model
+begin parameters
+	vin 0.05 #units:uM_sec_1
+	kout 0.5 #units:sec_1
+	vM3 40.0 #units:sec_1
+	k_CaA 0.15 #units:uM
+	n 2.02 #units:dimensionless
+	k_CaI 0.15 #units:uM
+	m 2.2 #units:dimensionless
+	kip3 0.1 #units:uM
+	vM2 15.0 #units:uM_sec_1
+	k2 0.1 #units:uM
+	kf 0.5 #units:sec_1
+	vp 0.05 #units:uM_sec_1
+	kp 0.3 #units:uM
+	kdeg 0.08 #units:sec_1
+end parameters
+begin compartments
+	#volume units: L
+	compartment 3 1.0 #Cytoplasm
+	ER 3 1.0 #Endoplasmic Reticulum
+end compartments
+begin molecule types
+	IP3()
+	CalciuminER()
+	CytoplasmicCalcium()
+end molecule types
+begin seed species
+	@compartment:CytoplasmicCalcium() 6.022e+16 # (0.1 * 1e-06)mol/L * 6.022e23/mol *1.0L #CytoplasmicCalcium #X
+	@ER:CalciuminER() 9.033e+17 #original 1.5micro mole/L  #CalciuminER #Y
+	@compartment:IP3() 6.022e+16 #original 0.1micro mole/L  #IP3 #Z
+end seed species
+begin observables
+	Species CytoplasmicCalcium_compartment @compartment:CytoplasmicCalcium() #Cytoplasmic Calcium
+	Species CalciuminER_ER @ER:CalciuminER() #Calcium in ER
+	Species IP3_compartment @compartment:IP3() #IP3
+end observables
+begin functions
+	fRate2() = 4.0*CytoplasmicCalcium_compartment^n*IP3_compartment^m*k_CaA^n*vM3/(CytoplasmicCalcium_compartment^n*IP3_compartment^m*k_CaA^n + CytoplasmicCalcium_compartment^n*IP3_compartment^m*k_CaI^n + CytoplasmicCalcium_compartment^n*k_CaA^n*kip3^m + CytoplasmicCalcium_compartment^n*k_CaI^n*kip3^m + CytoplasmicCalcium_compartment^(2.0*n)*IP3_compartment^m + CytoplasmicCalcium_compartment^(2.0*n)*kip3^m + IP3_compartment^m*k_CaA^n*k_CaI^n + k_CaA^n*k_CaI^n*kip3^m)
+	fRate2m() = 4.0*CytoplasmicCalcium_compartment^n*IP3_compartment^m*k_CaA^n*vM3/(CytoplasmicCalcium_compartment^n*IP3_compartment^m*k_CaA^n + CytoplasmicCalcium_compartment^n*IP3_compartment^m*k_CaI^n + CytoplasmicCalcium_compartment^n*k_CaA^n*kip3^m + CytoplasmicCalcium_compartment^n*k_CaI^n*kip3^m + CytoplasmicCalcium_compartment^(2.0*n)*IP3_compartment^m + CytoplasmicCalcium_compartment^(2.0*n)*kip3^m + IP3_compartment^m*k_CaA^n*k_CaI^n + k_CaA^n*k_CaI^n*kip3^m)
+	fRate3() = CytoplasmicCalcium_compartment*vM2/(CytoplasmicCalcium_compartment^2 + k2^2)
+	fRate5() = CytoplasmicCalcium_compartment^2*vp/(CytoplasmicCalcium_compartment^2 + kp^2)
+end functions
+begin reaction rules
+	R1: 0  -> CytoplasmicCalcium()@compartment vin
+	R2: CytoplasmicCalcium()@compartment -> 0  kout
+	R3: CalciuminER()@ER <-> CytoplasmicCalcium()@compartment fRate2(),fRate2m() #Modifiers(Z)
+	R4: CytoplasmicCalcium()@compartment -> CalciuminER()@ER fRate3()
+	R5: CalciuminER()@ER <-> CytoplasmicCalcium()@compartment kf,kf
+	R6: 0  -> IP3()@compartment fRate5() #Modifiers(X)
+	R7: IP3()@compartment -> 0  kdeg
+end reaction rules
+end model

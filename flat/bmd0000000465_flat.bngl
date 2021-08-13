@@ -1,0 +1,115 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000465', 'http://identifiers.org/biomodels.db/MODEL1302180004']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/23708369']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0006809', 'http://identifiers.org/reactome/REACT_12443.3', 'http://identifiers.org/go/GO:0002537', 'http://identifiers.org/go/GO:0034405']
+#@creatorEmail:'juty@ebi.ac.uk'
+#@creatorName:'Juty Nick'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 16 molecules and 12 reactions. The translated model has 12 molecules and 14 rules'
+###
+begin model
+begin parameters
+	PP2A_c1 150.0
+	PP2A 150.0
+	PTEN_c1 0.1
+	PTEN 0.1
+	PDK2_c1 3.0
+	PDK2 3.0
+	r1_normal 0.907000
+	r1_unity 1.000000
+	r1_unimol 1.000000
+	r1_tf 15.000000
+	r2_k2 0.200000
+	r2_Km2 6170.000000
+	r3_k3 7.500000
+	r3_Km3 80.900000
+	r4_k4 0.045000
+	r4_kr4 0.089000
+	r5_k8 20.000000
+	r5_Km8 80000.000000
+	r6_k10 20.000000
+	r6_Km10 80000.000000
+	r7_k7 0.037000
+	r7_Km7 8800.000000
+	r8_k9 0.040000
+	r8_Km9 48000.000000
+	r9_k11 0.163000
+	r9_Km11 48000.000000
+	r10_k5 0.000700
+	r11_k6 0.980000
+	r12_unitime 1.000000
+end parameters
+begin compartments
+	#volume units: volume
+	default 3 1.0
+	c1 3 1.0 #Cell
+end compartments
+begin molecule types
+	pp_AKT_PI3P()
+	PI3K()
+	PDK1_cyto()
+	s3()
+	PIP2()
+	p_PI3K()
+	AKT()
+	PI3P()
+	p_AKT_PI3P()
+	Time()
+	PDK1()
+	AKT_PI3P()
+end molecule types
+begin seed species
+	@c1:PDK1() 0.246 #PDK1 #s14
+	@c1:AKT() 167.616 #AKT #s16
+	@c1:PI3P() 0.345 #PI3P #s17
+	@c1:PIP2() 6967.271 #PIP2 #s19
+	@c1:p_PI3K() 0.03 #p_PI3K #s20
+	@c1:PI3K() 99.97 #PI3K #s22
+	@c1:PDK1_cyto() 999.754 #PDK1_cyto #s25
+	@c1:p_AKT_PI3P() 1.457 #p_AKT_PI3P #s26
+	@c1:pp_AKT_PI3P() 1.723 #pp_AKT_PI3P #s27
+	@c1:AKT_PI3P() 29.203 #AKT_PI3P #s28
+end seed species
+begin observables
+	Species PDK1_c1 @c1:PDK1() #PDK1
+	Species AKT_c1 @c1:AKT() #AKT
+	Species PI3P_c1 @c1:PI3P() #PI3P
+	Species PIP2_c1 @c1:PIP2() #PIP2
+	Species p_PI3K_c1 @c1:p_PI3K() #p-PI3K
+	Species s3_c1 @c1:s3() #s3
+	Species PI3K_c1 @c1:PI3K() #PI3K
+	Species Time_c1 @c1:Time() #Time
+	Species PDK1_cyto_c1 @c1:PDK1_cyto() #PDK1_cyto
+	Species p_AKT_PI3P_c1 @c1:p_AKT_PI3P() #p-AKT:PI3P
+	Species pp_AKT_PI3P_c1 @c1:pp_AKT_PI3P() #pp-AKT:PI3P
+	Species AKT_PI3P_c1 @c1:AKT_PI3P() #AKT:PI3P
+end observables
+begin functions
+	fRate0() = 0.907*Time_c1^0.8*(1.0 - 0.00763898634483324*Time_c1^1.8)*exp(1.0 - 0.00763898634483324*Time_c1^1.8)
+	fRate1() = 0.2*p_PI3K_c1/(PIP2_c1 + 6170.0)
+	fRate2() = 7.5*PTEN_c1/(PI3P_c1 + 80.9)
+	fRate4() = 20.0*PDK1_c1/(AKT_PI3P_c1 + 80000.0)
+	fRate5() = 20.0*PDK2_c1/(p_AKT_PI3P_c1 + 80000.0)
+	fRate6() = 0.037*PP2A_c1/(p_AKT_PI3P_c1 + 8800.0)
+	fRate7() = 0.04*PP2A_c1/(pp_AKT_PI3P_c1 + 48000.0)
+	fRate8() = 0.163*PP2A_c1/(pp_AKT_PI3P_c1 + 48000.0)
+	fRate9() = 0.0007*PI3P_c1
+	fRate11() = 1.0
+end functions
+begin reaction rules
+	re57_reactants_0: 0  -> PI3K()@c1 -1*(fRate0()) #Modifiers(s23, s119, s23)
+	re57_products_0: 0  -> p_PI3K()@c1 fRate0() #Modifiers(s23, s119, s23)
+	re58: PIP2()@c1 -> PI3P()@c1 fRate1() #Modifiers(s20, s19, s20)
+	re59: PI3P()@c1 -> PIP2()@c1 fRate2() #Modifiers(s18, s17, s18)
+	re60: PI3P()@c1 + AKT()@c1 <-> AKT_PI3P()@c1 r4_k4,r4_kr4 #Modifiers(s17, s16, s28)
+	re61: AKT_PI3P()@c1 -> p_AKT_PI3P()@c1 fRate4() #Modifiers(s14, s28, s14)
+	re62: p_AKT_PI3P()@c1 -> pp_AKT_PI3P()@c1 fRate5() #Modifiers(s24, s26, s24)
+	re63: p_AKT_PI3P()@c1 -> AKT_PI3P()@c1 fRate6() #Modifiers(s15, s26, s15)
+	re64: pp_AKT_PI3P()@c1 -> p_AKT_PI3P()@c1 fRate7() #Modifiers(s15, s27, s15)
+	re65: pp_AKT_PI3P()@c1 -> PI3P()@c1 + AKT()@c1 fRate8() #Modifiers(s15, s27, s15)
+	re66: PDK1_cyto()@c1 -> PDK1()@c1 fRate9() #Modifiers(s17, s17, s25)
+	re67: PDK1()@c1 -> PDK1_cyto()@c1 r11_k6 #Modifiers(s14)
+	re68_reactants_0: 0  -> s3()@c1 -1*(fRate11())
+	re68_products_0: 0  -> Time()@c1 fRate11()
+end reaction rules
+end model

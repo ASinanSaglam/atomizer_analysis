@@ -1,0 +1,63 @@
+###
+#@BQM_HAS_INSTANCE:['http://identifiers.org/ncit/C15438', 'http://identifiers.org/taxonomy/9606', 'http://identifiers.org/ncit/C19691', 'http://identifiers.org/ncit/C16295']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/ncit/C19691', 'http://identifiers.org/pubmed/29572780']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/ncit/C15438', 'http://identifiers.org/ncit/C16295']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000885', 'http://identifiers.org/biomodels.db/MODEL1912090004']
+#@creatorEmail:'msharifshohan@ebi.ac.uk'
+#@creatorName:'Sharif Shohan Mohammad Umer'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 4 molecules and 8 reactions. The translated model has 4 molecules and 8 rules'
+###
+begin model
+begin parameters
+	a 0.1
+	b 0.01
+	mu_1 0.01
+	k_1 1000000.0
+	u 0.1
+	r_1 100.0
+	r_2 1000.0
+	mu_2 6.884
+	r 0.431
+	k_2 980000000.0
+	beta_1 30218000.0
+end parameters
+begin molecule types
+	P()
+	A()
+	B()
+	T()
+end molecule types
+begin seed species
+	B() 5.4198e+25 # (90000.0 * 0.001)mol/L * 6.022e23/mol *1.0L #B #B
+	P() 6.0220000000000006e+26 #original 1000000.0substance/volume  #P #P
+	A() 9.033e+28 #original 150000000.0substance/volume  #A #A
+	T() 6.022000000000001e+28 #original 100000000.0substance/volume  #T #T
+end seed species
+begin observables
+	Species B B() #B
+	Species P P() #P
+	Species A A() #A
+	Species T T() #T
+end observables
+begin functions
+	fRate0() = B*a*u
+	fRate0m() = B*a*u/k_1
+	fRate1m() = B*b*u
+	fRate2() = B*b*(1 - u)
+	fRate4() = B*r_1 + 1.0*P*r_2
+	fRate6() = T*r
+	fRate6m() = T*r/k_2
+	fRate7() = A*beta_1
+end functions
+begin reaction rules
+	B_cell_formation: 0  <-> B() fRate0(),fRate0m()
+	Removal_of_B_cell: B() <-> 0  b,fRate1m()
+	Production_of_plasma_cell_products_0: 0  -> P() fRate2() #Modifiers(B)
+	Removal_of_plasma_cell_from_system: P() -> 0  mu_1
+	Production_of_antibody_against_tumor: 0  -> A() fRate4() #Modifiers(B, P)
+	Removal_of_antibody_from_the_system: A() -> 0  mu_2
+	Formation_of_tumor_cell: 0  <-> T() fRate6(),fRate6m()
+	Removal_of_tumor_cell_by_immune_cell: T() -> 0  fRate7() #Modifiers(A)
+end reaction rules
+end model

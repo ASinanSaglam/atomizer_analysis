@@ -1,0 +1,77 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/25013809']
+#@BQB_HAS_VERSION:['http://identifiers.org/omit/0018341']
+#@BQB_IS:['http://identifiers.org/ncit/C17930', 'http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_OCCURS_IN:['http://identifiers.org/ncit/C33558']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10090']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/ncit/C75482', 'http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/ncit/C120876']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL2107200002', 'http://identifiers.org/biomodels.db/BIOMD0000001015']
+#@creatorEmail:'sheriff@ebi.ac.uk'
+#@creatorName:'Sheriff Rahuman'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 6 molecules and 9 reactions. The translated model has 6 molecules and 11 rules'
+###
+begin model
+begin parameters
+	k1 0.0341
+	k2 0.115375
+	k3 0.766576
+	k4 0.123848
+	k5 0.00409948
+	k6 0.000323097
+	dH 1.0
+	dC 1.61511
+	dM 0.781155
+	dD 1.34671
+	C0 4.0
+	M0 400.0
+	sigma 2.2
+	m 4.22686
+	h 0.511657
+	H0 0
+end parameters
+begin molecule types
+	Macrophages___M__()
+	CD8pl_cytotoxic_T_lymphocytes___C__()
+	Regenerative_fibres___R__()
+	CD4pl_T_Helper_cells___H__()
+	Damaged_fibres___D__()
+	Normal_fibres___N__()
+end molecule types
+begin seed species
+	Macrophages___M__() 2.4088e+26 # 400.0mol/L * 6.022e23/mol *1.0L #Macrophages___M__ #M
+	CD8pl_cytotoxic_T_lymphocytes___C__() 2.4088e+24 #original 4.0substance/volume #CD8pl_cytotoxic_T_lymphocytes___C__ #C
+	Normal_fibres___N__() 6.022e+25 #original 100.0substance/volume #Normal_fibres___N__ #N
+end seed species
+begin observables
+	Species CD4pl_T_Helper_cells___H__ CD4pl_T_Helper_cells___H__() #CD4+_T_Helper_cells_(H)
+	Species Damaged_fibres___D__ Damaged_fibres___D__() #Damaged_fibres_(D)
+	Species Macrophages___M__ Macrophages___M__() #Macrophages_(M)
+	Species CD8pl_cytotoxic_T_lymphocytes___C__ CD8pl_cytotoxic_T_lymphocytes___C__() #CD8+_cytotoxic_T_lymphocytes_(C)
+	Species Normal_fibres___N__ Normal_fibres___N__() #Normal_fibres_(N)
+	Species Regenerative_fibres___R__ Regenerative_fibres___R__() #Regenerative_fibres_(R)
+end observables
+begin functions
+	alpha() = 0.398942280407134*h*exp(-(-m + ln(time() + 1.0e-11))^2/(2*sigma^2))/(sigma*(time() + 1.0e-11))
+	bM() = M0*dM
+	bH() = H0*dH
+	bC() = C0*dC
+	fRate0() = 1.0*Damaged_fibres___D__*Macrophages___M__*k1 + bH
+	fRate2() = 1.0*CD4pl_T_Helper_cells___H__*Damaged_fibres___D__*k2 + bC
+	fRate4() = 1.0*Damaged_fibres___D__*Macrophages___M__*k3 + bM
+	fRate6() = 1.0*CD8pl_cytotoxic_T_lymphocytes___C__*Normal_fibres___N__*k5 + 1.0*Normal_fibres___N__*alpha
+	fRate7() = 1.0*Damaged_fibres___D__*Macrophages___M__*k6 + 1.0*Damaged_fibres___D__*dD
+end functions
+begin reaction rules
+	reaction: 0  -> CD4pl_T_Helper_cells___H__() fRate0() #Modifiers(D, M)
+	reaction_1: CD4pl_T_Helper_cells___H__() -> 0  dH
+	reaction_2: 0  -> CD8pl_cytotoxic_T_lymphocytes___C__() fRate2() #Modifiers(D, H)
+	reaction_3: CD8pl_cytotoxic_T_lymphocytes___C__() -> 0  dC
+	reaction_4: 0  -> Macrophages___M__() fRate4() #Modifiers(D)
+	reaction_5: Macrophages___M__() -> 0  dM
+	reaction_6_reactants_0: 0  -> Normal_fibres___N__() -1*(fRate6()) #Modifiers(C, N)
+	reaction_6_products_0: 0  -> Damaged_fibres___D__() fRate6() #Modifiers(C, N)
+	reaction_7_reactants_0: 0  -> Damaged_fibres___D__() -1*(fRate7()) #Modifiers(M)
+	reaction_7_products_0: 0  -> Regenerative_fibres___R__() fRate7() #Modifiers(M)
+	reaction_8: Regenerative_fibres___R__() -> Normal_fibres___N__() k4
+end reaction rules
+end model

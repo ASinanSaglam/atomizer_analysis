@@ -1,0 +1,99 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1602280001', 'http://identifiers.org/biomodels.db/BIOMD0000000639']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/27065985']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/562']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/go/GO:0046656', 'http://identifiers.org/mamo/MAMO_0000046']
+#@creatorEmail:'chenry@mcs.anl.gov'
+#@creatorName:'Henry Christopher'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 17 molecules and 10 reactions. The translated model has 17 molecules and 10 rules'
+###
+begin model
+begin parameters
+	r1_k1 15.800000
+	r2_k1 4000.000000
+	r3_k1 6184.000000
+	r4_k1 4080.000000
+	r4_k2 2000.000000
+	r5_k1 31170.000000
+	r6_k1 0.004000
+	r7_v 0.000000
+	r8_v 0.000000
+	r9_Km 0.000157
+	r9_V 0.000000
+	r10_Km 0.000059
+	r10_V 0.000000
+end parameters
+begin molecule types
+	H2_HMPt()
+	H2_HMPterinPP()
+	PPi()
+	CH2_THF()
+	THF()
+	Phosphate()
+	AMP()
+	ADP()
+	NADPH()
+	L_serine()
+	H2_Pteroate()
+	DHF()
+	NADP()
+	Glycine()
+	ATP()
+	p_ABA()
+	L_Glutamate()
+end molecule types
+begin seed species
+	H2_HMPt() 1996293000000000.2 # (3.315e-06 * 0.001)mol/L * 6.022e23/mol *1.0L #H2_HMPt #H2_HMPt
+	$ATP() 5.78112e+18 #original 0.0096substance/volume  #ATP #ATP
+	H2_HMPterinPP() 6022000000000000.0 #original 1e-05substance/volume  #H2_HMPterinPP #H2_HMPterinPP
+	$AMP() 1.68616e+17 #original 0.00028substance/volume  #AMP #AMP
+	p_ABA() 6022000000000000.0 #original 1e-05substance/volume  #p_ABA #p_ABA
+	$PPi() 3.011e+17 #original 0.0005substance/volume  #PPi #PPi
+	H2_Pteroate() 6022000000000000.0 #original 1e-05substance/volume  #H2_Pteroate #H2_Pteroate
+	$L_Glutamate() 5.0946120000000006e+17 #original 0.000846substance/volume  #L_Glutamate #L_Glutamate
+	$Phosphate() 6.022000000000001e+18 #original 0.01substance/volume  #Phosphate #Phosphate
+	$ADP() 3.37232e+17 #original 0.00056substance/volume  #ADP #ADP
+	DHF() 6022000000000000.0 #original 1e-05substance/volume  #DHF #DHF
+	$L_serine() 4.09496e+16 #original 6.8e-05substance/volume  #L_serine #L_serine
+	$Glycine() 1.668094e+17 #original 0.000277substance/volume  #Glycine #Glycine
+	$NADP() 566068000000000.1 #original 9.4e-07substance/volume  #NADP #NADP
+	$NADPH() 566068000000000.1 #original 9.4e-07substance/volume  #NADPH #NADPH
+	THF() 1.017718e+17 #original 0.000169substance/volume  #THF #THF
+	CH2_THF() 5.100634e+16 #original 8.47e-05substance/volume  #CH2_THF #CH2_THF
+end seed species
+begin observables
+	Species H2_HMPt H2_HMPt() #H2-HMPt
+	Species ATP ATP() #ATP
+	Species H2_HMPterinPP H2_HMPterinPP() #H2-HMPterinPP
+	Species AMP AMP() #AMP
+	Species p_ABA p_ABA() #p-ABA
+	Species PPi PPi() #PPi
+	Species H2_Pteroate H2_Pteroate() #H2-Pteroate
+	Species L_Glutamate L_Glutamate() #L-Glutamate
+	Species Phosphate Phosphate() #Phosphate
+	Species ADP ADP() #ADP
+	Species DHF DHF() #DHF
+	Species L_serine L_serine() #L-serine
+	Species Glycine Glycine() #Glycine
+	Species NADP NADP() #NADP
+	Species NADPH NADPH() #NADPH
+	Species THF THF() #THF
+	Species CH2_THF CH2_THF() #CH2-THF
+end observables
+begin functions
+	fRate8() = 1.243e-7/(THF + 0.0001571)
+	fRate9() = 1.726e-7/(CH2_THF + 5.921e-5)
+end functions
+begin reaction rules
+	FolK: ATP() + H2_HMPt() -> AMP() + H2_HMPterinPP() r1_k1
+	FolP: p_ABA() + H2_HMPterinPP() -> PPi() + H2_Pteroate() r2_k1
+	FolC: L_Glutamate() + ATP() + H2_Pteroate() -> DHF() + ADP() + Phosphate() r3_k1
+	GlyA: THF() + L_serine() <-> CH2_THF() + Glycine() r4_k1,r4_k2
+	FolA: DHF() + NADPH() -> NADP() + THF() r5_k1
+	PanB: CH2_THF() -> H2_HMPt() + p_ABA() r6_k1
+	p_ABA_production: 0  -> p_ABA() r7_v
+	H2_HMPt_production: 0  -> H2_HMPt() r8_v
+	THF_drain: THF() -> 0  fRate8()
+	CH2_THF_drain: CH2_THF() -> 0  fRate9()
+end reaction rules
+end model

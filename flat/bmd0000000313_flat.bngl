@@ -1,0 +1,106 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1102020001', 'http://identifiers.org/biomodels.db/BIOMD0000000313']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/21127196']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:0050743']
+#@BQB_HAS_PART:['http://identifiers.org/reactome/REACT_22232', 'http://identifiers.org/kegg.pathway/hsa04630']
+#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0001518']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0046425']
+#@creatorEmail:'lukas@ebi.ac.uk'
+#@creatorName:'Endler Lukas'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 16 molecules and 16 reactions. The translated model has 14 molecules and 16 rules'
+###
+begin model
+begin parameters
+	IL13stimulation 1.0 #units:ng_per_ml
+	Kon_IL13Rec 0.00341992
+	Rec_phosphorylation 999.631
+	pRec_intern 0.15254
+	pRec_degradation 0.172928
+	Rec_intern 0.103346
+	Rec_recycle 0.00135598
+	JAK2_phosphorylation 0.157057
+	pJAK2_dephosphorylation 0.000621906
+	STAT5_phosphorylation 0.0382596
+	pSTAT5_dephosphorylation 0.000343392
+	SOCS3mRNA_production 0.00215826
+	DecoyR_binding 0.000124391
+	JAK2_p_inhibition 0.0168268
+	SOCS3_translation 11.9086
+	SOCS3_accumulation 3.70803
+	SOCS3_degradation 0.0429186
+	CD274mRNA_production 8.21752e-05
+	SHP1 5.480020000000001e+25 #original 91.0molecules/cell_volumes
+end parameters
+begin molecule types
+	JAK2()
+	p_IL13_Rec()
+	pJAK2()
+	p_IL13_Rec_i()
+	Rec_i()
+	SOCS3()
+	IL13_Rec()
+	IL13_DecoyR()
+	SOCS3mRNA()
+	STAT5()
+	pSTAT5()
+	CD274mRNA()
+	DecoyR()
+	Rec()
+end molecule types
+begin seed species
+	Rec() 7.828600000000001e+23 # 1.3mol/L * 6.022e23/mol *1.0L #Rec #Rec
+	Rec_i() 6.8165426800000005e+25 #original 113.194molecules/cell_volumes #Rec_i #Rec_i
+	JAK2() 1.68616e+24 #original 2.8molecules/cell_volumes #JAK2 #JAK2
+	STAT5() 9.9363e+25 #original 165.0molecules/cell_volumes #STAT5 #STAT5
+	DecoyR() 2.0474800000000004e+23 #original 0.34molecules/cell_volumes #DecoyR #DecoyR
+end seed species
+begin observables
+	Species Rec Rec() #Rec
+	Species Rec_i Rec_i() #Rec_i
+	Species IL13_Rec IL13_Rec() #IL13_Rec
+	Species p_IL13_Rec p_IL13_Rec() #p_IL13_Rec
+	Species p_IL13_Rec_i p_IL13_Rec_i() #p_IL13_Rec_i
+	Species JAK2 JAK2() #JAK2
+	Species pJAK2 pJAK2() #pJAK2
+	Species STAT5 STAT5() #STAT5
+	Species pSTAT5 pSTAT5() #pSTAT5
+	Species SOCS3mRNA SOCS3mRNA() #SOCS3mRNA
+	Species DecoyR DecoyR() #DecoyR
+	Species IL13_DecoyR IL13_DecoyR() #IL13_DecoyR
+	Species SOCS3 SOCS3() #SOCS3
+	Species CD274mRNA CD274mRNA() #CD274mRNA
+end observables
+begin functions
+	IL13_ar() = 2.265*IL13stimulation
+	fRate0() = IL13_ar*Kon_IL13Rec
+	fRate3() = Rec_phosphorylation*pJAK2
+	fRate4() = IL13_Rec*JAK2_phosphorylation/(JAK2_p_inhibition*SOCS3 + 1.0)
+	fRate5() = JAK2_phosphorylation*p_IL13_Rec/(JAK2_p_inhibition*SOCS3 + 1.0)
+	fRate8() = SHP1*pJAK2_dephosphorylation
+	fRate9() = STAT5_phosphorylation*pJAK2
+	fRate10() = SHP1*pSTAT5_dephosphorylation
+	fRate11() = DecoyR_binding*IL13_ar
+	fRate12() = SOCS3mRNA_production*pSTAT5
+	fRate13() = SOCS3_translation*SOCS3mRNA/(SOCS3_accumulation + SOCS3mRNA)
+	fRate15() = CD274mRNA_production*pSTAT5
+end functions
+begin reaction rules
+	reaction_1: Rec() -> IL13_Rec() fRate0() #Modifiers(IL13)
+	reaction_2: Rec() -> Rec_i() Rec_intern
+	reaction_3: Rec_i() -> Rec() Rec_recycle
+	reaction_4: IL13_Rec() -> p_IL13_Rec() fRate3() #Modifiers(pJAK2)
+	reaction_5: JAK2() -> pJAK2() fRate4() #Modifiers(IL13_Rec, SOCS3)
+	reaction_6: JAK2() -> pJAK2() fRate5() #Modifiers(p_IL13_Rec, SOCS3)
+	reaction_7: p_IL13_Rec() -> p_IL13_Rec_i() pRec_intern
+	reaction_8: p_IL13_Rec_i() -> 0  pRec_degradation
+	reaction_9: pJAK2() -> JAK2() fRate8() #Modifiers(SHP1)
+	reaction_10: STAT5() -> pSTAT5() fRate9() #Modifiers(pJAK2)
+	reaction_11: pSTAT5() -> STAT5() fRate10() #Modifiers(SHP1)
+	reaction_12: DecoyR() -> IL13_DecoyR() fRate11() #Modifiers(IL13)
+	reaction_13: 0  -> SOCS3mRNA() fRate12() #Modifiers(pSTAT5)
+	reaction_14: 0  -> SOCS3() fRate13() #Modifiers(SOCS3mRNA)
+	reaction_15: SOCS3() -> 0  SOCS3_degradation
+	reaction_16: 0  -> CD274mRNA() fRate15() #Modifiers(pSTAT5)
+end reaction rules
+end model

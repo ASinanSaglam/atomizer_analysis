@@ -1,0 +1,183 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL6617909980', 'http://identifiers.org/biomodels.db/BIOMD0000000022']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/11403560']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/10531060']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0042752', 'http://identifiers.org/kegg.pathway/dme04710']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/7227']
+#@creatorEmail:'lenov@ebi.ac.uk'
+#@creatorName:'Le Novère Nicolas'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 13 molecules and 32 reactions. The translated model has 11 molecules and 32 rules'
+###
+begin model
+begin parameters
+	Dbt_cyt_compartment_0000003 1.0
+	Dbt_cyt 1.0
+	r1_a 1.000000
+	r1_A1 0.450000
+	r1_B1 0.000000
+	r1_c1 0.000000
+	r1_r1 1.020000
+	r1_s1 1.450000
+	r1_r 4.000000
+	r2_D0 0.012000
+	r3_a 1.000000
+	r3_A2 0.450000
+	r3_B2 0.000000
+	r3_c2 0.000000
+	r3_r2 1.020000
+	r3_s3 1.450000
+	r3_r 4.000000
+	r4_D0 0.012000
+	r5_a 1.000000
+	r5_A3 0.800000
+	r5_B3 0.600000
+	r5_c3 0.000000
+	r5_r3 0.890000
+	r5_s5 1.630000
+	r5_r 4.000000
+	r6_D0 0.012000
+	r7_k3 2.000000
+	r7_T3 1.630000
+	r8_k4 2.000000
+	r8_T4 0.520000
+	r9_k2 2.000000
+	r9_T2 0.720000
+	r10_k1 2.000000
+	r10_T1 1.730000
+	r11_v3 1.630000
+	r11_parameter_0000073 1.630000
+	r12_v1 1.450000
+	r12_parameter_0000072 1.450000
+	r13_s4 0.480000
+	r14_s6 0.470000
+	r15_s2 0.480000
+	r16_D0 0.012000
+	r17_D0 0.012000
+	r18_D0 0.012000
+	r19_D0 0.012000
+	r20_D0 0.012000
+	r21_D0 0.012000
+	r22_D0 0.012000
+	r23_D1 0.940000
+	r23_L1 0.300000
+	r24_D2 0.440000
+	r24_L2 0.200000
+	r25_D3 0.940000
+	r25_L3 0.300000
+	r26_D4 0.440000
+	r26_L4 0.200000
+	r27_D5 0.440000
+	r27_L5 0.200000
+	r28_D6 0.290000
+	r28_L6 0.200000
+	r29_D7 0.540000
+	r29_L7 0.130000
+	r30_D8 0.600000
+	r30_L8 0.200000
+	r31_D9 0.600000
+	r31_L9 0.200000
+	r32_D10 0.300000
+	r32_L10 0.200000
+end parameters
+begin compartments
+	#volume units: L
+	Drosophilia 3 1.0
+	compartment_0000003 3 1.0 #cytoplasm
+	compartment_0000002 3 1.0 #nucleus
+end compartments
+begin molecule types
+	Per_mRNA()
+	Clk_Cyc_cyt()
+	Tim_cyt()
+	Cyc_cyt()
+	Tim_mRNA()
+	Per_Tim_cyt()
+	Clk_cyt()
+	Clk_mRNA()
+	Clk_Cyc_nuc()
+	Per_cyt()
+	Per_Tim_nuc()
+end molecule types
+begin seed species
+	@compartment_0000003:Clk_Cyc_cyt() 0.3 #Clk_Cyc_cyt #CCc
+	@compartment_0000002:Clk_Cyc_nuc() 0.4 #Clk_Cyc_nuc #CCn
+	@compartment_0000003:Clk_cyt() 0.2 #Clk_cyt #Clkc
+	@compartment_0000003:Clk_mRNA() 0.1 #Clk_mRNA #Clkm
+	@compartment_0000003:Per_cyt() 0.6 #Per_cyt #Perc
+	@compartment_0000003:Per_mRNA() 0.5 #Per_mRNA #Perm
+	@compartment_0000003:Per_Tim_cyt() 0.9 #Per_Tim_cyt #PTc
+	@compartment_0000002:Per_Tim_nuc() 1.0 #Per_Tim_nuc #PTn
+	@compartment_0000003:Tim_cyt() 0.8 #Tim_cyt #Timc
+	@compartment_0000003:Tim_mRNA() 0.7 #Tim_mRNA #Timm
+	@compartment_0000003:$Cyc_cyt() 1.0 #Cyc_cyt #species_0000012
+end seed species
+begin observables
+	Species Clk_Cyc_cyt_compartment_0000003 @compartment_0000003:Clk_Cyc_cyt() #Clk-Cyc_cyt
+	Species Clk_Cyc_nuc_compartment_0000002 @compartment_0000002:Clk_Cyc_nuc() #Clk-Cyc_nuc
+	Species Clk_cyt_compartment_0000003 @compartment_0000003:Clk_cyt() #Clk_cyt
+	Species Clk_mRNA_compartment_0000003 @compartment_0000003:Clk_mRNA() #Clk_mRNA
+	Species Per_cyt_compartment_0000003 @compartment_0000003:Per_cyt() #Per_cyt
+	Species Per_mRNA_compartment_0000003 @compartment_0000003:Per_mRNA() #Per_mRNA
+	Species Per_Tim_cyt_compartment_0000003 @compartment_0000003:Per_Tim_cyt() #Per-Tim_cyt
+	Species Per_Tim_nuc_compartment_0000002 @compartment_0000002:Per_Tim_nuc() #Per-Tim_nuc
+	Species Tim_cyt_compartment_0000003 @compartment_0000003:Tim_cyt() #Tim_cyt
+	Species Tim_mRNA_compartment_0000003 @compartment_0000003:Tim_mRNA() #Tim_mRNA
+	Species Cyc_cyt_compartment_0000003 @compartment_0000003:Cyc_cyt() #Cyc_cyt
+end observables
+begin functions
+	fRate0() = 3.22222222222222*Clk_Cyc_nuc_compartment_0000002^1.0/(2.22222222222222*Clk_Cyc_nuc_compartment_0000002^1.0 + 0.923845426026514*Per_Tim_nuc_compartment_0000002^4.0 + 1.0)
+	fRate2() = 3.22222222222222*Clk_Cyc_nuc_compartment_0000002^1.0/(2.22222222222222*Clk_Cyc_nuc_compartment_0000002^1.0 + 0.923845426026514*Per_Tim_nuc_compartment_0000002^4.0 + 1.0)
+	fRate4() = (2.0375*Per_Tim_nuc_compartment_0000002^1.0 + 0.978)/(1.59382257321666*Clk_Cyc_nuc_compartment_0000002^4.0 + 1.25*Per_Tim_nuc_compartment_0000002^1.0 + 1.6)
+	fRate6() = 1.63/(Clk_Cyc_cyt_compartment_0000003 + 2.0)
+	fRate7() = 0.52/(Clk_Cyc_nuc_compartment_0000002 + 2.0)
+	fRate8() = 0.72/(Per_Tim_nuc_compartment_0000002 + 2.0)
+	fRate9() = 1.73/(Per_Tim_cyt_compartment_0000003 + 2.0)
+	fRate12() = 0.48*Tim_mRNA_compartment_0000003
+	fRate13() = 0.47*Clk_mRNA_compartment_0000003
+	fRate14() = 0.48*Per_mRNA_compartment_0000003
+	fRate22() = 0.94/(Per_mRNA_compartment_0000003 + 0.3)
+	fRate23() = 0.44*Dbt_cyt_compartment_0000003/(Per_cyt_compartment_0000003 + 0.2)
+	fRate24() = 0.94/(Tim_mRNA_compartment_0000003 + 0.3)
+	fRate25() = 0.44/(Tim_cyt_compartment_0000003 + 0.2)
+	fRate26() = 0.44/(Per_Tim_cyt_compartment_0000003 + 0.2)
+	fRate27() = 0.29/(Per_Tim_nuc_compartment_0000002 + 0.2)
+	fRate28() = 0.54/(Clk_mRNA_compartment_0000003 + 0.13)
+	fRate29() = 0.6/(Clk_cyt_compartment_0000003 + 0.2)
+	fRate30() = 0.6/(Clk_Cyc_cyt_compartment_0000003 + 0.2)
+	fRate31() = 0.3/(Clk_Cyc_nuc_compartment_0000002 + 0.2)
+end functions
+begin reaction rules
+	Reaction1: 0  -> Per_mRNA()@compartment_0000003 fRate0() #Modifiers(CCn, PTn)
+	Reaction2: Per_mRNA()@compartment_0000003 -> 0  r2_D0
+	Reaction3: 0  -> Tim_mRNA()@compartment_0000003 fRate2() #Modifiers(CCn, PTn)
+	Reaction4: Tim_mRNA()@compartment_0000003 -> 0  r4_D0
+	Reaction5: 0  -> Clk_mRNA()@compartment_0000003 fRate4() #Modifiers(PTn, CCn)
+	Reaction6: Clk_mRNA()@compartment_0000003 -> 0  r6_D0
+	Reaction7: Clk_Cyc_cyt()@compartment_0000003 -> Clk_Cyc_nuc()@compartment_0000002 fRate6()
+	Reaction8: Clk_Cyc_nuc()@compartment_0000002 -> Clk_Cyc_cyt()@compartment_0000003 fRate7()
+	Reaction9: Per_Tim_nuc()@compartment_0000002 -> Per_Tim_cyt()@compartment_0000003 fRate8()
+	Reaction10: Per_Tim_cyt()@compartment_0000003 -> Per_Tim_nuc()@compartment_0000002 fRate9()
+	Reaction11: Cyc_cyt()@compartment_0000003 + Clk_cyt()@compartment_0000003 <-> Clk_Cyc_cyt()@compartment_0000003 r11_v3,r11_parameter_0000073
+	Reaction12: Per_cyt()@compartment_0000003 + Tim_cyt()@compartment_0000003 <-> Per_Tim_cyt()@compartment_0000003 r12_v1,r12_parameter_0000072
+	Reaction16: 0  -> Tim_cyt()@compartment_0000003 fRate12() #Modifiers(Timm)
+	Reaction18: 0  -> Clk_cyt()@compartment_0000003 fRate13() #Modifiers(Clkm)
+	Reaction19: 0  -> Per_cyt()@compartment_0000003 fRate14() #Modifiers(Perm)
+	Reaction20: Per_cyt()@compartment_0000003 -> 0  r16_D0
+	Reaction21: Per_Tim_cyt()@compartment_0000003 -> 0  r17_D0
+	Reaction23: Per_Tim_nuc()@compartment_0000002 -> 0  r18_D0
+	Reaction24: Clk_Cyc_cyt()@compartment_0000003 -> 0  r19_D0
+	Reaction25: Clk_cyt()@compartment_0000003 -> 0  r20_D0
+	Reaction26: Clk_Cyc_nuc()@compartment_0000002 -> 0  r21_D0
+	Reaction27: Tim_cyt()@compartment_0000003 -> 0  r22_D0
+	Reaction28: Per_mRNA()@compartment_0000003 -> 0  fRate22()
+	Reaction29: Per_cyt()@compartment_0000003 -> 0  fRate23() #Modifiers(species_0000013)
+	Reaction30: Tim_mRNA()@compartment_0000003 -> 0  fRate24()
+	Reaction31: Tim_cyt()@compartment_0000003 -> 0  fRate25()
+	Reaction32: Per_Tim_cyt()@compartment_0000003 -> 0  fRate26()
+	Reaction33: Per_Tim_nuc()@compartment_0000002 -> 0  fRate27()
+	Reaction34: Clk_mRNA()@compartment_0000003 -> 0  fRate28()
+	Reaction35: Clk_cyt()@compartment_0000003 -> 0  fRate29()
+	Reaction36: Clk_Cyc_cyt()@compartment_0000003 -> 0  fRate30()
+	Reaction37: Clk_Cyc_nuc()@compartment_0000002 -> 0  fRate31()
+end reaction rules
+end model

@@ -1,0 +1,63 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1101060000', 'http://identifiers.org/biomodels.db/BIOMD0000000291']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/16307060']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0006789']
+#@BQB_IS_PART_OF:['http://identifiers.org/kegg.pathway/ko00860']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/2759']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:409']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 10 molecules and 0 reactions. The translated model has 4 molecules and 4 rules'
+###
+begin model
+begin parameters
+	k1 0.484
+	k2 0.07958
+	k3 5.095e-06
+	k4 2.656e-05
+	k5 0.005489
+	k6 3.226e-07
+	k7 0.00301
+	k8 1.011e-07
+	k9 0.01685
+	k10 0.1325
+	K_AlB 95000.0
+	K_AlB2 3000.0
+	n 1.0
+	Al 2.7793848470000003e+23 # 0.4615385mol/L * 6.022e23/mol *1.0L
+	B 1.0564912492000001e+23 #original 0.1754386mol/L
+	C 7.069828e+23 #original 1.174mol/L
+	A0 2.7793848470000003e+23 #original 0.4615385mol/L
+	B0 1.0564912492000001e+23 #original 0.1754386mol/L
+	C0 7.069828e+23 #original 1.174mol/L
+end parameters
+begin molecule types
+	BC()
+	AlB()
+	AlCn()
+	AlB2()
+end molecule types
+begin seed species
+end seed species
+begin observables
+	Species AlB AlB() #AlB
+	Species BC BC() #BC
+	Species AlCn AlCn() #AlCn
+	Species AlB2 AlB2() #AlB2
+end observables
+begin functions
+	C_ar() = -AlCn*n - BC + C0
+	Al_ar() = A0 - AlB - AlB2 - AlCn
+	B_ar() = -AlB - 2*AlB2 + B0 - BC
+	arRatex1() = -AlB*B_ar*K_AlB2*k4 - AlB*C_ar^(n + 1)*k9 - AlB*k3 + AlB2*C_ar*k10 + AlB2*k4 + Al_ar*B_ar*K_AlB*k3
+	arRatex4() = AlB*B_ar*K_AlB2*k4 - AlB2*C_ar*k10 - AlB2*k4
+	arRatex3() = AlB*C_ar^(n + 1)*k9 - AlCn*k7 + Al_ar*C_ar^n*k5
+	arRatex2() = AlB*C_ar^(n + 1)*k9 + AlB2*C_ar*k10 - BC*k8 + B_ar*C_ar*k6
+end functions
+begin reaction rules
+	0  -> AlB() arRatex1 #rateLaw
+	0  -> BC() arRatex2 #rateLaw
+	0  -> AlCn() arRatex3 #rateLaw
+	0  -> AlB2() arRatex4 #rateLaw
+end reaction rules
+end model

@@ -1,0 +1,72 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1012220001', 'http://identifiers.org/biomodels.db/BIOMD0000000290']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/20195912']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0002667', 'http://identifiers.org/doid/DOID:417']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/33208']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@creatorEmail:'juty@ebi.ac.uk'
+#@creatorName:'Juty Nick'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 5 molecules and 12 reactions. The translated model has 5 molecules and 13 rules'
+###
+begin model
+begin parameters
+	v_max 125000.0 #units:items_per_day
+	k 50000000.0 #units:substance
+	f 0.0001 #units:dimensionless
+	gamma 2000.0 #units:per_day
+	beta 200.0 #units:per_day
+	pi1 0.016 #units:per_day_per_item
+	lambdaE 1000.0 #units:per_day
+	muA 0.25 #units:per_day
+	muR 0.25 #units:per_day
+	muE 0.25 #units:per_day
+	muG 5.0 #units:per_day
+	b1 0.25 #units:per_day
+	sigma1 3e-06 #units:per_day_per_item
+end parameters
+begin molecule types
+	A()
+	A_im()
+	G()
+	R()
+	E()
+end molecule types
+begin seed species
+	A() 1.0 #A #A
+	G() 100000000.0 #G #G
+end seed species
+begin observables
+	Species A A() #A
+	Species R R() #R
+	Species E E() #E
+	Species G G() #G
+	Species A_im A_im() #A_im
+end observables
+begin functions
+	mA() = b1 + muA
+	mG() = muG + v_max/k
+	R0() = f*gamma*lambdaE*v_max/(k*mA*mG*muE)
+	fRate0() = v_max/(G + k)
+	fRate1() = G*f*v_max/(G + k)
+	fRate2() = E*gamma
+	fRate3() = A*beta
+	fRate4() = A*E*pi1
+	fRate5() = A*lambdaE
+	fRate11() = R*sigma1
+end functions
+begin reaction rules
+	r1a: G() -> 0  fRate0()
+	r1b_reactants_0: 0  -> A_im() -1*(fRate1()) #Modifiers(G)
+	r1b_products_0: 0  -> A() fRate1() #Modifiers(G)
+	r2: 0  -> G() fRate2() #Modifiers(E)
+	r3: 0  -> R() fRate3() #Modifiers(A)
+	r4: 0  -> R() fRate4() #Modifiers(A, E)
+	r5: 0  -> E() fRate5() #Modifiers(A)
+	r6: A() -> 0  muA
+	r7: R() -> 0  muR
+	r8: E() -> 0  muE
+	r9: G() -> 0  muG
+	r10: A() -> 0  b1
+	r11: A() -> 0  fRate11() #Modifiers(R)
+end reaction rules
+end model

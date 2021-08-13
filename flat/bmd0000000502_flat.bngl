@@ -1,0 +1,152 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1311290000', 'http://identifiers.org/biomodels.db/BIOMD0000000502']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/doi/10.7287/peerj.preprints.146v2']
+#@BQB_ENCODES:['http://identifiers.org/go/GO:0006098', 'http://identifiers.org/kegg.pathway/rn00030']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/4932']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 21 molecules and 11 reactions. The translated model has 12 molecules and 17 rules'
+###
+begin model
+begin parameters
+	sum_NADP 0.33 #units:mM
+	Kx5p_TAL 0.67 #units:mM
+	Ke4p_TAL 0.946 #units:mM
+	Kr5p_TAL 0.235 #units:mM
+	Kgap_TAL 0.1 #units:mM
+	Kf6p_TAL 1.1 #units:mM
+	Ks7p_TAL 0.15 #units:mM
+	GND1 7.8286e+18 #original 0.013mmol/L
+	GND2 1.8066e+18 #original 0.003mmol/L
+	NQM1 1.2044000000000002e+19 #original 0.02mmol/L
+	RKI1 3.0110000000000004e+19 #original 0.05mmol/L
+	RPE1 1.8066000000000002e+19 #original 0.03mmol/L
+	SOL3 1.7825120000000002e+19 #original 0.0296mmol/L
+	TAL1 8.67168e+19 #original 0.144mmol/L
+	TKL1 2.74001e+20 #original 0.455mmol/L
+	ZWF1 1.2044000000000002e+19 #original 0.02mmol/L
+	r1_kcat_GND1 28.000000
+	r1_Kp6g_GND1 0.062000
+	r1_Knadp_GND1 0.094000
+	r1_Kru5p_GND1 0.100000
+	r1_Knadph_GND1 0.055000
+	r1_kcat_GND2 27.300000
+	r1_Kp6g_GND2 0.115000
+	r1_Knadp_GND2 0.094000
+	r1_Kru5p_GND2 0.100000
+	r1_Knadph_GND2 0.055000
+	r2_kcat 335.000000
+	r2_Kru5p 2.470000
+	r2_Kr5p 5.700000
+	r2_Kiru5p 9.880000
+	r2_Keq 4.000000
+	r3_kcat 4020.000000
+	r3_Kru5p 5.970000
+	r3_Kx5p 7.700000
+	r3_Keq 1.400000
+	r4_kcat 4.300000
+	r4_Kg6l 0.800000
+	r4_Kp6g 0.500000
+	r5_kcat_TAL1 0.694000
+	r5_Kgap_TAL1 0.272000
+	r5_Ks7p_TAL1 0.786000
+	r5_Kf6p_TAL1 1.440000
+	r5_Ke4p_TAL1 0.362000
+	r5_kcat_NQM1 0.694000
+	r5_Kgap_NQM1 0.272000
+	r5_Ks7p_NQM1 0.786000
+	r5_Kf6p_NQM1 1.040000
+	r5_Ke4p_NQM1 0.305000
+	r5_Keq 1.050000
+	r6_kcat 47.100000
+	r6_Keq 10.000000
+	r7_kcat 40.500000
+	r7_Keq 1.200000
+	r8_kcat 189.000000
+	r8_Kg6p 0.042000
+	r8_Knadp 0.045000
+	r8_Kg6l 0.010000
+	r8_Knadph 0.017000
+	r9_k 1.000000
+	r10_k 1.000000
+	r11_k 1.000000
+end parameters
+begin molecule types
+	X5P()
+	F6P()
+	G6L()
+	P6G()
+	Ru5P()
+	R5P()
+	NADPH()
+	E4P()
+	S7P()
+	G6P()
+	NADP()
+	GAP()
+end molecule types
+begin seed species
+	E4P() 1.7463800000000002e+19 # (0.029 * 0.001)mol/L * 6.022e23/mol *1.0L #E4P #E4P
+	G6L() 6.022000000000001e+19 #original 0.1mmol/L #G6L #G6L
+	NADPH() 9.635200000000002e+19 #original 0.16mmol/L #NADPH #NADPH
+	P6G() 1.5055e+20 #original 0.25mmol/L #P6G #P6G
+	R5P() 7.10596e+19 #original 0.118mmol/L #R5P #R5P
+	Ru5P() 1.9872600000000004e+19 #original 0.033mmol/L #Ru5P #Ru5P
+	S7P() 4.93804e+19 #original 0.082mmol/L #S7P #S7P
+	X5P() 2.46902e+19 #original 0.041mmol/L #X5P #X5P
+	NADP() -9.6352e+19 #original 0.17mmol/L #NADP #NADP
+	G6P() 0 #original 0.9mmol/L #G6P #G6P
+	$F6P() 1.9571500000000003e+20 #original 0.325mmol/L #F6P #F6P
+	$GAP() 4.03474e+19 #original 0.067mmol/L #GAP #GAP
+end seed species
+begin observables
+	Species E4P E4P() #E4P
+	Species G6L G6L() #G6L
+	Species NADPH NADPH() #NADPH
+	Species P6G P6G() #P6G
+	Species R5P R5P() #R5P
+	Species Ru5P Ru5P() #Ru5P
+	Species S7P S7P() #S7P
+	Species X5P X5P() #X5P
+	Species NADP NADP() #NADP
+	Species G6P G6P() #G6P
+	Species F6P F6P() #F6P
+	Species GAP GAP() #GAP
+end observables
+begin functions
+	NADP_ar() = -NADPH + sum_NADP
+	G6P_ar() =  if((time()>=0),(44.1*time()/(0.45*time()^2+time()+48)),(0))+0.9
+	fRate0() = 28.0*GND1*NADP_ar*P6G/((0.105963636363636*NADPH + 0.062*NADP_ar + 0.005828)*(16.1290322580645*P6G + 10.0*Ru5P + 1)) + 27.3*GND2*NADP_ar*P6G/((18.1818181818182*NADPH + 10.6382978723404*NADP_ar + 1)*(8.69565217391304*P6G + 10.0*Ru5P + 1))
+	fRate1() = 1909.5*RKI1/(2.47*R5P + 5.7*Ru5P + 14.079)
+	fRate1m() = 1909.5*RKI1/(9.88*R5P + 22.8*Ru5P + 56.316)
+	fRate2() = 30954.0*RPE1/(7.7*Ru5P + 5.97*X5P + 45.969)
+	fRate2m() = 30954.0*RPE1/(10.78*Ru5P + 8.358*X5P + 64.3566)
+	fRate3() = 2.15*SOL3/(0.5*G6L + 0.8*P6G + 0.4)
+	fRate4() = 0.694*NQM1*(-0.952380952380952*E4P*F6P + GAP*S7P)/((0.70095737704918*E4P + 0.272*S7P + 0.213792)*(0.961538461538461*F6P + 3.67647058823529*GAP + 1)) + 0.694*TAL1*(-0.952380952380952*E4P*F6P + GAP*S7P)/((0.590585635359116*E4P + 0.272*S7P + 0.213792)*(0.694444444444444*F6P + 3.67647058823529*GAP + 1))
+	fRate5() = 47.1*Kf6p_TAL*Kgap_TAL*Kr5p_TAL*Ks7p_TAL*TKL1/(F6P*GAP*Ke4p_TAL*Kr5p_TAL*Ks7p_TAL*Kx5p_TAL + F6P*Ke4p_TAL*Kgap_TAL*Kr5p_TAL*Ks7p_TAL*(Kx5p_TAL + X5P) + GAP*Ke4p_TAL*Kf6p_TAL*Kr5p_TAL*Kx5p_TAL*S7P + GAP*Ke4p_TAL*Kf6p_TAL*Ks7p_TAL*Kx5p_TAL*R5P + GAP*Kf6p_TAL*Kr5p_TAL*Ks7p_TAL*Kx5p_TAL*(E4P + Ke4p_TAL) + Ke4p_TAL*Kf6p_TAL*Kgap_TAL*Kr5p_TAL*S7P*(Kx5p_TAL + X5P) + Ke4p_TAL*Kf6p_TAL*Kgap_TAL*Ks7p_TAL*R5P*(Kx5p_TAL + X5P) + Kf6p_TAL*Kgap_TAL*Kr5p_TAL*Ks7p_TAL*(E4P*Kx5p_TAL + E4P*X5P + Ke4p_TAL*Kx5p_TAL + Ke4p_TAL*X5P))
+	fRate5m() = 47.1*Kf6p_TAL*Kgap_TAL*Kr5p_TAL*Ks7p_TAL*TKL1/(10.0*F6P*GAP*Ke4p_TAL*Kr5p_TAL*Ks7p_TAL*Kx5p_TAL + 10.0*F6P*Ke4p_TAL*Kgap_TAL*Kr5p_TAL*Ks7p_TAL*(Kx5p_TAL + X5P) + 10.0*GAP*Ke4p_TAL*Kf6p_TAL*Kr5p_TAL*Kx5p_TAL*S7P + 10.0*GAP*Ke4p_TAL*Kf6p_TAL*Ks7p_TAL*Kx5p_TAL*R5P + 10.0*GAP*Kf6p_TAL*Kr5p_TAL*Ks7p_TAL*Kx5p_TAL*(E4P + Ke4p_TAL) + 10.0*Ke4p_TAL*Kf6p_TAL*Kgap_TAL*Kr5p_TAL*S7P*(Kx5p_TAL + X5P) + 10.0*Ke4p_TAL*Kf6p_TAL*Kgap_TAL*Ks7p_TAL*R5P*(Kx5p_TAL + X5P) + 10.0*Kf6p_TAL*Kgap_TAL*Kr5p_TAL*Ks7p_TAL*(E4P*Kx5p_TAL + E4P*X5P + Ke4p_TAL*Kx5p_TAL + Ke4p_TAL*X5P))
+	fRate6() = 40.5*Ke4p_TAL*Kf6p_TAL*Kgap_TAL*Ks7p_TAL*TKL1/(E4P*GAP*Kf6p_TAL*Kr5p_TAL*Ks7p_TAL*Kx5p_TAL + E4P*Kf6p_TAL*Kgap_TAL*Kr5p_TAL*Ks7p_TAL*(Kx5p_TAL + X5P) + F6P*GAP*Ke4p_TAL*Kr5p_TAL*Ks7p_TAL*Kx5p_TAL + F6P*Ke4p_TAL*Kgap_TAL*Kr5p_TAL*Ks7p_TAL*(Kx5p_TAL + X5P) + GAP*Ke4p_TAL*Kf6p_TAL*Kr5p_TAL*Kx5p_TAL*S7P + GAP*Ke4p_TAL*Kf6p_TAL*Ks7p_TAL*Kx5p_TAL*(Kr5p_TAL + R5P) + Ke4p_TAL*Kf6p_TAL*Kgap_TAL*Kr5p_TAL*S7P*(Kx5p_TAL + X5P) + Ke4p_TAL*Kf6p_TAL*Kgap_TAL*Ks7p_TAL*(Kr5p_TAL*Kx5p_TAL + Kr5p_TAL*X5P + Kx5p_TAL*R5P + R5P*X5P))
+	fRate6m() = 40.5*Ke4p_TAL*Kf6p_TAL*Kgap_TAL*Ks7p_TAL*TKL1/(1.2*E4P*GAP*Kf6p_TAL*Kr5p_TAL*Ks7p_TAL*Kx5p_TAL + 1.2*E4P*Kf6p_TAL*Kgap_TAL*Kr5p_TAL*Ks7p_TAL*(Kx5p_TAL + X5P) + 1.2*F6P*GAP*Ke4p_TAL*Kr5p_TAL*Ks7p_TAL*Kx5p_TAL + 1.2*F6P*Ke4p_TAL*Kgap_TAL*Kr5p_TAL*Ks7p_TAL*(Kx5p_TAL + X5P) + 1.2*GAP*Ke4p_TAL*Kf6p_TAL*Kr5p_TAL*Kx5p_TAL*S7P + 1.2*GAP*Ke4p_TAL*Kf6p_TAL*Ks7p_TAL*Kx5p_TAL*(Kr5p_TAL + R5P) + 1.2*Ke4p_TAL*Kf6p_TAL*Kgap_TAL*Kr5p_TAL*S7P*(Kx5p_TAL + X5P) + 1.2*Ke4p_TAL*Kf6p_TAL*Kgap_TAL*Ks7p_TAL*(Kr5p_TAL*Kx5p_TAL + Kr5p_TAL*X5P + Kx5p_TAL*R5P + R5P*X5P))
+	fRate7() = 0.03213*ZWF1/(0.00189*G6L*NADPH + 0.000714*G6L*(NADP_ar + 0.045) + 0.00017*G6P_ar*NADP_ar + 7.65e-6*G6P_ar + 0.00045*NADPH*(G6P_ar + 0.042) + 7.14e-6*NADP_ar + 3.213e-7)
+end functions
+begin reaction rules
+	GND_reactants_0: 0  -> P6G() -1*(fRate0()) #Modifiers(GND1, GND2, GND1, P6G, NADP, Ru5P, NADPH, GND2)
+	GND_reactants_1: 0  -> NADP() -1*(fRate0()) #Modifiers(GND1, GND2, GND1, P6G, NADP, Ru5P, NADPH, GND2)
+	GND_products_0: 0  -> Ru5P() fRate0() #Modifiers(GND1, GND2, GND1, P6G, NADP, Ru5P, NADPH, GND2)
+	GND_products_1: 0  -> NADPH() fRate0() #Modifiers(GND1, GND2, GND1, P6G, NADP, Ru5P, NADPH, GND2)
+	RKI: Ru5P() <-> R5P() fRate1(),fRate1m() #Modifiers(RKI1, RKI1, Ru5P, R5P)
+	RPE: Ru5P() <-> X5P() fRate2(),fRate2m() #Modifiers(RPE1, RPE1, Ru5P, X5P)
+	SOL: G6L() -> P6G() fRate3() #Modifiers(SOL3, SOL3, G6L, P6G)
+	TAL_reactants_0: 0  -> GAP() -1*(fRate4()) #Modifiers(TAL1, NQM1, TAL1, GAP, S7P, F6P, E4P, NQM1)
+	TAL_reactants_1: 0  -> S7P() -1*(fRate4()) #Modifiers(TAL1, NQM1, TAL1, GAP, S7P, F6P, E4P, NQM1)
+	TAL_products_0: 0  -> F6P() fRate4() #Modifiers(TAL1, NQM1, TAL1, GAP, S7P, F6P, E4P, NQM1)
+	TAL_products_1: 0  -> E4P() fRate4() #Modifiers(TAL1, NQM1, TAL1, GAP, S7P, F6P, E4P, NQM1)
+	TKL_E4P: X5P() + E4P() <-> GAP() + F6P() fRate5(),fRate5m() #Modifiers(TKL1, R5P, S7P, TKL1, X5P, E4P, GAP, F6P, R5P, S7P)
+	TKL_R5P: X5P() + R5P() <-> GAP() + S7P() fRate6(),fRate6m() #Modifiers(TKL1, E4P, F6P, TKL1, X5P, R5P, GAP, S7P, E4P, F6P)
+	ZWF: G6P() + NADP() -> G6L() + NADPH() fRate7() #Modifiers(ZWF1, ZWF1, G6P, NADP, G6L, NADPH)
+	NADPH_oxidase: NADPH() -> NADP() r9_k #Modifiers(NADPH)
+	E4P_sink: E4P() -> 0  r10_k #Modifiers(E4P)
+	R5P_sink: R5P() -> 0  r11_k #Modifiers(R5P)
+end reaction rules
+end model

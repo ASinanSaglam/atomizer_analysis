@@ -1,0 +1,141 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000214', 'http://identifiers.org/biomodels.db/MODEL8306015773']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/18277380']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/BIOMD0000000299']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/5141']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0042752']
+#@creatorEmail:'lukas@ebi.ac.uk'
+#@creatorName:'Endler Lukas'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 16 molecules and 24 reactions. The translated model has 12 molecules and 25 rules'
+###
+begin model
+begin parameters
+	a1 24.9736
+	a2 3.59797
+	a3 0.2834
+	a4 0.46227
+	a5 0.02917
+	a6 0.20695
+	a7 3.02856
+	b1 0.00209
+	b2 2.13476
+	b3 0.08039
+	b4 0.45859
+	b5 0.13056
+	b7 2.96739
+	b8 0.11167
+	b9 81.10381
+	b10 93.03664
+	d1 1.43549
+	d2 0.21251
+	d3 0.50309
+	d4 3.36641
+	d5 0.41085
+	f1 0.09292
+	f2 0.14979
+	gam1 0.34603
+	gam2 0.00028
+	r1 2.71574
+	r2 35.40005
+	n 1.02419
+	m 1.34979
+	k 2.18234
+	a3p 0.34578
+	d2p 0.18191
+	f1p 0.09588
+	gam1p 0.40119
+	dawn 12.0
+	dusk 24.0
+	b6 0
+	amp 0
+end parameters
+begin compartments
+	#volume units: L
+	cytosol 3 1.0
+	nucleus 3 1.0
+end compartments
+begin molecule types
+	FrqmRNA()
+	WC_1_2()
+	WC_1_1()
+	s_Frq_1()
+	l_Frq_1()
+	WC_1()
+	WC_1m()
+	l_Frq()
+	WC_1mRNA()
+	s_Frq()
+	l_Frq_2()
+	s_Frq_2()
+end molecule types
+begin seed species
+	@cytosol:s_Frq_1() 2.59403672e+23 # 0.43076mol/L * 6.022e23/mol *1.0L #s_Frq_1 #E1F
+	@cytosol:l_Frq_1() 2.74500826e+23 #original 0.45583arbitrary_units/L #l_Frq_1 #E1Fp
+	@cytosol:WC_1_1() 3.521352456e+24 #original 5.84748arbitrary_units/L #WC_1_1 #E1W
+	@cytosol:s_Frq_2() 6.4116234e+22 #original 0.10647arbitrary_units/L #s_Frq_2 #E2F
+	@cytosol:l_Frq_2() 5.9449184e+22 #original 0.09872arbitrary_units/L #l_Frq_2 #E2Fp
+	@cytosol:WC_1_2() 3.4341358300000003e+24 #original 5.70265arbitrary_units/L #WC_1_2 #E2W
+	@nucleus:FrqmRNA() 4.176257e+23 #original 0.6935arbitrary_units/L #FrqmRNA #MF
+	@nucleus:WC_1mRNA() 7.6413158e+23 #original 1.2689arbitrary_units/L #WC_1mRNA #MW
+	@nucleus:s_Frq() 3.953443e+22 #original 0.06565arbitrary_units/L #s_Frq #PF
+	@nucleus:l_Frq() 4.6483818e+22 #original 0.07719arbitrary_units/L #l_Frq #PFp
+	@nucleus:WC_1() 1.5921746460000001e+25 #original 26.4393arbitrary_units/L #WC_1 #PW
+end seed species
+begin observables
+	Species s_Frq_1_cytosol @cytosol:s_Frq_1() #s-Frq_1
+	Species l_Frq_1_cytosol @cytosol:l_Frq_1() #l-Frq_1
+	Species WC_1_1_cytosol @cytosol:WC_1_1() #WC-1_1
+	Species s_Frq_2_cytosol @cytosol:s_Frq_2() #s-Frq_2
+	Species l_Frq_2_cytosol @cytosol:l_Frq_2() #l-Frq_2
+	Species WC_1_2_cytosol @cytosol:WC_1_2() #WC-1_2
+	Species FrqmRNA_nucleus @nucleus:FrqmRNA() #Frq mRNA
+	Species WC_1mRNA_nucleus @nucleus:WC_1mRNA() #WC-1 mRNA
+	Species s_Frq_nucleus @nucleus:s_Frq() #s-Frq
+	Species l_Frq_nucleus @nucleus:l_Frq() #l-Frq
+	Species WC_1_nucleus @nucleus:WC_1() #WC-1
+	Species WC_1m_nucleus @nucleus:WC_1m() #WC-1*
+end observables
+begin functions
+	tots_Frq_ar() = s_Frq_1_cytosol + s_Frq_2_cytosol + s_Frq_nucleus
+	totl_Frq_ar() = l_Frq_1_cytosol + l_Frq_2_cytosol + l_Frq_nucleus
+	totFrq_ar() = totl_Frq_ar + tots_Frq_ar
+	totWC_1_ar() = WC_1_1_cytosol + WC_1_2_cytosol + WC_1_nucleus + WC_1m_nucleus
+	fRate0() = (WC_1_nucleus^m*a2*b3*(WC_1m_nucleus^n*l_Frq_nucleus + WC_1m_nucleus^n*s_Frq_nucleus + b1*(WC_1m_nucleus^n + b2^n) + b2^n*l_Frq_nucleus + b2^n*s_Frq_nucleus) + WC_1m_nucleus^n*a1*b1*(WC_1_nucleus^m*l_Frq_nucleus + WC_1_nucleus^m*s_Frq_nucleus + b3*(WC_1_nucleus^m + b4^m) + b4^m*l_Frq_nucleus + b4^m*s_Frq_nucleus))/((WC_1_nucleus^m*l_Frq_nucleus + WC_1_nucleus^m*s_Frq_nucleus + b3*(WC_1_nucleus^m + b4^m) + b4^m*l_Frq_nucleus + b4^m*s_Frq_nucleus)*(WC_1m_nucleus^n*l_Frq_nucleus + WC_1m_nucleus^n*s_Frq_nucleus + b1*(WC_1m_nucleus^n + b2^n) + b2^n*l_Frq_nucleus + b2^n*s_Frq_nucleus))
+	fRate1() = d1/(FrqmRNA_nucleus + b5)
+	fRate2() = FrqmRNA_nucleus*a3
+	fRate8() = (WC_1m_nucleus^k*a5 + a4*(WC_1m_nucleus^k + b7^k))/(WC_1m_nucleus^k + b7^k)
+	fRate9() = d3/(WC_1mRNA_nucleus + b8)
+	fRate10() = WC_1mRNA_nucleus*(a6 + a7*l_Frq_nucleus + a7*s_Frq_nucleus)
+	fRate15() = d4/(WC_1_nucleus + b9)
+	fRate16() = WC_1_nucleus*amp*r1*(1 - tanh(-24*dusk - 576*min(rint(time()/24 - 0.5), rint(time()/24 + 0.5)) + 24*time()))*(tanh(-24*dawn - 576*min(rint(time()/24 - 0.5), rint(time()/24 + 0.5)) + 24*time()) + 1)/4 - WC_1m_nucleus*r2
+	fRate17() = d5/(WC_1m_nucleus + b10)
+	fRate18() = FrqmRNA_nucleus*a3p
+end functions
+begin reaction rules
+	MFtrn: 0  -> FrqmRNA()@nucleus fRate0() #Modifiers(PF, PFp, PW, PWL)
+	MFdeg: FrqmRNA()@nucleus -> 0  fRate1()
+	E1Ftrl: 0  -> s_Frq_1()@cytosol fRate2() #Modifiers(MF)
+	E1Fdeg: s_Frq_1()@cytosol -> 0  gam1
+	E2Ftrl: s_Frq_1()@cytosol -> s_Frq_2()@cytosol f1
+	E2Fdeg: s_Frq_2()@cytosol -> 0  gam1
+	PFtrl: s_Frq_2()@cytosol -> s_Frq()@nucleus f1
+	PFdeg: s_Frq()@nucleus -> 0  d2
+	MWtrn: 0  -> WC_1mRNA()@nucleus fRate8() #Modifiers(PWL)
+	MWdeg: WC_1mRNA()@nucleus -> 0  fRate9()
+	E1Wtrl: 0  -> WC_1_1()@cytosol fRate10() #Modifiers(MW, PF, PFp)
+	E1Wdeg: WC_1_1()@cytosol -> 0  gam2
+	E2Wtrl: WC_1_1()@cytosol -> WC_1_2()@cytosol f2
+	E2Wdeg: WC_1_2()@cytosol -> 0  gam2
+	PWtrl: WC_1_2()@cytosol -> WC_1()@nucleus f2
+	PWdeg: WC_1()@nucleus -> 0  fRate15()
+	PWtrs_reactants_0: 0  -> WC_1()@nucleus -1*(fRate16())
+	PWtrs_products_0: 0  -> WC_1m()@nucleus fRate16()
+	PWLdeg: WC_1m()@nucleus -> 0  fRate17()
+	E1Fptrl: 0  -> l_Frq_1()@cytosol fRate18() #Modifiers(MF)
+	E1Fpdeg: l_Frq_1()@cytosol -> 0  gam1p
+	E2Fptrl: l_Frq_1()@cytosol -> l_Frq_2()@cytosol f1p
+	E2Fpdeg: l_Frq_2()@cytosol -> 0  gam1p
+	PFptrl: l_Frq_2()@cytosol -> l_Frq()@nucleus f1p
+	PFpdeg: l_Frq()@nucleus -> 0  d2p
+end reaction rules
+end model

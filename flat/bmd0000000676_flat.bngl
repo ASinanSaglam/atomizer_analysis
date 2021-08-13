@@ -1,0 +1,96 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1006230005', 'http://identifiers.org/biomodels.db/BIOMD0000000676']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/16864000']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0006809']
+#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0001854']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/16864000']
+#@creatorEmail:'c.lloyd@auckland.ac.nz'
+#@creatorName:'Lloyd Catherine'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 15 molecules and 17 reactions. The translated model has 14 molecules and 17 rules'
+###
+begin model
+begin parameters
+	k1 0.1
+	k1_prime 0.1
+	k4 1.89
+	k4_prime 11.4
+	k2 0.91
+	k14 53.9
+	k13 0.033
+	k8 0.1
+	k8_prime 0.1
+	k3 0.91
+	k9 11.4
+	k9_prime 1.89
+	k5 2.58
+	k5_prime 98.0
+	k6 12.6
+	k7 0.91
+	k10 3.33
+	k10_prime 89.9
+	k11 29.4
+	k12 0.91
+	S 0
+	O2 9.033e+19 #original 150.0substance/volume
+end parameters
+begin molecule types
+	Fe3pl__enos__()
+	Fe2pl_Arg()
+	Fe3pl_NOHA()
+	Fe2pl()
+	NOHA()
+	Fe3pl_O2__Arg()
+	NO()
+	Citrulline()
+	Fe2pl_NOHA()
+	Fe3pl_NO()
+	Fe2pl_NO()
+	Fe3pl_Arg()
+	Arg()
+	Fe3pl_O2__NOHA()
+end molecule types
+begin seed species
+	$Arg() 6.022e+19 # (100.0 * 1e-06)mol/L * 6.022e23/mol *1.0L #Arg #Arg
+	Fe3pl__enos__() 9033000000000000.0 #original 0.015substance/volume  #Fe3pl__enos__ #Fe3__enos
+end seed species
+begin observables
+	Species Arg Arg() #Arg
+	Species Fe3pl__enos__ Fe3pl__enos__() #Fe3+(enos)
+	Species Fe3pl_Arg Fe3pl_Arg() #Fe3+_Arg
+	Species Fe2pl Fe2pl() #Fe2+
+	Species Fe2pl_Arg Fe2pl_Arg() #Fe2+_Arg
+	Species Fe3pl_NO Fe3pl_NO() #Fe3+_NO
+	Species NO NO() #NO
+	Species Fe2pl_NO Fe2pl_NO() #Fe2+_NO
+	Species Fe3pl_NOHA Fe3pl_NOHA() #Fe3+_NOHA
+	Species NOHA NOHA() #NOHA
+	Species Fe2pl_NOHA Fe2pl_NOHA() #Fe2+_NOHA
+	Species Fe3pl_O2__Arg Fe3pl_O2__Arg() #Fe3+_O2-_Arg
+	Species Fe3pl_O2__NOHA Fe3pl_O2__NOHA() #Fe3+_O2-_NOHA
+	Species Citrulline Citrulline() #Citrulline
+end observables
+begin functions
+	fRate5() = O2*k13
+	fRate9() = O2*k5
+	fRate13() = O2*k10
+end functions
+begin reaction rules
+	Fe3__Arg_synthesis: Arg() + Fe3pl__enos__() <-> Fe3pl_Arg() k1,k1_prime
+	Fe2__Arg_synthesis_dissociation: Arg() + Fe2pl() <-> Fe2pl_Arg() k4,k4_prime
+	Arginine_synthesis: 0  -> Arg() S
+	Fe2__formation: Fe3pl__enos__() -> Fe2pl() k2
+	Fe3__and_NO_formation: Fe3pl_NO() -> Fe3pl__enos__() + NO() k14
+	Fe3__formation: Fe2pl_NO() -> Fe3pl__enos__() fRate5() #Modifiers(O2)
+	Fe3__NOHA_formation_degradation: Fe3pl_NOHA() <-> Fe3pl__enos__() + NOHA() k8,k8_prime
+	Fe2__Arg_formation: Fe3pl_Arg() -> Fe2pl_Arg() k3
+	Fe2__NOHA_formation: Fe2pl_NOHA() <-> Fe2pl() + NOHA() k9,k9_prime
+	Fe3__O2_Arg_formation_with_Oxygen_activation: Fe2pl_Arg() -> Fe3pl_O2__Arg() fRate9() #Modifiers(O2)
+	Fe3__O2_Arg_degradation: Fe3pl_O2__Arg() -> Fe2pl_Arg() k5_prime
+	Fe3__NOHA_synthesis: Fe3pl_O2__Arg() -> Fe3pl_NOHA() k6
+	Fe2__NOHA_synthesis: Fe3pl_NOHA() -> Fe2pl_NOHA() k7
+	Fe3__O2__NOHA_synthesis_with_Oxygen_activation: Fe2pl_NOHA() -> Fe3pl_O2__NOHA() fRate13() #Modifiers(O2)
+	Fe3__NO_and_Citrulline_synthesis: Fe3pl_O2__NOHA() -> Fe3pl_NO() + Citrulline() k11
+	Fe2__NO_synthesis: Fe3pl_NO() -> Fe2pl_NO() k12
+	Fe3__O2__NOHA_degradation: Fe3pl_O2__NOHA() -> Fe2pl_NOHA() k10_prime
+end reaction rules
+end model

@@ -1,0 +1,72 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/30984283']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/ncit/C62713']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1907260017', 'http://identifiers.org/biomodels.db/BIOMD0000000764']
+#@creatorEmail:'jm2187@cam.ac.uk'
+#@creatorName:'Men Jinghao'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 4 molecules and 9 reactions. The translated model has 4 molecules and 9 rules'
+###
+begin model
+begin parameters
+	alpha 0.206 #units:unit_0
+	delta 0.5115 #units:unit_0
+	beta 0.001 #units:unit_0
+	delta0 0.005 #units:unit_0
+	delta1 0.006 #units:unit_0
+	bb 2.0 #units:unit_0
+	K 1000000.0 #units:unit_0
+	gamma 0.001 #units:unit_0
+	q 5.0 #units:unit_0
+	lamda 4.16 #units:unit_0
+	aa 0.206 #units:unit_0
+	Metabolite_3 (0.1)
+	r4_k1 1.000000
+end parameters
+begin molecule types
+	U()
+	C()
+	V()
+	I()
+end molecule types
+begin seed species
+	U() 6.022e+20 # (1.0 * 0.001)mol/L * 6.022e23/mol *1.0L #U #U
+	V() 6.022000000000001e+19 #original 0.1substance/volume #V #V
+	C() 6.022000000000001e+19 #original 0.1substance/volume #C #C
+end seed species
+begin observables
+	Species U U() #U
+	Species I I() #I
+	Species V V() #V
+	Species C C() #C
+end observables
+begin functions
+	a() = aa/delta
+	C0() = Metabolite_3
+	f() = q/(C0*delta)
+	k() = f*exp(-a*time())
+	V0() = K
+	bet() = V0*beta/delta
+	b() = K*bb/V0
+	d0() = C0*delta0/delta
+	d1() = C0*delta1/delta
+	p() = lamda/delta
+	y() = gamma/delta
+	alph() = alpha/delta
+	fRate0() = U*alph*(-I - U + 1)
+	fRate1() = C*d0
+	fRate4() = C*d1
+	fRate5() = I*b
+end functions
+begin reaction rules
+	tumor_grow_products_0: 0  -> U() fRate0() #Modifiers(I)
+	tumor_killing: U() -> 0  fRate1() #Modifiers(C)
+	tumor_infection: U() + V() -> I() bet
+	infected_tumor_death: I() -> 0  r4_k1
+	infected_tumor_killing: I() -> 0  fRate4() #Modifiers(C)
+	virus_burst: 0  -> V() fRate5() #Modifiers(I)
+	virus_death: V() -> 0  y
+	drug_infusion: 0  -> C() k
+	drug_decay: C() -> 0  p
+end reaction rules
+end model

@@ -1,0 +1,125 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1108260001', 'http://identifiers.org/biomodels.db/BIOMD0000000365', 'http://identifiers.org/go/GO:0007596']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/10346914']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/2759']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:2214']
+#@creatorEmail:'schubert@ebi.ac.uk'
+#@creatorName:'Schubert Michael'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 30 molecules and 33 reactions. The translated model has 30 molecules and 33 rules'
+###
+begin model
+begin parameters
+	k1 100000000.0
+	k2 0.7
+	k3 0.064
+	k5 1.0
+	k6 0.00052
+	k7 0.028
+	k8 2570.0
+	k9 1.72e-05
+	k10 2630.0
+end parameters
+begin molecule types
+	HC53()
+	VaLCA1()
+	HC536()
+	Va()
+	Va53_APC()
+	Va56_APC()
+	VaA536()
+	Va_APC()
+	Va536()
+	Va53()
+	LC_APC()
+	Va3_APC()
+	VaA36()
+	Va56()
+	VaA53()
+	Va36()
+	Va536_APC()
+	HC56()
+	HC36()
+	Va5_APC()
+	Va36_APC()
+	APC()
+	LC()
+	VaA3()
+	HC5()
+	Va3()
+	HC()
+	HC3()
+	VaLCA1_APC()
+	Va5()
+end molecule types
+begin seed species
+	APC() 6022000000000000.0 # 1e-08mol/L * 6.022e23/mol *1.0L #APC #APC
+	Va() 1.2044e+17 #original 2e-07mol/L  #Va #Va
+end seed species
+begin observables
+	Species APC APC() #APC
+	Species Va Va() #Va
+	Species Va_APC Va_APC() #Va_APC
+	Species Va3 Va3() #Va3
+	Species Va3_APC Va3_APC() #Va3_APC
+	Species Va5 Va5() #Va5
+	Species Va5_APC Va5_APC() #Va5_APC
+	Species Va53 Va53() #Va53
+	Species Va53_APC Va53_APC() #Va53_APC
+	Species Va56 Va56() #Va56
+	Species Va56_APC Va56_APC() #Va56_APC
+	Species Va36 Va36() #Va36
+	Species Va36_APC Va36_APC() #Va36_APC
+	Species Va536 Va536() #Va536
+	Species Va536_APC Va536_APC() #Va536_APC
+	Species HC HC() #HC
+	Species LC LC() #LC
+	Species HC5 HC5() #HC5
+	Species HC3 HC3() #HC3
+	Species HC56 HC56() #HC56
+	Species HC36 HC36() #HC36
+	Species HC536 HC536() #HC536
+	Species LC_APC LC_APC() #LC_APC
+	Species HC53 HC53() #HC53
+	Species VaA3 VaA3() #VaA3
+	Species VaA53 VaA53() #VaA53
+	Species VaA36 VaA36() #VaA36
+	Species VaA536 VaA536() #VaA536
+	Species VaLCA1 VaLCA1() #VaLCA1
+	Species VaLCA1_APC VaLCA1_APC() #VaLCA1_APC
+end observables
+begin reaction rules
+	r1: Va() + APC() <-> Va_APC() k1,k2
+	r2: Va3() + APC() <-> Va3_APC() k1,k2
+	r3: Va5() + APC() <-> Va5_APC() k1,k2
+	r4: Va53() + APC() <-> Va53_APC() k1,k2
+	r5: Va56() + APC() <-> Va56_APC() k1,k2
+	r6: Va36() + APC() <-> Va36_APC() k1,k2
+	r7: Va536() + APC() <-> Va536_APC() k1,k2
+	r8: Va_APC() -> Va5_APC() k5
+	r9: Va5_APC() -> Va56_APC() k6
+	r10: Va56_APC() -> Va536_APC() k3
+	r11: Va5_APC() -> Va53_APC() k3
+	r12: Va53_APC() -> Va536_APC() k6
+	r13: Va_APC() -> Va3_APC() k3
+	r14: Va3_APC() -> Va36_APC() k6
+	r15: Va36_APC() -> Va536_APC() k5
+	r16: Va3_APC() -> Va53_APC() k5
+	r17: Va() <-> HC() + LC() k9,k10
+	r18: Va5() <-> HC5() + LC() k9,k10
+	r19: Va3() <-> HC3() + LC() k9,k10
+	r20: Va56() <-> HC56() + LC() k9,k10
+	r21: Va53() <-> HC53() + LC() k9,k10
+	r22: Va36() <-> HC36() + LC() k9,k10
+	r23: Va536() <-> HC536() + LC() k9,k10
+	r24: LC() + APC() <-> LC_APC() k1,k2
+	r25: Va3() <-> VaA3() + VaLCA1() k7,k8
+	r26: Va53() <-> VaA53() + VaLCA1() k7,k8
+	r27: Va36() <-> VaA36() + VaLCA1() k7,k8
+	r28: Va536() <-> VaA536() + VaLCA1() k7,k8
+	r29: Va3_APC() <-> VaA3() + VaLCA1_APC() k7,k8
+	r30: Va53_APC() <-> VaA53() + VaLCA1_APC() k7,k8
+	r31: Va36_APC() <-> VaA36() + VaLCA1_APC() k7,k8
+	r32: Va536_APC() <-> VaA536() + VaLCA1_APC() k7,k7
+	r33: VaLCA1() + APC() <-> VaLCA1_APC() k1,k2
+end reaction rules
+end model

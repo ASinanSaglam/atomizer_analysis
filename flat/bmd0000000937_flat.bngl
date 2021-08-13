@@ -1,0 +1,53 @@
+###
+#@BQB_HAS_PART:['http://identifiers.org/go/GO:0051726']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/8355']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/21414480']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1809040004', 'http://identifiers.org/biomodels.db/BIOMD0000000937']
+#@creatorEmail:'ahmad.azd@hotmail.com'
+#@creatorName:'Zyoud Ahmad'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 3 molecules and 6 reactions. The translated model has 3 molecules and 6 rules'
+###
+begin model
+begin parameters
+	a1 0.1
+	a2 3.0
+	a3 3.0
+	b1 3.0
+	b2 1.0
+	b3 1.0
+	k1 0.5
+	k2 0.5
+	k3 0.5
+	n1 8.0
+	n2 8.0
+	n3 8.0
+end parameters
+begin molecule types
+	Plk1_active()
+	CDK1_active()
+	APC_active()
+end molecule types
+begin seed species
+end seed species
+begin observables
+	Species CDK1_active CDK1_active() #CDK1_active
+	Species APC_active APC_active() #APC_active
+	Species Plk1_active Plk1_active() #Plk1_active
+end observables
+begin functions
+	fRate1() = APC_active^n1*b1/(APC_active^n1 + k1^n1)
+	fRate2() = Plk1_active^n3*a3/(Plk1_active^n3 + k3^n3)
+	fRate2m() = Plk1_active^n3*a3/(Plk1_active^n3 + k3^n3)
+	fRate4() = CDK1_active^n2*a2/(CDK1_active^n2 + k2^n2)
+	fRate4m() = CDK1_active^n2*a2/(CDK1_active^n2 + k2^n2)
+end functions
+begin reaction rules
+	R1_Cdk1_activation_by_cyclin_synthesis: 0  -> CDK1_active() a1
+	R2_Cdk1_inactivation_by_APC_active: CDK1_active() -> 0  fRate1() #Modifiers(APC_active)
+	R3_APC_activation_by_Cdk1_active: 0  <-> APC_active() fRate2(),fRate2m() #Modifiers(Plk1_active)
+	R4_APC_Inactivation: APC_active() -> 0  b3
+	R5_Plk1_activation_by: 0  <-> Plk1_active() fRate4(),fRate4m() #Modifiers(CDK1_active)
+	R6_Plk1_inactivation: Plk1_active() -> 0  b2
+end reaction rules
+end model

@@ -1,0 +1,94 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000545', 'http://identifiers.org/biomodels.db/MODEL1407230000']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/25049395']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/3702']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0009640']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 14 molecules and 10 reactions. The translated model has 11 molecules and 12 rules'
+###
+begin model
+begin parameters
+	ks1 0.23
+	ks2 4.0526
+	kdr1 0.1
+	kdr2 0.2118
+	k1 0.0043
+	k2 161.62
+	ka1 0.0372
+	ka2 0.0611
+	ka3 4.7207
+	kd1 94.3524
+	kd2 50.6973
+	kd3 0.5508
+	ks3 0.4397
+	kdr3 1.246
+	UV 1.0
+	ka4 10.1285
+	kd4 1.1999
+	n1 3.0
+	n2 2.0
+	n3 3.5
+	kdr3a 0.9735
+	kdr3b 0.406
+	ksr 0.7537
+	COP1 4.2
+	FHY3 5.0
+end parameters
+begin molecule types
+	UVR8M()
+	UR()
+	CDCS()
+	UCS()
+	RUP()
+	DWD()
+	CD()
+	CDW()
+	HY5()
+	UVR8D()
+	CS()
+end molecule types
+begin seed species
+	CS() 0.2 #CS #CS
+	CD() 10.0 #CD #CD
+	CDCS() 2.0 #CDCS #CDCS
+	UVR8D() 20.0 #UVR8D #UVR8D
+	HY5() 0.25 #HY5 #HY5
+	DWD() 20.0 #DWD #DWD
+end seed species
+begin observables
+	Species CS CS() #CS
+	Species CD CD() #CD
+	Species CDCS CDCS() #CDCS
+	Species UVR8M UVR8M() #UVR8M
+	Species UCS UCS() #UCS
+	Species UVR8D UVR8D() #UVR8D
+	Species RUP RUP() #RUP
+	Species UR UR() #UR
+	Species HY5 HY5() #HY5
+	Species DWD DWD() #DWD
+	Species CDW CDW() #CDW
+end observables
+begin functions
+	COP1_Total() = 2*CDCS + CS + 2*UCS
+	UM_Total() = 2*UCS + UR + UVR8M
+	fRate0() = -CS*kdr1*(UV*n1 + 1) + ks1*(UV*n3*(FHY3 + HY5) + 1)
+	fRate1() = ks2*(UCS*UV + 1)
+	fRate3() = CS^2*UVR8M^2*ka1 - UCS*kd1
+	fRate8() = -HY5*kdr3*(CDCS/(CDCS + kdr3a) + CDW/(CDW + kdr3b) - UCS/(UCS + ksr)) + ks3*(UV*n2 + 1)
+end functions
+begin reaction rules
+	r1_products_0: 0  -> CS() fRate0() #Modifiers(HY5, FHY3, HY5, FHY3, CS)
+	r2: 0  <-> RUP() fRate1(),kdr2 #Modifiers(UCS, UCS, RUP)
+	r3: UVR8M() + UVR8M() -> UVR8D() k1 #Modifiers(UVR8M)
+	r4_reactants_0: 0  -> CS() -1*2.0*(fRate3()) #Modifiers(CS, UVR8M, UCS)
+	r4_reactants_1: 0  -> UVR8M() -1*2.0*(fRate3()) #Modifiers(CS, UVR8M, UCS)
+	r4_products_0: 0  -> UCS() fRate3() #Modifiers(CS, UVR8M, UCS)
+	r5: CS() + CS() + CD() <-> CDCS() ka2,kd2 #Modifiers(CS, CD, CDCS)
+	r6: UVR8M() + RUP() -> UR() ka3 #Modifiers(UVR8M, RUP)
+	r7: UR() + UR() -> UVR8D() + RUP() + RUP() kd3 #Modifiers(UR)
+	r8: UVR8D() -> UVR8M() + UVR8M() k2 #Modifiers(UVR8D)
+	r9_products_0: 0  -> HY5() fRate8() #Modifiers(CDCS, CDW, UCS, CDCS, CDW, UCS, HY5)
+	r10: CD() + DWD() <-> CDW() ka4,kd4 #Modifiers(CD, DWD, CDW)
+end reaction rules
+end model

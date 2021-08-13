@@ -1,0 +1,53 @@
+###
+#@BQB_HAS_PART:['http://identifiers.org/chebi/CHEBI:52679', 'http://identifiers.org/kegg.compound/C01751']
+#@BQB_IS:['http://identifiers.org/efo/0001757']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/19056600']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1803050001', 'http://identifiers.org/biomodels.db/BIOMD0000000948']
+#@creatorEmail:'mroberts@ebi.ac.uk'
+#@creatorName:'Roberts Matthew Grant'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 6 molecules and 6 reactions. The translated model has 2 molecules and 6 rules'
+###
+begin model
+begin parameters
+	Lag_time_1 0.9
+	Lag_time_2 4.7
+	k_a_1 0.3
+	k_a_2 1.8
+	base 0.32
+	CL_V 20.0
+end parameters
+begin compartments
+	#volume units: volume
+	compartment 3 1.0
+	A1 3 1.0
+	A2 3 1.0
+	Central 3 1.0
+end compartments
+begin molecule types
+	AR()
+	AR_Dose()
+end molecule types
+begin seed species
+	@Central:AR() 6022000000000.001 # (0.01 * 1e-09)mol/L * 6.022e23/mol *1.0L #AR #AR_Central
+	@compartment:AR_Dose() 2.92067e+17 #original 485.0substance/volume #AR_Dose #AR_Dose
+end seed species
+begin observables
+	Species AR_A1 @A1:AR() #AR
+	Species AR_A2 @A2:AR() #AR
+	Species AR_Central @Central:AR() #AR
+	Species AR_Dose_compartment @compartment:AR_Dose() #AR_Dose
+end observables
+begin functions
+	F2_ar() =  if((time()<Lag_time_2),(0),(0.048))
+	F1_ar() =  if((time()<Lag_time_1),(0),(if((time()>=Lag_time_1&&time()<Lag_time_2),(0.1),(0.052))))
+end functions
+begin reaction rules
+	reaction: AR_Dose()@compartment -> AR()@A1 F1_compartment #Modifiers(F1)
+	reaction_1: AR_Dose()@compartment -> AR()@A2 F2_compartment #Modifiers(F2)
+	reaction_2: AR()@A1 -> AR()@Central k_a_1
+	reaction_3: AR()@A2 -> AR()@Central k_a_2
+	reaction_4: 0  -> AR()@Central base
+	reaction_5: AR()@Central -> 0  CL_V
+end reaction rules
+end model

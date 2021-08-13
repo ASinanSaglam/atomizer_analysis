@@ -1,0 +1,136 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL4822989369', 'http://identifiers.org/biomodels.db/BIOMD0000000086']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/15520372']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/131567']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0008277']
+#@creatorEmail:'enuo.he@wolfson.ox.ac.uk'
+#@creatorName:'He Enuo'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 17 molecules and 24 reactions. The translated model has 17 molecules and 24 rules'
+###
+begin model
+begin parameters
+	r1_k1 8780000.000000
+	r1_k2 8.000000
+	r2_k1 529000.000000
+	r2_k2 0.000008
+	r3_k1 636000000.000000
+	r3_k2 0.017900
+	r4_k1 0.013000
+	r4_k2 0.000001
+	r5_k1 0.000100
+	r5_k2 62.300000
+	r6_k1 853000.000000
+	r6_k2 0.004680
+	r7_k1 132000000.000000
+	r7_k2 1.280000
+	r8_k1 386000.000000
+	r8_k2 0.040800
+	r9_k1 64100.000000
+	r9_k2 0.950000
+	r10_k1 94700000.000000
+	r10_k2 0.002270
+	r11_k1 0.013000
+	r11_k2 0.000000
+	r12_k1 2.000000
+	r12_k2 1470000.000000
+	r13_k1 44700.000000
+	r13_k2 0.000000
+	r14_k1 25.000000
+	r14_k2 0.244000
+	r15_k1 0.000100
+	r15_k2 3.830000
+	r16_k1 74300.000000
+	r16_k2 0.005720
+	r17_k1 22800000.000000
+	r17_k2 0.000054
+	r18_k1 1620000.000000
+	r18_k2 0.008750
+	r19_k1 6200000.000000
+	r19_k2 0.043300
+	r20_k1 6300000.000000
+	r20_k2 0.478000
+	r21_k1 25.000000
+	r21_k2 0.002970
+	r22_k1 13000.000000
+	r22_k2 0.685000
+	r23_k1 49400000.000000
+	r23_k2 0.004210
+	r24_k1 2.750000
+	r24_k2 2940.000000
+end parameters
+begin molecule types
+	GmAT()
+	RG()
+	RGD()
+	RGA()
+	A()
+	GAD()
+	G()
+	RGmAT()
+	Pi()
+	GmT()
+	R()
+	RGmT()
+	RGAD()
+	GD()
+	GA()
+	T()
+	D()
+end molecule types
+begin seed species
+	G() 6022000000000000.0 # 1e-08mol/L * 6.022e23/mol *1.0L #G #species_1
+	T() 2.818296e+20 #original 0.000468mol/L #T #species_3
+	R() 6.022e+17 #original 1e-06mol/L #R #species_4
+	Pi() 2.6496800000000005e+21 #original 0.0044mol/L #Pi #species_7
+	D() 8.97278e+19 #original 0.000149mol/L #D #species_8
+end seed species
+begin observables
+	Species A A() #A
+	Species G G() #G
+	Species GA GA() #GA
+	Species T T() #T
+	Species R R() #R
+	Species GmT GmT() #G*T
+	Species GD GD() #GD
+	Species Pi Pi() #Pi
+	Species D D() #D
+	Species RG RG() #RG
+	Species RGmT RGmT() #RG*T
+	Species GmAT GmAT() #G*AT
+	Species GAD GAD() #GAD
+	Species RGD RGD() #RGD
+	Species RGA RGA() #RGA
+	Species RGmAT RGmAT() #RG*AT
+	Species RGAD RGAD() #RGAD
+end observables
+begin functions
+	parameter_1() = 2500000000.0*GmAT + 1300000.0*GmT + 2500000000.0*RGmAT + 1300000.0*RGmT
+	parameter_0() = 100000000.0*GmAT + 100000000.0*GmT + 100000000.0*RGmAT + 100000000.0*RGmT
+end functions
+begin reaction rules
+	reaction_0: G() + A() <-> GA() r1_k1,r1_k2
+	reaction_1: G() + T() <-> GmT() r2_k1,r2_k2
+	reaction_2: G() + R() <-> RG() r3_k1,r3_k2
+	reaction_3: GmT() <-> GD() + Pi() r4_k1,r4_k2
+	reaction_4: GD() <-> G() + D() r5_k1,r5_k2
+	reaction_5: RG() + T() <-> RGmT() r6_k1,r6_k2
+	reaction_6: GmT() + R() <-> RGmT() r7_k1,r7_k2
+	reaction_7: GmT() + A() <-> GmAT() r8_k1,r8_k2
+	reaction_8: GD() + A() <-> GAD() r9_k1,r9_k2
+	reaction_9: GD() + R() <-> RGD() r10_k1,r10_k2
+	reaction_10: RGmT() <-> RGD() + Pi() r11_k1,r11_k2
+	reaction_11: RGD() <-> RG() + D() r12_k1,r12_k2
+	reaction_12: GA() + T() <-> GmAT() r13_k1,r13_k2
+	reaction_13: GmAT() <-> GAD() + Pi() r14_k1,r14_k2
+	reaction_14: GAD() <-> GA() + D() r15_k1,r15_k2
+	reaction_15: RG() + A() <-> RGA() r16_k1,r16_k2
+	reaction_16: GA() + R() <-> RGA() r17_k1,r17_k2
+	reaction_17: RGA() + T() <-> RGmAT() r18_k1,r18_k2
+	reaction_18: GmAT() + R() <-> RGmAT() r19_k1,r19_k2
+	reaction_19: RGmT() + A() <-> RGmAT() r20_k1,r20_k2
+	reaction_20: RGmAT() <-> RGAD() + Pi() r21_k1,r21_k2
+	reaction_21: RGD() + A() <-> RGAD() r22_k1,r22_k2
+	reaction_22: GAD() + R() <-> RGAD() r23_k1,r23_k2
+	reaction_23: RGAD() <-> RGA() + D() r24_k1,r24_k2
+end reaction rules
+end model

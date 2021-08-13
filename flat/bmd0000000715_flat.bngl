@@ -1,0 +1,64 @@
+###
+#@BQB_HAS_PROPERTY:['http://identifiers.org/efo/0005741', 'http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/doi/10.1016/j.physa.2017.08.139']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1808280008', 'http://identifiers.org/biomodels.db/BIOMD0000000715']
+#@creatorEmail:'sarubini.kananathan@hotmail.co.uk'
+#@creatorName:'Kananathan Sarubini'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 5 molecules and 11 reactions. The translated model has 4 molecules and 11 rules'
+###
+begin model
+begin parameters
+	A 0.8
+	beta 0.8
+	alpha 0.08
+	rho 0.09
+	mu1 0.99
+	mu2 0.4
+	mu3 0.8
+	alpha1 0.6
+	alpha2 0.02
+	tau 0.6
+	gamma 0.7
+	Totalpopulation__N__ 5.419800000000001e+21 #original 9.0substance/volume
+end parameters
+begin molecule types
+	Message__M__()
+	ExposedIndividuals__E__()
+	InfectedIndividuals__I__()
+	SusceptibleIndividuals__S__()
+end molecule types
+begin seed species
+	SusceptibleIndividuals__S__() 2.1077000000000001e+21 # (3.5 * 0.001)mol/L * 6.022e23/mol *1.0L #SusceptibleIndividuals__S__ #S
+	ExposedIndividuals__E__() 1.5055e+21 #original 2.5substance/volume #ExposedIndividuals__E__ #E
+	InfectedIndividuals__I__() 1.8066e+21 #original 3.0substance/volume #InfectedIndividuals__I__ #I
+	Message__M__() 3.6132e+21 #original 6.0substance/volume #Message__M__ #M
+end seed species
+begin observables
+	Species SusceptibleIndividuals__S__ SusceptibleIndividuals__S__() #Susceptible Individuals (S)
+	Species ExposedIndividuals__E__ ExposedIndividuals__E__() #Exposed Individuals (E)
+	Species InfectedIndividuals__I__ InfectedIndividuals__I__() #Infected Individuals (I)
+	Species Message__M__ Message__M__() #Message (M)
+end observables
+begin functions
+	Totalpopulation__N___ar() = ExposedIndividuals__E__ + InfectedIndividuals__I__ + SusceptibleIndividuals__S__
+	fRate2() = InfectedIndividuals__I__*beta*exp(-Message__M__*alpha)
+	fRate6() = InfectedIndividuals__I__*(alpha1 + alpha2)
+	fRate7() = SusceptibleIndividuals__S__*mu1
+	fRate8() = ExposedIndividuals__E__*mu2
+	fRate9() = InfectedIndividuals__I__*mu3
+end functions
+begin reaction rules
+	reaction_1: 0  -> SusceptibleIndividuals__S__() A
+	reaction_2: InfectedIndividuals__I__() -> SusceptibleIndividuals__S__() gamma
+	reaction_3: SusceptibleIndividuals__S__() -> ExposedIndividuals__E__() fRate2() #Modifiers(I, M)
+	reaction_4: SusceptibleIndividuals__S__() -> 0  alpha1
+	reaction_5: ExposedIndividuals__E__() -> InfectedIndividuals__I__() rho
+	reaction_6: ExposedIndividuals__E__() -> 0  alpha1
+	reaction_7_reactants_0: 0  -> InfectedIndividuals__I__() -1*(fRate6())
+	reaction_8: 0  -> Message__M__() fRate7() #Modifiers(S)
+	reaction_9: 0  -> Message__M__() fRate8() #Modifiers(E)
+	reaction_10: 0  -> Message__M__() fRate9() #Modifiers(I)
+	reaction_11: Message__M__() -> 0  tau
+end reaction rules
+end model

@@ -1,0 +1,48 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/doi/10.1142/S0218339011004111']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/ncit/C36294', 'http://identifiers.org/go/GO:0035212', 'http://identifiers.org/go/GO:0002418', 'http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10090']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000815', 'http://identifiers.org/biomodels.db/MODEL1909170003']
+#@creatorEmail:'johannes.p.meyer@gmail.com'
+#@creatorName:'Meyer Johannes'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 2 molecules and 6 reactions. The translated model has 2 molecules and 6 rules'
+###
+begin model
+begin parameters
+	__e__ 0.0859375
+end parameters
+begin molecule types
+	y_Immune_System()
+	x_Cancer()
+end molecule types
+begin seed species
+	x_Cancer() 3.011e+20 # 0.0005mol/L * 6.022e23/mol *1.0L #x_Cancer #x_Cancer
+	y_Immune_System() 6.022e+21 #original 0.01substance/volume #y_Immune_System #y_Immune_System
+end seed species
+begin observables
+	Species x_Cancer x_Cancer() #x_Cancer
+	Species y_Immune_System y_Immune_System() #y_Immune_System
+end observables
+begin functions
+	c() = 1/32
+	b() = 1/8
+	a() = 1/16
+	f() = 1/32
+	__e__() = 11/128
+	d() = 1/32
+	fRate0() = a*x_Cancer
+	fRate1() = b*y_Immune_System
+	fRate2() = c*x_Cancer
+	fRate3() = d*y_Immune_System
+	fRate4() = __e__*x_Cancer
+	fRate5() = f*y_Immune_System
+end functions
+begin reaction rules
+	Tumor_Growth: 0  -> x_Cancer() fRate0()
+	Tumor_Killing: x_Cancer() -> 0  fRate1() #Modifiers(y_Immune_System)
+	Tumor_Competition: x_Cancer() -> 0  fRate2()
+	Immune_Growth: 0  -> y_Immune_System() fRate3()
+	Immune_Loss_Tumor: y_Immune_System() -> 0  fRate4() #Modifiers(x_Cancer)
+	Immune_Growth_Control: y_Immune_System() -> 0  fRate5()
+end reaction rules
+end model

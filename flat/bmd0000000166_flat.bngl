@@ -1,0 +1,74 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL8262954331', 'http://identifiers.org/biomodels.db/BIOMD0000000166']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/17560007']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/9486144', 'http://identifiers.org/biomodels.db/BIOMD0000000098']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0019722']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/131567']
+#@creatorEmail:'hdharuri@cds.caltech.edu'
+#@creatorName:'Dharuri Harish'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 3 molecules and 9 reactions. The translated model has 3 molecules and 11 rules'
+###
+begin model
+begin parameters
+	kf0 6.0
+	gamma 9.0
+	Ka 0.5
+	Kb 0.5
+	Kd0 10.0
+	r2_kd 1.000000
+	r3_Rbas 0.100000
+	r4_v0 1.000000
+	r5_v1 5.700000
+	r5_beta 0.300000
+	r6_Vm2 30.000000
+	r6_K2 0.500000
+	r6_n 2.000000
+	r7_Vm3 325.000000
+	r7_Kr 1.700000
+	r7_K_A 0.460000
+	r7_m 2.000000
+	r7_p 4.000000
+	r8_k1 0.700000
+	r9_k 10.000000
+end parameters
+begin compartments
+	#volume units: L
+	cytoplasm 3 1.0
+	store 3 1.0
+end compartments
+begin molecule types
+	Calciuminstore()
+	TF_A()
+	Calciumincytoplasm()
+end molecule types
+begin seed species
+	@cytoplasm:TF_A() 9.033e+18 # (15.0 * 1e-06)mol/L * 6.022e23/mol *1.0L #TF_A #X
+	@cytoplasm:Calciumincytoplasm() 1.5055e+17 #original 0.25micro mole/L #Calciumincytoplasm #Z
+end seed species
+begin observables
+	Species TF_A_cytoplasm @cytoplasm:TF_A() #TF_A
+	Species Calciuminstore_store @store:Calciuminstore() #Calcium in store
+	Species Calciumincytoplasm_cytoplasm @cytoplasm:Calciumincytoplasm() #Calcium in cytoplasm
+end observables
+begin functions
+	Kd() = Kd0/(Calciumincytoplasm_cytoplasm^4/Kb^4 + 1)
+	kf() = kf0*(Calciumincytoplasm_cytoplasm^4*gamma/(Calciumincytoplasm_cytoplasm^4 + Ka^4) + 1)
+	fRate0() = TF_A_cytoplasm^2*kf/(Kd + TF_A_cytoplasm^2)
+	fRate4() = 1.71
+	fRate5() = 30.0*Calciumincytoplasm_cytoplasm^2.0/(Calciumincytoplasm_cytoplasm^2.0 + 0.25)
+	fRate6() = 325.0*Calciumincytoplasm_cytoplasm^4.0*Calciuminstore_store^2.0/((Calciumincytoplasm_cytoplasm^4.0 + 0.04477456)*(Calciuminstore_store^2.0 + 2.89))
+end functions
+begin reaction rules
+	TF_synthesis: 0  -> TF_A()@cytoplasm fRate0()
+	TF_degradation: TF_A()@cytoplasm -> 0  r2_kd
+	TF_synthesis_basal: 0  -> TF_A()@cytoplasm r3_Rbas
+	Calcium_Influx: 0  -> Calciumincytoplasm()@cytoplasm r4_v0
+	Calcium_Influx_stimulation: 0  -> Calciumincytoplasm()@cytoplasm fRate4()
+	Calcium_into_store_reactants_0: 0  -> Calciumincytoplasm()@cytoplasm -1*(fRate5())
+	Calcium_into_store_products_0: 0  -> Calciuminstore()@store fRate5()
+	Calcium_into_cytoplasm_reactants_0: 0  -> Calciuminstore()@store -1*(fRate6())
+	Calcium_into_cytoplasm_products_0: 0  -> Calciumincytoplasm()@cytoplasm fRate6()
+	Leakage: Calciuminstore()@store -> Calciumincytoplasm()@cytoplasm r8_k1
+	Leakage_from_cytoplasm: Calciumincytoplasm()@cytoplasm -> 0  r9_k
+end reaction rules
+end model

@@ -1,0 +1,63 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL6618620128', 'http://identifiers.org/biomodels.db/BIOMD0000000029']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/14744999']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0000165']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/8355']
+#@creatorEmail:'lenov@ebi.ac.uk'
+#@creatorName:'Le Novère Nicolas'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 6 molecules and 7 reactions. The translated model has 4 molecules and 7 rules'
+###
+begin model
+begin parameters
+	Km1 410.0
+	kcat1 1.08
+	Km2 40.0
+	kcat2 0.007
+	Km3 20.0
+	kcat3 0.008
+	Km4 300.0
+	kcat4 0.45
+	Km5 22.0
+	kcat5 0.084
+	Km6 18.0
+	kcat6 0.06
+	Km7 34.0
+	kcat7 0.108
+	Km8 40.0
+	MEK 1.0839600000000002e+17 #original 180.0nanomole (default)/L
+	MKP3 6.022000000000001e+16 #original 100.0nanomole (default)/L
+end parameters
+begin molecule types
+	ERK_PY()
+	ERK_PT()
+	ERK_PP()
+	ERK()
+end molecule types
+begin seed species
+	ERK() 4.8176000000000006e+17 # (800.0 * 1e-09)mol/L * 6.022e23/mol *1.0L #ERK #M
+end seed species
+begin observables
+	Species ERK ERK() #ERK
+	Species ERK_PY ERK_PY() #ERK-PY
+	Species ERK_PT ERK_PT() #ERK-PT
+	Species ERK_PP ERK_PP() #ERK-PP
+end observables
+begin functions
+	fRate0() = MEK*kcat1/(ERK*Km1/Km3 + ERK + ERK_PT*Km1/Km4 + ERK_PY*Km1/Km2 + Km1)
+	fRate1() = MEK*kcat2/(ERK*Km2/Km3 + ERK*Km2/Km1 + ERK_PT*Km2/Km4 + ERK_PY + Km2)
+	fRate2() = MEK*kcat3/(ERK + ERK*Km3/Km1 + ERK_PT*Km3/Km4 + ERK_PY*Km3/Km2 + Km3)
+	fRate3() = MEK*kcat4/(ERK*Km4/Km3 + ERK*Km4/Km1 + ERK_PT + ERK_PY*Km4/Km2 + Km4)
+	fRate4() = MKP3*kcat5/(ERK*Km5/Km8 + ERK_PP + ERK_PT*Km5/Km6 + ERK_PY*Km5/Km7 + Km5)
+	fRate5() = MKP3*kcat6/(ERK*Km6/Km8 + ERK_PP*Km6/Km5 + ERK_PT + ERK_PY*Km6/Km7 + Km6)
+	fRate6() = MKP3*kcat7/(ERK*Km7/Km8 + ERK_PP*Km7/Km5 + ERK_PT*Km7/Km6 + ERK_PY + Km7)
+end functions
+begin reaction rules
+	v1: ERK() -> ERK_PY() fRate0() #Modifiers(MEK, MpT)
+	v2: ERK_PY() -> ERK_PP() fRate1() #Modifiers(MEK, M, MpT)
+	v3: ERK() -> ERK_PT() fRate2() #Modifiers(MEK, MpY)
+	v4: ERK_PT() -> ERK_PP() fRate3() #Modifiers(MEK, M, MpY)
+	v5: ERK_PP() -> ERK_PT() fRate4() #Modifiers(MKP3, MpY, M)
+	v6: ERK_PT() -> ERK() fRate5() #Modifiers(MKP3, Mpp, MpY)
+	v7: ERK_PY() -> ERK() fRate6() #Modifiers(MKP3, Mpp, MpT)
+end reaction rules
+end model

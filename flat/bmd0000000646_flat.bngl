@@ -1,0 +1,122 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000646', 'http://identifiers.org/biomodels.db/MODEL1708240001']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/27136687']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/go/GO:0007049', 'http://identifiers.org/go/GO:1901987', 'http://identifiers.org/doid/DOID:162']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/pw/PW:0001553']
+#@creatorEmail:'stefan.heldt@bioch.ox.ac.uk'
+#@creatorName:'Heldt Frank Stefan'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 18 molecules and 24 reactions. The translated model has 11 molecules and 30 rules'
+###
+begin model
+begin parameters
+	kscyce 0.003
+	kdcyce 0.001
+	kdcycee 0.0001
+	kdcycea 0.03
+	kasse 1.0
+	kdise 0.02
+	kscyca 0.0025
+	kdcyca 0.002
+	kdcycac1 0.4
+	kassa 1.0
+	kdisa 0.02
+	ks27 0.008
+	kd27 0.004
+	kd27e 2.0
+	kd27a 2.0
+	ksemi1 0.003
+	kdemi1 0.001
+	kacdh1 0.02
+	kicdh1e 0.07
+	kicdh1a 0.2
+	kasec 2.0
+	kdiec 0.02
+	ksskp2 0.004
+	kdskp2 0.002
+	kdskp2c1 0.2
+	Inhibitor 0
+	Cdh1dp 6.022e+20 #original 1.0substance/volume
+	Cdh1T 6.022e+20 #original 1.0substance/volume
+end parameters
+begin molecule types
+	Emi1Cdh1()
+	Emi1()
+	Emi1Cdh1p()
+	CycE()
+	Cdh1p()
+	CycA()
+	Skp2()
+	Cdh1()
+	CycAp27()
+	CycEp27()
+	p27()
+end molecule types
+begin seed species
+	Cdh1() 6.022e+20 # (1.0 * 0.001)mol/L * 6.022e23/mol *1.0L #Cdh1 #Cdh1
+end seed species
+begin observables
+	Species CycE CycE() #CycE
+	Species CycA CycA() #CycA
+	Species CycEp27 CycEp27() #CycEp27
+	Species CycAp27 CycAp27() #CycAp27
+	Species Skp2 Skp2() #Skp2
+	Species Cdh1p Cdh1p() #Cdh1p
+	Species Emi1 Emi1() #Emi1
+	Species p27 p27() #p27
+	Species Cdh1 Cdh1() #Cdh1
+	Species Emi1Cdh1 Emi1Cdh1() #Emi1Cdh1
+	Species Emi1Cdh1p Emi1Cdh1p() #Emi1Cdh1p
+end observables
+begin functions
+	Cdh1T_ar() = Cdh1 + Cdh1p + Emi1Cdh1 + Emi1Cdh1p
+	Cdh1dp_ar() = Cdh1 + Emi1Cdh1
+	Emi1T_ar() = Emi1 + Emi1Cdh1 + Emi1Cdh1p
+	EmiC_ar() = Emi1Cdh1 + Emi1Cdh1p
+	p27T_ar() = CycAp27 + CycEp27 + p27
+	CycAT_ar() = CycA + CycAp27
+	CycET_ar() = CycE + CycEp27
+	fRate1() = CycE*(CycA*kdcycea/(Inhibitor + 1) + CycE*kdcycee/(Inhibitor + 1) + kdcyce)
+	fRate3() = CycA*(Cdh1*kdcycac1 + kdcyca)
+	fRate5() = p27*(Skp2*(CycA*kd27a/(Inhibitor + 1) + CycE*kd27e/(Inhibitor + 1)) + kd27)
+	fRate8() = CycAp27*(Cdh1*kdcycac1 + kdcyca)
+	fRate9() = CycAp27*(Skp2*(CycA*kd27a/(Inhibitor + 1) + CycE*kd27e/(Inhibitor + 1)) + kd27)
+	fRate10() = CycEp27*(CycA*kdcycea/(Inhibitor + 1) + CycE*kdcycee/(Inhibitor + 1) + kdcyce)
+	fRate11() = CycEp27*(Skp2*(CycA*kd27a/(Inhibitor + 1) + CycE*kd27e/(Inhibitor + 1)) + kd27)
+	fRate13() = Skp2*(Cdh1*kdskp2c1 + kdskp2)
+	fRate14() = Cdh1*(CycA*kicdh1a/(Inhibitor + 1) + CycE*kicdh1e/(Inhibitor + 1))
+	fRate20() = Emi1Cdh1*(CycA*kicdh1a/(Inhibitor + 1) + CycE*kicdh1e/(Inhibitor + 1))
+end functions
+begin reaction rules
+	CycE_Synthesis: 0  -> CycE() kscyce
+	CycE_degradation_reactants_0: 0  -> CycE() -1*(fRate1()) #Modifiers(CycE, CycA)
+	CycA_synthesis: 0  -> CycA() kscyca
+	CycA_degradation_reactants_0: 0  -> CycA() -1*(fRate3()) #Modifiers(Cdh1)
+	p27_Synthesis: 0  -> p27() ks27
+	p27_degradation_reactants_0: 0  -> p27() -1*(fRate5()) #Modifiers(CycE, CycA, Skp2)
+	CycE_p27_Binding: CycE() + p27() <-> CycEp27() kasse,kdise
+	CycA_p27_Binding: CycA() + p27() <-> CycAp27() kassa,kdisa
+	CycA_degradation_from_CycA_p27_complexes_reactants_0: 0  -> CycAp27() -1*(fRate8()) #Modifiers(Cdh1)
+	CycA_degradation_from_CycA_p27_complexes_products_0: 0  -> p27() fRate8() #Modifiers(Cdh1)
+	p27_degradation_from_CycA_p27_complexes_reactants_0: 0  -> CycAp27() -1*(fRate9()) #Modifiers(CycE, CycA, Skp2)
+	p27_degradation_from_CycA_p27_complexes_products_0: 0  -> CycA() fRate9() #Modifiers(CycE, CycA, Skp2)
+	CycE_degradation_from_CycE_p27_complexes_reactants_0: 0  -> CycEp27() -1*(fRate10()) #Modifiers(CycE, CycA)
+	CycE_degradation_from_CycE_p27_complexes_products_0: 0  -> p27() fRate10() #Modifiers(CycE, CycA)
+	p27_degradation_from_CycE_p27_complexes_reactants_0: 0  -> CycEp27() -1*(fRate11()) #Modifiers(CycE, CycA, Skp2)
+	p27_degradation_from_CycE_p27_complexes_products_0: 0  -> CycE() fRate11() #Modifiers(CycE, CycA, Skp2)
+	Skp2_synthesis: 0  -> Skp2() ksskp2
+	Skp2_degradation_reactants_0: 0  -> Skp2() -1*(fRate13()) #Modifiers(Cdh1)
+	Cdh1_phosphorylation_reactants_0: 0  -> Cdh1() -1*(fRate14()) #Modifiers(CycE, CycA)
+	Cdh1_phosphorylation_products_0: 0  -> Cdh1p() fRate14() #Modifiers(CycE, CycA)
+	Cdh1_dephosphorylation: Cdh1p() -> Cdh1() kacdh1
+	Cdh1_Emi1_binding: Cdh1() + Emi1() <-> Emi1Cdh1() kasec,kdiec
+	Emi1_degradation_from_Cdh1_Emi1_complexes: Emi1Cdh1() -> Cdh1() kdemi1
+	Emi1_synthesis: 0  -> Emi1() ksemi1
+	Cdh1p_Emi1_binding: Cdh1p() + Emi1() <-> Emi1Cdh1p() kasec,kdiec
+	Cdh1_Emi1_phosphorylation_reactants_0: 0  -> Emi1Cdh1() -1*(fRate20()) #Modifiers(CycE, CycA)
+	Cdh1_Emi1_phosphorylation_products_0: 0  -> Emi1Cdh1p() fRate20() #Modifiers(CycE, CycA)
+	Cdh1p_Emi1_dephosphorylation: Emi1Cdh1p() -> Emi1Cdh1() kacdh1
+	Emi1_degradation_from_Cdh1p_Emi1_complexes: Emi1Cdh1p() -> Cdh1p() kdemi1
+	Emi1_degradation: Emi1() -> 0  kdemi1
+end reaction rules
+end model

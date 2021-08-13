@@ -1,0 +1,152 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000287', 'http://identifiers.org/biomodels.db/MODEL5989624192']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/20160708']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/BIOMD0000000188', 'http://identifiers.org/biomodels.db/BIOMD0000000189']
+#@BQB_IS_PART_OF:['http://identifiers.org/kegg.pathway/ko05200']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0090398', 'http://identifiers.org/go/GO:0006974']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 23 molecules and 37 reactions. The translated model has 20 molecules and 37 rules'
+###
+begin model
+begin parameters
+	ksynMdm2 0.000495
+	kdegMdm2 0.000433
+	ksynp53 0.006
+	kdegp53 0.000825
+	kdegp53mdm2ind 8.25e-07
+	kbinMdm2p53 0.001155
+	krelMdm2p53 1.155e-06
+	ksynMdm2mRNA 0.0001
+	kdegMdm2mRNA 0.0001
+	kactATM 2e-05
+	kdegATMMdm2 0.0004
+	kinactATM 0.0005
+	kphosp53 0.006
+	kdephosp53 0.5
+	kphosMdm2 2.0
+	kdephosMdm2 0.5
+	kphosp38 0.008
+	kdephosp38 0.1
+	kdam 0.007
+	krepair 6e-05
+	kGADD45 4e-06
+	kdegGADD45 1e-05
+	ksynp53mRNA 0.001
+	kdegp53mRNA 0.0001
+	ksynp21mRNAp53P 6e-06
+	ksynp21mRNAp53 6e-08
+	kdegp21mRNA 2.4e-05
+	ksynp21step1 0.0004
+	ksynp21step2 4e-05
+	ksynp21step3 4e-05
+	kdegp21 0.00019
+	kremROS 0.000383
+	kgenROSp38 0.00045
+	kdamROS 1e-05
+	kdamBasalROS 1e-09
+	kp38ROS 1.0
+	p21_basal 7.0
+	Sink 1.0
+	Source 1.0
+end parameters
+begin molecule types
+	p21step1()
+	p21_mRNA()
+	p53_mRNA()
+	p38()
+	Mdm2_p53()
+	ATMI()
+	IR()
+	Mdm2()
+	damDNA()
+	p21step2()
+	basalROS()
+	p53()
+	Mdm2_mRNA()
+	p38_P()
+	p53_P()
+	GADD45()
+	p21()
+	ATMA()
+	Mdm2_P()
+	ROS()
+end molecule types
+begin seed species
+	Mdm2() 5.0 #Mdm2 #Mdm2
+	p53() 5.0 #p53 #p53
+	Mdm2_p53() 95.0 #Mdm2_p53 #Mdm2_p53
+	Mdm2_mRNA() 10.0 #Mdm2_mRNA #Mdm2_mRNA
+	p53_mRNA() 10.0 #p53_mRNA #p53_mRNA
+	ATMI() 200.0 #ATMI #ATMI
+	p21_mRNA() 1.0 #p21_mRNA #p21_mRNA
+	p38() 100.0 #p38 #p38
+	basalROS() 10.0 #basalROS #basalROS
+end seed species
+begin observables
+	Species Mdm2 Mdm2() #Mdm2
+	Species p53 p53() #p53
+	Species Mdm2_p53 Mdm2_p53() #Mdm2_p53
+	Species Mdm2_mRNA Mdm2_mRNA() #Mdm2_mRNA
+	Species p53_mRNA p53_mRNA() #p53_mRNA
+	Species ATMA ATMA() #ATMA
+	Species ATMI ATMI() #ATMI
+	Species p21 p21() #p21
+	Species p21_mRNA p21_mRNA() #p21_mRNA
+	Species p21step1 p21step1() #p21step1
+	Species p21step2 p21step2() #p21step2
+	Species p53_P p53_P() #p53_P
+	Species Mdm2_P Mdm2_P() #Mdm2_P
+	Species p38 p38() #p38
+	Species p38_P p38_P() #p38_P
+	Species GADD45 GADD45() #GADD45
+	Species IR IR() #IR
+	Species damDNA damDNA() #damDNA
+	Species ROS ROS() #ROS
+	Species basalROS basalROS() #basalROS
+end observables
+begin functions
+	fRate0() = Source*ksynp53mRNA
+	fRate33() = kgenROSp38*kp38ROS
+end functions
+begin reaction rules
+	p53mRNASynthesis: 0  -> p53_mRNA() fRate0()
+	p53mRNADegradation: p53_mRNA() -> 0  kdegp53mRNA
+	Mdm2Synthesis: Mdm2_mRNA() -> Mdm2_mRNA() + Mdm2() ksynMdm2
+	Mdm2mRNASynthesis1: p53() -> p53() + Mdm2_mRNA() ksynMdm2mRNA
+	Mdm2mRNASynthesis2: p53_P() -> p53_P() + Mdm2_mRNA() ksynMdm2mRNA
+	Mdm2mRNADegradation: Mdm2_mRNA() -> 0  kdegMdm2mRNA
+	Mdm2Degradation: Mdm2() -> 0  kdegMdm2
+	p53Synthesis: p53_mRNA() -> p53() + p53_mRNA() ksynp53
+	p53Degradation: Mdm2_p53() -> Mdm2() kdegp53
+	p53Mdm2IndepDegradation1: p53_P() -> 0  kdegp53mdm2ind
+	p53Mdm2IndepDegradation2: p53() -> 0  kdegp53mdm2ind
+	P53_Mdm2Binding: p53() + Mdm2() -> Mdm2_p53() kbinMdm2p53
+	P53_Mdm2Release: Mdm2_p53() -> p53() + Mdm2() krelMdm2p53
+	DNAdamage: IR() -> IR() + damDNA() kdam
+	DNArepair: damDNA() -> 0  krepair
+	ATMactivation: damDNA() + ATMI() -> damDNA() + ATMA() kactATM
+	p53phoshorylation: p53() + ATMA() -> p53_P() + ATMA() kphosp53
+	p53dephosorylation: p53_P() -> p53() kdephosp53
+	Mdm2phoshorylation: Mdm2() + ATMA() -> Mdm2_P() + ATMA() kphosMdm2
+	Mdm2dephosorylation: Mdm2_P() -> Mdm2() kdephosMdm2
+	Mdm2Pdegradation: Mdm2_P() -> 0  kdegATMMdm2
+	ATMInactivation: ATMA() -> ATMI() kinactATM
+	p21mRNASynthesis1: p53() -> p53() + p21_mRNA() ksynp21mRNAp53
+	p21mRNASynthesis2: p53_P() -> p53_P() + p21_mRNA() ksynp21mRNAp53P
+	p21mRNADegradation: p21_mRNA() -> 0  kdegp21mRNA
+	p21Synthesis1: p21_mRNA() -> p21_mRNA() + p21step1() ksynp21step1
+	p21Synthesis2: p21step1() -> p21step2() ksynp21step2
+	p21Synthesis3: p21step2() -> p21() ksynp21step3
+	p21degradation: p21() -> 0  kdegp21
+	GADD45activation2: p21() -> p21() + GADD45() kGADD45
+	GADD45degradation: GADD45() -> 0  kdegGADD45
+	p38activation: p38() + GADD45() -> p38_P() + GADD45() kphosp38
+	p38inactivation: p38_P() -> p38() kdephosp38
+	ROSgenerationP38: p38_P() -> p38_P() + ROS() fRate33()
+	ROSremoval: ROS() -> 0  kremROS
+	ROSDNAdamage: ROS() -> ROS() + damDNA() kdamROS
+	basalROSDNAdamage: basalROS() -> basalROS() + damDNA() kdamBasalROS
+end reaction rules
+end model

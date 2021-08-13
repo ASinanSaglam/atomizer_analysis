@@ -1,0 +1,55 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/31137188']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/11309314']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000089', 'http://identifiers.org/ncit/C62713']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1912180004', 'http://identifiers.org/biomodels.db/BIOMD0000000902']
+#@creatorEmail:'johannes.p.meyer@gmail.com'
+#@creatorName:'Meyer Johannes'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 4 molecules and 7 reactions. The translated model has 4 molecules and 8 rules'
+###
+begin model
+begin parameters
+	r 0.206
+	k 2139.0
+	b 0.000448
+	a 1.0
+	p 0.01
+	c 0.02
+	d 0.5
+	n 0.01
+	tau 0
+end parameters
+begin molecule types
+	x()
+	z()
+	y()
+	I()
+end molecule types
+begin seed species
+	x() 1.2044000000000002e+23 # (200.0 * 0.001)mol/L * 6.022e23/mol *1.0L #x #x
+	y() 4.817600000000001e+23 #original 800.0substance/volume  #y #y
+	z() 6.022000000000001e+22 #original 100.0substance/volume  #z #z
+end seed species
+begin observables
+	Species x x() #x
+	Species I I() #I
+	Species y y() #y
+	Species z z() #z
+end observables
+begin functions
+	fRate0() = r*x*(1 - (x + y)/k)
+	fRate2() = b*x*y*exp(-n*tau)
+	fRate4() = p*z
+	fRate5() = c*y*z
+end functions
+begin reaction rules
+	Uninfected_Cells_Proliferation_products_0: 0  -> x() fRate0() #Modifiers(x, y)
+	Uninfected_Cells_Infection: x() + y() -> I() b
+	Length_of_Eclipse_Phase_reactants_0: 0  -> I() -1*(fRate2()) #Modifiers(x, y)
+	Length_of_Eclipse_Phase_products_0: 0  -> y() fRate2() #Modifiers(x, y)
+	Cytotoxicity: y() -> 0  a
+	Immune_Kill: y() -> 0  fRate4() #Modifiers(z)
+	Stimulation: 0  -> z() fRate5() #Modifiers(y, z)
+	Clearance: z() -> 0  d
+end reaction rules
+end model

@@ -1,0 +1,201 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1701090001', 'http://identifiers.org/biomodels.db/BIOMD0000000695']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/doi/10.3389/fphys.2017.00028']
+#@BQB_HAS_PART:['http://identifiers.org/efo/0000676', 'http://identifiers.org/go/GO:0009637', 'http://identifiers.org/bto/BTO:0000667']
+#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000404']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/28184200']
+#@creatorEmail:'mroberts@ebi.ac.uk'
+#@creatorName:'Roberts Matthew Grant'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 12 molecules and 35 reactions. The translated model has 6 molecules and 62 rules'
+###
+begin model
+begin parameters
+	AId 0.00035
+	AIh 0.0012
+	alpha 0.0714
+	aProl 1.0
+	bProl -0.003404
+	gamma1h 0.0033
+	gamma2 0.014
+	k1ah 0.0131
+	k1sh 0.00164
+	k2a 0.138
+	k2s 0.0173
+	k3 0.216
+	k4 0.0556
+	k5 0.111
+	km1 1e-06
+	km2 1e-06
+	Kp 6.0
+	lambda 3.5
+	LPSI0 5.34
+	n 3.0
+	omega 100.0
+	Pscmax 4500.0
+	rhoDe 4.0
+	rhoSC 4.0
+	rhoTA 4.0
+	rhoTr 5.0
+	skinType 0.579
+	therI 84.0
+	Treatment_Duration 1.0
+	alphaps (4.0) * (0.0714)
+	beta1h (0.0012) * (0.00164) / (1 -(0.0012))
+	beta2 (0.0012) * (0.0173) / (1 -(0.0012))
+	beta3 (0.0012) * (0.216) / (1 -(0.0012))
+	beta4 (0.0012) * (0.0556) / (1 -(0.0012))
+	beta5 (0.0012) * (0.111) / (1 -(0.0012))
+	betaps1 (0.00035) * (0.00164) * (4.0) / (1 -(0.00035))
+	betaps2 (0.00035) * (0.0692) / (1 -(0.00035))
+	betaps3 (0.00035) * (1.08) / (1 -(0.00035))
+	betaps4 (0.00035) * (0.278) / (1 -(0.00035))
+	doseBL 90 * (0.579)
+	gamma1ps (4.0) * (0.0033)
+	gamma2ps (4.0) * (0.014) * (0.837459445281375)
+	kmps1 (1e-06)
+	kmps2 (1e-06)
+	kps1a (4.0) * (0.0131)
+	kps1s (4.0) * (0.00164)
+	kps2a (4.0) * (0.138)
+	kps2s (4.0) * (0.0173)
+	kps3 (5.0) * (0.216)
+	kps4 (5.0) * (0.0556)
+	Psch (4500.0) * (1 -1 / (0.0033) * ((0.00164) + (1.97036443732479e-06) -(1e-06) * ((0.0131) + (0.00164) * 2) / ((1e-06) + (0.0173) + (2.07849419303164e-05) -(0.014) -(1e-06) * ((0.138) + 2 * (0.0173)) / ((1e-06) + (0.216) + (0.000259511413696436)))))
+	Ptah ((0.0131) + 2 * (0.00164)) / ((1e-06) + (0.0173) + (2.07849419303164e-05) -(0.014) -(1e-06) * ((0.138) + 2 * (0.0173)) / ((1e-06) + (0.216) + (0.000259511413696436))) * (2267.67532424221)
+	thetaBLprol (1.0) * exp((-0.003404) * (52.11))
+	apopFBL 0
+end parameters
+begin compartments
+	#volume units: L
+	compartmentOne 3 1.0 #Healthy
+	Psoriatic 3 1.0
+end compartments
+begin molecule types
+	StemCells()
+	GrowthArrestedCells()
+	Corneocytes()
+	GranularCells()
+	TransitAmplifyingCells()
+	Spinouscells()
+end molecule types
+begin seed species
+	@compartmentOne:StemCells() 2.1799640000000002e+23 # (362.0 * 0.001)mol/L * 6.022e23/mol *1.0L #StemCells #xFinal_1
+	@compartmentOne:TransitAmplifyingCells() 4.63694e+22 #original 77.0substance/L #TransitAmplifyingCells #xFinal_2
+	@compartmentOne:GrowthArrestedCells() 3.67342e+22 #original 61.0substance/L #GrowthArrestedCells #xFinal_3
+	@compartmentOne:Spinouscells() 1.4332360000000002e+23 #original 238.0substance/L #Spinouscells #xFinal_4
+	@compartmentOne:GranularCells() 7.166180000000001e+22 #original 119.0substance/L #GranularCells #xFinal_5
+	@compartmentOne:Corneocytes() 1.1140700000000001e+23 #original 185.0substance/L #Corneocytes #xFinal_6
+	@Psoriatic:StemCells() 3.8896098000000006e+24 #original 6459.0substance/L #StemCells #xFinal_7
+	@Psoriatic:TransitAmplifyingCells() 1.93294156e+25 #original 32098.0substance/L #TransitAmplifyingCells #xFinal_8
+	@Psoriatic:GrowthArrestedCells() 1.23667792e+25 #original 20536.0substance/L #GrowthArrestedCells #xFinal_9
+	@Psoriatic:Spinouscells() 4.80483336e+25 #original 79788.0substance/L #Spinouscells #xFinal_10
+	@Psoriatic:Corneocytes() 4.67505926e+25 #original 77633.0substance/L #Corneocytes #xFinal_12
+end seed species
+begin observables
+	Species StemCells_compartmentOne @compartmentOne:StemCells() #Stem Cells
+	Species TransitAmplifyingCells_compartmentOne @compartmentOne:TransitAmplifyingCells() #Transit Amplifying Cells
+	Species GrowthArrestedCells_compartmentOne @compartmentOne:GrowthArrestedCells() #Growth Arrested Cells
+	Species Spinouscells_compartmentOne @compartmentOne:Spinouscells() #Spinous cells
+	Species GranularCells_compartmentOne @compartmentOne:GranularCells() #Granular Cells
+	Species Corneocytes_compartmentOne @compartmentOne:Corneocytes() #Corneocytes
+	Species StemCells_Psoriatic @Psoriatic:StemCells() #Stem Cells
+	Species TransitAmplifyingCells_Psoriatic @Psoriatic:TransitAmplifyingCells() #Transit Amplifying Cells
+	Species GrowthArrestedCells_Psoriatic @Psoriatic:GrowthArrestedCells() #Growth Arrested Cells
+	Species Spinouscells_Psoriatic @Psoriatic:Spinouscells() #Spinous cells
+	Species GranularCells_Psoriatic @Psoriatic:GranularCells() #Granular Cells
+	Species Corneocytes_Psoriatic @Psoriatic:Corneocytes() #Corneocytes
+end observables
+begin functions
+	Ka() = sqrt(3)*Psch/10
+	fRate0() = k4*rhoTr
+	fRate1() = Corneocytes_Psoriatic*alpha*rhoDe + Corneocytes_Psoriatic*apopFBL
+	fRate2() = k3*rhoTr
+	fRate3() = AId*Spinouscells_Psoriatic*k4*rhoTr/(1 - AId) + Spinouscells_Psoriatic*apopFBL
+	fRate4() = k2s*rhoTA
+	fRate5() = k2a*rhoTA
+	fRate6() = AId*GrowthArrestedCells_Psoriatic*k3*rhoTr/(1 - AId) + GrowthArrestedCells_Psoriatic*apopFBL
+	fRate8() = k1sh*rhoSC
+	fRate9() = k1ah*rhoSC
+	fRate10() = aProl^2*gamma2*rhoTA*exp(bProl*doseBL)^2
+	fRate11() = AId*TransitAmplifyingCells_Psoriatic*k2s*rhoTA/(1 - AId) + TransitAmplifyingCells_Psoriatic*apopFBL
+	fRate13() = aProl*gamma1h*rhoSC*exp(bProl*doseBL)
+	fRate14 =    ( aProl )   * ( gamma1h )   * ( rhoSC )   *exp( ( bProl )   * ( doseBL )   )* ( StemCells_Psoriatic )   *( ( Corneocytes_compartmentOne )   /(* ( Pscmax )   ))/ ( 1.0 )    /1.0
+	fRate15 =   ( ( aProl )   * ( gamma1h )   * ( rhoSC )   *exp( ( bProl )   * ( doseBL )   )* ( StemCells_Psoriatic )   *( ( StemCells_Psoriatic )   /(* ( Pscmax )   ))+ ( AId )   * ( k1sh )   * ( StemCells_Psoriatic )   *( ( rhoSC )   /(1- ( AId )   ))+ ( apopFBL )   * ( StemCells_Psoriatic )   + ( Kp )   *(1/((( ( Ka )   )^(2))+(( ( StemCells_Psoriatic )   )^(2))))*(( ( StemCells_Psoriatic )   )^(2)))/ ( 1.0 )    /1.0
+	fRate17() = Corneocytes_compartmentOne*alpha + Corneocytes_compartmentOne*apopFBL
+	fRate19() = AIh*GranularCells_compartmentOne*k5/(1 - AIh) + GranularCells_compartmentOne*apopFBL
+	fRate21() = AIh*Spinouscells_compartmentOne*k4/(1 - AIh) + Spinouscells_compartmentOne*apopFBL
+	fRate24() = AIh*GrowthArrestedCells_compartmentOne*k3/(1 - AIh) + GrowthArrestedCells_compartmentOne*apopFBL
+	fRate26() = StemCells_compartmentOne*k1sh*omega/(((TransitAmplifyingCells_Psoriatic + TransitAmplifyingCells_compartmentOne)/Ptah)^n*(omega - 1) + 1)
+	fRate27() = StemCells_compartmentOne*k1ah*omega/(((TransitAmplifyingCells_Psoriatic + TransitAmplifyingCells_compartmentOne)/Ptah)^n*(omega - 1) + 1)
+	fRate28() = aProl*gamma2*exp(bProl*doseBL)
+	fRate29() = AIh*TransitAmplifyingCells_compartmentOne*k2s/(1 - AIh) + TransitAmplifyingCells_compartmentOne*apopFBL
+	fRate31() = StemCells_compartmentOne*aProl*gamma1h*omega*exp(bProl*doseBL)/(((TransitAmplifyingCells_Psoriatic + TransitAmplifyingCells_compartmentOne)/Ptah)^n*(omega - 1) + 1)
+	fRate32() = StemCells_compartmentOne*k1sh*omega/(((TransitAmplifyingCells_Psoriatic + TransitAmplifyingCells_compartmentOne)/Ptah)^n*(omega - 1) + 1) + StemCells_compartmentOne^2*aProl*gamma1h*omega*exp(bProl*doseBL)/(Pscmax*(((TransitAmplifyingCells_Psoriatic + TransitAmplifyingCells_compartmentOne)/Ptah)^n*(omega - 1) + 1))
+	fRate33() = 1.0*gamma1h*floor(StemCells_Psoriatic*StemCells_compartmentOne*aProl*omega*exp(bProl*doseBL)/(Pscmax*(((TransitAmplifyingCells_Psoriatic + TransitAmplifyingCells_compartmentOne)/Ptah)^n*(omega - 1) + 1)))
+	fRate34() = AIh*StemCells_compartmentOne*k1sh/(1 - AIh) + StemCells_compartmentOne*apopFBL
+end functions
+begin reaction rules
+	R_1: Spinouscells()@Psoriatic -> Corneocytes()@Psoriatic fRate0()
+	R_2_reactants_0: 0  -> Corneocytes()@Psoriatic -1*(fRate1())
+	R_3: GrowthArrestedCells()@Psoriatic -> Spinouscells()@Psoriatic fRate2()
+	R_4_reactants_0: 0  -> Spinouscells()@Psoriatic -1*(fRate3())
+	R_5: TransitAmplifyingCells()@Psoriatic -> GrowthArrestedCells()@Psoriatic + GrowthArrestedCells()@Psoriatic fRate4()
+	R_6: TransitAmplifyingCells()@Psoriatic -> TransitAmplifyingCells()@Psoriatic + GrowthArrestedCells()@Psoriatic fRate5()
+	R_7_reactants_0: 0  -> GrowthArrestedCells()@Psoriatic -1*(fRate6())
+	R_8: GrowthArrestedCells()@Psoriatic -> TransitAmplifyingCells()@Psoriatic km2
+	R_9: StemCells()@Psoriatic -> TransitAmplifyingCells()@Psoriatic + TransitAmplifyingCells()@Psoriatic fRate8()
+	R_10: StemCells()@Psoriatic -> StemCells()@Psoriatic + TransitAmplifyingCells()@Psoriatic fRate9()
+	R_11: TransitAmplifyingCells()@Psoriatic -> TransitAmplifyingCells()@Psoriatic + TransitAmplifyingCells()@Psoriatic fRate10()
+	R_12_reactants_0: 0  -> TransitAmplifyingCells()@Psoriatic -1*(fRate11())
+	R_13: TransitAmplifyingCells()@Psoriatic -> StemCells()@Psoriatic km1
+	R_14: StemCells()@Psoriatic -> StemCells()@Psoriatic + StemCells()@Psoriatic fRate13()
+	R_15_reactants_0: 0  -> Corneocytes()@compartmentOne -1*(fRate14())
+	R_15_reactants_1: 0  -> StemCells()@Psoriatic -1*(fRate14())
+	R_15_products_0: 0  -> Corneocytes()@compartmentOne fRate14()
+	R_16_reactants_0: 0  -> StemCells()@Psoriatic -1*(fRate15())
+	R_17: GranularCells()@compartmentOne -> Corneocytes()@compartmentOne k5
+	R_18_reactants_0: 0  -> Corneocytes()@compartmentOne -1*(fRate17())
+	R_19: Spinouscells()@compartmentOne -> GranularCells()@compartmentOne k4
+	R_20_reactants_0: 0  -> GranularCells()@compartmentOne -1*(fRate19())
+	R_21: GrowthArrestedCells()@compartmentOne -> Spinouscells()@compartmentOne k3
+	R_22_reactants_0: 0  -> Spinouscells()@compartmentOne -1*(fRate21())
+	R_23: TransitAmplifyingCells()@compartmentOne -> GrowthArrestedCells()@compartmentOne + GrowthArrestedCells()@compartmentOne k2s
+	R_24: TransitAmplifyingCells()@compartmentOne -> TransitAmplifyingCells()@compartmentOne + GrowthArrestedCells()@compartmentOne k2a
+	R_25_reactants_0: 0  -> GrowthArrestedCells()@compartmentOne -1*(fRate24())
+	R_26: GrowthArrestedCells()@compartmentOne -> TransitAmplifyingCells()@compartmentOne km2
+	R_27_reactants_0: 0  -> StemCells()@compartmentOne -1*(fRate26())
+	R_27_reactants_1: 0  -> TransitAmplifyingCells()@compartmentOne -1*(fRate26())
+	R_27_reactants_2: 0  -> TransitAmplifyingCells()@Psoriatic -1*(fRate26())
+	R_27_products_0: 0  -> StemCells()@compartmentOne fRate26()
+	R_27_products_1: 0  -> TransitAmplifyingCells()@compartmentOne 3.0*fRate26()
+	R_27_products_2: 0  -> TransitAmplifyingCells()@Psoriatic fRate26()
+	R_28_reactants_0: 0  -> StemCells()@compartmentOne -1*(fRate27())
+	R_28_reactants_1: 0  -> TransitAmplifyingCells()@compartmentOne -1*(fRate27())
+	R_28_reactants_2: 0  -> TransitAmplifyingCells()@Psoriatic -1*(fRate27())
+	R_28_products_0: 0  -> StemCells()@compartmentOne fRate27()
+	R_28_products_1: 0  -> TransitAmplifyingCells()@compartmentOne 2.0*fRate27()
+	R_28_products_2: 0  -> TransitAmplifyingCells()@Psoriatic fRate27()
+	R_29: TransitAmplifyingCells()@compartmentOne -> TransitAmplifyingCells()@compartmentOne + TransitAmplifyingCells()@compartmentOne fRate28()
+	R_30_reactants_0: 0  -> TransitAmplifyingCells()@compartmentOne -1*(fRate29())
+	R_31: TransitAmplifyingCells()@compartmentOne -> StemCells()@compartmentOne km1
+	R_32_reactants_0: 0  -> StemCells()@compartmentOne -1*(fRate31())
+	R_32_reactants_1: 0  -> TransitAmplifyingCells()@compartmentOne -1*(fRate31())
+	R_32_reactants_2: 0  -> TransitAmplifyingCells()@Psoriatic -1*(fRate31())
+	R_32_products_0: 0  -> StemCells()@compartmentOne 2.0*fRate31()
+	R_32_products_1: 0  -> TransitAmplifyingCells()@compartmentOne fRate31()
+	R_32_products_2: 0  -> TransitAmplifyingCells()@Psoriatic fRate31()
+	R_33_reactants_0: 0  -> StemCells()@compartmentOne -1*(fRate32())
+	R_33_reactants_1: 0  -> TransitAmplifyingCells()@compartmentOne -1*(fRate32())
+	R_33_reactants_2: 0  -> TransitAmplifyingCells()@Psoriatic -1*(fRate32())
+	R_33_products_0: 0  -> TransitAmplifyingCells()@compartmentOne fRate32()
+	R_33_products_1: 0  -> TransitAmplifyingCells()@Psoriatic fRate32()
+	R_34_reactants_0: 0  -> StemCells()@compartmentOne -1*(fRate33())
+	R_34_reactants_1: 0  -> TransitAmplifyingCells()@compartmentOne -1*(fRate33())
+	R_34_reactants_2: 0  -> StemCells()@Psoriatic -1*(fRate33())
+	R_34_reactants_3: 0  -> TransitAmplifyingCells()@Psoriatic -1*(fRate33())
+	R_34_products_0: 0  -> TransitAmplifyingCells()@compartmentOne fRate33()
+	R_34_products_1: 0  -> StemCells()@Psoriatic fRate33()
+	R_34_products_2: 0  -> TransitAmplifyingCells()@Psoriatic fRate33()
+	R_35_reactants_0: 0  -> StemCells()@compartmentOne -1*(fRate34())
+end reaction rules
+end model

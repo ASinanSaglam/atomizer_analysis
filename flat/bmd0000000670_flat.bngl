@@ -1,0 +1,45 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1708240000', 'http://identifiers.org/biomodels.db/BIOMD0000000670']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/go/GO:0002837']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/9661282']
+#@creatorEmail:'efairbanks@ebi.ac.uk'
+#@creatorName:'Fairbanks Emma'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 3 molecules and 0 reactions. The translated model has 3 molecules and 3 rules'
+###
+begin model
+begin parameters
+	A 0.025
+	N 1.0
+	I 0.01
+	K_l 17.857
+	delta_l 0.1
+	K_m 25.0
+	xi 2.0
+	S 62.5
+end parameters
+begin molecule types
+	mutatedcell()
+	macrophage()
+	normalcell()
+end molecule types
+begin seed species
+	macrophage() 6.02199999999991e+22 # 0.0999999999999985mol/L * 6.022e23/mol *1.0L #macrophage #l
+	normalcell() 5.4197999999999284e+23 #original 0.899999999999988mol/L  #normalcell #n
+	mutatedcell() 5.4197999999999284e+23 #original 0.899999999999988mol/L  #mutatedcell #m
+end seed species
+begin observables
+	Species macrophage macrophage() #macrophage
+	Species normalcell normalcell() #normal cell
+	Species mutatedcell mutatedcell() #mutated cell
+end observables
+begin functions
+	arRatem() = -K_m*macrophage*mutatedcell^2 + mutatedcell*xi*(N + 1)/(N + macrophage + mutatedcell + normalcell) - mutatedcell
+	arRaten() = normalcell*(N + 1)/(N + macrophage + mutatedcell + normalcell) - normalcell
+	arRatel() = A*macrophage*mutatedcell*(N + 1)/(N + macrophage + mutatedcell + normalcell) + I*(S*mutatedcell + 1) - K_l*macrophage*mutatedcell^2 - delta_l*macrophage
+end functions
+begin reaction rules
+	0  -> macrophage() arRatel #rateLaw
+	0  -> normalcell() arRaten #rateLaw
+	0  -> mutatedcell() arRatem #rateLaw
+end reaction rules
+end model

@@ -1,0 +1,45 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/19135065']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/ncit/C15632', 'http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1908020002', 'http://identifiers.org/biomodels.db/BIOMD0000000776']
+#@creatorEmail:'jm2187@cam.ac.uk'
+#@creatorName:'Men Jinghao'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 2 molecules and 4 reactions. The translated model has 2 molecules and 5 rules'
+###
+begin model
+begin parameters
+	b 0.005928 #units:unit_0
+	C0 2.0 #units:unit_1
+	t1 1e-06 #units:unit_1
+	t2 1e-06 #units:unit_1
+	Ninf 2000000000000.0 #units:unit_1
+	Ncrit 500000000000.0 #units:unit_1
+end parameters
+begin molecule types
+	R()
+	S()
+end molecule types
+begin seed species
+	S() 6.022e+30 # (10000000000.0 * 0.001)mol/L * 6.022e23/mol *1.0L #S #S
+	R() 1.2044e+26 #original 200000.0substance/volume #R #R
+end seed species
+begin observables
+	Species S S() #S
+	Species R R() #R
+end observables
+begin functions
+	N() = R + S
+	fRate0() = -S*b*ln(N/Ninf)
+	fRate1() = -C0*b*ln(N/Ninf)
+	fRate2() = -b*(-R*t2 + S*t1)*ln(N/Ninf)
+	fRate3() = -R*b*ln(N/Ninf)
+end functions
+begin reaction rules
+	sensitive_cell_growth: 0  -> S() fRate0()
+	sensitive_cell_death: S() -> 0  fRate1()
+	resistance_reactants_0: 0  -> S() -1*(fRate2())
+	resistance_products_0: 0  -> R() fRate2()
+	resistant_cell_growth: 0  -> R() fRate3()
+end reaction rules
+end model

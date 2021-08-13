@@ -1,0 +1,53 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000280', 'http://identifiers.org/biomodels.db/MODEL1011240000']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/7260316']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0001508']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/6678']
+#@creatorEmail:'lenov@ebi.ac.uk'
+#@creatorName:'Le Novère Nicolas'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 0 molecules and 0 reactions. The translated model has 2 molecules and 2 rules'
+###
+begin model
+begin parameters
+	V1 10.0 #units:mV
+	V2 15.0 #units:mV
+	V3 -1.0 #units:mV
+	V4 14.5 #units:mV
+	lambdaN_bar 0.066666666667 #units:per_ms
+	Iapp 300.0 #units:uA_per_cm2
+	gL 2.0 #units:mS_per_cm2
+	VL -50.0 #units:mV
+	gCa 4.0 #units:mS_per_cm2
+	VCa 100.0 #units:mV
+	gK 8.0 #units:mS_per_cm2
+	VK -70.0 #units:mV
+	C 20.0 #units:uF_per_cm2
+end parameters
+begin compartments
+	#volume units: L
+	musclefiber 3 1.0
+end compartments
+begin molecule types
+	V
+	N
+end molecule types
+begin seed species
+	V@musclefiber -50.0 #units:mV
+	N@musclefiber (1 + tanh(((-50.0) -(-1.0)) / (14.5))) / 2
+end seed species
+begin observables
+	Species V V
+	Species N N
+end observables
+begin functions
+	Ninf() = tanh((V - V3)/V4)/2 + 1/2
+	lambdaN() = lambdaN_bar*cosh((V - V3)/(2*V4))
+	arRateN() = lambdaN*(-N + Ninf)
+	Minf() = tanh((V - V1)/V2)/2 + 1/2
+	arRateV() = (Iapp - Minf*gCa*(V - VCa) - N*gK*(V - VK) - gL*(V - VL))/C
+end functions
+begin reaction rules
+	0  -> V()@musclefiber arRateV #rateLaw
+	0  -> N()@musclefiber arRateN #rateLaw
+end reaction rules
+end model

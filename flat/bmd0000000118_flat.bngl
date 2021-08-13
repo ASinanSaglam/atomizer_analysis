@@ -1,0 +1,92 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000118', 'http://identifiers.org/biomodels.db/MODEL1243247625']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/16807352']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10114']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0005249', 'http://identifiers.org/obo.go/GO:0005248', 'http://identifiers.org/obo.go/GO:0019227']
+#@creatorEmail:'enuo@caltech.edu'
+#@creatorName:'He Enuo'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 0 molecules and 0 reactions. The translated model has 5 molecules and 5 rules'
+###
+begin model
+begin parameters
+	Cm 1.0
+	pms 3.0
+	pns 4.0
+	VNa 55.0
+	t_tauh -40.5
+	t_taun -27.0
+	thetaa -50.0
+	sigmaa 20.0
+	thetab -80.0
+	sigmab -6.0
+	tauBs 15.0
+	sigmam 9.5
+	sigmah -7.0
+	sigman 10.0
+	sigmaz 5.0
+	gNa 35.0
+	gKdr 6.0
+	gL 0.05
+	Iapp 0.661914
+	gA 1.4
+	gNaP 0.3
+	gZ 1.0
+	thetaz -39.0
+	tauZs 75.0
+	phi 10.0
+	thetah -45.0
+	thetam -30.0
+	thetan -35.0
+	thetap -47.0
+	sigmap 3.0
+	VK -90.0
+	VL -70.0
+end parameters
+begin compartments
+	#volume units: L
+	compartment_0000001 3 1.0
+end compartments
+begin molecule types
+	zzs
+	bbs
+	hhs
+	V
+	nns
+end molecule types
+begin seed species
+	zzs@compartment_0000001 0.00141
+	bbs@compartment_0000001 0.203517
+	hhs@compartment_0000001 0.98786
+	V@compartment_0000001 -71.81327
+	nns@compartment_0000001 0.02457
+end seed species
+begin observables
+	Species zzs zzs
+	Species bbs bbs
+	Species hhs hhs
+	Species V V
+	Species nns nns
+end observables
+begin functions
+	Pinfs() = 1/(exp((-V + thetap)/sigmap) + 1)
+	INaP() = Pinfs*gNaP*(V - VNa)
+	Iz() = gZ*zzs*(V - VK)
+	Ainfs() = 1/(exp((-V + thetaa)/sigmaa) + 1)
+	IA() = Ainfs^3*bbs*gA*(V - VK)
+	Minfs() = 1/(exp((-V + thetam)/sigmam) + 1)
+	INa() = Minfs^pms*gNa*hhs*(V - VNa)
+	IKdr() = gKdr*nns^pns*(V - VK)
+	arRateV() = (-IA - IKdr - INa - INaP + Iapp - Iz - gL*(V - VL))/Cm
+	arRatenns() = phi*(-nns + 1/(exp((-V + thetan)/sigman) + 1))/(1 + 5/(exp(V/15 - t_taun/15) + 1))
+	arRatehhs() = phi*(-hhs + 1/(exp((-V + thetah)/sigmah) + 1))/(1 + 7.5/(exp(V/6 - t_tauh/6) + 1))
+	arRatebbs() = (-bbs + 1/(exp((-V + thetab)/sigmab) + 1))/tauBs
+	arRatezzs() = (-zzs + 1/(exp((-V + thetaz)/sigmaz) + 1))/tauZs
+end functions
+begin reaction rules
+	0  -> zzs()@compartment_0000001 arRatezzs #rateLaw
+	0  -> bbs()@compartment_0000001 arRatebbs #rateLaw
+	0  -> hhs()@compartment_0000001 arRatehhs #rateLaw
+	0  -> V()@compartment_0000001 arRateV #rateLaw
+	0  -> nns()@compartment_0000001 arRatenns #rateLaw
+end reaction rules
+end model

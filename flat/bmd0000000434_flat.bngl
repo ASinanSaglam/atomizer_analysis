@@ -1,0 +1,225 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000434', 'http://identifiers.org/biomodels.db/MODEL1206010000']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/23046614']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0008203', 'http://identifiers.org/go/GO:0007571']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:14502']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 34 molecules and 35 reactions. The translated model has 27 molecules and 41 rules'
+###
+begin model
+begin parameters
+	ACAT_HepaticTissue 6.022e+25 #original 100.0substance/volume
+	ACAT 6.022e+25 #original 100.0substance/volume
+	CEH_HepaticTissue 6.022e+25 #original 100.0substance/volume
+	CEH 6.022e+25 #original 100.0substance/volume
+	LPL_Plasma 6.022e+25 #original 100.0substance/volume
+	LPL 6.022e+25 #original 100.0substance/volume
+	HSL_Plasma 6.022e+25 #original 100.0substance/volume
+	HSL 6.022e+25 #original 100.0substance/volume
+	LCAT_Plasma 6.022e+25 #original 100.0substance/volume
+	LCAT 6.022e+25 #original 100.0substance/volume
+	CETP_Plasma 6.022e+25 #original 100.0substance/volume
+	CETP 6.022e+25 #original 100.0substance/volume
+	SRB1_HepaticTissue 6.022e+25 #original 100.0substance/volume
+	SRB1 6.022e+25 #original 100.0substance/volume
+	r1_k1 1.000000
+	r2_ICSmax 100.000000
+	r2_ICt 3120.000000
+	r2_IS 5.000000
+	r3_k1 6.000000
+	r4_k1 4.290000
+	r5_k1 0.856000
+	r6_k5 2.660000
+	r7_k6 0.000529
+	r8_k7 0.000529
+	r9_k8 0.000500
+	r10_BCRmax 2000.000000
+	r10_BCRt 55326.000000
+	r10_BS 5.000000
+	r11_HCSmax 500.000000
+	r11_HCSt 93925.000000
+	r11_HS 5.000000
+	r12_k9 1.000000
+	r13_k10 5.998000
+	r14_k11 0.005000
+	r15_k1 0.016000
+	r16_khrs 100.000000
+	r17_k1 0.010000
+	r18_k1 0.049600
+	r19_k15 0.430000
+	r20_k1 0.054000
+	r21_k17 0.380000
+	r22_k18 0.068000
+	r23_k1 0.005000
+	r24_k20 0.006750
+	r25_k1 0.000005
+	r26_kprs 100.000000
+	r27_k1 0.010000
+	r28_k23 0.017386
+	r29_k24 0.106800
+	r30_k1 0.000500
+	r31_k26 0.000015
+	r32_PCSmax 500.000000
+	r32_PPCt 80342.000000
+	r32_PCSS 5.000000
+	r33_k27 0.010000
+	r34_k28 0.001000
+	r35_k29 0.050000
+end parameters
+begin compartments
+	#volume units: volume
+	Intake 3 1.0
+	Intestine 3 1.0
+	HepaticTissue 3 1.0
+	PeripheralTissue 3 1.0
+	Plasma 3 1.0
+	Excreted 3 1.0
+end compartments
+begin molecule types
+	PCE()
+	VLDLC()
+	IBS()
+	EBS()
+	ICS()
+	HBS()
+	HDLC()
+	HNHDLS()
+	EC()
+	INHDLS()
+	HCE()
+	HLDLRs()
+	DC()
+	HFC()
+	IC()
+	PFC()
+	HLDLRsS()
+	NHDL()
+	PCS()
+	HLDLRD()
+	PSS()
+	HCS()
+	IDLC()
+	LDLC()
+	PLDLRD()
+	PLDLRsS()
+	PLDLRs()
+end molecule types
+begin seed species
+	@Intake:$DC() 1.830688e+26 # 304.0mol/L * 6.022e23/mol *1.0L #DC #species_1
+	@Intestine:IC() 1.89693e+27 #original 3150.0substance/volume  #IC #species_2
+	@HepaticTissue:HBS() 2.4088e+26 #original 400.0substance/volume  #HBS #species_4
+	@Intestine:IBS() 2.812274e+26 #original 467.0substance/volume  #IBS #species_5
+	@HepaticTissue:HFC() 3.6132e+28 #original 60000.0substance/volume  #HFC #species_7
+	@Plasma:NHDL() 6.022e+25 #original 100.0substance/volume  #NHDL #species_10
+	@PeripheralTissue:PFC() 3.46361352e+28 #original 57516.0substance/volume  #PFC #species_11
+	@HepaticTissue:HCE() 6.022e+27 #original 10000.0substance/volume  #HCE #species_13
+	@Plasma:VLDLC() 1.2044e+25 #original 20.0substance/volume  #VLDLC #species_17
+	@HepaticTissue:HLDLRs() 6.022e+25 #original 100.0substance/volume  #HLDLRs #species_18
+	@HepaticTissue:$HLDLRsS() 3.6132e+26 #original 600.0substance/volume  #HLDLRsS #species_19
+	@Plasma:IDLC() 1.2044e+25 #original 20.0substance/volume  #IDLC #species_21
+	@Plasma:LDLC() 6.022e+25 #original 100.0substance/volume  #LDLC #species_23
+	@PeripheralTissue:PLDLRs() 6.022e+25 #original 100.0substance/volume  #PLDLRs #species_25
+	@PeripheralTissue:$PLDLRsS() 3.4636135199999996e+26 #original 575.16substance/volume  #PLDLRsS #species_26
+	@PeripheralTissue:PCE() 5.6383986e+27 #original 9363.0substance/volume  #PCE #species_28
+	@Plasma:HDLC() 2.7099e+25 #original 45.0substance/volume  #HDLC #species_30
+end seed species
+begin observables
+	Species DC_Intake @Intake:DC() #DC
+	Species IC_Intestine @Intestine:IC() #IC
+	Species ICS_Intestine @Intestine:ICS() #ICS
+	Species HBS_HepaticTissue @HepaticTissue:HBS() #HBS
+	Species IBS_Intestine @Intestine:IBS() #IBS
+	Species EBS_Excreted @Excreted:EBS() #EBS
+	Species HFC_HepaticTissue @HepaticTissue:HFC() #HFC
+	Species EC_Excreted @Excreted:EC() #EC
+	Species INHDLS_Plasma @Plasma:INHDLS() #INHDLS
+	Species NHDL_Plasma @Plasma:NHDL() #NHDL
+	Species PFC_PeripheralTissue @PeripheralTissue:PFC() #PFC
+	Species HCS_HepaticTissue @HepaticTissue:HCS() #HCS
+	Species HCE_HepaticTissue @HepaticTissue:HCE() #HCE
+	Species HNHDLS_HepaticTissue @HepaticTissue:HNHDLS() #HNHDLS
+	Species VLDLC_Plasma @Plasma:VLDLC() #VLDLC
+	Species HLDLRs_HepaticTissue @HepaticTissue:HLDLRs() #HLDLRs
+	Species HLDLRsS_HepaticTissue @HepaticTissue:HLDLRsS() #HLDLRsS
+	Species HLDLRD_HepaticTissue @HepaticTissue:HLDLRD() #HLDLRD
+	Species IDLC_Plasma @Plasma:IDLC() #IDLC
+	Species LDLC_Plasma @Plasma:LDLC() #LDLC
+	Species PLDLRs_PeripheralTissue @PeripheralTissue:PLDLRs() #PLDLRs
+	Species PLDLRsS_PeripheralTissue @PeripheralTissue:PLDLRsS() #PLDLRsS
+	Species PLDLRD_PeripheralTissue @PeripheralTissue:PLDLRD() #PLDLRD
+	Species PCE_PeripheralTissue @PeripheralTissue:PCE() #PCE
+	Species PSS_PeripheralTissue @PeripheralTissue:PSS() #PSS
+	Species HDLC_Plasma @Plasma:HDLC() #HDLC
+	Species PCS_PeripheralTissue @PeripheralTissue:PCS() #PCS
+end observables
+begin functions
+	fRate1() = 100.0/(3.38241607719898e-18*IC_Intestine^5.0 + 1)
+	fRate5() = 2.66/HBS_HepaticTissue
+	fRate6() = 0.0005286*IBS_Intestine
+	fRate7() = 0.0005286*IBS_Intestine
+	fRate8() = 0.0005*PFC_PeripheralTissue
+	fRate9() = 2000.0/(5.18377761595468e+23*(1/HFC_HepaticTissue)^5.0 + 1)
+	fRate10() = 500.0/(1.36802483413124e-25*HFC_HepaticTissue^5.0 + 1)
+	fRate11() = 1.0*ACAT_HepaticTissue
+	fRate12() = 5.998*CEH_HepaticTissue
+	fRate13() = 0.005*PFC_PeripheralTissue
+	fRate15() = 100.0/HFC_HepaticTissue
+	fRate18() = 0.43*LPL_Plasma
+	fRate20() = 0.38*HSL_Plasma
+	fRate21() = 0.068*HLDLRs_HepaticTissue
+	fRate23() = 0.00675*PLDLRs_PeripheralTissue
+	fRate25() = 100.0/PFC_PeripheralTissue
+	fRate27() = 0.017386*ACAT_HepaticTissue
+	fRate28() = 0.1068*CEH_HepaticTissue
+	fRate30() = 1.5e-5*LCAT_Plasma
+	fRate31() = 500.0/(2.9873548067806e-25*PFC_PeripheralTissue^5.0 + 1)
+	fRate32() = 0.01*CETP_Plasma
+	fRate33() = 0.001*CETP_Plasma
+	fRate34() = 0.05*SRB1_HepaticTissue
+end functions
+begin reaction rules
+	reaction_1: DC()@Intake -> IC()@Intestine r1_k1 #Modifiers(species_1)
+	reaction_2_reactants_0: 0  -> ICS()@Intestine -1*(fRate1()) #Modifiers(species_2, species_2)
+	reaction_2_products_0: 0  -> IC()@Intestine fRate1() #Modifiers(species_2, species_2)
+	reaction_3: HBS()@HepaticTissue -> IBS()@Intestine r3_k1 #Modifiers(species_4)
+	reaction_4: IBS()@Intestine -> HBS()@HepaticTissue r4_k1 #Modifiers(species_5)
+	reaction_5: IBS()@Intestine -> EBS()@Excreted r5_k1 #Modifiers(species_5)
+	reaction_6: HFC()@HepaticTissue -> HBS()@HepaticTissue fRate5() #Modifiers(species_4, species_7, species_4)
+	reaction_7: IC()@Intestine -> HFC()@HepaticTissue fRate6() #Modifiers(species_5, species_2, species_5)
+	reaction_8: IC()@Intestine -> EC()@Excreted fRate7() #Modifiers(species_5, species_2, species_5)
+	reaction_9_reactants_0: 0  -> INHDLS()@Plasma -1*(fRate8()) #Modifiers(species_11, species_11)
+	reaction_9_products_0: 0  -> NHDL()@Plasma fRate8() #Modifiers(species_11, species_11)
+	reaction_10_reactants_0: 0  -> HFC()@HepaticTissue -1*(fRate9()) #Modifiers(species_7, species_7)
+	reaction_10_products_0: 0  -> IC()@Intestine fRate9() #Modifiers(species_7, species_7)
+	reaction_11_reactants_0: 0  -> HCS()@HepaticTissue -1*(fRate10()) #Modifiers(species_7, species_7)
+	reaction_11_products_0: 0  -> HFC()@HepaticTissue fRate10() #Modifiers(species_7, species_7)
+	reaction_12: HFC()@HepaticTissue -> HCE()@HepaticTissue fRate11() #Modifiers(species_14, species_7, species_14, species_7)
+	reaction_13: HCE()@HepaticTissue -> HFC()@HepaticTissue fRate12() #Modifiers(species_15, species_13, species_15, species_13)
+	reaction_14_reactants_0: 0  -> HNHDLS()@HepaticTissue -1*(fRate13()) #Modifiers(species_11, species_11)
+	reaction_14_products_0: 0  -> NHDL()@Plasma fRate13() #Modifiers(species_11, species_11)
+	reaction_15: HFC()@HepaticTissue -> VLDLC()@Plasma r15_k1 #Modifiers(species_7)
+	reaction_16: HLDLRsS()@HepaticTissue -> HLDLRs()@HepaticTissue fRate15() #Modifiers(species_19, species_7, species_19, species_7)
+	reaction_17: HLDLRs()@HepaticTissue -> HLDLRD()@HepaticTissue r17_k1 #Modifiers(species_18)
+	reaction_18: VLDLC()@Plasma -> HFC()@HepaticTissue r18_k1 #Modifiers(species_17)
+	reaction_19: VLDLC()@Plasma -> IDLC()@Plasma fRate18() #Modifiers(species_17, species_22, species_17, species_22)
+	reaction_20: IDLC()@Plasma -> HFC()@HepaticTissue r20_k1 #Modifiers(species_21)
+	reaction_21: IDLC()@Plasma -> LDLC()@Plasma fRate20() #Modifiers(species_24, species_21, species_24)
+	reaction_22: LDLC()@Plasma -> HFC()@HepaticTissue fRate21() #Modifiers(species_18, species_23, species_18)
+	reaction_23: LDLC()@Plasma -> HFC()@HepaticTissue r23_k1 #Modifiers(species_23)
+	reaction_24: LDLC()@Plasma -> PFC()@PeripheralTissue fRate23() #Modifiers(species_25, species_25, species_23)
+	reaction_25: LDLC()@Plasma -> PFC()@PeripheralTissue r25_k1 #Modifiers(species_23)
+	reaction_26: PLDLRsS()@PeripheralTissue -> PLDLRs()@PeripheralTissue fRate25() #Modifiers(species_11, species_26, species_11)
+	reaction_27: PLDLRs()@PeripheralTissue -> PLDLRD()@PeripheralTissue r27_k1 #Modifiers(species_25)
+	reaction_28: PFC()@PeripheralTissue -> PCE()@PeripheralTissue fRate27() #Modifiers(species_14, species_14, species_11)
+	reaction_29: PCE()@PeripheralTissue -> PFC()@PeripheralTissue fRate28() #Modifiers(species_15, species_15, species_28)
+	reaction_30: PFC()@PeripheralTissue -> PSS()@PeripheralTissue r30_k1 #Modifiers(species_11)
+	reaction_31: PFC()@PeripheralTissue + NHDL()@Plasma -> HDLC()@Plasma fRate30() #Modifiers(species_31, species_11, species_10, species_31)
+	reaction_32_reactants_0: 0  -> PCS()@PeripheralTissue -1*(fRate31()) #Modifiers(species_11)
+	reaction_32_products_0: 0  -> PFC()@PeripheralTissue fRate31() #Modifiers(species_11)
+	reaction_33: HDLC()@Plasma -> VLDLC()@Plasma fRate32() #Modifiers(species_33, species_30, species_33)
+	reaction_34: HDLC()@Plasma -> LDLC()@Plasma fRate33() #Modifiers(species_33, species_30, species_33)
+	reaction_35: HDLC()@Plasma -> HFC()@HepaticTissue fRate34() #Modifiers(species_34, species_30, species_34)
+end reaction rules
+end model

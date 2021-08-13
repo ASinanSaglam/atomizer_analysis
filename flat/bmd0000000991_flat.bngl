@@ -1,0 +1,78 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/32834593']
+#@BQB_IS:['http://identifiers.org/doid/DOID:0080600']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606', 'http://identifiers.org/taxonomy/2697049']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000028']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000991', 'http://identifiers.org/biomodels.db/MODEL2102180001']
+#@creatorEmail:'s6pajost@uni-bonn.de'
+#@creatorName:'Jost Paul Jonas'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 9 molecules and 10 reactions. The translated model has 8 molecules and 11 rules'
+###
+begin model
+begin parameters
+	transmission_rate_effective 0.4236
+	gamma_a 0.13978 #units:unit_0
+	gamma_0 0.13978 #units:unit_0
+	psi 0.0135 #units:unit_0
+	d_0 0.015 #units:unit_0
+	d_D 0.015 #units:unit_0
+	nu 0.5 #units:unit_0
+	alpha 0.5 #units:unit_0
+	exposed_start 441.0
+	asymptomatic_start 188.0
+	symptomatic_start 212.0
+	gamma_i 1 / 15
+	theta 1.8999*((10) ^ (-12))
+	sigma 1 / 5.2
+	eps 0
+	delta 0
+	total_pop 8.6523993626e+30 #original 14368824.0substance/volume
+end parameters
+begin molecule types
+	deceased()
+	detected()
+	susceptible()
+	asymptomatic()
+	recovered()
+	exposed()
+	symptomatic()
+	detected_cumulative()
+end molecule types
+begin seed species
+	susceptible() 8.6523987604e+30 # 14367982.0mol/L * 6.022e23/mol *1.0L #susceptible #susceptible
+	detected() 6.022e+23 #original 1.0substance/volume #detected #detected
+	detected_cumulative() 6.022e+23 #original 1.0substance/volume #detected_cumulative #detected_cumulative
+	exposed()() (441.0) #exposed
+	asymptomatic()() (188.0) #asymptomatic
+	symptomatic()() (212.0) #symptomatic
+end seed species
+begin observables
+	Species susceptible susceptible() #susceptible
+	Species exposed exposed() #exposed
+	Species asymptomatic asymptomatic() #asymptomatic
+	Species symptomatic symptomatic() #symptomatic
+	Species detected detected() #detected
+	Species recovered recovered() #recovered
+	Species deceased deceased() #deceased
+	Species detected_cumulative detected_cumulative() #detected_cumulative
+end observables
+begin functions
+	total_pop_ar() = asymptomatic + detected + exposed + recovered + susceptible + symptomatic
+	lam() = transmission_rate_effective*(1 - delta)*(1 - eps)*(alpha*asymptomatic + symptomatic)/(-detected + total_pop_ar)
+	fRate1() = exposed*sigma*(1 - nu)
+	fRate2() = nu*sigma
+end functions
+begin reaction rules
+	susceptible_to_exposed: susceptible() -> exposed() lam
+	exposed_to_symptomatic_reactants_0: 0  -> exposed() -1*(fRate1())
+	exposed_to_symptomatic_products_0: 0  -> symptomatic() fRate1()
+	exposed_to_asymptopmatic: exposed() -> asymptomatic() fRate2()
+	symptomatic_to_detected: symptomatic() -> detected() + detected_cumulative() psi
+	asymptomatic_to_detected: asymptomatic() -> detected() + detected_cumulative() theta
+	symptomatic_to_recovered: symptomatic() -> recovered() gamma_0
+	asymptomatic_to_recovered: asymptomatic() -> recovered() gamma_a
+	detected_to_recovered: detected() -> recovered() gamma_i
+	symptomatic_to_deceased: symptomatic() -> deceased() d_0
+	detected_to_deceased: detected() -> deceased() d_D
+end reaction rules
+end model

@@ -1,0 +1,152 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1201250000', 'http://identifiers.org/biomodels.db/BIOMD0000000408']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/21912519']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/MODEL1006230027', 'http://identifiers.org/biomodels.db/BIOMD0000000041']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9984']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0006600', 'http://identifiers.org/go/GO:0046034']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 10 molecules and 9 reactions. The translated model has 11 molecules and 23 rules'
+###
+begin model
+begin parameters
+	stepsize 0.001 #units:second
+	heartrate_bpm 135.0 #units:unitDefinition_0000004
+	heartrate_basis 135.0 #units:unitDefinition_0000004
+	heartrate_test 220.0 #units:unitDefinition_0000004
+	fracSysUp 0.1666666666
+	fracSysDown 0.1666666666
+	time_Jhyd_step 40.0 #units:second
+	Jhyd_test 627.6 #units:micromole_per_litre_per_second
+	Jhyd_basis 486.5 #units:micromole_per_litre_per_second
+	Jhyd 486.5 #units:micromole_per_litre_per_second
+	ck_factor_iaa 1.0
+	ck_factor_ia 0.0286
+	PSmomATP 13.29477 #units:per_second
+	K_CK_eq 152.0
+	VmaxMif_full_activity 882.0756 #units:micromole_per_litre_per_second
+	VmaxMMf_full_activity 11441.78 #units:micromole_per_litre_per_second
+	KiaMi 750.0 #units:micromole_per_litre
+	KbMi 5200.0 #units:micromole_per_litre
+	KicMi 204.8 #units:micromole_per_litre
+	KdMi 500.0 #units:micromole_per_litre
+	KibMi 28800.0 #units:micromole_per_litre
+	KidMi 1600.0 #units:micromole_per_litre
+	KiaMM 900.0 #units:micromole_per_litre
+	KbMM 15500.0 #units:micromole_per_litre
+	KicMM 222.4 #units:micromole_per_litre
+	KdMM 1670.0 #units:micromole_per_litre
+	KibMM 34900.0 #units:micromole_per_litre
+	KidMM 4730.0 #units:micromole_per_litre
+	Vmaxsyn 1503.74 #units:micromole_per_litre_per_second
+	Kadp 25.0 #units:micromole_per_litre
+	Kpi 800.0 #units:micromole_per_litre
+	PSmomPi 194.0 #units:per_second
+	PSmomCr 155.0 #units:per_second
+	PSmomPCr 155.0 #units:per_second
+	pulsatility 1.0
+	last_time_fired 0
+	tmito_factor 0
+end parameters
+begin compartments
+	#volume units: L
+	IMS 3 0.0625
+	CYT 3 0.75
+	cell 3 1.0
+end compartments
+begin molecule types
+	ADPi()
+	PCr()
+	PCri()
+	ATPi()
+	ADP()
+	Cr()
+	P_i()
+	P_ii()
+	ATP()
+	Cri()
+	tmito
+end molecule types
+begin seed species
+	@IMS:ADPi() 1.4678625000000002e+24 # 39.0mol/L * 6.022e23/mol *0.0625L #ADPi #ADPi
+	@IMS:ATPi() 2.11748575e+26 #original 5626.0mol/L #ATPi #ATPi
+	@IMS:Cri() 3.684334875e+26 #original 9789.0mol/L #Cri #Cri
+	@IMS:PCri() 2.149477625e+26 #original 5711.0mol/L #PCri #PCri
+	@CYT:PCr() 2.5789215e+27 #original 5710.0mol/L #PCr #PCr
+	@CYT:ADP() 2.89056e+25 #original 64.0mol/L #ADP #ADP
+	@CYT:ATP() 2.52969165e+27 #original 5601.0mol/L #ATP #ATP
+	@CYT:Cr() 4.42120185e+27 #original 9789.0mol/L #Cr #Cr
+	@IMS:P_ii() 3.4250125e+25 #original 910.0mol/L #P_ii #P_ii
+	@CYT:P_i() 4.1190480000000004e+26 #original 912.0mol/L #P_i #P_i
+	tmito@IMS 0
+end seed species
+begin observables
+	Species ADPi_IMS @IMS:ADPi() #ADPi
+	Species ATPi_IMS @IMS:ATPi() #ATPi
+	Species Cri_IMS @IMS:Cri() #Cri
+	Species PCri_IMS @IMS:PCri() #PCri
+	Species PCr_CYT @CYT:PCr() #PCr
+	Species ADP_CYT @CYT:ADP() #ADP
+	Species ATP_CYT @CYT:ATP() #ATP
+	Species Cr_CYT @CYT:Cr() #Cr
+	Species P_ii_IMS @IMS:P_ii() #P_ii
+	Species P_i_CYT @CYT:P_i() #P_i
+	Species tmito tmito
+end observables
+begin functions
+	VmaxMMf() = VmaxMMf_full_activity*ck_factor_iaa
+	VmaxMMb() = K_CK_eq*KdMM*KicMM*VmaxMMf/(KbMM*KiaMM)
+	j_ck_mm() = (-ADP_CYT*PCr_CYT*VmaxMMb/(KdMM*KicMM) + ATP_CYT*Cr_CYT*VmaxMMf/(KbMM*KiaMM))/(ADP_CYT*(Cr_CYT/(KibMM*KicMM) + 1/KicMM + PCr_CYT/(KdMM*KicMM)) + ATP_CYT*(Cr_CYT/(KbMM*KiaMM) + 1/KiaMM) + Cr_CYT/KibMM + 1 + PCr_CYT/KidMM)
+	VmaxMif() = VmaxMif_full_activity*ck_factor_iaa
+	VmaxMib() = K_CK_eq*KdMi*KicMi*VmaxMif/(KbMi*KiaMi)
+	j_ck_mi() = (-ADPi_IMS*PCri_IMS*VmaxMib/(KdMi*KicMi) + ATPi_IMS*Cri_IMS*VmaxMif/(KbMi*KiaMi))/(ADPi_IMS*(Cri_IMS/(KibMi*KicMi) + 1/KicMi + PCri_IMS/(KdMi*KicMi)) + ATPi_IMS*(Cri_IMS/(KbMi*KiaMi) + 1/KiaMi) + Cri_IMS/KibMi + 1 + PCri_IMS/KidMi)
+	j_diff_atp() = PSmomATP*(-ATP_CYT + ATPi_IMS)
+	j_diff_pcr() = PSmomPCr*(-PCr_CYT + PCri_IMS)
+	r_diff_pcr() = j_diff_pcr/(j_diff_atp + j_diff_pcr)
+	densyn() = ADPi_IMS/Kadp + ADPi_IMS*P_ii_IMS/(Kadp*Kpi) + 1 + P_ii_IMS/Kpi
+	jsyn() = ADPi_IMS*P_ii_IMS*Vmaxsyn/(Kadp*Kpi*densyn)
+	vatpnorm() = tmito_factor*(Jhyd_test - jsyn)/(-Jhyd_basis + Jhyd_test)
+	arRatetmito() = vatpnorm
+	j_diff_cr() = PSmomCr*(-Cr_CYT + Cri_IMS)
+	j_diff_pi() = PSmomPi*(-P_i_CYT + P_ii_IMS)
+	j_diff_adp() = PSmomATP*(-ADP_CYT + ADPi_IMS)
+	VhydAmp_test() = 2*Jhyd_test/(fracSysDown + fracSysUp)
+	VhydAmp_basis() = 2*Jhyd_basis/(fracSysDown + fracSysUp)
+	fracDia() = -fracSysDown - fracSysUp + 1
+	phase() = heartrate_bpm*(abs(-time_Jhyd_step + time()) - 60*min(rint(heartrate_bpm*abs(-time_Jhyd_step + time())/60 - 0.5), rint(heartrate_bpm*abs(-time_Jhyd_step + time())/60 + 0.5))/heartrate_bpm)/60
+	fRate0() = Vmaxsyn/(ADPi_IMS*Kpi + ADPi_IMS*P_ii_IMS + Kadp*Kpi + Kadp*P_ii_IMS)
+	fRate1() = j_ck_mi
+	fRate2() = j_ck_mm
+	fRate3() = Jhyd
+	fRate4() = j_diff_pi
+	fRate5() = j_diff_cr
+	fRate6() = j_diff_adp
+	fRate7() = j_diff_pcr
+	fRate8() = j_diff_atp
+end functions
+begin reaction rules
+	Jsyn: P_ii()@IMS + ADPi()@IMS -> ATPi()@IMS fRate0()
+	J_CK_Mi_reactants_0: 0  -> ATPi()@IMS -1*(fRate1())
+	J_CK_Mi_reactants_1: 0  -> Cri()@IMS -1*(fRate1())
+	J_CK_Mi_products_0: 0  -> PCri()@IMS fRate1()
+	J_CK_Mi_products_1: 0  -> ADPi()@IMS fRate1()
+	J_CK_MM_reactants_0: 0  -> Cr()@CYT -1*(fRate2())
+	J_CK_MM_reactants_1: 0  -> ATP()@CYT -1*(fRate2())
+	J_CK_MM_products_0: 0  -> PCr()@CYT fRate2()
+	J_CK_MM_products_1: 0  -> ADP()@CYT fRate2()
+	Jhyd_reaction_reactants_0: 0  -> ATP()@CYT -1*(fRate3())
+	Jhyd_reaction_products_0: 0  -> ADP()@CYT fRate3()
+	Jhyd_reaction_products_1: 0  -> P_i()@CYT fRate3()
+	J_diff_Pi_reactants_0: 0  -> P_ii()@IMS -1*(fRate4())
+	J_diff_Pi_products_0: 0  -> P_i()@CYT fRate4()
+	J_diff_Cr_reactants_0: 0  -> Cri()@IMS -1*(fRate5())
+	J_diff_Cr_products_0: 0  -> Cr()@CYT fRate5()
+	J_diff_ADP_reactants_0: 0  -> ADPi()@IMS -1*(fRate6())
+	J_diff_ADP_products_0: 0  -> ADP()@CYT fRate6()
+	J_diff_PCr_reactants_0: 0  -> PCri()@IMS -1*(fRate7())
+	J_diff_PCr_products_0: 0  -> PCr()@CYT fRate7()
+	J_diff_ATP_reactants_0: 0  -> ATPi()@IMS -1*(fRate8())
+	J_diff_ATP_products_0: 0  -> ATP()@CYT fRate8()
+	0  -> tmito()@IMS arRatetmito #rateLaw
+end reaction rules
+end model

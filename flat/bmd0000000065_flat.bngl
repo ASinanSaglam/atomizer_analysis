@@ -1,0 +1,99 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000065', 'http://identifiers.org/biomodels.db/MODEL6624248569']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/12719218']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/9104037']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0045990']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/562']
+#@creatorEmail:'hdharuri@cds.caltech.edu'
+#@creatorName:'Dharuri Harish'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 9 molecules and 16 reactions. The translated model has 8 molecules and 16 rules'
+###
+begin model
+begin parameters
+	mu 0.0226
+	gamma_M 0.411
+	gamma_B 0.000833
+	gamma_A 0.52
+	gamma_0 7.25e-07
+	K 7200.0
+	alpha_M 0.000997
+	tau_B 2.0
+	alpha_A 17600.0
+	K_L1 1.81
+	alpha_B 0.0166
+	K_A 1.95
+	beta_A 21500.0
+	tau_M 0.1
+	K_L 0.97
+	gamma_P 0.65
+	alpha_L 2880.0
+	alpha_P 10.0
+	tau_P 0.83
+	beta_L1 2650.0
+	K_Le 0.26
+	K_1 25200.0
+	gamma_L 0
+	External_Lactose 4.817600000000001e+19 #original 0.08millimoles/L
+end parameters
+begin molecule types
+	PartialPermease()
+	allolactose()
+	Betagalactosidase()
+	PartialBetagalactosidase()
+	lactose_internal()
+	permease()
+	mRNA()
+	PartialmRNA()
+end molecule types
+begin seed species
+	mRNA() 3.769772e+17 # (0.000626 * 0.001)mol/L * 6.022e23/mol *1.0L #mRNA #M
+	allolactose() 2.2883600000000004e+19 #original 0.038millimoles/L  #allolactose #A
+	lactose_internal() 2.240184e+20 #original 0.372millimoles/L  #lactose_internal #L
+	permease() 8.97278e+18 #original 0.0149millimoles/L  #permease #P
+end seed species
+begin observables
+	Species mRNA mRNA() #mRNA
+	Species Betagalactosidase Betagalactosidase() #Betagalactosidase
+	Species allolactose allolactose() #allolactose
+	Species lactose_internal lactose_internal() #lactose_internal
+	Species permease permease() #permease
+	Species PartialmRNA PartialmRNA() #PartialmRNA
+	Species PartialBetagalactosidase PartialBetagalactosidase() #PartialBetagalactosidase
+	Species PartialPermease PartialPermease() #PartialPermease
+end observables
+begin functions
+	fRate1() = mRNA*(gamma_M + mu)
+	fRate2() = 1/tau_M
+	fRate3() = alpha_M*(K_1*allolactose^2*exp(-2*mu*tau_M) + 1)/(K + K_1*allolactose^2*exp(-2*mu*tau_M))
+	fRate4() = Betagalactosidase*(gamma_B + mu)
+	fRate5() = 1/tau_B
+	fRate6() = alpha_B*mRNA*exp(-mu*tau_B)
+	fRate7() = allolactose*(gamma_A + mu)
+	fRate8() = Betagalactosidase*beta_A/(K_A + allolactose)
+	fRate9() = Betagalactosidase*alpha_A/(K_L + lactose_internal)
+	fRate10() = lactose_internal*(gamma_L + mu)
+	fRate11() = beta_L1*permease/(K_L1 + lactose_internal)
+	fRate12() = External_Lactose*alpha_L*permease/(External_Lactose + K_Le)
+	fRate13() = permease*(gamma_P + mu)
+	fRate14() = 1/(tau_B + tau_P)
+	fRate15() = alpha_P*mRNA*exp(-mu*(tau_B + tau_P))
+end functions
+begin reaction rules
+	r_m1: 0  -> mRNA() gamma_0
+	r_m2_reactants_0: 0  -> mRNA() -1*(fRate1())
+	r_m3_i1: PartialmRNA() -> mRNA() fRate2()
+	r_i1: 0  -> PartialmRNA() fRate3() #Modifiers(A)
+	r_b1_reactants_0: 0  -> Betagalactosidase() -1*(fRate4())
+	r_b2_i2: PartialBetagalactosidase() -> Betagalactosidase() fRate5()
+	r_i2: 0  -> PartialBetagalactosidase() fRate6() #Modifiers(M)
+	r_a1_reactants_0: 0  -> allolactose() -1*(fRate7())
+	r_a2: allolactose() -> 0  fRate8() #Modifiers(B)
+	r_a3_l1: lactose_internal() -> allolactose() fRate9() #Modifiers(B)
+	r_l2_reactants_0: 0  -> lactose_internal() -1*(fRate10())
+	r_l3: lactose_internal() -> 0  fRate11() #Modifiers(P)
+	r_l4: 0  -> lactose_internal() fRate12() #Modifiers(P, L_e)
+	r_p1_reactants_0: 0  -> permease() -1*(fRate13())
+	r_p2_i3: PartialPermease() -> permease() fRate14()
+	r_i3: 0  -> PartialPermease() fRate15() #Modifiers(M)
+end reaction rules
+end model

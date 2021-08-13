@@ -1,0 +1,120 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/27164436']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/go/GO:0005985', 'http://identifiers.org/go/GO:0018958', 'http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/go/GO:0005982']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000858', 'http://identifiers.org/biomodels.db/MODEL1911130005']
+#@creatorEmail:'johannes.p.meyer@gmail.com'
+#@creatorName:'Meyer Johannes'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 10 molecules and 20 reactions. The translated model has 10 molecules and 20 rules'
+###
+begin model
+begin parameters
+	k1 1.0
+	k2 1.0
+	k3 1e-05
+	k4 5.0
+	k5 5.5
+	k6 10.0
+	k7 9.8
+	k8 1e-06
+	k9 1.0
+	k10 10.0
+	k11 0.2
+	k12 15.0
+	k13 1.0
+	k14 0.2
+	k15 0.2
+	k26 0.5
+	k27 0.1
+	k28 1e-06
+	k32 1e-05
+	k33 1e-11
+	k34 9.8
+	k35 10.0
+	k36 0.0001
+	k37 0.1
+	k38 0.02
+	k39 1000.0
+	g 1.0
+	k30 0
+	k31 0
+end parameters
+begin molecule types
+	sucr()
+	N()
+	Enitrate()
+	EtrioseP()
+	ECO2()
+	Ephe()
+	trioseP()
+	starch()
+	Estarch()
+	Next()
+end molecule types
+begin seed species
+	sucr() 4.504456e+20 # (0.748 * 0.001)mol/L * 6.022e23/mol *1.0L #sucr #sucr
+	EtrioseP() 1.7012150000000002e+21 #original 2.825substance/volume #EtrioseP #EtrioseP
+	Ephe() 587205220000000.1 #original 9.751e-07substance/volume #Ephe #Ephe
+	N() 3.0097956000000005e+21 #original 4.998substance/volume #N #N
+	starch() 3.6378902000000004e+21 #original 6.041substance/volume #starch #starch
+	$Next() 1.2044e+22 #original 20.0substance/volume #Next #Next
+	Enitrate() 1.1286432400000003e+22 #original 18.742substance/volume #Enitrate #Enitrate
+	$ECO2() 6.022e+20 #original 1.0substance/volume #ECO2 #ECO2
+	Estarch() 3.58309e+21 #original 5.95substance/volume #Estarch #Estarch
+end seed species
+begin observables
+	Species sucr sucr() #sucr
+	Species EtrioseP EtrioseP() #EtrioseP
+	Species Ephe Ephe() #Ephe
+	Species N N() #N
+	Species starch starch() #starch
+	Species Next Next() #Next
+	Species Enitrate Enitrate() #Enitrate
+	Species trioseP trioseP() #trioseP
+	Species ECO2 ECO2() #ECO2
+	Species Estarch Estarch() #Estarch
+end observables
+begin functions
+	f_act_trioseP() = N/(N + k33)
+	f_act_pcf() = N/(N + k13)
+	f_I_E_phe_outfl() = k39/(N + k39)
+	f_I_phe() = k38/(N + k38)
+	k29() =  if((Light_Dark_Tracker<0),(10.1),(0))
+	Light_Dark_Tracker() =  if((xor(time()<0,24<0)),(time()-24*min(rint((time()/24)+0.5),rint((time()/24)+1))),(time()-24*min(rint((time()/24)-0.5),rint((time()/24)+0.5))))-12
+	fRate0() = EtrioseP*k4
+	fRate1() = Ephe*f_I_phe*k9
+	fRate2() = f_act_pcf*k5
+	fRate3() = sucr*(k14 + k15)
+	fRate4() = Estarch*k37
+	fRate6() = k2*sucr/(EtrioseP + k3)
+	fRate7() = f_I_E_phe_outfl*k6*sucr
+	fRate8() = k7/(Ephe + k8)
+	fRate9() = Enitrate*Next*k11
+	fRate11() = Enitrate*g*k11
+	fRate14() = N*k27/(Enitrate + k28)
+	fRate15() = ECO2*f_act_trioseP*k29
+	fRate17() = k31*trioseP/(ECO2 + k32)
+	fRate19() = k35*sucr/(Estarch + k36)
+end functions
+begin reaction rules
+	Sucrose_Formation_TrioseP: trioseP() -> sucr() fRate0() #Modifiers(EtrioseP)
+	Sucrose_Consumption_Ephe: sucr() -> 0  fRate1() #Modifiers(Ephe)
+	Sucrose_Consumption_PCF: sucr() -> 0  fRate2()
+	Sucrose_Consumption_PCF_Lignin_reactants_0: 0  -> sucr() -1*(fRate3())
+	Sucrose_Formation_Starch: starch() -> sucr() fRate4() #Modifiers(Estarch)
+	EtrioseP_Formation_Constant: 0  -> EtrioseP() k1
+	EtrioseP_Consumption_Sucrose: EtrioseP() -> 0  fRate6() #Modifiers(sucr)
+	Ephe_Formation_Sucrose: 0  -> Ephe() fRate7() #Modifiers(sucr)
+	Ephe_Consumption: Ephe() -> 0  fRate8()
+	N_Formation: 0  -> N() fRate9() #Modifiers(Next, Enitrate)
+	N_Consumption: N() -> 0  k12
+	Next_Consumption: Next() -> 0  fRate11() #Modifiers(Enitrate)
+	Starch_Formation: trioseP() -> starch() k10
+	Enitrate_Formation: 0  -> Enitrate() k26
+	Enitrate_Consumption: Enitrate() -> 0  fRate14() #Modifiers(N)
+	TrioseP_Formation: 0  -> trioseP() fRate15() #Modifiers(ECO2)
+	ECO2_Formation: 0  -> ECO2() k30
+	ECO2_Consumption: ECO2() -> 0  fRate17() #Modifiers(trioseP)
+	Estarch_Formation: 0  -> Estarch() k34
+	Estarch_Consumption: Estarch() -> 0  fRate19() #Modifiers(sucr)
+end reaction rules
+end model

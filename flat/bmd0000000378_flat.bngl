@@ -1,0 +1,102 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL0491199816', 'http://identifiers.org/biomodels.db/BIOMD0000000378']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/9284334']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0061469', 'http://identifiers.org/go/GO:0044342', 'http://identifiers.org/go/GO:0019722']
+#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000783']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@creatorEmail:'ajmera@ebi.ac.uk'
+#@creatorName:'Ajmera Ishan'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 6 molecules and 0 reactions. The translated model has 6 molecules and 6 rules'
+###
+begin model
+begin parameters
+	R 8314.0
+	T 310.0
+	F 96485.0
+	Cm 1.0
+	g_fast 600.0
+	V_fast 80.0
+	Vm -25.0
+	Sm 9.0
+	lamda_h 12.5
+	Vh -48.0
+	Sh -7.0
+	K_Ca 1.0
+	P_Ca 2.0
+	Ca_o 2500.0
+	lamda_d 2.5
+	Vd -10.0
+	Sd 5.0
+	Ca_i_calcium_current_f_gate 1.0
+	g_NS 5.0
+	K_NS 50.0
+	VNS -20.0
+	V_K -75.0
+	g_K_dr 600.0
+	lamda_n 12.5
+	Vn -18.0
+	Sn 14.0
+	g_K_Ca 5.0
+	g_K_ATP 2.0
+	g_NaL 0.3
+	V_Na 80.0
+	k_rel 0.2
+	k_Ca 7.0
+	k_pump 30.0
+	omega 0.2
+end parameters
+begin molecule types
+	Ca_i_cytosolic_calcium()
+	Ca_lum()
+	h()
+	d()
+	V_membrane()
+	n()
+end molecule types
+begin seed species
+	h() 0.214723 #h #h
+	d() 0.0031711238 #d #d
+	n() 0.1836403 #n #n
+	Ca_i_cytosolic_calcium() 0.6959466 #Ca_i_cytosolic_calcium #Ca_i_cytosolic_calcium
+	Ca_lum() 102.686 #Ca_lum #Ca_lum
+end seed species
+begin observables
+	Species V_membrane V_membrane() #V_membrane
+	Species h h() #h
+	Species d d() #d
+	Species n n() #n
+	Species Ca_i_cytosolic_calcium Ca_i_cytosolic_calcium() #Ca_i_cytosolic_calcium
+	Species Ca_lum Ca_lum() #Ca_lum
+end observables
+begin functions
+	i_K_ATP() = g_K_ATP*(-V_K + V_membrane)
+	i_K_Ca() = Ca_i_cytosolic_calcium^3*g_K_Ca*(-V_K + V_membrane)/(Ca_i_cytosolic_calcium^3 + K_Ca^3)
+	m_infinity() = 1/(exp((-V_membrane + Vm)/Sm) + 1)
+	i_fast() = g_fast*h*m_infinity^3*(-V_fast + V_membrane)
+	i_K_dr() = g_K_dr*n^4*(-V_K + V_membrane)
+	f_infinity() = K_Ca/(Ca_i_calcium_current_f_gate + K_Ca)
+	i_Ca() = 2*F*P_Ca*V_membrane*d*f_infinity*(-Ca_i_cytosolic_calcium*exp(2*F*V_membrane/(R*T)) + Ca_o)/(R*T*(1 - exp(2*F*V_membrane/(R*T))))
+	i_NS() = K_NS^2*g_NS*(-10 + (-VNS + V_membrane)/(1 - exp(0.1*VNS - 0.1*V_membrane)))/(Ca_lum^2 + K_NS^2)
+	i_NaL() = g_NaL*(-V_Na + V_membrane)
+	arRateV_membrane() = (-i_Ca - i_K_ATP - i_K_Ca - i_K_dr - i_NS - i_NaL - i_fast)/Cm
+	n_infinity() = 1/(exp((-V_membrane + Vn)/Sn) + 1)
+	tau_n() = 1/(lamda_n*(exp((-V_membrane + Vn)/(2*Sn)) + exp((V_membrane - Vn)/(2*Sn))))
+	arRaten() = (-n + n_infinity)/tau_n
+	tau_d() = 1/(lamda_d*(exp((-V_membrane + Vd)/(2*Sd)) + exp((V_membrane - Vd)/(2*Sd))))
+	d_infinity() = 1/(exp((-V_membrane + Vd)/Sd) + 1)
+	arRated() = (-d + d_infinity)/tau_d
+	tau_h() = 1/(lamda_h*(exp((-V_membrane + Vh)/(2*Sh)) + exp((V_membrane - Vh)/(2*Sh))))
+	h_infinity() = 1/(exp((-V_membrane + Vh)/Sh) + 1)
+	arRateh() = (-h + h_infinity)/tau_h
+	arRateCa_i_cytosolic_calcium() = -Ca_i_cytosolic_calcium*k_Ca - Ca_i_cytosolic_calcium*k_pump - i_Ca*omega + k_rel*(-Ca_i_cytosolic_calcium + Ca_lum)
+	arRateCa_lum() = Ca_i_cytosolic_calcium*k_pump - k_rel*(-Ca_i_cytosolic_calcium + Ca_lum)
+end functions
+begin reaction rules
+	0  -> V_membrane() arRateV_membrane #rateLaw
+	0  -> h() arRateh #rateLaw
+	0  -> d() arRated #rateLaw
+	0  -> n() arRaten #rateLaw
+	0  -> Ca_i_cytosolic_calcium() arRateCa_i_cytosolic_calcium #rateLaw
+	0  -> Ca_lum() arRateCa_lum #rateLaw
+end reaction rules
+end model

@@ -1,0 +1,452 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000268', 'http://identifiers.org/biomodels.db/MODEL1007200001']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/18442411']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/MODEL1007200000']
+#@BQB_HAS_TAXON:['http://identifiers.org/bto/BTO:0000575', 'http://identifiers.org/taxonomy/9606']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0006749']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:14330', 'http://identifiers.org/doid/DOID:10652', 'http://identifiers.org/doid/DOID:12849', 'http://identifiers.org/doid/DOID:1287', 'http://identifiers.org/doid/DOID:14250', 'http://identifiers.org/doid/DOID:162']
+#@creatorEmail:'lukas@ebi.ac.uk'
+#@creatorName:'Endler Lukas'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 44 molecules and 61 reactions. The translated model has 43 molecules and 79 rules'
+###
+begin model
+begin parameters
+	V_gshHb 150.0 #units:uM_per_h
+	K_gshHb 150.0 #units:uM
+	V_gshLb 1100.0 #units:uM_per_h
+	h_gshLb 3.0 #units:dimensionless
+	K_gshLb 3000.0 #units:uM
+	V_gsgHb 40.0 #units:uM_per_h
+	K_gsgHb 1250.0 #units:uM
+	V_gsgLb 4025.0 #units:uM_per_h
+	K_gsgLb 7100.0 #units:uM
+	V_bcysc 14950.0 #units:uM_per_h
+	K_bcysc 2100.0 #units:uM
+	V_bglutc 28000.0 #units:uM_per_h
+	K_bglutc 300.0 #units:uM
+	k_out_glu 1.0 #units:per_h
+	V_bglyc 4600.0 #units:uM_per_h
+	K_bglyc 150.0 #units:uM
+	k_out_gly 1.0 #units:per_h
+	V_bserc 2700.0 #units:uM_per_h
+	K_bserc 150.0 #units:uM
+	k_out_ser 1.0 #units:per_h
+	V_bmetc 913.4 #units:uM_per_h
+	K_bmetc 150.0 #units:uM
+	k_out_met 1.0 #units:per_h
+	Vm_mFTD 1050.0 #units:uM_per_h
+	K_10f_FTD 20.0 #units:uM
+	Vf_mSHMT 11440.0 #units:uM_per_h
+	K_thf_SHMT 50.0 #units:uM
+	K_ser_SHMT 600.0 #units:uM
+	Vr_mSHMT 30000000.0 #units:uM_per_h
+	K_gly_SHMT 10000.0 #units:uM
+	K_2cf_SHMT 3200.0 #units:uM
+	Vf_mFTS 2000.0 #units:uM_per_h
+	K_thf_mFTS 3.0 #units:uM
+	K_coo_mFTS 43.0 #units:uM
+	Vr_mFTS 6300.0 #units:uM_per_h
+	K_10f_mFTS 22.0 #units:uM
+	k1_mNE 0.03 #units:per_uM_per_h
+	k2_mNE 20.0 #units:per_h
+	Vm_GDC 15000.0 #units:uM_per_h
+	K_thf_GDC 50.0 #units:uM
+	K_gly_GDC 3400.0 #units:uM
+	Vm_SDH 15000.0 #units:uM_per_h
+	K_thf_SDH 50.0 #units:uM
+	K_src_SDH 320.0 #units:uM
+	Vm_DMGD 15000.0 #units:uM_per_h
+	K_thf_DMGD 50.0 #units:uM
+	K_dmg_DMGD 50.0 #units:uM
+	Vf_mMTD 180000.0 #units:uM_per_h
+	K_2cf_MTD 2.0 #units:uM
+	Vr_MTD 594000.0 #units:uM_per_h
+	K_1cf_MTD 10.0 #units:uM
+	Vf_mMTCH 790000.0 #units:uM_per_h
+	K_1cf_MTCH 250.0 #units:uM
+	Vr_MTCH 20000.0 #units:uM_per_h
+	K_10f_MTCH 100.0 #units:uM
+	V_mser 10000.0 #units:uM_per_h
+	K_mser 5700.0 #units:uM
+	V_cser 10000.0 #units:uM_per_h
+	K_cser 5700.0 #units:uM
+	k_in_coo 100.0 #units:per_h
+	k_out_coo 100.0 #units:per_h
+	V_mgly 10000.0 #units:uM_per_h
+	K_mgly 5700.0 #units:uM
+	V_cgly 10000.0 #units:uM_per_h
+	K_cgly 5700.0 #units:uM
+	Vm_MS 500.0 #units:uM_per_h
+	K_5mf_MS 25.0 #units:uM
+	K_hcy_MS 1.0 #units:uM
+	ssH2O2 0.01 #units:uM
+	Ki_MS 0.01 #units:uM
+	Vm_DHFR 2000.0 #units:uM_per_h
+	K_dhf_DHFR 0.5 #units:uM
+	K_NADPH_DHFR 4.0 #units:uM
+	Vm_cFTD 500.0 #units:uM_per_h
+	Vm_PGT 24300.0 #units:uM_per_h
+	K_10f_PGT 4.9 #units:uM
+	K_GAR_PGT 520.0 #units:uM
+	Vm_cFTS 3900.0 #units:uM_per_h
+	K_thf_cFTS 3.0 #units:uM
+	K_coo_cFTS 43.0 #units:uM
+	Vf_cSHMT 5200.0 #units:uM_per_h
+	Vr_cSHMT 15000000.0 #units:uM_per_h
+	k1_cNE 0.03 #units:per_uM_per_h
+	k2_cNE 22.0 #units:per_h
+	Vm_TS 5000.0 #units:uM_per_h
+	K_DUMP_TS 6.3 #units:uM
+	K_2cf_TS 14.0 #units:uM
+	Vm_MTHFR 5300.0 #units:uM_per_h
+	K_2cf_MTHFR 50.0 #units:uM
+	K_NADPH_MTHFR 16.0 #units:uM
+	Vf_cMTD 80000.0 #units:uM_per_h
+	Vr_cMTD 600000.0 #units:uM_per_h
+	Vf_cMTCH 500000.0 #units:uM_per_h
+	Vm_ART 55000.0 #units:uM_per_h
+	K_10f_ART 5.9 #units:uM
+	K_aic_ART 100.0 #units:uM
+	Vm_BHMT 2160.0 #units:uM_per_h
+	K_hcy_BHMT 12.0 #units:uM
+	K_bet_BHMT 100.0 #units:uM
+	Ki_BHMT 0.01 #units:uM
+	Vm_MAT1 260.0 #units:uM_per_h
+	Km_MAT1 41.0 #units:uM
+	Ki_MAT1 2140.0 #units:uM
+	Vm_MAT3 220.0 #units:uM_per_h
+	Km_MAT3 300.0 #units:uM
+	Ka_MAT3 360.0 #units:uM
+	Ki_MAT3 4030.0 #units:uM
+	Vm_GNMT 260.0 #units:uM_per_h
+	K_sam_GNMT 63.0 #units:uM
+	K_gly_GNMT 130.0 #units:uM
+	Ki_GNMT 18.0 #units:uM
+	Vm_DNMT 180.0 #units:uM_per_h
+	Km_DNMT 1.4 #units:uM
+	Ki_DNMT 1.4 #units:uM
+	Vf_SAHH 320.0 #units:uM_per_h
+	K_sah_SAHH 6.5 #units:uM
+	Vr_SAHH 4530.0 #units:uM_per_h
+	K_hcy_SAHH 150.0 #units:uM
+	Vm_CBS 420000.0 #units:uM_per_h
+	K_hcy_CBS 1000.0 #units:uM
+	K_ser_CBS 2000.0 #units:uM
+	Ka_CBS 0.035 #units:uM
+	Vm_CTGL 1500.0 #units:uM_per_h
+	K_cyt_CTGL 500.0 #units:uM
+	Vm_GCS 3600.0 #units:uM_per_h
+	Ke_GCS 5597.0 #units:per_uM
+	K_cys_GCS 100.0 #units:uM
+	K_glu_GCS 1900.0 #units:uM
+	Ki_GCS 8200.0 #units:uM
+	Kp_GCS 300.0 #units:per_uM
+	Ka_GCS 0.01 #units:uM
+	Vm_GS 5400.0 #units:uM_per_h
+	Ke_GS 5600.0 #units:per_uM
+	K_gly_GS 300.0 #units:uM
+	K_glc_GS 22.0 #units:uM
+	Kp_GS 30.0 #units:per_uM
+	Vm_GPX 4500.0 #units:uM_per_h
+	K_gsh_GPX 1330.0 #units:uM
+	K_H2O2_GPX 0.09 #units:uM
+	Vm_GR 892.5 #units:uM_per_h
+	K_gsg_GR 107.0 #units:uM
+	K_NADPH_GR 10.4 #units:uM
+	dinner 3.25 #units:dimensionless
+	lunch 1.75 #units:dimensionless
+	breakfast 1.75 #units:dimensionless
+	fasting 0.25 #units:dimensionless
+	b_met_basal 30.0 #units:uM
+	b_ser_basal 150.0 #units:uM
+	V_oGly_b_basal 630.0 #units:uM_per_h
+	V_oGlu_b_basal 273.0 #units:uM_per_h
+	V_oCys_b_basal 70.0 #units:uM_per_h
+	k_out_cys 1.0 #units:per_h
+	Folate_cell 1.210422e+19 #original 20.1micromole/L
+	Folate 1.210422e+19 #original 20.1micromole/L
+end parameters
+begin compartments
+	#volume units: L
+	blood 3 1.0
+	cytosol 3 1.0
+	mito 3 1.0 #mitochondrion
+	cell 3 1.0
+end compartments
+begin molecule types
+	b_Cysteine()
+	c_DHF()
+	c_GSH()
+	c_Methionine()
+	m_5_10_methylene_THF()
+	m_Glycine()
+	dUMP()
+	m_THF()
+	c_THF()
+	b_GSSG()
+	S_adenosylhomocysteine()
+	m_Formate()
+	AICAR()
+	H2O2()
+	Formaldehyde()
+	m_5_10_methenyl_THF()
+	b_GSH()
+	Homocysteine()
+	c_formate()
+	m_10_formyl_THF()
+	c_5_10_methylene_THF()
+	b_Glycine()
+	Dimethylglycine()
+	c_Cysteine()
+	Cystathione()
+	S_adenosylmethionine()
+	b_Ser()
+	GAR()
+	c_Glycine()
+	NADPH()
+	c_10_formyl_THF()
+	Glutamyl_Cysteine()
+	c_Glutamate()
+	Sarcosine()
+	c_5_10_methenyl_THF()
+	Betaine()
+	b_Met()
+	b_Glutamate()
+	CO2()
+	m_Serine()
+	c_5_methyl_THF()
+	c_GSSG()
+	c_Serine()
+end molecule types
+begin seed species
+	@cytosol:GAR() 6.022e+18 # (10.0 * 1e-06)mol/L * 6.022e23/mol *1.0L #GAR #GAR
+	@cytosol:NADPH() 3.011e+19 #original 50.0micromole/L #NADPH #NADPH
+	@cytosol:Betaine() 3.011e+19 #original 50.0micromole/L #Betaine #BET
+	@cytosol:dUMP() 1.2044e+19 #original 20.0micromole/L #dUMP #DUMP
+	@cytosol:H2O2() 6022000000000000.0 #original 0.01micromole/L #H2O2 #H2O2
+	@cell:Formaldehyde() 3.011e+20 #original 500.0micromole/L #Formaldehyde #HCHO
+	@cytosol:c_5_methyl_THF() 2.7078125130478085e+18 #original 4.4965335653401micromole/L #c_5_methyl_THF #c_5mf
+	@cytosol:c_5_10_methylene_THF() 3.048806833419131e+17 #original 0.506278119133034micromole/L #c_5_10_methylene_THF #c_2cf
+	@cytosol:c_5_10_methenyl_THF() 1.67774550841472e+17 #original 0.278602708139276micromole/L #c_5_10_methenyl_THF #c_1cf
+	@cytosol:c_10_formyl_THF() 2.0529423784203648e+18 #original 3.40907070478307micromole/L #c_10_formyl_THF #c_10f
+	@cytosol:c_DHF() 2.3242049762633636e+16 #original 0.0385952337473159micromole/L #c_DHF #c_dhf
+	@mito:m_5_10_methylene_THF() 1.0033309868762213e+18 #original 1.66610924423152micromole/L #m_5_10_methylene_THF #m_2cf
+	@mito:m_5_10_methenyl_THF() 9.329828797059256e+17 #original 1.54929073348709micromole/L #m_5_10_methenyl_THF #m_1cf
+	@mito:m_10_formyl_THF() 9.580278718668261e+18 #original 15.9087989350187micromole/L #m_10_formyl_THF #m_10f
+	@blood:b_Glycine() 1.3314708951319757e+20 #original 221.101111778807micromole/L #b_Glycine #b_gly
+	@blood:b_Glutamate() 3.6392805154153886e+19 #original 60.4330872702655micromole/L #b_Glutamate #b_glu
+	@blood:b_Cysteine() 1.1171037959158861e+20 #original 185.50378543937micromole/L #b_Cysteine #b_cys
+	@blood:b_GSSG() 2.916626484842944e+17 #original 0.484328542816829micromole/L #b_GSSG #b_gsg
+	@blood:b_GSH() 7.64770202328822e+18 #original 12.6996048211362micromole/L #b_GSH #b_gsh
+	@cytosol:AICAR() 5.677242873701098e+17 #original 0.942750394171554micromole/L #AICAR #aic
+	@cytosol:c_Glutamate() 1.9387214369005384e+21 #original 3219.39793573653micromole/L #c_Glutamate #c_glu
+	@cytosol:c_Cysteine() 1.1740937397701676e+20 #original 194.96740946034micromole/L #c_Cysteine #c_cys
+	@cytosol:Glutamyl_Cysteine() 5.906633354565379e+18 #original 9.80842470037426micromole/L #Glutamyl_Cysteine #glc
+	@cytosol:c_Glycine() 5.5669163773448775e+20 #original 924.429820216685micromole/L #c_Glycine #c_gly
+	@cytosol:c_GSSG() 3.691604102215092e+19 #original 61.3019611792609micromole/L #c_GSSG #c_gsg
+	@cytosol:c_GSH() 3.9688401950986983e+21 #original 6590.56824161192micromole/L #c_GSH #c_gsh
+	@cytosol:Cystathione() 2.2210693394731274e+19 #original 36.8825861752429micromole/L #Cystathione #cyt
+	@cytosol:Homocysteine() 6.759596393466838e+17 #original 1.12248362561721micromole/L #Homocysteine #hcy
+	@cytosol:c_Serine() 3.389388619921277e+20 #original 562.834377270222micromole/L #c_Serine #c_ser
+	@cytosol:S_adenosylhomocysteine() 1.1528081628407312e+19 #original 19.1432773636787micromole/L #S_adenosylhomocysteine #sah
+	@cytosol:S_adenosylmethionine() 4.887964462249795e+19 #original 81.1684566962769micromole/L #S_adenosylmethionine #sam
+	@cytosol:c_Methionine() 2.9620303955475997e+19 #original 49.18682158micromole/L #c_Methionine #met
+	@cytosol:c_formate() 7.882086586809902e+18 #original 13.0888186429922micromole/L #c_formate #c_coo
+	@mito:m_Serine() 1.2735754360966891e+21 #original 2114.87119909779micromole/L #m_Serine #m_ser
+	@mito:m_Glycine() 1.228749370051287e+21 #original 2040.43402532595micromole/L #m_Glycine #m_gly
+	@mito:m_Formate() 3.361487425662351e+19 #original 55.820116666595micromole/L #m_Formate #m_coo
+	@cell:Sarcosine() 5.517632897893393e+18 #original 9.16245914628594micromole/L #Sarcosine #src
+	@cell:Dimethylglycine() 4.259858693238783e+17 #original 0.707382712261505micromole/L #Dimethylglycine #dmg
+	@cytosol:c_THF()() (20.1) / (2 * 3 / 4) -((4.4965335653401) + (0.506278119133034) + (0.278602708139276) + (3.40907070478307) + (0.0385952337473159)) #c_thf
+	@mito:m_THF()() (20.1) / (2 * 1 / 4) -((1.66610924423152) + (1.54929073348709) + (15.9087989350187)) #m_thf
+end seed species
+begin observables
+	Species b_Met_blood @blood:b_Met() #b_Met
+	Species b_Ser_blood @blood:b_Ser() #b_Ser
+	Species GAR_cytosol @cytosol:GAR() #GAR
+	Species NADPH_cytosol @cytosol:NADPH() #NADPH
+	Species Betaine_cytosol @cytosol:Betaine() #Betaine
+	Species dUMP_cytosol @cytosol:dUMP() #dUMP
+	Species H2O2_cytosol @cytosol:H2O2() #H2O2
+	Species CO2_mito @mito:CO2() #CO2
+	Species Formaldehyde_cell @cell:Formaldehyde() #Formaldehyde
+	Species c_THF_cytosol @cytosol:c_THF() #c_THF
+	Species m_THF_mito @mito:m_THF() #m_THF
+	Species c_5_methyl_THF_cytosol @cytosol:c_5_methyl_THF() #c_5-methyl-THF
+	Species c_5_10_methylene_THF_cytosol @cytosol:c_5_10_methylene_THF() #c_5-10-methylene-THF
+	Species c_5_10_methenyl_THF_cytosol @cytosol:c_5_10_methenyl_THF() #c_5-10-methenyl-THF
+	Species c_10_formyl_THF_cytosol @cytosol:c_10_formyl_THF() #c_10-formyl-THF
+	Species c_DHF_cytosol @cytosol:c_DHF() #c_DHF
+	Species m_5_10_methylene_THF_mito @mito:m_5_10_methylene_THF() #m_5-10-methylene-THF
+	Species m_5_10_methenyl_THF_mito @mito:m_5_10_methenyl_THF() #m_5-10-methenyl-THF
+	Species m_10_formyl_THF_mito @mito:m_10_formyl_THF() #m_10-formyl-THF
+	Species b_Glycine_blood @blood:b_Glycine() #b_Glycine
+	Species b_Glutamate_blood @blood:b_Glutamate() #b_Glutamate
+	Species b_Cysteine_blood @blood:b_Cysteine() #b_Cysteine
+	Species b_GSSG_blood @blood:b_GSSG() #b_GSSG
+	Species b_GSH_blood @blood:b_GSH() #b_GSH
+	Species AICAR_cytosol @cytosol:AICAR() #AICAR
+	Species c_Glutamate_cytosol @cytosol:c_Glutamate() #c_Glutamate
+	Species c_Cysteine_cytosol @cytosol:c_Cysteine() #c_Cysteine
+	Species Glutamyl_Cysteine_cytosol @cytosol:Glutamyl_Cysteine() #Glutamyl-Cysteine
+	Species c_Glycine_cytosol @cytosol:c_Glycine() #c_Glycine
+	Species c_GSSG_cytosol @cytosol:c_GSSG() #c_GSSG
+	Species c_GSH_cytosol @cytosol:c_GSH() #c_GSH
+	Species Cystathione_cytosol @cytosol:Cystathione() #Cystathione
+	Species Homocysteine_cytosol @cytosol:Homocysteine() #Homocysteine
+	Species c_Serine_cytosol @cytosol:c_Serine() #c_Serine
+	Species S_adenosylhomocysteine_cytosol @cytosol:S_adenosylhomocysteine() #S-adenosylhomocysteine
+	Species S_adenosylmethionine_cytosol @cytosol:S_adenosylmethionine() #S-adenosylmethionine
+	Species c_Methionine_cytosol @cytosol:c_Methionine() #c_Methionine
+	Species c_formate_cytosol @cytosol:c_formate() #c_formate
+	Species m_Serine_mito @mito:m_Serine() #m_Serine
+	Species m_Glycine_mito @mito:m_Glycine() #m_Glycine
+	Species m_Formate_mito @mito:m_Formate() #m_Formate
+	Species Sarcosine_cell @cell:Sarcosine() #Sarcosine
+	Species Dimethylglycine_cell @cell:Dimethylglycine() #Dimethylglycine
+end observables
+begin functions
+	aa_input() =  if((7<=daytime&&daytime<=10),(breakfast),if((12<=daytime&&daytime<=15),(lunch),if((18<=daytime&&daytime<=21),(dinner),(fasting))))
+	V_oGlu_b() = V_oGlu_b_basal*aa_input
+	V_oGly_b() = V_oGly_b_basal*aa_input
+	V_oCys_b() = V_oCys_b_basal*aa_input
+	b_Ser_ar() = aa_input*b_ser_basal
+	b_Met_ar() = aa_input*b_met_basal
+	daytime() = -24*min(rint(time()/24 - 0.5), rint(time()/24 + 0.5)) + time()
+	tot_mfol() = m_10_formyl_THF_mito + m_5_10_methenyl_THF_mito + m_5_10_methylene_THF_mito + m_THF_mito
+	tot_cfol() = c_10_formyl_THF_cytosol + c_5_10_methenyl_THF_cytosol + c_5_10_methylene_THF_cytosol + c_5_methyl_THF_cytosol + c_DHF_cytosol + c_THF_cytosol
+	fRate11() = V_gshHb/(K_gshHb + c_GSH_cytosol)
+	fRate12() = V_gshLb*c_GSH_cytosol^h_gshLb/(K_gshLb^h_gshLb + c_GSH_cytosol^h_gshLb)
+	fRate13() = V_gsgHb/(K_gsgHb + c_GSSG_cytosol)
+	fRate14() = V_gsgLb/(K_gsgLb + c_GSSG_cytosol)
+	fRate15() = V_bcysc/(K_bcysc + b_Cysteine_blood)
+	fRate16() = V_bglutc/(K_bglutc + b_Glutamate_blood)
+	fRate17() = V_bglyc/(K_bglyc + b_Glycine_blood)
+	fRate18() = V_bserc/(K_bserc + b_Ser_blood)
+	fRate19() = V_bmetc/(K_bmetc + b_Met_blood)
+	fRate20() = Vm_mFTD/(K_10f_FTD + m_10_formyl_THF_mito)
+	fRate21() = Vf_mSHMT/(K_ser_SHMT*K_thf_SHMT + K_ser_SHMT*m_THF_mito + K_thf_SHMT*m_Serine_mito + m_Serine_mito*m_THF_mito)
+	fRate21m() = Vr_mSHMT/(K_2cf_SHMT*K_gly_SHMT + K_2cf_SHMT*m_Glycine_mito + K_gly_SHMT*m_5_10_methylene_THF_mito + m_5_10_methylene_THF_mito*m_Glycine_mito)
+	fRate22() = Vf_mFTS/(K_coo_mFTS*K_thf_mFTS + K_coo_mFTS*m_THF_mito + K_thf_mFTS*m_Formate_mito + m_Formate_mito*m_THF_mito)
+	fRate22m() = Vr_mFTS/(K_10f_mFTS + m_10_formyl_THF_mito)
+	fRate24() = Vm_GDC/(K_gly_GDC*K_thf_GDC + K_gly_GDC*m_THF_mito + K_thf_GDC*m_Glycine_mito + m_Glycine_mito*m_THF_mito)
+	fRate25() = Vm_SDH/(K_src_SDH*K_thf_SDH + K_src_SDH*m_THF_mito + K_thf_SDH*Sarcosine_cell + Sarcosine_cell*m_THF_mito)
+	fRate26() = Vm_DMGD/(Dimethylglycine_cell*K_thf_DMGD + Dimethylglycine_cell*m_THF_mito + K_dmg_DMGD*K_thf_DMGD + K_dmg_DMGD*m_THF_mito)
+	fRate27() = Vf_mMTD/(K_2cf_MTD + m_5_10_methylene_THF_mito)
+	fRate27m() = Vr_MTD/(K_1cf_MTD + m_5_10_methenyl_THF_mito)
+	fRate28() = Vf_mMTCH/(K_1cf_MTCH + m_5_10_methenyl_THF_mito)
+	fRate28m() = Vr_MTCH/(K_10f_MTCH + m_10_formyl_THF_mito)
+	fRate29() = -1.0*V_cser*c_Serine_cytosol/(K_cser + c_Serine_cytosol) + 1.0*V_mser*m_Serine_mito/(3*K_mser + 3*m_Serine_mito)
+	fRate30() = -1.0*c_formate_cytosol*k_out_coo + 0.333333333333333*k_in_coo*m_Formate_mito
+	fRate31() = -1.0*V_cgly*c_Glycine_cytosol/(K_cgly + c_Glycine_cytosol) + 1.0*V_mgly*m_Glycine_mito/(3*K_mgly + 3*m_Glycine_mito)
+	fRate32() = Homocysteine_cytosol*Vm_MS*c_5_methyl_THF_cytosol*(Ki_MS + ssH2O2)/((H2O2_cytosol + Ki_MS)*(Homocysteine_cytosol + K_hcy_MS)*(K_5mf_MS + c_5_methyl_THF_cytosol))
+	fRate33() = Vm_DHFR/(K_NADPH_DHFR*K_dhf_DHFR + K_NADPH_DHFR*c_DHF_cytosol + K_dhf_DHFR*NADPH_cytosol + NADPH_cytosol*c_DHF_cytosol)
+	fRate34() = Vm_cFTD/(K_10f_FTD + c_10_formyl_THF_cytosol)
+	fRate35() = Vm_PGT/(GAR_cytosol*K_10f_PGT + GAR_cytosol*c_10_formyl_THF_cytosol + K_10f_PGT*K_GAR_PGT + K_GAR_PGT*c_10_formyl_THF_cytosol)
+	fRate36() = Vm_cFTS/(K_coo_cFTS*K_thf_cFTS + K_coo_cFTS*c_THF_cytosol + K_thf_cFTS*c_formate_cytosol + c_THF_cytosol*c_formate_cytosol)
+	fRate37() = Vf_cSHMT/(K_ser_SHMT*K_thf_SHMT + K_ser_SHMT*c_THF_cytosol + K_thf_SHMT*c_Serine_cytosol + c_Serine_cytosol*c_THF_cytosol)
+	fRate37m() = Vr_cSHMT/(K_2cf_SHMT*K_gly_SHMT + K_2cf_SHMT*c_Glycine_cytosol + K_gly_SHMT*c_5_10_methylene_THF_cytosol + c_5_10_methylene_THF_cytosol*c_Glycine_cytosol)
+	fRate39() = Vm_TS/(K_2cf_TS*K_DUMP_TS + K_2cf_TS*dUMP_cytosol + K_DUMP_TS*c_5_10_methylene_THF_cytosol + c_5_10_methylene_THF_cytosol*dUMP_cytosol)
+	fRate40() = 72.0*Vm_MTHFR/(-K_2cf_MTHFR*K_NADPH_MTHFR*S_adenosylhomocysteine_cytosol + K_2cf_MTHFR*K_NADPH_MTHFR*S_adenosylmethionine_cytosol + 10.0*K_2cf_MTHFR*K_NADPH_MTHFR - K_2cf_MTHFR*NADPH_cytosol*S_adenosylhomocysteine_cytosol + K_2cf_MTHFR*NADPH_cytosol*S_adenosylmethionine_cytosol + 10.0*K_2cf_MTHFR*NADPH_cytosol - K_NADPH_MTHFR*S_adenosylhomocysteine_cytosol*c_5_10_methylene_THF_cytosol + K_NADPH_MTHFR*S_adenosylmethionine_cytosol*c_5_10_methylene_THF_cytosol + 10.0*K_NADPH_MTHFR*c_5_10_methylene_THF_cytosol - NADPH_cytosol*S_adenosylhomocysteine_cytosol*c_5_10_methylene_THF_cytosol + NADPH_cytosol*S_adenosylmethionine_cytosol*c_5_10_methylene_THF_cytosol + 10.0*NADPH_cytosol*c_5_10_methylene_THF_cytosol)
+	fRate41() = Vf_cMTD*c_5_10_methylene_THF_cytosol/(K_2cf_MTD + c_5_10_methylene_THF_cytosol) - Vr_cMTD*c_5_10_methenyl_THF_cytosol/(K_1cf_MTD + c_5_10_methenyl_THF_cytosol)
+	fRate42() = Vf_cMTCH/(K_1cf_MTCH + c_5_10_methenyl_THF_cytosol)
+	fRate42m() = Vr_MTCH/(K_10f_MTCH + c_10_formyl_THF_cytosol)
+	fRate43() = Vm_ART/(AICAR_cytosol*K_10f_ART + AICAR_cytosol*c_10_formyl_THF_cytosol + K_10f_ART*K_aic_ART + K_aic_ART*c_10_formyl_THF_cytosol)
+	fRate44() = Betaine_cytosol*Homocysteine_cytosol*Vm_BHMT*(Ki_BHMT + ssH2O2)*exp(0.21546)*exp(-0.0021*S_adenosylhomocysteine_cytosol - 0.0021*S_adenosylmethionine_cytosol)/((Betaine_cytosol + K_bet_BHMT)*(H2O2_cytosol + Ki_BHMT)*(Homocysteine_cytosol + K_hcy_BHMT))
+	fRate45() = Vm_MAT1*c_Methionine_cytosol*(Ki_MAT1 + 66.71)*(0.8*exp(-0.0026*S_adenosylmethionine_cytosol) + 0.23)/((Ki_MAT1 + c_GSSG_cytosol)*(Km_MAT1 + c_Methionine_cytosol))
+	fRate46() = Vm_MAT3*c_Methionine_cytosol^1.21*(Ki_MAT3 + 66.71)*(7.2*S_adenosylmethionine_cytosol^2/(Ka_MAT3^2 + S_adenosylmethionine_cytosol^2) + 1)/((Ki_MAT3 + c_GSSG_cytosol)*(Km_MAT3 + c_Methionine_cytosol^1.21))
+	fRate47() = 4.8*Ki_GNMT*Vm_GNMT/(K_gly_GNMT*K_sam_GNMT*S_adenosylhomocysteine_cytosol*c_5_methyl_THF_cytosol + 0.35*K_gly_GNMT*K_sam_GNMT*S_adenosylhomocysteine_cytosol + K_gly_GNMT*S_adenosylhomocysteine_cytosol*S_adenosylmethionine_cytosol*c_5_methyl_THF_cytosol + 0.35*K_gly_GNMT*S_adenosylhomocysteine_cytosol*S_adenosylmethionine_cytosol + K_sam_GNMT*S_adenosylhomocysteine_cytosol*c_5_methyl_THF_cytosol*c_Glycine_cytosol + 0.35*K_sam_GNMT*S_adenosylhomocysteine_cytosol*c_Glycine_cytosol + Ki_GNMT*(K_gly_GNMT*K_sam_GNMT*c_5_methyl_THF_cytosol + 0.35*K_gly_GNMT*K_sam_GNMT + K_gly_GNMT*S_adenosylmethionine_cytosol*c_5_methyl_THF_cytosol + 0.35*K_gly_GNMT*S_adenosylmethionine_cytosol + K_sam_GNMT*c_5_methyl_THF_cytosol*c_Glycine_cytosol + 0.35*K_sam_GNMT*c_Glycine_cytosol + S_adenosylmethionine_cytosol*c_5_methyl_THF_cytosol*c_Glycine_cytosol + 0.35*S_adenosylmethionine_cytosol*c_Glycine_cytosol) + S_adenosylhomocysteine_cytosol*S_adenosylmethionine_cytosol*c_5_methyl_THF_cytosol*c_Glycine_cytosol + 0.35*S_adenosylhomocysteine_cytosol*S_adenosylmethionine_cytosol*c_Glycine_cytosol)
+	fRate48() = Ki_DNMT*Vm_DNMT/(Ki_DNMT*(Km_DNMT + S_adenosylmethionine_cytosol) + Km_DNMT*S_adenosylhomocysteine_cytosol)
+	fRate49() = Vf_SAHH/(K_sah_SAHH + S_adenosylhomocysteine_cytosol)
+	fRate49m() = Vr_SAHH/(Homocysteine_cytosol + K_hcy_SAHH)
+	fRate51() = 1.08551306045248*Homocysteine_cytosol*Vm_CBS*c_Serine_cytosol*(H2O2_cytosol + Ka_CBS)/((1 + 900/(S_adenosylhomocysteine_cytosol + S_adenosylmethionine_cytosol)^2)*(Homocysteine_cytosol + K_hcy_CBS)*(K_ser_CBS + c_Serine_cytosol)*(Ka_CBS + ssH2O2))
+	fRate52() = Vm_CTGL/(Cystathione_cytosol + K_cyt_CTGL)
+	fRate53() = Vm_GCS*(H2O2_cytosol + Ka_GCS)*(-Glutamyl_Cysteine_cytosol/Ke_GCS + c_Cysteine_cytosol*c_Glutamate_cytosol)/((Ka_GCS + ssH2O2)*(Glutamyl_Cysteine_cytosol/Kp_GCS + K_cys_GCS*K_glu_GCS + K_cys_GCS*c_Glutamate_cytosol + c_Cysteine_cytosol*(K_glu_GCS*(1 + c_GSH_cytosol/Ki_GCS) + c_Glutamate_cytosol) + c_GSH_cytosol/Ki_GCS))
+	fRate54() = 0.00175*c_Cysteine_cytosol
+	fRate56() = Kp_GS*Vm_GS/(Kp_GS*(Glutamyl_Cysteine_cytosol*K_gly_GS + Glutamyl_Cysteine_cytosol*c_Glycine_cytosol + K_glc_GS*K_gly_GS + K_glc_GS*c_Glycine_cytosol) + c_GSH_cytosol)
+	fRate56m() = Kp_GS*Vm_GS/(Ke_GS*(Kp_GS*(Glutamyl_Cysteine_cytosol*K_gly_GS + Glutamyl_Cysteine_cytosol*c_Glycine_cytosol + K_glc_GS*K_gly_GS + K_glc_GS*c_Glycine_cytosol) + c_GSH_cytosol))
+	fRate57() = Vm_GPX/(H2O2_cytosol*K_gsh_GPX^2 + 2.0*H2O2_cytosol*K_gsh_GPX*c_GSH_cytosol + H2O2_cytosol*c_GSH_cytosol^2 + K_H2O2_GPX*K_gsh_GPX^2 + 2.0*K_H2O2_GPX*K_gsh_GPX*c_GSH_cytosol + K_H2O2_GPX*c_GSH_cytosol^2)
+	fRate58() = Vm_GR/(K_NADPH_GR*K_gsg_GR + K_NADPH_GR*c_GSSG_cytosol + K_gsg_GR*NADPH_cytosol + NADPH_cytosol*c_GSSG_cytosol)
+end functions
+begin reaction rules
+	b_gsh_decomp: b_GSH()@blood -> b_Cysteine()@blood + b_Glycine()@blood + b_Glutamate()@blood 90.0000000000000
+	b_gsg_decomp: b_GSSG()@blood -> b_Cysteine()@blood + b_Cysteine()@blood + b_Glycine()@blood + b_Glycine()@blood + b_Glutamate()@blood + b_Glutamate()@blood 67.5000000000000
+	b_cys_cystine_conv: b_Cysteine()@blood -> 0  0.250000000000000
+	b_cys_loss: b_Cysteine()@blood -> 0  0.100000000000000
+	b_glu_loss: b_Glutamate()@blood -> 0  0.100000000000000
+	b_gly_loss: b_Glycine()@blood -> 0  0.100000000000000
+	b_gsh_loss: b_GSH()@blood -> 0  0.700000000000000
+	b_gsg_loss: b_GSSG()@blood -> 0  7.50000000000000
+	b_cys_import: 0  -> b_Cysteine()@blood V_oCys_b
+	b_gly_import: 0  -> b_Glycine()@blood V_oGly_b
+	b_glu_import: 0  -> b_Glutamate()@blood V_oGlu_b
+	V_c_gshHb: c_GSH()@cytosol -> b_GSH()@blood fRate11()
+	V_c_gshLb_reactants_0: 0  -> c_GSH()@cytosol -1*(fRate12())
+	V_c_gshLb_products_0: 0  -> b_GSH()@blood fRate12()
+	V_c_gsgHb: c_GSSG()@cytosol -> b_GSSG()@blood fRate13()
+	V_c_gsgLb: c_GSSG()@cytosol -> b_GSSG()@blood fRate14()
+	V_b_CYS_c: b_Cysteine()@blood -> c_Cysteine()@cytosol fRate15()
+	V_b_GLU_c: b_Glutamate()@blood <-> c_Glutamate()@cytosol fRate16(),k_out_glu
+	V_b_GLY_c: b_Glycine()@blood <-> c_Glycine()@cytosol fRate17(),k_out_gly
+	V_b_SER_c: b_Ser()@blood <-> c_Serine()@cytosol fRate18(),k_out_ser
+	V_b_MET_c: b_Met()@blood <-> c_Methionine()@cytosol fRate19(),k_out_met
+	VmFTD: m_10_formyl_THF()@mito -> m_THF()@mito fRate20()
+	VmSHMT: m_THF()@mito + m_Serine()@mito <-> m_Glycine()@mito + m_5_10_methylene_THF()@mito fRate21(),fRate21m()
+	VmFTS: m_THF()@mito + m_Formate()@mito <-> m_10_formyl_THF()@mito fRate22(),fRate22m()
+	VmNE: m_THF()@mito + Formaldehyde()@cell <-> m_5_10_methylene_THF()@mito k1_mNE,k2_mNE
+	V_GDC: m_THF()@mito + m_Glycine()@mito -> m_5_10_methylene_THF()@mito + CO2()@mito fRate24()
+	V_SDH: m_THF()@mito + Sarcosine()@cell -> m_5_10_methylene_THF()@mito + m_Glycine()@mito fRate25()
+	V_DMGD: m_THF()@mito + Dimethylglycine()@cell -> m_5_10_methylene_THF()@mito + Sarcosine()@cell fRate26()
+	VmMTD: m_5_10_methylene_THF()@mito <-> m_5_10_methenyl_THF()@mito fRate27(),fRate27m()
+	VmMTCH: m_5_10_methenyl_THF()@mito <-> m_10_formyl_THF()@mito fRate28(),fRate28m()
+	VmSERc_reactants_0: 0  -> m_Serine()@mito -1*3.0*(fRate29())
+	VmSERc_products_0: 0  -> c_Serine()@cytosol fRate29()
+	VmHCOOHc_reactants_0: 0  -> m_Formate()@mito -1*3.0*(fRate30())
+	VmHCOOHc_products_0: 0  -> c_formate()@cytosol fRate30()
+	VmGLYc_reactants_0: 0  -> m_Glycine()@mito -1*3.0*(fRate31())
+	VmGLYc_products_0: 0  -> c_Glycine()@cytosol fRate31()
+	V_MS_reactants_0: 0  -> c_5_methyl_THF()@cytosol -1*(fRate32()) #Modifiers(H2O2)
+	V_MS_reactants_1: 0  -> Homocysteine()@cytosol -1*(fRate32()) #Modifiers(H2O2)
+	V_MS_products_0: 0  -> c_THF()@cytosol fRate32() #Modifiers(H2O2)
+	V_MS_products_1: 0  -> c_Methionine()@cytosol fRate32() #Modifiers(H2O2)
+	V_DHFR: c_DHF()@cytosol + NADPH()@cytosol -> c_THF()@cytosol fRate33()
+	VcFTD: c_10_formyl_THF()@cytosol -> c_THF()@cytosol fRate34()
+	V_PGT: c_10_formyl_THF()@cytosol + GAR()@cytosol -> AICAR()@cytosol + c_THF()@cytosol fRate35()
+	VcFTS: c_THF()@cytosol + c_formate()@cytosol -> c_10_formyl_THF()@cytosol fRate36()
+	VcSHMT: c_Serine()@cytosol + c_THF()@cytosol <-> c_Glycine()@cytosol + c_5_10_methylene_THF()@cytosol fRate37(),fRate37m()
+	VcNE: c_THF()@cytosol + Formaldehyde()@cell <-> c_5_10_methylene_THF()@cytosol k1_cNE,k2_cNE
+	V_TS: dUMP()@cytosol + c_5_10_methylene_THF()@cytosol -> c_DHF()@cytosol fRate39()
+	V_MTHFR: c_5_10_methylene_THF()@cytosol + NADPH()@cytosol -> c_5_methyl_THF()@cytosol fRate40() #Modifiers(sah, sam)
+	VcMTD_reactants_0: 0  -> c_5_10_methylene_THF()@cytosol -1*(fRate41())
+	VcMTD_products_0: 0  -> c_5_10_methenyl_THF()@cytosol fRate41()
+	VcMTD_products_1: 0  -> NADPH()@cytosol fRate41()
+	VcMTCH: c_5_10_methenyl_THF()@cytosol <-> c_10_formyl_THF()@cytosol fRate42(),fRate42m()
+	V_ART: c_10_formyl_THF()@cytosol + AICAR()@cytosol -> c_THF()@cytosol fRate43()
+	V_BHMT_reactants_0: 0  -> Homocysteine()@cytosol -1*(fRate44()) #Modifiers(H2O2, sah, sam)
+	V_BHMT_reactants_1: 0  -> Betaine()@cytosol -1*(fRate44()) #Modifiers(H2O2, sah, sam)
+	V_BHMT_products_0: 0  -> c_Methionine()@cytosol fRate44() #Modifiers(H2O2, sah, sam)
+	V_BHMT_products_1: 0  -> Dimethylglycine()@cell fRate44() #Modifiers(H2O2, sah, sam)
+	V_MATI_reactants_0: 0  -> c_Methionine()@cytosol -1*(fRate45()) #Modifiers(c_gsg)
+	V_MATI_products_0: 0  -> S_adenosylmethionine()@cytosol fRate45() #Modifiers(c_gsg)
+	V_MATIII_reactants_0: 0  -> c_Methionine()@cytosol -1*(fRate46()) #Modifiers(c_gsg)
+	V_MATIII_products_0: 0  -> S_adenosylmethionine()@cytosol fRate46() #Modifiers(c_gsg)
+	V_GNMT: S_adenosylmethionine()@cytosol + c_Glycine()@cytosol -> S_adenosylhomocysteine()@cytosol + Sarcosine()@cell fRate47() #Modifiers(c_5mf)
+	V_DNMT: S_adenosylmethionine()@cytosol -> S_adenosylhomocysteine()@cytosol fRate48()
+	V_SAHH: S_adenosylhomocysteine()@cytosol <-> Homocysteine()@cytosol fRate49(),fRate49m()
+	gluconeogenesis_ser: c_Serine()@cytosol -> 0  1.20000000000000
+	V_CBS_reactants_0: 0  -> Homocysteine()@cytosol -1*(fRate51()) #Modifiers(H2O2, sah, sam)
+	V_CBS_reactants_1: 0  -> c_Serine()@cytosol -1*(fRate51()) #Modifiers(H2O2, sah, sam)
+	V_CBS_products_0: 0  -> Cystathione()@cytosol fRate51() #Modifiers(H2O2, sah, sam)
+	V_CTGL: Cystathione()@cytosol -> c_Cysteine()@cytosol fRate52()
+	V_GCS_reactants_0: 0  -> c_Cysteine()@cytosol -1*(fRate53()) #Modifiers(H2O2, c_gsh)
+	V_GCS_reactants_1: 0  -> c_Glutamate()@cytosol -1*(fRate53()) #Modifiers(H2O2, c_gsh)
+	V_GCS_products_0: 0  -> Glutamyl_Cysteine()@cytosol fRate53() #Modifiers(H2O2, c_gsh)
+	cys_usage: c_Cysteine()@cytosol -> 0  fRate54()
+	c_glu_usage: c_Glutamate()@cytosol -> 0  0.0700000000000000
+	V_GS: Glutamyl_Cysteine()@cytosol + c_Glycine()@cytosol <-> c_GSH()@cytosol fRate56(),fRate56m()
+	V_GPX: c_GSH()@cytosol + c_GSH()@cytosol + H2O2()@cytosol -> c_GSSG()@cytosol fRate57()
+	V_GR: c_GSSG()@cytosol + NADPH()@cytosol -> c_GSH()@cytosol + c_GSH()@cytosol fRate58()
+	c_gsh_degr: c_GSH()@cytosol -> 0  0.00200000000000000
+	c_gsg_degr: c_GSSG()@cytosol -> 0  0.100000000000000
+end reaction rules
+end model

@@ -1,0 +1,114 @@
+###
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/go/GO:0007049', 'http://identifiers.org/taxonomy/40674', 'http://identifiers.org/reactome/R-HSA-69206', 'http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/biomodels.db/BIOMD0000000318']
+#@BQB_HAS_PART:['http://identifiers.org/go/GO:0007049']
+#@BQB_IS_PART_OF:['http://identifiers.org/reactome/R-HSA-69206']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/40674']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/biomodels.db/BIOMD0000000318', 'http://identifiers.org/doi/10.1371/journal.pone.0043908', 'http://identifiers.org/pubmed/23028477']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1811080001', 'http://identifiers.org/biomodels.db/BIOMD0000000720']
+#@creatorEmail:'ashleythomasxavier@gmail.com'
+#@creatorName:'Xavier Ashley'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 9 molecules and 25 reactions. The translated model has 8 molecules and 25 rules'
+###
+begin model
+begin parameters
+	ksE1 0.4
+	JM 0.15
+	JE 0.15
+	ksE2 0.003
+	kP1 18.0
+	JCD 0.92
+	kP2 18.0
+	JCE 0.92
+	kdE 0.25
+	kRE 180.0
+	ksmiR 1.4
+	kdmiR 0.02
+	ksM 1.0
+	JS 0.5
+	kdM1 0.7
+	kdM2 0.6
+	ksCD1 0.45
+	ksCD2 0.03
+	kdCD1 1.5
+	kdCD2 1.0
+	ksCE 0.35
+	kdCE1 1.5
+	kdCE2 0.7
+	ksR 0.18
+	kP 3.6
+	JP 0.01
+	kdR 0.06
+	kdP 0.06
+	kdRE 0.03
+	S 1.8066e+21 #original 3.0substance/volume
+end parameters
+begin molecule types
+	E2F()
+	CycE()
+	RB()
+	PRB()
+	CycD()
+	Myc()
+	miR449()
+	RE()
+end molecule types
+begin seed species
+	E2F() 7.2264e+20 # (1.2 * 0.001)mol/L * 6.022e23/mol *1.0L #E2F #E2F
+	RB() 3.3121000000000007e+20 #original 0.55substance/volume  #RB #RB
+end seed species
+begin observables
+	Species E2F E2F() #E2F
+	Species Myc Myc() #Myc
+	Species CycD CycD() #CycD
+	Species RE RE() #RE
+	Species CycE CycE() #CycE
+	Species RB RB() #RB
+	Species miR449 miR449() #miR449
+	Species PRB PRB() #PRB
+end observables
+begin functions
+	fRate0() = E2F*Myc*ksE1/(E2F*JM + E2F*Myc + JE*JM + JE*Myc)
+	fRate1() = Myc*ksE2/(JM + Myc)
+	fRate2() = CycD*kP1/(JCD + RE)
+	fRate3() = CycE*kP2/(JCE + RE)
+	fRate6() = E2F*ksmiR/(E2F + JE)
+	fRate8() = kdM2/(JM + Myc)
+	fRate9() = kdCD2/(CycD + JCD)
+	fRate10() = kdCE2/(CycE + JCE)
+	fRate11() = S*ksM/(JS + S)
+	fRate13() = S*ksCD1/(JS + S)
+	fRate14() = Myc*ksCD2/(JM + Myc)
+	fRate16() = E2F*ksCE/(E2F + JE)
+	fRate19() = kP/(JP + PRB)
+	fRate21() = CycD*kP1/(JCD + RB)
+	fRate22() = CycE*kP2/(JCE + RB)
+end functions
+begin reaction rules
+	reaction: 0  -> E2F() fRate0() #Modifiers(Myc)
+	reaction_1: 0  -> E2F() fRate1() #Modifiers(Myc)
+	reaction_2: RE() -> E2F() + PRB() fRate2() #Modifiers(CycD)
+	reaction_3: RE() -> E2F() + PRB() fRate3() #Modifiers(CycE)
+	reaction_4: E2F() -> 0  kdE
+	reaction_5: E2F() + RB() -> RE() kRE
+	reaction_6: 0  -> miR449() fRate6() #Modifiers(E2F)
+	reaction_7: miR449() -> 0  kdmiR
+	reaction_8: miR449() + Myc() -> 0  fRate8() #Modifiers(miR449)
+	reaction_9: miR449() + CycD() -> 0  fRate9() #Modifiers(miR449)
+	reaction_10: miR449() + CycE() -> 0  fRate10() #Modifiers(miR449)
+	reaction_11: 0  -> Myc() fRate11() #Modifiers(S)
+	reaction_12: Myc() -> 0  kdM1
+	reaction_13: 0  -> CycD() fRate13() #Modifiers(S)
+	reaction_14: 0  -> CycD() fRate14() #Modifiers(Myc)
+	reaction_15: CycD() -> 0  kdCD1 #Modifiers(S)
+	reaction_16: 0  -> CycE() fRate16() #Modifiers(E2F)
+	reaction_17: CycE() -> 0  kdCE1
+	reaction_18: 0  -> RB() ksR
+	reaction_19: PRB() -> RB() fRate19() #Modifiers(PRB)
+	reaction_20: RB() -> 0  kdR
+	reaction_21: RB() -> PRB() fRate21() #Modifiers(CycD)
+	reaction_22: RB() -> PRB() fRate22() #Modifiers(CycE)
+	reaction_23: PRB() -> 0  kdP
+	reaction_24: RE() -> 0  kdRE
+end reaction rules
+end model

@@ -1,0 +1,52 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000155', 'http://identifiers.org/biomodels.db/MODEL0076407823']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/16773083']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/BIOMD0000000154', 'http://identifiers.org/biomodels.db/BIOMD0000000157', 'http://identifiers.org/biomodels.db/BIOMD0000000156', 'http://identifiers.org/biomodels.db/BIOMD0000000158', 'http://identifiers.org/biomodels.db/BIOMD0000000159']
+#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000093']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_IS_PART_OF:['http://identifiers.org/go/GO:0030330', 'http://identifiers.org/kegg.pathway/hsa04115']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@creatorEmail:'hdharuri@cds.caltech.edu'
+#@creatorName:'Dharuri Harish'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 2 molecules and 4 reactions. The translated model has 3 molecules and 5 rules'
+###
+begin model
+begin parameters
+	beta_x 0.9
+	psi 1.0
+	alpha_xy 1.4
+	beta_y 1.0
+	alpha_y 0.7
+	tau 0.9
+	beta_S 0.9
+	alpha_S 2.7
+	n 4.0
+end parameters
+begin molecule types
+	Mdm2()
+	p53()
+	S
+end molecule types
+begin seed species
+	Mdm2() 5.4198e+23 # 0.9mol/L * 6.022e23/mol *1.0L #Mdm2 #y
+	S 0
+end seed species
+begin observables
+	Species p53 p53() #p53
+	Species Mdm2 Mdm2() #Mdm2
+	Species S S
+end observables
+begin functions
+	arRateS() = -Mdm2*S*alpha_S + beta_S
+	fRate0() = S^n*beta_x*psi/(S^n + 1.0)
+	fRate1() = Mdm2*alpha_xy
+	fRate2() = beta_y*psi*delay(p53, tau)
+end functions
+begin reaction rules
+	R1: 0  -> p53() fRate0()
+	R3: p53() -> 0  fRate1() #Modifiers(y)
+	R4: 0  -> Mdm2() fRate2() #Modifiers(x)
+	R5: Mdm2() -> 0  alpha_y
+	0  -> S() arRateS #rateLaw
+end reaction rules
+end model

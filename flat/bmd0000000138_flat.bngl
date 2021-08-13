@@ -1,0 +1,81 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000138', 'http://identifiers.org/biomodels.db/MODEL6090663405']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/17058022']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/7711']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:1902211', 'http://identifiers.org/go/GO:0014046', 'http://identifiers.org/go/GO:0005267']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@creatorEmail:'enuo@caltech.edu'
+#@creatorName:'He Enuo'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 1 molecules and 1 reactions. The translated model has 4 molecules and 4 rules'
+###
+begin model
+begin parameters
+	vca 50.0
+	vk -75.0
+	Cm 10.0
+	gk 4.0
+	gcal 2.0
+	gsk 1.7
+	vn -5.0
+	va -20.0
+	vm -20.0
+	vh -60.0
+	vf -20.0
+	sn 10.0
+	sa 10.0
+	sm 12.0
+	sh 5.0
+	sf 5.6
+	taun 30.0
+	tauh 20.0
+	lambda 0.7
+	kc 0.16
+	ks 0.5
+	ff 0.01
+	alpha 0.0015
+	ga 0
+	gf 0
+end parameters
+begin molecule types
+	calciumconcentration()
+	V
+	n
+	h
+end molecule types
+begin seed species
+	calciumconcentration() 1.8066e+23 # 0.3mol/L * 6.022e23/mol *1.0L #calciumconcentration #c
+	V -60.0
+	n 0.1
+	h 0.1
+end seed species
+begin observables
+	Species calciumconcentration calciumconcentration() #calcium concentration
+	Species V V
+	Species n n
+	Species h h
+end observables
+begin functions
+	phia() = 1/(exp((-V + va)/sa) + 1)
+	ia() = ga*h*phia*(V - vk)
+	phif() = 1/(exp((-V + vf)/sf) + 1)
+	ibk() = gf*phif*(V - vk)
+	cinf() = calciumconcentration^2/(calciumconcentration^2 + ks^2)
+	isk() = cinf*gsk*(V - vk)
+	ikdr() = gk*n*(V - vk)
+	ik() = ia + ibk + ikdr + isk
+	phical() = 1/(exp((-V + vm)/sm) + 1)
+	ica() = gcal*phical*(V - vca)
+	arRateV() = (-ica - ik)/Cm
+	phih() = 1/(exp((V - vh)/sh) + 1)
+	arRateh() = (-h + phih)/tauh
+	arRaten() =  lambda*(-n + phik)/taun
+	phik() = 1/(exp((-V + vn)/sn) + 1)
+	fRate0() = -ff*(alpha*ica + calciumconcentration*kc)
+end functions
+begin reaction rules
+	reaction_0000004: 0  -> calciumconcentration() fRate0()
+	0  -> V() arRateV #rateLaw
+	0  -> n() arRaten #rateLaw
+	0  -> h() arRateh #rateLaw
+end reaction rules
+end model

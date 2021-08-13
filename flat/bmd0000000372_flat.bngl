@@ -1,0 +1,85 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1006230109', 'http://identifiers.org/biomodels.db/BIOMD0000000372']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/11082306']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/BIOMD0000000382']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0061178']
+#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000783']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:9351']
+#@creatorEmail:'ajmera@ebi.ac.uk'
+#@creatorName:'Ajmera Ishan'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 6 molecules and 0 reactions. The translated model has 6 molecules and 6 rules'
+###
+begin model
+begin parameters
+	Vp 3.0
+	Vi 11.0
+	Vg 10.0
+	E 0.2
+	tp 6.0
+	td 36.0
+	Rm 210.0
+	C1 2000.0
+	a1 300.0
+	ti 100.0
+	Gin 216.0
+	C2 144.0
+	C3 1000.0
+	C4 80.0
+	C5 26.0
+	U0 40.0
+	Um 940.0
+	Ub 72.0
+	beta 1.77
+	Rg 180.0
+	alpha 0.29
+end parameters
+begin molecule types
+	x2()
+	x3()
+	Ip()
+	Ii()
+	G()
+	x1()
+end molecule types
+begin seed species
+	x1() 110.420253 #x1 #x1
+	x2() 112.7601171 #x2 #x2
+	x3() 104.5878705 #x3 #x3
+	G() 12342.61665 #G #G
+	Ii() 243.2865183 #Ii #Ii
+	Ip() 93.36441699 #Ip #Ip
+end seed species
+begin observables
+	Species x1 x1() #x1
+	Species x2 x2() #x2
+	Species x3 x3() #x3
+	Species G G() #G
+	Species Ii Ii() #Ii
+	Species Ip Ip() #Ip
+end observables
+begin functions
+	f4_Ii() = U0 + (-U0 + Um)/(exp(-beta*ln(Ii*(1/Vi + 1/(E*ti))/C4)) + 1)
+	f2_G() = Ub*(1 - exp(-G/(C2*Vg)))
+	f3_G() = G/(C3*Vg)
+	f5_x3() = Rg/(exp(alpha*(-C5 + x3/Vp)) + 1)
+	arRateG() = Gin - f2_G - f3_G*f4_Ii + f5_x3
+	f1_G() = Rm/(exp((C1 - G/Vg)/a1) + 1)
+	arRateIp() = -E*(-Ii/Vi + Ip/Vp) - Ip/tp + f1_G
+	arRatex2() = (3*x1 - 3*x2)/td
+	arRatex1() = (3*Ip - 3*x1)/td
+	arRatex3() = (3*x2 - 3*x3)/td
+	arRateIi() = E*(-Ii/Vi + Ip/Vp) - Ii/ti
+	G_conc() = G/(10*Vg)
+	Ii_conc() = Ii/Vi
+	Ip_conc() = Ip/Vp
+end functions
+begin reaction rules
+	0  -> Ip() arRateIp #rateLaw
+	0  -> Ii() arRateIi #rateLaw
+	0  -> G() arRateG #rateLaw
+	0  -> x3() arRatex3 #rateLaw
+	0  -> x1() arRatex1 #rateLaw
+	0  -> x2() arRatex2 #rateLaw
+end reaction rules
+end model

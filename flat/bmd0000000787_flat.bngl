@@ -1,0 +1,41 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/24759513']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/go/GO:0002347', 'http://identifiers.org/go/GO:0001913', 'http://identifiers.org/go/GO:0002419', 'http://identifiers.org/mamo/MAMO_0000046']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1908120001', 'http://identifiers.org/biomodels.db/BIOMD0000000787']
+#@creatorEmail:'johannes.p.meyer@gmail.com'
+#@creatorName:'Meyer Johannes'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 2 molecules and 4 reactions. The translated model has 2 molecules and 4 rules'
+###
+begin model
+begin parameters
+	r_t 0.1
+	k 0.2
+	d_c 0.2
+	r_c 0.001
+end parameters
+begin molecule types
+	V_Tumor_Volume()
+	C_Cytotoxic_T_Lymphocytes_Coverage()
+end molecule types
+begin seed species
+	V_Tumor_Volume() 6.022e+23 # 1.0mol/L * 6.022e23/mol *1.0L #V_Tumor_Volume #V_Tumor_Volume
+	C_Cytotoxic_T_Lymphocytes_Coverage() 6.022000000000001e+22 #original 0.1substance/volume #C_Cytotoxic_T_Lymphocytes_Coverage #C_Cytotoxic_T_Lymphocytes_Coverage
+end seed species
+begin observables
+	Species V_Tumor_Volume V_Tumor_Volume() #V_Tumor_Volume
+	Species C_Cytotoxic_T_Lymphocytes_Coverage C_Cytotoxic_T_Lymphocytes_Coverage() #C_Cytotoxic_T_Lymphocytes_Coverage
+end observables
+begin functions
+	rho() = 1.46459188754757*6^(2/3)
+	min_C() =  if((C_Cytotoxic_T_Lymphocytes_Coverage>=1),(1),(C_Cytotoxic_T_Lymphocytes_Coverage))
+	fRate0() = V_Tumor_Volume^0.666666666666667*r_t*rho
+	fRate1() = V_Tumor_Volume^(2/3)*k*min_C*rho
+	fRate2() = C_Cytotoxic_T_Lymphocytes_Coverage*V_Tumor_Volume^0.666666666666667*r_c*rho
+end functions
+begin reaction rules
+	Tumor_Growth: 0  -> V_Tumor_Volume() fRate0()
+	Tumor_Killing_CTL_reactants_0: 0  -> V_Tumor_Volume() -1*(fRate1()) #Modifiers(C_Cytotoxic_T_Lymphocytes_Coverage)
+	CTL_Recruitment: 0  -> C_Cytotoxic_T_Lymphocytes_Coverage() fRate2() #Modifiers(V_Tumor_Volume)
+	CTL_Death: C_Cytotoxic_T_Lymphocytes_Coverage() -> 0  d_c
+end reaction rules
+end model

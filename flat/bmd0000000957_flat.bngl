@@ -1,0 +1,41 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/32289100']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/doid/DOID:0080600']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606', 'http://identifiers.org/taxonomy/2697049']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000028']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL2008110001', 'http://identifiers.org/biomodels.db/BIOMD0000000957']
+#@creatorEmail:'kramachandran@ebi.ac.uk'
+#@creatorName:'Ramachandran Kausthubh'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 4 molecules and 3 reactions. The translated model has 4 molecules and 3 rules'
+###
+begin model
+begin parameters
+	beta 2.09e-07
+	rho 0.909
+	mu 0.1
+end parameters
+begin molecule types
+	Recovered()
+	Susceptible()
+	Infected()
+	Confirmed()
+end molecule types
+begin seed species
+	Susceptible() 3.613052461e+30 # 5999755.0mol/L * 6.022e23/mol *1.0L #Susceptible #Susceptible
+	Infected() 3.6132000000000002e+25 #original 60.0substance/volume  #Infected #Infected
+end seed species
+begin observables
+	Species Susceptible Susceptible() #Susceptible
+	Species Infected Infected() #Infected
+	Species Recovered Recovered() #Recovered
+	Species Confirmed Confirmed() #Confirmed
+end observables
+begin functions
+	fRate0() = Infected*beta
+end functions
+begin reaction rules
+	Susceptible_to_Infected: Susceptible() -> Infected() fRate0()
+	Infected_to_Recovered: Infected() -> Recovered() mu
+	Infected_to_Confirmed: Infected() -> Confirmed() rho
+end reaction rules
+end model

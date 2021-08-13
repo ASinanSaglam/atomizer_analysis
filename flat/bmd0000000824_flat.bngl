@@ -1,0 +1,39 @@
+###
+#@BQB_HAS_PROPERTY:['http://identifiers.org/ncit/C16269', 'http://identifiers.org/ncit/C129906', 'http://identifiers.org/ncit/C28159', 'http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/49990']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/31201663']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000824', 'http://identifiers.org/biomodels.db/MODEL1909260001']
+#@creatorEmail:'muffet0307@gmail.com'
+#@creatorName:'Ng Szeyi'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 2 molecules and 3 reactions. The translated model has 1 molecules and 3 rules'
+###
+begin model
+begin parameters
+	p 0.17
+	gamma_0 18000000000.0
+	a 0.044
+	myu_0 0.18
+	myu_1 0.04
+	K 10000000000.0
+	myu 0.22 # (0.18 * 0.001)mol/L * 6.022e23/mol *1.0L
+end parameters
+begin molecule types
+	NaiveT_cellsN()
+end molecule types
+begin seed species
+	NaiveT_cellsN() 6.022e+20 #original 1.0substance/volume #NaiveT_cellsN #N
+end seed species
+begin observables
+	Species NaiveT_cellsN NaiveT_cellsN() #Naive T-cells N
+end observables
+begin functions
+	gamma() = gamma_0*exp(-a*time())
+	myu_ar() = NaiveT_cellsN^2*myu_1/(K^2 + NaiveT_cellsN^2) + myu_0
+	fRate1() = NaiveT_cellsN*p
+end functions
+begin reaction rules
+	export_of_mature_naive_T_cells: 0  -> NaiveT_cellsN() gamma
+	peripheral_prolieferation: 0  -> NaiveT_cellsN() fRate1()
+	cell_removal_due_to_death_or_phenotypic_changes: NaiveT_cellsN() -> 0  myu_ar #Modifiers(myu)
+end reaction rules
+end model

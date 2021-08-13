@@ -1,0 +1,188 @@
+###
+#@BQB_IS:['http://identifiers.org/go/GO:0055072']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10090']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1903040001', 'http://identifiers.org/biomodels.db/BIOMD0000000734']
+#@creatorEmail:'hdshevchuk@WPI.EDU'
+#@creatorName:'Hope Shevchuck'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 23 molecules and 47 reactions. The translated model has 23 molecules and 47 rules'
+###
+begin model
+begin parameters
+	Injected 3073000000000000.0
+	kNTBI_Fe1Tf 1084322005.0
+	kInDuo 0.0689984226081531
+	kInLiver 2.97790545667672
+	kInRBC 1.08447580176706
+	kInRest 6.16356235352873
+	Km 0.0159421218669513
+	Ki 1e-09
+	kFe1Tf_Fe2Tf 1084322005.0
+	VDuoNTBI 0.200241893786814
+	VLiverNTBI 0.0261147638001175
+	VSpleenNTBI 1.342204923
+	VRestNTBI 0.0109451335200198
+	kDuoLoss 0.0270113302698216
+	vRBCSpleen 0.0235286
+	kRestLoss 0.023533240736163
+	kInBM 15.7690636138556
+	kBMSpleen 0.061902954378781
+	vDiet 0.00377422331938439
+	quantity_to_number_factor 6.02214179e+23
+	Avogadro 6.02214179e+23
+	r19_v 0.000000
+	r20_k1 0.756160
+end parameters
+begin compartments
+	#volume units: volume
+	Duodenum 3 3.84615e-05
+	RBC 3 0.00079
+	Spleen 3 6.73077e-05
+	Liver 3 0.001161905
+	Plasma 3 0.0013
+	RestOfBody 3 0.019694766
+	BoneMarrow 3 0.000214286
+end compartments
+begin molecule types
+	FeRest()
+	FeSpleen()
+	FeDuo()
+	FeLiverm()
+	FeBMm()
+	FeSpleenm()
+	NTBI()
+	Hepcidin()
+	Fe1Tf()
+	Fe2Tf()
+	Fe2Tfm()
+	NTBIm()
+	FeOutside()
+	Tf()
+	FeRBCm()
+	FeDuom()
+	FeRBC()
+	Fe1Tfm()
+	FeBM()
+	FeLiver()
+	FeOutsidem()
+	FeRestm()
+	Fe2Tfmm()
+end molecule types
+begin seed species
+	@Duodenum:FeDuo() 2.723575756226993e+17 # 0.0117590568706314mol/L * 6.022e23/mol *3.84615e-05L #FeDuo #FeDuo_0
+	@RBC:FeRBC() 1.8068523891356877e+19 #original 0.0379799887571665substance/volume #FeRBC #FeRBC_0
+	@Spleen:FeSpleen() 1.5979610041315245e+17 #original 0.00394239990123767substance/volume #FeSpleen #FeSpleen_0
+	@Liver:FeLiver() 1.3994752174531912e+18 #original 0.00200010981212238substance/volume #FeLiver #FeLiver_0
+	@Plasma:Tf() 1.238628024791008e+16 #original 1.5821833083706e-05substance/volume #Tf #Tf
+	@Plasma:Hepcidin() 18007146609183.246 #original 2.30017456622937e-08substance/volume #Hepcidin #Hepcidin
+	@Plasma:Fe2Tf() 1.0588040331322258e+16 #original 1.35248196757048e-05substance/volume #Fe2Tf #Fe2Tf_0
+	@Plasma:Fe1Tf() 7322361420767623.0 #original 9.35334724058915e-06substance/volume #Fe1Tf #Fe1Tf_0
+	@Plasma:NTBI() 26078014224754.375 #original 3.3311210465159e-08substance/volume #NTBI #NTBI_0
+	@RestOfBody:FeRest() 3.4019959948771354e+18 #original 0.000286841656341217substance/volume #FeRest #FeRest_0
+	@BoneMarrow:FeBM() 3.920115788083701e+17 #original 0.00303783614844319substance/volume #FeBM #FeBM
+end seed species
+begin observables
+	Species FeDuom_Duodenum @Duodenum:FeDuom() #FeDuo*
+	Species FeDuo_Duodenum @Duodenum:FeDuo() #FeDuo
+	Species FeRBCm_RBC @RBC:FeRBCm() #FeRBC*
+	Species FeRBC_RBC @RBC:FeRBC() #FeRBC
+	Species FeSpleenm_Spleen @Spleen:FeSpleenm() #FeSpleen*
+	Species FeSpleen_Spleen @Spleen:FeSpleen() #FeSpleen
+	Species FeLiverm_Liver @Liver:FeLiverm() #FeLiver*
+	Species FeLiver_Liver @Liver:FeLiver() #FeLiver
+	Species Fe2Tfm_Plasma @Plasma:Fe2Tfm() #Fe2Tf*
+	Species NTBIm_Plasma @Plasma:NTBIm() #NTBI*
+	Species Tf_Plasma @Plasma:Tf() #Tf
+	Species Fe1Tfm_Plasma @Plasma:Fe1Tfm() #Fe1Tf*
+	Species Hepcidin_Plasma @Plasma:Hepcidin() #Hepcidin
+	Species Fe2Tf_Plasma @Plasma:Fe2Tf() #Fe2Tf
+	Species Fe1Tf_Plasma @Plasma:Fe1Tf() #Fe1Tf
+	Species NTBI_Plasma @Plasma:NTBI() #NTBI
+	Species Fe2Tfmm_Plasma @Plasma:Fe2Tfmm() #Fe2Tf**
+	Species FeRestm_RestOfBody @RestOfBody:FeRestm() #FeRest*
+	Species FeOutsidem_RestOfBody @RestOfBody:FeOutsidem() #FeOutside*
+	Species FeRest_RestOfBody @RestOfBody:FeRest() #FeRest
+	Species FeOutside_RestOfBody @RestOfBody:FeOutside() #FeOutside
+	Species FeBM_BoneMarrow @BoneMarrow:FeBM() #FeBM
+	Species FeBMm_BoneMarrow @BoneMarrow:FeBMm() #FeBM*
+end observables
+begin functions
+	Total_Tf() = 0.0026*Fe1Tfm_Plasma*quantity_to_number_factor + 0.0026*Fe2Tfm_Plasma*quantity_to_number_factor + 0.0013*Fe2Tfmm_Plasma*quantity_to_number_factor + 0.0013*Tf_Plasma*quantity_to_number_factor
+	Total_Tf_conc() = 769.230769230769*Total_Tf/Avogadro
+	Total_Tf_mg_ml() = 80*Total_Tf_conc
+	Total_Fe() = 0.0013*Fe1Tfm_Plasma*quantity_to_number_factor + 0.0039*Fe2Tfm_Plasma*quantity_to_number_factor + 0.000214286*FeBM_BoneMarrow*quantity_to_number_factor + 3.84615e-5*FeDuom_Duodenum*quantity_to_number_factor + 0.001161905*FeLiverm_Liver*quantity_to_number_factor + 0.00079*FeRBCm_RBC*quantity_to_number_factor + 0.019694766*FeRestm_RestOfBody*quantity_to_number_factor + 6.73077e-5*FeSpleenm_Spleen*quantity_to_number_factor + 0.0013*NTBIm_Plasma*quantity_to_number_factor
+	Total_Fe__g() = 55.845*Total_Fe/Avogadro
+	FePlasma_0() = 0.0013*Fe1Tfm_Plasma*quantity_to_number_factor + 0.0039*Fe2Tfm_Plasma*quantity_to_number_factor + 0.0013*NTBIm_Plasma*quantity_to_number_factor
+	FePlasma_conc() = 769.230769230769*FePlasma_0/Avogadro
+	FePlasma() = 0.0013*Fe1Tfm_Plasma*quantity_to_number_factor + 0.0013*Fe2Tfm_Plasma*quantity_to_number_factor + 0.0026*Fe2Tfmm_Plasma*quantity_to_number_factor + 0.0013*NTBIm_Plasma*quantity_to_number_factor
+	FePlasma_conc_() = 769.230769230769*FePlasma/Avogadro
+	PBM() = 0.0214286*FeBMm_BoneMarrow*quantity_to_number_factor/Injected
+	Total_Fe_concentration() = 43.3793555616728*(0.0013*Fe1Tfm_Plasma*quantity_to_number_factor + 0.0039*Fe2Tfm_Plasma*quantity_to_number_factor + 0.000214286*FeBM_BoneMarrow*quantity_to_number_factor + 3.84615e-5*FeDuom_Duodenum*quantity_to_number_factor + 0.001161905*FeLiverm_Liver*quantity_to_number_factor + 0.00079*FeRBCm_RBC*quantity_to_number_factor + 0.019694766*FeRestm_RestOfBody*quantity_to_number_factor + 6.73077e-5*FeSpleenm_Spleen*quantity_to_number_factor + 0.0013*NTBIm_Plasma*quantity_to_number_factor)/Avogadro
+	PPlasma() = (0.13*Fe1Tfm_Plasma*quantity_to_number_factor + 0.13*Fe2Tfm_Plasma*quantity_to_number_factor + 0.26*Fe2Tfmm_Plasma*quantity_to_number_factor + 0.13*NTBIm_Plasma*quantity_to_number_factor)/Injected
+	PRest() = 1.9694766*FeRestm_RestOfBody*quantity_to_number_factor/Injected
+	POutside() = 1.9694766*FeOutsidem_RestOfBody*quantity_to_number_factor/Injected
+	TfSaturation() = (0.26*Fe1Tfm_Plasma*quantity_to_number_factor + 0.52*Fe2Tfm_Plasma*quantity_to_number_factor + 0.26*Fe2Tfmm_Plasma*quantity_to_number_factor)/(0.0052*Fe1Tfm_Plasma*quantity_to_number_factor + 0.0052*Fe2Tfm_Plasma*quantity_to_number_factor + 0.0026*Fe2Tfmm_Plasma*quantity_to_number_factor + 0.0026*Tf_Plasma*quantity_to_number_factor)
+	PDuo() = 0.00384615*FeDuom_Duodenum*quantity_to_number_factor/Injected
+	PLiver() = 0.1161905*FeLiverm_Liver*quantity_to_number_factor/Injected
+	Total_Fe___in_body() = 0.0013*Fe1Tfm_Plasma*quantity_to_number_factor + 0.0013*Fe2Tfm_Plasma*quantity_to_number_factor + 0.0026*Fe2Tfmm_Plasma*quantity_to_number_factor + 0.000214286*FeBMm_BoneMarrow*quantity_to_number_factor + 3.84615e-5*FeDuom_Duodenum*quantity_to_number_factor + 0.001161905*FeLiverm_Liver*quantity_to_number_factor + 0.00079*FeRBCm_RBC*quantity_to_number_factor + 0.019694766*FeRestm_RestOfBody*quantity_to_number_factor + 6.73077e-5*FeSpleenm_Spleen*quantity_to_number_factor + 0.0013*NTBIm_Plasma*quantity_to_number_factor
+	PRBC() = 0.079*FeRBCm_RBC*quantity_to_number_factor/Injected
+	PSpleen() = 0.00673077*FeSpleenm_Spleen*quantity_to_number_factor/Injected
+	fRate0() = Ki*VDuoNTBI/(FeDuo_Duodenum*Hepcidin_Plasma + FeDuom_Duodenum*Hepcidin_Plasma + Hepcidin_Plasma*Km + Ki*(FeDuo_Duodenum + FeDuom_Duodenum + Km))
+	fRate3() = Ki*VSpleenNTBI/(FeSpleen_Spleen*Hepcidin_Plasma + FeSpleenm_Spleen*Hepcidin_Plasma + Hepcidin_Plasma*Km + Ki*(FeSpleen_Spleen + FeSpleenm_Spleen + Km))
+	fRate4() = Ki*VLiverNTBI/(FeLiver_Liver*Hepcidin_Plasma + FeLiverm_Liver*Hepcidin_Plasma + Hepcidin_Plasma*Km + Ki*(FeLiver_Liver + FeLiverm_Liver + Km))
+	fRate11() = Ki*VRestNTBI/(FeRest_RestOfBody*Hepcidin_Plasma + FeRestm_RestOfBody*Hepcidin_Plasma + Hepcidin_Plasma*Km + Ki*(FeRest_RestOfBody + FeRestm_RestOfBody + Km))
+	fRate20() = Ki*VDuoNTBI/(FeDuo_Duodenum*Hepcidin_Plasma + FeDuom_Duodenum*Hepcidin_Plasma + Hepcidin_Plasma*Km + Ki*(FeDuo_Duodenum + FeDuom_Duodenum + Km))
+	fRate23() = Ki*VSpleenNTBI/(FeSpleen_Spleen*Hepcidin_Plasma + FeSpleenm_Spleen*Hepcidin_Plasma + Hepcidin_Plasma*Km + Ki*(FeSpleen_Spleen + FeSpleenm_Spleen + Km))
+	fRate24() = Ki*VLiverNTBI/(FeLiver_Liver*Hepcidin_Plasma + FeLiverm_Liver*Hepcidin_Plasma + Hepcidin_Plasma*Km + Ki*(FeLiver_Liver + FeLiverm_Liver + Km))
+	fRate31() = Ki*VRestNTBI/(FeRest_RestOfBody*Hepcidin_Plasma + FeRestm_RestOfBody*Hepcidin_Plasma + Hepcidin_Plasma*Km + Ki*(FeRest_RestOfBody + FeRestm_RestOfBody + Km))
+end functions
+begin reaction rules
+	Duo_NTBI: FeDuom()@Duodenum -> NTBIm()@Plasma fRate0() #Modifiers(FeDuo_0, Hepcidin)
+	Fe2Tf_BM_: Fe2Tfmm()@Plasma -> FeBMm()@BoneMarrow + FeBMm()@BoneMarrow + Tf()@Plasma kInBM
+	RBC_Spleen: FeRBCm()@RBC -> FeSpleenm()@Spleen vRBCSpleen
+	Spleen_NTBI: FeSpleenm()@Spleen -> NTBIm()@Plasma fRate3() #Modifiers(FeSpleen_0, Hepcidin)
+	Liver_NTBI: FeLiverm()@Liver -> NTBIm()@Plasma fRate4() #Modifiers(FeLiver_0, Hepcidin)
+	NTBI_Fe1Tf: NTBIm()@Plasma + Tf()@Plasma -> Fe1Tfm()@Plasma kNTBI_Fe1Tf
+	DuoLoss: FeDuom()@Duodenum -> FeOutsidem()@RestOfBody kDuoLoss
+	Fe2Tf_Liver_: Fe2Tfmm()@Plasma -> FeLiverm()@Liver + FeLiverm()@Liver + Tf()@Plasma kInLiver
+	Fe2Tf_Rest_: Fe2Tfmm()@Plasma -> FeRestm()@RestOfBody + FeRestm()@RestOfBody + Tf()@Plasma kInRest
+	RestLoss: FeRestm()@RestOfBody -> FeOutsidem()@RestOfBody kRestLoss
+	Fe2Tf_Duo_: Fe2Tfmm()@Plasma -> FeDuom()@Duodenum + FeDuom()@Duodenum + Tf()@Plasma kInDuo
+	Rest_NTBI: FeRestm()@RestOfBody -> NTBIm()@Plasma fRate11() #Modifiers(FeRest_0, Hepcidin)
+	Fe1Tf__Fe2Tf_: Fe1Tfm()@Plasma + NTBIm()@Plasma -> Fe2Tfmm()@Plasma kFe1Tf_Fe2Tf
+	Fe1Tf_Liver: Fe1Tfm()@Plasma -> FeLiverm()@Liver + Tf()@Plasma kInLiver
+	Fe1Tf_BM: Fe1Tfm()@Plasma -> FeBMm()@BoneMarrow + Tf()@Plasma kInBM
+	Fe1Tf_Rest: Fe1Tfm()@Plasma -> FeRestm()@RestOfBody + Tf()@Plasma kInRest
+	Fe1Tf_Duo: Fe1Tfm()@Plasma -> FeDuom()@Duodenum + Tf()@Plasma kInDuo
+	Diet: 0  -> FeDuo()@Duodenum vDiet
+	HepcidinSynthesis: 0  -> Hepcidin()@Plasma r19_v
+	HepcidinDecay: Hepcidin()@Plasma -> 0  r20_k1
+	Duo_NTBI_0: FeDuo()@Duodenum -> NTBI()@Plasma fRate20() #Modifiers(FeDuo, Hepcidin)
+	Fe2Tf_BM: Fe2Tf()@Plasma -> FeBM()@BoneMarrow + FeBM()@BoneMarrow + Tf()@Plasma kInBM
+	RBC_Spleen_0: FeRBC()@RBC -> FeSpleen()@Spleen vRBCSpleen
+	Spleen_NTBI_0: FeSpleen()@Spleen -> NTBI()@Plasma fRate23() #Modifiers(FeSpleen, Hepcidin)
+	Liver_NTBI_0: FeLiver()@Liver -> NTBI()@Plasma fRate24() #Modifiers(FeLiver, Hepcidin)
+	NTBI_Fe1Tf_0: NTBI()@Plasma + Tf()@Plasma -> Fe1Tf()@Plasma kNTBI_Fe1Tf
+	DuoLoss_0: FeDuo()@Duodenum -> FeOutside()@RestOfBody kDuoLoss
+	Fe2Tf_Liver: Fe2Tf()@Plasma -> FeLiver()@Liver + FeLiver()@Liver + Tf()@Plasma kInLiver
+	Fe2Tf_Rest: Fe2Tf()@Plasma -> FeRest()@RestOfBody + FeRest()@RestOfBody + Tf()@Plasma kInRest
+	RestLoss_0: FeRest()@RestOfBody -> FeOutside()@RestOfBody kRestLoss
+	Fe2Tf_Duo: Fe2Tf()@Plasma -> FeDuo()@Duodenum + FeDuo()@Duodenum + Tf()@Plasma kInDuo
+	Rest_NTBI_0: FeRest()@RestOfBody -> NTBI()@Plasma fRate31() #Modifiers(FeRest, Hepcidin)
+	Fe1Tf_Fe2Tf: Fe1Tf()@Plasma + NTBI()@Plasma -> Fe2Tf()@Plasma kFe1Tf_Fe2Tf
+	Fe1Tf_Liver_0: Fe1Tf()@Plasma -> FeLiver()@Liver + Tf()@Plasma kInLiver
+	Fe1Tf_BM_0: Fe1Tf()@Plasma -> FeBM()@BoneMarrow + Tf()@Plasma kInBM
+	Fe1Tf_Rest_0: Fe1Tf()@Plasma -> FeRest()@RestOfBody + Tf()@Plasma kInRest
+	Fe1Tf_Duo_0: Fe1Tf()@Plasma -> FeDuo()@Duodenum + Tf()@Plasma kInDuo
+	Fe1Tf_Fe2Tf_0: Fe1Tf()@Plasma + NTBIm()@Plasma -> Fe2Tfm()@Plasma kFe1Tf_Fe2Tf
+	Fe1Tf__Fe2Tf: Fe1Tfm()@Plasma + NTBI()@Plasma -> Fe2Tfm()@Plasma kFe1Tf_Fe2Tf
+	Fe2Tf_Duo_0: Fe2Tfm()@Plasma -> FeDuom()@Duodenum + FeDuo()@Duodenum + Tf()@Plasma kInDuo
+	Fe2Tf_Liver_0: Fe2Tfm()@Plasma -> FeLiverm()@Liver + FeLiver()@Liver + Tf()@Plasma kInLiver
+	Fe2Tf_BM_0: Fe2Tfm()@Plasma -> FeBMm()@BoneMarrow + FeBM()@BoneMarrow + Tf()@Plasma kInBM
+	Fe2Tf_Rest_0: Fe2Tfm()@Plasma -> FeRestm()@RestOfBody + FeRest()@RestOfBody + Tf()@Plasma kInRest
+	BM_RBC: FeBM()@BoneMarrow -> FeRBC()@RBC kInRBC
+	BM_RBC_0: FeBMm()@BoneMarrow -> FeRBCm()@RBC kInRBC
+	BM_Spleen: FeBM()@BoneMarrow -> FeSpleen()@Spleen kBMSpleen
+	BM_Spleen_0: FeBMm()@BoneMarrow -> FeSpleenm()@Spleen kBMSpleen
+end reaction rules
+end model

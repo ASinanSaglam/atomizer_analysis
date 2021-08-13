@@ -1,0 +1,61 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/26643942']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/efo/0001378', 'http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000804', 'http://identifiers.org/biomodels.db/MODEL1908290002']
+#@creatorEmail:'jm2187@cam.ac.uk'
+#@creatorName:'Men Jinghao'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 3 molecules and 6 reactions. The translated model has 3 molecules and 6 rules'
+###
+begin model
+begin parameters
+	ac 3.0 #units:unit_0
+	ab 4.0 #units:unit_0
+	gbc 1.0 #units:unit_1
+	gcb -0.5 #units:unit_1
+	gtt 0.5 #units:unit_1
+	bc 0.2 #units:unit_0
+	bb 0.02 #units:unit_0
+	bt 0.1 #units:unit_0
+	at 1/((10) ^ (1/2))
+	Metabolite_1 (208.00838230519)
+	Metabolite_0 (1.14404610267855)
+	Metabolite_2 (10.0)
+	gcc 0
+	gtc 0
+	gbb 0
+	hct 0
+	hbt 0
+end parameters
+begin molecule types
+	B()
+	C()
+	T()
+end molecule types
+begin seed species
+	T() 6.022e+21 #original 10.0substance/volume #T #T
+	C()() 1.1*((3000) ^ (2/3))/200 #C
+	B()() ((3000) ^ (2/3)) #B
+end seed species
+begin observables
+	Species C C() #C
+	Species B B() #B
+	Species T T() #T
+end observables
+begin functions
+	T_plot() = T/Metabolite_2
+	C_plot() = 1.1*C/Metabolite_0
+	B_plot() = B/Metabolite_1
+	fRate0() = B^gcb*C^gcc*ac*(T*hct + 1)
+	fRate1() = B^gbb*C^gbc*ab*(-T*hbt + 1)
+	fRate2() = C^gtc*T^gtt*at
+end functions
+begin reaction rules
+	osteoclast_growth: 0  -> C() fRate0() #Modifiers(B, T)
+	osteoblast_growth_products_0: 0  -> B() fRate1() #Modifiers(C, T)
+	myeloma_growth: 0  -> T() fRate2() #Modifiers(C)
+	osteoclast_death: C() -> 0  bc
+	osteoblast_death: B() -> 0  bb
+	myeloma_death: T() -> 0  bt
+end reaction rules
+end model

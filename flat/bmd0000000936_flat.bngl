@@ -1,0 +1,33 @@
+###
+#@BQB_HAS_PART:['http://identifiers.org/go/GO:0051726']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/8355']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/21414480']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1809040002', 'http://identifiers.org/biomodels.db/BIOMD0000000936']
+#@creatorEmail:'ahmad.azd@hotmail.com'
+#@creatorName:'Zyoud Ahmad'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 1 molecules and 2 reactions. The translated model has 1 molecules and 2 rules'
+###
+begin model
+begin parameters
+	a1 0.1
+	b1 1.0
+	k1 0.5
+	n1 8.0
+end parameters
+begin molecule types
+	CDK1_active()
+end molecule types
+begin seed species
+end seed species
+begin observables
+	Species CDK1_active CDK1_active() #CDK1_active
+end observables
+begin functions
+	fRate1() = CDK1_active^n1*b1/(CDK1_active^n1 + k1^n1)
+end functions
+begin reaction rules
+	R1_Cdk1_activation_by_cyclin_synthesis: 0  -> CDK1_active() a1
+	R2_Cdk1_inactivation_by_APC_active: CDK1_active() -> 0  fRate1()
+end reaction rules
+end model

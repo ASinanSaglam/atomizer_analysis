@@ -1,0 +1,91 @@
+###
+#@BQB_HAS_PART:['http://identifiers.org/go/GO:0051726']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/40674']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/22419972', 'http://identifiers.org/doi/10.1098/rsfs.2010.0008']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000941', 'http://identifiers.org/biomodels.db/MODEL1809060001']
+#@creatorEmail:'matt.maire@free.fr'
+#@creatorName:'MAIRE Matthieu'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 8 molecules and 12 reactions. The translated model has 6 molecules and 12 rules'
+###
+begin model
+begin parameters
+	GF 1.0
+	Kda 0.1
+	Kdb 0.005
+	Kdd 0.1
+	Kde 0.1
+	Kgf 0.1
+	K1cdc20 1.0
+	K2cdc20 1.0
+	K1e2f 0.01
+	K2e2f 0.01
+	Vda 0.245
+	Vdb 0.28
+	Vdd 0.245
+	Vde 0.35
+	vsa 0.175
+	vsb 0.21
+	vsd 0.175
+	vse 0.21
+	V1cdc20 0.21
+	V2cdc20 0.35
+	V1e2f 0.805
+	V2e2f 0.7
+	E2F_total 1.8066e+21 #original 3.0substance/volume
+	Cdc20_total 3.011e+21 #original 5.0substance/volume
+end parameters
+begin molecule types
+	cyclinECdk2()
+	cyclinACdk2()
+	cyclinBCdk1()
+	cyclinDCdk4_6()
+	transcriptionfactorE2Factive()
+	Cdc20active()
+end molecule types
+begin seed species
+	cyclinDCdk4_6() 4.338851e+20 # (0.7205 * 0.001)mol/L * 6.022e23/mol *1.0L #cyclinDCdk4_6 #cyclin_D_Cdk4_6
+	transcriptionfactorE2Factive() 1.4967681000000004e+21 #original 2.4855substance/volume  #transcriptionfactorE2Factive #transcription_factor_E2F_active
+	cyclinECdk2() 1.2044e+21 #original 2.0substance/volume  #cyclinECdk2 #cyclin_E_Cdk2
+	cyclinACdk2() 1.5657200000000003e+21 #original 2.6substance/volume  #cyclinACdk2 #cyclin_A_Cdk2
+	cyclinBCdk1() 6.022e+20 #original 1.0substance/volume  #cyclinBCdk1 #cyclin_B_Cdk1
+	Cdc20active() 3.011e+20 #original 0.5substance/volume  #Cdc20active #Cdc20_active
+end seed species
+begin observables
+	Species cyclinDCdk4_6 cyclinDCdk4_6() #cyclin D Cdk4-6
+	Species transcriptionfactorE2Factive transcriptionfactorE2Factive() #transcription factor E2F active
+	Species cyclinECdk2 cyclinECdk2() #cyclin E Cdk2
+	Species cyclinACdk2 cyclinACdk2() #cyclin A Cdk2
+	Species cyclinBCdk1 cyclinBCdk1() #cyclin B Cdk1
+	Species Cdc20active Cdc20active() #Cdc20 active
+end observables
+begin functions
+	fRate0() = GF*vsd/(GF + Kgf)
+	fRate1() = Vdd/(Kdd + cyclinDCdk4_6)
+	fRate2() = V1e2f*(E2F_total - transcriptionfactorE2Factive)*(cyclinDCdk4_6 + cyclinECdk2)/(E2F_total + K1e2f - transcriptionfactorE2Factive)
+	fRate3() = V2e2f*cyclinACdk2/(K2e2f + transcriptionfactorE2Factive)
+	fRate4() = transcriptionfactorE2Factive*vse
+	fRate5() = Vde*cyclinACdk2/(Kde + cyclinECdk2)
+	fRate6() = transcriptionfactorE2Factive*vsa
+	fRate7() = Cdc20active*Vda/(Kda + cyclinACdk2)
+	fRate8() = cyclinACdk2*vsb
+	fRate9() = Cdc20active*Vdb/(Kdb + cyclinBCdk1)
+	fRate10() = Cdc20_total*V1cdc20*cyclinBCdk1/(Cdc20_total - Cdc20active + K1cdc20)
+	fRate10m() = V1cdc20*cyclinBCdk1/(Cdc20_total - Cdc20active + K1cdc20)
+	fRate11() = V2cdc20/(Cdc20active + K2cdc20)
+end functions
+begin reaction rules
+	R1_Synthesis_of_cyclin_D_Cdk4_6: 0  -> cyclinDCdk4_6() fRate0()
+	R2_Degradation_of_cyclin_D_Cdk4_6: cyclinDCdk4_6() -> 0  fRate1() #Modifiers(cyclin_D_Cdk4_6)
+	R3_E2F_activation_products_0: 0  -> transcriptionfactorE2Factive() fRate2() #Modifiers(E2F_total, cyclin_D_Cdk4_6, cyclin_E_Cdk2)
+	R4_E2F_inactivation: transcriptionfactorE2Factive() -> 0  fRate3() #Modifiers(cyclin_A_Cdk2)
+	R5_Synthesis_of_cyclin_E_Cdk2: 0  -> cyclinECdk2() fRate4() #Modifiers(transcription_factor_E2F_active)
+	R6_Degradation_of_cyclin_E_Cdk2: cyclinECdk2() -> 0  fRate5() #Modifiers(cyclin_A_Cdk2)
+	R7_Synthesis_of_cyclin_A_Cdk2: 0  -> cyclinACdk2() fRate6() #Modifiers(transcription_factor_E2F_active)
+	R8_Degradation_of_cyclin_A_Cdk2: cyclinACdk2() -> 0  fRate7() #Modifiers(Cdc20_active)
+	R9_Synthesis_of_cyclin_B_Cdk1: 0  -> cyclinBCdk1() fRate8() #Modifiers(cyclin_A_Cdk2)
+	R10_Degradation_of_cyclin_B_Cdk1: cyclinBCdk1() -> 0  fRate9() #Modifiers(Cdc20_active)
+	R11_Phosphorylation_and_activation_of_Cdc20: 0  <-> Cdc20active() fRate10(),fRate10m() #Modifiers(cyclin_B_Cdk1, Cdc20_total)
+	R12_Dephosphorylation_and_inactivation_of_Cdc20: Cdc20active() -> 0  fRate11()
+end reaction rules
+end model

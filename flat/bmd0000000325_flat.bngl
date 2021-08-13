@@ -1,0 +1,65 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000325', 'http://identifiers.org/biomodels.db/MODEL1102160000']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/21451590']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/4932']
+#@BQB_HAS_VERSION:['http://identifiers.org/obo.go/GO:0000160', 'http://identifiers.org/obo.go/GO:0009885']
+#@creatorEmail:'lukas@ebi.ac.uk'
+#@creatorName:'Endler Lukas'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 6 molecules and 10 reactions. The translated model has 6 molecules and 10 rules'
+###
+begin model
+begin parameters
+	BR 0.005
+	Rs 3.0
+	KD 200.0
+	kdegR 0.005
+	kon 0.001
+	koff 0.05
+	kdegC 0.01
+	k1 1.0
+	k2 5.0
+	k3 45.0
+	kdegX 0.005
+	kdegA 0.005
+	BI 0.005
+	TFs 3.0
+	kdegI 0.005
+end parameters
+begin molecule types
+	I()
+	A()
+	L()
+	R()
+	C()
+	X()
+end molecule types
+begin seed species
+	L() 6.022000000000001e+22 # 0.1mol/L * 6.022e23/mol *1.0L #L #L
+	R() 6.022e+23 #original 1.0mol/L  #R #R
+	I() 6.022e+23 #original 1.0mol/L  #I #I
+end seed species
+begin observables
+	Species L L() #L
+	Species R R() #R
+	Species C C() #C
+	Species I I() #I
+	Species X X() #X
+	Species A A() #A
+end observables
+begin functions
+	fRate0() = (A*Rs + BR*(A + KD))/(A + KD)
+	fRate8() = (A*TFs + BI*(A + KD))/(A + KD)
+end functions
+begin reaction rules
+	R_expression: 0  -> R() fRate0() #Modifiers(A)
+	R_degradation: R() -> 0  kdegR
+	R_L_binding: R() + L() <-> C() kon,koff
+	C_degradation: C() -> 0  kdegC
+	C_I_binding: C() + I() <-> X() k1,k2
+	I_activation: X() -> C() + A() k3
+	X_degradation: X() -> 0  kdegX
+	A_degradation: A() -> 0  kdegA
+	I_expression: 0  -> I() fRate8() #Modifiers(A)
+	I_degradation: I() -> 0  kdegI
+end reaction rules
+end model

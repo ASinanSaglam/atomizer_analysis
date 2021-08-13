@@ -1,0 +1,56 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/doi/10.1016/j.bspc.2008.02.001']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/doi/10.1016/j.mbs.2005.04.001']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/ncit/C48686']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000911', 'http://identifiers.org/biomodels.db/MODEL2001150001']
+#@creatorEmail:'msharifshohan@ebi.ac.uk'
+#@creatorName:'Sharif Shohan Mohammad Umer'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 3 molecules and 6 reactions. The translated model has 3 molecules and 6 rules'
+###
+begin model
+begin parameters
+	q 10.0
+	r 0.9
+	alpha 0.3
+	k1 0.8
+	beta 0.1
+	d1 0.02
+	s 0.8
+	k2 0.7
+	d2 0.03
+end parameters
+begin molecule types
+	Z()
+	M()
+	N()
+end molecule types
+begin seed species
+	M() 1.5055e+21 # (2.5 * 0.001)mol/L * 6.022e23/mol *1.0L #M #M
+	N() 9.033e+20 #original 1.5substance/volume  #N #N
+	Z() 3.011e+20 #original 0.5substance/volume  #Z #Z
+end seed species
+begin observables
+	Species M M() #M
+	Species N N() #N
+	Species Z Z() #Z
+end observables
+begin functions
+	fRate0() = 1.0*M*r + q
+	fRate0m() = 1.0*M*r/k1
+	fRate1() = N*alpha
+	fRate2() = N*Z*beta
+	fRate4() = Z*s
+	fRate4m() = Z*s/k2
+	fRate5() = 1.0*N*Z*beta + 1.0*Z*d2
+end functions
+begin reaction rules
+	Increase_in_the_density_of_tumor_cel: 0  <-> M() fRate0(),fRate0m()
+	Removal_of_tumor_cell_from_the_system: M() -> 0  fRate1() #Modifiers(N)
+	Activation_and_transfer_of_predator_cells_like_CTL_NK_and_macrophage: 0  -> N() fRate2() #Modifiers(Z)
+	Removal_of_hunting_predator_cell: N() -> 0  d1
+	Converstion_of_hunting_to_resting_predator_cell: 0  <-> Z() fRate4(),fRate4m()
+	Removal_of_resting_predator_cells_reactants_0: 0  -> Z() -1*(fRate5()) #Modifiers(N)
+end reaction rules
+end model

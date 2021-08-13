@@ -1,0 +1,58 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/23605806']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10090']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL2001220002', 'http://identifiers.org/biomodels.db/BIOMD0000000914']
+#@creatorEmail:'msharifshohan@ebi.ac.uk'
+#@creatorName:'Sharif Shohan Mohammad Umer'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 5 molecules and 9 reactions. The translated model has 5 molecules and 9 rules'
+###
+begin model
+begin parameters
+	lamda 0.354
+	k1 0.0907
+	P 0.844
+	k3 1.08
+	k4 0.039
+	REG_50 3.18
+	gamma 5.24
+	Residual_error 0.206
+	k2_pop2 0.0907
+	k2_pop1 0
+end parameters
+begin molecule types
+	SVAC()
+	VAC()
+	REG()
+	TRAN()
+	Ts()
+end molecule types
+begin seed species
+	VAC() 6.022e+20 # (1.0 * 0.001)mol/L * 6.022e23/mol *1.0L #VAC #VAC
+	Ts() 1.9511280000000003e+20 #original 0.324substance/volume  #Ts #Ts
+end seed species
+begin observables
+	Species VAC VAC() #VAC
+	Species TRAN TRAN() #TRAN
+	Species SVAC SVAC() #SVAC
+	Species Ts Ts() #Ts
+	Species REG REG() #REG
+end observables
+begin functions
+	fRate1() = VAC*k1
+	fRate3() = TRAN*k1
+	fRate6() = REG_50^gamma*SVAC*k3/(REG^gamma + REG_50^gamma)
+	fRate7() = Ts*k4
+end functions
+begin reaction rules
+	Removal_of_CyaA_E7_vaccine: VAC() -> 0  k1
+	Triggering_of_intermediate_transit_compartment_TRAN: 0  -> TRAN() fRate1() #Modifiers(VAC)
+	Elimination_of_intermeidate_transit_compartment: TRAN() -> 0  k1
+	Increase_in_vaccine_signal_to_reduce_tumor_size: 0  -> SVAC() fRate3() #Modifiers(TRAN)
+	Reduction_of_vaccine_signal: SVAC() -> 0  k2_pop2
+	Increase_in_tumor_size: 0  -> Ts() gamma
+	Reduction_of_tumor_size: Ts() -> 0  fRate6() #Modifiers(REG, SVAC)
+	REguilator_compartment_to_decrease_vaccine_response: 0  -> REG() fRate7() #Modifiers(Ts)
+	Decrease_in_the_regulator_comparment: REG() -> 0  k4
+end reaction rules
+end model

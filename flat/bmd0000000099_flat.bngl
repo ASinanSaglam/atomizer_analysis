@@ -1,0 +1,87 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL4515710981', 'http://identifiers.org/biomodels.db/BIOMD0000000099']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/9843585']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/5782']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0019933']
+#@creatorEmail:'enuo@caltech.edu'
+#@creatorName:'He Enuo'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 7 molecules and 14 reactions. The translated model has 7 molecules and 14 rules'
+###
+begin model
+begin parameters
+	parameter_0 1.4
+	parameter_1 0.9
+	parameter_2 2.5
+	parameter_3 1.5
+	parameter_4 0.6
+	parameter_5 0.8
+	parameter_6 2.0
+	parameter_7 1.3
+	parameter_8 0.29
+	parameter_9 1.0
+	parameter_10 0.6
+	parameter_11 3.1
+	parameter_12 33.0
+	parameter_13 4.5
+end parameters
+begin compartments
+	#volume units: L
+	compartment_0 3 1.0 #Extracellular
+	compartment_1 3 1.0 #Intracellular
+end compartments
+begin molecule types
+	PKA()
+	In_cAMP()
+	Ex_cAMP()
+	ACA()
+	CAR1()
+	REGA()
+	ERK2()
+end molecule types
+begin seed species
+	@compartment_1:In_cAMP() 6.022e+17 # (1.0 * 1e-06)mol/L * 6.022e23/mol *1.0L #In_cAMP #species_1
+	@compartment_1:PKA() 6.022e+17 #original 1.0micro_Mole/L  #PKA #species_2
+	@compartment_1:REGA() 1.5055e+18 #original 2.5micro_Mole/L  #REGA #species_3
+	@compartment_1:ACA() 8.4308e+17 #original 1.4micro_Mole/L  #ACA #species_4
+	@compartment_1:CAR1() 9.033e+17 #original 1.5micro_Mole/L  #CAR1 #species_5
+	@compartment_1:ERK2() 9.6352e+17 #original 1.6micro_Mole/L  #ERK2 #species_6
+end seed species
+begin observables
+	Species Ex_cAMP_compartment_0 @compartment_0:Ex_cAMP() #Ex_cAMP
+	Species In_cAMP_compartment_1 @compartment_1:In_cAMP() #In_cAMP
+	Species PKA_compartment_1 @compartment_1:PKA() #PKA
+	Species REGA_compartment_1 @compartment_1:REGA() #REGA
+	Species ACA_compartment_1 @compartment_1:ACA() #ACA
+	Species CAR1_compartment_1 @compartment_1:CAR1() #CAR1
+	Species ERK2_compartment_1 @compartment_1:ERK2() #ERK2
+end observables
+begin functions
+	fRate0() = ERK2_compartment_1*parameter_0
+	fRate2() = In_cAMP_compartment_1*parameter_2
+	fRate4() = CAR1_compartment_1*parameter_4
+	fRate5() = PKA_compartment_1*parameter_5
+	fRate7() = ERK2_compartment_1*parameter_7
+	fRate8() = ACA_compartment_1*parameter_8
+	fRate9() = REGA_compartment_1*parameter_9
+	fRate10() = ACA_compartment_1*parameter_10
+	fRate12() = Ex_cAMP_compartment_0*parameter_12
+	fRate13() = PKA_compartment_1*parameter_13
+end functions
+begin reaction rules
+	reaction_0: 0  -> ACA()@compartment_1 fRate0() #Modifiers(species_6)
+	reaction_1: ACA()@compartment_1 -> 0  parameter_1
+	reaction_2: 0  -> PKA()@compartment_1 fRate2() #Modifiers(species_1)
+	reaction_3: PKA()@compartment_1 -> 0  parameter_3
+	reaction_4: 0  -> ERK2()@compartment_1 fRate4() #Modifiers(species_5)
+	reaction_5: ERK2()@compartment_1 -> 0  fRate5() #Modifiers(species_2)
+	reaction_6: 0  -> REGA()@compartment_1 parameter_6
+	reaction_7: REGA()@compartment_1 -> 0  fRate7() #Modifiers(species_6)
+	reaction_8: 0  -> In_cAMP()@compartment_1 fRate8() #Modifiers(species_4)
+	reaction_9: In_cAMP()@compartment_1 -> 0  fRate9() #Modifiers(species_3)
+	reaction_10: 0  -> Ex_cAMP()@compartment_0 fRate10() #Modifiers(species_4)
+	reaction_11: Ex_cAMP()@compartment_0 -> 0  parameter_11
+	reaction_12: 0  -> CAR1()@compartment_1 fRate12() #Modifiers(species_0)
+	reaction_13: CAR1()@compartment_1 -> 0  fRate13() #Modifiers(species_2)
+end reaction rules
+end model

@@ -1,0 +1,137 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000379', 'http://identifiers.org/biomodels.db/MODEL1110030000']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/17926672']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0061178']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:9351']
+#@creatorEmail:'ajmera@ebi.ac.uk'
+#@creatorName:'Ajmera Ishan'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 12 molecules and 0 reactions. The translated model has 12 molecules and 12 rules'
+###
+begin model
+begin parameters
+	V_G 1.88
+	k_1 0.065
+	k_2 0.079
+	G_b 95.0
+	V_I 0.05
+	m_1 0.19
+	m_2 0.484
+	m_4 0.194
+	m_5 0.0304
+	m_6 0.6471
+	HE_b 0.6
+	I_b 25.0
+	S_b 1.8
+	S_b_minus -1.8
+	k_max 0.0558
+	k_min 0.008
+	k_abs 0.057
+	k_gri 0.0558
+	f 0.9
+	b 0.82
+	d 0.01
+	BW 78.0
+	k_p1 2.7
+	k_p2 0.0021
+	k_p3 0.009
+	k_p4 0.0618
+	k_i 0.0079
+	U_ii 1.0
+	V_m0 2.5
+	V_mX 0.047
+	K_m0 225.59
+	p_2U 0.0331
+	part 0.2
+	K 2.3
+	alpha 0.05
+	beta 0.11
+	gamma 0.5
+	k_e1 0.0005
+	k_e2 339.0
+	D 78000.0
+end parameters
+begin molecule types
+	I_1()
+	I_l()
+	Q_gut()
+	I_po()
+	I_p()
+	G_p()
+	Q_sto2()
+	G_t()
+	Q_sto1()
+	I_d()
+	X()
+	Y()
+end molecule types
+begin seed species
+	G_p() 178.0 #G_p #G_p
+	G_t() 135.0 #G_t #G_t
+	I_l() 4.5 #I_l #I_l
+	I_p() 1.25 #I_p #I_p
+	Q_sto1() 78000.0 #Q_sto1 #Q_sto1
+	I_1() 25.0 #I_1 #I_1
+	I_d() 25.0 #I_d #I_d
+	I_po() 3.6 #I_po #I_po
+end seed species
+begin observables
+	Species G_p G_p() #G_p
+	Species G_t G_t() #G_t
+	Species I_l I_l() #I_l
+	Species I_p I_p() #I_p
+	Species Q_sto1 Q_sto1() #Q_sto1
+	Species Q_gut Q_gut() #Q_gut
+	Species I_1 I_1() #I_1
+	Species I_d I_d() #I_d
+	Species X X() #X
+	Species I_po I_po() #I_po
+	Species Y Y() #Y
+	Species Q_sto2 Q_sto2() #Q_sto2
+end observables
+begin functions
+	Ra() = Q_gut*f*k_abs/BW
+	E() = 0
+	EGP() = -G_p*k_p2 - I_d*k_p3 - I_po*k_p4 + k_p1
+	arRateG_p() = -E + EGP - G_p*k_1 + G_t*k_2 + Ra - U_ii
+	S_po() = K*(-E + EGP - G_p*k_1 + G_t*k_2 + Ra - U_ii)/V_G + S_b + Y
+	aa() = 5/(2*D*(1 - b))
+	Q_sto() = Q_sto1 + Q_sto2
+	cc() = 5/(2*D*d)
+	k_empt() = k_min + (k_max/2 - k_min/2)*(tanh(aa*(-D*b + Q_sto)) - tanh(cc*(-D*d + Q_sto)) + 2)
+	S() = I_po*gamma
+	HE() = -S*m_5 + m_6
+	m_3() = HE*m_1/(1 - HE)
+	arRateI_l() = -I_l*m_1 - I_l*m_3 + I_p*m_2 + S
+	G() = G_p/V_G
+	arRateY() = -alpha*(Y - beta*(G - G_b))
+	arRateI_po() = -I_po*gamma + S_po
+	I() = I_p/V_I
+	arRateX() = -X*p_2U + p_2U*(I - I_b)
+	arRateI_1() = -k_i*(-I + I_1)
+	arRateQ_gut() = -Q_gut*k_abs + Q_sto2*k_empt
+	arRateQ_sto2() = Q_sto1*k_gri - Q_sto2*k_empt
+	V_mmax() = (1 - part)*(V_m0 + V_mX*X)
+	U_idm() = G_t*V_mmax/(G_t + K_m0)
+	U_id() = U_idm
+	arRateG_t() = G_p*k_1 - G_t*k_2 - U_id
+	U() = U_id + U_ii
+	arRateI_d() = -k_i*(-I_1 + I_d)
+	arRateQ_sto1() = -Q_sto1*k_gri
+	arRateI_p() = I_l*m_1 - I_p*m_2 - I_p*m_4
+end functions
+begin reaction rules
+	0  -> G_p() arRateG_p #rateLaw
+	0  -> G_t() arRateG_t #rateLaw
+	0  -> I_l() arRateI_l #rateLaw
+	0  -> I_p() arRateI_p #rateLaw
+	0  -> Q_sto1() arRateQ_sto1 #rateLaw
+	0  -> Q_sto2() arRateQ_sto2 #rateLaw
+	0  -> Q_gut() arRateQ_gut #rateLaw
+	0  -> I_1() arRateI_1 #rateLaw
+	0  -> I_d() arRateI_d #rateLaw
+	0  -> X() arRateX #rateLaw
+	0  -> I_po() arRateI_po #rateLaw
+	0  -> Y() arRateY #rateLaw
+end reaction rules
+end model

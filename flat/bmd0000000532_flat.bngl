@@ -1,0 +1,45 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1407300000', 'http://identifiers.org/biomodels.db/BIOMD0000000532']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/24572069']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:1990000', 'http://identifiers.org/go/GO:0070841']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:10652']
+#@creatorEmail:'lloret@ebi.ac.uk'
+#@creatorName:'Lloret i Villas Audald'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 4 molecules and 0 reactions. The translated model has 0 molecules and 0 rules'
+###
+begin model
+begin parameters
+	xm 1.0
+	vm 0.25
+	lambda 3.0
+	kx 1.0
+	mx 5.0
+	ax 2.0
+	kv 1.0
+	mv 4.0
+	av 2.0
+	klambda 1.0
+	mlambda 2.0
+	alambda 2.0
+	C 1.0
+	X 0 # 0.00427219370168501mol/L * 6.022e23/mol *1.0L
+	Xm 1.0*exp(-0.04*ln(2)) #original 0.972654947412286mol/L
+	Vm 0.25*exp(-0.0625*ln(2)) #original 0.239400820174643mol/L
+	Lambda 0 #original 3.47731075423886mol/L
+end parameters
+begin molecule types
+end molecule types
+begin seed species
+end seed species
+begin observables
+end observables
+begin functions
+	Vm_ar() = vm*(-kv*(1 - exp(-(C/mv)^av*ln(2))) + 1)
+	Lambda_ar() =  lambda*(klambda*(1 -exp(-(C/mlambda)^alambda* ln(2))) + 1)
+	Xm_ar() = xm*(-kx*(1 - exp(-(C/mx)^ax*ln(2))) + 1)
+	X_ar() = Xm_ar/(exp(4*Vm_ar*(Lambda_ar - time())/Xm_ar + 2) + 1)
+end functions
+begin reaction rules
+end reaction rules
+end model

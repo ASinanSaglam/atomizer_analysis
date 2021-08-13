@@ -1,0 +1,230 @@
+###
+#@BQM_UNKNOWN:['http://identifiers.org/biomodels.db/MODEL1712050001']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/29371237']
+#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0001211']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/go/GO:0038105', 'http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/go/GO:0007179']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1712050004', 'http://identifiers.org/biomodels.db/BIOMD0000000995']
+#@creatorEmail:'tiwarik@babraham.ac.uk'
+#@creatorName:'Tiwari Krishna'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 23 molecules and 66 reactions. The translated model has 23 molecules and 66 rules'
+###
+begin model
+begin parameters
+	K_mran 223.595257238238
+	R1_total 34.8728125404976
+	R2_total 34.9992000511296
+	S2_export_from_nuc 1.99869955250212
+	S2_import_to_nuc 0.371577202544786
+	S2_total 876.042139372642
+	S4_export_from_nuc 0.196810731388947
+	S4_import_to_nuc 0.0370885363056236
+	S4_total 629.893021850583
+	Trimer_import_to_nuc 0.14403262974308
+	export_cytoplasm 0.030437091663097
+	hill_fact1 3.98592596228747
+	index_active_Rec_internalize 0.537380811093942
+	index_induced_R2_deg 1.00037810941361
+	index_induced_ligand_deg 2.7210717377255
+	index_k_out_1_relative_speed 0.566651645025112
+	index_k_out_2_relative_speed 0.245785368672998
+	index_kb_R1 1.61229612947783
+	index_kb_R2 8.70467633794271
+	index_kb_homotrimer 0.0164056196749139
+	index_kf_homotrimer 4.48445616275042
+	index_seq_kb 0.000881183442123411
+	index_trimer_dephos 2.60999282198359
+	kS4_effective_2 0.999999999999969
+	k_Dephos 0.139418263062769
+	k_S7_protein 0.218269773101254
+	k_disso_Active_Rec 0.00103714944572345
+	k_in_1 0.20092069321314
+	k_in_2 0.62580495280349
+	k_induced_S7_production 4.99901466408568
+	k_medium 2018.93290162616
+	k_phosphorylation 0.0701273900652988
+	kb_trimmer 1.60762398289129
+	kdeg_R1 0.0586554820930934
+	kdeg_R2 0.00100039445581987
+	kdeg_S2 0.000514148278553222
+	kdeg_S4 0.00480202730242853
+	kdeg_S7 0.00102253743337089
+	kf_R1_activation 4.98547574132432
+	kf_R2_activation 4.95555330964476
+	kf_Seq_S7_Rec 0.882166671316411
+	kf_trimmer 4.81430089969474
+	kin_deg_Ligand 0.720198437381795
+	kmRNA1deg_S7 0.0052188859785782
+	kmRNAdeg_S7 0.0990155435421535
+	mRNA_prod 0.0130886858359441
+	offset_restimulation_2_5pM 0.05
+	scale_restimulation_2_5pM 1.28428
+	WASH_LIGAND 0
+	effective 0
+end parameters
+begin compartments
+	#volume units: volume
+	cyt 3 2.0
+	nuc 3 1.0
+end compartments
+begin molecule types
+	SMAD7_mRNA1()
+	SMAD2_n()
+	SMAD2_c()
+	SMAD4_c()
+	Active_TGFb_TGFR1_TGFR2()
+	Active_TGFR2()
+	TGFb_TGFR2_surface()
+	pSMAD2_c()
+	SMAD7()
+	TGFb_TGFR1_surface()
+	pSMAD2_pSMAD2_SMAD4_c()
+	TGFb()
+	TGFb_TGFR1_endo()
+	pSMAD2_trimer_c()
+	Inactive_TGFb_TGFR1_TGFR2()
+	Active_TGFb_TGFR1_TGFR2_endo()
+	pSMAD2_pSMAD2_SMAD4_n()
+	pSMAD2_n()
+	SMAD7_mRNA()
+	SMAD4_n()
+	pSMAD2_trimer_n()
+	TGFb_In()
+	TGFb_TGFR2_endo()
+end molecule types
+begin seed species
+	@cyt:TGFb_TGFR1_surface()() (34.8728125404976)*(0.0586554820930934)*((0.0586554820930934)+(0.566651645025112)*(0.20092069321314))/((0.20092069321314)*(0.0586554820930934)+(((0.0586554820930934)) ^ (2))+(0.566651645025112)*(0.20092069321314)*(0.0586554820930934)) #TGFb_R1_surface
+	@cyt:TGFb_TGFR2_surface()() (34.9992000511296)*(0.00100039445581987)*((0.00100039445581987)+(0.245785368672998)*(0.62580495280349))/((0.62580495280349)*(0.00100039445581987)+(((0.00100039445581987)) ^ (2))+(0.245785368672998)*(0.62580495280349)*(0.00100039445581987)) #TGFb_R2_surface
+	@cyt:TGFb_TGFR1_endo()() (34.8728125404976)*(0.20092069321314)*(0.0586554820930934)/((0.20092069321314)*(0.0586554820930934)+(((0.0586554820930934)) ^ (2))+(0.566651645025112)*(0.20092069321314)*(0.0586554820930934)) #TGFb_R1_endo
+	@cyt:TGFb_TGFR2_endo()() (34.9992000511296)*(0.62580495280349)*(0.00100039445581987)/((0.62580495280349)*(0.00100039445581987)+(((0.00100039445581987)) ^ (2))+(0.245785368672998)*(0.62580495280349)*(0.00100039445581987)) #TGFb_R2_endo
+	@cyt:SMAD2_c()() (876.042139372642) * ((1.99869955250212) + (0.000514148278553222)) / (2 * (0.371577202544786) + (1.99869955250212) + (0.000514148278553222)) #S2_c
+	@cyt:SMAD4_c()() (629.893021850583) * ((0.196810731388947) + (0.00480202730242853)) / (2 * (0.0370885363056236) + (0.196810731388947) + (0.00480202730242853)) #S4_c
+	@cyt:SMAD7_mRNA()() (0.030437091663097) * (0.0130886858359441) / (2 * (0.0990155435421535) * ((0.030437091663097) + (0.0052188859785782))) #Smad7mRNA
+	@cyt:SMAD7()() (0.030437091663097) * (0.218269773101254) * (0.0130886858359441) / (2 * (0.00102253743337089) * (0.0990155435421535) * ((0.030437091663097) + (0.0052188859785782))) #S7
+	@nuc:SMAD7_mRNA1()() (0.0130886858359441) / ((0.030437091663097) + (0.0052188859785782)) #Smad7mRNA1
+	@nuc:SMAD2_n()() 2 * (876.042139372642) * (0.371577202544786) / (2 * (0.371577202544786) + (1.99869955250212) + (0.000514148278553222)) #S2_n
+	@nuc:SMAD4_n()() 2 * (629.893021850583) * (0.0370885363056236) / (2 * (0.0370885363056236) + (0.196810731388947) + (0.00480202730242853)) #S4_n
+end seed species
+begin observables
+	Species TGFb_TGFR1_surface_cyt @cyt:TGFb_TGFR1_surface() #TGFb_TGFR1_surface
+	Species TGFb_TGFR2_surface_cyt @cyt:TGFb_TGFR2_surface() #TGFb_TGFR2_surface
+	Species TGFb_TGFR1_endo_cyt @cyt:TGFb_TGFR1_endo() #TGFb_TGFR1_endo
+	Species TGFb_TGFR2_endo_cyt @cyt:TGFb_TGFR2_endo() #TGFb_TGFR2_endo
+	Species TGFb_cyt @cyt:TGFb() #TGFb
+	Species TGFb_In_cyt @cyt:TGFb_In() #TGFb_In
+	Species Active_TGFR2_cyt @cyt:Active_TGFR2() #Active_TGFR2
+	Species Active_TGFb_TGFR1_TGFR2_cyt @cyt:Active_TGFb_TGFR1_TGFR2() #Active_TGFb-TGFR1-TGFR2
+	Species Active_TGFb_TGFR1_TGFR2_endo_cyt @cyt:Active_TGFb_TGFR1_TGFR2_endo() #Active_TGFb-TGFR1-TGFR2_endo
+	Species Inactive_TGFb_TGFR1_TGFR2_cyt @cyt:Inactive_TGFb_TGFR1_TGFR2() #Inactive_TGFb-TGFR1-TGFR2
+	Species pSMAD2_c_cyt @cyt:pSMAD2_c() #pSMAD2_c
+	Species SMAD2_c_cyt @cyt:SMAD2_c() #SMAD2_c
+	Species SMAD4_c_cyt @cyt:SMAD4_c() #SMAD4_c
+	Species pSMAD2_pSMAD2_SMAD4_c_cyt @cyt:pSMAD2_pSMAD2_SMAD4_c() #pSMAD2_pSMAD2_SMAD4_c
+	Species pSMAD2_trimer_c_cyt @cyt:pSMAD2_trimer_c() #pSMAD2_trimer_c
+	Species SMAD7_mRNA_cyt @cyt:SMAD7_mRNA() #SMAD7_mRNA
+	Species SMAD7_cyt @cyt:SMAD7() #SMAD7
+	Species SMAD7_mRNA1_nuc @nuc:SMAD7_mRNA1() #SMAD7_mRNA1
+	Species pSMAD2_n_nuc @nuc:pSMAD2_n() #pSMAD2_n
+	Species pSMAD2_pSMAD2_SMAD4_n_nuc @nuc:pSMAD2_pSMAD2_SMAD4_n() #pSMAD2_pSMAD2_SMAD4_n
+	Species pSMAD2_trimer_n_nuc @nuc:pSMAD2_trimer_n() #pSMAD2_trimer_n
+	Species SMAD2_n_nuc @nuc:SMAD2_n() #SMAD2_n
+	Species SMAD4_n_nuc @nuc:SMAD4_n() #SMAD4_n
+end observables
+begin functions
+	NUC_CYT_SMAD2() = offset_restimulation_2_5pM + scale_restimulation_2_5pM*(SMAD2_n_nuc + pSMAD2_n_nuc + 2*pSMAD2_pSMAD2_SMAD4_n_nuc + 3*pSMAD2_trimer_n_nuc)/(SMAD2_c_cyt + pSMAD2_c_cyt + 2*pSMAD2_pSMAD2_SMAD4_c_cyt + 3*pSMAD2_trimer_c_cyt)
+	TGFb_Ligand_DOSE() = 5
+	fRate0() = TGFb_TGFR2_surface_cyt*kf_R2_activation/k_medium
+	fRate1() = TGFb_cyt*kf_R2_activation
+	fRate2() = TGFb_TGFR2_surface_cyt*TGFb_cyt*kf_R2_activation
+	fRate3() = index_kb_R2*kf_R2_activation
+	fRate4() = Active_TGFR2_cyt*index_kb_R2*kf_R2_activation
+	fRate5() = Active_TGFR2_cyt*index_kb_R2*kf_R2_activation/k_medium
+	fRate7() = index_kb_R1*kf_R1_activation
+	fRate14() = index_seq_kb*kf_Seq_S7_Rec
+	fRate15() = index_induced_ligand_deg*kin_deg_Ligand
+	fRate16() = index_induced_R2_deg*kdeg_R2
+	fRate19() = index_k_out_1_relative_speed*k_in_1
+	fRate20() = index_k_out_2_relative_speed*k_in_2
+	fRate21() = index_active_Rec_internalize*k_in_1
+	fRate24() = Active_TGFb_TGFR1_TGFR2_endo_cyt*k_phosphorylation
+	fRate29() = index_kf_homotrimer*kf_trimmer
+	fRate30() = index_kf_homotrimer*kf_trimmer
+	fRate31() = index_kb_homotrimer*kb_trimmer
+	fRate32() = index_kb_homotrimer*kb_trimmer
+	fRate42() = index_trimer_dephos*k_Dephos
+	fRate43() = S2_total*kdeg_S2*(S2_export_from_nuc + S2_import_to_nuc + kdeg_S2)/(S2_export_from_nuc + 2.0*S2_import_to_nuc + kdeg_S2)
+	fRate44() = S4_total*kdeg_S4*(S4_export_from_nuc + S4_import_to_nuc + kdeg_S4)/(S4_export_from_nuc + 2.0*S4_import_to_nuc + kdeg_S4)
+	fRate45() = R1_total*k_in_1*kdeg_R1/(index_k_out_1_relative_speed*k_in_1 + k_in_1 + kdeg_R1)
+	fRate46() = R2_total*k_in_2*kdeg_R2/(index_k_out_2_relative_speed*k_in_2 + k_in_2 + kdeg_R2)
+	fRate47() = (k_induced_S7_production*pSMAD2_pSMAD2_SMAD4_n_nuc^hill_fact1 + 1.0*mRNA_prod*(K_mran^hill_fact1 + pSMAD2_pSMAD2_SMAD4_n_nuc^hill_fact1))/(1.0*K_mran^hill_fact1 + 1.0*pSMAD2_pSMAD2_SMAD4_n_nuc^hill_fact1)
+	fRate49() = SMAD7_mRNA_cyt*k_S7_protein
+end functions
+begin reaction rules
+	reaction1: TGFb()@cyt -> 0  fRate0() #Modifiers(TGFb_R2_surface)
+	reaction2: TGFb_TGFR2_surface()@cyt -> 0  fRate1() #Modifiers(TGFb)
+	reaction3: 0  -> Active_TGFR2()@cyt fRate2() #Modifiers(TGFb, TGFb_R2_surface)
+	reaction4: Active_TGFR2()@cyt -> 0  fRate3()
+	reaction5: 0  -> TGFb_TGFR2_surface()@cyt fRate4() #Modifiers(Active_R2)
+	reaction6: 0  -> TGFb()@cyt fRate5() #Modifiers(Active_R2)
+	reaction7: TGFb_TGFR1_surface()@cyt + Active_TGFR2()@cyt -> Active_TGFb_TGFR1_TGFR2()@cyt kf_R1_activation
+	reaction8: Active_TGFb_TGFR1_TGFR2()@cyt -> TGFb_TGFR1_surface()@cyt + Active_TGFR2()@cyt fRate7()
+	reaction9: Active_TGFb_TGFR1_TGFR2_endo()@cyt -> TGFb_TGFR1_endo()@cyt + TGFb_In()@cyt kdeg_R2
+	reaction10: Active_TGFb_TGFR1_TGFR2_endo()@cyt -> TGFb_TGFR2_endo()@cyt + TGFb_In()@cyt kdeg_R1
+	reaction11: Active_TGFb_TGFR1_TGFR2_endo()@cyt -> TGFb_TGFR1_endo()@cyt + TGFb_TGFR2_endo()@cyt kin_deg_Ligand
+	reaction12: TGFb_TGFR1_endo()@cyt -> 0  kdeg_R1
+	reaction13: TGFb_TGFR2_endo()@cyt -> 0  kdeg_R2
+	reaction14: Active_TGFb_TGFR1_TGFR2()@cyt + SMAD7()@cyt -> Inactive_TGFb_TGFR1_TGFR2()@cyt kf_Seq_S7_Rec
+	reaction15: Inactive_TGFb_TGFR1_TGFR2()@cyt -> Active_TGFb_TGFR1_TGFR2()@cyt + SMAD7()@cyt fRate14()
+	reaction16: Inactive_TGFb_TGFR1_TGFR2()@cyt -> TGFb_TGFR1_surface()@cyt + TGFb_TGFR2_surface()@cyt + SMAD7()@cyt fRate15()
+	reaction17: Inactive_TGFb_TGFR1_TGFR2()@cyt -> TGFb_TGFR1_surface()@cyt + TGFb_In()@cyt + SMAD7()@cyt fRate16()
+	reaction18: TGFb_TGFR1_surface()@cyt -> TGFb_TGFR1_endo()@cyt k_in_1
+	reaction19: TGFb_TGFR2_surface()@cyt -> TGFb_TGFR2_endo()@cyt k_in_2
+	reaction20: TGFb_TGFR1_endo()@cyt -> TGFb_TGFR1_surface()@cyt fRate19()
+	reaction21: TGFb_TGFR2_endo()@cyt -> TGFb_TGFR2_surface()@cyt fRate20()
+	reaction22: Active_TGFb_TGFR1_TGFR2()@cyt -> Active_TGFb_TGFR1_TGFR2_endo()@cyt fRate21()
+	reaction23: Active_TGFb_TGFR1_TGFR2_endo()@cyt -> TGFb_TGFR1_endo()@cyt + TGFb_TGFR2_endo()@cyt + TGFb_In()@cyt k_disso_Active_Rec
+	reaction24: TGFb_In()@cyt -> 0  kin_deg_Ligand
+	reaction25: SMAD2_c()@cyt -> pSMAD2_c()@cyt fRate24() #Modifiers(Active_Rec_endo)
+	reaction26: pSMAD2_c()@cyt + pSMAD2_c()@cyt + SMAD4_c()@cyt -> pSMAD2_pSMAD2_SMAD4_c()@cyt kf_trimmer
+	reaction27: pSMAD2_pSMAD2_SMAD4_c()@cyt -> pSMAD2_c()@cyt + pSMAD2_c()@cyt + SMAD4_c()@cyt kb_trimmer
+	reaction28: pSMAD2_n()@nuc + pSMAD2_n()@nuc + SMAD4_n()@nuc -> pSMAD2_pSMAD2_SMAD4_n()@nuc kf_trimmer
+	reaction29: pSMAD2_pSMAD2_SMAD4_n()@nuc -> pSMAD2_n()@nuc + pSMAD2_n()@nuc + SMAD4_n()@nuc kb_trimmer
+	reaction30: pSMAD2_c()@cyt + pSMAD2_c()@cyt + pSMAD2_c()@cyt -> pSMAD2_trimer_c()@cyt fRate29()
+	reaction31: pSMAD2_n()@nuc + pSMAD2_n()@nuc + pSMAD2_n()@nuc -> pSMAD2_trimer_n()@nuc fRate30()
+	reaction32: pSMAD2_trimer_n()@nuc -> pSMAD2_n()@nuc + pSMAD2_n()@nuc + pSMAD2_n()@nuc fRate31()
+	reaction33: pSMAD2_trimer_c()@cyt -> pSMAD2_c()@cyt + pSMAD2_c()@cyt + pSMAD2_c()@cyt fRate32()
+	reaction34: SMAD2_c()@cyt -> SMAD2_n()@nuc S2_import_to_nuc
+	reaction35: SMAD2_n()@nuc -> SMAD2_c()@cyt S2_export_from_nuc
+	reaction36: SMAD4_c()@cyt -> SMAD4_n()@nuc S4_import_to_nuc
+	reaction37: SMAD4_n()@nuc -> SMAD4_c()@cyt S4_export_from_nuc
+	reaction38: pSMAD2_c()@cyt -> pSMAD2_n()@nuc S2_import_to_nuc
+	reaction39: pSMAD2_n()@nuc -> pSMAD2_c()@cyt S2_export_from_nuc
+	reaction40: pSMAD2_pSMAD2_SMAD4_c()@cyt -> pSMAD2_pSMAD2_SMAD4_n()@nuc Trimer_import_to_nuc
+	reaction41: pSMAD2_trimer_c()@cyt -> pSMAD2_trimer_n()@nuc Trimer_import_to_nuc
+	reaction42: pSMAD2_n()@nuc -> SMAD2_n()@nuc k_Dephos
+	reaction43: pSMAD2_pSMAD2_SMAD4_n()@nuc -> pSMAD2_n()@nuc + SMAD2_n()@nuc + SMAD4_n()@nuc fRate42()
+	reaction44: 0  -> SMAD2_c()@cyt fRate43()
+	reaction45: 0  -> SMAD4_c()@cyt fRate44()
+	reaction46: 0  -> TGFb_TGFR1_surface()@cyt fRate45()
+	reaction47: 0  -> TGFb_TGFR2_surface()@cyt fRate46()
+	reaction50: 0  -> SMAD7_mRNA1()@nuc fRate47() #Modifiers(pS2_pS2_S4_n)
+	reaction51: SMAD7_mRNA1()@nuc -> SMAD7_mRNA()@cyt export_cytoplasm
+	reaction52: 0  -> SMAD7()@cyt fRate49() #Modifiers(Smad7mRNA)
+	reaction53: SMAD2_c()@cyt -> 0  kdeg_S2
+	reaction54: SMAD2_n()@nuc -> 0  kdeg_S2
+	reaction55: pSMAD2_n()@nuc -> 0  kdeg_S2
+	reaction56: pSMAD2_c()@cyt -> 0  kdeg_S2
+	reaction57: SMAD4_c()@cyt -> 0  kdeg_S4
+	reaction58: SMAD4_n()@nuc -> 0  kdeg_S4
+	reaction59: pSMAD2_pSMAD2_SMAD4_c()@cyt -> pSMAD2_c()@cyt + SMAD4_c()@cyt kdeg_S2
+	reaction60: pSMAD2_pSMAD2_SMAD4_c()@cyt -> pSMAD2_c()@cyt + pSMAD2_c()@cyt kdeg_S4
+	reaction61: pSMAD2_trimer_c()@cyt -> pSMAD2_c()@cyt + pSMAD2_c()@cyt kdeg_S2
+	reaction62: pSMAD2_pSMAD2_SMAD4_n()@nuc -> pSMAD2_n()@nuc + SMAD4_n()@nuc kdeg_S2
+	reaction63: pSMAD2_pSMAD2_SMAD4_n()@nuc -> pSMAD2_n()@nuc + pSMAD2_n()@nuc kdeg_S4
+	reaction64: pSMAD2_trimer_n()@nuc -> pSMAD2_n()@nuc + pSMAD2_n()@nuc kdeg_S2
+	reaction65: SMAD7_mRNA1()@nuc -> 0  kmRNA1deg_S7
+	reaction66: SMAD7_mRNA()@cyt -> 0  kmRNAdeg_S7
+	reaction67: SMAD7()@cyt -> 0  kdeg_S7
+	reaction68: TGFb()@cyt -> 0  WASH_LIGAND
+end reaction rules
+end model

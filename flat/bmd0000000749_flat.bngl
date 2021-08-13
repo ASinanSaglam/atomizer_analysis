@@ -1,0 +1,60 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/26305801']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0002418']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000749', 'http://identifiers.org/biomodels.db/MODEL1907110002']
+#@creatorEmail:'jm2187@cam.ac.uk'
+#@creatorName:'Men Jinghao'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 4 molecules and 9 reactions. The translated model has 2 molecules and 9 rules'
+###
+begin model
+begin parameters
+	B 0.5 #units:unit_0
+	lm 1.34 #units:unit_1
+	la 0.14 #units:unit_1
+	ld 0.3 #units:unit_0
+	c 0.03 #units:unit_1
+	k 2.72 #units:unit_0
+	d1 0.01 #units:unit_1
+	d0 0.37 #units:unit_1
+	sigma 13000.0 #units:unit_1
+	r 0.57 #units:unit_1
+	f 2.8814734781071e-11 #original 0.414213562373095substance/volume
+	E_E_0 6.022e+21 #original 10.0substance/volume
+end parameters
+begin molecule types
+	R()
+	E()
+end molecule types
+begin seed species
+	E() 6.0220000000000006e+26 # (1000000.0 * 0.001)mol/L * 6.022e23/mol *1.0L #E #E
+	R() 1.2044e+21 #original 2.0substance/volume #R #R
+end seed species
+begin observables
+	Species E E() #E
+	Species R R() #R
+end observables
+begin functions
+	f_ar() = R^(B - 1)/(R^(B - 1) + 1)
+	E_E_0_ar() = E/100000
+	fRate0() = 0.333333333333333*B*R*lm
+	fRate1() = 0.333333333333333*la
+	fRate2() = E_E_0_ar*c*f_ar
+	fRate3() = ld*lm*(1 - B)/tanh(R/ld)
+	fRate4() = E*R^3*r/(R^3 + k)
+	fRate5() = R^3*d1*f_ar
+	fRate8() = ld^2*lm*(1 - B)/R
+end functions
+begin reaction rules
+	tumor_growth: 0  -> R() fRate0()
+	tumor_death: R() -> 0  fRate1()
+	tumor_killing: R() -> 0  fRate2() #Modifiers(E_0, f)
+	tumor_nutrient_supply_products_0: 0  -> R() fRate3()
+	effector_stimulation: 0  -> E() fRate4() #Modifiers(R)
+	effector_exhaustion: E() -> 0  fRate5() #Modifiers(R, f)
+	effector_death: E() -> 0  d0
+	effector_source: 0  -> E() sigma
+	tumor_nutrient_missuply_reactants_0: 0  -> R() -1*(fRate8())
+end reaction rules
+end model

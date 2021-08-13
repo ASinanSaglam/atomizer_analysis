@@ -1,0 +1,140 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/doi/10.1142/S021833901750005X']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/ncit/C36294', 'http://identifiers.org/ncit/C3305', 'http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/ncit/C71757']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1909120001', 'http://identifiers.org/biomodels.db/BIOMD0000000811']
+#@creatorEmail:'johannes.p.meyer@gmail.com'
+#@creatorName:'Meyer Johannes'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 6 molecules and 29 reactions. The translated model has 6 molecules and 29 rules'
+###
+begin model
+begin parameters
+	k_c 0.0195
+	a_c 1.02e-11
+	b_c 1.5e-11
+	d_c 7.87e-05
+	r_1 0.345
+	r_2 0.286
+	a_p 1.7857e-09
+	f_p 0.125
+	mu_p 56000000.0
+	lambda_p 0.015
+	a_e 13000.0
+	b_e 0.02
+	c_e 3.42e-12
+	r_e 5e-12
+	p_e 0.125
+	g_e 0.3
+	f_e 0.125
+	h_e 0.3
+	delta_e 1e-10
+	a_n 130000.0
+	b_n 0.015
+	c_n 1e-13
+	p_n 0.125
+	g_n 0.3
+	f_n 0.125
+	h_n 0.3
+	delta_n 1e-10
+	a_h 360000.0
+	b_h 0.0012
+	p_h 0.125
+	g_h 0.3
+	f_h 0.125
+	h_h 0.3
+	delta_h 1e-10
+	a 560000.0
+	delta_r 0.023
+	a_r 0.0002
+	b_r 0.0004
+	p_r 0.125
+	g_r 0.3
+	r 1e-11
+	tau_1_alpha_1 224830000000.0
+	beta_1_tau_2 4.4691e-13
+	beta_2_tau_2 4.4691e-13
+	beta_3_tau_2 4.4691e-13
+	gamma_2_tau_3 4.4691e-13
+	k_R 1.5e-11
+	ModelValue_2 (1.02e-11)
+	ModelValue_8 (1.7857e-09)
+	ModelValue_0 (0.0195)
+end parameters
+begin molecule types
+	C_PCC()
+	P_PSC()
+	H_T_Helper()
+	R_T_Regulatory()
+	N_Killer()
+	E_CD8()
+end molecule types
+begin seed species
+	C_PCC() 6.022e+32 # 1000000000.0mol/L * 6.022e23/mol *1.0L #C_PCC #C_PCC
+	P_PSC() 3.37232e+30 #original 5600000.0substance/volume #P_PSC #P_PSC
+	E_CD8() 5.2608192000000004e+32 #original 873600000.0substance/volume #E_CD8 #E_CD8
+	N_Killer() 2.9001952e+32 #original 481600000.0substance/volume #N_Killer #N_Killer
+	H_T_Helper() 1.2747369600000001e+33 #original 2116800000.0substance/volume #H_T_Helper #H_T_Helper
+	R_T_Regulatory() 9.560527200000001e+31 #original 158760000.0substance/volume #R_T_Regulatory #R_T_Regulatory
+end seed species
+begin observables
+	Species C_PCC C_PCC() #C_PCC
+	Species P_PSC P_PSC() #P_PSC
+	Species E_CD8 E_CD8() #E_CD8
+	Species N_Killer N_Killer() #N_Killer
+	Species H_T_Helper H_T_Helper() #H_T_Helper
+	Species R_T_Regulatory R_T_Regulatory() #R_T_Regulatory
+end observables
+begin functions
+	k_p() = 0.1*ModelValue_0
+	mu_c() = 0.1*ModelValue_2*ModelValue_8
+	fRate0() = C_PCC*(-C_PCC*a_c + 1)*(P_PSC*mu_c + k_c)
+	fRate1() = N_Killer*b_c
+	fRate2() = E_CD8*d_c/(C_PCC*R_T_Regulatory*gamma_2_tau_3*r_1*r_2 + C_PCC*gamma_2_tau_3*r_2 + R_T_Regulatory*r_1 + 1.0)
+	fRate3() = P_PSC*(-P_PSC*a_p + 1)*(C_PCC*f_p/(C_PCC + mu_p) + k_p)
+	fRate7() = C_PCC*c_e
+	fRate8() = C_PCC*N_Killer*r_e
+	fRate9() = E_CD8*H_T_Helper*p_e/(H_T_Helper + g_e*tau_1_alpha_1)
+	fRate10() = E_CD8*f_e*(E_CD8*beta_1_tau_2 + H_T_Helper*beta_3_tau_2 + N_Killer*beta_2_tau_2)/(E_CD8*beta_1_tau_2 + H_T_Helper*beta_3_tau_2 + N_Killer*beta_2_tau_2 + h_e)
+	fRate11() = R_T_Regulatory*delta_e
+	fRate14() = C_PCC*c_n
+	fRate15() = H_T_Helper*N_Killer*p_n/(H_T_Helper + g_n*tau_1_alpha_1)
+	fRate16() = N_Killer*f_n*(E_CD8*beta_1_tau_2 + H_T_Helper*beta_3_tau_2 + N_Killer*beta_2_tau_2)/(E_CD8*beta_1_tau_2 + H_T_Helper*beta_3_tau_2 + N_Killer*beta_2_tau_2 + h_n)
+	fRate20() = H_T_Helper^2*p_h/(H_T_Helper + g_h*tau_1_alpha_1)
+	fRate21() = H_T_Helper*f_h*(E_CD8*beta_1_tau_2 + H_T_Helper*beta_3_tau_2 + N_Killer*beta_2_tau_2)/(E_CD8*beta_1_tau_2 + H_T_Helper*beta_3_tau_2 + N_Killer*beta_2_tau_2 + h_h)
+	fRate22() = R_T_Regulatory*delta_h
+	fRate25() = H_T_Helper*b_r
+	fRate26() = E_CD8*a_r
+	fRate27() = H_T_Helper*R_T_Regulatory*p_r/(H_T_Helper + g_r*tau_1_alpha_1)
+	fRate28() = N_Killer*r
+end functions
+begin reaction rules
+	Tumor_Growth_products_0: 0  -> C_PCC() fRate0() #Modifiers(P_PSC)
+	Tumor_Interaction_NK: C_PCC() -> 0  fRate1() #Modifiers(N_Killer)
+	Tumor_Removal_CD8: C_PCC() -> 0  fRate2() #Modifiers(E_CD8, R_T_Regulatory)
+	PSC_Growth_products_0: 0  -> P_PSC() fRate3() #Modifiers(C_PCC)
+	PSC_Death: P_PSC() -> 0  lambda_p
+	CD8_Growth_Constant: 0  -> E_CD8() a_e
+	CD8_Death_Natural: E_CD8() -> 0  b_e
+	CD8_Inactivation: E_CD8() -> 0  fRate7() #Modifiers(C_PCC)
+	CD8_Recruitment_NK: 0  -> E_CD8() fRate8() #Modifiers(N_Killer, C_PCC)
+	CD8_Proliferation_Stimulation_IL_2: 0  -> E_CD8() fRate9() #Modifiers(H_T_Helper)
+	CD8_Proliferation_Stimulation_IFNG: 0  -> E_CD8() fRate10() #Modifiers(N_Killer, H_T_Helper)
+	CD8_Death_Treg: E_CD8() -> 0  fRate11() #Modifiers(R_T_Regulatory)
+	NK_Growth_Constant: 0  -> N_Killer() a_n
+	NK_Death: N_Killer() -> 0  b_n
+	NK_Inactivation: N_Killer() -> 0  fRate14() #Modifiers(C_PCC)
+	NK_Proliferation_Stimulation_IL_2: 0  -> N_Killer() fRate15() #Modifiers(H_T_Helper)
+	NK_Proliferation_Stimulation_IFNG: 0  -> N_Killer() fRate16() #Modifiers(E_CD8, H_T_Helper)
+	NK_Death_Treg: N_Killer() -> 0  delta_n
+	Thelp_Growth_Constant: 0  -> H_T_Helper() a_h
+	Thelp_Death_Natural: H_T_Helper() -> 0  b_h
+	Thelp_Proliferation_Stimulation_IL_2: 0  -> H_T_Helper() fRate20()
+	Thelp_Proliferation_Stimulation_IFNG: 0  -> H_T_Helper() fRate21() #Modifiers(E_CD8, N_Killer)
+	Thelp_Death_Treg: H_T_Helper() -> 0  fRate22() #Modifiers(R_T_Regulatory)
+	Treg_Growth_Constant: 0  -> R_T_Regulatory() a
+	Treg_Death_Natural: R_T_Regulatory() -> 0  delta_r
+	Treg_Origination_Thelp: 0  -> R_T_Regulatory() fRate25() #Modifiers(H_T_Helper)
+	Treg_Origination_CD8: 0  -> R_T_Regulatory() fRate26() #Modifiers(E_CD8)
+	Treg_Proliferation_Stimulation_IL_2: 0  -> R_T_Regulatory() fRate27() #Modifiers(H_T_Helper)
+	Treg_Lysis_NK: R_T_Regulatory() -> 0  fRate28() #Modifiers(N_Killer)
+end reaction rules
+end model

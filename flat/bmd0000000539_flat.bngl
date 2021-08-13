@@ -1,0 +1,62 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000539', 'http://identifiers.org/biomodels.db/MODEL1408130000']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/16241483']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0010468']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/131567']
+#@creatorEmail:'n.lenovere@gmail.com'
+#@creatorName:'Le Novère Nicolas'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 6 molecules and 11 reactions. The translated model has 6 molecules and 11 rules'
+###
+begin model
+begin parameters
+	theta 0.04
+	alpha 0.001
+	rhob 5.0
+	rhof 0.1
+	deltar 0.03
+	rhoA 100.0
+	gamma 1.0
+	deltaA 0.01
+	deltaB 0.01
+	beta 3.0
+	deltaAB 0.01
+end parameters
+begin molecule types
+	gB()
+	A()
+	B()
+	rB()
+	AB()
+	AgB()
+end molecule types
+begin seed species
+	A() 2.4088e+25 # 40.0mol/L * 6.022e23/mol *1.0L #A #A
+	gB() 6.022e+23 #original 1.0substance/volume  #gB #gB
+end seed species
+begin observables
+	Species A A() #A
+	Species AgB AgB() #AgB
+	Species gB gB() #gB
+	Species rB rB() #rB
+	Species B B() #B
+	Species AB AB() #AB
+end observables
+begin functions
+	fRate2() = gB*rhof
+	fRate3() = AgB*rhob
+	fRate7() = beta*rB
+end functions
+begin reaction rules
+	A_binds_gB: A() + gB() -> AgB() alpha #Modifiers(A, gB)
+	gB_releases_A: AgB() -> A() + gB() theta #Modifiers(AgB)
+	basal_transcription_B: 0  -> rB() fRate2() #Modifiers(gB, gB)
+	stim_transcription_B: 0  -> rB() fRate3() #Modifiers(AgB, AgB)
+	degradation_mRNA_B: rB() -> 0  deltar #Modifiers(rB)
+	production_A: 0  -> A() rhoA
+	degradation_A: A() -> 0  deltaA #Modifiers(A)
+	translation_B: 0  -> B() fRate7() #Modifiers(rB, rB)
+	degradation_B: B() -> 0  deltaB #Modifiers(B)
+	formation_dimer: A() + B() -> AB() gamma #Modifiers(A, B)
+	degradation_dimer: AB() -> 0  deltaAB #Modifiers(AB)
+end reaction rules
+end model

@@ -1,0 +1,124 @@
+###
+#@BQB_HAS_PROPERTY:['http://identifiers.org/go/GO:0002250', 'http://identifiers.org/go/GO:0045087', 'http://identifiers.org/go/GO:0006955', 'http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/11320', 'http://identifiers.org/taxonomy/9606']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/17266989']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1808280004', 'http://identifiers.org/biomodels.db/BIOMD0000000711']
+#@creatorEmail:'sarubini.kananathan@hotmail.co.uk'
+#@creatorName:'Kananathan Sarubini'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 11 molecules and 26 reactions. The translated model has 10 molecules and 26 rules'
+###
+begin model
+begin parameters
+	gammaV 510.0
+	gammaVA 619.2
+	gammaVH 1.02
+	alphaV 1.7
+	aV1 100.0
+	aV2 23000.0
+	bHD 4.0
+	aR 1.0
+	gammaHV 0.34
+	bHF 0.01
+	bIE 0.066
+	aI 1.5
+	bMD 1.0
+	bMV 0.0037
+	aM 1.0
+	bF 250000.0
+	cF 2000.0
+	bFH 17.0
+	aF 8.0
+	bEM 8.3
+	bEI 2.72
+	aE 0.4
+	bPM 11.5
+	aP 0.4
+	bA 0.043
+	gammaAV 146.25
+	aA 0.043
+	r 3e-05
+	r20_aE 0.100000
+end parameters
+begin molecule types
+	HealthyEpithelialcells__H__()
+	Plasmacells__P__()
+	Antigeniccompatibility__S__()
+	Antibodies__A__()
+	InfectedEpithelialcells__I__()
+	ViralLoad__V__()
+	APCcells__M__()
+	Interferons__F__()
+	Effectorcells__E__()
+	Resistantcells__R__()
+end molecule types
+begin seed species
+	ViralLoad__V__() 6.022000000000001e+18 # (0.01 * 0.001)mol/L * 6.022e23/mol *1.0L #ViralLoad__V__ #Viral_Load__V
+	HealthyEpithelialcells__H__() 6.022e+20 #original 1.0substance/volume #HealthyEpithelialcells__H__ #Healthy_Epithelial_cells__H
+	Effectorcells__E__() 6.022e+20 #original 1.0substance/volume #Effectorcells__E__ #Effector_cells__E
+	Plasmacells__P__() 6.022e+20 #original 1.0substance/volume #Plasmacells__P__ #Plasma_cells__P
+	Antibodies__A__() 6.022e+20 #original 1.0substance/volume #Antibodies__A__ #Antibodies__A
+	Antigeniccompatibility__S__() 6.022000000000001e+19 #original 0.1substance/volume #Antigeniccompatibility__S__ #Antigenic_compatibility__S
+end seed species
+begin observables
+	Species ViralLoad__V__ ViralLoad__V__() #Viral Load (V)
+	Species HealthyEpithelialcells__H__ HealthyEpithelialcells__H__() #Healthy Epithelial cells (H)
+	Species InfectedEpithelialcells__I__ InfectedEpithelialcells__I__() #Infected Epithelial cells (I)
+	Species APCcells__M__ APCcells__M__() #APC cells (M)
+	Species Interferons__F__ Interferons__F__() #Interferons (F)
+	Species Resistantcells__R__ Resistantcells__R__() #Resistant cells (R)
+	Species Effectorcells__E__ Effectorcells__E__() #Effector cells (E)
+	Species Plasmacells__P__ Plasmacells__P__() #Plasma cells (P)
+	Species Antibodies__A__ Antibodies__A__() #Antibodies (A)
+	Species Antigeniccompatibility__S__ Antigeniccompatibility__S__() #Antigenic compatibility (S)
+end observables
+begin functions
+	Deadcells__D___ar() = -HealthyEpithelialcells__H__ - InfectedEpithelialcells__I__ - Resistantcells__R__ + 1
+	fRate0() = InfectedEpithelialcells__I__*gammaV
+	fRate1() = Antibodies__A__*Antigeniccompatibility__S__*gammaVA
+	fRate2() = HealthyEpithelialcells__H__*gammaVH
+	fRate4() = aV1/(ViralLoad__V__*aV2 + 1.0)
+	fRate5() = Deadcells__D___ar*bHD*(HealthyEpithelialcells__H__ + Resistantcells__R__)
+	fRate7() = ViralLoad__V__*gammaHV
+	fRate8() = Interferons__F__*bHF
+	fRate9() = Effectorcells__E__*bIE
+	fRate11() = (1 - APCcells__M__)*(Deadcells__D___ar*bMD + ViralLoad__V__*bMV)
+	fRate13() = APCcells__M__*bF
+	fRate14() = InfectedEpithelialcells__I__*cF
+	fRate15() = HealthyEpithelialcells__H__*bFH
+	fRate17() = APCcells__M__*Effectorcells__E__*bEM
+	fRate18() = InfectedEpithelialcells__I__*bEI
+	fRate20() = APCcells__M__*Plasmacells__P__*bPM
+	fRate22() = Plasmacells__P__*bA
+	fRate23() = Antigeniccompatibility__S__*ViralLoad__V__*gammaAV
+	fRate25() = Plasmacells__P__*r
+	fRate25m() = Plasmacells__P__*r
+end functions
+begin reaction rules
+	Secretion_of_Virus__V__by_Infected_epithelial_cells__I: 0  -> ViralLoad__V__() fRate0() #Modifiers(Infected_Epithelial_cells__I)
+	Neutralization_of_Virus__V__by_Antibody__A: ViralLoad__V__() -> 0  fRate1() #Modifiers(Antigenic_compatibility__S, Antibodies__A)
+	Adsorption_of_Virus__V__by_Healthy_epithelial_cells__H: ViralLoad__V__() -> 0  fRate2() #Modifiers(Healthy_Epithelial_cells__H)
+	Non_Specific_Removal_of_Virus__V___alphaV: ViralLoad__V__() -> 0  alphaV
+	Non_Specific_Removal_of_Virus__V___aV1_aV2: ViralLoad__V__() -> 0  fRate4()
+	Regeneration_of_Healthy_Epithelial_cells__H: 0  -> HealthyEpithelialcells__H__() fRate5() #Modifiers(Dead_cells__D, Resistant_cells__R)
+	R_virus_resistant_state_decay: Resistantcells__R__() -> HealthyEpithelialcells__H__() aR
+	Infection_of_Healthy_Epithelial_cells_by__V: HealthyEpithelialcells__H__() -> InfectedEpithelialcells__I__() fRate7() #Modifiers(Viral_Load__V)
+	H_virus_resistant_state_induction: HealthyEpithelialcells__H__() -> Resistantcells__R__() fRate8() #Modifiers(Interferons__F)
+	Degradation_of_Infected_Epithelial_cells___E: InfectedEpithelialcells__I__() -> 0  fRate9() #Modifiers(Effector_cells__E)
+	Degradation_of_Infected_Epithelial_cells___Cytopathicity_of_V: InfectedEpithelialcells__I__() -> 0  aI
+	Stimulation_of_APC_cells__M__by_Dead_cells__D__and_Virus__V_products_0: 0  -> APCcells__M__() fRate11() #Modifiers(Dead_cells__D, Viral_Load__V)
+	Stimulates_State_loss_of_APC_cells__M: APCcells__M__() -> 0  aM
+	Synthesis_of_Interferons__F___M: 0  -> Interferons__F__() fRate13() #Modifiers(APC_cells__M)
+	Synthesis_of_Interferons__F___I: 0  -> Interferons__F__() fRate14() #Modifiers(Infected_Epithelial_cells__I)
+	Binding_of_Healthy_epithelial_cells__H__and_Interferons__F: Interferons__F__() -> 0  fRate15() #Modifiers(Healthy_Epithelial_cells__H)
+	Degradation_of_Interferons__F: Interferons__F__() -> 0  aF
+	Stimulation_of_Effector_cells__E___M: 0  -> Effectorcells__E__() fRate17() #Modifiers(APC_cells__M)
+	Degradation_of_Effector_cells__E___Mod_I: Effectorcells__E__() -> 0  fRate18() #Modifiers(Infected_Epithelial_cells__I)
+	Degradation_of_Effector_cells__E: Effectorcells__E__() <-> 0  r20_aE,r20_aE
+	Synthesis_of_Plasma_cells__P___Mod_M: 0  -> Plasmacells__P__() fRate20() #Modifiers(APC_cells__M)
+	Degradation_of_Plasma_cells__P: Plasmacells__P__() <-> 0  aP,aP
+	Synthesis_of_Antibody__A___Mod_P: 0  -> Antibodies__A__() fRate22() #Modifiers(Plasma_cells__P)
+	Binding_of_Antibody__A__and_Virus__V: Antibodies__A__() -> 0  fRate23() #Modifiers(Antigenic_compatibility__S, Viral_Load__V)
+	Degradation_of_Antibody__A: Antibodies__A__() -> 0  aA
+	Antigenic_Compatibility_variable: 0  <-> Antigeniccompatibility__S__() fRate25(),fRate25m() #Modifiers(Plasma_cells__P)
+end reaction rules
+end model

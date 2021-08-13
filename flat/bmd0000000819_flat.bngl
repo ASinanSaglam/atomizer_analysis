@@ -1,0 +1,133 @@
+###
+#@BQB_HAS_PROPERTY:['http://identifiers.org/efo/0000181', 'http://identifiers.org/ncit/C34447', 'http://identifiers.org/efo/0000311', 'http://identifiers.org/ncit/C20451', 'http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/ncit/C68706']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/29351275']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1909230001', 'http://identifiers.org/biomodels.db/BIOMD0000000819']
+#@creatorEmail:'muffet0307@gmail.com'
+#@creatorName:'Ng Szeyi'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 11 molecules and 30 reactions. The translated model has 10 molecules and 30 rules'
+###
+begin model
+begin parameters
+	alpha_S 0.6 #units:unit_0
+	R_Ts 1.66e-06 #units:unit_1
+	gamma_S 2.38
+	A_in 2.0
+	A_out 2.0
+	Pstar_Smin 0.014
+	P_Smax 0.9
+	delta_D 0.0612 #units:unit_0
+	delta_E 0.0612 #units:unit_0
+	n 2.6
+	myu 0.04
+	P_Ns 728455.0
+	gamma_E 2.38
+	gamma_D 2.38
+	K_f 2.35 #units:unit_2
+	K_r 2.24 #units:unit_0
+	lambda 0.4152 #units:unit_0
+	rho 7e-07 #units:unit_3
+	K_p 24.95 #units:unit_0
+	tumor 602212044000.0 #original 1000.02substance/volume
+end parameters
+begin molecule types
+	IL_6__L__()
+	DifferentiatedtumorcellD()
+	IL_6_CellboundIL_6RcomplexonS()
+	IL_6RonD()
+	IL_6_CellboundIL_6RcomplexonD()
+	IL_6RonS()
+	IL_6RonE()
+	ProgenitortumorcellE()
+	IL_6_CellboundIL_6RcomplexonE()
+	CancerStemCellS()
+end molecule types
+begin seed species
+	CancerStemCellS() 602200000000.0 # (1000.0 * 1e-15)mol/L * 6.022e23/mol *1.0L #CancerStemCellS #Cancer_Stem_Cell_S
+	ProgenitortumorcellE() 6022000.000000001 #original 0.01substance/volume #ProgenitortumorcellE #Progenitor_tumor_cell_E
+	DifferentiatedtumorcellD() 6022000.000000001 #original 0.01substance/volume #DifferentiatedtumorcellD #Differentiated_tumor_cell_D
+	IL_6RonS() 602200000.0000001 #original 1.0substance/volume #IL_6RonS #IL_6R_on_S
+	IL_6RonE() 602200000.0000001 #original 1.0substance/volume #IL_6RonE #IL_6R_on_E
+	IL_6RonD() 602200000.0000001 #original 1.0substance/volume #IL_6RonD #IL_6R_on_D
+end seed species
+begin observables
+	Species CancerStemCellS CancerStemCellS() #Cancer Stem Cell S
+	Species IL_6_CellboundIL_6RcomplexonS IL_6_CellboundIL_6RcomplexonS() #IL-6, Cell bound IL-6R complex on S
+	Species ProgenitortumorcellE ProgenitortumorcellE() #Progenitor tumor cell E
+	Species DifferentiatedtumorcellD DifferentiatedtumorcellD() #Differentiated tumor cell D
+	Species IL_6_CellboundIL_6RcomplexonE IL_6_CellboundIL_6RcomplexonE() #IL-6, Cell bound IL-6R complex on E
+	Species IL_6_CellboundIL_6RcomplexonD IL_6_CellboundIL_6RcomplexonD() #IL-6, Cell bound IL-6R complex on D
+	Species IL_6__L__ IL_6__L__() #IL-6 (L)
+	Species IL_6RonS IL_6RonS() #IL-6R on S
+	Species IL_6RonE IL_6RonE() #IL-6R on E
+	Species IL_6RonD IL_6RonD() #IL-6R on D
+end observables
+begin functions
+	phi_S() = IL_6_CellboundIL_6RcomplexonS/(CancerStemCellS*R_Ts)
+	delta_S() = 1.5*Pstar_Smin*alpha_S
+	D_phiS() = CancerStemCellS*delta_S/(gamma_S*phi_S + 1)
+	P_Smin() = Pstar_Smin + myu*phi_S*(P_Smax - Pstar_Smin)
+	P_S() = P_Ns^n*(P_Smax - P_Smin)/(CancerStemCellS^n + P_Ns^n) + P_Smin
+	alpha_E() = 0.961538461538461*ln(2)
+	P_etaE() = A_in*CancerStemCellS*alpha_S*(1 - P_S) - ProgenitortumorcellE*alpha_E
+	R_Td() = R_Ts/8
+	phi_D() = IL_6_CellboundIL_6RcomplexonD/(DifferentiatedtumorcellD*R_Td)
+	D_DD() = DifferentiatedtumorcellD*delta_D/(gamma_D*phi_D + 1)
+	R_Te() = R_Ts/8
+	phi_E() = IL_6_CellboundIL_6RcomplexonE/(ProgenitortumorcellE*R_Te)
+	D_etaE() = ProgenitortumorcellE*delta_E/(gamma_E*phi_E + 1)
+	P_DD() = A_out*ProgenitortumorcellE*alpha_E
+	P_phiS() = CancerStemCellS*P_S*alpha_S
+	tumor_ar() = CancerStemCellS + DifferentiatedtumorcellD + ProgenitortumorcellE
+	fRate0() = CancerStemCellS*P_S*alpha_S
+	fRate1() = delta_S/(gamma_S*phi_S + 1.0)
+	fRate2() = A_in*CancerStemCellS*alpha_S*(1 - P_S)
+	fRate4() = delta_E/(gamma_E*phi_E + 1.0)
+	fRate5() = A_out*ProgenitortumorcellE*alpha_E
+	fRate6() = delta_D/(gamma_D*phi_D + 1.0)
+	fRate14() = rho*(CancerStemCellS + DifferentiatedtumorcellD + ProgenitortumorcellE)
+	fRate18() = P_phiS*R_Ts
+	fRate19() = P_etaE*R_Te
+	fRate20() = P_DD*R_Td
+	fRate21() = D_phiS*R_Ts/(IL_6RonS + IL_6_CellboundIL_6RcomplexonS)
+	fRate22() = D_etaE*R_Te/(IL_6RonE + IL_6_CellboundIL_6RcomplexonE)
+	fRate23() = D_DD*R_Td/(IL_6RonD + IL_6_CellboundIL_6RcomplexonD)
+	fRate24() = D_phiS*R_Ts/(IL_6RonS + IL_6_CellboundIL_6RcomplexonS)
+	fRate25() = D_etaE*R_Te/(IL_6RonE + IL_6_CellboundIL_6RcomplexonE)
+	fRate26() = D_DD*R_Td/(IL_6RonD + IL_6_CellboundIL_6RcomplexonD)
+	fRate27() = IL_6RonS*IL_6__L__*K_f
+	fRate28() = IL_6RonE*IL_6__L__*K_f
+	fRate29() = IL_6RonD*IL_6__L__*K_f
+end functions
+begin reaction rules
+	Cancer_Stem_cell_S_self_renewal: 0  -> CancerStemCellS() fRate0()
+	Cancer_Stem_Cell_S_death: CancerStemCellS() -> 0  fRate1()
+	Amplified_Stem_Cell_differentiation_products_0: 0  -> ProgenitortumorcellE() fRate2() #Modifiers(Cancer_Stem_Cell_S)
+	Progenitor_Cell_E_differentiation: ProgenitortumorcellE() -> 0  alpha_E
+	Progenitor_Cell_E_death: ProgenitortumorcellE() -> 0  fRate4()
+	Progenitor_Cell_differentiation_form_D: 0  -> DifferentiatedtumorcellD() fRate5() #Modifiers(Progenitor_tumor_cell_E)
+	Differentiated_Cell_D_death: DifferentiatedtumorcellD() -> 0  fRate6()
+	IL6_binding_to_stem_cells: IL_6__L__() + IL_6RonS() -> 0  K_f #Modifiers(IL_6__L, IL_6R_on_S)
+	IL6_dissociation_from_stem_cells: IL_6_CellboundIL_6RcomplexonS() -> IL_6__L__() + IL_6RonS() K_r #Modifiers(IL_6__Cell_bound_IL_6R_complex_on_S)
+	IL6_binding_to_progenitor_cells: IL_6__L__() + IL_6RonE() -> 0  K_f #Modifiers(IL_6__L, IL_6R_on_E)
+	IL6_dissociation_from_progenitor_cells: IL_6_CellboundIL_6RcomplexonE() -> IL_6__L__() + IL_6RonE() K_r #Modifiers(IL_6__Cell_bound_IL_6R_complex_on_E)
+	IL6_binding_to_differentiated_cells: IL_6__L__() + IL_6RonD() -> 0  K_f #Modifiers(IL_6__L, IL_6R_on_D)
+	IL6_dissociation_from_differentiated_cells: IL_6_CellboundIL_6RcomplexonD() -> IL_6__L__() + IL_6RonD() K_r #Modifiers(IL_6__Cell_bound_IL_6R_complex_on_D)
+	IL6_natural_decay: IL_6__L__() -> 0  lambda
+	IL6_Production_by_tumor_cells: 0  -> IL_6__L__() fRate14() #Modifiers(Cancer_Stem_Cell_S, Progenitor_tumor_cell_E, Differentiated_tumor_cell_D)
+	Recycling_of_Receptors_S: IL_6_CellboundIL_6RcomplexonS() -> IL_6RonS() K_p #Modifiers(IL_6__Cell_bound_IL_6R_complex_on_S)
+	Recycling_of_Receptors_E: IL_6_CellboundIL_6RcomplexonE() -> IL_6RonE() K_p #Modifiers(IL_6__Cell_bound_IL_6R_complex_on_E)
+	Recycling_of_Receptors_D: IL_6_CellboundIL_6RcomplexonD() -> IL_6RonD() K_p #Modifiers(IL_6__Cell_bound_IL_6R_complex_on_D)
+	Generation_of_new_R_S_via_cell_proliferation: 0  -> IL_6RonS() fRate18()
+	Generation_of_new_R_E_via_cell_proliferation: 0  -> IL_6RonE() fRate19()
+	Generation_of_new_R_D_via_cell_proliferation: 0  -> IL_6RonD() fRate20()
+	Loss_of_Receptors_S__via_cell_death: IL_6RonS() -> 0  fRate21() #Modifiers(IL_6__Cell_bound_IL_6R_complex_on_S)
+	Loss_of_Receptors_E_via_cell_death: IL_6RonE() -> 0  fRate22() #Modifiers(IL_6__Cell_bound_IL_6R_complex_on_E)
+	Loss_of_Receptors_D_via_cell_death: IL_6RonD() -> 0  fRate23() #Modifiers(IL_6__Cell_bound_IL_6R_complex_on_D)
+	Loss_of_C_S_via_cell_death: IL_6_CellboundIL_6RcomplexonS() -> 0  fRate24() #Modifiers(IL_6R_on_S)
+	Loss_of_C_E_via_cell_death: IL_6_CellboundIL_6RcomplexonE() -> 0  fRate25() #Modifiers(IL_6R_on_E)
+	Loss_of_C_D_via_cell_death: IL_6_CellboundIL_6RcomplexonD() -> 0  fRate26() #Modifiers(IL_6R_on_D)
+	IL6_binding_to_R_S: 0  -> IL_6_CellboundIL_6RcomplexonS() fRate27() #Modifiers(IL_6__L, IL_6R_on_S)
+	IL6_binding_to_R_E: 0  -> IL_6_CellboundIL_6RcomplexonE() fRate28() #Modifiers(IL_6__L, IL_6R_on_E)
+	IL6_binding_to_R_D: 0  -> IL_6_CellboundIL_6RcomplexonD() fRate29() #Modifiers(IL_6__L, IL_6R_on_D)
+end reaction rules
+end model

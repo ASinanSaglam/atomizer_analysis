@@ -1,0 +1,48 @@
+###
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/MODEL1907290002', 'http://identifiers.org/taxonomy/9606', 'http://identifiers.org/ncit/C62713', 'http://identifiers.org/biomodels.db/BIOMD0000000766', 'http://identifiers.org/mamo/MAMO_0000046']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/25882747', 'http://identifiers.org/biomodels.db/MODEL1907290002', 'http://identifiers.org/biomodels.db/BIOMD0000000766']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/ncit/C62713']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000767', 'http://identifiers.org/biomodels.db/MODEL1907290003']
+#@creatorEmail:'jm2187@cam.ac.uk'
+#@creatorName:'Men Jinghao'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 3 molecules and 5 reactions. The translated model has 2 molecules and 5 rules'
+###
+begin model
+begin parameters
+	r 0.927 #units:unit_0
+	K 181820000.0 #units:unit_1
+	du 2.0 #units:unit_0
+	he 1000.0 #units:unit_1
+	hv 10000.0 #units:unit_1
+	pe 0.4 #units:unit_0
+	de 0.1 #units:unit_0
+	dt 5e-09 #units:unit_0
+	M 6.022e+20 #original 1.0substance/volume
+end parameters
+begin molecule types
+	U()
+	E()
+end molecule types
+begin seed species
+	U() 6.0220000000000006e+26 # (1000000.0 * 0.001)mol/L * 6.022e23/mol *1.0L #U #U
+end seed species
+begin observables
+	Species U U() #U
+	Species E E() #E
+end observables
+begin functions
+	fRate0() = U*r
+	fRate0m() = U*r/K
+	fRate1() = E*du/(E + he)
+	fRate2() = M*U*pe/(U + hv)
+	fRate4() = U*dt
+end functions
+begin reaction rules
+	tumor_growth: 0  <-> U() fRate0(),fRate0m()
+	tumor_killing: U() -> 0  fRate1() #Modifiers(E)
+	effector_growth: 0  -> E() fRate2() #Modifiers(M, U)
+	effector_death: E() -> 0  de
+	effector_exhaustion: E() -> 0  fRate4() #Modifiers(U)
+end reaction rules
+end model

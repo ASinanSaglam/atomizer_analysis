@@ -1,0 +1,42 @@
+###
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/31048505']
+#@BQB_IS:['http://identifiers.org/biomodels.db/MODEL1903280001']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/ncit/C39163', 'http://identifiers.org/taxonomy/9606']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1903280001', 'http://identifiers.org/biomodels.db/BIOMD0000000866']
+#@creatorEmail:'ahoffmann@ucla.edu'
+#@creatorName:'Hoffmann Alexander'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 4 molecules and 4 reactions. The translated model has 3 molecules and 4 rules'
+###
+begin model
+begin parameters
+	NIK 6022000000000000.0 #original 10.0substance/volume
+	r1_k1 0.200000
+	r2_Km 10.000000
+	r2_kcat 0.050000
+	r3_k1 0.000380
+	r4_k1 0.000380
+end parameters
+begin molecule types
+	p100t()
+	p100()
+	p52()
+end molecule types
+begin seed species
+	$p100t() 1505500000000000.0 # (2.5 * 1e-09)mol/L * 6.022e23/mol *1.0L #p100t #p100t
+end seed species
+begin observables
+	Species p100t p100t() #p100t
+	Species p100 p100() #p100
+	Species p52 p52() #p52
+end observables
+begin functions
+	p52_uM() = p52/1000
+	fRate1() = 0.05*NIK/(p100 + 10.0)
+end functions
+begin reaction rules
+	p100_mRNA_Expressions: p100t() -> p100() r1_k1
+	p100_processing: p100() -> p52() fRate1() #Modifiers(NIK)
+	p52_degradation: p52() -> 0  r3_k1
+	p100_degradation: p100() -> 0  r4_k1
+end reaction rules
+end model

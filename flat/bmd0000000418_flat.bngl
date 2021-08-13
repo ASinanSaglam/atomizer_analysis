@@ -1,0 +1,40 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1203010000', 'http://identifiers.org/biomodels.db/BIOMD0000000418']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/22531117']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0006355']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/4932']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 1 molecules and 2 reactions. The translated model has 1 molecules and 2 rules'
+###
+begin model
+begin parameters
+	Kd 1e-05
+	Ksp 0.001
+	h 2.0
+	k0 0.1
+	ka 40.0
+	ks 10.0
+	ku 0.1
+	s 1000.0
+	r2___RATE__ 0.100000
+end parameters
+begin molecule types
+	P()
+end molecule types
+begin seed species
+	P() 10.0 #P #P
+end seed species
+begin observables
+	Species P P() #P
+end observables
+begin functions
+	dspksp() = Ksp*(-2.0*(0.25*(1 + (1.0*P + s)/Ksp)^2 - P*s/Ksp^2)^0.5 + 1 + (1.0*P + s)/Ksp)/2
+	dspspkd() = Kd*(-((1 + 2*dspksp/Kd)^2 - 4*dspksp^2/Kd^2)^0.5 + 1 + 2*dspksp/Kd)/2
+	fRate0() = ks*(k0 + (dspspkd/ka)^h)/((dspspkd/ka)^h + 1.0)
+end functions
+begin reaction rules
+	___r1: 0  -> P() fRate0()
+	___r2: P() -> 0  r2___RATE__
+end reaction rules
+end model

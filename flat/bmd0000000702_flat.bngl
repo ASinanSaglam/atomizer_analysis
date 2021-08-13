@@ -1,0 +1,206 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000702', 'http://identifiers.org/biomodels.db/MODEL1202090003']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/22580890']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/go/GO:0031578', 'http://identifiers.org/go/GO:0007052', 'http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/go/GO:0051726']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/4932']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/doi/doi:10.1038/msb.2012.15']
+#@creatorEmail:'m.lohel@dkfz.de'
+#@creatorName:'Lohel Maiko'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 36 molecules and 48 reactions. The translated model has 24 molecules and 48 rules'
+###
+begin model
+begin parameters
+	konB 1250000.0 #units:unit_0
+	koffB 0.0012 #units:unit_1
+	konB4 20000.0 #units:unit_0
+	koffB4 0.0365 #units:unit_1
+	konBT 36500000.0 #units:unit_0
+	konB4T 36500000.0 #units:unit_0
+	konB5T 7000000.0 #units:unit_0
+	koffBT 0.183 #units:unit_1
+	konT 1900000.0 #units:unit_0
+	koffT 0.183 #units:unit_1
+	kfKin4 1000.0 #units:unit_1
+	kfKin4Cyto 0.09 #units:unit_1
+	krKin4 0.0251 #units:unit_1
+	kfCdc5 1.0 #units:unit_1
+	krCdc5 0.01 #units:unit_1
+	khyd 0.00224 #units:unit_1
+	knex 0.0136 #units:unit_1
+	khydBT 0.00224 #units:unit_1
+	khydB4T 2.0 #units:unit_1
+	u 1.0 #units:unit_2
+	alpha 1.0 #units:unit_2
+	avogadro 6.0221415e+23
+	q 0
+	ActiveTem1attheSPB_c3 16319401.250850001 #original 9.03321225mol/L
+	ActiveTem1attheSPB 16319401.250850001 #original 9.03321225mol/L
+	ActiveTem1intheCytosol_c2 178062800314830.03 #original 2956.8714765mol/L
+	ActiveTem1intheCytosol 178062800314830.03 #original 2956.8714765mol/L
+	InactiveBfa1attheSPB_c3 288200626.090011 #original 159.526528335mol/L
+	InactiveBfa1attheSPB 288200626.090011 #original 159.526528335mol/L
+	InactiveBfa1inthecytosol_c2 73618632309390.02 #original 1222.4947245mol/L
+	InactiveBfa1inthecytosol 73618632309390.02 #original 1222.4947245mol/L
+	InactiveTem1inthecytosol_c2 28976003554287.004 #original 481.16910585mol/L
+	InactiveTem1inthecytosol 28976003554287.004 #original 481.16910585mol/L
+	TotalBfa1attheSPB_c3 288200626.090011 #original 159.526528335mol/L
+	TotalBfa1attheSPB 288200626.090011 #original 159.526528335mol/L
+	TotalBfa1intheCytosol_c2 73618632309390.02 #original 1222.4947245mol/L
+	TotalBfa1intheCytosol 73618632309390.02 #original 1222.4947245mol/L
+	TotalTem1attheSPB_c3 16319401.250850001 #original 9.03321225mol/L
+	TotalTem1attheSPB 16319401.250850001 #original 9.03321225mol/L
+	TotalTem1intheCytosol_c2 207038803869117.0 #original 3438.04058235mol/L
+	TotalTem1intheCytosol 207038803869117.0 #original 3438.04058235mol/L
+end parameters
+begin compartments
+	#volume units: L
+	c2 3 1e-13 #Cytosol
+	c3 3 3e-18 #SPB
+end compartments
+begin molecule types
+	B()
+	B_Bfa1P4_Tem1GDP()
+	B_Bfa1P5_Tem1GDP()
+	Bfa1P5()
+	Bfa1P5_Tem1GTP()
+	B_Bfa1()
+	Bfa1_Tem1GDP()
+	Bfa1()
+	Tem1GTP()
+	Bfa1P4_Tem1GTP()
+	B_Bfa1_Tem1GDP()
+	Tem1GDP()
+	Bfa1P4_Tem1GDP()
+	Bfa1P4()
+	T_Tem1GDP()
+	B_Bfa1P5()
+	T_Tem1GTP()
+	Bfa1P5_Tem1GDP()
+	B_Bfa1P5_Tem1GTP()
+	B_Bfa1P4_Tem1GTP()
+	Bfa1_Tem1GTP()
+	B_Bfa1_Tem1GTP()
+	T()
+	B_Bfa1P4()
+end molecule types
+begin seed species
+	@c3:B() 150.48978000000002 # 8.33e-05mol/L * 6.022e23/mol *3e-18L #B #SPB_B
+	@c3:T() 299.8956 #original 0.000166mol/L #T #SPB_T
+	@c2:Bfa1() 1222.4660000000001 #original 2.03e-08mol/L #Bfa1 #Bfa1
+	@c2:Tem1GTP() 2956.8020000000006 #original 4.91e-08mol/L #Tem1GTP #Tem1GTP
+	@c2:Tem1GDP() 481.1578000000001 #original 7.99e-09mol/L #Tem1GDP #Tem1GDP
+	@c3:B_Bfa1() 150.48978000000002 #original 8.33e-05mol/L #B_Bfa1 #B_Bfa1
+	@c3:B_Bfa1P5_Tem1GTP() 9.033000000000001 #original 5e-06mol/L #B_Bfa1P5_Tem1GTP #B_Bfa1P5_Tem1GTP
+end seed species
+begin observables
+	Species B_c3 @c3:B() #B
+	Species T_c3 @c3:T() #T
+	Species Bfa1_c2 @c2:Bfa1() #Bfa1
+	Species Bfa1P4_c2 @c2:Bfa1P4() #Bfa1P4
+	Species Bfa1P5_c2 @c2:Bfa1P5() #Bfa1P5
+	Species Tem1GTP_c2 @c2:Tem1GTP() #Tem1GTP
+	Species Tem1GDP_c2 @c2:Tem1GDP() #Tem1GDP
+	Species B_Bfa1_c3 @c3:B_Bfa1() #B-Bfa1
+	Species B_Bfa1P4_c3 @c3:B_Bfa1P4() #B-Bfa1P4
+	Species B_Bfa1P5_c3 @c3:B_Bfa1P5() #B-Bfa1P5
+	Species T_Tem1GTP_c3 @c3:T_Tem1GTP() #T-Tem1GTP
+	Species T_Tem1GDP_c3 @c3:T_Tem1GDP() #T-Tem1GDP
+	Species B_Bfa1_Tem1GTP_c3 @c3:B_Bfa1_Tem1GTP() #B-Bfa1-Tem1GTP
+	Species B_Bfa1P4_Tem1GTP_c3 @c3:B_Bfa1P4_Tem1GTP() #B-Bfa1P4-Tem1GTP
+	Species B_Bfa1P5_Tem1GTP_c3 @c3:B_Bfa1P5_Tem1GTP() #B-Bfa1P5-Tem1GTP
+	Species B_Bfa1_Tem1GDP_c3 @c3:B_Bfa1_Tem1GDP() #B-Bfa1-Tem1GDP
+	Species B_Bfa1P4_Tem1GDP_c3 @c3:B_Bfa1P4_Tem1GDP() #B-Bfa1P4-Tem1GDP
+	Species B_Bfa1P5_Tem1GDP_c3 @c3:B_Bfa1P5_Tem1GDP() #B-Bfa1P5-Tem1GDP
+	Species Bfa1_Tem1GTP_c2 @c2:Bfa1_Tem1GTP() #Bfa1-Tem1GTP
+	Species Bfa1P4_Tem1GTP_c2 @c2:Bfa1P4_Tem1GTP() #Bfa1P4-Tem1GTP
+	Species Bfa1P5_Tem1GTP_c2 @c2:Bfa1P5_Tem1GTP() #Bfa1P5-Tem1GTP
+	Species Bfa1_Tem1GDP_c2 @c2:Bfa1_Tem1GDP() #Bfa1-Tem1GDP
+	Species Bfa1P4_Tem1GDP_c2 @c2:Bfa1P4_Tem1GDP() #Bfa1P4-Tem1GDP
+	Species Bfa1P5_Tem1GDP_c2 @c2:Bfa1P5_Tem1GDP() #Bfa1P5-Tem1GDP
+end observables
+begin functions
+	InactiveTem1inthecytosol_ar() = 1.0e-13*avogadro*(Bfa1P4_Tem1GDP_c2 + Bfa1P5_Tem1GDP_c2 + Bfa1_Tem1GDP_c2 + Tem1GDP_c2)
+	ActiveTem1intheCytosol_ar() = 1.0e-13*avogadro*(Bfa1P4_Tem1GTP_c2 + Bfa1P5_Tem1GTP_c2 + Bfa1_Tem1GTP_c2 + Tem1GTP_c2)
+	TotalTem1intheCytosol_ar() = ActiveTem1intheCytosol_ar + InactiveTem1inthecytosol_ar
+	InactiveTem1attheSPB_ar() = 3.0e-18*avogadro*(B_Bfa1P4_Tem1GDP_c3 + B_Bfa1P5_Tem1GDP_c3 + B_Bfa1_Tem1GDP_c3 + T_Tem1GDP_c3)
+	ActiveTem1attheSPB_ar() = 3.0e-18*avogadro*(B_Bfa1P4_Tem1GTP_c3 + B_Bfa1P5_Tem1GTP_c3 + B_Bfa1_Tem1GTP_c3 + T_Tem1GTP_c3)
+	TotalTem1attheSPB_ar() = ActiveTem1attheSPB_ar + InactiveTem1attheSPB_ar
+	ActiveBfa1attheCytosol_ar() = 1.0e-13*avogadro*(Bfa1P4_Tem1GDP_c2 + Bfa1P4_Tem1GTP_c2 + Bfa1P4_c2 + q*(Bfa1_Tem1GDP_c2 + Bfa1_Tem1GTP_c2 + Bfa1_c2))
+	InactiveBfa1inthecytosol_ar() = 1.0e-13*avogadro*(Bfa1P5_Tem1GDP_c2 + Bfa1P5_Tem1GTP_c2 + Bfa1P5_c2 + (1 - q)*(Bfa1_Tem1GDP_c2 + Bfa1_Tem1GTP_c2 + Bfa1_c2))
+	TotalBfa1intheCytosol_ar() = ActiveBfa1attheCytosol_ar + InactiveBfa1inthecytosol_ar
+	ActiveBfa1attheSPB_ar() = 3.0e-18*avogadro*(B_Bfa1P4_Tem1GDP_c3 + B_Bfa1P4_Tem1GTP_c3 + B_Bfa1P4_c3 + q*(B_Bfa1_Tem1GDP_c3 + B_Bfa1_Tem1GTP_c3 + B_Bfa1_c3))
+	InactiveBfa1attheSPB_ar() = 3.0e-18*avogadro*(B_Bfa1P5_Tem1GDP_c3 + B_Bfa1P5_Tem1GTP_c3 + B_Bfa1P5_c3 + (1 - q)*(B_Bfa1_Tem1GDP_c3 + B_Bfa1_Tem1GTP_c3 + B_Bfa1_c3))
+	TotalBfa1attheSPB_ar() = ActiveBfa1attheSPB_ar + InactiveBfa1attheSPB_ar
+	fRate15() = alpha*konBT
+	fRate15m() = 10000000000000.0*koffBT
+	fRate16() = alpha*konB4T
+	fRate16m() = 10000000000000.0*koffBT
+	fRate17() = alpha*konB5T
+	fRate17m() = 10000000000000.0*koffBT
+	fRate18() = alpha*konBT
+	fRate18m() = 10000000000000.0*koffBT
+	fRate19() = alpha*konB4T
+	fRate19m() = 10000000000000.0*koffBT
+	fRate20() = alpha*konB5T
+	fRate20m() = 10000000000000.0*koffBT
+	fRate23() = kfKin4*u
+	fRate24() = kfKin4*u
+	fRate25() = kfKin4*u
+	fRate32() = kfKin4Cyto*u
+	fRate34() = krCdc5*u
+	fRate43() = krCdc5*u
+	fRate44() = kfKin4Cyto*u
+	fRate46() = krCdc5*u
+	fRate47() = kfKin4Cyto*u
+end functions
+begin reaction rules
+	R1: B()@c3 + Bfa1()@c2 <-> B_Bfa1()@c3 konB,koffB
+	R2: Bfa1P4()@c2 + B()@c3 <-> B_Bfa1P4()@c3 konB4,koffB4
+	R3: Bfa1P5()@c2 + B()@c3 <-> B_Bfa1P5()@c3 konB,koffB
+	R4: Bfa1_Tem1GTP()@c2 + B()@c3 <-> B_Bfa1_Tem1GTP()@c3 konB,koffB
+	R5: Bfa1P4_Tem1GTP()@c2 + B()@c3 <-> B_Bfa1P4_Tem1GTP()@c3 konB4,koffB4
+	R6: Bfa1P5_Tem1GTP()@c2 + B()@c3 <-> B_Bfa1P5_Tem1GTP()@c3 konB,koffB
+	R7: Bfa1_Tem1GDP()@c2 + B()@c3 <-> B_Bfa1_Tem1GDP()@c3 konB,koffB
+	R8: Bfa1P4_Tem1GDP()@c2 + B()@c3 <-> B_Bfa1P4_Tem1GDP()@c3 konB4,koffB4
+	R9: Bfa1P5_Tem1GDP()@c2 + B()@c3 <-> B_Bfa1P5_Tem1GDP()@c3 konB,koffB
+	R10: Tem1GTP()@c2 + B_Bfa1()@c3 <-> B_Bfa1_Tem1GTP()@c3 konBT,koffBT
+	R11: Tem1GTP()@c2 + B_Bfa1P4()@c3 <-> B_Bfa1P4_Tem1GTP()@c3 konB4T,koffBT
+	R12: Tem1GTP()@c2 + B_Bfa1P5()@c3 <-> B_Bfa1P5_Tem1GTP()@c3 konB5T,koffBT
+	R13: Tem1GDP()@c2 + B_Bfa1()@c3 <-> B_Bfa1_Tem1GDP()@c3 konBT,koffBT
+	R14: Tem1GDP()@c2 + B_Bfa1P4()@c3 <-> B_Bfa1P4_Tem1GDP()@c3 konB4T,koffBT
+	R15: Tem1GDP()@c2 + B_Bfa1P5()@c3 <-> B_Bfa1P5_Tem1GDP()@c3 konB5T,koffBT
+	R16: Bfa1()@c2 + Tem1GTP()@c2 <-> Bfa1_Tem1GTP()@c2 fRate15(),fRate15m()
+	R17: Bfa1P4()@c2 + Tem1GTP()@c2 <-> Bfa1P4_Tem1GTP()@c2 fRate16(),fRate16m()
+	R18: Bfa1P5()@c2 + Tem1GTP()@c2 <-> Bfa1P5_Tem1GTP()@c2 fRate17(),fRate17m()
+	R19: Bfa1()@c2 + Tem1GDP()@c2 <-> Bfa1_Tem1GDP()@c2 fRate18(),fRate18m()
+	R20: Bfa1P4()@c2 + Tem1GDP()@c2 <-> Bfa1P4_Tem1GDP()@c2 fRate19(),fRate19m()
+	R21: Bfa1P5()@c2 + Tem1GDP()@c2 <-> Bfa1P5_Tem1GDP()@c2 fRate20(),fRate20m()
+	R22: Tem1GTP()@c2 + T()@c3 <-> T_Tem1GTP()@c3 konT,koffT
+	R23: Tem1GDP()@c2 + T()@c3 <-> T_Tem1GDP()@c3 konT,koffT
+	R24: B_Bfa1()@c3 -> B_Bfa1P4()@c3 fRate23()
+	R25: B_Bfa1_Tem1GTP()@c3 -> B_Bfa1P4_Tem1GTP()@c3 fRate24()
+	R26: B_Bfa1_Tem1GDP()@c3 -> B_Bfa1P4_Tem1GDP()@c3 fRate25()
+	R27: B_Bfa1()@c3 -> B_Bfa1P5()@c3 kfCdc5
+	R28: B_Bfa1_Tem1GTP()@c3 -> B_Bfa1P5_Tem1GTP()@c3 kfCdc5
+	R29: B_Bfa1_Tem1GDP()@c3 -> B_Bfa1P5_Tem1GDP()@c3 kfCdc5
+	R47: B_Bfa1P4_Tem1GTP()@c3 -> B_Bfa1P4_Tem1GDP()@c3 khydB4T
+	R46: B_Bfa1_Tem1GTP()@c3 -> B_Bfa1_Tem1GDP()@c3 khydBT
+	R48: B_Bfa1P5_Tem1GTP()@c3 -> B_Bfa1P5_Tem1GDP()@c3 khyd
+	R30: Bfa1()@c2 -> Bfa1P4()@c2 fRate32()
+	R33: Bfa1P4()@c2 -> Bfa1()@c2 krKin4
+	R36: Bfa1P5()@c2 -> Bfa1()@c2 fRate34()
+	R40: Tem1GDP()@c2 -> Tem1GTP()@c2 knex
+	R39: Tem1GTP()@c2 -> Tem1GDP()@c2 khyd
+	R42: T_Tem1GDP()@c3 -> T_Tem1GTP()@c3 knex
+	R41: T_Tem1GTP()@c3 -> T_Tem1GDP()@c3 khyd
+	R44: Bfa1P4_Tem1GTP()@c2 -> Bfa1P4_Tem1GDP()@c2 khydB4T
+	R43: Bfa1_Tem1GTP()@c2 -> Bfa1_Tem1GDP()@c2 khydBT
+	R45: Bfa1P5_Tem1GTP()@c2 -> Bfa1P5_Tem1GDP()@c2 khyd
+	R34: Bfa1P4_Tem1GTP()@c2 -> Bfa1_Tem1GTP()@c2 krKin4
+	R37: Bfa1P5_Tem1GTP()@c2 -> Bfa1_Tem1GTP()@c2 fRate43()
+	R31: Bfa1_Tem1GTP()@c2 -> Bfa1P4_Tem1GTP()@c2 fRate44()
+	R35: Bfa1P4_Tem1GDP()@c2 -> Bfa1_Tem1GDP()@c2 krKin4
+	R38: Bfa1P5_Tem1GDP()@c2 -> Bfa1_Tem1GDP()@c2 fRate46()
+	R32: Bfa1_Tem1GDP()@c2 -> Bfa1P4_Tem1GDP()@c2 fRate47()
+end reaction rules
+end model

@@ -1,0 +1,55 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1006230098', 'http://identifiers.org/biomodels.db/BIOMD0000000681']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/16794927']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0061041']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/efo/0000400']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/16794927']
+#@creatorEmail:'mroberts@ebi.ac.uk'
+#@creatorName:'Roberts Matthew Grant'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 4 molecules and 0 reactions. The translated model has 3 molecules and 3 rules'
+###
+begin model
+begin parameters
+	tau1 -2.47 #units:unit_0
+	tau2 21.94 #units:unit_1
+	tau3 6.41 #units:unit_2
+	tau4 1.75 #units:unit_3
+	alpha 0.8 #units:unit_4
+	k1 0.05 #units:unit_4
+	k2 0.693 #units:unit_5
+	k3 0.002 #units:unit_6
+	k4 0.07 #units:unit_7
+	d1 0.2 #units:unit_5
+	d2 9.1 #units:unit_5
+	dummy_variable 0
+	K_T -1.16512617227161e+74 # 296.53mol/L * 6.022e23/mol *1.0L
+end parameters
+begin molecule types
+	phi_R()
+	phi_I()
+	T()
+end molecule types
+begin seed species
+	phi_I() 1.2044e+26 #original 200.0mol/L #phi_I #phi_I
+	phi_R() 1.2044e+26 #original 200.0mol/L #phi_R #phi_R
+	T() 3.6132e+24 #original 6.0mol/L #T #T
+end seed species
+begin observables
+	Species phi_I phi_I() #phi_I
+	Species phi_R phi_R() #phi_R
+	Species T T() #T
+end observables
+begin functions
+	K_T_ar() = T^3*tau1 + T^2*tau2 + T*tau3 + tau4
+	arRatephi_R() = K_T_ar*(1 - alpha) - d1*phi_R + k1*k2*phi_R*(-k3*(phi_I + phi_R) + 1)
+	arRatephi_I() = K_T_ar*alpha - d1*phi_I + k1*k2*phi_I*(-k3*(phi_I + phi_R) + 1)
+	arRateT() = -T*d2 + k4*phi_I
+	total_M() = phi_I + phi_R
+end functions
+begin reaction rules
+	0  -> phi_I() arRatephi_I #rateLaw
+	0  -> phi_R() arRatephi_R #rateLaw
+	0  -> T() arRateT #rateLaw
+end reaction rules
+end model

@@ -1,0 +1,75 @@
+###
+#@BQB_HAS_PROPERTY:['http://identifiers.org/go/GO:0002526', 'http://identifiers.org/go/GO:0006955', 'http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/16584750']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000714', 'http://identifiers.org/biomodels.db/MODEL1808280003']
+#@creatorEmail:'sarubini.kananathan@hotmail.co.uk'
+#@creatorName:'Kananathan Sarubini'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 4 molecules and 10 reactions. The translated model has 4 molecules and 10 rules'
+###
+begin model
+begin parameters
+	k_pm 0.6
+	k_mp 0.01
+	s_m 0.005
+	mu_m 0.002
+	k_pg 0.3
+	p_inf 20.0
+	k_pn 1.8
+	k_np 0.1
+	k_nn 0.01
+	s_nr 0.08
+	mu_nr 0.12
+	mu_n 0.05
+	k_nd 0.02
+	k_dn 0.35
+	x_dn 0.06
+	mu_d 0.02
+	c_inf 0.28
+	s_c 0.0125
+	k_cn 0.04
+	k_cnd 48.0
+	mu_c 0.1
+end parameters
+begin molecule types
+	ActivatedPhagocytes__Nstar__()
+	TissueDamage__D__()
+	Anti_inflammatorymediators__C_A__()
+	Pathogen__P__()
+end molecule types
+begin seed species
+	Pathogen__P__() 6.022e+23 # 1.0mol/L * 6.022e23/mol *1.0L #Pathogen__P__ #P
+	Anti_inflammatorymediators__C_A__() 7.5275e+22 #original 0.125mol/L #Anti_inflammatorymediators__C_A__ #C_A
+end seed species
+begin observables
+	Species Pathogen__P__ Pathogen__P__() #Pathogen (P)
+	Species ActivatedPhagocytes__Nstar__ ActivatedPhagocytes__Nstar__() #Activated Phagocytes (Nstar)
+	Species TissueDamage__D__ TissueDamage__D__() #Tissue Damage (D)
+	Species Anti_inflammatorymediators__C_A__ Anti_inflammatorymediators__C_A__() #Anti-inflammatory mediators (C_A)
+end observables
+begin functions
+	f_Nstar() = ActivatedPhagocytes__Nstar__/(Anti_inflammatorymediators__C_A__^2/c_inf^2 + 1)
+	f_s_f_Nstar() = f_Nstar^6/(f_Nstar^6 + x_dn^6)
+	f_Nstar__k_cnd_D() = (ActivatedPhagocytes__Nstar__ + TissueDamage__D__*k_cnd)/(Anti_inflammatorymediators__C_A__^2/c_inf^2 + 1)
+	R() = (ActivatedPhagocytes__Nstar__*k_nn + Pathogen__P__*k_np + TissueDamage__D__*k_nd)/(Anti_inflammatorymediators__C_A__^2/c_inf^2 + 1)
+	fRate0() = Pathogen__P__*k_pg
+	fRate0m() = Pathogen__P__*k_pg/p_inf
+	fRate1() = k_pm*s_m/(Pathogen__P__*k_mp + mu_m)
+	fRate2() = f_Nstar*k_pn
+	fRate3() = R*s_nr/(R + mu_nr)
+	fRate5() = f_s_f_Nstar*k_dn
+	fRate8() = f_Nstar__k_cnd_D*k_cn/(f_Nstar__k_cnd_D + 1.0)
+end functions
+begin reaction rules
+	reaction_1: 0  <-> Pathogen__P__() fRate0(),fRate0m()
+	reaction_2: Pathogen__P__() -> 0  fRate1()
+	reaction_3: Pathogen__P__() -> 0  fRate2()
+	reaction_4: 0  -> ActivatedPhagocytes__Nstar__() fRate3()
+	reaction_5: ActivatedPhagocytes__Nstar__() -> 0  mu_n
+	reaction_6: 0  -> TissueDamage__D__() fRate5()
+	reaction_7: TissueDamage__D__() -> 0  mu_d
+	reaction_8: 0  -> Anti_inflammatorymediators__C_A__() s_c
+	reaction_9: 0  -> Anti_inflammatorymediators__C_A__() fRate8()
+	reaction_10: Anti_inflammatorymediators__C_A__() -> 0  mu_c
+end reaction rules
+end model

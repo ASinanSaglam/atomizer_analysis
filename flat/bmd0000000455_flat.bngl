@@ -1,0 +1,72 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1305030001', 'http://identifiers.org/biomodels.db/BIOMD0000000455']
+#@BQM_IS_DESCRIBED_BY:['http://arxiv.org/pdf/1305.6449v1.pdf']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/131567']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0051098']
+#@creatorEmail:'viji@ebi.ac.uk'
+#@creatorName:'Chelliah Vijayalakshmi'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 9 molecules and 5 reactions. The translated model has 9 molecules and 5 rules'
+###
+begin model
+begin parameters
+	r1_e1 1.000000
+	r1_p1 10.000000
+	r2_e2 1.000000
+	r2_p2 10.000000
+	r3_e3 1.000000
+	r3_p3 50.000000
+	r4_e4 1.000000
+	r4_p4 10.000000
+	r5_e5 1.000000
+	r5_p5 0.000000
+end parameters
+begin molecule types
+	x2()
+	x3()
+	y6()
+	y2()
+	y3()
+	y1()
+	y4()
+	x1()
+	y5()
+end molecule types
+begin seed species
+	x1() 3.3878196105987574e+22 # 0.05625738310526mol/L * 6.022e23/mol *1.0L #x1 #x1
+	x2() 4.629481867397044e+23 #original 0.76876151899652/  #x2 #x2
+	x3() 2.5480518132602956e+24 #original 4.23123848100348/  #x3 #x3
+	$y1() 6.022e+24 #original 10.0/  #y1 #y1
+	$y4() 6.022e+23 #original 1.0/  #y4 #y4
+	$y5() 6.022e+23 #original 1.0/  #y5 #y5
+end seed species
+begin observables
+	Species x1 x1() #x1
+	Species x2 x2() #x2
+	Species x3 x3() #x3
+	Species y1 y1() #y1
+	Species y2 y2() #y2
+	Species y3 y3() #y3
+	Species y4 y4() #y4
+	Species y5 y5() #y5
+	Species y6 y6() #y6
+end observables
+begin functions
+	fRate0() = 10.0/(x1*x3 + x1 + x2*y1 + x2 + x3 + y1 + 1.0)
+	fRate0m() = 1.0/(x1*x3 + x1 + x2*y1 + x2 + x3 + y1 + 1.0)
+	fRate1() = 10.0/(x2*y5 + x2 + x3*y4 + x3 + y4 + y5 + 1.0)
+	fRate1m() = 1.0/(x2*y5 + x2 + x3*y4 + x3 + y4 + y5 + 1.0)
+	fRate2() = 50.0/(x1 + y2 + 1.0)
+	fRate2m() = 1.0/(x1 + y2 + 1.0)
+	fRate3() = 10.0/(x1 + y3 + 1.0)
+	fRate3m() = 1.0/(x1 + y3 + 1.0)
+	fRate4() = 0
+end functions
+begin reaction rules
+	v1: y1() + x2() <-> x1() + x3() fRate0(),fRate0m() #Modifiers(y1, x2, x1, x3)
+	v2: y4() + x3() <-> y5() + x2() fRate1(),fRate1m() #Modifiers(y4, x3, y5, x2)
+	v3: x1() <-> y2() fRate2(),fRate2m() #Modifiers(x1, y2)
+	v4: x1() <-> y3() fRate3(),fRate3m() #Modifiers(x1, y3)
+	v5: x3() -> y6() fRate4() #Modifiers(x3)
+end reaction rules
+end model

@@ -1,0 +1,157 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000034', 'http://identifiers.org/biomodels.db/MODEL6619579403']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/15111397']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/7227']
+#@BQB_IS:['http://identifiers.org/kegg.pathway/dme04710']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0042752']
+#@creatorEmail:'lenov@ebi.ac.uk'
+#@creatorName:'Le Novère Nicolas'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 9 molecules and 22 reactions. The translated model has 15 molecules and 28 rules'
+###
+begin model
+begin parameters
+	parameter_0000005 0.2
+	parameter_0000006 0.24
+	parameter_0000007 0.1
+	parameter_0000008 0.54
+	parameter_0000010 0.54
+	parameter_0000011 0.083
+	parameter_0000012 0.134
+	parameter_0000013 0.248
+	parameter_0000014 0.2124
+	parameter_0000015 0.2124
+	parameter_0000016 0.2124
+	parameter_0000017 1.062
+	parameter_0000018 1.062
+	parameter_0000019 1.062
+	parameter_0000023 2.8249
+	parameter_0000024 2.8249
+	parameter_0000025 2.8249
+	parameter_0000026 5.0
+	parameter_0000027 10.62
+	parameter_0000028 76.464
+	parameter_0000029 344.09
+	parameter_0000030 1.062
+	parameter_0000031 0.02124
+	parameter_0000032 0.19116
+	parameter_0000033 0.001062
+	parameter_0000034 0.38232
+	parameter_0000036 0.2124
+	parameter_0000037 0.7434
+	parameter_0000038 0.6903
+	parameter_0000039 2.8249
+	parameter_0000040 1.6992
+	parameter_0000041 0.25
+	parameter_0000042 0.3186
+	parameter_0000043 0.001
+	parameter_0000044 1.6992
+	parameter_0000045 0.25
+	parameter_0000046 5.31
+	parameter_0000047 0.01
+	parameter_0000048 0.00531
+end parameters
+begin compartments
+	#volume units: L
+	compartment_0000002 3 1.0 #cytoplasm
+	compartment_0000001 3 1.0 #nucleus
+end compartments
+begin molecule types
+	P2nuc()
+	CLK()
+	P2cyt()
+	P0cyt()
+	P1cyt()
+	PDP()
+	VRI()
+	P0nuc()
+	P1nuc()
+	parameter_0000001
+	parameter_0000002
+	parameter_0000003
+	parameter_0000020
+	parameter_0000021
+	parameter_0000022
+end molecule types
+begin seed species
+	@compartment_0000001:P0nuc() 602200000000.0001 # (0.001 * 1e-09)mol/L * 6.022e23/mol *1.0L #P0nuc #species_0000001
+	@compartment_0000001:P1nuc() 602200000000.0001 #original 0.001nanomole/L  #P1nuc #species_0000002
+	@compartment_0000001:P2nuc() 602200000000.0001 #original 0.001nanomole/L  #P2nuc #species_0000003
+	@compartment_0000002:P0cyt() 602200000000.0001 #original 0.001nanomole/L  #P0cyt #species_0000004
+	@compartment_0000002:P1cyt() 602200000000.0001 #original 0.001nanomole/L  #P1cyt #species_0000005
+	@compartment_0000002:P2cyt() 602200000000.0001 #original 0.001nanomole/L  #P2cyt #species_0000006
+	@compartment_0000001:VRI() 602200000000.0001 #original 0.001nanomole/L  #VRI #species_0000007
+	@compartment_0000001:CLK() 602200000000.0001 #original 0.001nanomole/L  #CLK #species_0000008
+	@compartment_0000001:PDP() 602200000000.0001 #original 0.001nanomole/L  #PDP #species_0000009
+	parameter_0000001@compartment_0000002 0
+	parameter_0000002@compartment_0000002 0
+	parameter_0000003@compartment_0000002 0
+	parameter_0000020@compartment_0000002 0
+	parameter_0000021@compartment_0000002 0
+	parameter_0000022@compartment_0000002 0
+end seed species
+begin observables
+	Species P0nuc_compartment_0000001 @compartment_0000001:P0nuc() #P0nuc
+	Species P1nuc_compartment_0000001 @compartment_0000001:P1nuc() #P1nuc
+	Species P2nuc_compartment_0000001 @compartment_0000001:P2nuc() #P2nuc
+	Species P0cyt_compartment_0000002 @compartment_0000002:P0cyt() #P0cyt
+	Species P1cyt_compartment_0000002 @compartment_0000002:P1cyt() #P1cyt
+	Species P2cyt_compartment_0000002 @compartment_0000002:P2cyt() #P2cyt
+	Species VRI_compartment_0000001 @compartment_0000001:VRI() #VRI
+	Species CLK_compartment_0000001 @compartment_0000001:CLK() #CLK
+	Species PDP_compartment_0000001 @compartment_0000001:PDP() #PDP
+	Species parameter_0000001 parameter_0000001
+	Species parameter_0000002 parameter_0000002
+	Species parameter_0000003 parameter_0000003
+	Species parameter_0000020 parameter_0000020
+	Species parameter_0000021 parameter_0000021
+	Species parameter_0000022 parameter_0000022
+end observables
+begin functions
+	arRateparameter_0000022() = (parameter_0000003^parameter_0000026 - parameter_0000022)/parameter_0000025
+	arRateparameter_0000021() = (parameter_0000002^parameter_0000026 - parameter_0000021)/parameter_0000024
+	arRateparameter_0000020() = (parameter_0000001^parameter_0000026 - parameter_0000020)/parameter_0000023
+	arRateparameter_0000003() = CLK_compartment_0000001*parameter_0000007*parameter_0000019*(1 - parameter_0000003)/((CLK_compartment_0000001 + parameter_0000013)*(P0nuc_compartment_0000001 + P1nuc_compartment_0000001 + P2nuc_compartment_0000001 + parameter_0000007)) - parameter_0000003*parameter_0000016
+	arRateparameter_0000002() = CLK_compartment_0000001*parameter_0000006*parameter_0000018*(1 - parameter_0000002)/((CLK_compartment_0000001 + parameter_0000012)*(P0nuc_compartment_0000001 + P1nuc_compartment_0000001 + P2nuc_compartment_0000001 + parameter_0000006)) - parameter_0000002*parameter_0000015
+	arRateparameter_0000001() = CLK_compartment_0000001*parameter_0000005*parameter_0000017*(1 - parameter_0000001)/((CLK_compartment_0000001 + parameter_0000011)*(P0nuc_compartment_0000001 + P1nuc_compartment_0000001 + P2nuc_compartment_0000001 + parameter_0000005)) - parameter_0000001*parameter_0000014
+	fRate0() = parameter_0000021*parameter_0000027 + parameter_0000031
+	fRate1() = parameter_0000020*parameter_0000028 + parameter_0000032
+	fRate2() = delay(parameter_0000022*parameter_0000029 + parameter_0000034, parameter_0000039)
+	fRate3() = PDP_compartment_0000001^2*parameter_0000008^2*parameter_0000030/(PDP_compartment_0000001^2*VRI_compartment_0000001^2 + PDP_compartment_0000001^2*parameter_0000008^2 + VRI_compartment_0000001^2*parameter_0000010^2 + parameter_0000008^2*parameter_0000010^2) + parameter_0000033
+	fRate7() = parameter_0000040/(P0cyt_compartment_0000002 + parameter_0000041)
+	fRate8() = parameter_0000040/(P1cyt_compartment_0000002 + parameter_0000041)
+	fRate9() = parameter_0000044/(P2cyt_compartment_0000002 + parameter_0000045)
+	fRate10() = parameter_0000042/(P0nuc_compartment_0000001 + parameter_0000043)
+	fRate11() = parameter_0000042/(P1nuc_compartment_0000001 + parameter_0000043)
+	fRate12() = parameter_0000046/(P2nuc_compartment_0000001 + parameter_0000047)
+end functions
+begin reaction rules
+	reaction_0000001: 0  -> P0cyt()@compartment_0000002 fRate0()
+	reaction_0000002: 0  -> VRI()@compartment_0000001 fRate1()
+	reaction_0000003: 0  -> PDP()@compartment_0000001 fRate2()
+	reaction_0000004: 0  -> CLK()@compartment_0000001 fRate3() #Modifiers(species_0000009, species_0000007)
+	reaction_0000005: CLK()@compartment_0000001 -> 0  parameter_0000036
+	reaction_0000006: PDP()@compartment_0000001 -> 0  parameter_0000038
+	reaction_0000007: VRI()@compartment_0000001 -> 0  parameter_0000037
+	reaction_0000008: P0cyt()@compartment_0000002 -> P1cyt()@compartment_0000002 fRate7()
+	reaction_0000009: P1cyt()@compartment_0000002 -> P2cyt()@compartment_0000002 fRate8()
+	reaction_0000010: P2cyt()@compartment_0000002 -> P0nuc()@compartment_0000001 fRate9()
+	reaction_0000011: P0nuc()@compartment_0000001 -> P1nuc()@compartment_0000001 fRate10()
+	reaction_0000012: P1nuc()@compartment_0000001 -> P2nuc()@compartment_0000001 fRate11()
+	reaction_0000013: P2nuc()@compartment_0000001 -> 0  fRate12()
+	reaction_0000014: CLK()@compartment_0000001 -> 0  parameter_0000048
+	reaction_0000015: PDP()@compartment_0000001 -> 0  parameter_0000048
+	reaction_0000016: VRI()@compartment_0000001 -> 0  parameter_0000048
+	reaction_0000017: P0cyt()@compartment_0000002 -> 0  parameter_0000048
+	reaction_0000018: P1cyt()@compartment_0000002 -> 0  parameter_0000048
+	reaction_0000019: P2cyt()@compartment_0000002 -> 0  parameter_0000048
+	reaction_0000020: P0nuc()@compartment_0000001 -> 0  parameter_0000048
+	reaction_0000021: P1nuc()@compartment_0000001 -> 0  parameter_0000048
+	reaction_0000022: P2nuc()@compartment_0000001 -> 0  parameter_0000048
+	0  -> parameter_0000001()@compartment_0000002 arRateparameter_0000001 #rateLaw
+	0  -> parameter_0000002()@compartment_0000002 arRateparameter_0000002 #rateLaw
+	0  -> parameter_0000003()@compartment_0000002 arRateparameter_0000003 #rateLaw
+	0  -> parameter_0000020()@compartment_0000002 arRateparameter_0000020 #rateLaw
+	0  -> parameter_0000021()@compartment_0000002 arRateparameter_0000021 #rateLaw
+	0  -> parameter_0000022()@compartment_0000002 arRateparameter_0000022 #rateLaw
+end reaction rules
+end model

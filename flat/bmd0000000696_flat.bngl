@@ -1,0 +1,127 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1511290000', 'http://identifiers.org/biomodels.db/BIOMD0000000696']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/26968941']
+#@BQB_IS_VERSION_OF:['urn:miriam:sbo:SBO%3A0000004', 'http://identifiers.org/ncit/C19061', 'urn:miriam:efo:EFO%3A0001773']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/26968941']
+#@creatorEmail:'mroberts@ebi.ac.uk'
+#@creatorName:'Roberts Matthew Grant'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 9 molecules and 23 reactions. The translated model has 11 molecules and 25 rules'
+###
+begin model
+begin parameters
+	k_mA_C_gA 104.0
+	k_mB_C_gB 1.0
+	k_mC_C_gC 1.0
+	d_mA 0.3624
+	d_mB 0.3624
+	d_mC 0.3624
+	k_pA 80.0
+	k_pB 1.0
+	k_pC 11.42
+	d_A 0.035
+	d_B 0.016
+	d_C 0.2784
+	k_d 0.06
+	k_2f 0.1
+	k_3f 0.1
+	k_2r 20.0
+	k_3r 1.0
+	gamma_1 107.4
+	gamma_2 0.2
+	gamma_3 0.01
+	gamma_4 1.15
+	gamma_5 8.56
+	Beta_1 0.05
+	Beta_2 0.05
+	d_I 0.0164
+	d_Ie 0.0164
+	d_AI 0.035
+	d_AI2 0.035
+	V_cell 1e-15
+	N_cells 240000000.0
+	V_medium 180.0
+	Metabolite_16 (0.0)
+	Metabolite_17 (9000.0)
+end parameters
+begin compartments
+	#volume units: volume
+	Cell 3 1.0
+	Extracellular 3 1.0
+end compartments
+begin molecule types
+	x2()
+	x3()
+	x4()
+	x5()
+	x9()
+	x8()
+	x1()
+	x7()
+	x6()
+	sum_abs_dx8
+	P_theta
+end molecule types
+begin seed species
+	@Cell:x1()() 0.0432 * 104 / 0.3624 #x1
+	@Cell:x2()() 0.0432 * 104 * 80 / (0.3624 * 0.035) #x2
+	@Extracellular:x9()() 50 * 180 #x9
+	sum_abs_dx8@Cell 0
+	P_theta@Cell 0
+end seed species
+begin observables
+	Species x1_Cell @Cell:x1() #x1
+	Species x2_Cell @Cell:x2() #x2
+	Species x3_Cell @Cell:x3() #x3
+	Species x4_Cell @Cell:x4() #x4
+	Species x5_Cell @Cell:x5() #x5
+	Species x6_Cell @Cell:x6() #x6
+	Species x7_Cell @Cell:x7() #x7
+	Species x8_Cell @Cell:x8() #x8
+	Species x9_Extracellular @Extracellular:x9() #x9
+	Species sum_abs_dx8 sum_abs_dx8
+	Species P_theta P_theta
+end observables
+begin functions
+	J2() = (-Metabolite_16 + x8_Cell)/(-Metabolite_17 + x9_Extracellular)
+	Precision() = 1/J2
+	J1() = 2*abs(-Metabolite_17 + x9_Extracellular)/sum_abs_dx8
+	Sensitivity() = 1/J1
+	arRateP_theta() = abs(NaN)
+	arRatesum_abs_dx8() = abs(NaN)
+	K_cells() = N_cells*V_cell/V_medium
+	M() = (-d_AI - k_2r)/(4*k_3f) + sqrt(8*k_3f*(k_2f*x2_Cell*x3_Cell + 2*k_3r*x4_Cell) + (d_AI + k_2r)^2)/(4*k_3f)
+	fRate9() = k_mB_C_gB*x4_Cell/(gamma_1 + x4_Cell)
+	fRate13() = k_mC_C_gC*(Beta_1*gamma_4*x6_Cell + Beta_2*gamma_5*x4_Cell*x6_Cell + x4_Cell)/(gamma_2 + gamma_3*x4_Cell + gamma_4*x6_Cell + gamma_5*x4_Cell*x6_Cell)
+	fRate18() = M*k_2r
+	fRate19() = M^2*k_3f
+	fRate21() = K_cells*k_d
+	fRate22() = K_cells*k_d*x3_Cell
+end functions
+begin reaction rules
+	r001___mA_transcription: 0  -> x1()@Cell k_mA_C_gA
+	r002___A_translation: x1()@Cell -> x1()@Cell + x2()@Cell k_pA
+	r003___mA_degradation: x1()@Cell -> 0  d_mA
+	r004___A_degradation: x2()@Cell -> 0  d_A
+	r005___AI2_dim_1: x2()@Cell + x3()@Cell -> 0  k_2f
+	r006a___I_transport: x3()@Cell -> 0  k_d
+	r007___I_degradation: x3()@Cell -> 0  d_I
+	r008___Ie_degradation: x9()@Extracellular -> 0  d_Ie
+	r009___AI2_degradation: x4()@Cell -> 0  d_AI2
+	r010___mB_transcription: 0  -> x5()@Cell fRate9() #Modifiers(x4)
+	r011___B_translation: x5()@Cell -> x5()@Cell + x6()@Cell k_pB
+	r012___B_degradation: x6()@Cell -> 0  d_B
+	r013___mB_degradation: x5()@Cell -> 0  d_mB
+	r014___mC_transcription: 0  -> x7()@Cell fRate13() #Modifiers(x4, x6)
+	r015___C_translation: x7()@Cell -> x7()@Cell + x8()@Cell k_pC
+	r016___C_degradation: x8()@Cell -> 0  d_C
+	r017___mC_degradation: x7()@Cell -> 0  d_mC
+	r018___AI2_dim_2: x4()@Cell -> 0  k_3r
+	r019___AI2_dim_3: 0  -> x2()@Cell + x3()@Cell fRate18()
+	r020___AI2_dim_4: 0  -> x4()@Cell fRate19()
+	r006b___I_transport: x9()@Extracellular -> x9()@Extracellular + x3()@Cell k_d
+	r006c___I_transport: x9()@Extracellular -> 0  fRate21()
+	r006d___I_transport: 0  -> x9()@Extracellular fRate22() #Modifiers(x3)
+	0  -> sum_abs_dx8()@Cell arRatesum_abs_dx8 #rateLaw
+	0  -> P_theta()@Cell arRateP_theta #rateLaw
+end reaction rules
+end model

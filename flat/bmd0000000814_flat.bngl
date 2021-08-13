@@ -1,0 +1,54 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1909170002', 'http://identifiers.org/biomodels.db/BIOMD0000000814']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/ncit/C1244', 'http://identifiers.org/efo/0000311', 'http://identifiers.org/ncit/C15632', 'http://identifiers.org/efo/0000632', 'http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/31306418']
+#@creatorEmail:'muffet0307@gmail.com'
+#@creatorName:'Ng Szeyi'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 3 molecules and 5 reactions. The translated model has 3 molecules and 5 rules'
+###
+begin model
+begin parameters
+	alpha_1 0.1027971308
+	alpha_2 0.1396877593
+	lambda 8.3184 #units:unit_0
+	K 261.799 #units:unit_1
+	kappa 1.0
+	d 150.0 #units:unit_2
+	b 1.9 #units:unit_3
+	beta 0.0021 #units:unit_4
+	rho 0.002931927433 #units:unit_0
+	dose1 0
+	dose2 0
+	dose3 0
+	dose_4 0
+	dose_5 0
+end parameters
+begin molecule types
+	DamagedTumorCellsD()
+	DrugConcentrationC()
+	TumorCellPopulationP()
+end molecule types
+begin seed species
+	TumorCellPopulationP() 8.729013964994213e+25 # 144.952075141053mol/L * 6.022e23/mol *1.0L #TumorCellPopulationP #Tumor_Cell_Population_P
+end seed species
+begin observables
+	Species DrugConcentrationC DrugConcentrationC() #Drug Concentration C
+	Species TumorCellPopulationP TumorCellPopulationP() #Tumor Cell Population P
+	Species DamagedTumorCellsD DamagedTumorCellsD() #Damaged Tumor Cells D
+end observables
+begin functions
+	fRate0() = TumorCellPopulationP*rho*(1 - (DamagedTumorCellsD + TumorCellPopulationP)/K)
+	fRate1() = DrugConcentrationC*alpha_1
+	fRate2() = DrugConcentrationC*alpha_2
+	fRate3() = rho/kappa
+	fRate3m() = DamagedTumorCellsD*rho*(DamagedTumorCellsD + TumorCellPopulationP)/(K*kappa)
+	fRate4 =   * ( DrugConcentrationC )    
+end functions
+begin reaction rules
+	Tumor_Cell_P_logistic_growth_products_0: 0  -> TumorCellPopulationP() fRate0() #Modifiers(Damaged_Tumor_Cells_D)
+	Tumor_Cell_P_early_death: TumorCellPopulationP() -> DamagedTumorCellsD() fRate1() #Modifiers(Drug_Concentration_C)
+	Tumor_Cell_P_delayed_death: TumorCellPopulationP() -> 0  fRate2() #Modifiers(Drug_Concentration_C)
+	Damaged_Tumor_Cell_D_death: DamagedTumorCellsD() <-> 0  fRate3(),fRate3m() #Modifiers(Tumor_Cell_Population_P)
+	Elimination_of_Chemotherapy_reactants_0: 0  -> DrugConcentrationC() -1*(fRate4())
+end reaction rules
+end model

@@ -1,0 +1,42 @@
+###
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL4821491663', 'http://identifiers.org/biomodels.db/BIOMD0000000150']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/11959850']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/kegg.pathway/ko04110', 'http://identifiers.org/obo.go/GO:0000278']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/4932']
+#@BQB_IS_HOMOLOG_TO:['http://identifiers.org/reactome/REACT_152']
+#@creatorEmail:'lenov@ebi.ac.uk'
+#@creatorName:'Le Novère Nicolas'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 4 molecules and 2 reactions. The translated model has 4 molecules and 2 rules'
+###
+begin model
+begin parameters
+	basal_fluorescence 1.21210648148148
+	r1_kf 19000000.000000
+	r1_kb 25.000000
+	r2_kf 0.813000
+	r2_kb 0.557000
+end parameters
+begin molecule types
+	CDK2cycA()
+	CDK2cycA_star_()
+	CyclinA()
+	Cdk2()
+end molecule types
+begin seed species
+	CyclinA() 2.4088e+17 # 4e-07mol/L * 6.022e23/mol *1.0L #CyclinA #CyclinA
+	Cdk2() 6.022e+16 #original 1e-07mol/L #Cdk2 #Cdk2
+end seed species
+begin observables
+	Species CDK2cycA CDK2cycA() #CDK2cycA
+	Species CyclinA CyclinA() #CyclinA
+	Species Cdk2 Cdk2() #Cdk2
+	Species CDK2cycA_star_ CDK2cycA_star_() #CDK2cycA_star_
+end observables
+begin functions
+	total_fluorescence() = 13888657.4074074*CDK2cycA + 13888657.4074074*CDK2cycA_star_ + basal_fluorescence
+end functions
+begin reaction rules
+	Binding: Cdk2() + CyclinA() <-> CDK2cycA() r1_kf,r1_kb
+	Activation: CDK2cycA() <-> CDK2cycA_star_() r2_kf,r2_kb
+end reaction rules
+end model

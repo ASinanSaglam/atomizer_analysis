@@ -1,0 +1,58 @@
+###
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/BIOMD0000000732', 'http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/taxonomy/9606']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/biomodels.db/BIOMD0000000732', 'http://identifiers.org/pubmed/20580640']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000912', 'http://identifiers.org/biomodels.db/MODEL2001200001']
+#@creatorEmail:'msharifshohan@ebi.ac.uk'
+#@creatorName:'Sharif Shohan Mohammad Umer'
+#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 3 molecules and 6 reactions. The translated model has 3 molecules and 6 rules'
+###
+begin model
+begin parameters
+	r2 0.18
+	b 1e-09
+	a 1.0
+	g2 100000.0
+	p1 0.1245
+	g1 20000000.0
+	mu2 0.03
+	c 0.02
+	p2 5.0
+	g3 1000.0
+	mu3 10.0
+	V 3.2
+	s1 0
+	s2 0
+end parameters
+begin molecule types
+	E()
+	T()
+	I()
+end molecule types
+begin seed species
+	T() 6.022e+20 # (1.0 * 0.001)mol/L * 6.022e23/mol *1.0L #T #T
+	E() 6.022e+20 #original 1.0substance/volume  #E #E
+	I() 6.022e+20 #original 1.0substance/volume  #I #I
+end seed species
+begin observables
+	Species T T() #T
+	Species E E() #E
+	Species I I() #I
+end observables
+begin functions
+	fRate0() = T*r2
+	fRate0m() = T*b*r2/V
+	fRate1() = E*a/(T + V*g2)
+	fRate2() = E*p1/g1 + 1.0*T*c + 1.0*V*s1
+	fRate4() = 1.0*(1.0*E*T*p2 + V*s2*(T + V*g3))/(V*(T + V*g3))
+end functions
+begin reaction rules
+	Induction_of_tumor: 0  <-> T() fRate0(),fRate0m()
+	Removal_of_tumor_from_the_system_by_the_action_of_immune_response: T() -> 0  fRate1() #Modifiers(E)
+	Activation_and_transfer_of_effector_cells_to_the_action_site: 0  -> E() fRate2() #Modifiers(I, T)
+	Deactivation_and_removal_of_effector_cells_from_the_site_of_tumor: E() -> 0  mu2
+	Activation_of_interleukin_2: 0  -> I() fRate4() #Modifiers(T, E)
+	Deactivation_of_interleukin2: I() -> 0  mu3
+end reaction rules
+end model
