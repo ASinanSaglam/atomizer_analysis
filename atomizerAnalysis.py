@@ -11,6 +11,10 @@ class AtomizerDatabase:
         self.dbase_con = sl.connect(self.dbase_path)
         self.last_call = time.time()
         self.current_max_models = 1017
+        self.TRANSLATION_SUCCESS = 1
+        self.TRANSLATION_FAIL = -1
+        self.TRANSLATION_UNATTEMPTED = 0
+        self.TRANSLATION_MAJOR_ERROR = 2
 
     def get_path(self, test_no):
         query = "SELECT PATH FROM MODELS WHERE id=?"
@@ -188,10 +192,6 @@ class AtomizerDatabase:
         return True, file_path
 
     def add_translation_table(self):
-        self.TRANSLATION_SUCCESS = 1
-        self.TRANSLATION_FAIL = -1
-        self.TRANSLATION_UNATTEMPTED = 0
-        self.TRANSLATION_TOO_LONG = 2
         try:
             self.dbase_con.execute('''
                 CREATE TABLE TRANSLATION (
@@ -255,7 +255,7 @@ class AtomizerDatabase:
         else:
             return None
 
-    def set_trans_notes(self, test_no, value):
+    def set_trans_note(self, test_no, value):
         value = value.encode("utf-8").hex()
         query = "UPDATE TRANSLATION SET NOTES = ? WHERE id=?"
         try:
@@ -448,22 +448,22 @@ if __name__ == "__main__":
     a = AtomizerDatabase()
     # a.get_models() # only run when you don't have models setup already, takes a while
     aa = AtomizerAnalyzer(a, copasi_path="/home/monoid/apps/copasi/4.27/bin/CopasiSE")
-    to_skip = [70,183,247,255,426, # doesn't translate?
-                599, # key error "C4Beii"
-                480, # key error "TotalDC"
-                749, # key error "0"
-                607,610,983, # Index error, 'list index out of range'
-                649,694,992,993, # TypeError('expected str, bytes or os.PathLike object, not NoneType')
-                766,789, # re.error('missing ), unterminated subpattern at position 6')
-                833, # Expected W:(-ABC...), found '_'  (at char 30), (line:1, col:31)
-                542,554,703  # too much memory usage
-            ]
+    known_translation_issues = [599, # key error "C4Beii"
+        480, # key error "TotalDC"
+        749, # key error "0"
+        607,610,983, # Index error, 'list index out of range'
+        649,694,992,993, # TypeError('expected str, bytes or os.PathLike object, not NoneType')
+        766,789, # re.error('missing ), unterminated subpattern at position 6')
+        833 # Expected W:(-ABC...), found '_'  (at char 30), (line:1, col:31)
+    ]
     too_long = [473,474,496,497,503,506,574,863] # too long? re-run later
-    to_skip += too_long
+    too_much_memory = [542,554,703]
+    doesnt_translate = [70,183,247,255,426]
+    too_much = too_long + too_much_memory + doesnt_translate
     for i in range(1,aa.database.current_max_models+1):
         print(f"Working on model: {i}")
-        if i in too_long:
-            aa.database.set_trans_status(i, aa.database.TRANSLATION_TOO_LONG)
+        if i in too_much:
+            aa.database.set_trans_status(i, aa.database.TRANSLATION_MAJOR_ERROR)
             continue
         translation = aa.translate(i, overwrite=True)
         # translation = aa.translate(i, overwrite=False)
