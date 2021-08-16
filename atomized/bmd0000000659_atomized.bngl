@@ -1,14 +1,14 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1503270000', 'http://identifiers.org/biomodels.db/BIOMD0000000659']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000659', 'http://identifiers.org/biomodels.db/MODEL1503270000']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/26209520']
-#@BQB_HAS_PROPERTY:['http://identifiers.org/go/GO:0019722', 'http://identifiers.org/go/GO:0043408', 'http://identifiers.org/mamo/MAMO_0000046']
-#@BQB_IS_VERSION_OF:['http://identifiers.org/kegg.pathway/map04010', 'http://identifiers.org/go/GO:0000165']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/go/GO:0019722', 'http://identifiers.org/go/GO:0043408']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0000165', 'http://identifiers.org/kegg.pathway/map04010']
 #@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000404']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
 #@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/26209520']
 #@creatorEmail:''
 #@creatorName:'Yang Kun'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 7 molecules and 0 reactions. The translated model has 5 molecules and 5 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 7 molecules and 0 reactions. The translated model has 5 molecules and 5 rules'
 ###
 begin model
 begin parameters
@@ -40,11 +40,11 @@ begin compartments
 	n 3 0.5 #nucleus
 end compartments
 begin molecule types
-	MEKc()
-	ERKn()
+	Rafc()
 	MEKn()
 	ERKc()
-	Rafc()
+	ERKn()
+	MEKc()
 end molecule types
 begin seed species
 	@c:Rafc() 3.011e+20 # (0.5 * 0.001)mol/L * 6.022e23/mol *1.0L #Rafc #pRaf_cyto
@@ -61,9 +61,9 @@ begin observables
 	Species ERKn_n @n:ERKn() #ERKn
 end observables
 begin functions
-	funcHillERKToERKNuc() = ERKn_n^numHillCoeff*numHillBeta*numHillWeight/(ERKn_n^numHillCoeff + numHillK^numHillCoeff)
 	funcHillMEKToERKNuc() = MEKn_n^numHillCoeff*numHillBeta*numHillWeight/(MEKn_n^numHillCoeff + numHillK^numHillCoeff)
 	numCytoToNucVolRatio() = 5*numTissuePos/7 + 2
+	funcHillERKToERKNuc() = ERKn_n^numHillCoeff*numHillBeta*numHillWeight/(ERKn_n^numHillCoeff + numHillK^numHillCoeff)
 	arRatepERK_nuc() = (ERKc_c*numCytoToNucVolRatio*numERKNucToCytoParam - ERKn_n*numERKCytoToNucParam - ERKn_n + numHillMax*(-funcHillERKToERKNuc + funcHillMEKToERKNuc))/numHillTau
 	funcHillMEKToERKCyto() = MEKc_c^numHillCoeff*numHillBeta*numHillWeight/(MEKc_c^numHillCoeff + numHillK^numHillCoeff)
 	arRatepERK_cyto() = (-ERKc_c*numERKCytoToNucParam - ERKc_c + ERKn_n*numERKNucToCytoParam/numCytoToNucVolRatio + funcHillMEKToERKCyto*numHillMax)/numHillTau

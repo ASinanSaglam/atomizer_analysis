@@ -1,11 +1,11 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000639', 'http://identifiers.org/biomodels.db/MODEL1602280001']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1602280001', 'http://identifiers.org/biomodels.db/BIOMD0000000639']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/27065985']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/562']
-#@BQB_HAS_PROPERTY:['http://identifiers.org/go/GO:0046656', 'http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/go/GO:0046656']
 #@creatorEmail:'chenry@mcs.anl.gov'
 #@creatorName:'Henry Christopher'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 17 molecules and 10 reactions. The translated model has 14 molecules and 10 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 17 molecules and 10 reactions. The translated model has 14 molecules and 10 rules'
 ###
 begin model
 begin parameters
@@ -24,20 +24,20 @@ begin parameters
 	r10_V 0.000000
 end parameters
 begin molecule types
-	p_ABA(h2_hmpt)
 	ATP()
-	L_serine()
-	H2_Pteroate()
+	DHF()
+	AMP()
+	Phosphate()
 	ADP()
+	L_serine()
 	Glycine()
 	THF()
-	L_Glutamate()
-	Phosphate()
-	NADP(h~H~0)
-	AMP()
-	PPi()
 	H2_HMPt(erinpp~ERINPP~0,p_aba)
-	DHF()
+	L_Glutamate()
+	NADP(h~H~0)
+	H2_Pteroate()
+	p_ABA(h2_hmpt)
+	PPi()
 end molecule types
 begin seed species
 	H2_HMPt(erinpp~0,p_aba) 1996293000000000.2 # (3.315e-06 * 0.001)mol/L * 6.022e23/mol *1.0L #H2_HMPt #H2_HMPt
@@ -56,7 +56,7 @@ begin seed species
 	$NADP(h~0) 566068000000000.1 #original 9.4e-07substance/volume  #NADP #NADP
 	$NADP(h~H) 566068000000000.1 #original 9.4e-07substance/volume  #NADPH #NADPH
 	THF() 1.017718e+17 #original 0.000169substance/volume  #THF #THF
-	H2_HMPt(erinpp~0,p_aba!273).p_ABA(h2_hmpt!273) 5.100634e+16 #original 8.47e-05substance/volume  #CH2_THF #CH2_THF
+	H2_HMPt(erinpp~0,p_aba!360).p_ABA(h2_hmpt!360) 5.100634e+16 #original 8.47e-05substance/volume  #CH2_THF #CH2_THF
 end seed species
 begin observables
 	Species H2_HMPt H2_HMPt(erinpp~0,p_aba) #H2-HMPt
@@ -75,7 +75,7 @@ begin observables
 	Species NADP NADP(h~0) #NADP
 	Species NADPH NADP(h~H) #NADPH
 	Species THF THF() #THF
-	Species CH2_THF H2_HMPt(erinpp~0,p_aba!273).p_ABA(h2_hmpt!273) #CH2-THF
+	Species CH2_THF H2_HMPt(erinpp~0,p_aba!360).p_ABA(h2_hmpt!360) #CH2-THF
 end observables
 begin functions
 	fRate8() = 1.243e-7/(THF + 0.0001571)
@@ -85,12 +85,12 @@ begin reaction rules
 	FolK: ATP() + H2_HMPt(erinpp~0,p_aba) -> AMP() + H2_HMPt(erinpp~ERINPP,p_aba) r1_k1
 	FolP: p_ABA(h2_hmpt) + H2_HMPt(erinpp~ERINPP,p_aba) -> PPi() + H2_Pteroate() r2_k1
 	FolC: L_Glutamate() + ATP() + H2_Pteroate() -> DHF() + ADP() + Phosphate() r3_k1
-	GlyA: THF() + L_serine() <-> H2_HMPt(erinpp~0,p_aba!273).p_ABA(h2_hmpt!273) + Glycine() r4_k1,r4_k2
+	GlyA: THF() + L_serine() <-> H2_HMPt(erinpp~0,p_aba!360).p_ABA(h2_hmpt!360) + Glycine() r4_k1,r4_k2
 	FolA: DHF() + NADP(h~H) -> NADP(h~0) + THF() r5_k1
-	PanB: H2_HMPt(erinpp~0,p_aba!273).p_ABA(h2_hmpt!273) -> H2_HMPt(erinpp~0,p_aba) + p_ABA(h2_hmpt) r6_k1
+	PanB: H2_HMPt(erinpp~0,p_aba!360).p_ABA(h2_hmpt!360) -> H2_HMPt(erinpp~0,p_aba) + p_ABA(h2_hmpt) r6_k1
 	p_ABA_production: 0  -> p_ABA(h2_hmpt) r7_v
 	H2_HMPt_production: 0  -> H2_HMPt(erinpp~0,p_aba) r8_v
 	THF_drain: THF() -> 0  fRate8()
-	CH2_THF_drain: H2_HMPt(erinpp~0,p_aba!273).p_ABA(h2_hmpt!273) -> 0  fRate9()
+	CH2_THF_drain: H2_HMPt(erinpp~0,p_aba!360).p_ABA(h2_hmpt!360) -> 0  fRate9()
 end reaction rules
 end model

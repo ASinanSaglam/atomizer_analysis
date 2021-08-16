@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000058_flat">
+    <ListOfParameters>
+      <Parameter id="r2" type="Constant" value="100" expr="100.0"/>
+      <Parameter id="R1" type="Constant" value="6" expr="6.0"/>
+      <Parameter id="k1" type="Constant" value="44" expr="44.0"/>
+      <Parameter id="R3" type="Constant" value="50" expr="50.0"/>
+      <Parameter id="k2" type="Constant" value="26.5" expr="26.5"/>
+      <Parameter id="r4" type="Constant" value="20" expr="20.0"/>
+      <Parameter id="k3" type="Constant" value="1.6" expr="1.6"/>
+      <Parameter id="R5" type="Constant" value="1.6" expr="1.6"/>
+      <Parameter id="r1_kf" type="Constant" value="28" expr="28.000000"/>
+      <Parameter id="r1_p" type="Constant" value="0.2778" expr="0.277800"/>
+      <Parameter id="r2_Vp" type="Constant" value="1.2" expr="1.200000"/>
+      <Parameter id="r2_Kp" type="Constant" value="0.18" expr="0.180000"/>
+      <Parameter id="r3_Jleak" type="Constant" value="0.2" expr="0.200000"/>
+      <Parameter id="r5_p" type="Constant" value="0.2778" expr="0.277800"/>
+      <Parameter id="r6_kf" type="Constant" value="28" expr="28.000000"/>
+      <Parameter id="r6_p" type="Constant" value="0.2778" expr="0.277800"/>
+      <Parameter id="r7_Vp" type="Constant" value="1.2" expr="1.200000"/>
+      <Parameter id="r7_Kp" type="Constant" value="0.18" expr="0.180000"/>
+      <Parameter id="r8_Jleak" type="Constant" value="0.2" expr="0.200000"/>
+      <Parameter id="r10_p" type="Constant" value="0.2778" expr="0.277800"/>
+      <Parameter id="r11_D" type="Constant" value="0.01" expr="0.010000"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="CalciumionCell1"/>
+      <MoleculeType id="CalciumionCell2"/>
+      <MoleculeType id="ReceptorfractionCell1"/>
+      <MoleculeType id="ReceptorfractionCell2"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="1.8066e+17" name="CalciumionCell1()">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="CalciumionCell1"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="4.8176e+17" name="ReceptorfractionCell1()">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="ReceptorfractionCell1"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="6.022e+16" name="CalciumionCell2()">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="CalciumionCell2"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S4"  concentration="6.022e+16" name="ReceptorfractionCell2()">
+        <ListOfMolecules>
+          <Molecule id="S4_M1" name="ReceptorfractionCell2"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="Jreceptor_Cell1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="CalciumionCell1"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="Jpump_Cell1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="CalciumionCell1"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="fRate1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR2_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="Jleak_Cell1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="CalciumionCell1"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r3_Jleak"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="Inactivated_to_S_Cell1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="ReceptorfractionCell1"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="Phi3_c1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR4_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="_reverse_Inactivated_to_S_Cell1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR5_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP1_M1" name="ReceptorfractionCell1"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Function" name="Phi3_c1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR5_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR5_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="Open_to_Inactivated_Cell1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR6_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_RP1_M1" name="ReceptorfractionCell1"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Function" name="fRate4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR6_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR6_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="Jreceptor_Cell2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="CalciumionCell2"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Function" name="fRate5" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR7_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="Jpump_Cell2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR8_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_RP1_M1" name="CalciumionCell2"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Function" name="fRate6" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR8_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR8_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="Jleak_Cell2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR9_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP1_M1" name="CalciumionCell2"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r8_Jleak"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR9_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="Inactivated_to_S_Cell2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR10_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_PP1_M1" name="ReceptorfractionCell2"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Function" name="Phi3_c2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR10_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR11" name="_reverse_Inactivated_to_S_Cell2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR11_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_RP1_M1" name="ReceptorfractionCell2"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR11_RateLaw" type="Function" name="Phi3_c2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR11_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR11_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR12" name="Open_to_Inactivated_Cell2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR12_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_RP1_M1" name="ReceptorfractionCell2"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR12_RateLaw" type="Function" name="fRate9" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR12_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR12_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR13" name="diffusion" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR13_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_RP1_M1" name="CalciumionCell2"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR13_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_PP1_M1" name="CalciumionCell1"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR13_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r11_D"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR13_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR13_PP1_M1"/>
+          <Delete id="RR13_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR14" name="_reverse_diffusion" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR14_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_RP1_M1" name="CalciumionCell1"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR14_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_PP1_M1" name="CalciumionCell2"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR14_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r11_D"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR14_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR14_PP1_M1"/>
+          <Delete id="RR14_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="CalciumionCell1" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="CalciumionCell1"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="ReceptorfractionCell1" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="ReceptorfractionCell1"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="CalciumionCell2" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="CalciumionCell2"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="ReceptorfractionCell2" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="ReceptorfractionCell2"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="Phi3_c2">
+        <ListOfReferences>
+          <Reference name="R5" type="Constant"/>
+          <Reference name="k3" type="Constant"/>
+          <Reference name="CalciumionCell2" type="Observable"/>
+        </ListOfReferences>
+        <Expression> k3/(CalciumionCell2+R5) </Expression>
+      </Function>
+      <Function id="Phi2_c2">
+        <ListOfReferences>
+          <Reference name="R3" type="Constant"/>
+          <Reference name="k2" type="Constant"/>
+          <Reference name="r4" type="Constant"/>
+          <Reference name="CalciumionCell2" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((CalciumionCell2*r4)+k2)/(CalciumionCell2+R3) </Expression>
+      </Function>
+      <Function id="Phi_minus1_c2">
+        <ListOfReferences>
+          <Reference name="R3" type="Constant"/>
+          <Reference name="k1" type="Constant"/>
+          <Reference name="CalciumionCell2" type="Observable"/>
+        </ListOfReferences>
+        <Expression> k1/(CalciumionCell2+R3) </Expression>
+      </Function>
+      <Function id="Phi1_c2">
+        <ListOfReferences>
+          <Reference name="R1" type="Constant"/>
+          <Reference name="r2" type="Constant"/>
+          <Reference name="CalciumionCell2" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (CalciumionCell2*r2)/(CalciumionCell2+R1) </Expression>
+      </Function>
+      <Function id="Phi3_c1">
+        <ListOfReferences>
+          <Reference name="R5" type="Constant"/>
+          <Reference name="k3" type="Constant"/>
+          <Reference name="CalciumionCell1" type="Observable"/>
+        </ListOfReferences>
+        <Expression> k3/(CalciumionCell1+R5) </Expression>
+      </Function>
+      <Function id="Phi2_c1">
+        <ListOfReferences>
+          <Reference name="R3" type="Constant"/>
+          <Reference name="k2" type="Constant"/>
+          <Reference name="r4" type="Constant"/>
+          <Reference name="CalciumionCell1" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((CalciumionCell1*r4)+k2)/(CalciumionCell1+R3) </Expression>
+      </Function>
+      <Function id="Phi_minus1_c1">
+        <ListOfReferences>
+          <Reference name="R3" type="Constant"/>
+          <Reference name="k1" type="Constant"/>
+          <Reference name="CalciumionCell1" type="Observable"/>
+        </ListOfReferences>
+        <Expression> k1/(CalciumionCell1+R3) </Expression>
+      </Function>
+      <Function id="Phi1_c1">
+        <ListOfReferences>
+          <Reference name="R1" type="Constant"/>
+          <Reference name="r2" type="Constant"/>
+          <Reference name="CalciumionCell1" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (CalciumionCell1*r2)/(CalciumionCell1+R1) </Expression>
+      </Function>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="Phi1_c1" type="Function"/>
+          <Reference name="Phi_minus1_c1" type="Function"/>
+          <Reference name="ReceptorfractionCell1" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((0.166758122542637*(Phi1_c1^4))*(ReceptorfractionCell1^4))/(((((0.0059556472336656*(Phi1_c1^4))+((0.085754459808*(Phi1_c1^3))*Phi_minus1_c1))+((0.46303704*(Phi1_c1^2))*(Phi_minus1_c1^2)))+((1.1112*Phi1_c1)*(Phi_minus1_c1^3)))+(Phi_minus1_c1^4)) </Expression>
+      </Function>
+      <Function id="fRate1">
+        <ListOfReferences>
+          <Reference name="CalciumionCell1" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (1.2*CalciumionCell1)/((CalciumionCell1^2)+0.0324) </Expression>
+      </Function>
+      <Function id="fRate4">
+        <ListOfReferences>
+          <Reference name="Phi1_c1" type="Function"/>
+          <Reference name="Phi2_c1" type="Function"/>
+          <Reference name="Phi_minus1_c1" type="Function"/>
+        </ListOfReferences>
+        <Expression> ((0.2778*Phi1_c1)*Phi2_c1)/((0.2778*Phi1_c1)+Phi_minus1_c1) </Expression>
+      </Function>
+      <Function id="fRate5">
+        <ListOfReferences>
+          <Reference name="Phi1_c2" type="Function"/>
+          <Reference name="Phi_minus1_c2" type="Function"/>
+          <Reference name="ReceptorfractionCell2" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((0.166758122542637*(Phi1_c2^4))*(ReceptorfractionCell2^4))/(((((0.0059556472336656*(Phi1_c2^4))+((0.085754459808*(Phi1_c2^3))*Phi_minus1_c2))+((0.46303704*(Phi1_c2^2))*(Phi_minus1_c2^2)))+((1.1112*Phi1_c2)*(Phi_minus1_c2^3)))+(Phi_minus1_c2^4)) </Expression>
+      </Function>
+      <Function id="fRate6">
+        <ListOfReferences>
+          <Reference name="CalciumionCell2" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (1.2*CalciumionCell2)/((CalciumionCell2^2)+0.0324) </Expression>
+      </Function>
+      <Function id="fRate9">
+        <ListOfReferences>
+          <Reference name="Phi1_c2" type="Function"/>
+          <Reference name="Phi2_c2" type="Function"/>
+          <Reference name="Phi_minus1_c2" type="Function"/>
+        </ListOfReferences>
+        <Expression> ((0.2778*Phi1_c2)*Phi2_c2)/((0.2778*Phi1_c2)+Phi_minus1_c2) </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

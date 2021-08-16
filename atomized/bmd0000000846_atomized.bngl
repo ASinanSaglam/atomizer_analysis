@@ -4,7 +4,7 @@
 #@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1911100004', 'http://identifiers.org/biomodels.db/BIOMD0000000846']
 #@creatorEmail:'johannes.p.meyer@gmail.com'
 #@creatorName:'Meyer Johannes'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 3 molecules and 7 reactions. The translated model has 2 molecules and 7 rules'
+#@notes:'This is an atomized translation of an SBML model created on 14/08/2021. The original model has 3 molecules and 7 reactions. The translated model has 2 molecules and 7 rules'
 ###
 begin model
 begin parameters
@@ -29,7 +29,7 @@ begin seed species
 end seed species
 begin observables
 	Species S S(v_c) #S
-	Species C V_C(s!72).S(v_c!72) #C
+	Species C V_C(s!875).S(v_c!875) #C
 	Species V_C V_C(s) #V_C
 end observables
 begin functions
@@ -45,10 +45,10 @@ begin functions
 end functions
 begin reaction rules
 	Susceptible_Logistic_Growth: 0  <-> S(v_c) fRate0(),fRate0m()
-	Susceptible_Absorption_Virus: S(v_c) + V_C(s) -> V_C(s!72).S(v_c!72) phi_tilde
+	Susceptible_Absorption_Virus: S(v_c) + V_C(s) -> V_C(s!875).S(v_c!875) phi_tilde
 	Susceptible_Death: S(v_c) -> 0  d
-	Chronic_Infected_Death: V_C(s!72).S(v_c!72) -> 0  d_tilde
-	Chronic_Infected_Logistic_Growth: 0  <-> V_C(s!72).S(v_c!72) fRate4(),fRate4m()
+	Chronic_Infected_Death: V_C(s!875).S(v_c!875) -> 0  d_tilde
+	Chronic_Infected_Logistic_Growth: 0  <-> V_C(s!875).S(v_c!875) fRate4(),fRate4m()
 	Virus_Chronic_Release_From_Chronic_Infected: 0  -> V_C(s) fRate5() #Modifiers(C)
 	Virus_Chronic_Decay: V_C(s) -> 0  mu
 end reaction rules

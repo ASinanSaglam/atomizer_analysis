@@ -1,5 +1,5 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000078', 'http://identifiers.org/biomodels.db/MODEL4108701438']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL4108701438', 'http://identifiers.org/biomodels.db/BIOMD0000000078']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/12775757']
 #@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/BIOMD0000000021']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/40674']
@@ -7,7 +7,7 @@
 #@BQB_HAS_VERSION:['http://identifiers.org/kegg.pathway/hsa04710']
 #@creatorEmail:'enuo.he@wolfson.ox.ac.uk'
 #@creatorName:'He Enuo'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 16 molecules and 48 reactions. The translated model has 7 molecules and 48 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 16 molecules and 48 reactions. The translated model has 7 molecules and 48 rules'
 ###
 begin model
 begin parameters
@@ -92,20 +92,20 @@ begin parameters
 	r48_Km 0.100000
 end parameters
 begin molecule types
-	#^ bqbiol:isVersionOf obo.chebi:CHEBI:33699
-	Mb()
-	#^ bqbiol:hasVersion uniprot:O00327
-	Bc(Bn~Bn~0,p~P~0,pcn)
+	#^ bqbiol:hasVersion uniprot:Q8IV71, uniprot:Q16526
+	Cc(p~P~0,p2~P~0,pc)
 	#^ bqbiol:hasVersion uniprot:P56645, uniprot:O15055, uniprot:O15534
 	Pc(cc,p~P~0)
 	#^ bqbiol:isVersionOf obo.chebi:CHEBI:33699
 	Mp()
-	#^ bqbiol:isPartOf obo.chebi:CHEBI:33699
-	Mc()
-	#^ bqbiol:hasVersion uniprot:Q8IV71, uniprot:Q16526
-	Cc(p~P~0,pc)
 	#^ bqbiol:hasPart uniprot:P56645, uniprot:Q8IV71, uniprot:O15534, uniprot:Q8IV71, uniprot:O15534, uniprot:Q16526
 	PCn(bc,p~P~0)
+	#^ bqbiol:isPartOf obo.chebi:CHEBI:33699
+	Mc()
+	#^ bqbiol:hasVersion uniprot:O00327
+	Bc(Bn~Bn~0,p~P~0,pcn)
+	#^ bqbiol:isVersionOf obo.chebi:CHEBI:33699
+	Mb()
 end molecule types
 begin seed species
 	Mb() 5720900000000001.0 # (9.5 * 1e-09)mol/L * 6.022e23/mol *1.0L #Mb #species_0
@@ -120,14 +120,14 @@ begin observables
 	Species Bc Bc(Bn~0,p~0,pcn) #Bc
 	Species Bcp Bc(Bn~0,p~P,pcn) #Bcp
 	Species Bn Bc(Bn~Bn,p~0,pcn) #Bn
-	Species Cc Cc(p~0,pc) #Cc
+	Species Cc Cc(p~0,p2~0,pc) #Cc
 	Species Mc Mc() #Mc
-	Species Ccp Cc(p~P,pc) #Ccp
+	Species Ccp Cc(p~P,p2~0,pc) #Ccp
 	Species Mp Mp() #Mp
 	Species Pc Pc(cc,p~0) #Pc
 	Species Pcp Pc(cc,p~P) #Pcp
-	Species PCc Pc(cc!103,p~0).Cc(p~0,pc!103) #PCc
-	Species PCcp Pc(cc!103,p~0).Cc(p~P,pc!103) #PCcp
+	Species PCc Cc(p~0,p2~0,pc!103).Pc(cc!103,p~0) #PCc
+	Species PCcp Cc(p~P,p2~P,pc) #PCcp
 	Species PCn PCn(bc,p~0) #PCn
 	Species Bnp Bc(Bn~Bn,p~P,pcn) #Bnp
 	Species PCnp PCn(bc,p~P) #PCnp
@@ -171,18 +171,18 @@ begin reaction rules
 	reaction_2: Mb() -> 0  r3_k1
 	reaction_3: Bc(Bn~0,p~0,pcn) -> Bc(Bn~0,p~P,pcn) fRate3()
 	reaction_4: Bc(Bn~0,p~0,pcn) <-> Bc(Bn~Bn,p~0,pcn) r5_k1,r5_k2
-	reaction_5: 0  -> Cc(p~0,pc) fRate5() #Modifiers(species_5)
+	reaction_5: 0  -> Cc(p~0,p2~0,pc) fRate5() #Modifiers(species_5)
 	reaction_6: Mc() -> 0  r7_k1
-	reaction_7: Cc(p~0,pc) -> Cc(p~P,pc) fRate7()
-	reaction_8: Cc(p~P,pc) -> 0  fRate8()
+	reaction_7: Cc(p~0,p2~0,pc) -> Cc(p~P,p2~0,pc) fRate7()
+	reaction_8: Cc(p~P,p2~0,pc) -> 0  fRate8()
 	reaction_9: 0  -> Mp() fRate9() #Modifiers(species_3)
 	reaction_10: 0  -> Pc(cc,p~0) fRate10() #Modifiers(species_7)
 	reaction_11: Pc(cc,p~P) -> 0  fRate11()
 	reaction_12: Pc(cc,p~0) -> Pc(cc,p~P) fRate12()
-	reaction_13: Cc(p~0,pc) + Pc(cc,p~0) <-> Pc(cc!103,p~0).Cc(p~0,pc!103) r14_k1,r14_k2
-	reaction_14: Pc(cc!103,p~0).Cc(p~0,pc!103) -> Pc(cc!103,p~0).Cc(p~P,pc!103) fRate14()
-	reaction_15: Pc(cc!103,p~0).Cc(p~P,pc!103) -> 0  fRate15()
-	reaction_16: Pc(cc!103,p~0).Cc(p~0,pc!103) <-> PCn(bc,p~0) r17_k1,r17_k2
+	reaction_13: Cc(p~0,p2~0,pc) + Pc(cc,p~0) <-> Cc(p~0,p2~0,pc!103).Pc(cc!103,p~0) r14_k1,r14_k2
+	reaction_14: Cc(p~0,p2~0,pc!103).Pc(cc!103,p~0) -> Cc(p~P,p2~P,pc) fRate14()
+	reaction_15: Cc(p~P,p2~P,pc) -> 0  fRate15()
+	reaction_16: Cc(p~0,p2~0,pc!103).Pc(cc!103,p~0) <-> PCn(bc,p~0) r17_k1,r17_k2
 	reaction_17: PCn(bc,p~P) -> 0  r18_k1
 	reaction_18: Bc(Bn~0,p~P,pcn) -> 0  r19_k1
 	reaction_19: Bc(Bn~Bn,p~P,pcn) -> 0  r20_k1
@@ -194,11 +194,11 @@ begin reaction rules
 	reaction_25: Mc() -> 0  fRate25()
 	reaction_26: Mp() -> 0  fRate26()
 	reaction_27: Pc(cc,p~0) -> 0  r28_k1
-	reaction_28: Cc(p~0,pc) -> 0  r29_k1
+	reaction_28: Cc(p~0,p2~0,pc) -> 0  r29_k1
 	reaction_29: Pc(cc,p~P) -> 0  r30_k1
-	reaction_30: Cc(p~P,pc) -> 0  r31_k1
-	reaction_31: Pc(cc!103,p~0).Cc(p~P,pc!103) -> 0  r32_k1
-	reaction_32: Pc(cc!103,p~0).Cc(p~0,pc!103) -> 0  r33_k1
+	reaction_30: Cc(p~P,p2~0,pc) -> 0  r31_k1
+	reaction_31: Cc(p~P,p2~P,pc) -> 0  r32_k1
+	reaction_32: Cc(p~0,p2~0,pc!103).Pc(cc!103,p~0) -> 0  r33_k1
 	reaction_33: PCn(bc,p~P) -> 0  fRate33()
 	reaction_34: Bc(Bn~0,p~0,pcn) -> 0  r35_k1
 	reaction_35: Bc(Bn~0,p~P,pcn) -> 0  fRate35()
@@ -209,10 +209,10 @@ begin reaction rules
 	reaction_40: Bc(Bn~Bn,p~0,pcn) -> 0  r41_k1
 	reaction_41: Bc(Bn~0,p~P,pcn) -> Bc(Bn~0,p~0,pcn) fRate41()
 	reaction_42: Bc(Bn~Bn,p~P,pcn) -> Bc(Bn~Bn,p~0,pcn) fRate42()
-	reaction_43: Cc(p~P,pc) -> Cc(p~0,pc) fRate43()
+	reaction_43: Cc(p~P,p2~0,pc) -> Cc(p~0,p2~0,pc) fRate43()
 	reaction_44: Pc(cc,p~P) -> Pc(cc,p~0) fRate44()
 	reaction_45: PCn(bc,p~P) -> PCn(bc,p~0) fRate45()
 	reaction_46: PCn(bc,p~0) -> 0  r47_k1
-	reaction_47: Pc(cc!103,p~0).Cc(p~P,pc!103) -> Pc(cc!103,p~0).Cc(p~0,pc!103) fRate47()
+	reaction_47: Cc(p~P,p2~P,pc) -> Cc(p~0,p2~0,pc!103).Pc(cc!103,p~0) fRate47()
 end reaction rules
 end model

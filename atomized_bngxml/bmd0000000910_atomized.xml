@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000910_atomized">
+    <ListOfParameters>
+      <Parameter id="alpha_T" type="Constant" value="0.22" expr="0.22"/>
+      <Parameter id="beta_T" type="Constant" value="8.4e-8" expr="8.4e-08"/>
+      <Parameter id="gama_prime_L" type="Constant" value="4e-7" expr="4e-07"/>
+      <Parameter id="VL" type="Constant" value="79000" expr="79000.0"/>
+      <Parameter id="alpha_L" type="Constant" value="9.9e-9" expr="9.9e-09"/>
+      <Parameter id="beta_L" type="Constant" value="0.33" expr="0.33"/>
+      <Parameter id="alpha_I2" type="Constant" value="12500000" expr="12500000.0"/>
+      <Parameter id="alpha_bar_L" type="Constant" value="6.6e-8" expr="6.6e-08"/>
+      <Parameter id="gama_T" type="Constant" value="6.6e-7" expr="6.6e-07"/>
+      <Parameter id="K_T" type="Constant" value="52000" expr="52000.0"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="I2"/>
+      <MoleculeType id="L"/>
+      <MoleculeType id="T"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="1.4452800000000001e+26" name="L()">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="L"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="1.2044e+26" name="T()">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="T"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="2.1679200000000002e+28" name="I2()">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="I2"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="Activation_and_transfer_of_cytotoxic_T_lymphocyte_at_the_site_of_tumor" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="L"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="Deactivation_and_removal_of_cytotoxic_T_lymphocyte_from_the_site_of_action" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="L"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="beta_L"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR2_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="Formation_and_removal_of_tumor_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="T"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="_rateLaw1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="Secretion_of_interleukin_2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="I2"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="fRate3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR4_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="Removal_of_interleukin_2_from_site_of_tumor_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="I2"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Function" name="_rateLaw2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR5_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="L" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="L"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="T" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="T"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="I2" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="I2"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="VL" type="Constant"/>
+          <Reference name="alpha_L" type="Constant"/>
+          <Reference name="I2" type="Observable"/>
+          <Reference name="L" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((1.0*I2)*L)*alpha_L)+VL </Expression>
+      </Function>
+      <Function id="fRate2">
+        <ListOfReferences>
+          <Reference name="alpha_T" type="Constant"/>
+          <Reference name="beta_T" type="Constant"/>
+          <Reference name="gama_prime_L" type="Constant"/>
+          <Reference name="L" type="Observable"/>
+          <Reference name="T" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((1.0*L)*T)*gama_prime_L)+(((1.0*T)*alpha_T)*ln(((T*beta_T)/alpha_T))) </Expression>
+      </Function>
+      <Function id="fRate3">
+        <ListOfReferences>
+          <Reference name="K_T" type="Constant"/>
+          <Reference name="alpha_I2" type="Constant"/>
+          <Reference name="T" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (T*alpha_I2)/(K_T+T) </Expression>
+      </Function>
+      <Function id="fRate4">
+        <ListOfReferences>
+          <Reference name="alpha_bar_L" type="Constant"/>
+          <Reference name="gama_T" type="Constant"/>
+          <Reference name="I2" type="Observable"/>
+          <Reference name="L" type="Observable"/>
+          <Reference name="T" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((1.0*I2)*L)*alpha_bar_L)+(((1.0*I2)*T)*gama_T) </Expression>
+      </Function>
+      <Function id="_rateLaw1">
+        <ListOfReferences>
+          <Reference name="fRate2" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate2() </Expression>
+      </Function>
+      <Function id="_rateLaw2">
+        <ListOfReferences>
+          <Reference name="fRate4" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate4() </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

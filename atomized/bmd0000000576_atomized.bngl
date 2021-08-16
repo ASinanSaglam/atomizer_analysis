@@ -1,12 +1,12 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000576', 'http://identifiers.org/biomodels.db/MODEL1506290000']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1506290000', 'http://identifiers.org/biomodels.db/BIOMD0000000576']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/23653204']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
 #@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000575']
 #@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0051414']
 #@creatorEmail:'a.hume@ed.ac.uk'
 #@creatorName:'Hume Alastair'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 42 molecules and 52 reactions. The translated model has 18 molecules and 52 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 42 molecules and 52 reactions. The translated model has 18 molecules and 52 rules'
 ###
 begin model
 begin parameters
@@ -76,113 +76,113 @@ begin compartments
 	blood 3 5.0
 end compartments
 begin molecule types
-	#^ bqbiol:isVersionOf chebi:CHEBI:16962
-	Cortisone()
-	#^ bqbiol:isVersionOf chebi:CHEBI:41879
-	DEX(_degr~_DEGR~0,out~OUT~0)
 	CYPgene(CYP_GENE~CYP_GENE~0,pxrprot_cort,pxrprot_dex,pxrprot_ligand2)
-	PXRgene(PXR_GENE~PXR_GENE~0,grprot_cort,grprot_dex)
 	#^ bqbiol:hasPart chebi:CHEBI:41879, uniprot:O75469
 	PXRprot_DEX(cypgene)
 	#^ bqbiol:is chebi:CHEBI:16541
 	S_PROT(CYP_PROT~CYP_PROT~0,GR_PROT~GR_PROT~0,PXR_PROT~PXR_PROT~0)
-	#^ bqbiol:isVersionOf uniprot:P08185
-	CBG(cort)
 	#^ bqbiol:is biomodels.sbo:SBO:0000291
 	P(TAT_PROT~TAT_PROT~0)
 	TATgene(TAT_GENE~TAT_GENE~0,grprot_cort,grprot_dex)
-	#^ bqbiol:hasPart chebi:CHEBI:17650, uniprot:P04150
-	GRprot_Cort(gr_gene,pxrgene,tatgene)
+	#^ bqbiol:isVersionOf chebi:CHEBI:16962
+	Cortisone()
 	#^ bqbiol:hasPart uniprot:O75469, biomodels.sbo:SBO:0000280
 	PXRprot_Ligand2(cypgene)
+	#^ bqbiol:isVersionOf chebi:CHEBI:41879
+	DEX(_degr~_DEGR~0,out~OUT~0)
 	#^ bqbiol:isVersionOf chebi:CHEBI:17650
 	Cort(CortAdded~CortAdded~0,_degr~_DEGR~0,alb,cbg,out~OUT~0)
+	PXRgene(PXR_GENE~PXR_GENE~0,grprot_cort,grprot_dex)
+	#^ bqbiol:isVersionOf uniprot:P08185
+	CBG(cort)
+	#^ bqbiol:isVersionOf uniprot:P02768
+	Alb(cort)
+	#^ bmbiol:is chebi:CHEBI:33699
+	S_RNA(CYP_RNA~CYP_RNA~0,GR_RNA~GR_RNA~0,PXR_RNA~PXR_RNA~0,TAT_RNA~TAT_RNA~0)
+	#^ bqbiol:hasPart chebi:CHEBI:17650, uniprot:O75469
+	PXRprot_Cort(cypgene)
+	#^ bqbiol:hasPart chebi:CHEBI:17650, uniprot:P04150
+	GRprot_Cort(gr_gene,pxrgene,tatgene)
 	#^ bqbiol:isVersionOf ensembl:ENSG00000113580
 	#^ bqbiol:encodes uniprot:P04150
 	GR_GENE(grprot_cort,grprot_dex)
-	#^ bmbiol:is biomodels.sbo:SBO:0000280
-	Ligand2()
-	#^ bmbiol:is chebi:CHEBI:33699
-	S_RNA(CYP_RNA~CYP_RNA~0,GR_RNA~GR_RNA~0,PXR_RNA~PXR_RNA~0,TAT_RNA~TAT_RNA~0)
 	#^ bqbiol:hasPart chebi:CHEBI:41879, uniprot:P04150
 	GRprot_DEX(gr_gene,pxrgene,tatgene)
-	#^ bqbiol:isVersionOf uniprot:P02768
-	Alb(cort)
-	#^ bqbiol:hasPart chebi:CHEBI:17650, uniprot:O75469
-	PXRprot_Cort(cypgene)
+	#^ bmbiol:is biomodels.sbo:SBO:0000280
+	Ligand2()
 end molecule types
 begin seed species
-	@default:$S_RNA(CYP_RNA~0,GR_RNA~0,PXR_RNA~0,TAT_RNA~0) 602200178995838.5 # (1.00000029723653 * 1e-09)mol/L * 6.022e23/mol *1.0L #S_RNA #s28
-	@default:$S_PROT(CYP_PROT~0,GR_PROT~0,PXR_PROT~0) 602200178995838.5 #original 1.00000029723653substance/L #S_PROT #s36
-	@default:PXRgene(PXR_GENE~PXR_GENE,grprot_cort,grprot_dex) 469716139616754.3 #original 0.780000231844494substance/L #PXR_GENE #s46
-	@default:S_RNA(CYP_RNA~0,GR_RNA~0,PXR_RNA~PXR_RNA,TAT_RNA~0) 4215401252970.869 #original 0.00700000208065571substance/L #PXR_RNA #s32
-	@default:S_PROT(CYP_PROT~0,GR_PROT~0,PXR_PROT~PXR_PROT) 6.015979788168429e+16 #original 99.9000296939294substance/L #PXR_PROT #s42
-	@default:GR_GENE(grprot_cort,grprot_dex) 301100089497919.25 #original 0.500000148618265substance/L #GR_GENE #s40
-	@default:S_RNA(CYP_RNA~0,GR_RNA~GR_RNA,PXR_RNA~0,TAT_RNA~0) 481760143196.6708 #original 0.000800000237789224substance/L #GR_RNA #s33
-	@default:S_PROT(CYP_PROT~0,GR_PROT~GR_PROT,PXR_PROT~0) 2.844793645576342e+16 #original 47.2400140414537substance/L #GR_PROT #s39
-	@default:Cort(CortAdded~0,_degr~0,alb,cbg,out~0) 686508204055259.4 #original 1.14000033884965substance/L #Cort #s114
-	@default:CYPgene(CYP_GENE~CYP_GENE,pxrprot_cort,pxrprot_dex,pxrprot_ligand2) 499681620523587.44 #original 0.829760246634984substance/L #CYP_GENE #s155
-	@default:S_PROT(CYP_PROT~CYP_PROT,GR_PROT~0,PXR_PROT~0) 6.262881861556713e+16 #original 104.000030912599substance/L #CYP_PROT #s172
-	@default:S_RNA(CYP_RNA~CYP_RNA,GR_RNA~0,PXR_RNA~0,TAT_RNA~0) 45165013424687.914 #original 0.0750000222927398substance/L #CYP_RNA #s173
-	@default:S_RNA(CYP_RNA~0,GR_RNA~0,PXR_RNA~0,TAT_RNA~TAT_RNA) 60220017899583.85 #original 0.100000029723653substance/L #TAT_RNA #s185
-	@default:GRprot_Cort(gr_gene!64,pxrgene,tatgene).GR_GENE(grprot_cort!64,grprot_dex) 198726059068626.78 #original 0.330000098088055substance/L #GRgene_GRprot_Cort #s84
-	@default:CYPgene(CYP_GENE~0,pxrprot_cort!70,pxrprot_dex,pxrprot_ligand2).PXRprot_Cort(cypgene!70) 144528042959.0011 #original 0.000240000071336767substance/L #CYPgene_PXRprot_Cort #s165
-	@default:PXRgene(PXR_GENE~0,grprot_cort!67,grprot_dex).GRprot_Cort(gr_gene,pxrgene!67,tatgene) 30110008949791.926 #original 0.0500000148618265substance/L #PXRgene_GRprot_Cort #s109
-	@default:GRprot_Cort(gr_gene,pxrgene,tatgene) 1.9487197792305324e+16 #original 32.3600096185741substance/L #GRprot_Cort #s87
-	@default:PXRprot_Cort(cypgene) 6022001789958.385 #original 0.0100000029723653substance/L #PXRprot_Cort #s119
-	@default:TATgene(TAT_GENE~0,grprot_cort!68,grprot_dex).GRprot_Cort(gr_gene,pxrgene,tatgene!68) 12044003579916.77 #original 0.0200000059447306substance/L #TATgene_GRprot_Cort #s183
-	@default:TATgene(TAT_GENE~TAT_GENE,grprot_cort,grprot_dex) 487782144986629.56 #original 0.81000024076159substance/L #TAT_GENE #s178
-	@default:$Cortisone() 1.445280429590011e+16 #original 24.0000071336767substance/L #Cortisone #Cortisone
-	@default:P(TAT_PROT~TAT_PROT) 278233324154103.12 #original 0.46202810387596substance/L #TAT_PROT #TAT_PROT
-	@default:Ligand2() 6.022001789958385e+16 #original 100.000029723653substance/L #Ligand2 #Ligand2
-	@default:PXRprot_Ligand2(cypgene) 602200178995.8384 #original 0.00100000029723653substance/L #PXRprot_Ligand2 #PXRprot_Ligand2
-	@default:CYPgene(CYP_GENE~0,pxrprot_cort,pxrprot_dex,pxrprot_ligand2!71).PXRprot_Ligand2(cypgene!71) 14452804295.900108 #original 2.40000071336767e-05substance/L #CYPgene_PXRprot_Ligand2 #CYPgene_PXRprot_Ligand2
-	@blood:CBG(cort) 1.6560504922385574e+18 #original 550.000163480092substance/L #CBG #CBG
-	@blood:Alb(cort) 1.8066005369875153e+20 #original 60000.0178341918substance/L #Alb #Alb
+	@default:$S_RNA(CYP_RNA~0,GR_RNA~0,PXR_RNA~0,TAT_RNA~0)@default 602200178995838.5 # (1.00000029723653 * 1e-09)mol/L * 6.022e23/mol *1.0L #S_RNA #s28
+	@default:$S_PROT(CYP_PROT~0,GR_PROT~0,PXR_PROT~0)@default 602200178995838.5 #original 1.00000029723653substance/L #S_PROT #s36
+	@default:PXRgene(PXR_GENE~PXR_GENE,grprot_cort,grprot_dex)@default 469716139616754.3 #original 0.780000231844494substance/L #PXR_GENE #s46
+	@default:S_RNA(CYP_RNA~0,GR_RNA~0,PXR_RNA~PXR_RNA,TAT_RNA~0)@default 4215401252970.869 #original 0.00700000208065571substance/L #PXR_RNA #s32
+	@default:S_PROT(CYP_PROT~0,GR_PROT~0,PXR_PROT~PXR_PROT)@default 6.015979788168429e+16 #original 99.9000296939294substance/L #PXR_PROT #s42
+	@default:GR_GENE(grprot_cort,grprot_dex)@default 301100089497919.25 #original 0.500000148618265substance/L #GR_GENE #s40
+	@default:S_RNA(CYP_RNA~0,GR_RNA~GR_RNA,PXR_RNA~0,TAT_RNA~0)@default 481760143196.6708 #original 0.000800000237789224substance/L #GR_RNA #s33
+	@default:S_PROT(CYP_PROT~0,GR_PROT~GR_PROT,PXR_PROT~0)@default 2.844793645576342e+16 #original 47.2400140414537substance/L #GR_PROT #s39
+	@default:Cort(CortAdded~0,_degr~0,alb,cbg,out~0)@default 686508204055259.4 #original 1.14000033884965substance/L #Cort #s114
+	@default:CYPgene(CYP_GENE~CYP_GENE,pxrprot_cort,pxrprot_dex,pxrprot_ligand2)@default 499681620523587.44 #original 0.829760246634984substance/L #CYP_GENE #s155
+	@default:S_PROT(CYP_PROT~CYP_PROT,GR_PROT~0,PXR_PROT~0)@default 6.262881861556713e+16 #original 104.000030912599substance/L #CYP_PROT #s172
+	@default:S_RNA(CYP_RNA~CYP_RNA,GR_RNA~0,PXR_RNA~0,TAT_RNA~0)@default 45165013424687.914 #original 0.0750000222927398substance/L #CYP_RNA #s173
+	@default:S_RNA(CYP_RNA~0,GR_RNA~0,PXR_RNA~0,TAT_RNA~TAT_RNA)@default 60220017899583.85 #original 0.100000029723653substance/L #TAT_RNA #s185
+	@default:GRprot_Cort(gr_gene!165,pxrgene,tatgene)@default.GR_GENE(grprot_cort!165,grprot_dex)@default 198726059068626.78 #original 0.330000098088055substance/L #GRgene_GRprot_Cort #s84
+	@default:CYPgene(CYP_GENE~0,pxrprot_cort!171,pxrprot_dex,pxrprot_ligand2)@default.PXRprot_Cort(cypgene!171)@default 144528042959.0011 #original 0.000240000071336767substance/L #CYPgene_PXRprot_Cort #s165
+	@default:PXRgene(PXR_GENE~0,grprot_cort!168,grprot_dex)@default.GRprot_Cort(gr_gene,pxrgene!168,tatgene)@default 30110008949791.926 #original 0.0500000148618265substance/L #PXRgene_GRprot_Cort #s109
+	@default:GRprot_Cort(gr_gene,pxrgene,tatgene)@default 1.9487197792305324e+16 #original 32.3600096185741substance/L #GRprot_Cort #s87
+	@default:PXRprot_Cort(cypgene)@default 6022001789958.385 #original 0.0100000029723653substance/L #PXRprot_Cort #s119
+	@default:TATgene(TAT_GENE~0,grprot_cort!169,grprot_dex)@default.GRprot_Cort(gr_gene,pxrgene,tatgene!169)@default 12044003579916.77 #original 0.0200000059447306substance/L #TATgene_GRprot_Cort #s183
+	@default:TATgene(TAT_GENE~TAT_GENE,grprot_cort,grprot_dex)@default 487782144986629.56 #original 0.81000024076159substance/L #TAT_GENE #s178
+	@default:$Cortisone()@default 1.445280429590011e+16 #original 24.0000071336767substance/L #Cortisone #Cortisone
+	@default:P(TAT_PROT~TAT_PROT)@default 278233324154103.12 #original 0.46202810387596substance/L #TAT_PROT #TAT_PROT
+	@default:Ligand2()@default 6.022001789958385e+16 #original 100.000029723653substance/L #Ligand2 #Ligand2
+	@default:PXRprot_Ligand2(cypgene)@default 602200178995.8384 #original 0.00100000029723653substance/L #PXRprot_Ligand2 #PXRprot_Ligand2
+	@default:CYPgene(CYP_GENE~0,pxrprot_cort,pxrprot_dex,pxrprot_ligand2!172)@default.PXRprot_Ligand2(cypgene!172)@default 14452804295.900108 #original 2.40000071336767e-05substance/L #CYPgene_PXRprot_Ligand2 #CYPgene_PXRprot_Ligand2
+	@blood:CBG(cort)@blood 1.6560504922385574e+18 #original 550.000163480092substance/L #CBG #CBG
+	@blood:Alb(cort)@blood 1.8066005369875153e+20 #original 60000.0178341918substance/L #Alb #Alb
 end seed species
 begin observables
-	Species S_RNA_default @default:S_RNA(CYP_RNA~0,GR_RNA~0,PXR_RNA~0,TAT_RNA~0) #S_RNA
-	Species S_PROT_default @default:S_PROT(CYP_PROT~0,GR_PROT~0,PXR_PROT~0) #S_PROT
-	Species PXR_GENE_default @default:PXRgene(PXR_GENE~PXR_GENE,grprot_cort,grprot_dex) #PXR_GENE
-	Species PXR_RNA_default @default:S_RNA(CYP_RNA~0,GR_RNA~0,PXR_RNA~PXR_RNA,TAT_RNA~0) #PXR_RNA
-	Species PXR_PROT_default @default:S_PROT(CYP_PROT~0,GR_PROT~0,PXR_PROT~PXR_PROT) #PXR_PROT
-	Species P_default @default:P(TAT_PROT~0) #P
-	Species GR_GENE_default @default:GR_GENE(grprot_cort,grprot_dex) #GR_GENE
-	Species GR_RNA_default @default:S_RNA(CYP_RNA~0,GR_RNA~GR_RNA,PXR_RNA~0,TAT_RNA~0) #GR_RNA
-	Species GR_PROT_default @default:S_PROT(CYP_PROT~0,GR_PROT~GR_PROT,PXR_PROT~0) #GR_PROT
-	Species Cort_default @default:Cort(CortAdded~0,_degr~0,alb,cbg,out~0) #Cort
-	Species CYP_GENE_default @default:CYPgene(CYP_GENE~CYP_GENE,pxrprot_cort,pxrprot_dex,pxrprot_ligand2) #CYP_GENE
-	Species CYP_PROT_default @default:S_PROT(CYP_PROT~CYP_PROT,GR_PROT~0,PXR_PROT~0) #CYP_PROT
-	Species CYP_RNA_default @default:S_RNA(CYP_RNA~CYP_RNA,GR_RNA~0,PXR_RNA~0,TAT_RNA~0) #CYP_RNA
-	Species TAT_RNA_default @default:S_RNA(CYP_RNA~0,GR_RNA~0,PXR_RNA~0,TAT_RNA~TAT_RNA) #TAT_RNA
-	Species GRgene_GRprot_Cort_default @default:GRprot_Cort(gr_gene!64,pxrgene,tatgene).GR_GENE(grprot_cort!64,grprot_dex) #GRgene_GRprot_Cort
-	Species CYPgene_PXRprot_Cort_default @default:CYPgene(CYP_GENE~0,pxrprot_cort!70,pxrprot_dex,pxrprot_ligand2).PXRprot_Cort(cypgene!70) #CYPgene_PXRprot_Cort
-	Species PXRgene_GRprot_Cort_default @default:PXRgene(PXR_GENE~0,grprot_cort!67,grprot_dex).GRprot_Cort(gr_gene,pxrgene!67,tatgene) #PXRgene_GRprot_Cort
-	Species GRprot_Cort_default @default:GRprot_Cort(gr_gene,pxrgene,tatgene) #GRprot_Cort
-	Species PXRprot_Cort_default @default:PXRprot_Cort(cypgene) #PXRprot_Cort
-	Species TATgene_GRprot_Cort_default @default:TATgene(TAT_GENE~0,grprot_cort!68,grprot_dex).GRprot_Cort(gr_gene,pxrgene,tatgene!68) #TATgene_GRprot_Cort
-	Species TAT_GENE_default @default:TATgene(TAT_GENE~TAT_GENE,grprot_cort,grprot_dex) #TAT_GENE
-	Species Cort_degr_default @default:Cort(CortAdded~0,_degr~_DEGR,alb,cbg,out~0) #Cort_degr
-	Species Cortisone_default @default:Cortisone() #Cortisone
-	Species TAT_PROT_default @default:P(TAT_PROT~TAT_PROT) #TAT_PROT
-	Species Ligand2_default @default:Ligand2() #Ligand2
-	Species PXRprot_Ligand2_default @default:PXRprot_Ligand2(cypgene) #PXRprot_Ligand2
-	Species CYPgene_PXRprot_Ligand2_default @default:CYPgene(CYP_GENE~0,pxrprot_cort,pxrprot_dex,pxrprot_ligand2!71).PXRprot_Ligand2(cypgene!71) #CYPgene_PXRprot_Ligand2
-	Species DEX_default @default:DEX(_degr~0,out~0) #DEX
-	Species GRprot_DEX_default @default:GRprot_DEX(gr_gene,pxrgene,tatgene) #GRprot_DEX
-	Species PXRprot_DEX_default @default:PXRprot_DEX(cypgene) #PXRprot_DEX
-	Species DEX_degr_default @default:DEX(_degr~_DEGR,out~0) #DEX_degr
-	Species CYPgene_PXRprot_DEX_default @default:CYPgene(CYP_GENE~0,pxrprot_cort,pxrprot_dex!69,pxrprot_ligand2).PXRprot_DEX(cypgene!69) #CYPgene_PXRprot_DEX
-	Species PXRgene_GRprot_DEX_default @default:PXRgene(PXR_GENE~0,grprot_cort,grprot_dex!65).GRprot_DEX(gr_gene,pxrgene!65,tatgene) #PXRgene_GRprot_DEX
-	Species GRgene_GRprot_DEX_default @default:GRprot_DEX(gr_gene!63,pxrgene,tatgene).GR_GENE(grprot_cort,grprot_dex!63) #GRgene_GRprot_DEX
-	Species TATgene_GRprot_DEX_default @default:TATgene(TAT_GENE~0,grprot_cort,grprot_dex!66).GRprot_DEX(gr_gene,pxrgene,tatgene!66) #TATgene_GRprot_DEX
-	Species CortOUT_blood @blood:Cort(CortAdded~0,_degr~0,alb,cbg,out~OUT) #CortOUT
-	Species DEXout_blood @blood:DEX(_degr~0,out~OUT) #DEXout
-	Species CBG_blood @blood:CBG(cort) #CBG
-	Species CBG_CortOUT_blood @blood:Cort(CortAdded~0,_degr~0,alb,cbg!72,out~OUT).CBG(cort!72) #CBG_CortOUT
-	Species Alb_blood @blood:Alb(cort) #Alb
-	Species Alb_CortOUT_blood @blood:Cort(CortAdded~0,_degr~0,alb!73,cbg,out~OUT).Alb(cort!73) #Alb_CortOUT
-	Species CortAdded_blood @blood:Cort(CortAdded~CortAdded,_degr~0,alb,cbg,out~OUT) #CortAdded
+	Species S_RNA_default @default:S_RNA(CYP_RNA~0,GR_RNA~0,PXR_RNA~0,TAT_RNA~0)@default #S_RNA
+	Species S_PROT_default @default:S_PROT(CYP_PROT~0,GR_PROT~0,PXR_PROT~0)@default #S_PROT
+	Species PXR_GENE_default @default:PXRgene(PXR_GENE~PXR_GENE,grprot_cort,grprot_dex)@default #PXR_GENE
+	Species PXR_RNA_default @default:S_RNA(CYP_RNA~0,GR_RNA~0,PXR_RNA~PXR_RNA,TAT_RNA~0)@default #PXR_RNA
+	Species PXR_PROT_default @default:S_PROT(CYP_PROT~0,GR_PROT~0,PXR_PROT~PXR_PROT)@default #PXR_PROT
+	Species P_default @default:P(TAT_PROT~0)@default #P
+	Species GR_GENE_default @default:GR_GENE(grprot_cort,grprot_dex)@default #GR_GENE
+	Species GR_RNA_default @default:S_RNA(CYP_RNA~0,GR_RNA~GR_RNA,PXR_RNA~0,TAT_RNA~0)@default #GR_RNA
+	Species GR_PROT_default @default:S_PROT(CYP_PROT~0,GR_PROT~GR_PROT,PXR_PROT~0)@default #GR_PROT
+	Species Cort_default @default:Cort(CortAdded~0,_degr~0,alb,cbg,out~0)@default #Cort
+	Species CYP_GENE_default @default:CYPgene(CYP_GENE~CYP_GENE,pxrprot_cort,pxrprot_dex,pxrprot_ligand2)@default #CYP_GENE
+	Species CYP_PROT_default @default:S_PROT(CYP_PROT~CYP_PROT,GR_PROT~0,PXR_PROT~0)@default #CYP_PROT
+	Species CYP_RNA_default @default:S_RNA(CYP_RNA~CYP_RNA,GR_RNA~0,PXR_RNA~0,TAT_RNA~0)@default #CYP_RNA
+	Species TAT_RNA_default @default:S_RNA(CYP_RNA~0,GR_RNA~0,PXR_RNA~0,TAT_RNA~TAT_RNA)@default #TAT_RNA
+	Species GRgene_GRprot_Cort_default @default:GRprot_Cort(gr_gene!165,pxrgene,tatgene)@default.GR_GENE(grprot_cort!165,grprot_dex)@default #GRgene_GRprot_Cort
+	Species CYPgene_PXRprot_Cort_default @default:CYPgene(CYP_GENE~0,pxrprot_cort!171,pxrprot_dex,pxrprot_ligand2)@default.PXRprot_Cort(cypgene!171)@default #CYPgene_PXRprot_Cort
+	Species PXRgene_GRprot_Cort_default @default:PXRgene(PXR_GENE~0,grprot_cort!168,grprot_dex)@default.GRprot_Cort(gr_gene,pxrgene!168,tatgene)@default #PXRgene_GRprot_Cort
+	Species GRprot_Cort_default @default:GRprot_Cort(gr_gene,pxrgene,tatgene)@default #GRprot_Cort
+	Species PXRprot_Cort_default @default:PXRprot_Cort(cypgene)@default #PXRprot_Cort
+	Species TATgene_GRprot_Cort_default @default:TATgene(TAT_GENE~0,grprot_cort!169,grprot_dex)@default.GRprot_Cort(gr_gene,pxrgene,tatgene!169)@default #TATgene_GRprot_Cort
+	Species TAT_GENE_default @default:TATgene(TAT_GENE~TAT_GENE,grprot_cort,grprot_dex)@default #TAT_GENE
+	Species Cort_degr_default @default:Cort(CortAdded~0,_degr~_DEGR,alb,cbg,out~0)@default #Cort_degr
+	Species Cortisone_default @default:Cortisone()@default #Cortisone
+	Species TAT_PROT_default @default:P(TAT_PROT~TAT_PROT)@default #TAT_PROT
+	Species Ligand2_default @default:Ligand2()@default #Ligand2
+	Species PXRprot_Ligand2_default @default:PXRprot_Ligand2(cypgene)@default #PXRprot_Ligand2
+	Species CYPgene_PXRprot_Ligand2_default @default:CYPgene(CYP_GENE~0,pxrprot_cort,pxrprot_dex,pxrprot_ligand2!172)@default.PXRprot_Ligand2(cypgene!172)@default #CYPgene_PXRprot_Ligand2
+	Species DEX_default @default:DEX(_degr~0,out~0)@default #DEX
+	Species GRprot_DEX_default @default:GRprot_DEX(gr_gene,pxrgene,tatgene)@default #GRprot_DEX
+	Species PXRprot_DEX_default @default:PXRprot_DEX(cypgene)@default #PXRprot_DEX
+	Species DEX_degr_default @default:DEX(_degr~_DEGR,out~0)@default #DEX_degr
+	Species CYPgene_PXRprot_DEX_default @default:CYPgene(CYP_GENE~0,pxrprot_cort,pxrprot_dex!170,pxrprot_ligand2)@default.PXRprot_DEX(cypgene!170)@default #CYPgene_PXRprot_DEX
+	Species PXRgene_GRprot_DEX_default @default:PXRgene(PXR_GENE~0,grprot_cort,grprot_dex!166)@default.GRprot_DEX(gr_gene,pxrgene!166,tatgene)@default #PXRgene_GRprot_DEX
+	Species GRgene_GRprot_DEX_default @default:GRprot_DEX(gr_gene!164,pxrgene,tatgene)@default.GR_GENE(grprot_cort,grprot_dex!164)@default #GRgene_GRprot_DEX
+	Species TATgene_GRprot_DEX_default @default:TATgene(TAT_GENE~0,grprot_cort,grprot_dex!167)@default.GRprot_DEX(gr_gene,pxrgene,tatgene!167)@default #TATgene_GRprot_DEX
+	Species CortOUT_blood @blood:Cort(CortAdded~0,_degr~0,alb,cbg,out~OUT)@blood #CortOUT
+	Species DEXout_blood @blood:DEX(_degr~0,out~OUT)@blood #DEXout
+	Species CBG_blood @blood:CBG(cort)@blood #CBG
+	Species CBG_CortOUT_blood @blood:Cort(CortAdded~0,_degr~0,alb,cbg!173,out~OUT)@blood.CBG(cort!173)@blood #CBG_CortOUT
+	Species Alb_blood @blood:Alb(cort)@blood #Alb
+	Species Alb_CortOUT_blood @blood:Cort(CortAdded~0,_degr~0,alb!174,cbg,out~OUT)@blood.Alb(cort!174)@blood #Alb_CortOUT
+	Species CortAdded_blood @blood:Cort(CortAdded~CortAdded,_degr~0,alb,cbg,out~OUT)@blood #CortAdded
 end observables
 begin functions
 	PXRprotein() = CYPgene_PXRprot_Cort_default + CYPgene_PXRprot_DEX_default + CYPgene_PXRprot_Ligand2_default + PXR_PROT_default + PXRprot_Cort_default + PXRprot_DEX_default + PXRprot_Ligand2_default
@@ -227,13 +227,13 @@ begin reaction rules
 	re17: S_PROT(CYP_PROT~0,GR_PROT~0,PXR_PROT~PXR_PROT)@default + Cort(CortAdded~0,_degr~0,alb,cbg,out~0)@default <-> PXRprot_Cort(cypgene)@default r17_k1,r17_k2 #Modifiers(s42, s114, s119)
 	re18: PXRprot_Cort(cypgene)@default -> Cort(CortAdded~0,_degr~0,alb,cbg,out~0)@default + P(TAT_PROT~0)@default r18_k1 #Modifiers(s119)
 	re19: Cort(CortAdded~0,_degr~0,alb,cbg,out~0)@default -> Cort(CortAdded~0,_degr~_DEGR,alb,cbg,out~0)@default fRate18() #Modifiers(s172, Ligand2, DEX, s172, s114, Ligand2, DEX)
-	re20: CYPgene(CYP_GENE~CYP_GENE,pxrprot_cort,pxrprot_dex,pxrprot_ligand2)@default + PXRprot_Cort(cypgene)@default <-> CYPgene(CYP_GENE~0,pxrprot_cort!70,pxrprot_dex,pxrprot_ligand2)@default.PXRprot_Cort(cypgene!70)@default GeneProteinBinding_diff_limited,cypGene_PXRprotein #Modifiers(s155, s119, s165)
+	re20: CYPgene(CYP_GENE~CYP_GENE,pxrprot_cort,pxrprot_dex,pxrprot_ligand2)@default + PXRprot_Cort(cypgene)@default <-> CYPgene(CYP_GENE~0,pxrprot_cort!171,pxrprot_dex,pxrprot_ligand2)@default.PXRprot_Cort(cypgene!171)@default GeneProteinBinding_diff_limited,cypGene_PXRprotein #Modifiers(s155, s119, s165)
 	re21: S_RNA(CYP_RNA~0,GR_RNA~0,PXR_RNA~0,TAT_RNA~0)@default -> S_RNA(CYP_RNA~CYP_RNA,GR_RNA~0,PXR_RNA~0,TAT_RNA~0)@default fRate20() #Modifiers(s165, s28, s165)
-	re22: PXRgene(PXR_GENE~PXR_GENE,grprot_cort,grprot_dex)@default + GRprot_Cort(gr_gene,pxrgene,tatgene)@default <-> PXRgene(PXR_GENE~0,grprot_cort!67,grprot_dex)@default.GRprot_Cort(gr_gene,pxrgene!67,tatgene)@default GeneProteinBinding_diff_limited,PXRGene_GRprotein #Modifiers(s46, s87, s109)
+	re22: PXRgene(PXR_GENE~PXR_GENE,grprot_cort,grprot_dex)@default + GRprot_Cort(gr_gene,pxrgene,tatgene)@default <-> PXRgene(PXR_GENE~0,grprot_cort!168,grprot_dex)@default.GRprot_Cort(gr_gene,pxrgene!168,tatgene)@default GeneProteinBinding_diff_limited,PXRGene_GRprotein #Modifiers(s46, s87, s109)
 	re23: S_RNA(CYP_RNA~0,GR_RNA~0,PXR_RNA~0,TAT_RNA~0)@default -> S_RNA(CYP_RNA~0,GR_RNA~0,PXR_RNA~PXR_RNA,TAT_RNA~0)@default fRate22() #Modifiers(s109, s28, s109)
-	re24: GR_GENE(grprot_cort,grprot_dex)@default + GRprot_Cort(gr_gene,pxrgene,tatgene)@default <-> GRprot_Cort(gr_gene!64,pxrgene,tatgene)@default.GR_GENE(grprot_cort!64,grprot_dex)@default GeneProteinBinding_diff_limited,GRGene_GRprotein #Modifiers(s40, s87, s84)
+	re24: GR_GENE(grprot_cort,grprot_dex)@default + GRprot_Cort(gr_gene,pxrgene,tatgene)@default <-> GRprot_Cort(gr_gene!165,pxrgene,tatgene)@default.GR_GENE(grprot_cort!165,grprot_dex)@default GeneProteinBinding_diff_limited,GRGene_GRprotein #Modifiers(s40, s87, s84)
 	re25: S_RNA(CYP_RNA~0,GR_RNA~0,PXR_RNA~0,TAT_RNA~0)@default -> S_RNA(CYP_RNA~0,GR_RNA~GR_RNA,PXR_RNA~0,TAT_RNA~0)@default fRate24() #Modifiers(s84, s28, s84)
-	re26: TATgene(TAT_GENE~TAT_GENE,grprot_cort,grprot_dex)@default + GRprot_Cort(gr_gene,pxrgene,tatgene)@default <-> TATgene(TAT_GENE~0,grprot_cort!68,grprot_dex)@default.GRprot_Cort(gr_gene,pxrgene,tatgene!68)@default GeneProteinBinding_diff_limited,TATGene_GRprotein #Modifiers(s178, s87, s183)
+	re26: TATgene(TAT_GENE~TAT_GENE,grprot_cort,grprot_dex)@default + GRprot_Cort(gr_gene,pxrgene,tatgene)@default <-> TATgene(TAT_GENE~0,grprot_cort!169,grprot_dex)@default.GRprot_Cort(gr_gene,pxrgene,tatgene!169)@default GeneProteinBinding_diff_limited,TATGene_GRprotein #Modifiers(s178, s87, s183)
 	re27: S_RNA(CYP_RNA~0,GR_RNA~0,PXR_RNA~0,TAT_RNA~0)@default -> S_RNA(CYP_RNA~0,GR_RNA~0,PXR_RNA~0,TAT_RNA~TAT_RNA)@default fRate26() #Modifiers(s183, s28, s183)
 	re42: Cortisone()@default <-> Cort(CortAdded~0,_degr~0,alb,cbg,out~0)@default r28_k1,r28_k2 #Modifiers(Cortisone, s114)
 	re44: P(TAT_PROT~TAT_PROT)@default -> P(TAT_PROT~0)@default r29_k1 #Modifiers(TAT_PROT)
@@ -242,23 +242,23 @@ begin reaction rules
 	L2_PXR_binding: S_PROT(CYP_PROT~0,GR_PROT~0,PXR_PROT~PXR_PROT)@default + Ligand2()@default <-> PXRprot_Ligand2(cypgene)@default r32_k1,r32_k2 #Modifiers(s42, Ligand2, PXRprot_Ligand2)
 	L2_PXR_deg: PXRprot_Ligand2(cypgene)@default -> Ligand2()@default + P(TAT_PROT~0)@default r33_k1 #Modifiers(PXRprot_Ligand2)
 	CYPmRNA_synt_PXR_L2: S_RNA(CYP_RNA~0,GR_RNA~0,PXR_RNA~0,TAT_RNA~0)@default -> S_RNA(CYP_RNA~CYP_RNA,GR_RNA~0,PXR_RNA~0,TAT_RNA~0)@default fRate33() #Modifiers(CYPgene_PXRprot_Ligand2, s28, CYPgene_PXRprot_Ligand2)
-	CYPmRNA_PXR_L2_binding: CYPgene(CYP_GENE~CYP_GENE,pxrprot_cort,pxrprot_dex,pxrprot_ligand2)@default + PXRprot_Ligand2(cypgene)@default <-> CYPgene(CYP_GENE~0,pxrprot_cort,pxrprot_dex,pxrprot_ligand2!71)@default.PXRprot_Ligand2(cypgene!71)@default GeneProteinBinding_diff_limited,cypGene_PXRprotein #Modifiers(s155, PXRprot_Ligand2, CYPgene_PXRprot_Ligand2)
+	CYPmRNA_PXR_L2_binding: CYPgene(CYP_GENE~CYP_GENE,pxrprot_cort,pxrprot_dex,pxrprot_ligand2)@default + PXRprot_Ligand2(cypgene)@default <-> CYPgene(CYP_GENE~0,pxrprot_cort,pxrprot_dex,pxrprot_ligand2!172)@default.PXRprot_Ligand2(cypgene!172)@default GeneProteinBinding_diff_limited,cypGene_PXRprotein #Modifiers(s155, PXRprot_Ligand2, CYPgene_PXRprot_Ligand2)
 	re28: S_PROT(CYP_PROT~0,GR_PROT~GR_PROT,PXR_PROT~0)@default + DEX(_degr~0,out~0)@default <-> GRprot_DEX(gr_gene,pxrgene,tatgene)@default r36_k1,r36_k2 #Modifiers(s39, DEX, GRprot_DEX)
 	re29: GRprot_DEX(gr_gene,pxrgene,tatgene)@default -> P(TAT_PROT~0)@default + DEX(_degr~0,out~0)@default r37_k1 #Modifiers(GRprot_DEX)
 	re30: S_PROT(CYP_PROT~0,GR_PROT~0,PXR_PROT~PXR_PROT)@default + DEX(_degr~0,out~0)@default <-> PXRprot_DEX(cypgene)@default r38_k1,r38_k2 #Modifiers(s42, DEX, PXRprot_DEX)
 	re31: PXRprot_DEX(cypgene)@default -> DEX(_degr~0,out~0)@default + P(TAT_PROT~0)@default r39_k1 #Modifiers(PXRprot_DEX)
 	re32: DEX(_degr~0,out~0)@default -> DEX(_degr~_DEGR,out~0)@default fRate39() #Modifiers(s172, Ligand2, s114, s172, DEX, Ligand2, s114)
-	re33: CYPgene(CYP_GENE~CYP_GENE,pxrprot_cort,pxrprot_dex,pxrprot_ligand2)@default + PXRprot_DEX(cypgene)@default <-> CYPgene(CYP_GENE~0,pxrprot_cort,pxrprot_dex!69,pxrprot_ligand2)@default.PXRprot_DEX(cypgene!69)@default GeneProteinBinding_diff_limited,cypGene_PXRprotein #Modifiers(s155, PXRprot_DEX, CYPgene_PXRprot_DEX)
+	re33: CYPgene(CYP_GENE~CYP_GENE,pxrprot_cort,pxrprot_dex,pxrprot_ligand2)@default + PXRprot_DEX(cypgene)@default <-> CYPgene(CYP_GENE~0,pxrprot_cort,pxrprot_dex!170,pxrprot_ligand2)@default.PXRprot_DEX(cypgene!170)@default GeneProteinBinding_diff_limited,cypGene_PXRprotein #Modifiers(s155, PXRprot_DEX, CYPgene_PXRprot_DEX)
 	re34: S_RNA(CYP_RNA~0,GR_RNA~0,PXR_RNA~0,TAT_RNA~0)@default -> S_RNA(CYP_RNA~CYP_RNA,GR_RNA~0,PXR_RNA~0,TAT_RNA~0)@default fRate41() #Modifiers(CYPgene_PXRprot_DEX, s28, CYPgene_PXRprot_DEX)
-	re35: GRprot_DEX(gr_gene,pxrgene,tatgene)@default + PXRgene(PXR_GENE~PXR_GENE,grprot_cort,grprot_dex)@default <-> PXRgene(PXR_GENE~0,grprot_cort,grprot_dex!65)@default.GRprot_DEX(gr_gene,pxrgene!65,tatgene)@default GeneProteinBinding_diff_limited,PXRGene_GRprotein #Modifiers(GRprot_DEX, s46, PXRgene_GRprot_DEX)
+	re35: GRprot_DEX(gr_gene,pxrgene,tatgene)@default + PXRgene(PXR_GENE~PXR_GENE,grprot_cort,grprot_dex)@default <-> PXRgene(PXR_GENE~0,grprot_cort,grprot_dex!166)@default.GRprot_DEX(gr_gene,pxrgene!166,tatgene)@default GeneProteinBinding_diff_limited,PXRGene_GRprotein #Modifiers(GRprot_DEX, s46, PXRgene_GRprot_DEX)
 	re36: S_RNA(CYP_RNA~0,GR_RNA~0,PXR_RNA~0,TAT_RNA~0)@default -> S_RNA(CYP_RNA~0,GR_RNA~0,PXR_RNA~PXR_RNA,TAT_RNA~0)@default fRate43() #Modifiers(PXRgene_GRprot_DEX, s28, PXRgene_GRprot_DEX)
-	re37: GRprot_DEX(gr_gene,pxrgene,tatgene)@default + GR_GENE(grprot_cort,grprot_dex)@default <-> GRprot_DEX(gr_gene!63,pxrgene,tatgene)@default.GR_GENE(grprot_cort,grprot_dex!63)@default GeneProteinBinding_diff_limited,GRGene_GRprotein #Modifiers(GRprot_DEX, s40, GRgene_GRprot_DEX)
+	re37: GRprot_DEX(gr_gene,pxrgene,tatgene)@default + GR_GENE(grprot_cort,grprot_dex)@default <-> GRprot_DEX(gr_gene!164,pxrgene,tatgene)@default.GR_GENE(grprot_cort,grprot_dex!164)@default GeneProteinBinding_diff_limited,GRGene_GRprotein #Modifiers(GRprot_DEX, s40, GRgene_GRprot_DEX)
 	re38: S_RNA(CYP_RNA~0,GR_RNA~0,PXR_RNA~0,TAT_RNA~0)@default -> S_RNA(CYP_RNA~0,GR_RNA~GR_RNA,PXR_RNA~0,TAT_RNA~0)@default fRate45() #Modifiers(GRgene_GRprot_DEX, s28, GRgene_GRprot_DEX)
-	re39: GRprot_DEX(gr_gene,pxrgene,tatgene)@default + TATgene(TAT_GENE~TAT_GENE,grprot_cort,grprot_dex)@default <-> TATgene(TAT_GENE~0,grprot_cort,grprot_dex!66)@default.GRprot_DEX(gr_gene,pxrgene,tatgene!66)@default GeneProteinBinding_diff_limited,TATGene_GRprotein #Modifiers(GRprot_DEX, s178, TATgene_GRprot_DEX)
+	re39: GRprot_DEX(gr_gene,pxrgene,tatgene)@default + TATgene(TAT_GENE~TAT_GENE,grprot_cort,grprot_dex)@default <-> TATgene(TAT_GENE~0,grprot_cort,grprot_dex!167)@default.GRprot_DEX(gr_gene,pxrgene,tatgene!167)@default GeneProteinBinding_diff_limited,TATGene_GRprotein #Modifiers(GRprot_DEX, s178, TATgene_GRprot_DEX)
 	re40: S_RNA(CYP_RNA~0,GR_RNA~0,PXR_RNA~0,TAT_RNA~0)@default -> S_RNA(CYP_RNA~0,GR_RNA~0,PXR_RNA~0,TAT_RNA~TAT_RNA)@default fRate47() #Modifiers(TATgene_GRprot_DEX, s28, TATgene_GRprot_DEX)
 	re41: DEX(_degr~0,out~OUT)@blood <-> DEX(_degr~0,out~0)@default r49_k1,r49_k2 #Modifiers(DEXout, DEX)
-	Cortisol_CBG: Cort(CortAdded~0,_degr~0,alb,cbg,out~OUT)@blood + CBG(cort)@blood <-> Cort(CortAdded~0,_degr~0,alb,cbg!72,out~OUT)@blood.CBG(cort!72)@blood r50_k1,r50_k2 #Modifiers(s2, CBG, CBG_CortOUT)
-	Cort_Alb: Alb(cort)@blood + Cort(CortAdded~0,_degr~0,alb,cbg,out~OUT)@blood <-> Cort(CortAdded~0,_degr~0,alb!73,cbg,out~OUT)@blood.Alb(cort!73)@blood r51_k1,r51_k2 #Modifiers(Alb, s2, Alb_CortOUT)
+	Cortisol_CBG: Cort(CortAdded~0,_degr~0,alb,cbg,out~OUT)@blood + CBG(cort)@blood <-> Cort(CortAdded~0,_degr~0,alb,cbg!173,out~OUT)@blood.CBG(cort!173)@blood r50_k1,r50_k2 #Modifiers(s2, CBG, CBG_CortOUT)
+	Cort_Alb: Alb(cort)@blood + Cort(CortAdded~0,_degr~0,alb,cbg,out~OUT)@blood <-> Cort(CortAdded~0,_degr~0,alb!174,cbg,out~OUT)@blood.Alb(cort!174)@blood r51_k1,r51_k2 #Modifiers(Alb, s2, Alb_CortOUT)
 	cort_distribution: Cort(CortAdded~CortAdded,_degr~0,alb,cbg,out~OUT)@blood -> Cort(CortAdded~0,_degr~0,alb,cbg,out~OUT)@blood r52_k1 #Modifiers(CortAdded)
 end reaction rules
 end model

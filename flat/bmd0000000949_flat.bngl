@@ -3,11 +3,11 @@
 #@BQB_HAS_PART:['http://identifiers.org/efo/0001068']
 #@BQB_IS_VERSION_OF:['http://identifiers.org/ncit/C17214']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
-#@BQB_HAS_PROPERTY:['http://identifiers.org/ncit/C71292', 'http://identifiers.org/ncit/C34797', 'http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/ncit/C34797', 'http://identifiers.org/ncit/C71292', 'http://identifiers.org/mamo/MAMO_0000046']
 #@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1805220002', 'http://identifiers.org/biomodels.db/BIOMD0000000949']
 #@creatorEmail:'tiwarik@babraham.ac.uk'
 #@creatorName:'Tiwari Krishna'
-#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 7 molecules and 17 reactions. The translated model has 4 molecules and 17 rules'
+#@notes:'This is a plain translation of an SBML model created on 14/08/2021. The original model has 7 molecules and 17 reactions. The translated model has 4 molecules and 17 rules'
 ###
 begin model
 begin parameters
@@ -19,10 +19,10 @@ begin compartments
 	Mosquito 3 1.0
 end compartments
 begin molecule types
-	Exposed()
-	Susceptible()
 	Infected()
 	Recovered()
+	Susceptible()
+	Exposed()
 end molecule types
 begin seed species
 	@Human:Susceptible()() if(((0)==0),(600),(500)) #Susceptible_Human
@@ -42,20 +42,20 @@ begin observables
 	Species Infected_Mosquito @Mosquito:Infected() #Infected
 end observables
 begin functions
-	Beta_tilde_vh() =  if((Baseline_dummy_variable==0),(0.024),(0.048))
-	sigma_v() =  if((Baseline_dummy_variable==0),(0.33),(0.5))
-	Beta_vh() =  if((Baseline_dummy_variable==0),(0.24),(0.48))
-	N_h() = Exposed_Mosquito + Infected_Mosquito + Recovered_Human + Susceptible_Mosquito
 	N_v() = Exposed_Mosquito + Infected_Mosquito + Susceptible_Mosquito
 	sigma_h() =  if((Baseline_dummy_variable==0),(4.3),(19))
+	N_h() = Exposed_Mosquito + Infected_Mosquito + Recovered_Human + Susceptible_Mosquito
+	sigma_v() =  if((Baseline_dummy_variable==0),(0.33),(0.5))
+	Beta_vh() =  if((Baseline_dummy_variable==0),(0.24),(0.48))
+	Beta_tilde_vh() =  if((Baseline_dummy_variable==0),(0.024),(0.048))
 	lambda_v() = N_h*sigma_h*sigma_v*(Beta_tilde_vh*Recovered_Human/N_h + Beta_vh*Infected_Mosquito/N_h)/(N_h*sigma_h + N_v*sigma_v)
 	Beta_hv() =  if((Baseline_dummy_variable==0),(0.022),(0.022))
 	lambda_h() = Beta_hv*Infected_Mosquito*sigma_h*sigma_v/(N_h*sigma_h + N_v*sigma_v)
-	u_2v() =  if((Baseline_dummy_variable==0),(4.0e-5),(2.0e-5))
 	u_1v() =  if((Baseline_dummy_variable==0),(0.033),(0.033))
+	u_2v() =  if((Baseline_dummy_variable==0),(4.0e-5),(2.0e-5))
 	f_v() = N_v*u_2v + u_1v
-	u_2h() =  if((Baseline_dummy_variable==0),(2.0e-7),(3.0e-7))
 	u_1h() =  if((Baseline_dummy_variable==0),(8.8e-6),(1.6e-5))
+	u_2h() =  if((Baseline_dummy_variable==0),(2.0e-7),(3.0e-7))
 	f_h() = N_h*u_2h + u_1h
 	rho_h() =  if((Baseline_dummy_variable==0),(0.0027),(0.00055))
 	delta_h() =  if((Baseline_dummy_variable==0),(1.8e-5),(9.0e-5))

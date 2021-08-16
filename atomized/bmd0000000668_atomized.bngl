@@ -1,13 +1,13 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1604270000', 'http://identifiers.org/biomodels.db/BIOMD0000000668']
-#@BQM_IS_INSTANCE_OF:['http://identifiers.org/kegg.drug/D10417', 'http://identifiers.org/biomodels.db/MODEL1604270000', 'http://identifiers.org/kegg.drug/D02368', 'http://identifiers.org/ncit/C191', 'http://identifiers.org/bto/BTO:0000988']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000668', 'http://identifiers.org/biomodels.db/MODEL1604270000']
+#@BQM_IS_INSTANCE_OF:['http://identifiers.org/ncit/C191', 'http://identifiers.org/kegg.drug/D02368', 'http://identifiers.org/bto/BTO:0000988', 'http://identifiers.org/biomodels.db/MODEL1604270000', 'http://identifiers.org/kegg.drug/D10417']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/26252969']
 #@BQB_HAS_PART:['http://identifiers.org/kegg.drug/D10417', 'http://identifiers.org/kegg.drug/D02368']
 #@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000988']
-#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/ncit/C191', 'http://identifiers.org/pubmed/26252969']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/26252969', 'http://identifiers.org/ncit/C191']
 #@creatorEmail:'mroberts@ebi.ac.uk'
 #@creatorName:'Roberts Matthew Grant'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 14 molecules and 10 reactions. The translated model has 4 molecules and 12 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 14 molecules and 10 reactions. The translated model has 4 molecules and 12 rules'
 ###
 begin model
 begin parameters
@@ -39,11 +39,11 @@ begin parameters
 	C_b 0
 end parameters
 begin molecule types
-	Ra()
-	Rd()
 	#^ bmbiol:isInstanceOf ncit:C15632, ncit:C40715
 	#^ bqbiol:isVersionOf ncit:C15632
 	Sti_g(_1~1~0,Sti_g2~Sti_g2~0,Sti_g3~Sti_g3~0,Sti_g4~Sti_g4~0)
+	Rd()
+	Ra()
 	#^ bmbiol:isInstanceOf ncit:C15632, ncit:C40715
 	#^ bqbiol:isVersionOf ncit:C15632
 	Sti_b(_1~1~0,Sti_b2~Sti_b2~0,Sti_b3~Sti_b3~0,Sti_b4~Sti_b4~0)
@@ -67,8 +67,8 @@ begin observables
 	Species Sti_b4 Sti_b(_1~1,Sti_b2~0,Sti_b3~0,Sti_b4~Sti_b4) #Sti_b4
 end observables
 begin functions
-	Inh_b_ar() = C_b^Hi_b*Imax_b/(C_b^Hi_b + (IC50_b*Psi_i)^Hi_b)
 	Inh_g_ar() = C_g^Hi_g*Imax_g/(C_g^Hi_g + (IC50_g*Psi_i)^Hi_g)
+	Inh_b_ar() = C_b^Hi_b*Imax_b/(C_b^Hi_b + (IC50_b*Psi_i)^Hi_b)
 	arRateRa() = ModelValue_3*Ra*(1 - Inh_b_ar)*(1 - Inh_g_ar)*(1 - Ra/ModelValue_2) - ModelValue_4*Ra*(Sti_b4 + 1)*(Sti_g4 + 1)
 	arRateRd() = ModelValue_4*Ra*(Sti_b4 + 1)*(Sti_g4 + 1) - ModelValue_4*Rd
 	Sti_b_ar() = C_b^Hs_b*Smax_b/(C_b^Hs_b + (Psi_s*SC50_b)^Hs_b)

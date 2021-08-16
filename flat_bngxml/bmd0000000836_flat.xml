@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000836_flat">
+    <ListOfParameters>
+      <Parameter id="alpha" type="Constant" value="6" expr="6.0"/>
+      <Parameter id="beta" type="Constant" value="2.8" expr="2.8"/>
+      <Parameter id="delta" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="C" type="Constant" value="10" expr="10.0"/>
+      <Parameter id="gamma" type="Constant" value="0" expr="0"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="panic_intensity"/>
+      <MoleculeType id="protectionplprevention_intensity"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="6.022000000000001e+22" name="panic_intensity()">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="panic_intensity"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="6.022000000000001e+22" name="protectionplprevention_intensity()">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="protectionplprevention_intensity"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="_R1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="panic_intensity"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="arRateS" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="_R2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="protectionplprevention_intensity"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="arRateP" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="panic_intensity" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="panic_intensity"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="protectionplprevention_intensity" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="protectionplprevention_intensity"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="arRateP">
+        <ListOfReferences>
+          <Reference name="delta" type="Constant"/>
+          <Reference name="gamma" type="Constant"/>
+          <Reference name="panic_intensity" type="Observable"/>
+          <Reference name="protectionplprevention_intensity" type="Observable"/>
+        </ListOfReferences>
+        <Expression> protectionplprevention_intensity*((delta*panic_intensity)-gamma) </Expression>
+      </Function>
+      <Function id="arRateS">
+        <ListOfReferences>
+          <Reference name="C" type="Constant"/>
+          <Reference name="alpha" type="Constant"/>
+          <Reference name="beta" type="Constant"/>
+          <Reference name="panic_intensity" type="Observable"/>
+          <Reference name="protectionplprevention_intensity" type="Observable"/>
+        </ListOfReferences>
+        <Expression> panic_intensity*((alpha*(1-(panic_intensity/C)))-(beta*protectionplprevention_intensity)) </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000980_flat">
+    <ListOfParameters>
+      <Parameter id="omega" type="Constant" value="0.01667" expr="0.01667"/>
+      <Parameter id="sigma" type="Constant" value="0.19231" expr="0.19231"/>
+      <Parameter id="gamma" type="Constant" value="0.05556" expr="0.05556"/>
+      <Parameter id="R_1_0" type="Constant" value="3" expr="3.0"/>
+      <Parameter id="R_2_0" type="Constant" value="3" expr="3.0"/>
+      <Parameter id="R_1_f" type="Constant" value="1.6" expr="1.6"/>
+      <Parameter id="R_2_f" type="Constant" value="1.6" expr="1.6"/>
+      <Parameter id="eta" type="Constant" value="0" expr="0"/>
+      <Parameter id="Total_population" type="Constant" value="1.9875789e+32" expr="1.98757892512e+32"/>
+      <Parameter id="_InitialConc1" type="Constant" value="3.1528309e+8" expr="((330052960.0-0.0)-14439817.0)-330052.96"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="Exposed"/>
+      <MoleculeType id="Infected"/>
+      <MoleculeType id="Recovered"/>
+      <MoleculeType id="Susceptible"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="8.6956577974e+30" name="Exposed()">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="Exposed"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="1.9875789251200002e+29" name="Infected()">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="Infected"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="_InitialConc1" name="Susceptible()">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="Susceptible"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="Susceptible_to_Exposed" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR1_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_RP1_M1" name="Susceptible"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="Exposed"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR1_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+          <Delete id="RR1_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="Exposed_to_Infected" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="Exposed"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="Infected"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="sigma"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+          <Delete id="RR2_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="Infected_to_Recovered" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="Infected"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="Recovered"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="gamma"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+          <Delete id="RR3_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="Recovered_to_Susceptible__Reinfection" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="Recovered"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="Susceptible"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="omega"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR4_PP1_M1"/>
+          <Delete id="RR4_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="Susceptible" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="Susceptible"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="Exposed" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="Exposed"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="Infected" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="Infected"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="Recovered" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="Recovered"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="R_1">
+        <ListOfReferences>
+          <Reference name="R_1_0" type="Constant"/>
+          <Reference name="R_1_f" type="Constant"/>
+          <Reference name="eta" type="Constant"/>
+        </ListOfReferences>
+        <Expression> (R_1_0*exp(((-eta)*time())))+(R_1_f*(1-exp(((-eta)*time())))) </Expression>
+      </Function>
+      <Function id="R_2">
+        <ListOfReferences>
+          <Reference name="R_2_0" type="Constant"/>
+          <Reference name="R_2_f" type="Constant"/>
+          <Reference name="eta" type="Constant"/>
+        </ListOfReferences>
+        <Expression> (R_2_0*exp(((-eta)*time())))+(R_2_f*(1-exp(((-eta)*time())))) </Expression>
+      </Function>
+      <Function id="R_fixed">
+        <ListOfReferences>
+          <Reference name="R_1" type="Function"/>
+          <Reference name="R_2" type="Function"/>
+        </ListOfReferences>
+        <Expression> (R_1/2)+(R_2/2) </Expression>
+      </Function>
+      <Function id="beta">
+        <ListOfReferences>
+          <Reference name="gamma" type="Constant"/>
+          <Reference name="R_fixed" type="Function"/>
+        </ListOfReferences>
+        <Expression> R_fixed*gamma </Expression>
+      </Function>
+      <Function id="Fraction_infected">
+        <ListOfReferences>
+          <Reference name="Total_population" type="Constant"/>
+          <Reference name="Infected" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Infected/Total_population </Expression>
+      </Function>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="Total_population" type="Constant"/>
+          <Reference name="beta" type="Function"/>
+          <Reference name="Infected" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (Infected*beta)/Total_population </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

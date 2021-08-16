@@ -6,7 +6,7 @@
 #@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1006230004', 'http://identifiers.org/biomodels.db/BIOMD0000000675']
 #@creatorEmail:'mroberts@ebi.ac.uk'
 #@creatorName:'Roberts Matthew Grant'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 21 molecules and 0 reactions. The translated model has 12 molecules and 13 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 21 molecules and 0 reactions. The translated model has 12 molecules and 13 rules'
 ###
 begin model
 begin parameters
@@ -94,15 +94,15 @@ begin parameters
 	Cln3_max 1.2044e+22 #original 0.02mol/L
 end parameters
 begin molecule types
-	Hct1()
-	Clb2_T()
 	Cln2()
-	Cdc20_T()
-	Sic1_T()
+	Clb2_T()
 	#^ bqbiol:hasPart uniprot:P30283, uniprot:P38634
 	Clb5_Sic1(Clb2_Sic1~Clb2_Sic1~0)
-	Clb5_T()
+	Hct1()
+	Sic1_T()
+	Cdc20_T()
 	Cdc20()
+	Clb5_T()
 	mass
 	ORI
 	BUD
@@ -140,12 +140,12 @@ begin observables
 end observables
 begin functions
 	Clb5_ar() = -Clb5_Sic1 + Clb5_T
-	Cln3_ar() = Cln3_max*Dn3*mass/(Dn3*mass + Jn3)
 	Clb2_ar() = -Clb2_Sic1 + Clb2_T
+	Cln3_ar() = Cln3_max*Dn3*mass/(Dn3*mass + Jn3)
 	Bck2_ar() = Bck2_0*mass
 	Vd2_c1() = kd2_c1*(Bck2_ar*epsilonc1_k2 + Clb2_ar*epsilonc1_b2 + Clb5_ar*epsilonc1_b5 + Cln2 + Cln3_ar*epsilonc1_n3)
-	Vd_b5() = Cdc20*kd_b5_ + kd_b5
 	Sic1_ar() = -Clb2_Sic1 - Clb5_Sic1 + Sic1_T
+	Vd_b5() = Cdc20*kd_b5_ + kd_b5
 	arRateClb5_Sic1() = -Clb5_Sic1*(Vd2_c1/(Jd2_c1 + Sic1_T) + Vd_b5 + kd1_c1 + kdi_b5) + Clb5_ar*Sic1_ar*kas_b5
 	Vd_b2() = Cdc20*kd_b2__ + Hct1*kd_b2_ + kd_b2*(-Hct1 + Hct1_T)
 	arRateClb2_Sic1() = -Clb2_Sic1*(Vd2_c1/(Jd2_c1 + Sic1_T) + Vd_b2 + kd1_c1 + kdi_b2) + Clb2_ar*Sic1_ar*kas_b2

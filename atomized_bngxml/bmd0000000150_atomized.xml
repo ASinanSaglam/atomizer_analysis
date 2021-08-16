@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000150_atomized">
+    <ListOfParameters>
+      <Parameter id="basal_fluorescence" type="Constant" value="1.2121065" expr="1.21210648148148"/>
+      <Parameter id="r1_kf" type="Constant" value="19000000" expr="19000000.000000"/>
+      <Parameter id="r1_kb" type="Constant" value="25" expr="25.000000"/>
+      <Parameter id="r2_kf" type="Constant" value="0.813" expr="0.813000"/>
+      <Parameter id="r2_kb" type="Constant" value="0.557" expr="0.557000"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="CDK2cycA_star_"/>
+      <MoleculeType id="Cdk2">
+        <ListOfComponentTypes>
+          <ComponentType id="cyclina"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="CyclinA">
+        <ListOfComponentTypes>
+          <ComponentType id="cdk2"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="2.4088e+17" name="CyclinA(cdk2)">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="CyclinA">
+            <ListOfComponents>
+              <Component id="S1_M1_C1" name="cdk2" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="6.022e+16" name="Cdk2(cyclina)">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="Cdk2">
+            <ListOfComponents>
+              <Component id="S2_M1_C1" name="cyclina" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="Binding" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR1_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_RP1_M1" name="Cdk2">
+                <ListOfComponents>
+                  <Component id="RR1_RP1_M1_C1" name="cyclina" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR1_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR1_RP2_M1" name="CyclinA">
+                <ListOfComponents>
+                  <Component id="RR1_RP2_M1_C1" name="cdk2" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="CyclinA">
+                <ListOfComponents>
+                  <Component id="RR1_PP1_M1_C1" name="cdk2" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR1_PP1_M2" name="Cdk2">
+                <ListOfComponents>
+                  <Component id="RR1_PP1_M2_C1" name="cyclina" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR1_PP1_B1" site1="RR1_PP1_M1_C1" site2="RR1_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r1_kf"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR1_RP1_M1" targetID="RR1_PP1_M2"/>
+          <MapItem sourceID="RR1_RP1_M1_C1" targetID="RR1_PP1_M2_C1"/>
+          <MapItem sourceID="RR1_RP2_M1" targetID="RR1_PP1_M1"/>
+          <MapItem sourceID="RR1_RP2_M1_C1" targetID="RR1_PP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR1_RP2_M1_C1" site2="RR1_RP1_M1_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="_reverse_Binding" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="CyclinA">
+                <ListOfComponents>
+                  <Component id="RR2_RP1_M1_C1" name="cdk2" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR2_RP1_M2" name="Cdk2">
+                <ListOfComponents>
+                  <Component id="RR2_RP1_M2_C1" name="cyclina" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR2_RP1_B1" site1="RR2_RP1_M1_C1" site2="RR2_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="Cdk2">
+                <ListOfComponents>
+                  <Component id="RR2_PP1_M1_C1" name="cyclina" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR2_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP2_M1" name="CyclinA">
+                <ListOfComponents>
+                  <Component id="RR2_PP2_M1_C1" name="cdk2" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r1_kb"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1" targetID="RR2_PP2_M1"/>
+          <MapItem sourceID="RR2_RP1_M1_C1" targetID="RR2_PP2_M1_C1"/>
+          <MapItem sourceID="RR2_RP1_M2" targetID="RR2_PP1_M1"/>
+          <MapItem sourceID="RR2_RP1_M2_C1" targetID="RR2_PP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <DeleteBond site1="RR2_RP1_M1_C1" site2="RR2_RP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="Activation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="CyclinA">
+                <ListOfComponents>
+                  <Component id="RR3_RP1_M1_C1" name="cdk2" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR3_RP1_M2" name="Cdk2">
+                <ListOfComponents>
+                  <Component id="RR3_RP1_M2_C1" name="cyclina" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR3_RP1_B1" site1="RR3_RP1_M1_C1" site2="RR3_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="CDK2cycA_star_"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r2_kf"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1"/>
+          <MapItem sourceID="RR3_RP1_M1_C1"/>
+          <MapItem sourceID="RR3_RP1_M2"/>
+          <MapItem sourceID="RR3_RP1_M2_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+          <Delete id="RR3_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="_reverse_Activation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="CDK2cycA_star_"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="CyclinA">
+                <ListOfComponents>
+                  <Component id="RR4_PP1_M1_C1" name="cdk2" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR4_PP1_M2" name="Cdk2">
+                <ListOfComponents>
+                  <Component id="RR4_PP1_M2_C1" name="cyclina" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR4_PP1_B1" site1="RR4_PP1_M1_C1" site2="RR4_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r2_kb"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR4_PP1_M1"/>
+          <Add id="RR4_PP1_M2"/>
+          <AddBond site1="RR4_PP1_M1_C1" site2="RR4_PP1_M2_C1"/>
+          <Delete id="RR4_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="CDK2cycA" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="CyclinA">
+                <ListOfComponents>
+                  <Component id="O1_P1_M1_C1" name="cdk2" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O1_P1_M2" name="Cdk2">
+                <ListOfComponents>
+                  <Component id="O1_P1_M2_C1" name="cyclina" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O1_P1_B1" site1="O1_P1_M1_C1" site2="O1_P1_M2_C1"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="CyclinA" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="CyclinA">
+                <ListOfComponents>
+                  <Component id="O2_P1_M1_C1" name="cdk2" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="Cdk2" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="Cdk2">
+                <ListOfComponents>
+                  <Component id="O3_P1_M1_C1" name="cyclina" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="CDK2cycA_star_" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="CDK2cycA_star_"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="total_fluorescence">
+        <ListOfReferences>
+          <Reference name="basal_fluorescence" type="Constant"/>
+          <Reference name="CDK2cycA" type="Observable"/>
+          <Reference name="CDK2cycA_star_" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((13888657.4074074*CDK2cycA)+(13888657.4074074*CDK2cycA_star_))+basal_fluorescence </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

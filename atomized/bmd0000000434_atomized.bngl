@@ -1,12 +1,12 @@
 ###
 #@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000434', 'http://identifiers.org/biomodels.db/MODEL1206010000']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/23046614']
-#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0007571', 'http://identifiers.org/go/GO:0008203']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0008203', 'http://identifiers.org/go/GO:0007571']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
 #@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:14502']
 #@creatorEmail:'viji@ebi.ac.uk'
 #@creatorName:'Chelliah Vijayalakshmi'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 34 molecules and 35 reactions. The translated model has 13 molecules and 41 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 34 molecules and 35 reactions. The translated model has 13 molecules and 41 rules'
 ###
 begin model
 begin parameters
@@ -74,78 +74,78 @@ begin compartments
 	Excreted 3 1.0
 end compartments
 begin molecule types
-	INHDLS()
-	#^ bqbiol:isVersionOf chebi:CHEBI:22868
-	HBS(EBS~EBS~0,IBS~IBS~0)
-	HCS()
-	#^ bqbiol:isVersionOf chebi:CHEBI:17002
-	HCE()
 	#^ bqbiol:isVersionOf chebi:CHEBI:16113
 	DC(EC~EC~0,HFC~HFC~0,IC~IC~0,IDLC~IDLC~0,LDLC~LDLC~0,VLDLC~VLDLC~0,s~S~0)
-	#^ bqbiol:hasPart chebi:CHEBI:17984, uniprot:P04180
-	ACAT(LCAT~LCAT~0)
-	HLDLR(d~D~0,s~S~0,s2~S~0)
 	#^ bqbiol:isVersionOf chebi:CHEBI:17002
 	PCE()
-	PLDLR(d~D~0,s~S~0,s2~S~0)
 	#^ bqbiol:isVersionOf chebi:CHEBI:16113
 	PFC(PSS~PSS~0,nhdl)
+	INHDLS()
+	HCS()
+	PLDLR(d~D~0,s~S~0,s2~S~0)
+	HLDLR(d~D~0,s~S~0,s2~S~0)
+	#^ bqbiol:isVersionOf chebi:CHEBI:22868
+	HBS(EBS~EBS~0,IBS~IBS~0)
 	HNHDLS()
 	PCS()
 	#^ bqbiol:isVersionOf uniprot:Q00341
 	NHDL(pfc)
+	#^ bqbiol:isVersionOf chebi:CHEBI:17002
+	HCE()
+	#^ bqbiol:hasPart chebi:CHEBI:17984, uniprot:P04180
+	ACAT(LCAT~LCAT~0)
 end molecule types
 begin seed species
-	@Intake:$DC(EC~0,HFC~0,IC~0,IDLC~0,LDLC~0,VLDLC~0,s~0) 1.830688e+26 # 304.0mol/L * 6.022e23/mol *1.0L #DC #species_1
-	@Intestine:DC(EC~0,HFC~0,IC~IC,IDLC~0,LDLC~0,VLDLC~0,s~0) 1.89693e+27 #original 3150.0substance/volume  #IC #species_2
-	@HepaticTissue:HBS(EBS~0,IBS~0) 2.4088e+26 #original 400.0substance/volume  #HBS #species_4
-	@Intestine:HBS(EBS~0,IBS~IBS) 2.812274e+26 #original 467.0substance/volume  #IBS #species_5
-	@HepaticTissue:DC(EC~0,HFC~HFC,IC~0,IDLC~0,LDLC~0,VLDLC~0,s~0) 3.6132e+28 #original 60000.0substance/volume  #HFC #species_7
-	@Plasma:NHDL(pfc) 6.022e+25 #original 100.0substance/volume  #NHDL #species_10
-	@PeripheralTissue:PFC(PSS~0,nhdl) 3.46361352e+28 #original 57516.0substance/volume  #PFC #species_11
-	@HepaticTissue:HCE() 6.022e+27 #original 10000.0substance/volume  #HCE #species_13
+	@Intake:$DC(EC~0,HFC~0,IC~0,IDLC~0,LDLC~0,VLDLC~0,s~0)@Intake 1.830688e+26 # 304.0mol/L * 6.022e23/mol *1.0L #DC #species_1
+	@Intestine:DC(EC~0,HFC~0,IC~IC,IDLC~0,LDLC~0,VLDLC~0,s~0)@Intestine 1.89693e+27 #original 3150.0substance/volume  #IC #species_2
+	@HepaticTissue:HBS(EBS~0,IBS~0)@HepaticTissue 2.4088e+26 #original 400.0substance/volume  #HBS #species_4
+	@Intestine:HBS(EBS~0,IBS~IBS)@Intestine 2.812274e+26 #original 467.0substance/volume  #IBS #species_5
+	@HepaticTissue:DC(EC~0,HFC~HFC,IC~0,IDLC~0,LDLC~0,VLDLC~0,s~0)@HepaticTissue 3.6132e+28 #original 60000.0substance/volume  #HFC #species_7
+	@Plasma:NHDL(pfc)@Plasma 6.022e+25 #original 100.0substance/volume  #NHDL #species_10
+	@PeripheralTissue:PFC(PSS~0,nhdl)@PeripheralTissue 3.46361352e+28 #original 57516.0substance/volume  #PFC #species_11
+	@HepaticTissue:HCE()@HepaticTissue 6.022e+27 #original 10000.0substance/volume  #HCE #species_13
 	@HepaticTissue:ACAT(LCAT~0) 6.022e+25 #original 100.0substance/volume  #ACAT #species_14
-	@Plasma:DC(EC~0,HFC~0,IC~0,IDLC~0,LDLC~0,VLDLC~VLDLC,s~0) 1.2044e+25 #original 20.0substance/volume  #VLDLC #species_17
-	@HepaticTissue:HLDLR(d~0,s~S,s2~0) 6.022e+25 #original 100.0substance/volume  #HLDLRs #species_18
-	@HepaticTissue:$HLDLR(d~0,s~S,s2~S) 3.6132e+26 #original 600.0substance/volume  #HLDLRsS #species_19
-	@Plasma:DC(EC~0,HFC~0,IC~0,IDLC~IDLC,LDLC~0,VLDLC~0,s~0) 1.2044e+25 #original 20.0substance/volume  #IDLC #species_21
-	@Plasma:DC(EC~0,HFC~0,IC~0,IDLC~0,LDLC~LDLC,VLDLC~0,s~0) 6.022e+25 #original 100.0substance/volume  #LDLC #species_23
-	@PeripheralTissue:PLDLR(d~0,s~S,s2~0) 6.022e+25 #original 100.0substance/volume  #PLDLRs #species_25
-	@PeripheralTissue:$PLDLR(d~0,s~S,s2~S) 3.4636135199999996e+26 #original 575.16substance/volume  #PLDLRsS #species_26
-	@PeripheralTissue:PCE() 5.6383986e+27 #original 9363.0substance/volume  #PCE #species_28
-	@Plasma:PFC(PSS~0,nhdl!747).NHDL(pfc!747) 2.7099e+25 #original 45.0substance/volume  #HDLC #species_30
+	@Plasma:DC(EC~0,HFC~0,IC~0,IDLC~0,LDLC~0,VLDLC~VLDLC,s~0)@Plasma 1.2044e+25 #original 20.0substance/volume  #VLDLC #species_17
+	@HepaticTissue:HLDLR(d~0,s~S,s2~0)@HepaticTissue 6.022e+25 #original 100.0substance/volume  #HLDLRs #species_18
+	@HepaticTissue:$HLDLR(d~0,s~S,s2~S)@HepaticTissue 3.6132e+26 #original 600.0substance/volume  #HLDLRsS #species_19
+	@Plasma:DC(EC~0,HFC~0,IC~0,IDLC~IDLC,LDLC~0,VLDLC~0,s~0)@Plasma 1.2044e+25 #original 20.0substance/volume  #IDLC #species_21
+	@Plasma:DC(EC~0,HFC~0,IC~0,IDLC~0,LDLC~LDLC,VLDLC~0,s~0)@Plasma 6.022e+25 #original 100.0substance/volume  #LDLC #species_23
+	@PeripheralTissue:PLDLR(d~0,s~S,s2~0)@PeripheralTissue 6.022e+25 #original 100.0substance/volume  #PLDLRs #species_25
+	@PeripheralTissue:$PLDLR(d~0,s~S,s2~S)@PeripheralTissue 3.4636135199999996e+26 #original 575.16substance/volume  #PLDLRsS #species_26
+	@PeripheralTissue:PCE()@PeripheralTissue 5.6383986e+27 #original 9363.0substance/volume  #PCE #species_28
+	@Plasma:PFC(PSS~0,nhdl!747)@Plasma.NHDL(pfc!747)@Plasma 2.7099e+25 #original 45.0substance/volume  #HDLC #species_30
 	@Plasma:ACAT(LCAT~LCAT) 6.022e+25 #original 100.0substance/volume  #LCAT #species_31
 end seed species
 begin observables
-	Species DC_Intake @Intake:DC(EC~0,HFC~0,IC~0,IDLC~0,LDLC~0,VLDLC~0,s~0) #DC
-	Species IC_Intestine @Intestine:DC(EC~0,HFC~0,IC~IC,IDLC~0,LDLC~0,VLDLC~0,s~0) #IC
-	Species ICS_Intestine @Intestine:DC(EC~0,HFC~0,IC~IC,IDLC~0,LDLC~0,VLDLC~0,s~S) #ICS
-	Species HBS_HepaticTissue @HepaticTissue:HBS(EBS~0,IBS~0) #HBS
-	Species IBS_Intestine @Intestine:HBS(EBS~0,IBS~IBS) #IBS
-	Species EBS_Excreted @Excreted:HBS(EBS~EBS,IBS~0) #EBS
-	Species HFC_HepaticTissue @HepaticTissue:DC(EC~0,HFC~HFC,IC~0,IDLC~0,LDLC~0,VLDLC~0,s~0) #HFC
-	Species EC_Excreted @Excreted:DC(EC~EC,HFC~0,IC~0,IDLC~0,LDLC~0,VLDLC~0,s~0) #EC
-	Species INHDLS_Plasma @Plasma:INHDLS() #INHDLS
-	Species NHDL_Plasma @Plasma:NHDL(pfc) #NHDL
-	Species PFC_PeripheralTissue @PeripheralTissue:PFC(PSS~0,nhdl) #PFC
-	Species HCS_HepaticTissue @HepaticTissue:HCS() #HCS
-	Species HCE_HepaticTissue @HepaticTissue:HCE() #HCE
+	Species DC_Intake @Intake:DC(EC~0,HFC~0,IC~0,IDLC~0,LDLC~0,VLDLC~0,s~0)@Intake #DC
+	Species IC_Intestine @Intestine:DC(EC~0,HFC~0,IC~IC,IDLC~0,LDLC~0,VLDLC~0,s~0)@Intestine #IC
+	Species ICS_Intestine @Intestine:DC(EC~0,HFC~0,IC~IC,IDLC~0,LDLC~0,VLDLC~0,s~S)@Intestine #ICS
+	Species HBS_HepaticTissue @HepaticTissue:HBS(EBS~0,IBS~0)@HepaticTissue #HBS
+	Species IBS_Intestine @Intestine:HBS(EBS~0,IBS~IBS)@Intestine #IBS
+	Species EBS_Excreted @Excreted:HBS(EBS~EBS,IBS~0)@Excreted #EBS
+	Species HFC_HepaticTissue @HepaticTissue:DC(EC~0,HFC~HFC,IC~0,IDLC~0,LDLC~0,VLDLC~0,s~0)@HepaticTissue #HFC
+	Species EC_Excreted @Excreted:DC(EC~EC,HFC~0,IC~0,IDLC~0,LDLC~0,VLDLC~0,s~0)@Excreted #EC
+	Species INHDLS_Plasma @Plasma:INHDLS()@Plasma #INHDLS
+	Species NHDL_Plasma @Plasma:NHDL(pfc)@Plasma #NHDL
+	Species PFC_PeripheralTissue @PeripheralTissue:PFC(PSS~0,nhdl)@PeripheralTissue #PFC
+	Species HCS_HepaticTissue @HepaticTissue:HCS()@HepaticTissue #HCS
+	Species HCE_HepaticTissue @HepaticTissue:HCE()@HepaticTissue #HCE
 	Species ACAT_HepaticTissue @HepaticTissue:ACAT(LCAT~0) #ACAT
-	Species HNHDLS_HepaticTissue @HepaticTissue:HNHDLS() #HNHDLS
-	Species VLDLC_Plasma @Plasma:DC(EC~0,HFC~0,IC~0,IDLC~0,LDLC~0,VLDLC~VLDLC,s~0) #VLDLC
-	Species HLDLRs_HepaticTissue @HepaticTissue:HLDLR(d~0,s~S,s2~0) #HLDLRs
-	Species HLDLRsS_HepaticTissue @HepaticTissue:HLDLR(d~0,s~S,s2~S) #HLDLRsS
-	Species HLDLRD_HepaticTissue @HepaticTissue:HLDLR(d~D,s~0,s2~0) #HLDLRD
-	Species IDLC_Plasma @Plasma:DC(EC~0,HFC~0,IC~0,IDLC~IDLC,LDLC~0,VLDLC~0,s~0) #IDLC
-	Species LDLC_Plasma @Plasma:DC(EC~0,HFC~0,IC~0,IDLC~0,LDLC~LDLC,VLDLC~0,s~0) #LDLC
-	Species PLDLRs_PeripheralTissue @PeripheralTissue:PLDLR(d~0,s~S,s2~0) #PLDLRs
-	Species PLDLRsS_PeripheralTissue @PeripheralTissue:PLDLR(d~0,s~S,s2~S) #PLDLRsS
-	Species PLDLRD_PeripheralTissue @PeripheralTissue:PLDLR(d~D,s~0,s2~0) #PLDLRD
-	Species PCE_PeripheralTissue @PeripheralTissue:PCE() #PCE
-	Species PSS_PeripheralTissue @PeripheralTissue:PFC(PSS~PSS,nhdl) #PSS
-	Species HDLC_Plasma @Plasma:PFC(PSS~0,nhdl!747).NHDL(pfc!747) #HDLC
+	Species HNHDLS_HepaticTissue @HepaticTissue:HNHDLS()@HepaticTissue #HNHDLS
+	Species VLDLC_Plasma @Plasma:DC(EC~0,HFC~0,IC~0,IDLC~0,LDLC~0,VLDLC~VLDLC,s~0)@Plasma #VLDLC
+	Species HLDLRs_HepaticTissue @HepaticTissue:HLDLR(d~0,s~S,s2~0)@HepaticTissue #HLDLRs
+	Species HLDLRsS_HepaticTissue @HepaticTissue:HLDLR(d~0,s~S,s2~S)@HepaticTissue #HLDLRsS
+	Species HLDLRD_HepaticTissue @HepaticTissue:HLDLR(d~D,s~0,s2~0)@HepaticTissue #HLDLRD
+	Species IDLC_Plasma @Plasma:DC(EC~0,HFC~0,IC~0,IDLC~IDLC,LDLC~0,VLDLC~0,s~0)@Plasma #IDLC
+	Species LDLC_Plasma @Plasma:DC(EC~0,HFC~0,IC~0,IDLC~0,LDLC~LDLC,VLDLC~0,s~0)@Plasma #LDLC
+	Species PLDLRs_PeripheralTissue @PeripheralTissue:PLDLR(d~0,s~S,s2~0)@PeripheralTissue #PLDLRs
+	Species PLDLRsS_PeripheralTissue @PeripheralTissue:PLDLR(d~0,s~S,s2~S)@PeripheralTissue #PLDLRsS
+	Species PLDLRD_PeripheralTissue @PeripheralTissue:PLDLR(d~D,s~0,s2~0)@PeripheralTissue #PLDLRD
+	Species PCE_PeripheralTissue @PeripheralTissue:PCE()@PeripheralTissue #PCE
+	Species PSS_PeripheralTissue @PeripheralTissue:PFC(PSS~PSS,nhdl)@PeripheralTissue #PSS
+	Species HDLC_Plasma @Plasma:PFC(PSS~0,nhdl!747)@Plasma.NHDL(pfc!747)@Plasma #HDLC
 	Species LCAT_Plasma @Plasma:ACAT(LCAT~LCAT) #LCAT
-	Species PCS_PeripheralTissue @PeripheralTissue:PCS() #PCS
+	Species PCS_PeripheralTissue @PeripheralTissue:PCS()@PeripheralTissue #PCS
 end observables
 begin functions
 	fRate1() = 100.0/(3.38241607719898e-18*IC_Intestine^5.0 + 1)

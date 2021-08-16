@@ -1,14 +1,14 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000126', 'http://identifiers.org/biomodels.db/MODEL4716238623']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL4716238623', 'http://identifiers.org/biomodels.db/BIOMD0000000126']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/11889015']
-#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/7514509', 'http://identifiers.org/pubmed/10318671', 'http://identifiers.org/pubmed/7788872', 'http://identifiers.org/pubmed/10533588', 'http://identifiers.org/biomodels.db/BIOMD0000000121']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/10318671', 'http://identifiers.org/pubmed/7514509', 'http://identifiers.org/pubmed/7788872', 'http://identifiers.org/pubmed/10533588', 'http://identifiers.org/biomodels.db/BIOMD0000000121']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/7711']
-#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0002028', 'http://identifiers.org/go/GO:0003015', 'http://identifiers.org/go/GO:0005272']
-#@BQB_HAS_VERSION:['http://identifiers.org/omim/603830', 'http://identifiers.org/omim/601144']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0005272', 'http://identifiers.org/go/GO:0002028', 'http://identifiers.org/go/GO:0003015']
+#@BQB_HAS_VERSION:['http://identifiers.org/omim/601144', 'http://identifiers.org/omim/603830']
 #@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:0050451', 'http://identifiers.org/mamo/MAMO_0000046']
 #@creatorEmail:'enuo@caltech.edu'
 #@creatorName:'He Enuo'
-#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 9 molecules and 11 reactions. The translated model has 9 molecules and 11 rules'
+#@notes:'This is a plain translation of an SBML model created on 14/08/2021. The original model has 9 molecules and 11 reactions. The translated model has 9 molecules and 11 rules'
 ###
 begin model
 begin parameters
@@ -22,15 +22,15 @@ begin parameters
 	Temp 310.0
 end parameters
 begin molecule types
-	C3()
-	openstates()
 	IC2()
-	C2()
-	IC3()
 	IM2()
-	C1()
-	IM1()
 	IF()
+	openstates()
+	IC3()
+	C2()
+	C3()
+	IM1()
+	C1()
 end molecule types
 begin seed species
 	C3() 6.022e+23 # 1.0mol/L * 6.022e23/mol *1.0L #C3 #C3
@@ -47,11 +47,11 @@ begin observables
 	Species IF IF() #IF
 end observables
 begin functions
-	a3() = 3.7933e-7*exp(-0.12987012987013*v)
-	a13() = 3.802/(0.1027*exp(-v/12) + 0.25*exp(-v/150))
-	a2() = 9.178*exp(0.0336927223719677*v)
 	b13() = 0.22*exp(0.492610837438424 - 0.0492610837438424*v)
+	a3() = 3.7933e-7*exp(-0.12987012987013*v)
 	b3() = 2.0e-5*v + 0.0084
+	a2() = 9.178*exp(0.0336927223719677*v)
+	a13() = 3.802/(0.1027*exp(-v/12) + 0.25*exp(-v/150))
 	b2() = a13*a2*a3/(b13*b3)
 	Ena() = Rk*Temp*ln(nao/nai)/Fara
 	Ina() = Gna*openstates*(-Ena + v)/(scale*(C1 + C2 + C3 + IC2 + IC3 + IF + IM1 + IM2 + openstates))

@@ -6,7 +6,7 @@
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10090']
 #@creatorEmail:'hdharuri@cds.caltech.edu'
 #@creatorName:'Dharuri Harish'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 34 molecules and 45 reactions. The translated model has 15 molecules and 45 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 34 molecules and 45 reactions. The translated model has 15 molecules and 45 rules'
 ###
 begin model
 begin parameters
@@ -87,77 +87,77 @@ begin compartments
 	nucleus 3 1.0
 end compartments
 begin molecule types
-	#^ bqbiol:is uniprot:P35235
-	SHP2()
-	#^ bqbiol:hasPart uniprot:P35235, uniprot:P42225, uniprot:O35716, uniprot:P52332, uniprot:P15261, uniprot:P01572
-	IFNRJ2_star_SHP2_SOCS1_STAT1c()
-	#^ bqbiol:is uniprot:P52332, interpro:IPR009127
-	JAK(receptor)
-	#^ bqbiol:hasPart uniprot:P35235, uniprot:P52332, uniprot:P15261, uniprot:P01572
-	IFNRJ2_star_SHP2()
-	PPX(stat1)
 	#^ bqbiol:is uniprot:P15261, interpro:IPR008355
 	Receptor(ifn,jak)
 	#^ bqbiol:hasPart uniprot:P52332, uniprot:P15261, uniprot:P01572
 	IFNRJdimer()
-	PPN(stat1)
-	#^ bqbiol:is uniprot:O35716, interpro:IPR001496
-	SOCS1(activatedifnrjcomplex)
+	#^ bqbiol:hasPart uniprot:P35235, uniprot:P42225, uniprot:O35716, uniprot:P52332, uniprot:P15261, uniprot:P01572
+	IFNRJ2_star_SHP2_SOCS1_STAT1c()
 	#^ bqbiol:hasPart uniprot:P35235, uniprot:P42225, uniprot:P52332, uniprot:P15261, uniprot:P01572
 	IFNRJ2_star_SHP2_STAT1c()
-	#^ bqbiol:is uniprot:P01572
-	IFN(receptor)
-	mRNA(c~C~0,n~N~0)
-	STAT1(_star~_STAR~0,activatedifnrjcomplex,c~C~0,n~N~0,ppn,ppx,stat1)
 	#^ bqbiol:hasPart uniprot:P52332, uniprot:P15261, uniprot:P01572
 	ActivatedIFNRJcomplex(socs1,stat1)
+	#^ bqbiol:is uniprot:P35235
+	SHP2()
+	#^ bqbiol:is uniprot:O35716, interpro:IPR001496
+	SOCS1(activatedifnrjcomplex)
+	#^ bqbiol:is uniprot:P52332, interpro:IPR009127
+	JAK(receptor)
+	PPN(stat1)
 	#^ bqbiol:hasPart uniprot:P35235, uniprot:O35716, uniprot:P52332, uniprot:P15261, uniprot:P01572
 	IFNRJ2_star_SHP2_SOCS1()
+	mRNA(c~C~0,n~N~0)
+	STAT1(_star~_STAR~0,activatedifnrjcomplex,c~C~0,n~N~0,ppn,ppx,stat1)
+	#^ bqbiol:is uniprot:P01572
+	IFN(receptor)
+	PPX(stat1)
+	#^ bqbiol:hasPart uniprot:P35235, uniprot:P52332, uniprot:P15261, uniprot:P01572
+	IFNRJ2_star_SHP2()
 end molecule types
 begin seed species
-	@cytoplasm:Receptor(ifn,jak) 6022000000000000.0 # (10.0 * 1e-09)mol/L * 6.022e23/mol *1.0L #Receptor #R
-	@cytoplasm:JAK(receptor) 6022000000000000.0 #original 10.0nanomoles/L  #JAK #JAK
-	@cytoplasm:STAT1(_star~0,activatedifnrjcomplex,c~C,n~0,ppn,ppx,stat1) 6.022000000000001e+17 #original 1000.0nanomoles/L  #STAT1c #STAT1c
-	@cytoplasm:SHP2() 6.022000000000001e+16 #original 100.0nanomoles/L  #SHP2 #SHP2
-	@cytoplasm:PPX(stat1) 3.0110000000000004e+16 #original 50.0nanomoles/L  #PPX #PPX
-	@nucleus:PPN(stat1) 3.613200000000001e+16 #original 60.0nanomoles/L  #PPN #PPN
-	@cytoplasm:$IFN(receptor) 6022000000000000.0 #original 10.0nanomoles/L  #IFN #IFN
+	@cytoplasm:Receptor(ifn,jak)@cytoplasm 6022000000000000.0 # (10.0 * 1e-09)mol/L * 6.022e23/mol *1.0L #Receptor #R
+	@cytoplasm:JAK(receptor)@cytoplasm 6022000000000000.0 #original 10.0nanomoles/L  #JAK #JAK
+	@cytoplasm:STAT1(_star~0,activatedifnrjcomplex,c~C,n~0,ppn,ppx,stat1)@cytoplasm 6.022000000000001e+17 #original 1000.0nanomoles/L  #STAT1c #STAT1c
+	@cytoplasm:SHP2()@cytoplasm 6.022000000000001e+16 #original 100.0nanomoles/L  #SHP2 #SHP2
+	@cytoplasm:PPX(stat1)@cytoplasm 3.0110000000000004e+16 #original 50.0nanomoles/L  #PPX #PPX
+	@nucleus:PPN(stat1)@nucleus 3.613200000000001e+16 #original 60.0nanomoles/L  #PPN #PPN
+	@cytoplasm:$IFN(receptor)@cytoplasm 6022000000000000.0 #original 10.0nanomoles/L  #IFN #IFN
 end seed species
 begin observables
-	Species Receptor_cytoplasm @cytoplasm:Receptor(ifn,jak) #Receptor
-	Species JAK_cytoplasm @cytoplasm:JAK(receptor) #JAK
-	Species ReceptorJAKcomplex_cytoplasm @cytoplasm:Receptor(ifn,jak!160).JAK(receptor!160) #Receptor JAK complex
-	Species Interferon_Receptor_JAKcomplex_cytoplasm @cytoplasm:Receptor(ifn!158,jak!160).IFN(receptor!158).JAK(receptor!160) #Interferon-Receptor-JAK complex
-	Species IFNRJdimer_cytoplasm @cytoplasm:IFNRJdimer() #IFNRJ dimer
-	Species ActivatedIFNRJcomplex_cytoplasm @cytoplasm:ActivatedIFNRJcomplex(socs1,stat1) #Activated IFNRJ complex
-	Species STAT1c_cytoplasm @cytoplasm:STAT1(_star~0,activatedifnrjcomplex,c~C,n~0,ppn,ppx,stat1) #STAT1c
-	Species IFNRJ2_star_STAT1c_cytoplasm @cytoplasm:STAT1(_star~0,activatedifnrjcomplex!161,c~C,n~0,ppn,ppx,stat1).ActivatedIFNRJcomplex(socs1,stat1!161) #IFNRJ2_star_STAT1c
-	Species STAT1c_star_cytoplasm @cytoplasm:STAT1(_star~_STAR,activatedifnrjcomplex,c~C,n~0,ppn,ppx,stat1) #STAT1c_star
-	Species IFNRJ2_star_STAT1c_star_cytoplasm @cytoplasm:STAT1(_star~_STAR,activatedifnrjcomplex!161,c~C,n~0,ppn,ppx,stat1).ActivatedIFNRJcomplex(socs1,stat1!161) #IFNRJ2_star_STAT1c_star
-	Species STAT1c_star_STAT1c_star_cytoplasm @cytoplasm:STAT1(_star~_STAR,activatedifnrjcomplex,c~C,n~0,ppn,ppx,stat1!164).STAT1(_star~_STAR,activatedifnrjcomplex,c~C,n~0,ppn,ppx,stat1!164) #STAT1c_star_STAT1c_star
-	Species SHP2_cytoplasm @cytoplasm:SHP2() #SHP2
-	Species IFNRJ2_star_SHP2_cytoplasm @cytoplasm:IFNRJ2_star_SHP2() #IFNRJ2_star_SHP2
-	Species PPX_cytoplasm @cytoplasm:PPX(stat1) #PPX
-	Species STAT1c_star_PPX_cytoplasm @cytoplasm:STAT1(_star~_STAR,activatedifnrjcomplex,c~C,n~0,ppn,ppx!162,stat1).PPX(stat1!162) #STAT1c_star_PPX
-	Species STAT1c_STAT1c_star_cytoplasm @cytoplasm:STAT1(_star~0,activatedifnrjcomplex,c~C,n~0,ppn,ppx,stat1!164).STAT1(_star~_STAR,activatedifnrjcomplex,c~C,n~0,ppn,ppx,stat1!164) #STAT1c_STAT1c_star
-	Species STAT1n_star_STAT1n_star_nucleus @nucleus:STAT1(_star~_STAR,activatedifnrjcomplex,c~0,n~N,ppn,ppx,stat1!164).STAT1(_star~_STAR,activatedifnrjcomplex,c~0,n~N,ppn,ppx,stat1!164) #STAT1n_star_STAT1n_star
-	Species STAT1n_star_nucleus @nucleus:STAT1(_star~_STAR,activatedifnrjcomplex,c~0,n~N,ppn,ppx,stat1) #STAT1n_star
-	Species PPN_nucleus @nucleus:PPN(stat1) #PPN
-	Species STAT1n_star_PPN_nucleus @nucleus:STAT1(_star~_STAR,activatedifnrjcomplex,c~0,n~N,ppn!163,ppx,stat1).PPN(stat1!163) #STAT1n_star_PPN
-	Species STAT1n_nucleus @nucleus:STAT1(_star~0,activatedifnrjcomplex,c~0,n~N,ppn,ppx,stat1) #STAT1n
-	Species STAT1n_STAT1n_star_nucleus @nucleus:STAT1(_star~0,activatedifnrjcomplex,c~0,n~N,ppn,ppx,stat1!164).STAT1(_star~_STAR,activatedifnrjcomplex,c~0,n~N,ppn,ppx,stat1!164) #STAT1n_STAT1n_star
-	Species mRNAn_nucleus @nucleus:mRNA(c~0,n~N) #mRNAn
-	Species mRNAc_cytoplasm @cytoplasm:mRNA(c~C,n~0) #mRNAc
-	Species SOCS1_cytoplasm @cytoplasm:SOCS1(activatedifnrjcomplex) #SOCS1
-	Species IFNRJ2_star_SOCS1_cytoplasm @cytoplasm:ActivatedIFNRJcomplex(socs1!159,stat1).SOCS1(activatedifnrjcomplex!159) #IFNRJ2_star_SOCS1
-	Species IFNRJ2_star_SHP2_SOCS1_STAT1c_cytoplasm @cytoplasm:IFNRJ2_star_SHP2_SOCS1_STAT1c() #IFNRJ2_star_SHP2_SOCS1_STAT1c
-	Species STAT1c_star_STAT1c_star_PPX_cytoplasm @cytoplasm:STAT1(_star~_STAR,activatedifnrjcomplex,c~C,n~0,ppn,ppx!162,stat1!164).STAT1(_star~_STAR,activatedifnrjcomplex,c~C,n~0,ppn,ppx,stat1!164).PPX(stat1!162) #STAT1c_star_STAT1c_star_PPX
-	Species STAT1n_star_STAT1n_star_PPN_nucleus @nucleus:STAT1(_star~_STAR,activatedifnrjcomplex,c~0,n~N,ppn!163,ppx,stat1!164).STAT1(_star~_STAR,activatedifnrjcomplex,c~0,n~N,ppn,ppx,stat1!164).PPN(stat1!163) #STAT1n_star_STAT1n_star_PPN
-	Species IFNRJ2_star_SOCS1_STAT1c_cytoplasm @cytoplasm:STAT1(_star~0,activatedifnrjcomplex!161,c~C,n~0,ppn,ppx,stat1).ActivatedIFNRJcomplex(socs1!159,stat1!161).SOCS1(activatedifnrjcomplex!159) #IFNRJ2_star_SOCS1_STAT1c
-	Species IFN_cytoplasm @cytoplasm:IFN(receptor) #IFN
-	Species IFNRJ2_star_SHP2_STAT1c_cytoplasm @cytoplasm:IFNRJ2_star_SHP2_STAT1c() #IFNRJ2_star_SHP2_STAT1c
-	Species IFNRJ2_star_SHP2_SOCS1_cytoplasm @cytoplasm:IFNRJ2_star_SHP2_SOCS1() #IFNRJ2_star_SHP2_SOCS1
-	Species IFNR_cytoplasm @cytoplasm:Receptor(ifn!158,jak).IFN(receptor!158) #IFNR
+	Species Receptor_cytoplasm @cytoplasm:Receptor(ifn,jak)@cytoplasm #Receptor
+	Species JAK_cytoplasm @cytoplasm:JAK(receptor)@cytoplasm #JAK
+	Species ReceptorJAKcomplex_cytoplasm @cytoplasm:Receptor(ifn,jak!160)@cytoplasm.JAK(receptor!160)@cytoplasm #Receptor JAK complex
+	Species Interferon_Receptor_JAKcomplex_cytoplasm @cytoplasm:Receptor(ifn!158,jak!160)@cytoplasm.IFN(receptor!158)@cytoplasm.JAK(receptor!160)@cytoplasm #Interferon-Receptor-JAK complex
+	Species IFNRJdimer_cytoplasm @cytoplasm:IFNRJdimer()@cytoplasm #IFNRJ dimer
+	Species ActivatedIFNRJcomplex_cytoplasm @cytoplasm:ActivatedIFNRJcomplex(socs1,stat1)@cytoplasm #Activated IFNRJ complex
+	Species STAT1c_cytoplasm @cytoplasm:STAT1(_star~0,activatedifnrjcomplex,c~C,n~0,ppn,ppx,stat1)@cytoplasm #STAT1c
+	Species IFNRJ2_star_STAT1c_cytoplasm @cytoplasm:STAT1(_star~0,activatedifnrjcomplex!161,c~C,n~0,ppn,ppx,stat1)@cytoplasm.ActivatedIFNRJcomplex(socs1,stat1!161)@cytoplasm #IFNRJ2_star_STAT1c
+	Species STAT1c_star_cytoplasm @cytoplasm:STAT1(_star~_STAR,activatedifnrjcomplex,c~C,n~0,ppn,ppx,stat1)@cytoplasm #STAT1c_star
+	Species IFNRJ2_star_STAT1c_star_cytoplasm @cytoplasm:STAT1(_star~_STAR,activatedifnrjcomplex!161,c~C,n~0,ppn,ppx,stat1)@cytoplasm.ActivatedIFNRJcomplex(socs1,stat1!161)@cytoplasm #IFNRJ2_star_STAT1c_star
+	Species STAT1c_star_STAT1c_star_cytoplasm @cytoplasm:STAT1(_star~_STAR,activatedifnrjcomplex,c~C,n~0,ppn,ppx,stat1!164)@cytoplasm.STAT1(_star~_STAR,activatedifnrjcomplex,c~C,n~0,ppn,ppx,stat1!164)@cytoplasm #STAT1c_star_STAT1c_star
+	Species SHP2_cytoplasm @cytoplasm:SHP2()@cytoplasm #SHP2
+	Species IFNRJ2_star_SHP2_cytoplasm @cytoplasm:IFNRJ2_star_SHP2()@cytoplasm #IFNRJ2_star_SHP2
+	Species PPX_cytoplasm @cytoplasm:PPX(stat1)@cytoplasm #PPX
+	Species STAT1c_star_PPX_cytoplasm @cytoplasm:STAT1(_star~_STAR,activatedifnrjcomplex,c~C,n~0,ppn,ppx!162,stat1)@cytoplasm.PPX(stat1!162)@cytoplasm #STAT1c_star_PPX
+	Species STAT1c_STAT1c_star_cytoplasm @cytoplasm:STAT1(_star~0,activatedifnrjcomplex,c~C,n~0,ppn,ppx,stat1!164)@cytoplasm.STAT1(_star~_STAR,activatedifnrjcomplex,c~C,n~0,ppn,ppx,stat1!164)@cytoplasm #STAT1c_STAT1c_star
+	Species STAT1n_star_STAT1n_star_nucleus @nucleus:STAT1(_star~_STAR,activatedifnrjcomplex,c~0,n~N,ppn,ppx,stat1!164)@nucleus.STAT1(_star~_STAR,activatedifnrjcomplex,c~0,n~N,ppn,ppx,stat1!164)@nucleus #STAT1n_star_STAT1n_star
+	Species STAT1n_star_nucleus @nucleus:STAT1(_star~_STAR,activatedifnrjcomplex,c~0,n~N,ppn,ppx,stat1)@nucleus #STAT1n_star
+	Species PPN_nucleus @nucleus:PPN(stat1)@nucleus #PPN
+	Species STAT1n_star_PPN_nucleus @nucleus:STAT1(_star~_STAR,activatedifnrjcomplex,c~0,n~N,ppn!163,ppx,stat1)@nucleus.PPN(stat1!163)@nucleus #STAT1n_star_PPN
+	Species STAT1n_nucleus @nucleus:STAT1(_star~0,activatedifnrjcomplex,c~0,n~N,ppn,ppx,stat1)@nucleus #STAT1n
+	Species STAT1n_STAT1n_star_nucleus @nucleus:STAT1(_star~0,activatedifnrjcomplex,c~0,n~N,ppn,ppx,stat1!164)@nucleus.STAT1(_star~_STAR,activatedifnrjcomplex,c~0,n~N,ppn,ppx,stat1!164)@nucleus #STAT1n_STAT1n_star
+	Species mRNAn_nucleus @nucleus:mRNA(c~0,n~N)@nucleus #mRNAn
+	Species mRNAc_cytoplasm @cytoplasm:mRNA(c~C,n~0)@cytoplasm #mRNAc
+	Species SOCS1_cytoplasm @cytoplasm:SOCS1(activatedifnrjcomplex)@cytoplasm #SOCS1
+	Species IFNRJ2_star_SOCS1_cytoplasm @cytoplasm:ActivatedIFNRJcomplex(socs1!159,stat1)@cytoplasm.SOCS1(activatedifnrjcomplex!159)@cytoplasm #IFNRJ2_star_SOCS1
+	Species IFNRJ2_star_SHP2_SOCS1_STAT1c_cytoplasm @cytoplasm:IFNRJ2_star_SHP2_SOCS1_STAT1c()@cytoplasm #IFNRJ2_star_SHP2_SOCS1_STAT1c
+	Species STAT1c_star_STAT1c_star_PPX_cytoplasm @cytoplasm:STAT1(_star~_STAR,activatedifnrjcomplex,c~C,n~0,ppn,ppx!162,stat1!164)@cytoplasm.STAT1(_star~_STAR,activatedifnrjcomplex,c~C,n~0,ppn,ppx,stat1!164)@cytoplasm.PPX(stat1!162)@cytoplasm #STAT1c_star_STAT1c_star_PPX
+	Species STAT1n_star_STAT1n_star_PPN_nucleus @nucleus:STAT1(_star~_STAR,activatedifnrjcomplex,c~0,n~N,ppn!163,ppx,stat1!164)@nucleus.STAT1(_star~_STAR,activatedifnrjcomplex,c~0,n~N,ppn,ppx,stat1!164)@nucleus.PPN(stat1!163)@nucleus #STAT1n_star_STAT1n_star_PPN
+	Species IFNRJ2_star_SOCS1_STAT1c_cytoplasm @cytoplasm:STAT1(_star~0,activatedifnrjcomplex!161,c~C,n~0,ppn,ppx,stat1)@cytoplasm.ActivatedIFNRJcomplex(socs1!159,stat1!161)@cytoplasm.SOCS1(activatedifnrjcomplex!159)@cytoplasm #IFNRJ2_star_SOCS1_STAT1c
+	Species IFN_cytoplasm @cytoplasm:IFN(receptor)@cytoplasm #IFN
+	Species IFNRJ2_star_SHP2_STAT1c_cytoplasm @cytoplasm:IFNRJ2_star_SHP2_STAT1c()@cytoplasm #IFNRJ2_star_SHP2_STAT1c
+	Species IFNRJ2_star_SHP2_SOCS1_cytoplasm @cytoplasm:IFNRJ2_star_SHP2_SOCS1()@cytoplasm #IFNRJ2_star_SHP2_SOCS1
+	Species IFNR_cytoplasm @cytoplasm:Receptor(ifn!158,jak)@cytoplasm.IFN(receptor!158)@cytoplasm #IFNR
 end observables
 begin functions
 	fRate24() = 0.01*mRNAc_cytoplasm

@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000101_flat">
+    <ListOfParameters>
+      <Parameter id="ka" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="ligand" type="Constant" value="3e-5" expr="3e-05"/>
+      <Parameter id="kcd" type="Constant" value="0.027777778" expr="0.0277777778"/>
+      <Parameter id="klid" type="Constant" value="0.25" expr="0.25"/>
+      <Parameter id="ki" type="Constant" value="0.33333333" expr="0.3333333333333"/>
+      <Parameter id="pRI" type="Constant" value="8" expr="8.0"/>
+      <Parameter id="kr" type="Constant" value="0.033333333" expr="0.0333333333333333"/>
+      <Parameter id="alpha" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="pRII" type="Constant" value="4" expr="4.0"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="Receptor1"/>
+      <MoleculeType id="Receptor1_endosome"/>
+      <MoleculeType id="Receptor2"/>
+      <MoleculeType id="Receptor2endosome"/>
+      <MoleculeType id="ligandreceptorcomplex_endosome"/>
+      <MoleculeType id="ligandreceptorcomplex_plasmamembrane"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+      <compartment id="PM" spatialDimensions="3" size="1.0"/>
+      <compartment id="Endosome" spatialDimensions="3" size="1.0"/>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="20.0" name="@PM::Receptor1()" compartment="PM">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="Receptor1" compartment="PM"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="20.0" name="@PM::Receptor2()" compartment="PM">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="Receptor2" compartment="PM"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="40.0" name="@Endosome::ligandreceptorcomplex_endosome()" compartment="Endosome">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="ligandreceptorcomplex_endosome" compartment="Endosome"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="v1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR1_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_RP1_M1" name="Receptor2" compartment="PM"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR1_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR1_RP2_M1" name="Receptor1" compartment="PM"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="ligandreceptorcomplex_plasmamembrane" compartment="PM"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR1_RP1_M1"/>
+          <MapItem sourceID="RR1_RP2_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+          <Delete id="RR1_RP1" DeleteMolecules="0"/>
+          <Delete id="RR1_RP2" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="v2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="ligandreceptorcomplex_plasmamembrane" compartment="PM"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kcd"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR2_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="v3" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="ligandreceptorcomplex_plasmamembrane" compartment="PM"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="klid"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR3_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="v4" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="ligandreceptorcomplex_plasmamembrane" compartment="PM"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="ligandreceptorcomplex_endosome" compartment="Endosome"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="ki"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR4_PP1_M1"/>
+          <Delete id="RR4_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="v5" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="Receptor1" compartment="PM"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="pRI"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR5_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="v6" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR6_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_RP1_M1" name="Receptor1" compartment="PM"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kcd"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR6_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR6_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="v7" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR7_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_RP1_M1" name="Receptor1" compartment="PM"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="Receptor1_endosome" compartment="Endosome"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="ki"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR7_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR7_PP1_M1"/>
+          <Delete id="RR7_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="v8" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR8_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_RP1_M1" name="Receptor1_endosome" compartment="Endosome"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR8_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP1_M1" name="Receptor1" compartment="PM"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kr"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR8_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR8_PP1_M1"/>
+          <Delete id="RR8_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="v9" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR9_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_RP1_M1" name="ligandreceptorcomplex_endosome" compartment="Endosome"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR9_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP1_M1" name="Receptor1" compartment="PM"/>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR9_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP2_M1" name="Receptor2" compartment="PM"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kr"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR9_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR9_PP1_M1"/>
+          <Add id="RR9_PP2_M1"/>
+          <Delete id="RR9_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="v10" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR10_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_PP1_M1" name="Receptor2" compartment="PM"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="pRII"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR10_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR11" name="v11" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR11_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_RP1_M1" name="Receptor2" compartment="PM"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR11_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kcd"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR11_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR11_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR12" name="v12" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR12_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_RP1_M1" name="Receptor2" compartment="PM"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR12_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_PP1_M1" name="Receptor2endosome" compartment="Endosome"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR12_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="ki"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR12_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR12_PP1_M1"/>
+          <Delete id="RR12_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR13" name="v13" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR13_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_RP1_M1" name="Receptor2endosome" compartment="Endosome"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR13_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_PP1_M1" name="Receptor2" compartment="PM"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR13_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kr"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR13_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR13_PP1_M1"/>
+          <Delete id="RR13_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="Receptor1_PM" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" compartment="PM" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="Receptor1"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="Receptor2_PM" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" compartment="PM" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="Receptor2"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="ligandreceptorcomplex_plasmamembrane_PM" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" compartment="PM" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="ligandreceptorcomplex_plasmamembrane"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="ligandreceptorcomplex_endosome_Endosome" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" compartment="Endosome" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="ligandreceptorcomplex_endosome"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="Receptor1_endosome_Endosome" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" compartment="Endosome" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="Receptor1_endosome"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O6" name="Receptor2endosome_Endosome" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O6_P1" compartment="Endosome" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O6_P1_M1" name="Receptor2endosome"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="ka" type="Constant"/>
+          <Reference name="ligand" type="Constant"/>
+        </ListOfReferences>
+        <Expression> ka*ligand </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

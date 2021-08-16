@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000001015_flat">
+    <ListOfParameters>
+      <Parameter id="k1" type="Constant" value="0.0341" expr="0.0341"/>
+      <Parameter id="k2" type="Constant" value="0.115375" expr="0.115375"/>
+      <Parameter id="k3" type="Constant" value="0.766576" expr="0.766576"/>
+      <Parameter id="k4" type="Constant" value="0.123848" expr="0.123848"/>
+      <Parameter id="k5" type="Constant" value="0.00409948" expr="0.00409948"/>
+      <Parameter id="k6" type="Constant" value="0.000323097" expr="0.000323097"/>
+      <Parameter id="dH" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="dC" type="Constant" value="1.61511" expr="1.61511"/>
+      <Parameter id="dM" type="Constant" value="0.781155" expr="0.781155"/>
+      <Parameter id="dD" type="Constant" value="1.34671" expr="1.34671"/>
+      <Parameter id="C0" type="Constant" value="4" expr="4.0"/>
+      <Parameter id="M0" type="Constant" value="400" expr="400.0"/>
+      <Parameter id="sigma" type="Constant" value="2.2" expr="2.2"/>
+      <Parameter id="m" type="Constant" value="4.22686" expr="4.22686"/>
+      <Parameter id="h" type="Constant" value="0.511657" expr="0.511657"/>
+      <Parameter id="H0" type="Constant" value="0" expr="0"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="CD4pl_T_Helper_cells___H__"/>
+      <MoleculeType id="CD8pl_cytotoxic_T_lymphocytes___C__"/>
+      <MoleculeType id="Damaged_fibres___D__"/>
+      <MoleculeType id="Macrophages___M__"/>
+      <MoleculeType id="Normal_fibres___N__"/>
+      <MoleculeType id="Regenerative_fibres___R__"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="2.4088e+26" name="Macrophages___M__()">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="Macrophages___M__"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="2.4088e+24" name="CD8pl_cytotoxic_T_lymphocytes___C__()">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="CD8pl_cytotoxic_T_lymphocytes___C__"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="6.022e+25" name="Normal_fibres___N__()">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="Normal_fibres___N__"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="reaction" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="CD4pl_T_Helper_cells___H__"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="reaction_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="CD4pl_T_Helper_cells___H__"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="dH"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR2_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="reaction_2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="CD8pl_cytotoxic_T_lymphocytes___C__"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="fRate2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="reaction_3" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="CD8pl_cytotoxic_T_lymphocytes___C__"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="dC"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR4_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="reaction_4" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="Macrophages___M__"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Function" name="fRate4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR5_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="reaction_5" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR6_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_RP1_M1" name="Macrophages___M__"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="dM"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR6_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR6_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="reaction_6_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="Normal_fibres___N__"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Function" name="_rateLaw1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR7_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="reaction_6_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR8_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP1_M1" name="Damaged_fibres___D__"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Function" name="fRate6" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR8_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="reaction_7_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR9_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP1_M1" name="Damaged_fibres___D__"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Function" name="_rateLaw2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR9_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="reaction_7_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR10_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_PP1_M1" name="Regenerative_fibres___R__"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Function" name="fRate7" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR10_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR11" name="reaction_8" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR11_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_RP1_M1" name="Regenerative_fibres___R__"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR11_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_PP1_M1" name="Normal_fibres___N__"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR11_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k4"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR11_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR11_PP1_M1"/>
+          <Delete id="RR11_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="CD4pl_T_Helper_cells___H__" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="CD4pl_T_Helper_cells___H__"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="Damaged_fibres___D__" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="Damaged_fibres___D__"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="Macrophages___M__" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="Macrophages___M__"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="CD8pl_cytotoxic_T_lymphocytes___C__" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="CD8pl_cytotoxic_T_lymphocytes___C__"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="Normal_fibres___N__" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="Normal_fibres___N__"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O6" name="Regenerative_fibres___R__" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O6_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O6_P1_M1" name="Regenerative_fibres___R__"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="alpha">
+        <ListOfReferences>
+          <Reference name="h" type="Constant"/>
+          <Reference name="m" type="Constant"/>
+          <Reference name="sigma" type="Constant"/>
+        </ListOfReferences>
+        <Expression> ((0.398942280407134*h)*exp((((-((-m)+ln((time()+1.0e-11))))^2)/(2*(sigma^2)))))/(sigma*(time()+1.0e-11)) </Expression>
+      </Function>
+      <Function id="bM">
+        <ListOfReferences>
+          <Reference name="M0" type="Constant"/>
+          <Reference name="dM" type="Constant"/>
+        </ListOfReferences>
+        <Expression> M0*dM </Expression>
+      </Function>
+      <Function id="bH">
+        <ListOfReferences>
+          <Reference name="H0" type="Constant"/>
+          <Reference name="dH" type="Constant"/>
+        </ListOfReferences>
+        <Expression> H0*dH </Expression>
+      </Function>
+      <Function id="bC">
+        <ListOfReferences>
+          <Reference name="C0" type="Constant"/>
+          <Reference name="dC" type="Constant"/>
+        </ListOfReferences>
+        <Expression> C0*dC </Expression>
+      </Function>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="k1" type="Constant"/>
+          <Reference name="bH" type="Function"/>
+          <Reference name="Damaged_fibres___D__" type="Observable"/>
+          <Reference name="Macrophages___M__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((1.0*Damaged_fibres___D__)*Macrophages___M__)*k1)+bH </Expression>
+      </Function>
+      <Function id="fRate2">
+        <ListOfReferences>
+          <Reference name="k2" type="Constant"/>
+          <Reference name="bC" type="Function"/>
+          <Reference name="CD4pl_T_Helper_cells___H__" type="Observable"/>
+          <Reference name="Damaged_fibres___D__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((1.0*CD4pl_T_Helper_cells___H__)*Damaged_fibres___D__)*k2)+bC </Expression>
+      </Function>
+      <Function id="fRate4">
+        <ListOfReferences>
+          <Reference name="k3" type="Constant"/>
+          <Reference name="bM" type="Function"/>
+          <Reference name="Damaged_fibres___D__" type="Observable"/>
+          <Reference name="Macrophages___M__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((1.0*Damaged_fibres___D__)*Macrophages___M__)*k3)+bM </Expression>
+      </Function>
+      <Function id="fRate6">
+        <ListOfReferences>
+          <Reference name="k5" type="Constant"/>
+          <Reference name="alpha" type="Function"/>
+          <Reference name="CD8pl_cytotoxic_T_lymphocytes___C__" type="Observable"/>
+          <Reference name="Normal_fibres___N__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((1.0*CD8pl_cytotoxic_T_lymphocytes___C__)*Normal_fibres___N__)*k5)+((1.0*Normal_fibres___N__)*alpha) </Expression>
+      </Function>
+      <Function id="fRate7">
+        <ListOfReferences>
+          <Reference name="dD" type="Constant"/>
+          <Reference name="k6" type="Constant"/>
+          <Reference name="Damaged_fibres___D__" type="Observable"/>
+          <Reference name="Macrophages___M__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((1.0*Damaged_fibres___D__)*Macrophages___M__)*k6)+((1.0*Damaged_fibres___D__)*dD) </Expression>
+      </Function>
+      <Function id="_rateLaw1">
+        <ListOfReferences>
+          <Reference name="fRate6" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate6() </Expression>
+      </Function>
+      <Function id="_rateLaw2">
+        <ListOfReferences>
+          <Reference name="fRate7" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate7() </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

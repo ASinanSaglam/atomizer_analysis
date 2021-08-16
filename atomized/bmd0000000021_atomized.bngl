@@ -1,5 +1,5 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL6617834203', 'http://identifiers.org/biomodels.db/BIOMD0000000021']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000021', 'http://identifiers.org/biomodels.db/MODEL6617834203']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/10366496']
 #@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/BIOMD0000000171']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/7227']
@@ -7,7 +7,7 @@
 #@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0042752']
 #@creatorEmail:'lenov@ebi.ac.uk'
 #@creatorName:'Le Novère Nicolas'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 10 molecules and 24 reactions. The translated model has 7 molecules and 24 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 10 molecules and 24 reactions. The translated model has 7 molecules and 24 rules'
 ###
 begin model
 begin parameters
@@ -65,33 +65,33 @@ begin compartments
 end compartments
 begin molecule types
 	#^ bqbiol:isVersionOf chebi:CHEBI:33699, kegg.compound:C00046
-	PERmRNA()
-	#^ bqbiol:hasPart uniprot:P49021, uniprot:P07663
-	NuclearPER_TIMComplex()
-	#^ bqbiol:isVersionOf chebi:CHEBI:33699, kegg.compound:C00046
 	TIMmRNA()
-	#^ bqbiol:isVersionOf uniprot:P49021
-	TIMProtein__bi_phosphorylated__(perprotein__bi_phosphorylated__)
-	#^ bqbiol:isVersionOf uniprot:P49021
-	TIMProtein__unphosphorylated__(TIMProtein__mono_phosphorylated__~TIMProtein__mono_phosphorylated__~0)
 	#^ bqbiol:isVersionOf uniprot:P07663
 	PERProtein__bi_phosphorylated__(timprotein__bi_phosphorylated__)
 	#^ bqbiol:isVersionOf uniprot:P07663
 	PERProtein__unphosphorylated__(PERProtein__mono_phosphorylated__~PERProtein__mono_phosphorylated__~0)
+	#^ bqbiol:hasPart uniprot:P49021, uniprot:P07663
+	NuclearPER_TIMComplex()
+	#^ bqbiol:isVersionOf chebi:CHEBI:33699, kegg.compound:C00046
+	PERmRNA()
+	#^ bqbiol:isVersionOf uniprot:P49021
+	TIMProtein__unphosphorylated__(TIMProtein__mono_phosphorylated__~TIMProtein__mono_phosphorylated__~0)
+	#^ bqbiol:isVersionOf uniprot:P49021
+	TIMProtein__bi_phosphorylated__(perprotein__bi_phosphorylated__)
 end molecule types
 begin seed species
 end seed species
 begin observables
-	Species PERProtein__unphosphorylated___Cell @Cell:PERProtein__unphosphorylated__(PERProtein__mono_phosphorylated__~0) #PER Protein (unphosphorylated)
-	Species TIMProtein__unphosphorylated___Cell @Cell:TIMProtein__unphosphorylated__(TIMProtein__mono_phosphorylated__~0) #TIM Protein (unphosphorylated)
-	Species PERProtein__mono_phosphorylated___Cell @Cell:PERProtein__unphosphorylated__(PERProtein__mono_phosphorylated__~PERProtein__mono_phosphorylated__) #PER Protein (mono-phosphorylated)
-	Species TIMProtein__mono_phosphorylated___Cell @Cell:TIMProtein__unphosphorylated__(TIMProtein__mono_phosphorylated__~TIMProtein__mono_phosphorylated__) #TIM Protein (mono-phosphorylated)
-	Species PERProtein__bi_phosphorylated___Cell @Cell:PERProtein__bi_phosphorylated__(timprotein__bi_phosphorylated__) #PER Protein (bi-phosphorylated)
-	Species TIMProtein__bi_phosphorylated___Cell @Cell:TIMProtein__bi_phosphorylated__(perprotein__bi_phosphorylated__) #TIM Protein (bi-phosphorylated)
-	Species CytosolicPER_TIMComplex_Cell @Cell:TIMProtein__bi_phosphorylated__(perprotein__bi_phosphorylated__!33).PERProtein__bi_phosphorylated__(timprotein__bi_phosphorylated__!33) #Cytosolic PER-TIM Complex
-	Species NuclearPER_TIMComplex_compartment_0000002 @compartment_0000002:NuclearPER_TIMComplex() #Nuclear PER-TIM Complex
-	Species PERmRNA_Cell @Cell:PERmRNA() #PER mRNA
-	Species TIMmRNA_Cell @Cell:TIMmRNA() #TIM mRNA
+	Species PERProtein__unphosphorylated___Cell @Cell:PERProtein__unphosphorylated__(PERProtein__mono_phosphorylated__~0)@Cell #PER Protein (unphosphorylated)
+	Species TIMProtein__unphosphorylated___Cell @Cell:TIMProtein__unphosphorylated__(TIMProtein__mono_phosphorylated__~0)@Cell #TIM Protein (unphosphorylated)
+	Species PERProtein__mono_phosphorylated___Cell @Cell:PERProtein__unphosphorylated__(PERProtein__mono_phosphorylated__~PERProtein__mono_phosphorylated__)@Cell #PER Protein (mono-phosphorylated)
+	Species TIMProtein__mono_phosphorylated___Cell @Cell:TIMProtein__unphosphorylated__(TIMProtein__mono_phosphorylated__~TIMProtein__mono_phosphorylated__)@Cell #TIM Protein (mono-phosphorylated)
+	Species PERProtein__bi_phosphorylated___Cell @Cell:PERProtein__bi_phosphorylated__(timprotein__bi_phosphorylated__)@Cell #PER Protein (bi-phosphorylated)
+	Species TIMProtein__bi_phosphorylated___Cell @Cell:TIMProtein__bi_phosphorylated__(perprotein__bi_phosphorylated__)@Cell #TIM Protein (bi-phosphorylated)
+	Species CytosolicPER_TIMComplex_Cell @Cell:TIMProtein__bi_phosphorylated__(perprotein__bi_phosphorylated__!33)@Cell.PERProtein__bi_phosphorylated__(timprotein__bi_phosphorylated__!33)@Cell #Cytosolic PER-TIM Complex
+	Species NuclearPER_TIMComplex_compartment_0000002 @compartment_0000002:NuclearPER_TIMComplex()@compartment_0000002 #Nuclear PER-TIM Complex
+	Species PERmRNA_Cell @Cell:PERmRNA()@Cell #PER mRNA
+	Species TIMmRNA_Cell @Cell:TIMmRNA()@Cell #TIM mRNA
 end observables
 begin functions
 	Tt() = CytosolicPER_TIMComplex_Cell + NuclearPER_TIMComplex_compartment_0000002 + TIMProtein__bi_phosphorylated___Cell + TIMProtein__mono_phosphorylated___Cell + TIMProtein__unphosphorylated___Cell

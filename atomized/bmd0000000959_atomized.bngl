@@ -2,11 +2,11 @@
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/32696599']
 #@BQB_IS:['http://identifiers.org/biomodels.db/MODEL2005110001']
 #@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0004126']
-#@BQB_HAS_PROPERTY:['http://identifiers.org/go/GO:0060338', 'http://identifiers.org/taxonomy/9606', 'http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/taxonomy/9606', 'http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/go/GO:0060338']
 #@BQM_IS:['http://identifiers.org/biomodels.db/MODEL2005110001', 'http://identifiers.org/biomodels.db/BIOMD0000000959']
 #@creatorEmail:'tiwarik@babraham.ac.uk'
 #@creatorName:'Tiwari Krishna'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 41 molecules and 75 reactions. The translated model has 17 molecules and 75 rules'
+#@notes:'This is an atomized translation of an SBML model created on 14/08/2021. The original model has 41 molecules and 75 reactions. The translated model has 17 molecules and 75 rules'
 ###
 begin model
 begin parameters
@@ -92,37 +92,37 @@ begin parameters
 	r75_k1 0.902900
 end parameters
 begin molecule types
-	#^ bmbiol:isInstanceOf uniprot:Q9UMW8, ncit:C80450
-	#^ bqbiol:isVersionOf uniprot:Q9UMW8
-	USP18_LC_1()
-	#^ bqbiol:is uniprot:P17181
-	Rec(ifna)
-	#^ bqbiol:hasPart uniprot:Q00978, uniprot:P52630, uniprot:P42224
-	#^ bqbiol:hasProperty ncit:C13226
-	ISGF3c()
+	STAT1(_l_3~_L_3~0,c~C~0,mrna~MRNA~0,n~N~0,stat1,stat2)
 	#^ bqbiol:is uniprot:P01562
 	IFNa(rec)
 	#^ bqbiol:hasProperty obi:OBI:0000794, omit:OMIT:0020133
 	OccGAS_ISREbs()
-	#^ bqbiol:is uniprot:O14543
-	SOCS3(mrna~MRNA~0)
+	#^ bqbiol:is uniprot:Q9UMW8
+	USP18(_lc_2~_LC_2~0,mrna~MRNA~0)
+	#^ bqbiol:hasPart uniprot:Q00978, uniprot:P52630, uniprot:P42224
+	#^ bqbiol:hasProperty ncit:C13226
+	ISGF3c()
 	#^ bqbiol:hasProperty obi:OBI:0000794
 	OccGASbs()
+	STAT1_LC(_1~_1~0,_2~_2~0)
+	IRF9_LC(_1~_1~0,_2~_2~0)
+	#^ bmbiol:isInstanceOf uniprot:Q9UMW8, ncit:C80450
+	#^ bqbiol:isVersionOf uniprot:Q9UMW8
+	USP18_LC_1()
+	#^ bqbiol:is uniprot:O14543
+	SOCS3(mrna~MRNA~0)
 	IRF9(c~C~0,mrna~MRNA~0,n~N~0)
-	STAT1(_l_3~_L_3~0,c~C~0,mrna~MRNA~0,n~N~0,stat1,stat2)
 	STAT2(_l_5~_L_5~0,c~C~0,mrna~MRNA~0,n~N~0,stat1)
-	#^ bqbiol:is uniprot:O15524
-	SOCS1(_lc_1~_LC_1~0,mrna~MRNA~0)
-	#^ bqbiol:is uniprot:P14316
-	IRF2(mrna~MRNA~0)
 	#^ bqbiol:hasPart uniprot:Q00978, uniprot:P42224, uniprot:P52630
 	#^ bqbiol:hasProperty ncit:C13361
 	ISGF3n()
-	STAT1_LC(_1~_1~0,_2~_2~0)
-	IRF9_LC(_1~_1~0,_2~_2~0)
+	#^ bqbiol:is uniprot:P17181
+	Rec(ifna)
+	#^ bqbiol:is uniprot:O15524
+	SOCS1(_lc_1~_LC_1~0,mrna~MRNA~0)
 	STAT2_LC(_1~_1~0,_2~_2~0,_3~_3~0,_4~_4~0)
-	#^ bqbiol:is uniprot:Q9UMW8
-	USP18(_lc_2~_LC_2~0,mrna~MRNA~0)
+	#^ bqbiol:is uniprot:P14316
+	IRF2(mrna~MRNA~0)
 end molecule types
 begin seed species
 	Rec(ifna) 1.1977758e+18 # (1989.0 * 1e-09)mol/L * 6.022e23/mol *1.0L #Rec #Rec
@@ -162,19 +162,19 @@ begin observables
 	Species Rec Rec(ifna) #Rec
 	Species SOCS1 SOCS1(_lc_1~0,mrna~0) #SOCS1
 	Species IFNa IFNa(rec) #IFNa
-	Species aRecIFNa Rec(ifna!115).IFNa(rec!115) #aRecIFNa
+	Species aRecIFNa Rec(ifna!913).IFNa(rec!913) #aRecIFNa
 	Species USP18 USP18(_lc_2~0,mrna~0) #USP18
 	Species STAT1c STAT1(_l_3~0,c~C,mrna~0,n~0,stat1,stat2) #STAT1c
 	Species STAT2c STAT2(_l_5~0,c~C,mrna~0,n~0,stat1) #STAT2c
-	Species pSTAT1pSTAT2c STAT1(_l_3~0,c~C,mrna~0,n~0,stat1,stat2!117).STAT2(_l_5~0,c~C,mrna~0,n~0,stat1!117) #pSTAT1pSTAT2c
-	Species pSTAT1pSTAT2n STAT1(_l_3~0,c~0,mrna~0,n~N,stat1,stat2!117).STAT2(_l_5~0,c~0,mrna~0,n~N,stat1!117) #pSTAT1pSTAT2n
+	Species pSTAT1pSTAT2c STAT1(_l_3~0,c~C,mrna~0,n~0,stat1,stat2!914).STAT2(_l_5~0,c~C,mrna~0,n~0,stat1!914) #pSTAT1pSTAT2c
+	Species pSTAT1pSTAT2n STAT1(_l_3~0,c~0,mrna~0,n~N,stat1,stat2!914).STAT2(_l_5~0,c~0,mrna~0,n~N,stat1!914) #pSTAT1pSTAT2n
 	Species STAT1n STAT1(_l_3~0,c~0,mrna~0,n~N,stat1,stat2) #STAT1n
 	Species STAT2n STAT2(_l_5~0,c~0,mrna~0,n~N,stat1) #STAT2n
 	Species ISGF3c ISGF3c() #ISGF3c
 	Species ISGF3n ISGF3n() #ISGF3n
 	Species IRF9n IRF9(c~0,mrna~0,n~N) #IRF9n
-	Species pSTAT1dimc STAT1(_l_3~0,c~C,mrna~0,n~0,stat1!116,stat2).STAT1(_l_3~0,c~C,mrna~0,n~0,stat1!116,stat2) #pSTAT1dimc
-	Species pSTAT1dimn STAT1(_l_3~0,c~0,mrna~0,n~N,stat1!116,stat2).STAT1(_l_3~0,c~0,mrna~0,n~N,stat1!116,stat2) #pSTAT1dimn
+	Species pSTAT1dimc STAT1(_l_3~0,c~C,mrna~0,n~0,stat1!95,stat2).STAT1(_l_3~0,c~C,mrna~0,n~0,stat1!95,stat2) #pSTAT1dimc
+	Species pSTAT1dimn STAT1(_l_3~0,c~0,mrna~0,n~N,stat1!95,stat2).STAT1(_l_3~0,c~0,mrna~0,n~N,stat1!95,stat2) #pSTAT1dimn
 	Species OccGAS_ISREbs OccGAS_ISREbs() #OccGAS_ISREbs
 	Species OccGASbs OccGASbs() #OccGASbs
 	Species IRF9c IRF9(c~C,mrna~0,n~0) #IRF9c
@@ -238,21 +238,21 @@ begin reaction rules
 	Receptor_production: 0  -> Rec(ifna) r1_v
 	Receptor_degradation_basal: Rec(ifna) -> 0  r2_k1
 	Receptor_degradation_by_SOCS1: Rec(ifna) -> 0  fRate2() #Modifiers(SOCS1)
-	Active_receptor_complex_formation: IFNa(rec) + Rec(ifna) -> Rec(ifna!115).IFNa(rec!115) fRate3() #Modifiers(SOCS1, USP18, SOCS3)
-	Active_receptor_complex_degradation_basal: Rec(ifna!115).IFNa(rec!115) -> 0  r5_k1
-	Active_receptor_complex_degradation_by_SOCS1: Rec(ifna!115).IFNa(rec!115) -> 0  fRate5() #Modifiers(SOCS1)
-	Active_receptor_complex_degradation_by_USP18: Rec(ifna!115).IFNa(rec!115) -> 0  fRate6() #Modifiers(USP18)
-	Active_receptor_complex_degradation_by_USP18_and_SOCS1__synergy: Rec(ifna!115).IFNa(rec!115) -> 0  fRate7() #Modifiers(SOCS1, USP18)
+	Active_receptor_complex_formation: IFNa(rec) + Rec(ifna) -> Rec(ifna!913).IFNa(rec!913) fRate3() #Modifiers(SOCS1, USP18, SOCS3)
+	Active_receptor_complex_degradation_basal: Rec(ifna!913).IFNa(rec!913) -> 0  r5_k1
+	Active_receptor_complex_degradation_by_SOCS1: Rec(ifna!913).IFNa(rec!913) -> 0  fRate5() #Modifiers(SOCS1)
+	Active_receptor_complex_degradation_by_USP18: Rec(ifna!913).IFNa(rec!913) -> 0  fRate6() #Modifiers(USP18)
+	Active_receptor_complex_degradation_by_USP18_and_SOCS1__synergy: Rec(ifna!913).IFNa(rec!913) -> 0  fRate7() #Modifiers(SOCS1, USP18)
 	USP18_degradation: USP18(_lc_2~0,mrna~0) -> 0  r9_k1
-	Heterodimer_complex_formation: STAT1(_l_3~0,c~C,mrna~0,n~0,stat1,stat2) + STAT2(_l_5~0,c~C,mrna~0,n~0,stat1) -> STAT1(_l_3~0,c~C,mrna~0,n~0,stat1,stat2!117).STAT2(_l_5~0,c~C,mrna~0,n~0,stat1!117) fRate9() #Modifiers(aRecIFN)
-	Heterodimer_translocation_to_nucleus: STAT1(_l_3~0,c~C,mrna~0,n~0,stat1,stat2!117).STAT2(_l_5~0,c~C,mrna~0,n~0,stat1!117) -> STAT1(_l_3~0,c~0,mrna~0,n~N,stat1,stat2!117).STAT2(_l_5~0,c~0,mrna~0,n~N,stat1!117) r11_k1
-	Heterodimer_decay: STAT1(_l_3~0,c~0,mrna~0,n~N,stat1,stat2!117).STAT2(_l_5~0,c~0,mrna~0,n~N,stat1!117) -> STAT1(_l_3~0,c~0,mrna~0,n~N,stat1,stat2) + STAT2(_l_5~0,c~0,mrna~0,n~N,stat1) r12_k1
-	ISGF3_complex_formation: STAT1(_l_3~0,c~C,mrna~0,n~0,stat1,stat2!117).STAT2(_l_5~0,c~C,mrna~0,n~0,stat1!117) + IRF9(c~C,mrna~0,n~0) -> ISGF3c() r13_k1
+	Heterodimer_complex_formation: STAT1(_l_3~0,c~C,mrna~0,n~0,stat1,stat2) + STAT2(_l_5~0,c~C,mrna~0,n~0,stat1) -> STAT1(_l_3~0,c~C,mrna~0,n~0,stat1,stat2!914).STAT2(_l_5~0,c~C,mrna~0,n~0,stat1!914) fRate9() #Modifiers(aRecIFN)
+	Heterodimer_translocation_to_nucleus: STAT1(_l_3~0,c~C,mrna~0,n~0,stat1,stat2!914).STAT2(_l_5~0,c~C,mrna~0,n~0,stat1!914) -> STAT1(_l_3~0,c~0,mrna~0,n~N,stat1,stat2!914).STAT2(_l_5~0,c~0,mrna~0,n~N,stat1!914) r11_k1
+	Heterodimer_decay: STAT1(_l_3~0,c~0,mrna~0,n~N,stat1,stat2!914).STAT2(_l_5~0,c~0,mrna~0,n~N,stat1!914) -> STAT1(_l_3~0,c~0,mrna~0,n~N,stat1,stat2) + STAT2(_l_5~0,c~0,mrna~0,n~N,stat1) r12_k1
+	ISGF3_complex_formation: STAT1(_l_3~0,c~C,mrna~0,n~0,stat1,stat2!914).STAT2(_l_5~0,c~C,mrna~0,n~0,stat1!914) + IRF9(c~C,mrna~0,n~0) -> ISGF3c() r13_k1
 	ISGF3_translocation_to_nucleus: ISGF3c() -> ISGF3n() r14_k1
 	ISGF3_decay: ISGF3n() -> STAT1(_l_3~0,c~0,mrna~0,n~N,stat1,stat2) + STAT2(_l_5~0,c~0,mrna~0,n~N,stat1) + IRF9(c~0,mrna~0,n~N) r15_k1
-	Homodimer_complex_formation: STAT1(_l_3~0,c~C,mrna~0,n~0,stat1,stat2) + STAT1(_l_3~0,c~C,mrna~0,n~0,stat1,stat2) -> STAT1(_l_3~0,c~C,mrna~0,n~0,stat1!116,stat2).STAT1(_l_3~0,c~C,mrna~0,n~0,stat1!116,stat2) fRate15() #Modifiers(aRecIFN)
-	Homodimer_translocation_to_nucleus: STAT1(_l_3~0,c~C,mrna~0,n~0,stat1!116,stat2).STAT1(_l_3~0,c~C,mrna~0,n~0,stat1!116,stat2) -> STAT1(_l_3~0,c~0,mrna~0,n~N,stat1!116,stat2).STAT1(_l_3~0,c~0,mrna~0,n~N,stat1!116,stat2) r17_k1
-	Homodimer_decay: STAT1(_l_3~0,c~0,mrna~0,n~N,stat1!116,stat2).STAT1(_l_3~0,c~0,mrna~0,n~N,stat1!116,stat2) -> STAT1(_l_3~0,c~0,mrna~0,n~N,stat1,stat2) + STAT1(_l_3~0,c~0,mrna~0,n~N,stat1,stat2) r18_k1
+	Homodimer_complex_formation: STAT1(_l_3~0,c~C,mrna~0,n~0,stat1,stat2) + STAT1(_l_3~0,c~C,mrna~0,n~0,stat1,stat2) -> STAT1(_l_3~0,c~C,mrna~0,n~0,stat1!95,stat2).STAT1(_l_3~0,c~C,mrna~0,n~0,stat1!95,stat2) fRate15() #Modifiers(aRecIFN)
+	Homodimer_translocation_to_nucleus: STAT1(_l_3~0,c~C,mrna~0,n~0,stat1!95,stat2).STAT1(_l_3~0,c~C,mrna~0,n~0,stat1!95,stat2) -> STAT1(_l_3~0,c~0,mrna~0,n~N,stat1!95,stat2).STAT1(_l_3~0,c~0,mrna~0,n~N,stat1!95,stat2) r17_k1
+	Homodimer_decay: STAT1(_l_3~0,c~0,mrna~0,n~N,stat1!95,stat2).STAT1(_l_3~0,c~0,mrna~0,n~N,stat1!95,stat2) -> STAT1(_l_3~0,c~0,mrna~0,n~N,stat1,stat2) + STAT1(_l_3~0,c~0,mrna~0,n~N,stat1,stat2) r18_k1
 	OccGAS_ISREbs_formation_by_ISGF3: 0  -> OccGAS_ISREbs() fRate18() #Modifiers(ISGF3n)
 	OccGAS_ISREbs_formation_by_heterodimer: 0  -> OccGAS_ISREbs() fRate19() #Modifiers(pSTAT1pSTAT2n)
 	OccGAS_ISREbs_decay: OccGAS_ISREbs() -> 0  r21_k1

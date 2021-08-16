@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000950_atomized">
+    <ListOfParameters>
+      <Parameter id="Season_Dummy_Variable" type="Constant" value="0" expr="0"/>
+      <Parameter id="_InitialConc1" type="Constant" value="1000" expr="if((0==0),1000,1000)"/>
+      <Parameter id="_InitialConc2" type="Constant" value="19999" expr="if((0==0),19999,3999)"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="A_h"/>
+      <MoleculeType id="E_v"/>
+      <MoleculeType id="I_h"/>
+      <MoleculeType id="I_v"/>
+      <MoleculeType id="R_h"/>
+      <MoleculeType id="S_h"/>
+      <MoleculeType id="S_v"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+      <compartment id="Cattle" spatialDimensions="3" size="1.0"/>
+      <compartment id="Vector" spatialDimensions="3" size="1.0"/>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="6.022e+20" name="@Vector::I_v()" compartment="Vector">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="I_v" compartment="Vector"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="_InitialConc1" name="@Cattle::S_h()" compartment="Cattle">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="S_h" compartment="Cattle"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="_InitialConc2" name="@Vector::S_v()" compartment="Vector">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="S_v" compartment="Vector"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="_R1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="S_h" compartment="Cattle"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="arRateS_h" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="_R2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="A_h" compartment="Cattle"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="arRateA_h" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="_R3" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="I_h" compartment="Cattle"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="arRateI_h" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="_R4" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="R_h" compartment="Cattle"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="arRateR_h" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR4_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="_R5" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="S_v" compartment="Vector"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Function" name="arRateS_v" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR5_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="_R6" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="E_v" compartment="Vector"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Function" name="arRateE_v" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR6_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="_R7" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="I_v" compartment="Vector"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Function" name="arRateI_v" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR7_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="S_h_Cattle" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" compartment="Cattle" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="S_h"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="A_h_Cattle" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" compartment="Cattle" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="A_h"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="I_h_Cattle" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" compartment="Cattle" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="I_h"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="R_h_Cattle" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" compartment="Cattle" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="R_h"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="S_v_Vector" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" compartment="Vector" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="S_v"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O6" name="E_v_Vector" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O6_P1" compartment="Vector" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O6_P1_M1" name="E_v"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O7" name="I_v_Vector" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O7_P1" compartment="Vector" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O7_P1_M1" name="I_v"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="beta_vh">
+        <ListOfReferences>
+          <Reference name="Season_Dummy_Variable" type="Constant"/>
+        </ListOfReferences>
+        <Expression> if((Season_Dummy_Variable==0),0.7,0.7) </Expression>
+      </Function>
+      <Function id="N_v">
+        <ListOfReferences>
+          <Reference name="E_v_Vector" type="Observable"/>
+          <Reference name="I_v_Vector" type="Observable"/>
+          <Reference name="S_v_Vector" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (E_v_Vector+I_v_Vector)+S_v_Vector </Expression>
+      </Function>
+      <Function id="sigma_v">
+        <ListOfReferences>
+          <Reference name="Season_Dummy_Variable" type="Constant"/>
+        </ListOfReferences>
+        <Expression> if((Season_Dummy_Variable==0),0.33,0.25) </Expression>
+      </Function>
+      <Function id="sigma_h">
+        <ListOfReferences>
+          <Reference name="Season_Dummy_Variable" type="Constant"/>
+        </ListOfReferences>
+        <Expression> if((Season_Dummy_Variable==0),19,19) </Expression>
+      </Function>
+      <Function id="N_h">
+        <ListOfReferences>
+          <Reference name="A_h_Cattle" type="Observable"/>
+          <Reference name="I_h_Cattle" type="Observable"/>
+          <Reference name="R_h_Cattle" type="Observable"/>
+          <Reference name="S_h_Cattle" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((A_h_Cattle+I_h_Cattle)+R_h_Cattle)+S_h_Cattle </Expression>
+      </Function>
+      <Function id="beta_tilde_vh">
+        <ListOfReferences>
+          <Reference name="Season_Dummy_Variable" type="Constant"/>
+        </ListOfReferences>
+        <Expression> if((Season_Dummy_Variable==0),0.3,0.3) </Expression>
+      </Function>
+      <Function id="lambda_v">
+        <ListOfReferences>
+          <Reference name="N_h" type="Function"/>
+          <Reference name="N_v" type="Function"/>
+          <Reference name="beta_tilde_vh" type="Function"/>
+          <Reference name="beta_vh" type="Function"/>
+          <Reference name="sigma_h" type="Function"/>
+          <Reference name="sigma_v" type="Function"/>
+          <Reference name="A_h_Cattle" type="Observable"/>
+          <Reference name="I_h_Cattle" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((N_h*sigma_h)*sigma_v)*(((A_h_Cattle*beta_tilde_vh)/N_h)+((I_h_Cattle*beta_vh)/N_h)))/((N_h*sigma_h)+(N_v*sigma_v)) </Expression>
+      </Function>
+      <Function id="v_v">
+        <ListOfReferences>
+          <Reference name="Season_Dummy_Variable" type="Constant"/>
+        </ListOfReferences>
+        <Expression> if((Season_Dummy_Variable==0),(1/14),(1/14)) </Expression>
+      </Function>
+      <Function id="M0">
+        <ListOfReferences>
+          <Reference name="Season_Dummy_Variable" type="Constant"/>
+        </ListOfReferences>
+        <Expression> if((Season_Dummy_Variable==0),20000,4000) </Expression>
+      </Function>
+      <Function id="psi_v">
+        <ListOfReferences>
+          <Reference name="Season_Dummy_Variable" type="Constant"/>
+        </ListOfReferences>
+        <Expression> if((Season_Dummy_Variable==0),0.1,0.1) </Expression>
+      </Function>
+      <Function id="u_v">
+        <ListOfReferences>
+          <Reference name="Season_Dummy_Variable" type="Constant"/>
+        </ListOfReferences>
+        <Expression> if((Season_Dummy_Variable==0),(1/20),(1/14)) </Expression>
+      </Function>
+      <Function id="arRateI_v">
+        <ListOfReferences>
+          <Reference name="M0" type="Function"/>
+          <Reference name="N_v" type="Function"/>
+          <Reference name="psi_v" type="Function"/>
+          <Reference name="u_v" type="Function"/>
+          <Reference name="v_v" type="Function"/>
+          <Reference name="E_v_Vector" type="Observable"/>
+          <Reference name="I_v_Vector" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((E_v_Vector*v_v)+((((I_v_Vector*M0)*psi_v)*u_v)/N_v))-(I_v_Vector*u_v) </Expression>
+      </Function>
+      <Function id="arRateS_v">
+        <ListOfReferences>
+          <Reference name="M0" type="Function"/>
+          <Reference name="N_v" type="Function"/>
+          <Reference name="lambda_v" type="Function"/>
+          <Reference name="psi_v" type="Function"/>
+          <Reference name="u_v" type="Function"/>
+          <Reference name="I_v_Vector" type="Observable"/>
+          <Reference name="S_v_Vector" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((((M0*u_v)*(((-I_v_Vector)*psi_v)+N_v))/N_v)-(S_v_Vector*lambda_v))-(S_v_Vector*u_v) </Expression>
+      </Function>
+      <Function id="beta_hv">
+        <ListOfReferences>
+          <Reference name="Season_Dummy_Variable" type="Constant"/>
+        </ListOfReferences>
+        <Expression> if((Season_Dummy_Variable==0),0.21,0.21) </Expression>
+      </Function>
+      <Function id="lambda_h">
+        <ListOfReferences>
+          <Reference name="N_h" type="Function"/>
+          <Reference name="N_v" type="Function"/>
+          <Reference name="beta_hv" type="Function"/>
+          <Reference name="sigma_h" type="Function"/>
+          <Reference name="sigma_v" type="Function"/>
+          <Reference name="I_v_Vector" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((I_v_Vector*beta_hv)*sigma_h)*sigma_v)/((N_h*sigma_h)+(N_v*sigma_v)) </Expression>
+      </Function>
+      <Function id="gamma_h">
+        <ListOfReferences>
+          <Reference name="Season_Dummy_Variable" type="Constant"/>
+        </ListOfReferences>
+        <Expression> if((Season_Dummy_Variable==0),(1/4),(1/4)) </Expression>
+      </Function>
+      <Function id="u_h">
+        <ListOfReferences>
+          <Reference name="Season_Dummy_Variable" type="Constant"/>
+        </ListOfReferences>
+        <Expression> if((Season_Dummy_Variable==0),(1/2190),(1/2190)) </Expression>
+      </Function>
+      <Function id="theta_h">
+        <ListOfReferences>
+          <Reference name="Season_Dummy_Variable" type="Constant"/>
+        </ListOfReferences>
+        <Expression> if((Season_Dummy_Variable==0),0.4,0.4) </Expression>
+      </Function>
+      <Function id="delta_h">
+        <ListOfReferences>
+          <Reference name="Season_Dummy_Variable" type="Constant"/>
+        </ListOfReferences>
+        <Expression> if((Season_Dummy_Variable==0),0.1,0.1) </Expression>
+      </Function>
+      <Function id="arRateI_h">
+        <ListOfReferences>
+          <Reference name="delta_h" type="Function"/>
+          <Reference name="gamma_h" type="Function"/>
+          <Reference name="lambda_h" type="Function"/>
+          <Reference name="theta_h" type="Function"/>
+          <Reference name="u_h" type="Function"/>
+          <Reference name="I_h_Cattle" type="Observable"/>
+          <Reference name="S_h_Cattle" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((-I_h_Cattle)*((delta_h+gamma_h)+u_h))+((S_h_Cattle*lambda_h)*(1-theta_h)) </Expression>
+      </Function>
+      <Function id="gamma_tilde_h">
+        <ListOfReferences>
+          <Reference name="Season_Dummy_Variable" type="Constant"/>
+        </ListOfReferences>
+        <Expression> if((Season_Dummy_Variable==0),(1/4),(1/4)) </Expression>
+      </Function>
+      <Function id="arRateA_h">
+        <ListOfReferences>
+          <Reference name="gamma_tilde_h" type="Function"/>
+          <Reference name="lambda_h" type="Function"/>
+          <Reference name="theta_h" type="Function"/>
+          <Reference name="u_h" type="Function"/>
+          <Reference name="A_h_Cattle" type="Observable"/>
+          <Reference name="S_h_Cattle" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((-A_h_Cattle)*(gamma_tilde_h+u_h))+((S_h_Cattle*lambda_h)*theta_h) </Expression>
+      </Function>
+      <Function id="arRateE_v">
+        <ListOfReferences>
+          <Reference name="lambda_v" type="Function"/>
+          <Reference name="u_v" type="Function"/>
+          <Reference name="v_v" type="Function"/>
+          <Reference name="E_v_Vector" type="Observable"/>
+          <Reference name="S_v_Vector" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((-E_v_Vector)*(u_v+v_v))+(S_v_Vector*lambda_v) </Expression>
+      </Function>
+      <Function id="arRateR_h">
+        <ListOfReferences>
+          <Reference name="gamma_h" type="Function"/>
+          <Reference name="gamma_tilde_h" type="Function"/>
+          <Reference name="u_h" type="Function"/>
+          <Reference name="A_h_Cattle" type="Observable"/>
+          <Reference name="I_h_Cattle" type="Observable"/>
+          <Reference name="R_h_Cattle" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((A_h_Cattle*gamma_tilde_h)+(I_h_Cattle*gamma_h))-(R_h_Cattle*u_h) </Expression>
+      </Function>
+      <Function id="C0">
+        <ListOfReferences>
+          <Reference name="Season_Dummy_Variable" type="Constant"/>
+        </ListOfReferences>
+        <Expression> if((Season_Dummy_Variable==0),1000,1000) </Expression>
+      </Function>
+      <Function id="arRateS_h">
+        <ListOfReferences>
+          <Reference name="C0" type="Function"/>
+          <Reference name="lambda_h" type="Function"/>
+          <Reference name="u_h" type="Function"/>
+          <Reference name="S_h_Cattle" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((C0*u_h)-(S_h_Cattle*lambda_h))-(S_h_Cattle*u_h) </Expression>
+      </Function>
+      <Function id="Total_Infected_Cattle">
+        <ListOfReferences>
+          <Reference name="A_h_Cattle" type="Observable"/>
+          <Reference name="I_h_Cattle" type="Observable"/>
+        </ListOfReferences>
+        <Expression> A_h_Cattle+I_h_Cattle </Expression>
+      </Function>
+      <Function id="gamma_e">
+        <ListOfReferences>
+          <Reference name="Season_Dummy_Variable" type="Constant"/>
+        </ListOfReferences>
+        <Expression> if((Season_Dummy_Variable==0),0.2,0.1) </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

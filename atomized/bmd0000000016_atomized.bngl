@@ -1,12 +1,12 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL6617161845', 'http://identifiers.org/biomodels.db/BIOMD0000000016']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000016', 'http://identifiers.org/biomodels.db/MODEL6617161845']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/8587874']
 #@BQB_IS:['http://identifiers.org/kegg.pathway/dme04710']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/7227']
 #@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0042752']
 #@creatorEmail:'lenov@ebi.ac.uk'
 #@creatorName:'Le Novère Nicolas'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 7 molecules and 10 reactions. The translated model has 3 molecules and 10 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 7 molecules and 10 reactions. The translated model has 3 molecules and 10 rules'
 ###
 begin model
 begin parameters
@@ -38,25 +38,25 @@ begin compartments
 	compartment_0000004 3 1e-15 #NUCLEUS
 end compartments
 begin molecule types
-	#^ bqbiol:isVersionOf chebi:CHEBI:33699, kegg.compound:C00046
-	PERmRNA()
 	#^ bqbiol:is uniprot:P07663
 	nuclearPER()
+	#^ bqbiol:isVersionOf chebi:CHEBI:33699, kegg.compound:C00046
+	PERmRNA()
 	phosphorylatedPER(bi~BI~0,mono~MONO~0,un~UN~0)
 end molecule types
 begin seed species
-	@CYTOPLASM:PERmRNA() 60.220000000000006 # (0.1 * 1e-06)mol/L * 6.022e23/mol *1e-15L #PERmRNA #M
-	@CYTOPLASM:phosphorylatedPER(bi~0,mono~0,un~UN) 150.55 #original 0.25micromole (default)/L #unphosphorylatedPER #P0
-	@CYTOPLASM:phosphorylatedPER(bi~0,mono~MONO,un~0) 150.55 #original 0.25micromole (default)/L #monophosphorylatedPER #P1
-	@CYTOPLASM:phosphorylatedPER(bi~BI,mono~0,un~0) 150.55 #original 0.25micromole (default)/L #biphosphorylatedPER #P2
-	@compartment_0000004:nuclearPER() 150.55 #original 0.25micromole (default)/L #nuclearPER #Pn
+	@CYTOPLASM:PERmRNA()@CYTOPLASM 60.220000000000006 # (0.1 * 1e-06)mol/L * 6.022e23/mol *1e-15L #PERmRNA #M
+	@CYTOPLASM:phosphorylatedPER(bi~0,mono~0,un~UN)@CYTOPLASM 150.55 #original 0.25micromole (default)/L #unphosphorylatedPER #P0
+	@CYTOPLASM:phosphorylatedPER(bi~0,mono~MONO,un~0)@CYTOPLASM 150.55 #original 0.25micromole (default)/L #monophosphorylatedPER #P1
+	@CYTOPLASM:phosphorylatedPER(bi~BI,mono~0,un~0)@CYTOPLASM 150.55 #original 0.25micromole (default)/L #biphosphorylatedPER #P2
+	@compartment_0000004:nuclearPER()@compartment_0000004 150.55 #original 0.25micromole (default)/L #nuclearPER #Pn
 end seed species
 begin observables
-	Species PERmRNA_CYTOPLASM @CYTOPLASM:PERmRNA() #PER mRNA
-	Species unphosphorylatedPER_CYTOPLASM @CYTOPLASM:phosphorylatedPER(bi~0,mono~0,un~UN) #unphosphorylated PER
-	Species monophosphorylatedPER_CYTOPLASM @CYTOPLASM:phosphorylatedPER(bi~0,mono~MONO,un~0) #monophosphorylated PER
-	Species biphosphorylatedPER_CYTOPLASM @CYTOPLASM:phosphorylatedPER(bi~BI,mono~0,un~0) #biphosphorylated PER
-	Species nuclearPER_compartment_0000004 @compartment_0000004:nuclearPER() #nuclear PER
+	Species PERmRNA_CYTOPLASM @CYTOPLASM:PERmRNA()@CYTOPLASM #PER mRNA
+	Species unphosphorylatedPER_CYTOPLASM @CYTOPLASM:phosphorylatedPER(bi~0,mono~0,un~UN)@CYTOPLASM #unphosphorylated PER
+	Species monophosphorylatedPER_CYTOPLASM @CYTOPLASM:phosphorylatedPER(bi~0,mono~MONO,un~0)@CYTOPLASM #monophosphorylated PER
+	Species biphosphorylatedPER_CYTOPLASM @CYTOPLASM:phosphorylatedPER(bi~BI,mono~0,un~0)@CYTOPLASM #biphosphorylated PER
+	Species nuclearPER_compartment_0000004 @compartment_0000004:nuclearPER()@compartment_0000004 #nuclear PER
 end observables
 begin functions
 	totalPER_ar() = biphosphorylatedPER_CYTOPLASM + monophosphorylatedPER_CYTOPLASM + nuclearPER_compartment_0000004 + unphosphorylatedPER_CYTOPLASM

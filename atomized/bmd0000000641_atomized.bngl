@@ -1,13 +1,13 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000641', 'http://identifiers.org/biomodels.db/MODEL1704030000']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1704030000', 'http://identifiers.org/biomodels.db/BIOMD0000000641']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/28607002']
-#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0007095', 'urn:miriam:pw:+PW%3A0001362']
+#@BQB_IS_VERSION_OF:['urn:miriam:pw:+PW%3A0001362', 'http://identifiers.org/go/GO:0007095']
 #@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0004910']
 #@BQB_HAS_PROPERTY:['urn:miriam:mamo:MAMO%3A0000046']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
 #@creatorEmail:'karan.akopyan@ki.se'
 #@creatorName:'Akopyan Karen'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 12 molecules and 0 reactions. The translated model has 5 molecules and 5 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 12 molecules and 0 reactions. The translated model has 5 molecules and 5 rules'
 ###
 begin model
 begin parameters
@@ -29,8 +29,8 @@ begin parameters
 	Timertot 6.022e+21 #original 10.0substance/volume
 end parameters
 begin molecule types
-	NHEJ()
 	HR()
+	NHEJ()
 	Effectoract()
 	Timeract()
 	CellCact()
@@ -48,8 +48,8 @@ begin observables
 	Species NHEJ NHEJ() #NHEJ
 end observables
 begin functions
-	Damage_ar() = HR + NHEJ
 	Effectorina_ar() = -Effectoract + Effectortot
+	Damage_ar() = HR + NHEJ
 	arRateEffectoract() = -CellCact*Effectoract*Kcc2ch/(Effectoract + Km10) + Damage_ar*Effectorina_ar*Kd2ch/(Effectorina_ar + Km10)
 	Timerinact_ar() = -Timeract + Timertot
 	arRateTimeract() = Damage_ar*Kd2t*Timerinact_ar/(Km1 + Timerinact_ar) - Kti2t*Timeract/(Km1 + Timeract)

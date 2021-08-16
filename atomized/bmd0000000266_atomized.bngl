@@ -1,5 +1,5 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000266', 'http://identifiers.org/biomodels.db/MODEL1007210000']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1007210000', 'http://identifiers.org/biomodels.db/BIOMD0000000266']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/12782117']
 #@BQB_HAS_VERSION:['http://identifiers.org/go/GO:0033638']
 #@BQB_HAS_PART:['http://identifiers.org/go/GO:0005978', 'http://identifiers.org/go/GO:0005992']
@@ -8,7 +8,7 @@
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/4932']
 #@creatorEmail:'lukas@ebi.ac.uk'
 #@creatorName:'Endler Lukas'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 8 molecules and 0 reactions. The translated model has 7 molecules and 7 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 8 molecules and 0 reactions. The translated model has 7 molecules and 7 rules'
 ###
 begin model
 begin parameters
@@ -20,13 +20,13 @@ begin compartments
 	external 3 1.0
 end compartments
 begin molecule types
-	G6P()
 	glucose()
 	G1P()
 	T6P()
-	trehalose()
+	G6P()
 	UDPG()
 	glycogen()
+	trehalose()
 end molecule types
 begin seed species
 	@external:glucose() 6.022e+20 # (1.0 * 0.001)mol/L * 6.022e23/mol *1.0L #glucose #X0
@@ -50,13 +50,13 @@ begin observables
 end observables
 begin functions
 	X17() =  if((heat_shock==12),(1),(1))
+	X11() =  if((heat_shock==6),(1),(1))
 	X12f() =  if((heat_shock==16),(1),(1))
 	X10() =  if((heat_shock==1),(1),(1))
-	X11() =  if((heat_shock==6),(1),(1))
 	flux_X2_out() = 30.12*G1P_cell^(-0.17)*G6P_cell^0.575*UDPG_cell^0.00333*X10^0.5111*X11^0.0667*X12f^0.411*X17^0.0111*glucose_cell^(-0.00333)
+	X13() =  if((heat_shock==1),(16),(1))
 	X12r() =  if((heat_shock==1),(16),(1))
 	X15f() =  if((heat_shock==50),(1),(1))
-	X13() =  if((heat_shock==1),(16),(1))
 	flux_X3_out() = 76.434*G1P_cell^0.593*G6P_cell^(-0.412)*X12r^0.718*X13^0.18*X15f^0.103
 	X18() =  if((heat_shock==1),(18),(1))
 	flux_X7_in() = 1.0939*T6P_cell^0.2*X18
@@ -66,23 +66,23 @@ begin functions
 	flux_X6_in() = 0.19424*G6P_cell^0.3*UDPG_cell^0.3*X17*glucose_cell^(-0.3)
 	flux_X6_out() = 1.0939*T6P_cell^0.2*X18
 	arRateX6() = flux_X6_in - flux_X6_out
-	X15r() =  if((heat_shock==1),(50),(1))
-	X16() =  if((heat_shock==1),(16),(1))
-	flux_X5_out() = 4.929*G6P_cell^(-0.04)*UDPG_cell^(-0.04)*X15r^0.2*X16^0.8*glycogen_cell^0.25
 	X14() =  if((heat_shock==16),(1),(1))
 	flux_X5_in() = 11.06*G1P_cell^0.32*G6P_cell^0.04*UDPG_cell^0.16*X14^0.6*X15f^0.4
+	X16() =  if((heat_shock==1),(16),(1))
+	X15r() =  if((heat_shock==1),(50),(1))
+	flux_X5_out() = 4.929*G6P_cell^(-0.04)*UDPG_cell^(-0.04)*X15r^0.2*X16^0.8*glycogen_cell^0.25
 	arRateX5() = flux_X5_in - flux_X5_out
-	flux_X4_out() = 3.4556*G6P_cell^0.214*UDPG_cell^0.386*X14^0.857*X17^0.143*glucose_cell^(-0.0429)
 	flux_X4_in() = 11.07*G1P_cell^0.5*X13
+	flux_X4_out() = 3.4556*G6P_cell^0.214*UDPG_cell^0.386*X14^0.857*X17^0.143*glucose_cell^(-0.0429)
 	arRateX4() = flux_X4_in - flux_X4_out
 	flux_X3_in() = 7.8819*G1P_cell^(-0.392)*G6P_cell^0.394*UDPG_cell^(-0.01)*X12f^0.949*X15r^0.0513*glycogen_cell^0.0128
 	arRateX3() = flux_X3_in - flux_X3_out
 	X9() =  if((heat_shock==8),(1),(1))
 	flux_X2_in() = 142.72*G1P_cell^0.183*G6P_cell^(-0.179)*T6P_cell^(-0.276)*X12r^0.311*X9^0.689*glucose_cell^0.517
 	arRateX2() = flux_X2_in - flux_X2_out
-	flux_X1_out() = 89.935*T6P_cell^(-0.4)*X9*glucose_cell^0.75
 	X8() =  if((heat_shock==1),(8),(1))
 	flux_X1_in() = 31.912*G6P_cell^(-0.194)*X19^0.0323*X8^0.968*glucose_cell^0.968*trehalose_cell^0.00968
+	flux_X1_out() = 89.935*T6P_cell^(-0.4)*X9*glucose_cell^0.75
 	arRateX1() = flux_X1_in - flux_X1_out
 end functions
 begin reaction rules

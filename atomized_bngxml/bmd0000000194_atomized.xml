@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000194_atomized">
+    <ListOfParameters>
+      <Parameter id="eta_T" type="Constant" value="0.01" expr="0.01"/>
+      <Parameter id="gamma_T" type="Constant" value="1e+9" expr="1000000000.0"/>
+      <Parameter id="alpha_T" type="Constant" value="200000" expr="200000.0"/>
+      <Parameter id="beta_T" type="Constant" value="0.2" expr="0.2"/>
+      <Parameter id="u" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="const_val_1" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="const_val_0" type="Constant" value="0" expr="0"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="Cdc20">
+        <ListOfComponentTypes>
+          <ComponentType id="o_mad2"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="Mad1_C_Mad2">
+        <ListOfComponentTypes>
+          <ComponentType id="o_mad2"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="O_Mad2">
+        <ListOfComponentTypes>
+          <ComponentType id="cdc20"/>
+          <ComponentType id="mad1_c_mad2"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="3.011e+16" name="Mad1_C_Mad2(o_mad2)">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="Mad1_C_Mad2">
+            <ListOfComponents>
+              <Component id="S1_M1_C1" name="o_mad2" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="9.033e+16" name="O_Mad2(cdc20,mad1_c_mad2)">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="O_Mad2">
+            <ListOfComponents>
+              <Component id="S2_M1_C1" name="cdc20" numberOfBonds="0"/>
+              <Component id="S2_M1_C2" name="mad1_c_mad2" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="1.3248400000000002e+17" name="Cdc20(o_mad2)">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="Cdc20">
+            <ListOfComponents>
+              <Component id="S3_M1_C1" name="o_mad2" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="R6" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR1_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_RP1_M1" name="Mad1_C_Mad2">
+                <ListOfComponents>
+                  <Component id="RR1_RP1_M1_C1" name="o_mad2" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR1_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR1_RP2_M1" name="O_Mad2">
+                <ListOfComponents>
+                  <Component id="RR1_RP2_M1_C1" name="cdc20" numberOfBonds="0"/>
+                  <Component id="RR1_RP2_M1_C2" name="mad1_c_mad2" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="O_Mad2">
+                <ListOfComponents>
+                  <Component id="RR1_PP1_M1_C1" name="cdc20" numberOfBonds="0"/>
+                  <Component id="RR1_PP1_M1_C2" name="mad1_c_mad2" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR1_PP1_M2" name="Mad1_C_Mad2">
+                <ListOfComponents>
+                  <Component id="RR1_PP1_M2_C1" name="o_mad2" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR1_PP1_B1" site1="RR1_PP1_M1_C2" site2="RR1_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR1_RP1_M1" targetID="RR1_PP1_M2"/>
+          <MapItem sourceID="RR1_RP1_M1_C1" targetID="RR1_PP1_M2_C1"/>
+          <MapItem sourceID="RR1_RP2_M1" targetID="RR1_PP1_M1"/>
+          <MapItem sourceID="RR1_RP2_M1_C1" targetID="RR1_PP1_M1_C1"/>
+          <MapItem sourceID="RR1_RP2_M1_C2" targetID="RR1_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR1_RP2_M1_C2" site2="RR1_RP1_M1_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="_reverse_R6" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="O_Mad2">
+                <ListOfComponents>
+                  <Component id="RR2_RP1_M1_C1" name="cdc20" numberOfBonds="0"/>
+                  <Component id="RR2_RP1_M1_C2" name="mad1_c_mad2" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR2_RP1_M2" name="Mad1_C_Mad2">
+                <ListOfComponents>
+                  <Component id="RR2_RP1_M2_C1" name="o_mad2" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR2_RP1_B1" site1="RR2_RP1_M1_C2" site2="RR2_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="Mad1_C_Mad2">
+                <ListOfComponents>
+                  <Component id="RR2_PP1_M1_C1" name="o_mad2" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR2_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP2_M1" name="O_Mad2">
+                <ListOfComponents>
+                  <Component id="RR2_PP2_M1_C1" name="cdc20" numberOfBonds="0"/>
+                  <Component id="RR2_PP2_M1_C2" name="mad1_c_mad2" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="beta_T"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1" targetID="RR2_PP2_M1"/>
+          <MapItem sourceID="RR2_RP1_M1_C1" targetID="RR2_PP2_M1_C1"/>
+          <MapItem sourceID="RR2_RP1_M1_C2" targetID="RR2_PP2_M1_C2"/>
+          <MapItem sourceID="RR2_RP1_M2" targetID="RR2_PP1_M1"/>
+          <MapItem sourceID="RR2_RP1_M2_C1" targetID="RR2_PP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <DeleteBond site1="RR2_RP1_M1_C2" site2="RR2_RP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="R7" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="O_Mad2">
+                <ListOfComponents>
+                  <Component id="RR3_RP1_M1_C1" name="cdc20" numberOfBonds="0"/>
+                  <Component id="RR3_RP1_M1_C2" name="mad1_c_mad2" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR3_RP1_M2" name="Mad1_C_Mad2">
+                <ListOfComponents>
+                  <Component id="RR3_RP1_M2_C1" name="o_mad2" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR3_RP1_B1" site1="RR3_RP1_M1_C2" site2="RR3_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+          <ReactantPattern id="RR3_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP2_M1" name="Cdc20">
+                <ListOfComponents>
+                  <Component id="RR3_RP2_M1_C1" name="o_mad2" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="Mad1_C_Mad2">
+                <ListOfComponents>
+                  <Component id="RR3_PP1_M1_C1" name="o_mad2" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR3_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP2_M1" name="O_Mad2">
+                <ListOfComponents>
+                  <Component id="RR3_PP2_M1_C1" name="cdc20" numberOfBonds="1"/>
+                  <Component id="RR3_PP2_M1_C2" name="mad1_c_mad2" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR3_PP2_M2" name="Cdc20">
+                <ListOfComponents>
+                  <Component id="RR3_PP2_M2_C1" name="o_mad2" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR3_PP2_B1" site1="RR3_PP2_M1_C1" site2="RR3_PP2_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="fRate1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1" targetID="RR3_PP2_M1"/>
+          <MapItem sourceID="RR3_RP1_M1_C1" targetID="RR3_PP2_M1_C1"/>
+          <MapItem sourceID="RR3_RP1_M1_C2" targetID="RR3_PP2_M1_C2"/>
+          <MapItem sourceID="RR3_RP1_M2" targetID="RR3_PP1_M1"/>
+          <MapItem sourceID="RR3_RP1_M2_C1" targetID="RR3_PP1_M1_C1"/>
+          <MapItem sourceID="RR3_RP2_M1" targetID="RR3_PP2_M2"/>
+          <MapItem sourceID="RR3_RP2_M1_C1" targetID="RR3_PP2_M2_C1"/>
+        </Map>
+        <ListOfOperations>
+          <DeleteBond site1="RR3_RP1_M1_C2" site2="RR3_RP1_M2_C1"/>
+          <AddBond site1="RR3_RP1_M1_C1" site2="RR3_RP2_M1_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="R8" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="O_Mad2">
+                <ListOfComponents>
+                  <Component id="RR4_RP1_M1_C1" name="cdc20" numberOfBonds="1"/>
+                  <Component id="RR4_RP1_M1_C2" name="mad1_c_mad2" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR4_RP1_M2" name="Cdc20">
+                <ListOfComponents>
+                  <Component id="RR4_RP1_M2_C1" name="o_mad2" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR4_RP1_B1" site1="RR4_RP1_M1_C1" site2="RR4_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="Cdc20">
+                <ListOfComponents>
+                  <Component id="RR4_PP1_M1_C1" name="o_mad2" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR4_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP2_M1" name="O_Mad2">
+                <ListOfComponents>
+                  <Component id="RR4_PP2_M1_C1" name="cdc20" numberOfBonds="0"/>
+                  <Component id="RR4_PP2_M1_C2" name="mad1_c_mad2" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="eta_T"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1" targetID="RR4_PP2_M1"/>
+          <MapItem sourceID="RR4_RP1_M1_C1" targetID="RR4_PP2_M1_C1"/>
+          <MapItem sourceID="RR4_RP1_M1_C2" targetID="RR4_PP2_M1_C2"/>
+          <MapItem sourceID="RR4_RP1_M2" targetID="RR4_PP1_M1"/>
+          <MapItem sourceID="RR4_RP1_M2_C1" targetID="RR4_PP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <DeleteBond site1="RR4_RP1_M1_C1" site2="RR4_RP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="Mad1_C_Mad2" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="Mad1_C_Mad2">
+                <ListOfComponents>
+                  <Component id="O1_P1_M1_C1" name="o_mad2" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="O_Mad2" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="O_Mad2">
+                <ListOfComponents>
+                  <Component id="O2_P1_M1_C1" name="cdc20" numberOfBonds="0"/>
+                  <Component id="O2_P1_M1_C2" name="mad1_c_mad2" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="Mad1_C_Mad2_O_Mad2m" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="O_Mad2">
+                <ListOfComponents>
+                  <Component id="O3_P1_M1_C1" name="cdc20" numberOfBonds="0"/>
+                  <Component id="O3_P1_M1_C2" name="mad1_c_mad2" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O3_P1_M2" name="Mad1_C_Mad2">
+                <ListOfComponents>
+                  <Component id="O3_P1_M2_C1" name="o_mad2" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O3_P1_B1" site1="O3_P1_M1_C2" site2="O3_P1_M2_C1"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="Cdc20" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="Cdc20">
+                <ListOfComponents>
+                  <Component id="O4_P1_M1_C1" name="o_mad2" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="Cdc20_C_Mad2" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="O_Mad2">
+                <ListOfComponents>
+                  <Component id="O5_P1_M1_C1" name="cdc20" numberOfBonds="1"/>
+                  <Component id="O5_P1_M1_C2" name="mad1_c_mad2" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O5_P1_M2" name="Cdc20">
+                <ListOfComponents>
+                  <Component id="O5_P1_M2_C1" name="o_mad2" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O5_P1_B1" site1="O5_P1_M1_C1" site2="O5_P1_M2_C1"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="alpha_T" type="Constant"/>
+          <Reference name="u" type="Constant"/>
+        </ListOfReferences>
+        <Expression> alpha_T*u </Expression>
+      </Function>
+      <Function id="fRate1">
+        <ListOfReferences>
+          <Reference name="gamma_T" type="Constant"/>
+          <Reference name="u" type="Constant"/>
+        </ListOfReferences>
+        <Expression> gamma_T*u </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

@@ -1,11 +1,11 @@
 ###
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/31048505']
 #@BQB_IS:['http://identifiers.org/biomodels.db/MODEL1904030001']
-#@BQB_HAS_PROPERTY:['http://identifiers.org/taxonomy/9606', 'http://identifiers.org/ncit/C39163']
-#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000871', 'http://identifiers.org/biomodels.db/MODEL1904030001']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/ncit/C39163', 'http://identifiers.org/taxonomy/9606']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1904030001', 'http://identifiers.org/biomodels.db/BIOMD0000000871']
 #@creatorEmail:'Simon.Mitchell@ucla.edu'
 #@creatorName:'Mitchell Simon'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 8 molecules and 13 reactions. The translated model has 4 molecules and 13 rules'
+#@notes:'This is an atomized translation of an SBML model created on 14/08/2021. The original model has 8 molecules and 13 reactions. The translated model has 4 molecules and 13 rules'
 ###
 begin model
 begin parameters
@@ -31,14 +31,14 @@ begin parameters
 	r13_k1 0.022800
 end parameters
 begin molecule types
-	#^ bqbiol:is uniprot:Q00653
-	p52(relb)
-	#^ bqbiol:is uniprot:Q01201
-	RelB(p52)
 	#^ bqbiol:is uniprot:Q99558
 	NIK(p100)
 	#^ bqbiol:is uniprot:Q00653
+	p52(relb)
+	#^ bqbiol:is uniprot:Q00653
 	p100(nik,p100)
+	#^ bqbiol:is uniprot:Q01201
+	RelB(p52)
 end molecule types
 begin seed species
 	NIK(p100) 6022000000000000.0 # (10.0 * 1e-09)mol/L * 6.022e23/mol *1.0L #NIK #NIK
@@ -47,11 +47,11 @@ begin observables
 	Species p100 p100(nik,p100) #p100
 	Species p52 p52(relb) #p52
 	Species NIK NIK(p100) #NIK
-	Species IkBd p100(nik,p100!83).p100(nik,p100!83) #IkBd
-	Species IkBd_NIK p100(nik!81,p100!83).p100(nik,p100!83).NIK(p100!81) #IkBd:NIK
-	Species p100_NIK p100(nik!81,p100).NIK(p100!81) #p100:NIK
+	Species IkBd p100(nik,p100!886).p100(nik,p100!886) #IkBd
+	Species IkBd_NIK p100(nik!884,p100!886).p100(nik,p100!886).NIK(p100!884) #IkBd:NIK
+	Species p100_NIK p100(nik!884,p100).NIK(p100!884) #p100:NIK
 	Species RelB RelB(p52) #RelB
-	Species RelB_p52 p52(relb!84).RelB(p52!84) #RelB:p52
+	Species RelB_p52 p52(relb!887).RelB(p52!887) #RelB:p52
 end observables
 begin functions
 	fRate0() = 1000.0*canon/(canon + 50.0)
@@ -59,17 +59,17 @@ begin functions
 end functions
 begin reaction rules
 	p100_mRNA_Expressions: 0  -> p100(nik,p100) fRate0()
-	p100_processing: p100(nik!81,p100).NIK(p100!81) -> p52(relb) + NIK(p100) r2_k1
+	p100_processing: p100(nik!884,p100).NIK(p100!884) -> p52(relb) + NIK(p100) r2_k1
 	p52_degradation: p52(relb) -> 0  r3_k1
 	p100_degradation: p100(nik,p100) -> 0  r4_k1
-	p100_dimerization: p100(nik,p100) + p100(nik,p100) <-> p100(nik,p100!83).p100(nik,p100!83) r5_k1,r5_k2
-	IkBd_degradation: p100(nik,p100!83).p100(nik,p100!83) -> 0  r6_k1
-	IkBd_degradation_by_NIK: p100(nik!81,p100!83).p100(nik,p100!83).NIK(p100!81) -> NIK(p100) r7_k1
-	p100_NIK_binding: p100(nik,p100) + NIK(p100) <-> p100(nik!81,p100).NIK(p100!81) r8_k1,r8_k2
-	IkBd_NIK_binding: p100(nik,p100!83).p100(nik,p100!83) + NIK(p100) <-> p100(nik!81,p100!83).p100(nik,p100!83).NIK(p100!81) r9_k1,r9_k2
+	p100_dimerization: p100(nik,p100) + p100(nik,p100) <-> p100(nik,p100!886).p100(nik,p100!886) r5_k1,r5_k2
+	IkBd_degradation: p100(nik,p100!886).p100(nik,p100!886) -> 0  r6_k1
+	IkBd_degradation_by_NIK: p100(nik!884,p100!886).p100(nik,p100!886).NIK(p100!884) -> NIK(p100) r7_k1
+	p100_NIK_binding: p100(nik,p100) + NIK(p100) <-> p100(nik!884,p100).NIK(p100!884) r8_k1,r8_k2
+	IkBd_NIK_binding: p100(nik,p100!886).p100(nik,p100!886) + NIK(p100) <-> p100(nik!884,p100!886).p100(nik,p100!886).NIK(p100!884) r9_k1,r9_k2
 	RelB_Expression: 0  -> RelB(p52) fRate9()
-	RelB_p52_Binding: RelB(p52) + p52(relb) <-> p52(relb!84).RelB(p52!84) r11_k1,r11_k2
-	RelB_p52_degradation: p52(relb!84).RelB(p52!84) -> 0  r12_k1
+	RelB_p52_Binding: RelB(p52) + p52(relb) <-> p52(relb!887).RelB(p52!887) r11_k1,r11_k2
+	RelB_p52_degradation: p52(relb!887).RelB(p52!887) -> 0  r12_k1
 	RelB_degradation: RelB(p52) -> 0  r13_k1
 end reaction rules
 end model

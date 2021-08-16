@@ -5,7 +5,7 @@
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/4932']
 #@creatorEmail:'juty@ebi.ac.uk'
 #@creatorName:'Juty Nick'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 10 molecules and 23 reactions. The translated model has 6 molecules and 23 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 10 molecules and 23 reactions. The translated model has 6 molecules and 23 rules'
 ###
 begin model
 begin parameters
@@ -27,26 +27,26 @@ begin parameters
 	_3sites 0
 end parameters
 begin molecule types
-	I(a)
 	G0(a)
+	rA()
+	A(a,a,a,g0,i)
 	rI()
 	G3()
-	A(a,a,a,g0,i)
-	rA()
+	I(a)
 end molecule types
 begin seed species
 	G0(a) 6.022e+23 # 1.0mol/L * 6.022e23/mol *1.0L #G0 #G0
 end seed species
 begin observables
 	Species G0 G0(a) #G0
-	Species G1 A(a!116,a,a,g0,i).A(a!116,a,a,g0!118,i).G0(a!118) #G1
+	Species G1 A(a!217,a,a,g0,i).A(a!217,a,a,g0!219,i).G0(a!219) #G1
 	Species rA rA() #rA
 	Species I I(a) #I
 	Species rI rI() #rI
 	Species A A(a,a,a,g0,i) #A
-	Species AI A(a,a,a,g0,i!117).I(a!117) #AI
-	Species A2 A(a!116,a,a,g0,i).A(a!116,a,a,g0,i) #A2
-	Species G2 A(a!116,a!121,a!122,g0,i).A(a!116,a!119,a!120,g0!118,i).A(a!119,a!121,a!123,g0,i).A(a!120,a!122,a!123,g0,i).G0(a!118) #G2
+	Species AI A(a,a,a,g0,i!218).I(a!218) #AI
+	Species A2 A(a!217,a,a,g0,i).A(a!217,a,a,g0,i) #A2
+	Species G2 A(a!217,a!222,a!223,g0,i).A(a!217,a!220,a!221,g0!219,i).A(a!220,a!222,a!224,g0,i).A(a!221,a!223,a!224,g0,i).G0(a!219) #G2
 	Species G3 G3() #G3
 end observables
 begin functions
@@ -61,10 +61,10 @@ begin functions
 	Alpha() = 0.0124601275917065*ModelValue_0
 end functions
 begin reaction rules
-	G1____G0___A2: A(a!116,a,a,g0,i).A(a!116,a,a,g0!118,i).G0(a!118) -> G0(a) + A(a!116,a,a,g0,i).A(a!116,a,a,g0,i) t_10 #Modifiers(G1)
-	G0___A2____G1: G0(a) + A(a!116,a,a,g0,i).A(a!116,a,a,g0,i) -> A(a!116,a,a,g0,i).A(a!116,a,a,g0!118,i).G0(a!118) a_01 #Modifiers(G0, A2)
+	G1____G0___A2: A(a!217,a,a,g0,i).A(a!217,a,a,g0!219,i).G0(a!219) -> G0(a) + A(a!217,a,a,g0,i).A(a!217,a,a,g0,i) t_10 #Modifiers(G1)
+	G0___A2____G1: G0(a) + A(a!217,a,a,g0,i).A(a!217,a,a,g0,i) -> A(a!217,a,a,g0,i).A(a!217,a,a,g0!219,i).G0(a!219) a_01 #Modifiers(G0, A2)
 	G____G___rI: G0(a) -> G0(a) + rI() rho_f #Modifiers(G0)
-	G1____G1___rI: A(a!116,a,a,g0,i).A(a!116,a,a,g0!118,i).G0(a!118) -> A(a!116,a,a,g0,i).A(a!116,a,a,g0!118,i).G0(a!118) + rI() rho_b #Modifiers(G1)
+	G1____G1___rI: A(a!217,a,a,g0,i).A(a!217,a,a,g0!219,i).G0(a!219) -> A(a!217,a,a,g0,i).A(a!217,a,a,g0!219,i).G0(a!219) + rI() rho_b #Modifiers(G1)
 	rA___: rA() -> 0  delta_m #Modifiers(rA)
 	____rA: 0  -> rA() rho_0
 	rI___: rI() -> 0  delta_m #Modifiers(rI)
@@ -72,17 +72,17 @@ begin reaction rules
 	I___: I(a) -> 0  delta_p #Modifiers(I)
 	rI____rI___I: rI() -> rI() + I(a) beta #Modifiers(rI)
 	A___: A(a,a,a,g0,i) -> 0  delta_p #Modifiers(A)
-	A___I____AI: A(a,a,a,g0,i) + I(a) -> A(a,a,a,g0,i!117).I(a!117) gamma #Modifiers(A, I)
-	_2___A____A2: A(a,a,a,g0,i) + A(a,a,a,g0,i) -> A(a!116,a,a,g0,i).A(a!116,a,a,g0,i) gamma #Modifiers(A)
-	A2____2___A: A(a!116,a,a,g0,i).A(a!116,a,a,g0,i) -> A(a,a,a,g0,i) + A(a,a,a,g0,i) epsilon_1 #Modifiers(A2)
-	AI____A___I: A(a,a,a,g0,i!117).I(a!117) -> A(a,a,a,g0,i) + I(a) epsilon #Modifiers(AI)
-	AI___: A(a,a,a,g0,i!117).I(a!117) -> 0  delta_p #Modifiers(AI)
-	A2___: A(a!116,a,a,g0,i).A(a!116,a,a,g0,i) -> 0  delta_p #Modifiers(A2)
-	G1___A2____G2: A(a!116,a,a,g0,i).A(a!116,a,a,g0!118,i).G0(a!118) + A(a!116,a,a,g0,i).A(a!116,a,a,g0,i) -> A(a!116,a!121,a!122,g0,i).A(a!116,a!119,a!120,g0!118,i).A(a!119,a!121,a!123,g0,i).A(a!120,a!122,a!123,g0,i).G0(a!118) a_12 #Modifiers(G1, A2)
-	G2____G1___A2: A(a!116,a!121,a!122,g0,i).A(a!116,a!119,a!120,g0!118,i).A(a!119,a!121,a!123,g0,i).A(a!120,a!122,a!123,g0,i).G0(a!118) -> A(a!116,a,a,g0,i).A(a!116,a,a,g0!118,i).G0(a!118) + A(a!116,a,a,g0,i).A(a!116,a,a,g0,i) t_21 #Modifiers(G2)
-	G2____G2___rI: A(a!116,a!121,a!122,g0,i).A(a!116,a!119,a!120,g0!118,i).A(a!119,a!121,a!123,g0,i).A(a!120,a!122,a!123,g0,i).G0(a!118) -> A(a!116,a!121,a!122,g0,i).A(a!116,a!119,a!120,g0!118,i).A(a!119,a!121,a!123,g0,i).A(a!120,a!122,a!123,g0,i).G0(a!118) + rI() rho_b #Modifiers(G2)
-	G2___A2____G3: A(a!116,a!121,a!122,g0,i).A(a!116,a!119,a!120,g0!118,i).A(a!119,a!121,a!123,g0,i).A(a!120,a!122,a!123,g0,i).G0(a!118) + A(a!116,a,a,g0,i).A(a!116,a,a,g0,i) -> G3() a_23 #Modifiers(G2, A2)
-	G3____G2___A2: G3() -> A(a!116,a!121,a!122,g0,i).A(a!116,a!119,a!120,g0!118,i).A(a!119,a!121,a!123,g0,i).A(a!120,a!122,a!123,g0,i).G0(a!118) + A(a!116,a,a,g0,i).A(a!116,a,a,g0,i) t_32 #Modifiers(G3)
+	A___I____AI: A(a,a,a,g0,i) + I(a) -> A(a,a,a,g0,i!218).I(a!218) gamma #Modifiers(A, I)
+	_2___A____A2: A(a,a,a,g0,i) + A(a,a,a,g0,i) -> A(a!217,a,a,g0,i).A(a!217,a,a,g0,i) gamma #Modifiers(A)
+	A2____2___A: A(a!217,a,a,g0,i).A(a!217,a,a,g0,i) -> A(a,a,a,g0,i) + A(a,a,a,g0,i) epsilon_1 #Modifiers(A2)
+	AI____A___I: A(a,a,a,g0,i!218).I(a!218) -> A(a,a,a,g0,i) + I(a) epsilon #Modifiers(AI)
+	AI___: A(a,a,a,g0,i!218).I(a!218) -> 0  delta_p #Modifiers(AI)
+	A2___: A(a!217,a,a,g0,i).A(a!217,a,a,g0,i) -> 0  delta_p #Modifiers(A2)
+	G1___A2____G2: A(a!217,a,a,g0,i).A(a!217,a,a,g0!219,i).G0(a!219) + A(a!217,a,a,g0,i).A(a!217,a,a,g0,i) -> A(a!217,a!222,a!223,g0,i).A(a!217,a!220,a!221,g0!219,i).A(a!220,a!222,a!224,g0,i).A(a!221,a!223,a!224,g0,i).G0(a!219) a_12 #Modifiers(G1, A2)
+	G2____G1___A2: A(a!217,a!222,a!223,g0,i).A(a!217,a!220,a!221,g0!219,i).A(a!220,a!222,a!224,g0,i).A(a!221,a!223,a!224,g0,i).G0(a!219) -> A(a!217,a,a,g0,i).A(a!217,a,a,g0!219,i).G0(a!219) + A(a!217,a,a,g0,i).A(a!217,a,a,g0,i) t_21 #Modifiers(G2)
+	G2____G2___rI: A(a!217,a!222,a!223,g0,i).A(a!217,a!220,a!221,g0!219,i).A(a!220,a!222,a!224,g0,i).A(a!221,a!223,a!224,g0,i).G0(a!219) -> A(a!217,a!222,a!223,g0,i).A(a!217,a!220,a!221,g0!219,i).A(a!220,a!222,a!224,g0,i).A(a!221,a!223,a!224,g0,i).G0(a!219) + rI() rho_b #Modifiers(G2)
+	G2___A2____G3: A(a!217,a!222,a!223,g0,i).A(a!217,a!220,a!221,g0!219,i).A(a!220,a!222,a!224,g0,i).A(a!221,a!223,a!224,g0,i).G0(a!219) + A(a!217,a,a,g0,i).A(a!217,a,a,g0,i) -> G3() a_23 #Modifiers(G2, A2)
+	G3____G2___A2: G3() -> A(a!217,a!222,a!223,g0,i).A(a!217,a!220,a!221,g0!219,i).A(a!220,a!222,a!224,g0,i).A(a!221,a!223,a!224,g0,i).G0(a!219) + A(a!217,a,a,g0,i).A(a!217,a,a,g0,i) t_32 #Modifiers(G3)
 	G3____G3___rI: G3() -> G3() + rI() rho_b #Modifiers(G3)
 end reaction rules
 end model

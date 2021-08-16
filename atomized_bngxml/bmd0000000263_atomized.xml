@@ -1,0 +1,1138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000263_atomized">
+    <ListOfParameters>
+      <Parameter id="pTrkA_scaleFactor" type="Constant" value="0.84878347" expr="0.848783474941268"/>
+      <Parameter id="pAkt_scaleFactor" type="Constant" value="2.4238121" expr="2.42381211094508"/>
+      <Parameter id="pS6_scaleFactor" type="Constant" value="0.52584272" expr="0.525842718263069"/>
+      <Parameter id="NGF_conc_ramp" type="Constant" value="30" expr="30.0"/>
+      <Parameter id="TrkA_turnover" type="Constant" value="0.0011032441" expr="0.0011032440769796"/>
+      <Parameter id="pulse_time" type="Constant" value="60" expr="60.0"/>
+      <Parameter id="ramp_time" type="Constant" value="3600" expr="3600.0"/>
+      <Parameter id="NGF_conc_step" type="Constant" value="0" expr="0"/>
+      <Parameter id="NGF_conc_pulse" type="Constant" value="0" expr="0"/>
+      <Parameter id="r1_k1" type="Constant" value="0.002694" expr="0.002694"/>
+      <Parameter id="r1_k2" type="Constant" value="0.013375" expr="0.013375"/>
+      <Parameter id="r2_k1" type="Constant" value="0.08827" expr="0.088270"/>
+      <Parameter id="r2_k2" type="Constant" value="0" expr="0.000000"/>
+      <Parameter id="r3_k1" type="Constant" value="0.020252" expr="0.020252"/>
+      <Parameter id="r4_k1" type="Constant" value="0.068408" expr="0.068408"/>
+      <Parameter id="r5_k1" type="Constant" value="68.3666" expr="68.366600"/>
+      <Parameter id="r5_k2" type="Constant" value="5.23519" expr="5.235190"/>
+      <Parameter id="r6_k1" type="Constant" value="0.005652" expr="0.005652"/>
+      <Parameter id="r7_k1" type="Constant" value="1.28135" expr="1.281350"/>
+      <Parameter id="r8_k1" type="Constant" value="0.000293" expr="0.000293"/>
+      <Parameter id="r10_k1" type="Constant" value="0.008332" expr="0.008332"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="Akt">
+        <ListOfComponentTypes>
+          <ComponentType id="p">
+            <ListOfAllowedStates>
+              <AllowedState id="P"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="s6"/>
+          <ComponentType id="trka"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="NGF">
+        <ListOfComponentTypes>
+          <ComponentType id="trka"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="S6">
+        <ListOfComponentTypes>
+          <ComponentType id="akt"/>
+          <ComponentType id="p">
+            <ListOfAllowedStates>
+              <AllowedState id="P"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="TrkA">
+        <ListOfComponentTypes>
+          <ComponentType id="akt"/>
+          <ComponentType id="ngf"/>
+          <ComponentType id="p">
+            <ListOfAllowedStates>
+              <AllowedState id="P"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="pro_">
+            <ListOfAllowedStates>
+              <AllowedState id="PRO_"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="6.961124752706088e+23" name="Akt(p~0,s6,trka)">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="Akt">
+            <ListOfComponents>
+              <Component id="S1_M1_C1" name="p" state="0" numberOfBonds="0"/>
+              <Component id="S1_M1_C2" name="s6" numberOfBonds="0"/>
+              <Component id="S1_M1_C3" name="trka" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="2.139216763020021e+24" name="S6(akt,p~0)">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="S6">
+            <ListOfComponents>
+              <Component id="S2_M1_C1" name="akt" numberOfBonds="0"/>
+              <Component id="S2_M1_C2" name="p" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="5.131135975101059e+24" name="$TrkA(akt,ngf,p~0,pro_~PRO_)" Fixed="1">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="TrkA">
+            <ListOfComponents>
+              <Component id="S3_M1_C1" name="akt" numberOfBonds="0"/>
+              <Component id="S3_M1_C2" name="ngf" numberOfBonds="0"/>
+              <Component id="S3_M1_C3" name="p" state="0" numberOfBonds="0"/>
+              <Component id="S3_M1_C4" name="pro_" state="PRO_" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S4"  concentration="8.52065090518276" name="TrkA(akt,ngf,p~0,pro_~0)">
+        <ListOfMolecules>
+          <Molecule id="S4_M1" name="TrkA">
+            <ListOfComponents>
+              <Component id="S4_M1_C1" name="akt" numberOfBonds="0"/>
+              <Component id="S4_M1_C2" name="ngf" numberOfBonds="0"/>
+              <Component id="S4_M1_C3" name="p" state="0" numberOfBonds="0"/>
+              <Component id="S4_M1_C4" name="pro_" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="reaction_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR1_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_RP1_M1" name="NGF">
+                <ListOfComponents>
+                  <Component id="RR1_RP1_M1_C1" name="trka" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR1_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR1_RP2_M1" name="TrkA">
+                <ListOfComponents>
+                  <Component id="RR1_RP2_M1_C1" name="akt" numberOfBonds="0"/>
+                  <Component id="RR1_RP2_M1_C2" name="ngf" numberOfBonds="0"/>
+                  <Component id="RR1_RP2_M1_C3" name="p" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_RP2_M1_C4" name="pro_" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="TrkA">
+                <ListOfComponents>
+                  <Component id="RR1_PP1_M1_C1" name="akt" numberOfBonds="0"/>
+                  <Component id="RR1_PP1_M1_C2" name="ngf" numberOfBonds="1"/>
+                  <Component id="RR1_PP1_M1_C3" name="p" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_PP1_M1_C4" name="pro_" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR1_PP1_M2" name="NGF">
+                <ListOfComponents>
+                  <Component id="RR1_PP1_M2_C1" name="trka" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR1_PP1_B1" site1="RR1_PP1_M1_C2" site2="RR1_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r1_k1"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR1_RP1_M1" targetID="RR1_PP1_M2"/>
+          <MapItem sourceID="RR1_RP1_M1_C1" targetID="RR1_PP1_M2_C1"/>
+          <MapItem sourceID="RR1_RP2_M1" targetID="RR1_PP1_M1"/>
+          <MapItem sourceID="RR1_RP2_M1_C1" targetID="RR1_PP1_M1_C1"/>
+          <MapItem sourceID="RR1_RP2_M1_C2" targetID="RR1_PP1_M1_C2"/>
+          <MapItem sourceID="RR1_RP2_M1_C3" targetID="RR1_PP1_M1_C3"/>
+          <MapItem sourceID="RR1_RP2_M1_C4" targetID="RR1_PP1_M1_C4"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR1_RP2_M1_C2" site2="RR1_RP1_M1_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="_reverse_reaction_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="TrkA">
+                <ListOfComponents>
+                  <Component id="RR2_RP1_M1_C1" name="akt" numberOfBonds="0"/>
+                  <Component id="RR2_RP1_M1_C2" name="ngf" numberOfBonds="1"/>
+                  <Component id="RR2_RP1_M1_C3" name="p" state="0" numberOfBonds="0"/>
+                  <Component id="RR2_RP1_M1_C4" name="pro_" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR2_RP1_M2" name="NGF">
+                <ListOfComponents>
+                  <Component id="RR2_RP1_M2_C1" name="trka" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR2_RP1_B1" site1="RR2_RP1_M1_C2" site2="RR2_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="NGF">
+                <ListOfComponents>
+                  <Component id="RR2_PP1_M1_C1" name="trka" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR2_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP2_M1" name="TrkA">
+                <ListOfComponents>
+                  <Component id="RR2_PP2_M1_C1" name="akt" numberOfBonds="0"/>
+                  <Component id="RR2_PP2_M1_C2" name="ngf" numberOfBonds="0"/>
+                  <Component id="RR2_PP2_M1_C3" name="p" state="0" numberOfBonds="0"/>
+                  <Component id="RR2_PP2_M1_C4" name="pro_" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r1_k2"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1" targetID="RR2_PP2_M1"/>
+          <MapItem sourceID="RR2_RP1_M1_C1" targetID="RR2_PP2_M1_C1"/>
+          <MapItem sourceID="RR2_RP1_M1_C2" targetID="RR2_PP2_M1_C2"/>
+          <MapItem sourceID="RR2_RP1_M1_C3" targetID="RR2_PP2_M1_C3"/>
+          <MapItem sourceID="RR2_RP1_M1_C4" targetID="RR2_PP2_M1_C4"/>
+          <MapItem sourceID="RR2_RP1_M2" targetID="RR2_PP1_M1"/>
+          <MapItem sourceID="RR2_RP1_M2_C1" targetID="RR2_PP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <DeleteBond site1="RR2_RP1_M1_C2" site2="RR2_RP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="reaction_2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="TrkA">
+                <ListOfComponents>
+                  <Component id="RR3_RP1_M1_C1" name="akt" numberOfBonds="0"/>
+                  <Component id="RR3_RP1_M1_C2" name="ngf" numberOfBonds="0"/>
+                  <Component id="RR3_RP1_M1_C3" name="p" state="P" numberOfBonds="0"/>
+                  <Component id="RR3_RP1_M1_C4" name="pro_" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR3_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP2_M1" name="Akt">
+                <ListOfComponents>
+                  <Component id="RR3_RP2_M1_C1" name="p" state="0" numberOfBonds="0"/>
+                  <Component id="RR3_RP2_M1_C2" name="s6" numberOfBonds="0"/>
+                  <Component id="RR3_RP2_M1_C3" name="trka" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="TrkA">
+                <ListOfComponents>
+                  <Component id="RR3_PP1_M1_C1" name="akt" numberOfBonds="1"/>
+                  <Component id="RR3_PP1_M1_C2" name="ngf" numberOfBonds="0"/>
+                  <Component id="RR3_PP1_M1_C3" name="p" state="P" numberOfBonds="0"/>
+                  <Component id="RR3_PP1_M1_C4" name="pro_" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR3_PP1_M2" name="Akt">
+                <ListOfComponents>
+                  <Component id="RR3_PP1_M2_C1" name="p" state="0" numberOfBonds="0"/>
+                  <Component id="RR3_PP1_M2_C2" name="s6" numberOfBonds="0"/>
+                  <Component id="RR3_PP1_M2_C3" name="trka" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR3_PP1_B1" site1="RR3_PP1_M1_C1" site2="RR3_PP1_M2_C3"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r2_k1"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1" targetID="RR3_PP1_M1"/>
+          <MapItem sourceID="RR3_RP1_M1_C1" targetID="RR3_PP1_M1_C1"/>
+          <MapItem sourceID="RR3_RP1_M1_C2" targetID="RR3_PP1_M1_C2"/>
+          <MapItem sourceID="RR3_RP1_M1_C3" targetID="RR3_PP1_M1_C3"/>
+          <MapItem sourceID="RR3_RP1_M1_C4" targetID="RR3_PP1_M1_C4"/>
+          <MapItem sourceID="RR3_RP2_M1" targetID="RR3_PP1_M2"/>
+          <MapItem sourceID="RR3_RP2_M1_C1" targetID="RR3_PP1_M2_C1"/>
+          <MapItem sourceID="RR3_RP2_M1_C2" targetID="RR3_PP1_M2_C2"/>
+          <MapItem sourceID="RR3_RP2_M1_C3" targetID="RR3_PP1_M2_C3"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR3_RP1_M1_C1" site2="RR3_RP2_M1_C3"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="_reverse_reaction_2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="TrkA">
+                <ListOfComponents>
+                  <Component id="RR4_RP1_M1_C1" name="akt" numberOfBonds="1"/>
+                  <Component id="RR4_RP1_M1_C2" name="ngf" numberOfBonds="0"/>
+                  <Component id="RR4_RP1_M1_C3" name="p" state="P" numberOfBonds="0"/>
+                  <Component id="RR4_RP1_M1_C4" name="pro_" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR4_RP1_M2" name="Akt">
+                <ListOfComponents>
+                  <Component id="RR4_RP1_M2_C1" name="p" state="0" numberOfBonds="0"/>
+                  <Component id="RR4_RP1_M2_C2" name="s6" numberOfBonds="0"/>
+                  <Component id="RR4_RP1_M2_C3" name="trka" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR4_RP1_B1" site1="RR4_RP1_M1_C1" site2="RR4_RP1_M2_C3"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="TrkA">
+                <ListOfComponents>
+                  <Component id="RR4_PP1_M1_C1" name="akt" numberOfBonds="0"/>
+                  <Component id="RR4_PP1_M1_C2" name="ngf" numberOfBonds="0"/>
+                  <Component id="RR4_PP1_M1_C3" name="p" state="P" numberOfBonds="0"/>
+                  <Component id="RR4_PP1_M1_C4" name="pro_" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR4_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP2_M1" name="Akt">
+                <ListOfComponents>
+                  <Component id="RR4_PP2_M1_C1" name="p" state="0" numberOfBonds="0"/>
+                  <Component id="RR4_PP2_M1_C2" name="s6" numberOfBonds="0"/>
+                  <Component id="RR4_PP2_M1_C3" name="trka" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r2_k2"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1" targetID="RR4_PP1_M1"/>
+          <MapItem sourceID="RR4_RP1_M1_C1" targetID="RR4_PP1_M1_C1"/>
+          <MapItem sourceID="RR4_RP1_M1_C2" targetID="RR4_PP1_M1_C2"/>
+          <MapItem sourceID="RR4_RP1_M1_C3" targetID="RR4_PP1_M1_C3"/>
+          <MapItem sourceID="RR4_RP1_M1_C4" targetID="RR4_PP1_M1_C4"/>
+          <MapItem sourceID="RR4_RP1_M2" targetID="RR4_PP2_M1"/>
+          <MapItem sourceID="RR4_RP1_M2_C1" targetID="RR4_PP2_M1_C1"/>
+          <MapItem sourceID="RR4_RP1_M2_C2" targetID="RR4_PP2_M1_C2"/>
+          <MapItem sourceID="RR4_RP1_M2_C3" targetID="RR4_PP2_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <DeleteBond site1="RR4_RP1_M1_C1" site2="RR4_RP1_M2_C3"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="reaction_3" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR5_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP1_M1" name="TrkA">
+                <ListOfComponents>
+                  <Component id="RR5_RP1_M1_C1" name="akt" numberOfBonds="1"/>
+                  <Component id="RR5_RP1_M1_C2" name="ngf" numberOfBonds="0"/>
+                  <Component id="RR5_RP1_M1_C3" name="p" state="P" numberOfBonds="0"/>
+                  <Component id="RR5_RP1_M1_C4" name="pro_" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR5_RP1_M2" name="Akt">
+                <ListOfComponents>
+                  <Component id="RR5_RP1_M2_C1" name="p" state="0" numberOfBonds="0"/>
+                  <Component id="RR5_RP1_M2_C2" name="s6" numberOfBonds="0"/>
+                  <Component id="RR5_RP1_M2_C3" name="trka" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR5_RP1_B1" site1="RR5_RP1_M1_C1" site2="RR5_RP1_M2_C3"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="TrkA">
+                <ListOfComponents>
+                  <Component id="RR5_PP1_M1_C1" name="akt" numberOfBonds="0"/>
+                  <Component id="RR5_PP1_M1_C2" name="ngf" numberOfBonds="0"/>
+                  <Component id="RR5_PP1_M1_C3" name="p" state="P" numberOfBonds="0"/>
+                  <Component id="RR5_PP1_M1_C4" name="pro_" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR5_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP2_M1" name="Akt">
+                <ListOfComponents>
+                  <Component id="RR5_PP2_M1_C1" name="p" state="P" numberOfBonds="0"/>
+                  <Component id="RR5_PP2_M1_C2" name="s6" numberOfBonds="0"/>
+                  <Component id="RR5_PP2_M1_C3" name="trka" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r3_k1"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR5_RP1_M1" targetID="RR5_PP1_M1"/>
+          <MapItem sourceID="RR5_RP1_M1_C1" targetID="RR5_PP1_M1_C1"/>
+          <MapItem sourceID="RR5_RP1_M1_C2" targetID="RR5_PP1_M1_C2"/>
+          <MapItem sourceID="RR5_RP1_M1_C3" targetID="RR5_PP1_M1_C3"/>
+          <MapItem sourceID="RR5_RP1_M1_C4" targetID="RR5_PP1_M1_C4"/>
+          <MapItem sourceID="RR5_RP1_M2" targetID="RR5_PP2_M1"/>
+          <MapItem sourceID="RR5_RP1_M2_C1" targetID="RR5_PP2_M1_C1"/>
+          <MapItem sourceID="RR5_RP1_M2_C2" targetID="RR5_PP2_M1_C2"/>
+          <MapItem sourceID="RR5_RP1_M2_C3" targetID="RR5_PP2_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR5_RP1_M2_C1" finalState="P"/>
+          <DeleteBond site1="RR5_RP1_M1_C1" site2="RR5_RP1_M2_C3"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="reaction_4" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR6_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_RP1_M1" name="TrkA">
+                <ListOfComponents>
+                  <Component id="RR6_RP1_M1_C1" name="akt" numberOfBonds="0"/>
+                  <Component id="RR6_RP1_M1_C2" name="ngf" numberOfBonds="0"/>
+                  <Component id="RR6_RP1_M1_C3" name="p" state="P" numberOfBonds="0"/>
+                  <Component id="RR6_RP1_M1_C4" name="pro_" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r4_k1"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR6_RP1_M1"/>
+          <MapItem sourceID="RR6_RP1_M1_C1"/>
+          <MapItem sourceID="RR6_RP1_M1_C2"/>
+          <MapItem sourceID="RR6_RP1_M1_C3"/>
+          <MapItem sourceID="RR6_RP1_M1_C4"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR6_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="reaction_5" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR7_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_RP1_M1" name="Akt">
+                <ListOfComponents>
+                  <Component id="RR7_RP1_M1_C1" name="p" state="P" numberOfBonds="0"/>
+                  <Component id="RR7_RP1_M1_C2" name="s6" numberOfBonds="0"/>
+                  <Component id="RR7_RP1_M1_C3" name="trka" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR7_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR7_RP2_M1" name="S6">
+                <ListOfComponents>
+                  <Component id="RR7_RP2_M1_C1" name="akt" numberOfBonds="0"/>
+                  <Component id="RR7_RP2_M1_C2" name="p" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="Akt">
+                <ListOfComponents>
+                  <Component id="RR7_PP1_M1_C1" name="p" state="P" numberOfBonds="0"/>
+                  <Component id="RR7_PP1_M1_C2" name="s6" numberOfBonds="1"/>
+                  <Component id="RR7_PP1_M1_C3" name="trka" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR7_PP1_M2" name="S6">
+                <ListOfComponents>
+                  <Component id="RR7_PP1_M2_C1" name="akt" numberOfBonds="1"/>
+                  <Component id="RR7_PP1_M2_C2" name="p" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR7_PP1_B1" site1="RR7_PP1_M1_C2" site2="RR7_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r5_k1"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR7_RP1_M1" targetID="RR7_PP1_M1"/>
+          <MapItem sourceID="RR7_RP1_M1_C1" targetID="RR7_PP1_M1_C1"/>
+          <MapItem sourceID="RR7_RP1_M1_C2" targetID="RR7_PP1_M1_C2"/>
+          <MapItem sourceID="RR7_RP1_M1_C3" targetID="RR7_PP1_M1_C3"/>
+          <MapItem sourceID="RR7_RP2_M1" targetID="RR7_PP1_M2"/>
+          <MapItem sourceID="RR7_RP2_M1_C1" targetID="RR7_PP1_M2_C1"/>
+          <MapItem sourceID="RR7_RP2_M1_C2" targetID="RR7_PP1_M2_C2"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR7_RP1_M1_C2" site2="RR7_RP2_M1_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="_reverse_reaction_5" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR8_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_RP1_M1" name="Akt">
+                <ListOfComponents>
+                  <Component id="RR8_RP1_M1_C1" name="p" state="P" numberOfBonds="0"/>
+                  <Component id="RR8_RP1_M1_C2" name="s6" numberOfBonds="1"/>
+                  <Component id="RR8_RP1_M1_C3" name="trka" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR8_RP1_M2" name="S6">
+                <ListOfComponents>
+                  <Component id="RR8_RP1_M2_C1" name="akt" numberOfBonds="1"/>
+                  <Component id="RR8_RP1_M2_C2" name="p" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR8_RP1_B1" site1="RR8_RP1_M1_C2" site2="RR8_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR8_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP1_M1" name="Akt">
+                <ListOfComponents>
+                  <Component id="RR8_PP1_M1_C1" name="p" state="P" numberOfBonds="0"/>
+                  <Component id="RR8_PP1_M1_C2" name="s6" numberOfBonds="0"/>
+                  <Component id="RR8_PP1_M1_C3" name="trka" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR8_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP2_M1" name="S6">
+                <ListOfComponents>
+                  <Component id="RR8_PP2_M1_C1" name="akt" numberOfBonds="0"/>
+                  <Component id="RR8_PP2_M1_C2" name="p" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r5_k2"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR8_RP1_M1" targetID="RR8_PP1_M1"/>
+          <MapItem sourceID="RR8_RP1_M1_C1" targetID="RR8_PP1_M1_C1"/>
+          <MapItem sourceID="RR8_RP1_M1_C2" targetID="RR8_PP1_M1_C2"/>
+          <MapItem sourceID="RR8_RP1_M1_C3" targetID="RR8_PP1_M1_C3"/>
+          <MapItem sourceID="RR8_RP1_M2" targetID="RR8_PP2_M1"/>
+          <MapItem sourceID="RR8_RP1_M2_C1" targetID="RR8_PP2_M1_C1"/>
+          <MapItem sourceID="RR8_RP1_M2_C2" targetID="RR8_PP2_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <DeleteBond site1="RR8_RP1_M1_C2" site2="RR8_RP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="reaction_6" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR9_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_RP1_M1" name="Akt">
+                <ListOfComponents>
+                  <Component id="RR9_RP1_M1_C1" name="p" state="P" numberOfBonds="0"/>
+                  <Component id="RR9_RP1_M1_C2" name="s6" numberOfBonds="1"/>
+                  <Component id="RR9_RP1_M1_C3" name="trka" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR9_RP1_M2" name="S6">
+                <ListOfComponents>
+                  <Component id="RR9_RP1_M2_C1" name="akt" numberOfBonds="1"/>
+                  <Component id="RR9_RP1_M2_C2" name="p" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR9_RP1_B1" site1="RR9_RP1_M1_C2" site2="RR9_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR9_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP1_M1" name="Akt">
+                <ListOfComponents>
+                  <Component id="RR9_PP1_M1_C1" name="p" state="P" numberOfBonds="0"/>
+                  <Component id="RR9_PP1_M1_C2" name="s6" numberOfBonds="0"/>
+                  <Component id="RR9_PP1_M1_C3" name="trka" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR9_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP2_M1" name="S6">
+                <ListOfComponents>
+                  <Component id="RR9_PP2_M1_C1" name="akt" numberOfBonds="0"/>
+                  <Component id="RR9_PP2_M1_C2" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r6_k1"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR9_RP1_M1" targetID="RR9_PP1_M1"/>
+          <MapItem sourceID="RR9_RP1_M1_C1" targetID="RR9_PP1_M1_C1"/>
+          <MapItem sourceID="RR9_RP1_M1_C2" targetID="RR9_PP1_M1_C2"/>
+          <MapItem sourceID="RR9_RP1_M1_C3" targetID="RR9_PP1_M1_C3"/>
+          <MapItem sourceID="RR9_RP1_M2" targetID="RR9_PP2_M1"/>
+          <MapItem sourceID="RR9_RP1_M2_C1" targetID="RR9_PP2_M1_C1"/>
+          <MapItem sourceID="RR9_RP1_M2_C2" targetID="RR9_PP2_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR9_RP1_M2_C2" finalState="P"/>
+          <DeleteBond site1="RR9_RP1_M1_C2" site2="RR9_RP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="reaction_7" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR10_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_RP1_M1" name="Akt">
+                <ListOfComponents>
+                  <Component id="RR10_RP1_M1_C1" name="p" state="P" numberOfBonds="0"/>
+                  <Component id="RR10_RP1_M1_C2" name="s6" numberOfBonds="0"/>
+                  <Component id="RR10_RP1_M1_C3" name="trka" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR10_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_PP1_M1" name="Akt">
+                <ListOfComponents>
+                  <Component id="RR10_PP1_M1_C1" name="p" state="0" numberOfBonds="0"/>
+                  <Component id="RR10_PP1_M1_C2" name="s6" numberOfBonds="0"/>
+                  <Component id="RR10_PP1_M1_C3" name="trka" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r7_k1"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR10_RP1_M1" targetID="RR10_PP1_M1"/>
+          <MapItem sourceID="RR10_RP1_M1_C1" targetID="RR10_PP1_M1_C1"/>
+          <MapItem sourceID="RR10_RP1_M1_C2" targetID="RR10_PP1_M1_C2"/>
+          <MapItem sourceID="RR10_RP1_M1_C3" targetID="RR10_PP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR10_RP1_M1_C1" finalState="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR11" name="reaction_8" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR11_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_RP1_M1" name="S6">
+                <ListOfComponents>
+                  <Component id="RR11_RP1_M1_C1" name="akt" numberOfBonds="0"/>
+                  <Component id="RR11_RP1_M1_C2" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR11_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_PP1_M1" name="S6">
+                <ListOfComponents>
+                  <Component id="RR11_PP1_M1_C1" name="akt" numberOfBonds="0"/>
+                  <Component id="RR11_PP1_M1_C2" name="p" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR11_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r8_k1"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR11_RP1_M1" targetID="RR11_PP1_M1"/>
+          <MapItem sourceID="RR11_RP1_M1_C1" targetID="RR11_PP1_M1_C1"/>
+          <MapItem sourceID="RR11_RP1_M1_C2" targetID="RR11_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR11_RP1_M1_C2" finalState="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR12" name="reaction_9" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR12_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_RP1_M1" name="TrkA">
+                <ListOfComponents>
+                  <Component id="RR12_RP1_M1_C1" name="akt" numberOfBonds="0"/>
+                  <Component id="RR12_RP1_M1_C2" name="ngf" numberOfBonds="0"/>
+                  <Component id="RR12_RP1_M1_C3" name="p" state="0" numberOfBonds="0"/>
+                  <Component id="RR12_RP1_M1_C4" name="pro_" state="PRO_" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR12_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_PP1_M1" name="TrkA">
+                <ListOfComponents>
+                  <Component id="RR12_PP1_M1_C1" name="akt" numberOfBonds="0"/>
+                  <Component id="RR12_PP1_M1_C2" name="ngf" numberOfBonds="0"/>
+                  <Component id="RR12_PP1_M1_C3" name="p" state="0" numberOfBonds="0"/>
+                  <Component id="RR12_PP1_M1_C4" name="pro_" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR12_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="TrkA_turnover"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR12_RP1_M1" targetID="RR12_PP1_M1"/>
+          <MapItem sourceID="RR12_RP1_M1_C1" targetID="RR12_PP1_M1_C1"/>
+          <MapItem sourceID="RR12_RP1_M1_C2" targetID="RR12_PP1_M1_C2"/>
+          <MapItem sourceID="RR12_RP1_M1_C3" targetID="RR12_PP1_M1_C3"/>
+          <MapItem sourceID="RR12_RP1_M1_C4" targetID="RR12_PP1_M1_C4"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR12_RP1_M1_C4" finalState="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR13" name="reaction_10" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR13_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_RP1_M1" name="TrkA">
+                <ListOfComponents>
+                  <Component id="RR13_RP1_M1_C1" name="akt" numberOfBonds="0"/>
+                  <Component id="RR13_RP1_M1_C2" name="ngf" numberOfBonds="1"/>
+                  <Component id="RR13_RP1_M1_C3" name="p" state="0" numberOfBonds="0"/>
+                  <Component id="RR13_RP1_M1_C4" name="pro_" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR13_RP1_M2" name="NGF">
+                <ListOfComponents>
+                  <Component id="RR13_RP1_M2_C1" name="trka" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR13_RP1_B1" site1="RR13_RP1_M1_C2" site2="RR13_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR13_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_PP1_M1" name="TrkA">
+                <ListOfComponents>
+                  <Component id="RR13_PP1_M1_C1" name="akt" numberOfBonds="0"/>
+                  <Component id="RR13_PP1_M1_C2" name="ngf" numberOfBonds="0"/>
+                  <Component id="RR13_PP1_M1_C3" name="p" state="P" numberOfBonds="0"/>
+                  <Component id="RR13_PP1_M1_C4" name="pro_" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR13_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r10_k1"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR13_RP1_M1" targetID="RR13_PP1_M1"/>
+          <MapItem sourceID="RR13_RP1_M1_C1" targetID="RR13_PP1_M1_C1"/>
+          <MapItem sourceID="RR13_RP1_M1_C2" targetID="RR13_PP1_M1_C2"/>
+          <MapItem sourceID="RR13_RP1_M1_C3" targetID="RR13_PP1_M1_C3"/>
+          <MapItem sourceID="RR13_RP1_M1_C4" targetID="RR13_PP1_M1_C4"/>
+          <MapItem sourceID="RR13_RP1_M2"/>
+          <MapItem sourceID="RR13_RP1_M2_C1"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR13_RP1_M1_C3" finalState="P"/>
+          <Delete id="RR13_RP1_M2" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR14" name="reaction_11" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR14_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_RP1_M1" name="TrkA">
+                <ListOfComponents>
+                  <Component id="RR14_RP1_M1_C1" name="akt" numberOfBonds="0"/>
+                  <Component id="RR14_RP1_M1_C2" name="ngf" numberOfBonds="0"/>
+                  <Component id="RR14_RP1_M1_C3" name="p" state="0" numberOfBonds="0"/>
+                  <Component id="RR14_RP1_M1_C4" name="pro_" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR14_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="TrkA_turnover"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR14_RP1_M1"/>
+          <MapItem sourceID="RR14_RP1_M1_C1"/>
+          <MapItem sourceID="RR14_RP1_M1_C2"/>
+          <MapItem sourceID="RR14_RP1_M1_C3"/>
+          <MapItem sourceID="RR14_RP1_M1_C4"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR14_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="NGF" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="NGF">
+                <ListOfComponents>
+                  <Component id="O1_P1_M1_C1" name="trka" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="TrkA" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="TrkA">
+                <ListOfComponents>
+                  <Component id="O2_P1_M1_C1" name="akt" numberOfBonds="0"/>
+                  <Component id="O2_P1_M1_C2" name="ngf" numberOfBonds="0"/>
+                  <Component id="O2_P1_M1_C3" name="p" state="0" numberOfBonds="0"/>
+                  <Component id="O2_P1_M1_C4" name="pro_" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="pTrkA" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="TrkA">
+                <ListOfComponents>
+                  <Component id="O3_P1_M1_C1" name="akt" numberOfBonds="0"/>
+                  <Component id="O3_P1_M1_C2" name="ngf" numberOfBonds="0"/>
+                  <Component id="O3_P1_M1_C3" name="p" state="P" numberOfBonds="0"/>
+                  <Component id="O3_P1_M1_C4" name="pro_" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="pTrkA_Akt" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="TrkA">
+                <ListOfComponents>
+                  <Component id="O4_P1_M1_C1" name="akt" numberOfBonds="1"/>
+                  <Component id="O4_P1_M1_C2" name="ngf" numberOfBonds="0"/>
+                  <Component id="O4_P1_M1_C3" name="p" state="P" numberOfBonds="0"/>
+                  <Component id="O4_P1_M1_C4" name="pro_" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O4_P1_M2" name="Akt">
+                <ListOfComponents>
+                  <Component id="O4_P1_M2_C1" name="p" state="0" numberOfBonds="0"/>
+                  <Component id="O4_P1_M2_C2" name="s6" numberOfBonds="0"/>
+                  <Component id="O4_P1_M2_C3" name="trka" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O4_P1_B1" site1="O4_P1_M1_C1" site2="O4_P1_M2_C3"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="Akt" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="Akt">
+                <ListOfComponents>
+                  <Component id="O5_P1_M1_C1" name="p" state="0" numberOfBonds="0"/>
+                  <Component id="O5_P1_M1_C2" name="s6" numberOfBonds="0"/>
+                  <Component id="O5_P1_M1_C3" name="trka" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O6" name="pAkt" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O6_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O6_P1_M1" name="Akt">
+                <ListOfComponents>
+                  <Component id="O6_P1_M1_C1" name="p" state="P" numberOfBonds="0"/>
+                  <Component id="O6_P1_M1_C2" name="s6" numberOfBonds="0"/>
+                  <Component id="O6_P1_M1_C3" name="trka" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O7" name="S6" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O7_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O7_P1_M1" name="S6">
+                <ListOfComponents>
+                  <Component id="O7_P1_M1_C1" name="akt" numberOfBonds="0"/>
+                  <Component id="O7_P1_M1_C2" name="p" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O8" name="pAkt_S6" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O8_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O8_P1_M1" name="Akt">
+                <ListOfComponents>
+                  <Component id="O8_P1_M1_C1" name="p" state="P" numberOfBonds="0"/>
+                  <Component id="O8_P1_M1_C2" name="s6" numberOfBonds="1"/>
+                  <Component id="O8_P1_M1_C3" name="trka" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O8_P1_M2" name="S6">
+                <ListOfComponents>
+                  <Component id="O8_P1_M2_C1" name="akt" numberOfBonds="1"/>
+                  <Component id="O8_P1_M2_C2" name="p" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O8_P1_B1" site1="O8_P1_M1_C2" site2="O8_P1_M2_C1"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O9" name="pS6" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O9_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O9_P1_M1" name="S6">
+                <ListOfComponents>
+                  <Component id="O9_P1_M1_C1" name="akt" numberOfBonds="0"/>
+                  <Component id="O9_P1_M1_C2" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O10" name="pro_TrkA" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O10_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O10_P1_M1" name="TrkA">
+                <ListOfComponents>
+                  <Component id="O10_P1_M1_C1" name="akt" numberOfBonds="0"/>
+                  <Component id="O10_P1_M1_C2" name="ngf" numberOfBonds="0"/>
+                  <Component id="O10_P1_M1_C3" name="p" state="0" numberOfBonds="0"/>
+                  <Component id="O10_P1_M1_C4" name="pro_" state="PRO_" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O11" name="NGF_TrkA" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O11_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O11_P1_M1" name="TrkA">
+                <ListOfComponents>
+                  <Component id="O11_P1_M1_C1" name="akt" numberOfBonds="0"/>
+                  <Component id="O11_P1_M1_C2" name="ngf" numberOfBonds="1"/>
+                  <Component id="O11_P1_M1_C3" name="p" state="0" numberOfBonds="0"/>
+                  <Component id="O11_P1_M1_C4" name="pro_" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O11_P1_M2" name="NGF">
+                <ListOfComponents>
+                  <Component id="O11_P1_M2_C1" name="trka" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O11_P1_B1" site1="O11_P1_M1_C2" site2="O11_P1_M2_C1"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="NGF_ar">
+        <ListOfReferences>
+          <Reference name="NGF_conc_pulse" type="Constant"/>
+          <Reference name="NGF_conc_ramp" type="Constant"/>
+          <Reference name="NGF_conc_step" type="Constant"/>
+          <Reference name="pulse_time" type="Constant"/>
+          <Reference name="ramp_time" type="Constant"/>
+        </ListOfReferences>
+        <Expression> (((NGF_conc_ramp*time())/ramp_time)+NGF_conc_step)+if((time()&lt;=pulse_time),NGF_conc_pulse,0) </Expression>
+      </Function>
+      <Function id="pTrkA_total">
+        <ListOfReferences>
+          <Reference name="pTrkA_scaleFactor" type="Constant"/>
+          <Reference name="pTrkA" type="Observable"/>
+          <Reference name="pTrkA_Akt" type="Observable"/>
+        </ListOfReferences>
+        <Expression> pTrkA_scaleFactor*(pTrkA+pTrkA_Akt) </Expression>
+      </Function>
+      <Function id="pAkt_total">
+        <ListOfReferences>
+          <Reference name="pAkt_scaleFactor" type="Constant"/>
+          <Reference name="pAkt" type="Observable"/>
+          <Reference name="pAkt_S6" type="Observable"/>
+        </ListOfReferences>
+        <Expression> pAkt_scaleFactor*(pAkt+pAkt_S6) </Expression>
+      </Function>
+      <Function id="pS6_total">
+        <ListOfReferences>
+          <Reference name="pS6_scaleFactor" type="Constant"/>
+          <Reference name="pS6" type="Observable"/>
+        </ListOfReferences>
+        <Expression> pS6*pS6_scaleFactor </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

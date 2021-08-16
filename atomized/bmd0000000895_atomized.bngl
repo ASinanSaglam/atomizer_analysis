@@ -5,7 +5,7 @@
 #@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000895', 'http://identifiers.org/biomodels.db/MODEL1912160004']
 #@creatorEmail:'johannes.p.meyer@gmail.com'
 #@creatorName:'Meyer Johannes'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 9 molecules and 29 reactions. The translated model has 6 molecules and 31 rules'
+#@notes:'This is an atomized translation of an SBML model created on 14/08/2021. The original model has 9 molecules and 29 reactions. The translated model has 6 molecules and 31 rules'
 ###
 begin model
 begin parameters
@@ -60,26 +60,26 @@ begin parameters
 	pSi 4.1
 end parameters
 begin molecule types
+	#^ bqbiol:is cl:CL:0000863
+	Ma()
+	#^ bqbiol:is ncit:C76380
+	#^ bqbiol:occursIn go:GO:0005576
+	Se(mr)
 	#^ bqbiol:is cl:CL:0000864
 	Mr(rec~REC~0,se)
 	#^ bqbiol:is ncit:C76380
 	#^ bqbiol:hasProperty ncit:C28217
 	Si()
-	#^ bqbiol:is ncit:C12542
-	CD8()
-	#^ bqbiol:is cl:CL:0000863
-	Ma()
 	#^ bqbiol:is cl:CL:0000492
 	CD4(rec~REC~0)
-	#^ bqbiol:is ncit:C76380
-	#^ bqbiol:occursIn go:GO:0005576
-	Se(mr)
+	#^ bqbiol:is ncit:C12542
+	CD8()
 end molecule types
 begin seed species
 	CD4(rec~0) 5.4198e+30 # 9000000.0mol/L * 6.022e23/mol *1.0L #CD4 #CD4
 	CD8() 4.2154e+30 #original 7000000.0substance/volume  #CD8 #CD8
 	Mr(rec~0,se) 5.4198e+30 #original 9000000.0substance/volume  #Mr #Mr
-	Mr(rec~0,se!92).Se(mr!92) 6.022e+25 #original 100.0substance/volume  #Mi #Mi
+	Mr(rec~0,se!895).Se(mr!895) 6.022e+25 #original 100.0substance/volume  #Mi #Mi
 	Se(mr) 1.2044e+26 #original 200.0substance/volume  #Se #Se
 	Si() 6.022e+25 #original 100.0substance/volume  #Si #Si
 	CD4(rec~REC) 1.62594e+31 #original 27000000.0substance/volume  #CD4rec #CD4rec
@@ -90,7 +90,7 @@ begin observables
 	Species CD8 CD8() #CD8
 	Species Mr Mr(rec~0,se) #Mr
 	Species Ma Ma() #Ma
-	Species Mi Mr(rec~0,se!92).Se(mr!92) #Mi
+	Species Mi Mr(rec~0,se!895).Se(mr!895) #Mi
 	Species Se Se(mr) #Se
 	Species Si Si() #Si
 	Species CD4rec CD4(rec~REC) #CD4rec
@@ -124,7 +124,7 @@ begin reaction rules
 	Mr_Growth_Boost: 0  <-> Mr(rec~0,se) fRate1(),fRate1m()
 	Mr_Recruitment: Mr(rec~REC,se) -> Mr(rec~0,se) fRate2() #Modifiers(Se)
 	Ma_Deactivation: Ma() -> Mr(rec~0,se) fRate3() #Modifiers(CD4)
-	Mr_Infection: Mr(rec~0,se) + Se(mr) -> Mr(rec~0,se!92).Se(mr!92) fRate4()
+	Mr_Infection: Mr(rec~0,se) + Se(mr) -> Mr(rec~0,se!895).Se(mr!895) fRate4()
 	Mr_Activation: Mr(rec~0,se) -> Ma() fRate5() #Modifiers(Se)
 	Se_Killing_Mr: Mr(rec~0,se) + Se(mr) -> 0  kSeMr
 	Mr_Death: Mr(rec~0,se) -> 0  drMr
@@ -141,10 +141,10 @@ begin reaction rules
 	Ma_Death: Ma() -> 0  drMa
 	Se_Killing_Ma: Ma() + Se(mr) -> 0  kSeMa
 	Mi_Bursting_reactants_0: 0  -> Si() -1*(fRate20())
-	Mi_Bursting_reactants_1: 0  -> Mr(rec~0,se!92).Se(mr!92) -1*(fRate20())
+	Mi_Bursting_reactants_1: 0  -> Mr(rec~0,se!895).Se(mr!895) -1*(fRate20())
 	Mi_Bursting_products_0: 0  -> Se(mr) fRate20()
-	Mi_Lysis_reactants_0: 0  -> Mr(rec~0,se!92).Se(mr!92) -1*(fRate21()) #Modifiers(CD4, CD8, Si)
-	Mi_Death: Mr(rec~0,se!92).Se(mr!92) -> 0  drMi
+	Mi_Lysis_reactants_0: 0  -> Mr(rec~0,se!895).Se(mr!895) -1*(fRate21()) #Modifiers(CD4, CD8, Si)
+	Mi_Death: Mr(rec~0,se!895).Se(mr!895) -> 0  drMi
 	Se_Proliferation: 0  <-> Se(mr) fRate23(),fRate23m()
 	Se_Death: Se(mr) -> 0  drSe
 	Si_Death: Si() -> 0  drSi

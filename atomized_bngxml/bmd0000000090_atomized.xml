@@ -1,0 +1,2067 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000090_atomized">
+    <ListOfParameters>
+      <Parameter id="k_v0" type="Constant" value="1.6" expr="1.6"/>
+      <Parameter id="k2" type="Constant" value="0.2" expr="0.2"/>
+      <Parameter id="k3" type="Constant" value="0.2" expr="0.2"/>
+      <Parameter id="k4" type="Constant" value="0.2" expr="0.2"/>
+      <Parameter id="k5" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="k6" type="Constant" value="0.12" expr="0.12"/>
+      <Parameter id="k7" type="Constant" value="10" expr="10.0"/>
+      <Parameter id="k8" type="Constant" value="10" expr="10.0"/>
+      <Parameter id="k9" type="Constant" value="10" expr="10.0"/>
+      <Parameter id="k_v10" type="Constant" value="80" expr="80.0"/>
+      <Parameter id="k11" type="Constant" value="10" expr="10.0"/>
+      <Parameter id="k12" type="Constant" value="5" expr="5.0"/>
+      <Parameter id="k_v13" type="Constant" value="4" expr="4.0"/>
+      <Parameter id="k14" type="Constant" value="10" expr="10.0"/>
+      <Parameter id="k15" type="Constant" value="5" expr="5.0"/>
+      <Parameter id="k16" type="Constant" value="10" expr="10.0"/>
+      <Parameter id="k17" type="Constant" value="0.02" expr="0.02"/>
+      <Parameter id="k18" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="n" type="Constant" value="4" expr="4.0"/>
+      <Parameter id="m" type="Constant" value="4" expr="4.0"/>
+      <Parameter id="Ka" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="Kc" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="a" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="Ac" type="Constant" value="2" expr="2.0"/>
+      <Parameter id="Am" type="Constant" value="2" expr="2.0"/>
+      <Parameter id="S" type="Constant" value="2" expr="2.0"/>
+      <Parameter id="N" type="Constant" value="2" expr="2.0"/>
+      <Parameter id="Kh" type="Constant" value="0.5" expr="0.5"/>
+      <Parameter id="_rateLaw20" type="Constant" value="0" expr="0"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="ADP">
+        <ListOfComponentTypes>
+          <ComponentType id="_mit">
+            <ListOfAllowedStates>
+              <AllowedState id="_MIT"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="APS"/>
+      <MoleculeType id="ATP">
+        <ListOfComponentTypes>
+          <ComponentType id="_mit">
+            <ListOfAllowedStates>
+              <AllowedState id="_MIT"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="AcCoA">
+        <ListOfComponentTypes>
+          <ComponentType id="s2"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="C1"/>
+      <MoleculeType id="C2"/>
+      <MoleculeType id="EtOH">
+        <ListOfComponentTypes>
+          <ComponentType id="_ex">
+            <ListOfAllowedStates>
+              <AllowedState id="_EX"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="H2O"/>
+      <MoleculeType id="H2S">
+        <ListOfComponentTypes>
+          <ComponentType id="oah"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="Ho">
+        <ListOfComponentTypes>
+          <ComponentType id="Hm">
+            <ListOfAllowedStates>
+              <AllowedState id="Hm"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="NAD"/>
+      <MoleculeType id="NADH"/>
+      <MoleculeType id="O2">
+        <ListOfComponentTypes>
+          <ComponentType id="_ex">
+            <ListOfAllowedStates>
+              <AllowedState id="_EX"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="OAH">
+        <ListOfComponentTypes>
+          <ComponentType id="h2s"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="PAPS"/>
+      <MoleculeType id="PPi"/>
+      <MoleculeType id="S2">
+        <ListOfComponentTypes>
+          <ComponentType id="accoa"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="SO4">
+        <ListOfComponentTypes>
+          <ComponentType id="_ex">
+            <ListOfAllowedStates>
+              <AllowedState id="_EX"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+      <compartment id="c0" spatialDimensions="3" size="1.0"/>
+      <compartment id="c1" spatialDimensions="3" size="1.0"/>
+      <compartment id="c2" spatialDimensions="3" size="1.0"/>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="4.2154000000000004e+24" name="@c2::O2(_ex~0)" compartment="c2">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="O2" compartment="c2">
+            <ListOfComponents>
+              <Component id="S1_M1_C1" name="_ex" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="9.033e+23" name="@c1::ATP(_mit~0)" compartment="c1">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="ATP" compartment="c1">
+            <ListOfComponents>
+              <Component id="S2_M1_C1" name="_mit" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="3.011e+23" name="@c1::APS()" compartment="c1">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="APS" compartment="c1"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S4"  concentration="2.4088000000000004e+23" name="@c1::PAPS()" compartment="c1">
+        <ListOfMolecules>
+          <Molecule id="S4_M1" name="PAPS" compartment="c1"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S5"  concentration="2.4088000000000004e+23" name="@c1::SO4(_ex~0)" compartment="c1">
+        <ListOfMolecules>
+          <Molecule id="S5_M1" name="SO4" compartment="c1">
+            <ListOfComponents>
+              <Component id="S5_M1_C1" name="_ex" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S6"  concentration="2.4088e+24" name="@c1::EtOH(_ex~0)" compartment="c1">
+        <ListOfMolecules>
+          <Molecule id="S6_M1" name="EtOH" compartment="c1">
+            <ListOfComponents>
+              <Component id="S6_M1_C1" name="_ex" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S7"  concentration="3.011e+23" name="@c1::ADP(_mit~0)" compartment="c1">
+        <ListOfMolecules>
+          <Molecule id="S7_M1" name="ADP" compartment="c1">
+            <ListOfComponents>
+              <Component id="S7_M1_C1" name="_mit" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S8"  concentration="3.011e+23" name="@c1::H2S(oah)" compartment="c1">
+        <ListOfMolecules>
+          <Molecule id="S8_M1" name="H2S" compartment="c1">
+            <ListOfComponents>
+              <Component id="S8_M1_C1" name="oah" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S9"  concentration="1.8066e+23" name="@c1::H2S(oah!1).OAH(h2s!1)" compartment="c1">
+        <ListOfMolecules>
+          <Molecule id="S9_M1" name="H2S" compartment="c1">
+            <ListOfComponents>
+              <Component id="S9_M1_C1" name="oah" numberOfBonds="1"/>
+            </ListOfComponents>
+          </Molecule>
+          <Molecule id="S9_M2" name="OAH" compartment="c1">
+            <ListOfComponents>
+              <Component id="S9_M2_C1" name="h2s" numberOfBonds="1"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+        <ListOfBonds>
+          <Bond id="S9_B1" site1="S9_M1_C1" site2="S9_M2_C1"/>
+        </ListOfBonds>
+      </Species>
+      <Species id="S10"  concentration="1.2044e+24" name="@c1::NADH()" compartment="c1">
+        <ListOfMolecules>
+          <Molecule id="S10_M1" name="NADH" compartment="c1"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S11"  concentration="1.8066e+23" name="@c1::AcCoA(s2)" compartment="c1">
+        <ListOfMolecules>
+          <Molecule id="S11_M1" name="AcCoA" compartment="c1">
+            <ListOfComponents>
+              <Component id="S11_M1_C1" name="s2" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S12"  concentration="9.033e+23" name="@c1::OAH(h2s)" compartment="c1">
+        <ListOfMolecules>
+          <Molecule id="S12_M1" name="OAH" compartment="c1">
+            <ListOfComponents>
+              <Component id="S12_M1_C1" name="h2s" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S13"  concentration="9.033e+23" name="@c2::AcCoA(s2!1).S2(accoa!1)" compartment="c2">
+        <ListOfMolecules>
+          <Molecule id="S13_M1" name="AcCoA" compartment="c2">
+            <ListOfComponents>
+              <Component id="S13_M1_C1" name="s2" numberOfBonds="1"/>
+            </ListOfComponents>
+          </Molecule>
+          <Molecule id="S13_M2" name="S2" compartment="c2">
+            <ListOfComponents>
+              <Component id="S13_M2_C1" name="accoa" numberOfBonds="1"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+        <ListOfBonds>
+          <Bond id="S13_B1" site1="S13_M1_C1" site2="S13_M2_C1"/>
+        </ListOfBonds>
+      </Species>
+      <Species id="S14"  concentration="-9.033e+23" name="@c2::S2(accoa)" compartment="c2">
+        <ListOfMolecules>
+          <Molecule id="S14_M1" name="S2" compartment="c2">
+            <ListOfComponents>
+              <Component id="S14_M1_C1" name="accoa" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S15"  concentration="3.011e+23" name="@c2::ADP(_mit~_MIT)" compartment="c2">
+        <ListOfMolecules>
+          <Molecule id="S15_M1" name="ADP" compartment="c2">
+            <ListOfComponents>
+              <Component id="S15_M1_C1" name="_mit" state="_MIT" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S16"  concentration="9.033e+23" name="@c2::ATP(_mit~_MIT)" compartment="c2">
+        <ListOfMolecules>
+          <Molecule id="S16_M1" name="ATP" compartment="c2">
+            <ListOfComponents>
+              <Component id="S16_M1_C1" name="_mit" state="_MIT" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="v1_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="SO4" compartment="c0">
+                <ListOfComponents>
+                  <Component id="RR1_PP1_M1_C1" name="_ex" state="_EX" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="_rateLaw1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="v1_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="SO4" compartment="c1">
+                <ListOfComponents>
+                  <Component id="RR2_PP1_M1_C1" name="_ex" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="v13_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="EtOH" compartment="c0">
+                <ListOfComponents>
+                  <Component id="RR3_PP1_M1_C1" name="_ex" state="_EX" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="_rateLaw2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="v13_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="EtOH" compartment="c1">
+                <ListOfComponents>
+                  <Component id="RR4_PP1_M1_C1" name="_ex" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="fRate1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR4_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="v2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR5_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP1_M1" name="SO4" compartment="c1">
+                <ListOfComponents>
+                  <Component id="RR5_RP1_M1_C1" name="_ex" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR5_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP2_M1" name="ATP" compartment="c1">
+                <ListOfComponents>
+                  <Component id="RR5_RP2_M1_C1" name="_mit" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="APS" compartment="c1"/>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR5_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP2_M1" name="PPi" compartment="c1"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k2"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR5_RP1_M1"/>
+          <MapItem sourceID="RR5_RP1_M1_C1"/>
+          <MapItem sourceID="RR5_RP2_M1"/>
+          <MapItem sourceID="RR5_RP2_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR5_PP1_M1"/>
+          <Add id="RR5_PP2_M1"/>
+          <Delete id="RR5_RP1" DeleteMolecules="0"/>
+          <Delete id="RR5_RP2" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="v10_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="O2" compartment="c0">
+                <ListOfComponents>
+                  <Component id="RR6_PP1_M1_C1" name="_ex" state="_EX" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Function" name="_rateLaw3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR6_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="v10_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="O2" compartment="c2">
+                <ListOfComponents>
+                  <Component id="RR7_PP1_M1_C1" name="_ex" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Function" name="fRate3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR7_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="v14" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR8_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_RP1_M1" name="O2" compartment="c2">
+                <ListOfComponents>
+                  <Component id="RR8_RP1_M1_C1" name="_ex" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR8_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP1_M1" name="O2" compartment="c0">
+                <ListOfComponents>
+                  <Component id="RR8_PP1_M1_C1" name="_ex" state="_EX" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k14"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR8_RP1_M1" targetID="RR8_PP1_M1"/>
+          <MapItem sourceID="RR8_RP1_M1_C1" targetID="RR8_PP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR8_RP1_M1_C1" finalState="_EX"/>
+          <ChangeCompartment id="RR8_RP1_M1" source="c2" destination="c0" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="v3" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR9_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_RP1_M1" name="APS" compartment="c1"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR9_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR9_RP2_M1" name="ATP" compartment="c1">
+                <ListOfComponents>
+                  <Component id="RR9_RP2_M1_C1" name="_mit" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR9_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP1_M1" name="PAPS" compartment="c1"/>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR9_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP2_M1" name="ADP" compartment="c1">
+                <ListOfComponents>
+                  <Component id="RR9_PP2_M1_C1" name="_mit" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k3"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR9_RP1_M1"/>
+          <MapItem sourceID="RR9_RP2_M1"/>
+          <MapItem sourceID="RR9_RP2_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR9_PP1_M1"/>
+          <Add id="RR9_PP2_M1"/>
+          <Delete id="RR9_RP1" DeleteMolecules="0"/>
+          <Delete id="RR9_RP2" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="v4_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR10_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_PP1_M1" name="PAPS" compartment="c1"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Function" name="_rateLaw4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR10_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR11" name="v4_reactants_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR11_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_PP1_M1" name="NADH" compartment="c1"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR11_RateLaw" type="Function" name="_rateLaw5" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR11_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR12" name="v4_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR12_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_PP1_M1" name="H2S" compartment="c1">
+                <ListOfComponents>
+                  <Component id="RR12_PP1_M1_C1" name="oah" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR12_RateLaw" type="Function" name="fRate6" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR12_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR13" name="v4_products_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR13_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_PP1_M1" name="NAD" compartment="c1"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR13_RateLaw" type="Function" name="_rateLaw6" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR13_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR14" name="v5" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR14_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_RP1_M1" name="H2S" compartment="c1">
+                <ListOfComponents>
+                  <Component id="RR14_RP1_M1_C1" name="oah" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR14_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR14_RP2_M1" name="OAH" compartment="c1">
+                <ListOfComponents>
+                  <Component id="RR14_RP2_M1_C1" name="h2s" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR14_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_PP1_M1" name="OAH" compartment="c1">
+                <ListOfComponents>
+                  <Component id="RR14_PP1_M1_C1" name="h2s" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR14_PP1_M2" name="H2S" compartment="c1">
+                <ListOfComponents>
+                  <Component id="RR14_PP1_M2_C1" name="oah" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR14_PP1_B1" site1="RR14_PP1_M1_C1" site2="RR14_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR14_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k5"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR14_RP1_M1" targetID="RR14_PP1_M2"/>
+          <MapItem sourceID="RR14_RP1_M1_C1" targetID="RR14_PP1_M2_C1"/>
+          <MapItem sourceID="RR14_RP2_M1" targetID="RR14_PP1_M1"/>
+          <MapItem sourceID="RR14_RP2_M1_C1" targetID="RR14_PP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR14_RP2_M1_C1" site2="RR14_RP1_M1_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR15" name="v6" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR15_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR15_RP1_M1" name="OAH" compartment="c1">
+                <ListOfComponents>
+                  <Component id="RR15_RP1_M1_C1" name="h2s" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR15_RP1_M2" name="H2S" compartment="c1">
+                <ListOfComponents>
+                  <Component id="RR15_RP1_M2_C1" name="oah" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR15_RP1_B1" site1="RR15_RP1_M1_C1" site2="RR15_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR15_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k6"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR15_RP1_M1"/>
+          <MapItem sourceID="RR15_RP1_M1_C1"/>
+          <MapItem sourceID="RR15_RP1_M2"/>
+          <MapItem sourceID="RR15_RP1_M2_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR15_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR16" name="v7_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR16_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR16_PP1_M1" name="EtOH" compartment="c1">
+                <ListOfComponents>
+                  <Component id="RR16_PP1_M1_C1" name="_ex" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR16_RateLaw" type="Function" name="_rateLaw7" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR16_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR17" name="v7_reactants_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR17_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR17_PP1_M1" name="NAD" compartment="c1"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR17_RateLaw" type="Function" name="_rateLaw8" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR17_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR18" name="v7_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR18_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR18_PP1_M1" name="AcCoA" compartment="c1">
+                <ListOfComponents>
+                  <Component id="RR18_PP1_M1_C1" name="s2" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR18_RateLaw" type="Function" name="fRate9" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR18_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR19" name="v7_products_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR19_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR19_PP1_M1" name="NADH" compartment="c1"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR19_RateLaw" type="Function" name="_rateLaw9" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR19_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR20" name="v15" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR20_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR20_RP1_M1" name="AcCoA" compartment="c1">
+                <ListOfComponents>
+                  <Component id="RR20_RP1_M1_C1" name="s2" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR20_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR20_PP1_M1" name="OAH" compartment="c1">
+                <ListOfComponents>
+                  <Component id="RR20_PP1_M1_C1" name="h2s" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR20_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k15"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR20_RP1_M1"/>
+          <MapItem sourceID="RR20_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR20_PP1_M1"/>
+          <Delete id="RR20_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR21" name="v17" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR21_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR21_RP1_M1" name="H2S" compartment="c1">
+                <ListOfComponents>
+                  <Component id="RR21_RP1_M1_C1" name="oah" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR21_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k17"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR21_RP1_M1"/>
+          <MapItem sourceID="RR21_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR21_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR22" name="v18" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR22_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR22_RP1_M1" name="OAH" compartment="c1">
+                <ListOfComponents>
+                  <Component id="RR22_RP1_M1_C1" name="h2s" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR22_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k18"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR22_RP1_M1"/>
+          <MapItem sourceID="RR22_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR22_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR23" name="v8" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR23_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR23_RP1_M1" name="S2" compartment="c2">
+                <ListOfComponents>
+                  <Component id="RR23_RP1_M1_C1" name="accoa" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR23_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR23_RP2_M1" name="AcCoA" compartment="c1">
+                <ListOfComponents>
+                  <Component id="RR23_RP2_M1_C1" name="s2" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR23_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR23_PP1_M1" name="S2" compartment="c2">
+                <ListOfComponents>
+                  <Component id="RR23_PP1_M1_C1" name="accoa" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR23_PP1_M2" name="AcCoA" compartment="c2">
+                <ListOfComponents>
+                  <Component id="RR23_PP1_M2_C1" name="s2" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR23_PP1_B1" site1="RR23_PP1_M1_C1" site2="RR23_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR23_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k8"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR23_RP1_M1" targetID="RR23_PP1_M1"/>
+          <MapItem sourceID="RR23_RP1_M1_C1" targetID="RR23_PP1_M1_C1"/>
+          <MapItem sourceID="RR23_RP2_M1" targetID="RR23_PP1_M2"/>
+          <MapItem sourceID="RR23_RP2_M1_C1" targetID="RR23_PP1_M2_C1"/>
+        </Map>
+        <ListOfOperations>
+          <ChangeCompartment id="RR23_RP2_M1" source="c1" destination="c2" flipOrientation="0" moveConnected="0"/>
+          <AddBond site1="RR23_RP1_M1_C1" site2="RR23_RP2_M1_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR24" name="v9_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR24_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR24_PP1_M1" name="S2" compartment="c2">
+                <ListOfComponents>
+                  <Component id="RR24_PP1_M1_C1" name="accoa" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR24_PP1_M2" name="AcCoA" compartment="c2">
+                <ListOfComponents>
+                  <Component id="RR24_PP1_M2_C1" name="s2" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR24_PP1_B1" site1="RR24_PP1_M1_C1" site2="RR24_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR24_RateLaw" type="Function" name="_rateLaw10" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR24_PP1_M1"/>
+          <Add id="RR24_PP1_M2"/>
+          <AddBond site1="RR24_PP1_M1_C1" site2="RR24_PP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR25" name="v9_reactants_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR25_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR25_PP1_M1" name="NAD" compartment="c1"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR25_RateLaw" type="Function" name="_rateLaw11" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR25_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR26" name="v9_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR26_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR26_PP1_M1" name="S2" compartment="c2">
+                <ListOfComponents>
+                  <Component id="RR26_PP1_M1_C1" name="accoa" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR26_RateLaw" type="Function" name="fRate14" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR26_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR27" name="v9_products_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR27_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR27_PP1_M1" name="NADH" compartment="c1"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR27_RateLaw" type="Function" name="_rateLaw12" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR27_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR28" name="v11a_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR28_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR28_PP1_M1" name="C1" compartment="c2"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR28_RateLaw" type="Function" name="_rateLaw13" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR28_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR29" name="v11a_reactants_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR29_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR29_PP1_M1" name="Ho" compartment="c2">
+                <ListOfComponents>
+                  <Component id="RR29_PP1_M1_C1" name="Hm" state="Hm" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR29_RateLaw" type="Function" name="_rateLaw14" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR29_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR30" name="v11a_reactants_2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR30_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR30_PP1_M1" name="NADH" compartment="c1"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR30_RateLaw" type="Function" name="_rateLaw15" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR30_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR31" name="v11a_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR31_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR31_PP1_M1" name="C2" compartment="c2"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR31_RateLaw" type="Function" name="fRate15" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR31_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR32" name="v11a_products_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR32_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR32_PP1_M1" name="Ho" compartment="c1">
+                <ListOfComponents>
+                  <Component id="RR32_PP1_M1_C1" name="Hm" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR32_RateLaw" type="Function" name="fRate15" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR32_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR33" name="v11a_products_2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR33_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR33_PP1_M1" name="NAD" compartment="c1"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR33_RateLaw" type="Function" name="fRate15" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR33_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR34" name="v11a2_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR34_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR34_PP1_M1" name="C2" compartment="c2"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR34_RateLaw" type="Function" name="_rateLaw16" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR34_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR35" name="v11a2_reactants_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR35_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR35_PP1_M1" name="O2" compartment="c2">
+                <ListOfComponents>
+                  <Component id="RR35_PP1_M1_C1" name="_ex" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR35_RateLaw" type="Function" name="_rateLaw17" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR35_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR36" name="v11a2_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR36_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR36_PP1_M1" name="C1" compartment="c2"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR36_RateLaw" type="Function" name="fRate16" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR36_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR37" name="v11a2_products_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR37_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR37_PP1_M1" name="H2O" compartment="c2"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR37_RateLaw" type="Function" name="fRate16" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR37_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR38" name="v16" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR38_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR38_RP1_M1" name="ADP" compartment="c1">
+                <ListOfComponents>
+                  <Component id="RR38_RP1_M1_C1" name="_mit" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR38_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR38_RP2_M1" name="ATP" compartment="c2">
+                <ListOfComponents>
+                  <Component id="RR38_RP2_M1_C1" name="_mit" state="_MIT" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR38_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR38_PP1_M1" name="ADP" compartment="c2">
+                <ListOfComponents>
+                  <Component id="RR38_PP1_M1_C1" name="_mit" state="_MIT" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR38_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR38_PP2_M1" name="ATP" compartment="c1">
+                <ListOfComponents>
+                  <Component id="RR38_PP2_M1_C1" name="_mit" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR38_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k16"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR38_RP1_M1" targetID="RR38_PP1_M1"/>
+          <MapItem sourceID="RR38_RP1_M1_C1" targetID="RR38_PP1_M1_C1"/>
+          <MapItem sourceID="RR38_RP2_M1" targetID="RR38_PP2_M1"/>
+          <MapItem sourceID="RR38_RP2_M1_C1" targetID="RR38_PP2_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR38_RP1_M1_C1" finalState="_MIT"/>
+          <StateChange site="RR38_RP2_M1_C1" finalState="0"/>
+          <ChangeCompartment id="RR38_RP1_M1" source="c1" destination="c2" flipOrientation="0" moveConnected="0"/>
+          <ChangeCompartment id="RR38_RP2_M1" source="c2" destination="c1" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR39" name="v11b_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR39_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR39_PP1_M1" name="Ho" compartment="c1">
+                <ListOfComponents>
+                  <Component id="RR39_PP1_M1_C1" name="Hm" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR39_RateLaw" type="Function" name="_rateLaw18" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR39_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR40" name="v11b_reactants_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR40_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR40_PP1_M1" name="ADP" compartment="c2">
+                <ListOfComponents>
+                  <Component id="RR40_PP1_M1_C1" name="_mit" state="_MIT" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR40_RateLaw" type="Function" name="_rateLaw19" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR40_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR41" name="v11b_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR41_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR41_PP1_M1" name="Ho" compartment="c2">
+                <ListOfComponents>
+                  <Component id="RR41_PP1_M1_C1" name="Hm" state="Hm" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR41_RateLaw" type="Function" name="fRate18" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR41_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR42" name="v11b_products_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR42_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR42_PP1_M1" name="ATP" compartment="c2">
+                <ListOfComponents>
+                  <Component id="RR42_PP1_M1_C1" name="_mit" state="_MIT" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR42_RateLaw" type="Function" name="fRate18" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR42_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR43" name="vLEAK" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR43_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR43_RP1_M1" name="Ho" compartment="c1">
+                <ListOfComponents>
+                  <Component id="RR43_RP1_M1_C1" name="Hm" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR43_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR43_PP1_M1" name="Ho" compartment="c2">
+                <ListOfComponents>
+                  <Component id="RR43_PP1_M1_C1" name="Hm" state="Hm" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR43_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="_rateLaw20"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR43_RP1_M1" targetID="RR43_PP1_M1"/>
+          <MapItem sourceID="RR43_RP1_M1_C1" targetID="RR43_PP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR43_RP1_M1_C1" finalState="Hm"/>
+          <ChangeCompartment id="RR43_RP1_M1" source="c1" destination="c2" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR44" name="v12" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR44_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR44_RP1_M1" name="ATP" compartment="c1">
+                <ListOfComponents>
+                  <Component id="RR44_RP1_M1_C1" name="_mit" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR44_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR44_PP1_M1" name="ADP" compartment="c1">
+                <ListOfComponents>
+                  <Component id="RR44_PP1_M1_C1" name="_mit" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR44_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k12"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR44_RP1_M1"/>
+          <MapItem sourceID="RR44_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR44_PP1_M1"/>
+          <Delete id="RR44_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="SO4_ex_c0" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" compartment="c0" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="SO4">
+                <ListOfComponents>
+                  <Component id="O1_P1_M1_C1" name="_ex" state="_EX" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="EtOH_ex_c0" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" compartment="c0" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="EtOH">
+                <ListOfComponents>
+                  <Component id="O2_P1_M1_C1" name="_ex" state="_EX" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="O2_ex_c0" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" compartment="c0" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="O2">
+                <ListOfComponents>
+                  <Component id="O3_P1_M1_C1" name="_ex" state="_EX" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="O2_c2" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" compartment="c2" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="O2">
+                <ListOfComponents>
+                  <Component id="O4_P1_M1_C1" name="_ex" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="H2O_c2" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" compartment="c2" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="H2O"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O6" name="ATP_c1" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O6_P1" compartment="c1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O6_P1_M1" name="ATP">
+                <ListOfComponents>
+                  <Component id="O6_P1_M1_C1" name="_mit" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O7" name="APS_c1" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O7_P1" compartment="c1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O7_P1_M1" name="APS"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O8" name="PPi_c1" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O8_P1" compartment="c1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O8_P1_M1" name="PPi"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O9" name="PAPS_c1" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O9_P1" compartment="c1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O9_P1_M1" name="PAPS"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O10" name="SO4_c1" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O10_P1" compartment="c1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O10_P1_M1" name="SO4">
+                <ListOfComponents>
+                  <Component id="O10_P1_M1_C1" name="_ex" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O11" name="EtOH_c1" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O11_P1" compartment="c1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O11_P1_M1" name="EtOH">
+                <ListOfComponents>
+                  <Component id="O11_P1_M1_C1" name="_ex" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O12" name="ADP_c1" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O12_P1" compartment="c1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O12_P1_M1" name="ADP">
+                <ListOfComponents>
+                  <Component id="O12_P1_M1_C1" name="_mit" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O13" name="H2S_c1" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O13_P1" compartment="c1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O13_P1_M1" name="H2S">
+                <ListOfComponents>
+                  <Component id="O13_P1_M1_C1" name="oah" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O14" name="CYS_c1" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O14_P1" compartment="c1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O14_P1_M1" name="OAH">
+                <ListOfComponents>
+                  <Component id="O14_P1_M1_C1" name="h2s" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O14_P1_M2" name="H2S">
+                <ListOfComponents>
+                  <Component id="O14_P1_M2_C1" name="oah" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O14_P1_B1" site1="O14_P1_M1_C1" site2="O14_P1_M2_C1"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O15" name="NADH_c1" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O15_P1" compartment="c1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O15_P1_M1" name="NADH"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O16" name="NAD_c1" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O16_P1" compartment="c1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O16_P1_M1" name="NAD"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O17" name="AcCoA_c1" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O17_P1" compartment="c1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O17_P1_M1" name="AcCoA">
+                <ListOfComponents>
+                  <Component id="O17_P1_M1_C1" name="s2" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O18" name="OAH_c1" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O18_P1" compartment="c1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O18_P1_M1" name="OAH">
+                <ListOfComponents>
+                  <Component id="O18_P1_M1_C1" name="h2s" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O19" name="S1_c2" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O19_P1" compartment="c2" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O19_P1_M1" name="S2">
+                <ListOfComponents>
+                  <Component id="O19_P1_M1_C1" name="accoa" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O19_P1_M2" name="AcCoA">
+                <ListOfComponents>
+                  <Component id="O19_P1_M2_C1" name="s2" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O19_P1_B1" site1="O19_P1_M1_C1" site2="O19_P1_M2_C1"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O20" name="S2_c2" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O20_P1" compartment="c2" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O20_P1_M1" name="S2">
+                <ListOfComponents>
+                  <Component id="O20_P1_M1_C1" name="accoa" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O21" name="C1_c2" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O21_P1" compartment="c2" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O21_P1_M1" name="C1"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O22" name="C2_c2" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O22_P1" compartment="c2" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O22_P1_M1" name="C2"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O23" name="ADP_mit_c2" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O23_P1" compartment="c2" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O23_P1_M1" name="ADP">
+                <ListOfComponents>
+                  <Component id="O23_P1_M1_C1" name="_mit" state="_MIT" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O24" name="ATP_mit_c2" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O24_P1" compartment="c2" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O24_P1_M1" name="ATP">
+                <ListOfComponents>
+                  <Component id="O24_P1_M1_C1" name="_mit" state="_MIT" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O25" name="Ho_c1" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O25_P1" compartment="c1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O25_P1_M1" name="Ho">
+                <ListOfComponents>
+                  <Component id="O25_P1_M1_C1" name="Hm" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O26" name="Hm_c2" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O26_P1" compartment="c2" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O26_P1_M1" name="Ho">
+                <ListOfComponents>
+                  <Component id="O26_P1_M1_C1" name="Hm" state="Hm" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="S2_ar">
+        <ListOfReferences>
+          <Reference name="S" type="Constant"/>
+          <Reference name="S1_c2" type="Observable"/>
+        </ListOfReferences>
+        <Expression> S-S1_c2 </Expression>
+      </Function>
+      <Function id="NAD_ar">
+        <ListOfReferences>
+          <Reference name="N" type="Constant"/>
+          <Reference name="NADH_c1" type="Observable"/>
+        </ListOfReferences>
+        <Expression> N-NADH_c1 </Expression>
+      </Function>
+      <Function id="ADP_mit_ar">
+        <ListOfReferences>
+          <Reference name="Am" type="Constant"/>
+          <Reference name="ATP_mit_c2" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (-ATP_mit_c2)+Am </Expression>
+      </Function>
+      <Function id="ADP_ar">
+        <ListOfReferences>
+          <Reference name="Ac" type="Constant"/>
+          <Reference name="ATP_c1" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (-ATP_c1)+Ac </Expression>
+      </Function>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="Kc" type="Constant"/>
+          <Reference name="k_v0" type="Constant"/>
+          <Reference name="n" type="Constant"/>
+          <Reference name="CYS_c1" type="Observable"/>
+        </ListOfReferences>
+        <Expression> k_v0/(((CYS_c1/Kc)^n)+1) </Expression>
+      </Function>
+      <Function id="fRate1">
+        <ListOfReferences>
+          <Reference name="k_v13" type="Constant"/>
+        </ListOfReferences>
+        <Expression> k_v13 </Expression>
+      </Function>
+      <Function id="fRate3">
+        <ListOfReferences>
+          <Reference name="k_v10" type="Constant"/>
+        </ListOfReferences>
+        <Expression> k_v10 </Expression>
+      </Function>
+      <Function id="fRate6">
+        <ListOfReferences>
+          <Reference name="k4" type="Constant"/>
+          <Reference name="NADH_c1" type="Observable"/>
+          <Reference name="PAPS_c1" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (NADH_c1*PAPS_c1)*k4 </Expression>
+      </Function>
+      <Function id="fRate9">
+        <ListOfReferences>
+          <Reference name="k7" type="Constant"/>
+          <Reference name="EtOH_c1" type="Observable"/>
+          <Reference name="NAD_c1" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (EtOH_c1*NAD_c1)*k7 </Expression>
+      </Function>
+      <Function id="fRate14">
+        <ListOfReferences>
+          <Reference name="k9" type="Constant"/>
+          <Reference name="NAD_c1" type="Observable"/>
+          <Reference name="S1_c2" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (NAD_c1*S1_c2)*k9 </Expression>
+      </Function>
+      <Function id="fRate15">
+        <ListOfReferences>
+          <Reference name="Kh" type="Constant"/>
+          <Reference name="a" type="Constant"/>
+          <Reference name="k11" type="Constant"/>
+          <Reference name="m" type="Constant"/>
+          <Reference name="H2S_c1" type="Observable"/>
+          <Reference name="NADH_c1" type="Observable"/>
+          <Reference name="O2_c2" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((NADH_c1*O2_c2)*k11)/((((H2S_c1/Kh)^m)+1)*((NADH_c1*a)+O2_c2)) </Expression>
+      </Function>
+      <Function id="fRate16">
+        <ListOfReferences>
+          <Reference name="Kh" type="Constant"/>
+          <Reference name="a" type="Constant"/>
+          <Reference name="k11" type="Constant"/>
+          <Reference name="m" type="Constant"/>
+          <Reference name="H2S_c1" type="Observable"/>
+          <Reference name="NADH_c1" type="Observable"/>
+          <Reference name="O2_c2" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((NADH_c1*O2_c2)*k11)/((((H2S_c1/Kh)^m)+1)*((NADH_c1*a)+O2_c2)) </Expression>
+      </Function>
+      <Function id="fRate18">
+        <ListOfReferences>
+          <Reference name="Ka" type="Constant"/>
+          <Reference name="Kh" type="Constant"/>
+          <Reference name="a" type="Constant"/>
+          <Reference name="k11" type="Constant"/>
+          <Reference name="m" type="Constant"/>
+          <Reference name="ADP_mit_c2" type="Observable"/>
+          <Reference name="H2S_c1" type="Observable"/>
+          <Reference name="NADH_c1" type="Observable"/>
+          <Reference name="O2_c2" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((((3*ADP_mit_c2)*NADH_c1)*O2_c2)*k11)/(((ADP_mit_c2+Ka)*(((H2S_c1/Kh)^m)+1))*((NADH_c1*a)+O2_c2)) </Expression>
+      </Function>
+      <Function id="_rateLaw1">
+        <ListOfReferences>
+          <Reference name="fRate0" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate0() </Expression>
+      </Function>
+      <Function id="_rateLaw2">
+        <ListOfReferences>
+          <Reference name="fRate1" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate1() </Expression>
+      </Function>
+      <Function id="_rateLaw3">
+        <ListOfReferences>
+          <Reference name="fRate3" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate3() </Expression>
+      </Function>
+      <Function id="_rateLaw4">
+        <ListOfReferences>
+          <Reference name="fRate6" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate6() </Expression>
+      </Function>
+      <Function id="_rateLaw5">
+        <ListOfReferences>
+          <Reference name="fRate6" type="Function"/>
+        </ListOfReferences>
+        <Expression> (-1*3.0)*fRate6() </Expression>
+      </Function>
+      <Function id="_rateLaw6">
+        <ListOfReferences>
+          <Reference name="fRate6" type="Function"/>
+        </ListOfReferences>
+        <Expression> 3.0*fRate6() </Expression>
+      </Function>
+      <Function id="_rateLaw7">
+        <ListOfReferences>
+          <Reference name="fRate9" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate9() </Expression>
+      </Function>
+      <Function id="_rateLaw8">
+        <ListOfReferences>
+          <Reference name="fRate9" type="Function"/>
+        </ListOfReferences>
+        <Expression> (-1*2.0)*fRate9() </Expression>
+      </Function>
+      <Function id="_rateLaw9">
+        <ListOfReferences>
+          <Reference name="fRate9" type="Function"/>
+        </ListOfReferences>
+        <Expression> 2.0*fRate9() </Expression>
+      </Function>
+      <Function id="_rateLaw10">
+        <ListOfReferences>
+          <Reference name="fRate14" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate14() </Expression>
+      </Function>
+      <Function id="_rateLaw11">
+        <ListOfReferences>
+          <Reference name="fRate14" type="Function"/>
+        </ListOfReferences>
+        <Expression> (-1*4.0)*fRate14() </Expression>
+      </Function>
+      <Function id="_rateLaw12">
+        <ListOfReferences>
+          <Reference name="fRate14" type="Function"/>
+        </ListOfReferences>
+        <Expression> 4.0*fRate14() </Expression>
+      </Function>
+      <Function id="_rateLaw13">
+        <ListOfReferences>
+          <Reference name="fRate15" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate15() </Expression>
+      </Function>
+      <Function id="_rateLaw14">
+        <ListOfReferences>
+          <Reference name="fRate15" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate15() </Expression>
+      </Function>
+      <Function id="_rateLaw15">
+        <ListOfReferences>
+          <Reference name="fRate15" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate15() </Expression>
+      </Function>
+      <Function id="_rateLaw16">
+        <ListOfReferences>
+          <Reference name="fRate16" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate16() </Expression>
+      </Function>
+      <Function id="_rateLaw17">
+        <ListOfReferences>
+          <Reference name="fRate16" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate16() </Expression>
+      </Function>
+      <Function id="_rateLaw18">
+        <ListOfReferences>
+          <Reference name="fRate18" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate18() </Expression>
+      </Function>
+      <Function id="_rateLaw19">
+        <ListOfReferences>
+          <Reference name="fRate18" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate18() </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

@@ -1,14 +1,14 @@
 ###
 #@BQM_IS:['http://identifiers.org/biomodels.db/MODEL3095606944', 'http://identifiers.org/biomodels.db/BIOMD0000000075']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/12771127']
-#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/10579714', 'http://identifiers.org/pubmed/10866945']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/10866945', 'http://identifiers.org/pubmed/10579714']
 #@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000931']
 #@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0046488']
 #@BQB_IS_PART_OF:['http://identifiers.org/kegg.pathway/map04070']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10090']
 #@creatorEmail:'hdharuri@cds.caltech.edu'
 #@creatorName:'Dharuri Harish'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 13 molecules and 8 reactions. The translated model has 6 molecules and 10 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 13 molecules and 8 reactions. The translated model has 6 molecules and 10 rules'
 ###
 begin model
 begin parameters
@@ -59,32 +59,32 @@ begin molecule types
 	PLC(_act~_ACT~0)
 	#^ bqbiol:isVersionOf chebi:CHEBI:26034
 	PIP()
-	#^ bqbiol:isVersionOf chebi:CHEBI:16595
-	IP3_Cyt(dag,ph_gfp_cyt)
-	#^ bqbiol:hasPart interpro:IPR011584, interpro:IPR001849
-	PH_GFP_Cyt(ip3_cyt)
 	#^ bqbiol:isVersionOf chebi:CHEBI:28874
 	PI()
+	#^ bqbiol:hasPart interpro:IPR011584, interpro:IPR001849
+	PH_GFP_Cyt(ip3_cyt)
+	#^ bqbiol:isVersionOf chebi:CHEBI:16595
+	IP3_Cyt(dag,ph_gfp_cyt)
 end molecule types
 begin seed species
-	@PM:PI() 4.779360300000383e+28 # 142857.0mol/L * 6.022e23/mol *0.5555555555556L #PI #PI_PM
-	@PM:IP3_Cyt(dag!105,ph_gfp_cyt).DAG(ip3_cyt!105) 1.3382222222223294e+27 #original 4000.0/ #PIP2 #PIP2_PM
-	@PM:PIP() 9.558252222222988e+26 #original 2857.0/ #PIP #PIP_PM
-	@PM:DAG(ip3_cyt) 6.691111111111647e+26 #original 2000.0/ #DAG #DAG_PM
-	@PM:PLC(_act~0) 3.345555555555823e+25 #original 100.0/ #PLC #PLC_PM
-	@Cytosol:IP3_Cyt(dag,ph_gfp_cyt) 5.8003903999999995e+25 #original 96.32/ #IP3_Cyt #IP3_Cyt
+	@PM:PI()@PM 4.779360300000383e+28 # 142857.0mol/L * 6.022e23/mol *0.5555555555556L #PI #PI_PM
+	@PM:IP3_Cyt(dag!105,ph_gfp_cyt)@PM.DAG(ip3_cyt!105)@PM 1.3382222222223294e+27 #original 4000.0/ #PIP2 #PIP2_PM
+	@PM:PIP()@PM 9.558252222222988e+26 #original 2857.0/ #PIP #PIP_PM
+	@PM:DAG(ip3_cyt)@PM 6.691111111111647e+26 #original 2000.0/ #DAG #DAG_PM
+	@PM:PLC(_act~0)@PM 3.345555555555823e+25 #original 100.0/ #PLC #PLC_PM
+	@Cytosol:IP3_Cyt(dag,ph_gfp_cyt)@Cytosol 5.8003903999999995e+25 #original 96.32/ #IP3_Cyt #IP3_Cyt
 end seed species
 begin observables
-	Species PIP2_PHGFP_PM @PM:IP3_Cyt(dag!105,ph_gfp_cyt!106).DAG(ip3_cyt!105).PH_GFP_Cyt(ip3_cyt!106) #PIP2_PHGFP_PM
-	Species PH_GFP_Cyt_Cytosol @Cytosol:PH_GFP_Cyt(ip3_cyt) #PH_GFP_Cyt
-	Species PI_PM @PM:PI() #PI_PM
-	Species IP3_PHGFP_Cyt_Cytosol @Cytosol:IP3_Cyt(dag,ph_gfp_cyt!106).PH_GFP_Cyt(ip3_cyt!106) #IP3_PHGFP_Cyt
-	Species PIP2_PM @PM:IP3_Cyt(dag!105,ph_gfp_cyt).DAG(ip3_cyt!105) #PIP2_PM
-	Species PIP_PM @PM:PIP() #PIP_PM
-	Species DAG_PM @PM:DAG(ip3_cyt) #DAG_PM
-	Species PLC_PM @PM:PLC(_act~0) #PLC_PM
-	Species PLC_act_PM @PM:PLC(_act~_ACT) #PLC_act_PM
-	Species IP3_Cyt_Cytosol @Cytosol:IP3_Cyt(dag,ph_gfp_cyt) #IP3_Cyt
+	Species PIP2_PHGFP_PM @PM:IP3_Cyt(dag!105,ph_gfp_cyt!106)@PM.DAG(ip3_cyt!105)@PM.PH_GFP_Cyt(ip3_cyt!106)@PM #PIP2_PHGFP_PM
+	Species PH_GFP_Cyt_Cytosol @Cytosol:PH_GFP_Cyt(ip3_cyt)@Cytosol #PH_GFP_Cyt
+	Species PI_PM @PM:PI()@PM #PI_PM
+	Species IP3_PHGFP_Cyt_Cytosol @Cytosol:IP3_Cyt(dag,ph_gfp_cyt!106)@Cytosol.PH_GFP_Cyt(ip3_cyt!106)@Cytosol #IP3_PHGFP_Cyt
+	Species PIP2_PM @PM:IP3_Cyt(dag!105,ph_gfp_cyt)@PM.DAG(ip3_cyt!105)@PM #PIP2_PM
+	Species PIP_PM @PM:PIP()@PM #PIP_PM
+	Species DAG_PM @PM:DAG(ip3_cyt)@PM #DAG_PM
+	Species PLC_PM @PM:PLC(_act~0)@PM #PLC_PM
+	Species PLC_act_PM @PM:PLC(_act~_ACT)@PM #PLC_act_PM
+	Species IP3_Cyt_Cytosol @Cytosol:IP3_Cyt(dag,ph_gfp_cyt)@Cytosol #IP3_Cyt
 end observables
 begin functions
 	kr_IP3PH_IP3_PHGFP() = KdIP3PH_IP3_PHGFP*kf_IP3PH_IP3_PHGFP

@@ -2,11 +2,11 @@
 #@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1302180003', 'http://identifiers.org/biomodels.db/BIOMD0000000464']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/23708369']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
-#@BQB_HAS_PART:['http://identifiers.org/reactome/REACT_12443.3', 'http://identifiers.org/go/GO:0070509']
+#@BQB_HAS_PART:['http://identifiers.org/go/GO:0070509', 'http://identifiers.org/reactome/REACT_12443.3']
 #@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0002537', 'http://identifiers.org/go/GO:0006809']
 #@creatorEmail:'juty@ebi.ac.uk'
 #@creatorName:'Juty Nick'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 14 molecules and 10 reactions. The translated model has 10 molecules and 16 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 14 molecules and 10 reactions. The translated model has 10 molecules and 16 rules'
 ###
 begin model
 begin parameters
@@ -51,35 +51,35 @@ begin molecule types
 	#^ bqbiol:is chebi:CHEBI:29108
 	Ca_s()
 	s10()
+	s11()
+	s9(Ca_c~Ca_c~0)
+	s7()
 	TimeT()
 	s13()
-	s8(IP3~IP3~0)
 	#^ bqbiol:occursIn go:GO:0005623
 	#^ bqbiol:hasPart chebi:CHEBI:29108
 	Ca_B()
-	s9(Ca_c~Ca_c~0)
-	s11()
-	s7()
 	s5()
+	s8(IP3~IP3~0)
 end molecule types
 begin seed species
-	@c2:Ca_s() 2830000.0 #Ca_s #s2
-	@c1:s9(Ca_c~Ca_c) 117.2 #Ca_c #s3
-	@c1:Ca_B() 3870.0 #Ca_B #s4
+	@c2:Ca_s()@c2 2830000.0 #Ca_s #s2
+	@c1:s9(Ca_c~Ca_c)@c1 117.2 #Ca_c #s3
+	@c1:Ca_B()@c1 3870.0 #Ca_B #s4
 end seed species
 begin observables
-	Species Ca_s_c2 @c2:Ca_s() #Ca_s
-	Species Ca_c_c1 @c1:s9(Ca_c~Ca_c) #Ca_c
-	Species Ca_B_c1 @c1:Ca_B() #Ca_B
-	Species s5_default @default:s5() #s5
-	Species IP3_c1 @c1:s8(IP3~IP3) #IP3
-	Species s7_c1 @c1:s7() #s7
-	Species s8_c1 @c1:s8(IP3~0) #s8
-	Species s9_c1 @c1:s9(Ca_c~0) #s9
-	Species s10_c1 @c1:s10() #s10
-	Species s11_c1 @c1:s11() #s11
-	Species TimeT_default @default:TimeT() #TimeT
-	Species s13_default @default:s13() #s13
+	Species Ca_s_c2 @c2:Ca_s()@c2 #Ca_s
+	Species Ca_c_c1 @c1:s9(Ca_c~Ca_c)@c1 #Ca_c
+	Species Ca_B_c1 @c1:Ca_B()@c1 #Ca_B
+	Species s5_default @default:s5()@default #s5
+	Species IP3_c1 @c1:s8(IP3~IP3)@c1 #IP3
+	Species s7_c1 @c1:s7()@c1 #s7
+	Species s8_c1 @c1:s8(IP3~0)@c1 #s8
+	Species s9_c1 @c1:s9(Ca_c~0)@c1 #s9
+	Species s10_c1 @c1:s10()@c1 #s10
+	Species s11_c1 @c1:s11()@c1 #s11
+	Species TimeT_default @default:TimeT()@default #TimeT
+	Species s13_default @default:s13()@default #s13
 end observables
 begin functions
 	fRate0() = Ca_B_c1*k7 - Ca_c_c1*k6*(B_T - Ca_B_c1)

@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000765_atomized">
+    <ListOfParameters>
+      <Parameter id="k_el" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="V_c" type="Constant" value="10" expr="10.0"/>
+      <Parameter id="k_on" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="K_D" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="k_deg" type="Constant" value="0.566" expr="0.566"/>
+      <Parameter id="k_off" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="ModelValue_1" type="Constant" value="10" expr="10.0"/>
+      <Parameter id="k_int" type="Constant" value="0" expr="0"/>
+      <Parameter id="k_syn" type="Constant" value="0" expr="0"/>
+      <Parameter id="k_tp" type="Constant" value="0" expr="0"/>
+      <Parameter id="k_pt" type="Constant" value="0" expr="0"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="A_T"/>
+      <MoleculeType id="C">
+        <ListOfComponentTypes>
+          <ComponentType id="r"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="R">
+        <ListOfComponentTypes>
+          <ComponentType id="c"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+      <compartment id="Central" spatialDimensions="3" size="1.0"/>
+      <compartment id="Peripheral_Tissue" spatialDimensions="3" size="1.0"/>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="2.4088e+24" name="@Central::C(r)" compartment="Central">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="C" compartment="Central">
+            <ListOfComponents>
+              <Component id="S1_M1_C1" name="r" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="3.19166e+22" name="@Central::R(c)" compartment="Central">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="R" compartment="Central">
+            <ListOfComponents>
+              <Component id="S2_M1_C1" name="c" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="Complex_Formation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR1_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_RP1_M1" name="R" compartment="Central">
+                <ListOfComponents>
+                  <Component id="RR1_RP1_M1_C1" name="c" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR1_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR1_RP2_M1" name="C" compartment="Central">
+                <ListOfComponents>
+                  <Component id="RR1_RP2_M1_C1" name="r" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="R" compartment="Central">
+                <ListOfComponents>
+                  <Component id="RR1_PP1_M1_C1" name="c" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR1_PP1_M2" name="C" compartment="Central">
+                <ListOfComponents>
+                  <Component id="RR1_PP1_M2_C1" name="r" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR1_PP1_B1" site1="RR1_PP1_M1_C1" site2="RR1_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k_on"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR1_RP1_M1" targetID="RR1_PP1_M1"/>
+          <MapItem sourceID="RR1_RP1_M1_C1" targetID="RR1_PP1_M1_C1"/>
+          <MapItem sourceID="RR1_RP2_M1" targetID="RR1_PP1_M2"/>
+          <MapItem sourceID="RR1_RP2_M1_C1" targetID="RR1_PP1_M2_C1"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR1_RP1_M1_C1" site2="RR1_RP2_M1_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="Complex_Dissociation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="R" compartment="Central">
+                <ListOfComponents>
+                  <Component id="RR2_PP1_M1_C1" name="c" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR2_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP2_M1" name="C" compartment="Central">
+                <ListOfComponents>
+                  <Component id="RR2_PP2_M1_C1" name="r" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="fRate1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+          <Add id="RR2_PP2_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="Complex_Internalisation_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="R" compartment="Central">
+                <ListOfComponents>
+                  <Component id="RR3_PP1_M1_C1" name="c" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR3_PP1_M2" name="C" compartment="Central">
+                <ListOfComponents>
+                  <Component id="RR3_PP1_M2_C1" name="r" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR3_PP1_B1" site1="RR3_PP1_M1_C1" site2="RR3_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="_rateLaw1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+          <Add id="RR3_PP1_M2"/>
+          <AddBond site1="RR3_PP1_M1_C1" site2="RR3_PP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="Drug_Exit_Central_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="C" compartment="Central">
+                <ListOfComponents>
+                  <Component id="RR4_PP1_M1_C1" name="r" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="_rateLaw2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR4_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="Drug_Distribution_Tissue_to_Central" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="C" compartment="Central">
+                <ListOfComponents>
+                  <Component id="RR5_PP1_M1_C1" name="r" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Function" name="fRate4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR5_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="Drug_Distribution_Central_to_Tissue" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="A_T" compartment="Peripheral_Tissue"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Function" name="fRate5" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR6_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="Drug_Distribution_Tissue_to_Central_MA" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR7_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_RP1_M1" name="A_T" compartment="Peripheral_Tissue"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k_tp"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR7_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR7_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="Receptor_Synthesis" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR8_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP1_M1" name="R" compartment="Central">
+                <ListOfComponents>
+                  <Component id="RR8_PP1_M1_C1" name="c" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k_syn"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR8_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="Receptor_Dergradation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR9_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_RP1_M1" name="R" compartment="Central">
+                <ListOfComponents>
+                  <Component id="RR9_RP1_M1_C1" name="c" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k_deg"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR9_RP1_M1"/>
+          <MapItem sourceID="RR9_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR9_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="C_Central" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" compartment="Central" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="C">
+                <ListOfComponents>
+                  <Component id="O1_P1_M1_C1" name="r" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="A_T_Peripheral_Tissue" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" compartment="Peripheral_Tissue" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="A_T"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="R_Central" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" compartment="Central" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="R">
+                <ListOfComponents>
+                  <Component id="O3_P1_M1_C1" name="c" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="RC_Central" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" compartment="Central" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="R">
+                <ListOfComponents>
+                  <Component id="O4_P1_M1_C1" name="c" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O4_P1_M2" name="C">
+                <ListOfComponents>
+                  <Component id="O4_P1_M2_C1" name="r" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O4_P1_B1" site1="O4_P1_M1_C1" site2="O4_P1_M2_C1"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="C_tot">
+        <ListOfReferences>
+          <Reference name="ModelValue_1" type="Constant"/>
+          <Reference name="C_Central" type="Observable"/>
+          <Reference name="RC_Central" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (C_Central+RC_Central)/ModelValue_1 </Expression>
+      </Function>
+      <Function id="C_Concentration">
+        <ListOfReferences>
+          <Reference name="ModelValue_1" type="Constant"/>
+          <Reference name="C_Central" type="Observable"/>
+        </ListOfReferences>
+        <Expression> C_Central/ModelValue_1 </Expression>
+      </Function>
+      <Function id="fRate1">
+        <ListOfReferences>
+          <Reference name="k_off" type="Constant"/>
+          <Reference name="RC_Central" type="Observable"/>
+        </ListOfReferences>
+        <Expression> RC_Central*k_off </Expression>
+      </Function>
+      <Function id="fRate2">
+        <ListOfReferences>
+          <Reference name="k_int" type="Constant"/>
+          <Reference name="k_off" type="Constant"/>
+          <Reference name="RC_Central" type="Observable"/>
+        </ListOfReferences>
+        <Expression> RC_Central*(k_int+k_off) </Expression>
+      </Function>
+      <Function id="fRate3">
+        <ListOfReferences>
+          <Reference name="k_el" type="Constant"/>
+          <Reference name="k_pt" type="Constant"/>
+          <Reference name="C_Central" type="Observable"/>
+        </ListOfReferences>
+        <Expression> C_Central*(k_el+k_pt) </Expression>
+      </Function>
+      <Function id="fRate4">
+        <ListOfReferences>
+          <Reference name="V_c" type="Constant"/>
+          <Reference name="k_tp" type="Constant"/>
+          <Reference name="A_T_Peripheral_Tissue" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (A_T_Peripheral_Tissue*k_tp)/V_c </Expression>
+      </Function>
+      <Function id="fRate5">
+        <ListOfReferences>
+          <Reference name="V_c" type="Constant"/>
+          <Reference name="k_pt" type="Constant"/>
+          <Reference name="C_Central" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (C_Central*V_c)*k_pt </Expression>
+      </Function>
+      <Function id="_rateLaw1">
+        <ListOfReferences>
+          <Reference name="fRate2" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate2() </Expression>
+      </Function>
+      <Function id="_rateLaw2">
+        <ListOfReferences>
+          <Reference name="fRate3" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate3() </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

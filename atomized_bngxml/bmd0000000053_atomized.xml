@@ -1,0 +1,792 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000053_atomized">
+    <ListOfParameters>
+      <Parameter id="r1_p1" type="Constant" value="0.115" expr="0.115000"/>
+      <Parameter id="r1_k1a" type="Constant" value="0.09" expr="0.090000"/>
+      <Parameter id="r2_k1b" type="Constant" value="0.36" expr="0.360000"/>
+      <Parameter id="r3_p2" type="Constant" value="0.75" expr="0.750000"/>
+      <Parameter id="r3_k2a" type="Constant" value="0.033" expr="0.033000"/>
+      <Parameter id="r4_p2" type="Constant" value="0.75" expr="0.750000"/>
+      <Parameter id="r4_k2b" type="Constant" value="0.0012" expr="0.001200"/>
+      <Parameter id="r5_ox" type="Constant" value="1" expr="1.000000"/>
+      <Parameter id="r5_p3" type="Constant" value="1" expr="1.000000"/>
+      <Parameter id="r5_k3" type="Constant" value="1e-6" expr="0.000001"/>
+      <Parameter id="r6_ox" type="Constant" value="1" expr="1.000000"/>
+      <Parameter id="r6_p4" type="Constant" value="1" expr="1.000000"/>
+      <Parameter id="r6_k4" type="Constant" value="8.6e-5" expr="0.000086"/>
+      <Parameter id="r7_ox" type="Constant" value="1" expr="1.000000"/>
+      <Parameter id="r7_p5" type="Constant" value="1" expr="1.000000"/>
+      <Parameter id="r7_k5" type="Constant" value="0.019" expr="0.019000"/>
+      <Parameter id="r8_k5b" type="Constant" value="0.0017" expr="0.001700"/>
+      <Parameter id="r9_ox" type="Constant" value="1" expr="1.000000"/>
+      <Parameter id="r9_p6" type="Constant" value="2.7" expr="2.700000"/>
+      <Parameter id="r9_k3" type="Constant" value="1e-6" expr="0.000001"/>
+      <Parameter id="r10_ox" type="Constant" value="1" expr="1.000000"/>
+      <Parameter id="r10_p7" type="Constant" value="60" expr="60.000000"/>
+      <Parameter id="r10_k3" type="Constant" value="1e-6" expr="0.000001"/>
+      <Parameter id="r11_ox" type="Constant" value="1" expr="1.000000"/>
+      <Parameter id="r11_p7" type="Constant" value="60" expr="60.000000"/>
+      <Parameter id="r11_k3" type="Constant" value="1e-6" expr="0.000001"/>
+      <Parameter id="r12_ox" type="Constant" value="1" expr="1.000000"/>
+      <Parameter id="r12_p7" type="Constant" value="60" expr="60.000000"/>
+      <Parameter id="r12_k3" type="Constant" value="1e-6" expr="0.000001"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="Amadori"/>
+      <MoleculeType id="Glucose">
+        <ListOfComponentTypes>
+          <ComponentType id="lysine"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="Glyoxal">
+        <ListOfComponentTypes>
+          <ComponentType id="lysine"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="Lysine">
+        <ListOfComponentTypes>
+          <ComponentType id="glucose"/>
+          <ComponentType id="glyoxal"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="1.5055e+23" name="Glucose(lysine)">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="Glucose">
+            <ListOfComponents>
+              <Component id="S1_M1_C1" name="lysine" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="2.04748e+21" name="Lysine(glucose,glyoxal)">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="Lysine">
+            <ListOfComponents>
+              <Component id="S2_M1_C1" name="glucose" numberOfBonds="0"/>
+              <Component id="S2_M1_C2" name="glyoxal" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="v1a" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR1_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_RP1_M1" name="Lysine">
+                <ListOfComponents>
+                  <Component id="RR1_RP1_M1_C1" name="glucose" numberOfBonds="0"/>
+                  <Component id="RR1_RP1_M1_C2" name="glyoxal" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR1_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR1_RP2_M1" name="Glucose">
+                <ListOfComponents>
+                  <Component id="RR1_RP2_M1_C1" name="lysine" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="Lysine">
+                <ListOfComponents>
+                  <Component id="RR1_PP1_M1_C1" name="glucose" numberOfBonds="1"/>
+                  <Component id="RR1_PP1_M1_C2" name="glyoxal" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR1_PP1_M2" name="Glucose">
+                <ListOfComponents>
+                  <Component id="RR1_PP1_M2_C1" name="lysine" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR1_PP1_B1" site1="RR1_PP1_M1_C1" site2="RR1_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR1_RP1_M1" targetID="RR1_PP1_M1"/>
+          <MapItem sourceID="RR1_RP1_M1_C1" targetID="RR1_PP1_M1_C1"/>
+          <MapItem sourceID="RR1_RP1_M1_C2" targetID="RR1_PP1_M1_C2"/>
+          <MapItem sourceID="RR1_RP2_M1" targetID="RR1_PP1_M2"/>
+          <MapItem sourceID="RR1_RP2_M1_C1" targetID="RR1_PP1_M2_C1"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR1_RP1_M1_C1" site2="RR1_RP2_M1_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="v1b" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="Lysine">
+                <ListOfComponents>
+                  <Component id="RR2_RP1_M1_C1" name="glucose" numberOfBonds="1"/>
+                  <Component id="RR2_RP1_M1_C2" name="glyoxal" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR2_RP1_M2" name="Glucose">
+                <ListOfComponents>
+                  <Component id="RR2_RP1_M2_C1" name="lysine" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR2_RP1_B1" site1="RR2_RP1_M1_C1" site2="RR2_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="Lysine">
+                <ListOfComponents>
+                  <Component id="RR2_PP1_M1_C1" name="glucose" numberOfBonds="0"/>
+                  <Component id="RR2_PP1_M1_C2" name="glyoxal" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR2_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP2_M1" name="Glucose">
+                <ListOfComponents>
+                  <Component id="RR2_PP2_M1_C1" name="lysine" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r2_k1b"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1" targetID="RR2_PP1_M1"/>
+          <MapItem sourceID="RR2_RP1_M1_C1" targetID="RR2_PP1_M1_C1"/>
+          <MapItem sourceID="RR2_RP1_M1_C2" targetID="RR2_PP1_M1_C2"/>
+          <MapItem sourceID="RR2_RP1_M2" targetID="RR2_PP2_M1"/>
+          <MapItem sourceID="RR2_RP1_M2_C1" targetID="RR2_PP2_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <DeleteBond site1="RR2_RP1_M1_C1" site2="RR2_RP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="v2a" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="Lysine">
+                <ListOfComponents>
+                  <Component id="RR3_RP1_M1_C1" name="glucose" numberOfBonds="1"/>
+                  <Component id="RR3_RP1_M1_C2" name="glyoxal" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR3_RP1_M2" name="Glucose">
+                <ListOfComponents>
+                  <Component id="RR3_RP1_M2_C1" name="lysine" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR3_RP1_B1" site1="RR3_RP1_M1_C1" site2="RR3_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="Amadori"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="fRate2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1"/>
+          <MapItem sourceID="RR3_RP1_M1_C1"/>
+          <MapItem sourceID="RR3_RP1_M1_C2"/>
+          <MapItem sourceID="RR3_RP1_M2"/>
+          <MapItem sourceID="RR3_RP1_M2_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+          <Delete id="RR3_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="v2b" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="Amadori"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="Lysine">
+                <ListOfComponents>
+                  <Component id="RR4_PP1_M1_C1" name="glucose" numberOfBonds="1"/>
+                  <Component id="RR4_PP1_M1_C2" name="glyoxal" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR4_PP1_M2" name="Glucose">
+                <ListOfComponents>
+                  <Component id="RR4_PP1_M2_C1" name="lysine" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR4_PP1_B1" site1="RR4_PP1_M1_C1" site2="RR4_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="fRate3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR4_PP1_M1"/>
+          <Add id="RR4_PP1_M2"/>
+          <AddBond site1="RR4_PP1_M1_C1" site2="RR4_PP1_M2_C1"/>
+          <Delete id="RR4_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="v3_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="Glucose">
+                <ListOfComponents>
+                  <Component id="RR5_PP1_M1_C1" name="lysine" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Function" name="_rateLaw1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR5_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="v3_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="Glyoxal">
+                <ListOfComponents>
+                  <Component id="RR6_PP1_M1_C1" name="lysine" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Function" name="fRate4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR6_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="v4" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR7_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_RP1_M1" name="Amadori"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="Lysine">
+                <ListOfComponents>
+                  <Component id="RR7_PP1_M1_C1" name="glucose" numberOfBonds="0"/>
+                  <Component id="RR7_PP1_M1_C2" name="glyoxal" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR7_PP1_M2" name="Glyoxal">
+                <ListOfComponents>
+                  <Component id="RR7_PP1_M2_C1" name="lysine" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR7_PP1_B1" site1="RR7_PP1_M1_C2" site2="RR7_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Function" name="fRate5" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR7_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR7_PP1_M1"/>
+          <Add id="RR7_PP1_M2"/>
+          <AddBond site1="RR7_PP1_M1_C2" site2="RR7_PP1_M2_C1"/>
+          <Delete id="RR7_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="v5" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR8_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_RP1_M1" name="Lysine">
+                <ListOfComponents>
+                  <Component id="RR8_RP1_M1_C1" name="glucose" numberOfBonds="0"/>
+                  <Component id="RR8_RP1_M1_C2" name="glyoxal" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR8_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR8_RP2_M1" name="Glyoxal">
+                <ListOfComponents>
+                  <Component id="RR8_RP2_M1_C1" name="lysine" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR8_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP1_M1" name="Lysine">
+                <ListOfComponents>
+                  <Component id="RR8_PP1_M1_C1" name="glucose" numberOfBonds="0"/>
+                  <Component id="RR8_PP1_M1_C2" name="glyoxal" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR8_PP1_M2" name="Glyoxal">
+                <ListOfComponents>
+                  <Component id="RR8_PP1_M2_C1" name="lysine" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR8_PP1_B1" site1="RR8_PP1_M1_C2" site2="RR8_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Function" name="fRate6" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR8_RP1_M1" targetID="RR8_PP1_M1"/>
+          <MapItem sourceID="RR8_RP1_M1_C1" targetID="RR8_PP1_M1_C1"/>
+          <MapItem sourceID="RR8_RP1_M1_C2" targetID="RR8_PP1_M1_C2"/>
+          <MapItem sourceID="RR8_RP2_M1" targetID="RR8_PP1_M2"/>
+          <MapItem sourceID="RR8_RP2_M1_C1" targetID="RR8_PP1_M2_C1"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR8_RP1_M1_C2" site2="RR8_RP2_M1_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="v5b" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR9_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_RP1_M1" name="Glyoxal">
+                <ListOfComponents>
+                  <Component id="RR9_RP1_M1_C1" name="lysine" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r8_k5b"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR9_RP1_M1"/>
+          <MapItem sourceID="RR9_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR9_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="v6_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR10_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_PP1_M1" name="Lysine">
+                <ListOfComponents>
+                  <Component id="RR10_PP1_M1_C1" name="glucose" numberOfBonds="1"/>
+                  <Component id="RR10_PP1_M1_C2" name="glyoxal" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR10_PP1_M2" name="Glucose">
+                <ListOfComponents>
+                  <Component id="RR10_PP1_M2_C1" name="lysine" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR10_PP1_B1" site1="RR10_PP1_M1_C1" site2="RR10_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Function" name="_rateLaw2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR10_PP1_M1"/>
+          <Add id="RR10_PP1_M2"/>
+          <AddBond site1="RR10_PP1_M1_C1" site2="RR10_PP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR11" name="v6_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR11_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_PP1_M1" name="Lysine">
+                <ListOfComponents>
+                  <Component id="RR11_PP1_M1_C1" name="glucose" numberOfBonds="0"/>
+                  <Component id="RR11_PP1_M1_C2" name="glyoxal" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR11_PP1_M2" name="Glyoxal">
+                <ListOfComponents>
+                  <Component id="RR11_PP1_M2_C1" name="lysine" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR11_PP1_B1" site1="RR11_PP1_M1_C2" site2="RR11_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR11_RateLaw" type="Function" name="fRate8" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR11_PP1_M1"/>
+          <Add id="RR11_PP1_M2"/>
+          <AddBond site1="RR11_PP1_M1_C2" site2="RR11_PP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR12" name="v7a" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR12_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_PP1_M1" name="Lysine">
+                <ListOfComponents>
+                  <Component id="RR12_PP1_M1_C1" name="glucose" numberOfBonds="0"/>
+                  <Component id="RR12_PP1_M1_C2" name="glyoxal" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR12_RateLaw" type="Function" name="fRate9" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR12_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR13" name="v7b" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR13_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_PP1_M1" name="Glyoxal">
+                <ListOfComponents>
+                  <Component id="RR13_PP1_M1_C1" name="lysine" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR13_RateLaw" type="Function" name="fRate10" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR13_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR14" name="v7c_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR14_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_PP1_M1" name="Lysine">
+                <ListOfComponents>
+                  <Component id="RR14_PP1_M1_C1" name="glucose" numberOfBonds="1"/>
+                  <Component id="RR14_PP1_M1_C2" name="glyoxal" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR14_PP1_M2" name="Glucose">
+                <ListOfComponents>
+                  <Component id="RR14_PP1_M2_C1" name="lysine" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR14_PP1_B1" site1="RR14_PP1_M1_C1" site2="RR14_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR14_RateLaw" type="Function" name="_rateLaw3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR14_PP1_M1"/>
+          <Add id="RR14_PP1_M2"/>
+          <AddBond site1="RR14_PP1_M1_C1" site2="RR14_PP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="Glucose" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="Glucose">
+                <ListOfComponents>
+                  <Component id="O1_P1_M1_C1" name="lysine" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="Lysine" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="Lysine">
+                <ListOfComponents>
+                  <Component id="O2_P1_M1_C1" name="glucose" numberOfBonds="0"/>
+                  <Component id="O2_P1_M1_C2" name="glyoxal" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="Schiff" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="Lysine">
+                <ListOfComponents>
+                  <Component id="O3_P1_M1_C1" name="glucose" numberOfBonds="1"/>
+                  <Component id="O3_P1_M1_C2" name="glyoxal" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O3_P1_M2" name="Glucose">
+                <ListOfComponents>
+                  <Component id="O3_P1_M2_C1" name="lysine" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O3_P1_B1" site1="O3_P1_M1_C1" site2="O3_P1_M2_C1"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="Amadori" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="Amadori"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="Glyoxal" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="Glyoxal">
+                <ListOfComponents>
+                  <Component id="O5_P1_M1_C1" name="lysine" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O6" name="CML" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O6_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O6_P1_M1" name="Lysine">
+                <ListOfComponents>
+                  <Component id="O6_P1_M1_C1" name="glucose" numberOfBonds="0"/>
+                  <Component id="O6_P1_M1_C2" name="glyoxal" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O6_P1_M2" name="Glyoxal">
+                <ListOfComponents>
+                  <Component id="O6_P1_M2_C1" name="lysine" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O6_P1_B1" site1="O6_P1_M1_C2" site2="O6_P1_M2_C1"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="Fraction_CML">
+        <ListOfReferences>
+          <Reference name="CML" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 294.117647058824*CML </Expression>
+      </Function>
+      <Function id="Fraction_Amadori">
+        <ListOfReferences>
+          <Reference name="Amadori" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 294.117647058824*Amadori </Expression>
+      </Function>
+      <Function id="fRate0">
+        <ListOfReferences>
+        </ListOfReferences>
+        <Expression> 0.01035 </Expression>
+      </Function>
+      <Function id="fRate2">
+        <ListOfReferences>
+        </ListOfReferences>
+        <Expression> 0.02475 </Expression>
+      </Function>
+      <Function id="fRate3">
+        <ListOfReferences>
+        </ListOfReferences>
+        <Expression> 0.0009 </Expression>
+      </Function>
+      <Function id="fRate4">
+        <ListOfReferences>
+          <Reference name="Glucose" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 1.30456817135184e-6*(Glucose^0.36) </Expression>
+      </Function>
+      <Function id="fRate5">
+        <ListOfReferences>
+        </ListOfReferences>
+        <Expression> 8.6e-5 </Expression>
+      </Function>
+      <Function id="fRate6">
+        <ListOfReferences>
+        </ListOfReferences>
+        <Expression> 0.019 </Expression>
+      </Function>
+      <Function id="fRate8">
+        <ListOfReferences>
+          <Reference name="Schiff" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 3.52233406264997e-6*(Schiff^0.36) </Expression>
+      </Function>
+      <Function id="fRate9">
+        <ListOfReferences>
+          <Reference name="Schiff" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 3.91370451405551e-6*(Schiff^0.36) </Expression>
+      </Function>
+      <Function id="fRate10">
+        <ListOfReferences>
+          <Reference name="Schiff" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 3.91370451405551e-7*(Schiff^0.36) </Expression>
+      </Function>
+      <Function id="fRate11">
+        <ListOfReferences>
+          <Reference name="Schiff" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 7.82740902811103e-5*(Schiff^0.36) </Expression>
+      </Function>
+      <Function id="_rateLaw1">
+        <ListOfReferences>
+          <Reference name="fRate4" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate4() </Expression>
+      </Function>
+      <Function id="_rateLaw2">
+        <ListOfReferences>
+          <Reference name="fRate8" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate8() </Expression>
+      </Function>
+      <Function id="_rateLaw3">
+        <ListOfReferences>
+          <Reference name="fRate11" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate11() </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

@@ -1,5 +1,5 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000330', 'http://identifiers.org/biomodels.db/MODEL1105060001']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1105060001', 'http://identifiers.org/biomodels.db/BIOMD0000000330']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/14871603']
 #@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/BIOMD0000000329']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10116']
@@ -7,7 +7,7 @@
 #@BQB_OCCURS_IN:['http://identifiers.org/cl/CL:0000182']
 #@creatorEmail:'viji@ebi.ac.uk'
 #@creatorName:'Chelliah Vijayalakshmi'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 5 molecules and 0 reactions. The translated model has 4 molecules and 5 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 5 molecules and 0 reactions. The translated model has 4 molecules and 5 rules'
 ###
 begin model
 begin parameters
@@ -41,9 +41,9 @@ begin compartments
 end compartments
 begin molecule types
 	Calcium_Cyt()
-	Calcium()
-	PLC()
 	G_alpha()
+	PLC()
+	Calcium()
 end molecule types
 begin seed species
 	@cytoplasm:G_alpha() 6.022e+21 # 0.01mol/L * 6.022e23/mol *1.0L #G_alpha #G_alpha
@@ -61,7 +61,8 @@ begin observables
 end observables
 begin functions
 	arRateCa_mit() = Calcium_Cyt_cytoplasm^8*k18/(Calcium_Cyt_cytoplasm^8 + K19^8) - Calcium_Cyt_cytoplasm*k20*(-Calcium_Cyt_cytoplasm + Calcium_mit)/(Calcium_Cyt_cytoplasm + K21)
-	arRateCa_ER() = Calcium_Cyt_cytoplasm*PLC_cytoplasm^4*k10*(Calcium_Cyt_cytoplasm - Calcium_mit)/(K11^4 + PLC_cytoplasm^4) + Calcium_Cyt_cytoplasm*k16/(Calcium_Cyt_cytoplasm + K17)
+	armRateCa_ER() = Calcium_Cyt_cytoplasm*PLC_cytoplasm^4*k10/(K11^4 + PLC_cytoplasm^4)
+	arRateCa_ER() = Calcium_Cyt_cytoplasm*(Calcium_Cyt_cytoplasm*PLC_cytoplasm^4*k10*(Calcium_Cyt_cytoplasm + K17) + k16*(K11^4 + PLC_cytoplasm^4))/((Calcium_Cyt_cytoplasm + K17)*(K11^4 + PLC_cytoplasm^4))
 	arRateCa_cyt() = -Calcium_Cyt_cytoplasm^8*k18/(Calcium_Cyt_cytoplasm^8 + K19^8) + Calcium_Cyt_cytoplasm*PLC_cytoplasm^4*k10*(-Calcium_Cyt_cytoplasm + Calcium_mit)/(K11^4 + PLC_cytoplasm^4) - Calcium_Cyt_cytoplasm*k14/(Calcium_Cyt_cytoplasm + K15) - Calcium_Cyt_cytoplasm*k16/(Calcium_Cyt_cytoplasm + K17) + Calcium_Cyt_cytoplasm*k20*(-Calcium_Cyt_cytoplasm + Calcium_mit)/(Calcium_Cyt_cytoplasm + K21) + G_alpha_cytoplasm*k13 + PLC_cytoplasm*k12
 	arRatePLC() = G_alpha_cytoplasm*k7 - PLC_cytoplasm*k8/(K9 + PLC_cytoplasm)
 	arRateG_alpha() = -Calcium_Cyt_cytoplasm*G_alpha_cytoplasm*k5/(G_alpha_cytoplasm + K6) - G_alpha_cytoplasm*PLC_cytoplasm*k3/(G_alpha_cytoplasm + K4) + G_alpha_cytoplasm*k2 + k1
@@ -70,7 +71,7 @@ begin reaction rules
 	0  -> G_alpha()@cytoplasm arRateG_alpha #rateLaw
 	0  -> PLC()@cytoplasm arRatePLC #rateLaw
 	0  -> Calcium_Cyt()@cytoplasm arRateCa_cyt #rateLaw
-	0  -> Calcium()@ER arRateCa_ER #rateLaw
+	0  <-> Calcium()@ER arRateCa_ER,armRateCa_ER #rateLaw
 	0  -> Calcium()@mit arRateCa_mit #rateLaw
 end reaction rules
 end model

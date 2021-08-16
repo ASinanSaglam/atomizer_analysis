@@ -1,14 +1,14 @@
 ###
 #@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000149', 'http://identifiers.org/biomodels.db/MODEL4159212701']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/17237813']
-#@BQM_IS_DERIVED_FROM:['http://identifiers.org/doi/10.1007/3-540-36481-1_11', 'http://identifiers.org/pubmed/14551908']
-#@BQB_HAS_PART:['http://identifiers.org/go/GO:0000165', 'http://identifiers.org/go/GO:0060070', 'http://identifiers.org/kegg.pathway/hsa04310', 'http://identifiers.org/kegg.pathway/hsa04010']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/14551908', 'http://identifiers.org/doi/10.1007/3-540-36481-1_11']
+#@BQB_HAS_PART:['http://identifiers.org/go/GO:0000165', 'http://identifiers.org/kegg.pathway/hsa04310', 'http://identifiers.org/kegg.pathway/hsa04010', 'http://identifiers.org/go/GO:0060070']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
 #@BQB_HAS_VERSION:['http://identifiers.org/doid/DOID:9256']
 #@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000007']
 #@creatorEmail:'hdharuri@cds.caltech.edu'
 #@creatorName:'Dharuri Harish'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 28 molecules and 33 reactions. The translated model has 14 molecules and 33 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 28 molecules and 33 reactions. The translated model has 14 molecules and 33 rules'
 ###
 begin model
 begin parameters
@@ -77,93 +77,93 @@ begin compartments
 	nucleus 3 1.0
 end compartments
 begin molecule types
-	#^ bqbiol:isVersionOf uniprot:P28482
-	ERK(_ast~_AST~0)
-	#^ bqbiol:isVersionOf uniprot:P04049
-	Raf_1(_ast~_AST~0,rkip)
-	#^ bqbiol:isVersionOf uniprot:O15169
-	Axin(apc)
-	#^ bqbiol:isVersionOf uniprot:P49841, uniprot:P49841
-	GSK3beta(_x28~_X28~0)
-	#^ bqbiol:isVersionOf uniprot:Q5TA35
-	Dshi(Dsha~Dsha~0)
 	#^ bqbiol:hasPart uniprot:O95996, uniprot:O15169, uniprot:P49841
 	#^ bqbiol:is go:GO:0030877
 	APC_ast_Axin_ast_GSK3beta(bcatenin)
-	#^ bqbiol:isVersionOf uniprot:P30086
-	RKIP(_ast~_AST~0,raf_1)
-	#^ bqbiol:isVersionOf uniprot:P62070
-	Rasi(Rasa~Rasa~0)
+	#^ bqbiol:isVersionOf uniprot:P49841, uniprot:P49841
+	GSK3beta(_x28~_X28~0)
 	#^ bqbiol:hasPart uniprot:O95996, uniprot:O15169, uniprot:P49841
 	#^ bqbiol:is go:GO:0030877
 	APC_Axin_GSK3beta()
+	#^ bqbiol:isVersionOf uniprot:P04049
+	Raf_1(_ast~_AST~0,rkip)
+	#^ bqbiol:isVersionOf uniprot:P62070
+	Rasi(Rasa~Rasa~0)
+	#^ bqbiol:isVersionOf uniprot:P28482
+	ERK(_ast~_AST~0)
+	#^ bqbiol:isVersionOf uniprot:P30086
+	RKIP(_ast~_AST~0,raf_1)
+	#^ bqbiol:isVersionOf uniprot:Q5TA35
+	Dshi(Dsha~Dsha~0)
 	#^ bqbiol:isVersionOf uniprot:O95996
 	APC(axin,bcatenin)
-	#^ bqbiol:isVersionOf uniprot:Q02750
-	MEK(_ast~_AST~0)
 	#^ bqbiol:isVersionOf uniprot:P35222
 	bCatenin(_ast~_AST~0,apc,apc_ast_axin_ast_gsk3beta,tcf)
+	#^ bqbiol:isVersionOf uniprot:Q02750
+	MEK(_ast~_AST~0)
+	unknownmoleculeX()
+	#^ bqbiol:isVersionOf uniprot:O15169
+	Axin(apc)
 	#^ bqbiol:isVersionOf uniprot:Q9UJU2
 	TCF(bcatenin)
-	unknownmoleculeX()
 end molecule types
 begin seed species
-	@cytoplasm:Dshi(Dsha~0) 6.022000000000001e+16 # (100.0 * 1e-09)mol/L * 6.022e23/mol *1.0L #Dshi #X1
-	@cytoplasm:APC_ast_Axin_ast_GSK3beta(bcatenin) 9213660000000.002 #original 0.0153nanomole/L #APC_ast_Axin_ast_GSK3beta #X3
-	@cytoplasm:APC_Axin_GSK3beta() 4576720000000.0 #original 0.0076nanomole/L #APC_Axin_GSK3beta #X4
-	@cytoplasm:GSK3beta(_x28~0) 2.9590421840000004e+16 #original 49.1372nanomole/L #GSK3beta #X5
-	@cytoplasm:APC(axin!214,bcatenin).Axin(apc!214) 903300000000.0001 #original 0.0015nanomole/L #APC_Axin #X6
-	@cytoplasm:APC(axin,bcatenin) 5.817366418e+16 #original 96.6019nanomole/L #APC #X7
-	@cytoplasm:bCatenin(_ast~0,apc,apc_ast_axin_ast_gsk3beta!218,tcf).APC_ast_Axin_ast_GSK3beta(bcatenin!218) 1204400000000.0002 #original 0.002nanomole/L #bCatenin_APC_Ast_Axin_ast_GSK3beta #X8
-	@cytoplasm:bCatenin(_ast~_AST,apc,apc_ast_axin_ast_gsk3beta!218,tcf).APC_ast_Axin_ast_GSK3beta(bcatenin!218) 1204400000000.0002 #original 0.002nanomole/L #bCatenin_ast_APC_ast_Axin_ast_GSK3beta #X9
-	@cytoplasm:bCatenin(_ast~_AST,apc,apc_ast_axin_ast_gsk3beta,tcf) 595033820000000.1 #original 0.9881nanomole/L #bCatenin_ast #X10
-	@nucleus:bCatenin(_ast~0,apc,apc_ast_axin_ast_gsk3beta,tcf) 2.5727429280000004e+16 #original 42.7224nanomole/L #bCatenin #X11
-	@cytoplasm:Axin(apc) 481760000000.0001 #original 0.0008nanomole/L #Axin #X12
-	@nucleus:TCF(bcatenin) 3726353380000000.0 #original 6.1879nanomole/L #TCF #X13
-	@nucleus:bCatenin(_ast~0,apc,apc_ast_axin_ast_gsk3beta,tcf!216).TCF(bcatenin!216) 5306646620000000.0 #original 8.8121nanomole/L #bCatenin_TCF #X14
-	@cytoplasm:bCatenin(_ast~0,apc!217,apc_ast_axin_ast_gsk3beta,tcf).APC(axin,bcatenin!217) 2071086240000000.2 #original 3.4392nanomole/L #bCatenin_APC #X15
-	@cytoplasm:Rasi(Rasa~0) 1.2044000000000002e+17 #original 200.0nanomole/L #Rasi #X16
-	@cytoplasm:Raf_1(_ast~0,rkip) 6.778272870000001e+16 #original 112.5585nanomole/L #Raf_1 #X18
-	@cytoplasm:Raf_1(_ast~_AST,rkip) 3905869200000000.5 #original 6.486nanomole/L #Raf_1_ast #X19
-	@cytoplasm:MEK(_ast~0) 1.7831967014e+17 #original 296.1137nanomole/L #MEK #X20
-	@cytoplasm:MEK(_ast~_AST) 2340329860000000.0 #original 3.8863nanomole/L #MEK_ast #X21
-	@cytoplasm:ERK(_ast~0) 1.7938917734e+17 #original 297.8897nanomole/L #ERK #X22
-	@cytoplasm:ERK(_ast~_AST) 1270822660000000.0 #original 2.1103nanomole/L #ERK_ast #X23
-	@cytoplasm:Raf_1(_ast~0,rkip!215).RKIP(_ast~0,raf_1!215) 1.0897381090000002e+17 #original 180.9595nanomole/L #Raf1_RKIP #X24
-	@cytoplasm:RKIP(_ast~0,raf_1) 2.5182727336000003e+17 #original 418.1788nanomole/L #RKIP #X25
-	@cytoplasm:RKIP(_ast~_AST,raf_1) 519036180000000.06 #original 0.8619nanomole/L #RKIP_ast #X26
-	@cytoplasm:unknownmoleculeX() 6180378600000001.0 #original 10.263nanomole/L #unknownmoleculeX #X27
-	@cytoplasm:GSK3beta(_x28~_X28) 515145968000000.0 #original 0.85544nanomole/L #GSK3beta_X28 #X28
+	@cytoplasm:Dshi(Dsha~0)@cytoplasm 6.022000000000001e+16 # (100.0 * 1e-09)mol/L * 6.022e23/mol *1.0L #Dshi #X1
+	@cytoplasm:APC_ast_Axin_ast_GSK3beta(bcatenin)@cytoplasm 9213660000000.002 #original 0.0153nanomole/L #APC_ast_Axin_ast_GSK3beta #X3
+	@cytoplasm:APC_Axin_GSK3beta()@cytoplasm 4576720000000.0 #original 0.0076nanomole/L #APC_Axin_GSK3beta #X4
+	@cytoplasm:GSK3beta(_x28~0)@cytoplasm 2.9590421840000004e+16 #original 49.1372nanomole/L #GSK3beta #X5
+	@cytoplasm:APC(axin!214,bcatenin)@cytoplasm.Axin(apc!214)@cytoplasm 903300000000.0001 #original 0.0015nanomole/L #APC_Axin #X6
+	@cytoplasm:APC(axin,bcatenin)@cytoplasm 5.817366418e+16 #original 96.6019nanomole/L #APC #X7
+	@cytoplasm:bCatenin(_ast~0,apc,apc_ast_axin_ast_gsk3beta!218,tcf)@cytoplasm.APC_ast_Axin_ast_GSK3beta(bcatenin!218)@cytoplasm 1204400000000.0002 #original 0.002nanomole/L #bCatenin_APC_Ast_Axin_ast_GSK3beta #X8
+	@cytoplasm:bCatenin(_ast~_AST,apc,apc_ast_axin_ast_gsk3beta!218,tcf)@cytoplasm.APC_ast_Axin_ast_GSK3beta(bcatenin!218)@cytoplasm 1204400000000.0002 #original 0.002nanomole/L #bCatenin_ast_APC_ast_Axin_ast_GSK3beta #X9
+	@cytoplasm:bCatenin(_ast~_AST,apc,apc_ast_axin_ast_gsk3beta,tcf)@cytoplasm 595033820000000.1 #original 0.9881nanomole/L #bCatenin_ast #X10
+	@nucleus:bCatenin(_ast~0,apc,apc_ast_axin_ast_gsk3beta,tcf)@nucleus 2.5727429280000004e+16 #original 42.7224nanomole/L #bCatenin #X11
+	@cytoplasm:Axin(apc)@cytoplasm 481760000000.0001 #original 0.0008nanomole/L #Axin #X12
+	@nucleus:TCF(bcatenin)@nucleus 3726353380000000.0 #original 6.1879nanomole/L #TCF #X13
+	@nucleus:bCatenin(_ast~0,apc,apc_ast_axin_ast_gsk3beta,tcf!216)@nucleus.TCF(bcatenin!216)@nucleus 5306646620000000.0 #original 8.8121nanomole/L #bCatenin_TCF #X14
+	@cytoplasm:bCatenin(_ast~0,apc!217,apc_ast_axin_ast_gsk3beta,tcf)@cytoplasm.APC(axin,bcatenin!217)@cytoplasm 2071086240000000.2 #original 3.4392nanomole/L #bCatenin_APC #X15
+	@cytoplasm:Rasi(Rasa~0)@cytoplasm 1.2044000000000002e+17 #original 200.0nanomole/L #Rasi #X16
+	@cytoplasm:Raf_1(_ast~0,rkip)@cytoplasm 6.778272870000001e+16 #original 112.5585nanomole/L #Raf_1 #X18
+	@cytoplasm:Raf_1(_ast~_AST,rkip)@cytoplasm 3905869200000000.5 #original 6.486nanomole/L #Raf_1_ast #X19
+	@cytoplasm:MEK(_ast~0)@cytoplasm 1.7831967014e+17 #original 296.1137nanomole/L #MEK #X20
+	@cytoplasm:MEK(_ast~_AST)@cytoplasm 2340329860000000.0 #original 3.8863nanomole/L #MEK_ast #X21
+	@cytoplasm:ERK(_ast~0)@cytoplasm 1.7938917734e+17 #original 297.8897nanomole/L #ERK #X22
+	@cytoplasm:ERK(_ast~_AST)@cytoplasm 1270822660000000.0 #original 2.1103nanomole/L #ERK_ast #X23
+	@cytoplasm:Raf_1(_ast~0,rkip!215)@cytoplasm.RKIP(_ast~0,raf_1!215)@cytoplasm 1.0897381090000002e+17 #original 180.9595nanomole/L #Raf1_RKIP #X24
+	@cytoplasm:RKIP(_ast~0,raf_1)@cytoplasm 2.5182727336000003e+17 #original 418.1788nanomole/L #RKIP #X25
+	@cytoplasm:RKIP(_ast~_AST,raf_1)@cytoplasm 519036180000000.06 #original 0.8619nanomole/L #RKIP_ast #X26
+	@cytoplasm:unknownmoleculeX()@cytoplasm 6180378600000001.0 #original 10.263nanomole/L #unknownmoleculeX #X27
+	@cytoplasm:GSK3beta(_x28~_X28)@cytoplasm 515145968000000.0 #original 0.85544nanomole/L #GSK3beta_X28 #X28
 end seed species
 begin observables
-	Species Dshi_cytoplasm @cytoplasm:Dshi(Dsha~0) #Dshi
-	Species Dsha_cytoplasm @cytoplasm:Dshi(Dsha~Dsha) #Dsha
-	Species APC_ast_Axin_ast_GSK3beta_cytoplasm @cytoplasm:APC_ast_Axin_ast_GSK3beta(bcatenin) #APC_ast/Axin_ast/GSK3beta
-	Species APC_Axin_GSK3beta_cytoplasm @cytoplasm:APC_Axin_GSK3beta() #APC/Axin/GSK3beta
-	Species GSK3beta_cytoplasm @cytoplasm:GSK3beta(_x28~0) #GSK3beta
-	Species APC_Axin_cytoplasm @cytoplasm:APC(axin!214,bcatenin).Axin(apc!214) #APC/Axin
-	Species APC_cytoplasm @cytoplasm:APC(axin,bcatenin) #APC
-	Species bCatenin_APC_Ast_Axin_ast_GSK3beta_cytoplasm @cytoplasm:bCatenin(_ast~0,apc,apc_ast_axin_ast_gsk3beta!218,tcf).APC_ast_Axin_ast_GSK3beta(bcatenin!218) #bCatenin/APC_Ast/Axin_ast/GSK3beta
-	Species bCatenin_ast_APC_ast_Axin_ast_GSK3beta_cytoplasm @cytoplasm:bCatenin(_ast~_AST,apc,apc_ast_axin_ast_gsk3beta!218,tcf).APC_ast_Axin_ast_GSK3beta(bcatenin!218) #bCatenin_ast/APC_ast/Axin_ast/GSK3beta
-	Species bCatenin_ast_cytoplasm @cytoplasm:bCatenin(_ast~_AST,apc,apc_ast_axin_ast_gsk3beta,tcf) #bCatenin_ast
-	Species bCatenin_nucleus @nucleus:bCatenin(_ast~0,apc,apc_ast_axin_ast_gsk3beta,tcf) #bCatenin
-	Species Axin_cytoplasm @cytoplasm:Axin(apc) #Axin
-	Species TCF_nucleus @nucleus:TCF(bcatenin) #TCF
-	Species bCatenin_TCF_nucleus @nucleus:bCatenin(_ast~0,apc,apc_ast_axin_ast_gsk3beta,tcf!216).TCF(bcatenin!216) #bCatenin/TCF
-	Species bCatenin_APC_cytoplasm @cytoplasm:bCatenin(_ast~0,apc!217,apc_ast_axin_ast_gsk3beta,tcf).APC(axin,bcatenin!217) #bCatenin/APC
-	Species Rasi_cytoplasm @cytoplasm:Rasi(Rasa~0) #Rasi
-	Species Rasa_cytoplasm @cytoplasm:Rasi(Rasa~Rasa) #Rasa
-	Species Raf_1_cytoplasm @cytoplasm:Raf_1(_ast~0,rkip) #Raf-1
-	Species Raf_1_ast_cytoplasm @cytoplasm:Raf_1(_ast~_AST,rkip) #Raf-1_ast
-	Species MEK_cytoplasm @cytoplasm:MEK(_ast~0) #MEK
-	Species MEK_ast_cytoplasm @cytoplasm:MEK(_ast~_AST) #MEK_ast
-	Species ERK_cytoplasm @cytoplasm:ERK(_ast~0) #ERK
-	Species ERK_ast_cytoplasm @cytoplasm:ERK(_ast~_AST) #ERK_ast
-	Species Raf1_RKIP_cytoplasm @cytoplasm:Raf_1(_ast~0,rkip!215).RKIP(_ast~0,raf_1!215) #Raf1/RKIP
-	Species RKIP_cytoplasm @cytoplasm:RKIP(_ast~0,raf_1) #RKIP
-	Species RKIP_ast_cytoplasm @cytoplasm:RKIP(_ast~_AST,raf_1) #RKIP_ast
-	Species unknownmoleculeX_cytoplasm @cytoplasm:unknownmoleculeX() #unknown molecule X
-	Species GSK3beta_X28_cytoplasm @cytoplasm:GSK3beta(_x28~_X28) #GSK3beta
+	Species Dshi_cytoplasm @cytoplasm:Dshi(Dsha~0)@cytoplasm #Dshi
+	Species Dsha_cytoplasm @cytoplasm:Dshi(Dsha~Dsha)@cytoplasm #Dsha
+	Species APC_ast_Axin_ast_GSK3beta_cytoplasm @cytoplasm:APC_ast_Axin_ast_GSK3beta(bcatenin)@cytoplasm #APC_ast/Axin_ast/GSK3beta
+	Species APC_Axin_GSK3beta_cytoplasm @cytoplasm:APC_Axin_GSK3beta()@cytoplasm #APC/Axin/GSK3beta
+	Species GSK3beta_cytoplasm @cytoplasm:GSK3beta(_x28~0)@cytoplasm #GSK3beta
+	Species APC_Axin_cytoplasm @cytoplasm:APC(axin!214,bcatenin)@cytoplasm.Axin(apc!214)@cytoplasm #APC/Axin
+	Species APC_cytoplasm @cytoplasm:APC(axin,bcatenin)@cytoplasm #APC
+	Species bCatenin_APC_Ast_Axin_ast_GSK3beta_cytoplasm @cytoplasm:bCatenin(_ast~0,apc,apc_ast_axin_ast_gsk3beta!218,tcf)@cytoplasm.APC_ast_Axin_ast_GSK3beta(bcatenin!218)@cytoplasm #bCatenin/APC_Ast/Axin_ast/GSK3beta
+	Species bCatenin_ast_APC_ast_Axin_ast_GSK3beta_cytoplasm @cytoplasm:bCatenin(_ast~_AST,apc,apc_ast_axin_ast_gsk3beta!218,tcf)@cytoplasm.APC_ast_Axin_ast_GSK3beta(bcatenin!218)@cytoplasm #bCatenin_ast/APC_ast/Axin_ast/GSK3beta
+	Species bCatenin_ast_cytoplasm @cytoplasm:bCatenin(_ast~_AST,apc,apc_ast_axin_ast_gsk3beta,tcf)@cytoplasm #bCatenin_ast
+	Species bCatenin_nucleus @nucleus:bCatenin(_ast~0,apc,apc_ast_axin_ast_gsk3beta,tcf)@nucleus #bCatenin
+	Species Axin_cytoplasm @cytoplasm:Axin(apc)@cytoplasm #Axin
+	Species TCF_nucleus @nucleus:TCF(bcatenin)@nucleus #TCF
+	Species bCatenin_TCF_nucleus @nucleus:bCatenin(_ast~0,apc,apc_ast_axin_ast_gsk3beta,tcf!216)@nucleus.TCF(bcatenin!216)@nucleus #bCatenin/TCF
+	Species bCatenin_APC_cytoplasm @cytoplasm:bCatenin(_ast~0,apc!217,apc_ast_axin_ast_gsk3beta,tcf)@cytoplasm.APC(axin,bcatenin!217)@cytoplasm #bCatenin/APC
+	Species Rasi_cytoplasm @cytoplasm:Rasi(Rasa~0)@cytoplasm #Rasi
+	Species Rasa_cytoplasm @cytoplasm:Rasi(Rasa~Rasa)@cytoplasm #Rasa
+	Species Raf_1_cytoplasm @cytoplasm:Raf_1(_ast~0,rkip)@cytoplasm #Raf-1
+	Species Raf_1_ast_cytoplasm @cytoplasm:Raf_1(_ast~_AST,rkip)@cytoplasm #Raf-1_ast
+	Species MEK_cytoplasm @cytoplasm:MEK(_ast~0)@cytoplasm #MEK
+	Species MEK_ast_cytoplasm @cytoplasm:MEK(_ast~_AST)@cytoplasm #MEK_ast
+	Species ERK_cytoplasm @cytoplasm:ERK(_ast~0)@cytoplasm #ERK
+	Species ERK_ast_cytoplasm @cytoplasm:ERK(_ast~_AST)@cytoplasm #ERK_ast
+	Species Raf1_RKIP_cytoplasm @cytoplasm:Raf_1(_ast~0,rkip!215)@cytoplasm.RKIP(_ast~0,raf_1!215)@cytoplasm #Raf1/RKIP
+	Species RKIP_cytoplasm @cytoplasm:RKIP(_ast~0,raf_1)@cytoplasm #RKIP
+	Species RKIP_ast_cytoplasm @cytoplasm:RKIP(_ast~_AST,raf_1)@cytoplasm #RKIP_ast
+	Species unknownmoleculeX_cytoplasm @cytoplasm:unknownmoleculeX()@cytoplasm #unknown molecule X
+	Species GSK3beta_X28_cytoplasm @cytoplasm:GSK3beta(_x28~_X28)@cytoplasm #GSK3beta
 end observables
 begin functions
 	X13X14() = TCF_nucleus + bCatenin_TCF_nucleus

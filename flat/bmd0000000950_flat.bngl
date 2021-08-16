@@ -2,11 +2,11 @@
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/23098257']
 #@BQB_IS_VERSION_OF:['http://identifiers.org/ncit/C17214']
 #@BQB_OCCURS_IN:['http://identifiers.org/omit/0003748']
-#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/ncit/C128419']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/ncit/C128419', 'http://identifiers.org/mamo/MAMO_0000046']
 #@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000950', 'http://identifiers.org/biomodels.db/MODEL1805230002']
 #@creatorEmail:'mroberts@ebi.ac.uk'
 #@creatorName:'Roberts Matthew Grant'
-#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 7 molecules and 0 reactions. The translated model has 7 molecules and 7 rules'
+#@notes:'This is a plain translation of an SBML model created on 14/08/2021. The original model has 7 molecules and 0 reactions. The translated model has 7 molecules and 7 rules'
 ###
 begin model
 begin parameters
@@ -18,13 +18,13 @@ begin compartments
 	Vector 3 1.0
 end compartments
 begin molecule types
+	S_h()
+	A_h()
+	S_v()
 	E_v()
 	I_v()
-	S_v()
 	R_h()
-	A_h()
 	I_h()
-	S_h()
 end molecule types
 begin seed species
 	@Vector:I_v() 6.022e+20 #original 1.0substance/volume #I_v #I_v
@@ -41,25 +41,25 @@ begin observables
 	Species I_v_Vector @Vector:I_v() #I_v
 end observables
 begin functions
-	beta_tilde_vh() =  if((Season_Dummy_Variable==0),(0.3),(0.3))
-	sigma_v() =  if((Season_Dummy_Variable==0),(0.33),(0.25))
-	beta_vh() =  if((Season_Dummy_Variable==0),(0.7),(0.7))
-	N_h() = A_h_Cattle + I_h_Cattle + R_h_Cattle + S_h_Cattle
 	N_v() = E_v_Vector + I_v_Vector + S_v_Vector
+	N_h() = A_h_Cattle + I_h_Cattle + R_h_Cattle + S_h_Cattle
+	beta_vh() =  if((Season_Dummy_Variable==0),(0.7),(0.7))
+	sigma_v() =  if((Season_Dummy_Variable==0),(0.33),(0.25))
+	beta_tilde_vh() =  if((Season_Dummy_Variable==0),(0.3),(0.3))
 	sigma_h() =  if((Season_Dummy_Variable==0),(19),(19))
 	lambda_v() = N_h*sigma_h*sigma_v*(A_h_Cattle*beta_tilde_vh/N_h + I_h_Cattle*beta_vh/N_h)/(N_h*sigma_h + N_v*sigma_v)
+	psi_v() =  if((Season_Dummy_Variable==0),(0.1),(0.1))
 	u_v() =  if((Season_Dummy_Variable==0),(1/20),(1/14))
 	M0() =  if((Season_Dummy_Variable==0),(20000),(4000))
 	v_v() =  if((Season_Dummy_Variable==0),(1/14),(1/14))
-	psi_v() =  if((Season_Dummy_Variable==0),(0.1),(0.1))
 	arRateI_v() = E_v_Vector*v_v + I_v_Vector*M0*psi_v*u_v/N_v - I_v_Vector*u_v
 	arRateS_v() = M0*u_v*(-I_v_Vector*psi_v + N_v)/N_v - S_v_Vector*lambda_v - S_v_Vector*u_v
-	beta_hv() =  if((Season_Dummy_Variable==0),(0.21),(0.21))
-	lambda_h() = I_v_Vector*beta_hv*sigma_h*sigma_v/(N_h*sigma_h + N_v*sigma_v)
 	theta_h() =  if((Season_Dummy_Variable==0),(0.4),(0.4))
 	delta_h() =  if((Season_Dummy_Variable==0),(0.1),(0.1))
-	u_h() =  if((Season_Dummy_Variable==0),(1/2190),(1/2190))
 	gamma_h() =  if((Season_Dummy_Variable==0),(1/4),(1/4))
+	beta_hv() =  if((Season_Dummy_Variable==0),(0.21),(0.21))
+	lambda_h() = I_v_Vector*beta_hv*sigma_h*sigma_v/(N_h*sigma_h + N_v*sigma_v)
+	u_h() =  if((Season_Dummy_Variable==0),(1/2190),(1/2190))
 	arRateI_h() = -I_h_Cattle*(delta_h + gamma_h + u_h) + S_h_Cattle*lambda_h*(1 - theta_h)
 	gamma_tilde_h() =  if((Season_Dummy_Variable==0),(1/4),(1/4))
 	arRateA_h() = -A_h_Cattle*(gamma_tilde_h + u_h) + S_h_Cattle*lambda_h*theta_h

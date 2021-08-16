@@ -1,14 +1,14 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1108090001', 'http://identifiers.org/biomodels.db/BIOMD0000000349']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000349', 'http://identifiers.org/biomodels.db/MODEL1108090001']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/20497556']
-#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/9575814', 'http://identifiers.org/pubmed/9575813']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/9575813', 'http://identifiers.org/pubmed/9575814']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
 #@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000783']
 #@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0044342', 'http://identifiers.org/go/GO:0061178']
 #@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:9351']
 #@creatorEmail:'ajmera@ebi.ac.uk'
 #@creatorName:'Ajmera Ishan'
-#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 7 molecules and 0 reactions. The translated model has 9 molecules and 9 rules'
+#@notes:'This is a plain translation of an SBML model created on 14/08/2021. The original model has 7 molecules and 0 reactions. The translated model has 9 molecules and 9 rules'
 ###
 begin model
 begin parameters
@@ -86,12 +86,12 @@ begin parameters
 	ZCa 2.0
 end parameters
 begin molecule types
-	PYR()
 	NADHc()
 	Vm()
+	Cam()
+	PYR()
 	G3P()
 	NADHm()
-	Cam()
 	ATP()
 	Vp
 	Cac
@@ -119,24 +119,24 @@ begin observables
 	Species Cac Cac
 end observables
 begin functions
-	Jhl() = (Plb + Plr)*exp(Vm*klp)
+	DelJNCa() = Cac/KCaj + Cac*Nam^3/(KCaj*KNaj^3) + Cam/KCaj + Cam*Ni^3/(KCaj*KNaj^3) + 1 + Nam^3/KNaj^3 + Ni^3/KNaj^3
+	JNCa() = Vmnc*(-exp(-0.5*Cac*Nam^3*Vm/(KCaj*KNaj^3*Tv)) + exp(0.5*Cam*Ni^3*Vm/(KCaj*KNaj^3*Tv)))/DelJNCa
 	ACa() = 1 - 1/exp(Cam/KpCam)
-	AT() = Vm^hp/(Kmph^hp + Vm^hp)
 	ADP() = -ATP + Ao
 	MgADP() = 0.055*ADP
 	AD() = MgADP^2/(Kmadp^2 + MgADP^2)
+	AT() = Vm^hp/(Kmph^hp + Vm^hp)
 	Jph() = ACa*AD*AT*Vmph
-	Juni() = PCa*Vm*ZCa*(-Cac*ai + Cam*am*exp(-Vm*ZCa/Tv))/(Tv*(exp(-Vm*ZCa/Tv) - 1))
-	FDe() = NADHm/(KmNh + NADHm)
 	FTe() = (Vm*kat + 1)/(Vm*kbt + 1)
+	FDe() = NADHm/(KmNh + NADHm)
 	Jhres() = FDe*FTe*Vme
-	DelJNCa() = Cac/KCaj + Cac*Nam^3/(KCaj*KNaj^3) + Cam/KCaj + Cam*Ni^3/(KCaj*KNaj^3) + 1 + Nam^3/KNaj^3 + Ni^3/KNaj^3
-	JNCa() = Vmnc*(-exp(-0.5*Cac*Nam^3*Vm/(KCaj*KNaj^3*Tv)) + exp(0.5*Cam*Ni^3*Vm/(KCaj*KNaj^3*Tv)))/DelJNCa
+	Juni() = PCa*Vm*ZCa*(-Cac*ai + Cam*am*exp(-Vm*ZCa/Tv))/(Tv*(exp(-Vm*ZCa/Tv) - 1))
+	Jhl() = (Plb + Plr)*exp(Vm*klp)
 	arRateVm() = (-JNCa - Jhl + Jhres - Jph - 2*Juni)/Cmit
 	NADc() = -NADHc + Ntc
-	Jgpd() = G3P*NADc*Vmgpd/(NADHc*(G3P + Kmg3p)*(KgNc + NADc/NADHc))
 	FLNADc() = NADHc/(NADc*(Klnc + NADHc/NADc))
 	JLDH() = FLNADc*PYR*Vmldh/(KmLD + PYR)
+	Jgpd() = G3P*NADc*Vmgpd/(NADHc*(G3P + Kmg3p)*(KgNc + NADc/NADHc))
 	FNADc() = NADHc/(NADc*(KTNc + NADHc/NADc))
 	NADm() = -NADHm + Ntm
 	Jtnadh() = FNADc*NADm*Tnadh/(NADHm*(KTNm + NADm/NADHm))
@@ -147,11 +147,11 @@ begin functions
 	JPYR() = FPCa*FPNAD*FPYR*Vmpdh
 	arRateNADHm() = -NADHm*knadhm + (4.6*JPYR - 0.1*Jhres + Jtnadh)/Vmmit
 	arRatePYR() = (-JLDH - JPYR + Jgpd)/(Vi + Vmmit)
+	nKCa() = Cac^3/(Cac^3 + 0.015625)
+	IKCa() = gKCa*nKCa*(Vp + 75)
 	hCa() = 1/(exp(0.166666666666667*Vp + 2.5) + 1)
 	PVCa() = 1/(exp(-0.105263157894737*Vp - 2.0) + 1)
 	IVCa() = PVCa*gmVCa*hCa*(Vp - 100)
-	nKCa() = Cac^3/(Cac^3 + 0.015625)
-	IKCa() = gKCa*nKCa*(Vp + 75)
 	arRateVp() = (-IKCa - IVCa)/Cmp
 	arRateCam() = fm*(-JNCa + Juni)/Vmmit
 	JGlu() = ATP*Glu^hgl*Vmglu/((ATP + KmATP)*(Glu^hgl + Kmgl^hgl))

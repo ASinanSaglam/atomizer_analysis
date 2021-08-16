@@ -1,13 +1,13 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000669', 'http://identifiers.org/biomodels.db/MODEL1604270001']
-#@BQM_IS_INSTANCE_OF:['http://identifiers.org/ncit/C191', 'http://identifiers.org/kegg.drug/D02368', 'http://identifiers.org/biomodels.db/MODEL1604270001', 'http://identifiers.org/ncit/C49662', 'http://identifiers.org/kegg.drug/D10417', 'http://identifiers.org/bto/BTO:0000988']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1604270001', 'http://identifiers.org/biomodels.db/BIOMD0000000669']
+#@BQM_IS_INSTANCE_OF:['http://identifiers.org/ncit/C191', 'http://identifiers.org/kegg.drug/D10417', 'http://identifiers.org/biomodels.db/MODEL1604270001', 'http://identifiers.org/ncit/C49662', 'http://identifiers.org/bto/BTO:0000988', 'http://identifiers.org/kegg.drug/D02368']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/26252969']
-#@BQB_HAS_PART:['http://identifiers.org/kegg.drug/D02368', 'http://identifiers.org/kegg.drug/D10417']
+#@BQB_HAS_PART:['http://identifiers.org/kegg.drug/D10417', 'http://identifiers.org/kegg.drug/D02368']
 #@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000988']
 #@BQB_IS_DESCRIBED_BY:['http://identifiers.org/ncit/C191', 'http://identifiers.org/pubmed/26252969', 'http://identifiers.org/ncit/C49662']
 #@creatorEmail:'mroberts@ebi.ac.uk'
 #@creatorName:'Roberts Matthew Grant'
-#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 7 molecules and 0 reactions. The translated model has 5 molecules and 5 rules'
+#@notes:'This is a plain translation of an SBML model created on 14/08/2021. The original model has 7 molecules and 0 reactions. The translated model has 5 molecules and 5 rules'
 ###
 begin model
 begin parameters
@@ -57,11 +57,11 @@ begin parameters
 	R_live 0 #original 220660.0substance/volume
 end parameters
 begin molecule types
-	R_other()
 	S()
 	R_apo()
-	G2()
 	G1()
+	G2()
+	R_other()
 end molecule types
 begin seed species
 	G1()() (48.1) * (236000.0) / 100 #G1
@@ -80,11 +80,11 @@ end observables
 begin functions
 	R_live_ar() = G1 + G2 + S
 	Inh_3() = Imax_3*R_live_ar/(IR50 + R_live_ar)
-	Sti_other_b() = C_b^Hother_b*Kother_b
-	Inh_g() =  if((C_b==0&&time()<=Tlag_r),(C_g^Hi_g*Imax_g/(C_g^Hi_g+IC50_g^Hi_g)),(if((C_b==0&&time()>Tlag_r),(C_g^Hi_g*Imax_g*exp(-k_repair*(-Tlag_r+time()))/(C_g^Hi_g+IC50_g^Hi_g)),(if((nC_b==0&&time()<=Tlag_re),(C_g^Hi_g*Imax_g/(C_g^Hi_g+(IC50_g*Psi_i)^Hi_g)),(if((nC_b==0&&time()>Tlag_re),(C_g^Hi_g*Imax_g*exp(k_repair*(-Tlag_re+time())*(C_b*k_comb2-1))/(C_g^Hi_g+(IC50_g*Psi_i)^Hi_g)),(0))))))))
-	k_other() =  if((neq(C_b,0)&&neq(C_g,0)),(0.000297),(0))
-	Sti_other_g() = C_g^Hother_g*Kother_g
 	Inh_b() = C_b^Hi_b*Imax_b/(C_b^Hi_b + IC50_b^Hi_b)
+	Sti_other_g() = C_g^Hother_g*Kother_g
+	Inh_g() =  if((C_b==0&&time()<=Tlag_r),(C_g^Hi_g*Imax_g/(C_g^Hi_g+IC50_g^Hi_g)),(if((C_b==0&&time()>Tlag_r),(C_g^Hi_g*Imax_g*exp(-k_repair*(-Tlag_r+time()))/(C_g^Hi_g+IC50_g^Hi_g)),(if((nC_b==0&&time()<=Tlag_re),(C_g^Hi_g*Imax_g/(C_g^Hi_g+(IC50_g*Psi_i)^Hi_g)),(if((nC_b==0&&time()>Tlag_re),(C_g^Hi_g*Imax_g*exp(k_repair*(-Tlag_re+time())*(C_b*k_comb2-1))/(C_g^Hi_g+(IC50_g*Psi_i)^Hi_g)),(0))))))))
+	Sti_other_b() = C_b^Hother_b*Kother_b
+	k_other() =  if((neq(C_b,0)&&neq(C_g,0)),(0.000297),(0))
 	arRateG2() = -G2*k3*(1 - Inh_3)*(1 - Inh_b) - G2*k_apo*(Sti_apo_b + 1)*(Sti_apo_g + 1) - G2*k_other*(Sti_other_b + 1)*(Sti_other_g + 1) + S*k2*(1 - Inh_g)
 	Inh_1() = R_live_ar/(IR50 + R_live_ar)
 	arRateS() = G1*k1*(1 - Inh_1)*(1 - Inh_b) - S*k2*(1 - Inh_g) - S*k_apo*(Sti_apo_b + 1)*(Sti_apo_g + 1) - S*k_other*(Sti_other_b + 1)*(Sti_other_g + 1)

@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000744_flat">
+    <ListOfParameters>
+      <Parameter id="r1" type="Constant" value="0.0195" expr="0.0195"/>
+      <Parameter id="b1" type="Constant" value="1.02e-11" expr="1.02e-11"/>
+      <Parameter id="beta1" type="Constant" value="3.482115e-12" expr="3.482115e-12"/>
+      <Parameter id="m1" type="Constant" value="1e+8" expr="100000000.0"/>
+      <Parameter id="delta1" type="Constant" value="0.96" expr="0.96"/>
+      <Parameter id="r2" type="Constant" value="0.00195" expr="0.00195"/>
+      <Parameter id="beta2" type="Constant" value="0.125" expr="0.125"/>
+      <Parameter id="k2" type="Constant" value="5.6e+10" expr="56000000000.0"/>
+      <Parameter id="b2" type="Constant" value="1.7857e-9" expr="1.7857e-09"/>
+      <Parameter id="u2" type="Constant" value="0.015" expr="0.015"/>
+      <Parameter id="beta3" type="Constant" value="124.5" expr="124.5"/>
+      <Parameter id="k3" type="Constant" value="2e+10" expr="20000000000.0"/>
+      <Parameter id="m3" type="Constant" value="1000000" expr="1000000.0"/>
+      <Parameter id="r3" type="Constant" value="3500" expr="3500.0"/>
+      <Parameter id="u3" type="Constant" value="0.02" expr="0.02"/>
+      <Parameter id="beta4" type="Constant" value="5.85" expr="5.85"/>
+      <Parameter id="k4" type="Constant" value="1000000" expr="1000000.0"/>
+      <Parameter id="u4" type="Constant" value="0.034" expr="0.034"/>
+      <Parameter id="r4" type="Constant" value="12500" expr="12500.0"/>
+      <Parameter id="m4" type="Constant" value="8.9e+10" expr="89000000000.0"/>
+      <Parameter id="beta5" type="Constant" value="7.3" expr="7.3"/>
+      <Parameter id="k5" type="Constant" value="1000000" expr="1000000.0"/>
+      <Parameter id="u5" type="Constant" value="0.034" expr="0.034"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="v"/>
+      <MoleculeType id="w"/>
+      <MoleculeType id="x"/>
+      <MoleculeType id="y"/>
+      <MoleculeType id="z"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="6.022e+29" name="x()">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="x"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="3.37232e+27" name="y()">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="y"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="1.1441800000000001e+29" name="z()">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="z"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S4"  concentration="3.011e+25" name="w()">
+        <ListOfMolecules>
+          <Molecule id="S4_M1" name="w"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S5"  concentration="5.660680000000001e+21" name="v()">
+        <ListOfMolecules>
+          <Molecule id="S5_M1" name="v"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="PCC_growth" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="x"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="_reverse_PCC_growth" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="x"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="fRate0m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR2_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="PCC_activation_by_PSC" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="x"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="fRate1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="_reverse_PCC_activation_by_PSC" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="x"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="fRate1m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR4_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="PCC_death" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR5_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP1_M1" name="x"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Function" name="fRate2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR5_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR5_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="PSC_growth" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="y"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Function" name="fRate3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR6_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="_reverse_PSC_growth" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR7_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_RP1_M1" name="y"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Function" name="fRate3m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR7_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR7_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="PSC_activation_by_tp_cytokine" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR8_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP1_M1" name="y"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Function" name="fRate4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR8_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="_reverse_PSC_activation_by_tp_cytokine" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR9_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_RP1_M1" name="y"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Function" name="fRate4m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR9_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR9_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="PSC_death" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR10_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_RP1_M1" name="y"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="u2"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR10_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR10_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR11" name="effector_production" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR11_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_PP1_M1" name="z"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR11_RateLaw" type="Function" name="fRate6" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR11_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR12" name="effector_prolif" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR12_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_PP1_M1" name="z"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR12_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r3"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR12_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR13" name="effector_death" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR13_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_RP1_M1" name="z"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR13_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="u3"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR13_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR13_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR14" name="tp_cytokine_production" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR14_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_PP1_M1" name="w"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR14_RateLaw" type="Function" name="fRate9" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR14_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR15" name="tp_decay" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR15_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR15_RP1_M1" name="w"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR15_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="u4"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR15_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR15_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR16" name="tp_stimulation_by_PSC" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR16_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR16_PP1_M1" name="w"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR16_RateLaw" type="Function" name="fRate11" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR16_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR17" name="ts_production" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR17_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR17_PP1_M1" name="v"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR17_RateLaw" type="Function" name="fRate12" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR17_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR18" name="ts_decay" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR18_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR18_RP1_M1" name="v"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR18_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="u5"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR18_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR18_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="x" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="x"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="y" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="y"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="z" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="z"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="w" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="w"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="v" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="v"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="r1" type="Constant"/>
+          <Reference name="x" type="Observable"/>
+        </ListOfReferences>
+        <Expression> r1*x </Expression>
+      </Function>
+      <Function id="fRate0m">
+        <ListOfReferences>
+          <Reference name="b1" type="Constant"/>
+          <Reference name="r1" type="Constant"/>
+          <Reference name="x" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (b1*r1)*x </Expression>
+      </Function>
+      <Function id="fRate1">
+        <ListOfReferences>
+          <Reference name="beta1" type="Constant"/>
+          <Reference name="x" type="Observable"/>
+          <Reference name="y" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (beta1*x)*y </Expression>
+      </Function>
+      <Function id="fRate1m">
+        <ListOfReferences>
+          <Reference name="b1" type="Constant"/>
+          <Reference name="beta1" type="Constant"/>
+          <Reference name="x" type="Observable"/>
+          <Reference name="y" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((b1*beta1)*x)*y </Expression>
+      </Function>
+      <Function id="fRate2">
+        <ListOfReferences>
+          <Reference name="delta1" type="Constant"/>
+          <Reference name="m1" type="Constant"/>
+          <Reference name="w" type="Observable"/>
+          <Reference name="z" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (delta1*z)/(m1+w) </Expression>
+      </Function>
+      <Function id="fRate3">
+        <ListOfReferences>
+          <Reference name="r2" type="Constant"/>
+          <Reference name="y" type="Observable"/>
+        </ListOfReferences>
+        <Expression> r2*y </Expression>
+      </Function>
+      <Function id="fRate3m">
+        <ListOfReferences>
+          <Reference name="b2" type="Constant"/>
+          <Reference name="r2" type="Constant"/>
+          <Reference name="y" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (b2*r2)*y </Expression>
+      </Function>
+      <Function id="fRate4">
+        <ListOfReferences>
+          <Reference name="beta2" type="Constant"/>
+          <Reference name="k2" type="Constant"/>
+          <Reference name="w" type="Observable"/>
+          <Reference name="y" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((beta2*w)*y)/(k2+w) </Expression>
+      </Function>
+      <Function id="fRate4m">
+        <ListOfReferences>
+          <Reference name="b2" type="Constant"/>
+          <Reference name="beta2" type="Constant"/>
+          <Reference name="k2" type="Constant"/>
+          <Reference name="w" type="Observable"/>
+          <Reference name="y" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((b2*beta2)*w)*y)/(k2+w) </Expression>
+      </Function>
+      <Function id="fRate6">
+        <ListOfReferences>
+          <Reference name="beta3" type="Constant"/>
+          <Reference name="k3" type="Constant"/>
+          <Reference name="m3" type="Constant"/>
+          <Reference name="v" type="Observable"/>
+          <Reference name="w" type="Observable"/>
+          <Reference name="z" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((beta3*v)*z)/((((k3*m3)+(k3*w))+(m3*v))+(v*w)) </Expression>
+      </Function>
+      <Function id="fRate9">
+        <ListOfReferences>
+          <Reference name="beta4" type="Constant"/>
+          <Reference name="k4" type="Constant"/>
+          <Reference name="x" type="Observable"/>
+          <Reference name="z" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((beta4*x)*z)/(k4+x) </Expression>
+      </Function>
+      <Function id="fRate11">
+        <ListOfReferences>
+          <Reference name="m4" type="Constant"/>
+          <Reference name="r4" type="Constant"/>
+          <Reference name="v" type="Observable"/>
+          <Reference name="x" type="Observable"/>
+          <Reference name="y" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((r4*x)*y)/(m4+v) </Expression>
+      </Function>
+      <Function id="fRate12">
+        <ListOfReferences>
+          <Reference name="beta5" type="Constant"/>
+          <Reference name="k5" type="Constant"/>
+          <Reference name="x" type="Observable"/>
+          <Reference name="z" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((beta5*x)*z)/(k5+x) </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

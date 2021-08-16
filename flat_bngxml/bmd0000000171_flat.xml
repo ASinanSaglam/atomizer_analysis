@@ -1,0 +1,1040 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000171_flat">
+    <ListOfParameters>
+      <Parameter id="n" type="Constant" value="4" expr="4.0"/>
+      <Parameter id="kd" type="Constant" value="0.01" expr="0.01"/>
+      <Parameter id="l_d" type="Constant" value="12" expr="12.0"/>
+      <Parameter id="v_dT_fac" type="Constant" value="2" expr="2.0"/>
+      <Parameter id="v_dT_dark" type="Constant" value="2" expr="2.0"/>
+      <Parameter id="r1_v_sP" type="Constant" value="0.8" expr="0.800000"/>
+      <Parameter id="r1_Ki_P" type="Constant" value="1" expr="1.000000"/>
+      <Parameter id="r2_v_sT" type="Constant" value="1" expr="1.000000"/>
+      <Parameter id="r2_Ki_T" type="Constant" value="1" expr="1.000000"/>
+      <Parameter id="r3_v_mT" type="Constant" value="0.7" expr="0.700000"/>
+      <Parameter id="r3_K_mT" type="Constant" value="0.2" expr="0.200000"/>
+      <Parameter id="r4_v_mP" type="Constant" value="0.8" expr="0.800000"/>
+      <Parameter id="r4_K_mP" type="Constant" value="0.2" expr="0.200000"/>
+      <Parameter id="r5_k_sP" type="Constant" value="0.9" expr="0.900000"/>
+      <Parameter id="r6_k_sT" type="Constant" value="0.9" expr="0.900000"/>
+      <Parameter id="r13_k3" type="Constant" value="1.2" expr="1.200000"/>
+      <Parameter id="r13_k4" type="Constant" value="0.6" expr="0.600000"/>
+      <Parameter id="r14_kd_C" type="Constant" value="0.01" expr="0.010000"/>
+      <Parameter id="r15_kd_CN" type="Constant" value="0.01" expr="0.010000"/>
+      <Parameter id="r16_k1" type="Constant" value="1.2" expr="1.200000"/>
+      <Parameter id="r16_k2" type="Constant" value="0.2" expr="0.200000"/>
+      <Parameter id="r17_V_1P" type="Constant" value="8" expr="8.000000"/>
+      <Parameter id="r17_K_1P" type="Constant" value="2" expr="2.000000"/>
+      <Parameter id="r18_V_3P" type="Constant" value="8" expr="8.000000"/>
+      <Parameter id="r18_K_3P" type="Constant" value="2" expr="2.000000"/>
+      <Parameter id="r19_K_2P" type="Constant" value="2" expr="2.000000"/>
+      <Parameter id="r19_V_2P" type="Constant" value="1" expr="1.000000"/>
+      <Parameter id="r20_V_4P" type="Constant" value="1" expr="1.000000"/>
+      <Parameter id="r20_K_4P" type="Constant" value="2" expr="2.000000"/>
+      <Parameter id="r21_V_1T" type="Constant" value="8" expr="8.000000"/>
+      <Parameter id="r21_K_1T" type="Constant" value="2" expr="2.000000"/>
+      <Parameter id="r22_V_3T" type="Constant" value="8" expr="8.000000"/>
+      <Parameter id="r22_K_3T" type="Constant" value="2" expr="2.000000"/>
+      <Parameter id="r23_K_2T" type="Constant" value="2" expr="2.000000"/>
+      <Parameter id="r23_V_2T" type="Constant" value="1" expr="1.000000"/>
+      <Parameter id="r24_V_4T" type="Constant" value="1" expr="1.000000"/>
+      <Parameter id="r24_K_4T" type="Constant" value="2" expr="2.000000"/>
+      <Parameter id="r25_K_dT" type="Constant" value="0.2" expr="0.200000"/>
+      <Parameter id="r26_v_dP" type="Constant" value="2" expr="2.000000"/>
+      <Parameter id="r26_K_dP" type="Constant" value="0.2" expr="0.200000"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="PER"/>
+      <MoleculeType id="PER_TIMcomplexcytoplasm"/>
+      <MoleculeType id="PER_TIMcomplexnuclear"/>
+      <MoleculeType id="PER_p"/>
+      <MoleculeType id="PER_pp"/>
+      <MoleculeType id="TIM"/>
+      <MoleculeType id="TIM_p"/>
+      <MoleculeType id="TIM_pp"/>
+      <MoleculeType id="permRNA"/>
+      <MoleculeType id="timmRNA"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+      <compartment id="nucleus" spatialDimensions="3" size="1.0"/>
+      <compartment id="cytoplasm" spatialDimensions="3" size="1.0"/>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="849102000000000.1" name="@cytoplasm::timmRNA()" compartment="cytoplasm">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="timmRNA" compartment="cytoplasm"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="54198000000000.0" name="@cytoplasm::permRNA()" compartment="cytoplasm">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="permRNA" compartment="cytoplasm"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="325188000000000.06" name="@cytoplasm::TIM()" compartment="cytoplasm">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="TIM" compartment="cytoplasm"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S4"  concentration="475738000000000.06" name="@cytoplasm::TIM_p()" compartment="cytoplasm">
+        <ListOfMolecules>
+          <Molecule id="S4_M1" name="TIM_p" compartment="cytoplasm"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S5"  concentration="2800230000000000.5" name="@cytoplasm::TIM_pp()" compartment="cytoplasm">
+        <ListOfMolecules>
+          <Molecule id="S5_M1" name="TIM_pp" compartment="cytoplasm"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S6"  concentration="12044000000000.002" name="@cytoplasm::PER()" compartment="cytoplasm">
+        <ListOfMolecules>
+          <Molecule id="S6_M1" name="PER" compartment="cytoplasm"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S7"  concentration="12044000000000.002" name="@cytoplasm::PER_p()" compartment="cytoplasm">
+        <ListOfMolecules>
+          <Molecule id="S7_M1" name="PER_p" compartment="cytoplasm"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S8"  concentration="6022000000000.001" name="@cytoplasm::PER_pp()" compartment="cytoplasm">
+        <ListOfMolecules>
+          <Molecule id="S8_M1" name="PER_pp" compartment="cytoplasm"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S9"  concentration="108396000000000.0" name="@cytoplasm::PER_TIMcomplexcytoplasm()" compartment="cytoplasm">
+        <ListOfMolecules>
+          <Molecule id="S9_M1" name="PER_TIMcomplexcytoplasm" compartment="cytoplasm"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S10"  concentration="722640000000000.0" name="@nucleus::PER_TIMcomplexnuclear()" compartment="nucleus">
+        <ListOfMolecules>
+          <Molecule id="S10_M1" name="PER_TIMcomplexnuclear" compartment="nucleus"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="per_trans" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="permRNA" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="tim_trans" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="timmRNA" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="fRate1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="M_T_decay_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="timmRNA" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="_rateLaw1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="M_P_decay_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="permRNA" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="_rateLaw2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR4_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="PER_transl" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="PER" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Function" name="fRate4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR5_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="TIM_transl" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="TIM" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Function" name="fRate5" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR6_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="PO_decay" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR7_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_RP1_M1" name="PER" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kd"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR7_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR7_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="P1_decay" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR8_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_RP1_M1" name="PER_p" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kd"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR8_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR8_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="P2_decay" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR9_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_RP1_M1" name="PER_pp" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kd"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR9_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR9_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="T0_decay" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR10_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_RP1_M1" name="TIM" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kd"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR10_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR10_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR11" name="T1_decay" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR11_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_RP1_M1" name="TIM_p" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR11_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kd"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR11_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR11_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR12" name="T2_decay" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR12_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_RP1_M1" name="TIM_pp" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR12_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kd"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR12_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR12_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR13" name="C_form" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR13_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_RP1_M1" name="PER_pp" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR13_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR13_RP2_M1" name="TIM_pp" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR13_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_PP1_M1" name="PER_TIMcomplexcytoplasm" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR13_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r13_k3"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR13_RP1_M1"/>
+          <MapItem sourceID="RR13_RP2_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR13_PP1_M1"/>
+          <Delete id="RR13_RP1" DeleteMolecules="0"/>
+          <Delete id="RR13_RP2" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR14" name="_reverse_C_form" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR14_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_RP1_M1" name="PER_TIMcomplexcytoplasm" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR14_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_PP1_M1" name="PER_pp" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR14_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR14_PP2_M1" name="TIM_pp" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR14_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r13_k4"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR14_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR14_PP1_M1"/>
+          <Add id="RR14_PP2_M1"/>
+          <Delete id="RR14_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR15" name="C_decay" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR15_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR15_RP1_M1" name="PER_TIMcomplexcytoplasm" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR15_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r14_kd_C"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR15_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR15_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR16" name="CN_decay" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR16_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR16_RP1_M1" name="PER_TIMcomplexnuclear" compartment="nucleus"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR16_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r15_kd_CN"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR16_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR16_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR17" name="C_transp" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR17_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR17_RP1_M1" name="PER_TIMcomplexcytoplasm" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR17_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR17_PP1_M1" name="PER_TIMcomplexnuclear" compartment="nucleus"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR17_RateLaw" type="Function" name="fRate15" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR17_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR17_PP1_M1"/>
+          <Delete id="RR17_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR18" name="_reverse_C_transp" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR18_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR18_RP1_M1" name="PER_TIMcomplexnuclear" compartment="nucleus"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR18_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR18_PP1_M1" name="PER_TIMcomplexcytoplasm" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR18_RateLaw" type="Function" name="fRate15m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR18_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR18_PP1_M1"/>
+          <Delete id="RR18_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR19" name="P_pho" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR19_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR19_RP1_M1" name="PER" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR19_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR19_PP1_M1" name="PER_p" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR19_RateLaw" type="Function" name="fRate16" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR19_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR19_PP1_M1"/>
+          <Delete id="RR19_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR20" name="P1_pho" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR20_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR20_RP1_M1" name="PER_p" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR20_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR20_PP1_M1" name="PER_pp" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR20_RateLaw" type="Function" name="fRate17" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR20_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR20_PP1_M1"/>
+          <Delete id="RR20_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR21" name="P1_depho" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR21_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR21_RP1_M1" name="PER_p" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR21_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR21_PP1_M1" name="PER" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR21_RateLaw" type="Function" name="fRate18" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR21_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR21_PP1_M1"/>
+          <Delete id="RR21_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR22" name="P2_depho" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR22_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR22_RP1_M1" name="PER_pp" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR22_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR22_PP1_M1" name="PER_p" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR22_RateLaw" type="Function" name="fRate19" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR22_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR22_PP1_M1"/>
+          <Delete id="RR22_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR23" name="T_pho" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR23_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR23_RP1_M1" name="TIM" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR23_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR23_PP1_M1" name="TIM_p" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR23_RateLaw" type="Function" name="fRate20" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR23_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR23_PP1_M1"/>
+          <Delete id="RR23_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR24" name="T1_pho" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR24_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR24_RP1_M1" name="TIM_p" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR24_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR24_PP1_M1" name="TIM_pp" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR24_RateLaw" type="Function" name="fRate21" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR24_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR24_PP1_M1"/>
+          <Delete id="RR24_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR25" name="T1_depho" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR25_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR25_RP1_M1" name="TIM_p" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR25_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR25_PP1_M1" name="TIM" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR25_RateLaw" type="Function" name="fRate22" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR25_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR25_PP1_M1"/>
+          <Delete id="RR25_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR26" name="T2_depho" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR26_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR26_RP1_M1" name="TIM_pp" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR26_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR26_PP1_M1" name="TIM_p" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR26_RateLaw" type="Function" name="fRate23" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR26_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR26_PP1_M1"/>
+          <Delete id="RR26_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR27" name="T2_light_deact" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR27_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR27_RP1_M1" name="TIM_pp" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR27_RateLaw" type="Function" name="fRate24" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR27_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR27_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR28" name="P2_light_deact" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR28_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR28_RP1_M1" name="PER_pp" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR28_RateLaw" type="Function" name="fRate25" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR28_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR28_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="timmRNA_cytoplasm" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" compartment="cytoplasm" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="timmRNA"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="permRNA_cytoplasm" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" compartment="cytoplasm" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="permRNA"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="TIM_cytoplasm" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" compartment="cytoplasm" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="TIM"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="TIM_p_cytoplasm" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" compartment="cytoplasm" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="TIM_p"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="TIM_pp_cytoplasm" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" compartment="cytoplasm" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="TIM_pp"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O6" name="PER_cytoplasm" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O6_P1" compartment="cytoplasm" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O6_P1_M1" name="PER"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O7" name="PER_p_cytoplasm" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O7_P1" compartment="cytoplasm" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O7_P1_M1" name="PER_p"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O8" name="PER_pp_cytoplasm" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O8_P1" compartment="cytoplasm" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O8_P1_M1" name="PER_pp"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O9" name="PER_TIMcomplexcytoplasm_cytoplasm" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O9_P1" compartment="cytoplasm" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O9_P1_M1" name="PER_TIMcomplexcytoplasm"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O10" name="PER_TIMcomplexnuclear_nucleus" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O10_P1" compartment="nucleus" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O10_P1_M1" name="PER_TIMcomplexnuclear"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="v_dT">
+        <ListOfReferences>
+          <Reference name="l_d" type="Constant"/>
+          <Reference name="v_dT_dark" type="Constant"/>
+          <Reference name="v_dT_fac" type="Constant"/>
+        </ListOfReferences>
+        <Expression> v_dT_dark*(((v_dT_fac-1)*min(rint(((0.9*sin(((3.1415926535*time())/l_d)))+0.5)),rint(((0.9*sin(((3.1415926535*time())/l_d)))+1))))+1) </Expression>
+      </Function>
+      <Function id="totalPER_ar">
+        <ListOfReferences>
+          <Reference name="PER_TIMcomplexcytoplasm_cytoplasm" type="Observable"/>
+          <Reference name="PER_TIMcomplexnuclear_nucleus" type="Observable"/>
+          <Reference name="PER_cytoplasm" type="Observable"/>
+          <Reference name="PER_p_cytoplasm" type="Observable"/>
+          <Reference name="PER_pp_cytoplasm" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((PER_TIMcomplexcytoplasm_cytoplasm+(1.0*PER_TIMcomplexnuclear_nucleus))+PER_cytoplasm)+PER_p_cytoplasm)+PER_pp_cytoplasm </Expression>
+      </Function>
+      <Function id="totalTIM_ar">
+        <ListOfReferences>
+          <Reference name="PER_TIMcomplexcytoplasm_cytoplasm" type="Observable"/>
+          <Reference name="PER_TIMcomplexnuclear_nucleus" type="Observable"/>
+          <Reference name="TIM_cytoplasm" type="Observable"/>
+          <Reference name="TIM_p_cytoplasm" type="Observable"/>
+          <Reference name="TIM_pp_cytoplasm" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((PER_TIMcomplexcytoplasm_cytoplasm+(1.0*PER_TIMcomplexnuclear_nucleus))+TIM_cytoplasm)+TIM_p_cytoplasm)+TIM_pp_cytoplasm </Expression>
+      </Function>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="n" type="Constant"/>
+          <Reference name="PER_TIMcomplexnuclear_nucleus" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (0.8*(1.0^n))/((1.0^n)+(PER_TIMcomplexnuclear_nucleus^n)) </Expression>
+      </Function>
+      <Function id="fRate1">
+        <ListOfReferences>
+          <Reference name="n" type="Constant"/>
+          <Reference name="PER_TIMcomplexnuclear_nucleus" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (1.0*(1.0^n))/((1.0^n)+(PER_TIMcomplexnuclear_nucleus^n)) </Expression>
+      </Function>
+      <Function id="fRate2">
+        <ListOfReferences>
+          <Reference name="kd" type="Constant"/>
+          <Reference name="timmRNA_cytoplasm" type="Observable"/>
+        </ListOfReferences>
+        <Expression> timmRNA_cytoplasm*(kd+(0.7/(timmRNA_cytoplasm+0.2))) </Expression>
+      </Function>
+      <Function id="fRate3">
+        <ListOfReferences>
+          <Reference name="kd" type="Constant"/>
+          <Reference name="permRNA_cytoplasm" type="Observable"/>
+        </ListOfReferences>
+        <Expression> permRNA_cytoplasm*(kd+(0.8/(permRNA_cytoplasm+0.2))) </Expression>
+      </Function>
+      <Function id="fRate4">
+        <ListOfReferences>
+          <Reference name="permRNA_cytoplasm" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 0.9*permRNA_cytoplasm </Expression>
+      </Function>
+      <Function id="fRate5">
+        <ListOfReferences>
+          <Reference name="timmRNA_cytoplasm" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 0.9*timmRNA_cytoplasm </Expression>
+      </Function>
+      <Function id="fRate15">
+        <ListOfReferences>
+        </ListOfReferences>
+        <Expression> 1.2 </Expression>
+      </Function>
+      <Function id="fRate15m">
+        <ListOfReferences>
+        </ListOfReferences>
+        <Expression> 0.2 </Expression>
+      </Function>
+      <Function id="fRate16">
+        <ListOfReferences>
+          <Reference name="PER_cytoplasm" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 8.0/(PER_cytoplasm+2.0) </Expression>
+      </Function>
+      <Function id="fRate17">
+        <ListOfReferences>
+          <Reference name="PER_p_cytoplasm" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 8.0/(PER_p_cytoplasm+2.0) </Expression>
+      </Function>
+      <Function id="fRate18">
+        <ListOfReferences>
+          <Reference name="PER_p_cytoplasm" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 1.0/(PER_p_cytoplasm+2.0) </Expression>
+      </Function>
+      <Function id="fRate19">
+        <ListOfReferences>
+          <Reference name="PER_pp_cytoplasm" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 1.0/(PER_pp_cytoplasm+2.0) </Expression>
+      </Function>
+      <Function id="fRate20">
+        <ListOfReferences>
+          <Reference name="TIM_cytoplasm" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 8.0/(TIM_cytoplasm+2.0) </Expression>
+      </Function>
+      <Function id="fRate21">
+        <ListOfReferences>
+          <Reference name="TIM_p_cytoplasm" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 8.0/(TIM_p_cytoplasm+2.0) </Expression>
+      </Function>
+      <Function id="fRate22">
+        <ListOfReferences>
+          <Reference name="TIM_p_cytoplasm" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 1.0/(TIM_p_cytoplasm+2.0) </Expression>
+      </Function>
+      <Function id="fRate23">
+        <ListOfReferences>
+          <Reference name="TIM_pp_cytoplasm" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 1.0/(TIM_pp_cytoplasm+2.0) </Expression>
+      </Function>
+      <Function id="fRate24">
+        <ListOfReferences>
+          <Reference name="v_dT" type="Function"/>
+          <Reference name="TIM_pp_cytoplasm" type="Observable"/>
+        </ListOfReferences>
+        <Expression> v_dT/(TIM_pp_cytoplasm+0.2) </Expression>
+      </Function>
+      <Function id="fRate25">
+        <ListOfReferences>
+          <Reference name="PER_pp_cytoplasm" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 2.0/(PER_pp_cytoplasm+0.2) </Expression>
+      </Function>
+      <Function id="_rateLaw1">
+        <ListOfReferences>
+          <Reference name="fRate2" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate2() </Expression>
+      </Function>
+      <Function id="_rateLaw2">
+        <ListOfReferences>
+          <Reference name="fRate3" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate3() </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

@@ -7,7 +7,7 @@
 #@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:409']
 #@creatorEmail:'viji@ebi.ac.uk'
 #@creatorName:'Chelliah Vijayalakshmi'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 10 molecules and 0 reactions. The translated model has 4 molecules and 4 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 10 molecules and 0 reactions. The translated model has 4 molecules and 4 rules'
 ###
 begin model
 begin parameters
@@ -32,10 +32,10 @@ begin parameters
 	C0 7.069828e+23 #original 1.174mol/L
 end parameters
 begin molecule types
-	BC()
-	AlB2()
 	AlB()
+	BC()
 	AlCn()
+	AlB2()
 end molecule types
 begin seed species
 end seed species
@@ -46,8 +46,8 @@ begin observables
 	Species AlB2 AlB2() #AlB2
 end observables
 begin functions
-	C_ar() = -AlCn*n - BC + C0
 	B_ar() = -AlB - 2*AlB2 + B0 - BC
+	C_ar() = -AlCn*n - BC + C0
 	Al_ar() = A0 - AlB - AlB2 - AlCn
 	arRatex1() = -AlB*B_ar*K_AlB2*k4 - AlB*C_ar^(n + 1)*k9 - AlB*k3 + AlB2*C_ar*k10 + AlB2*k4 + Al_ar*B_ar*K_AlB*k3
 	arRatex4() = AlB*B_ar*K_AlB2*k4 - AlB2*C_ar*k10 - AlB2*k4

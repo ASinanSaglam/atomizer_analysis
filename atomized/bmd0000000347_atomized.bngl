@@ -1,11 +1,11 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1107220000', 'http://identifiers.org/biomodels.db/BIOMD0000000347']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000347', 'http://identifiers.org/biomodels.db/MODEL1107220000']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/21772264']
 #@BQB_HAS_TAXON:['http://identifiers.org/obo.bto/BTO:0004911', 'http://identifiers.org/taxonomy/10090']
 #@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0046425']
 #@creatorEmail:'viji@ebi.ac.uk'
 #@creatorName:'Chelliah Vijayalakshmi'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 26 molecules and 36 reactions. The translated model has 9 molecules and 39 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 26 molecules and 36 reactions. The translated model has 9 molecules and 39 rules'
 ###
 begin model
 begin parameters
@@ -50,54 +50,54 @@ begin compartments
 	nuc 3 0.275
 end compartments
 begin molecule types
-	SOCS3nRNA(_1~1~0,_2~2~0,_3~3~0,_4~4~0)
-	#^ bqbiol:isVersionOf uniprot:P29351
-	SHP1(act~ACT~0)
-	#^ bqbiol:isVersionOf uniprot:P42230
-	STAT5(n~N~0,p~P~0)
-	#^ bqbiol:isVersionOf obo.chebi:CHEBI:33699
-	CISRNA(_5~5~0,n~N~0)
-	#^ bqbiol:isVersionOf uniprot:Q62225
-	CIS()
-	CISnRNA(_1~1~0,_2~2~0,_3~3~0,_4~4~0)
 	#^ bqbiol:isVersionOf uniprot:O35718
 	SOCS3()
+	#^ bqbiol:isVersionOf uniprot:P29351
+	SHP1(act~ACT~0)
+	#^ bqbiol:isVersionOf uniprot:Q62225
+	CIS()
+	SOCS3nRNA(_1~1~0,_2~2~0,_3~3~0,_4~4~0)
+	#^ bqbiol:isVersionOf obo.chebi:CHEBI:33699
+	CISRNA(_5~5~0,n~N~0)
+	CISnRNA(_1~1~0,_2~2~0,_3~3~0,_4~4~0)
+	#^ bqbiol:isVersionOf uniprot:P42230
+	STAT5(n~N~0,p~P~0)
 	#^ bqbiol:hasPart uniprot:P14753, uniprot:Q62120
-	EpoRJAK2(_1~1~0,EpoRJAK2_CIS~EpoRJAK2_CIS~0,p~P~0,p1~P1~0,p2~P2~0)
+	EpoRJAK2(_2~2~0,EpoRJAK2_CIS~EpoRJAK2_CIS~0,p~P~0,p1~P1~0,p2~P2~0)
 	#^ bqbiol:isVersionOf obo.chebi:CHEBI:33699
 	SOCS3RNA(_5~5~0,n~N~0)
 end molecule types
 begin seed species
-	@cyt:EpoRJAK2(_1~0,EpoRJAK2_CIS~0,p~0,p1~0,p2~0) 9.577918736e+23 # 3.97622mol/L * 6.022e23/mol *0.4L #EpoRJAK2 #EpoRJAK2
-	@cyt:SHP1(act~0) 6.437542088000001e+24 #original 26.7251mol/L  #SHP1 #SHP1
-	@cyt:STAT5(n~0,p~0) 1.9211023080000004e+25 #original 79.7535mol/L  #STAT5 #STAT5
+	@cyt:EpoRJAK2(_2~0,EpoRJAK2_CIS~0,p~0,p1~0,p2~0)@cyt 9.577918736e+23 # 3.97622mol/L * 6.022e23/mol *0.4L #EpoRJAK2 #EpoRJAK2
+	@cyt:SHP1(act~0)@cyt 6.437542088000001e+24 #original 26.7251mol/L  #SHP1 #SHP1
+	@cyt:STAT5(n~0,p~0)@cyt 1.9211023080000004e+25 #original 79.7535mol/L  #STAT5 #STAT5
 end seed species
 begin observables
-	Species EpoRJAK2_cyt @cyt:EpoRJAK2(_1~0,EpoRJAK2_CIS~0,p~0,p1~0,p2~0) #EpoRJAK2
-	Species EpoRpJAK2_cyt @cyt:EpoRJAK2(_1~0,EpoRJAK2_CIS~0,p~P,p1~0,p2~0) #EpoRpJAK2
-	Species p1EpoRpJAK2_cyt @cyt:EpoRJAK2(_1~0,EpoRJAK2_CIS~0,p~P,p1~P1,p2~0) #p1EpoRpJAK2
-	Species p2EpoRpJAK2_cyt @cyt:EpoRJAK2(_1~0,EpoRJAK2_CIS~0,p~P,p1~0,p2~P2) #p2EpoRpJAK2
-	Species p12EpoRpJAK2_cyt @cyt:EpoRJAK2(_1~1,EpoRJAK2_CIS~0,p~P,p1~0,p2~P2) #p12EpoRpJAK2
-	Species EpoRJAK2_CIS_cyt @cyt:EpoRJAK2(_1~0,EpoRJAK2_CIS~EpoRJAK2_CIS,p~0,p1~0,p2~0) #EpoRJAK2_CIS
-	Species SHP1_cyt @cyt:SHP1(act~0) #SHP1
-	Species SHP1Act_cyt @cyt:SHP1(act~ACT) #SHP1Act
-	Species STAT5_cyt @cyt:STAT5(n~0,p~0) #STAT5
-	Species pSTAT5_cyt @cyt:STAT5(n~0,p~P) #pSTAT5
-	Species npSTAT5_nuc @nuc:STAT5(n~N,p~P) #npSTAT5
-	Species CISnRNA1_nuc @nuc:CISnRNA(_1~1,_2~0,_3~0,_4~0) #CISnRNA1
-	Species CISnRNA2_nuc @nuc:CISnRNA(_1~0,_2~2,_3~0,_4~0) #CISnRNA2
-	Species CISnRNA3_nuc @nuc:CISnRNA(_1~0,_2~0,_3~3,_4~0) #CISnRNA3
-	Species CISnRNA4_nuc @nuc:CISnRNA(_1~0,_2~0,_3~0,_4~4) #CISnRNA4
-	Species CISnRNA5_nuc @nuc:CISRNA(_5~5,n~N) #CISnRNA5
-	Species CISRNA_cyt @cyt:CISRNA(_5~0,n~0) #CISRNA
-	Species CIS_cyt @cyt:CIS() #CIS
-	Species SOCS3nRNA1_nuc @nuc:SOCS3nRNA(_1~1,_2~0,_3~0,_4~0) #SOCS3nRNA1
-	Species SOCS3nRNA2_nuc @nuc:SOCS3nRNA(_1~0,_2~2,_3~0,_4~0) #SOCS3nRNA2
-	Species SOCS3nRNA3_nuc @nuc:SOCS3nRNA(_1~0,_2~0,_3~3,_4~0) #SOCS3nRNA3
-	Species SOCS3nRNA4_nuc @nuc:SOCS3nRNA(_1~0,_2~0,_3~0,_4~4) #SOCS3nRNA4
-	Species SOCS3nRNA5_nuc @nuc:SOCS3RNA(_5~5,n~N) #SOCS3nRNA5
-	Species SOCS3RNA_cyt @cyt:SOCS3RNA(_5~0,n~0) #SOCS3RNA
-	Species SOCS3_cyt @cyt:SOCS3() #SOCS3
+	Species EpoRJAK2_cyt @cyt:EpoRJAK2(_2~0,EpoRJAK2_CIS~0,p~0,p1~0,p2~0)@cyt #EpoRJAK2
+	Species EpoRpJAK2_cyt @cyt:EpoRJAK2(_2~0,EpoRJAK2_CIS~0,p~P,p1~0,p2~0)@cyt #EpoRpJAK2
+	Species p1EpoRpJAK2_cyt @cyt:EpoRJAK2(_2~0,EpoRJAK2_CIS~0,p~P,p1~P1,p2~0)@cyt #p1EpoRpJAK2
+	Species p2EpoRpJAK2_cyt @cyt:EpoRJAK2(_2~0,EpoRJAK2_CIS~0,p~P,p1~0,p2~P2)@cyt #p2EpoRpJAK2
+	Species p12EpoRpJAK2_cyt @cyt:EpoRJAK2(_2~2,EpoRJAK2_CIS~0,p~P,p1~P1,p2~0)@cyt #p12EpoRpJAK2
+	Species EpoRJAK2_CIS_cyt @cyt:EpoRJAK2(_2~0,EpoRJAK2_CIS~EpoRJAK2_CIS,p~0,p1~0,p2~0)@cyt #EpoRJAK2_CIS
+	Species SHP1_cyt @cyt:SHP1(act~0)@cyt #SHP1
+	Species SHP1Act_cyt @cyt:SHP1(act~ACT)@cyt #SHP1Act
+	Species STAT5_cyt @cyt:STAT5(n~0,p~0)@cyt #STAT5
+	Species pSTAT5_cyt @cyt:STAT5(n~0,p~P)@cyt #pSTAT5
+	Species npSTAT5_nuc @nuc:STAT5(n~N,p~P)@nuc #npSTAT5
+	Species CISnRNA1_nuc @nuc:CISnRNA(_1~1,_2~0,_3~0,_4~0)@nuc #CISnRNA1
+	Species CISnRNA2_nuc @nuc:CISnRNA(_1~0,_2~2,_3~0,_4~0)@nuc #CISnRNA2
+	Species CISnRNA3_nuc @nuc:CISnRNA(_1~0,_2~0,_3~3,_4~0)@nuc #CISnRNA3
+	Species CISnRNA4_nuc @nuc:CISnRNA(_1~0,_2~0,_3~0,_4~4)@nuc #CISnRNA4
+	Species CISnRNA5_nuc @nuc:CISRNA(_5~5,n~N)@nuc #CISnRNA5
+	Species CISRNA_cyt @cyt:CISRNA(_5~0,n~0)@cyt #CISRNA
+	Species CIS_cyt @cyt:CIS()@cyt #CIS
+	Species SOCS3nRNA1_nuc @nuc:SOCS3nRNA(_1~1,_2~0,_3~0,_4~0)@nuc #SOCS3nRNA1
+	Species SOCS3nRNA2_nuc @nuc:SOCS3nRNA(_1~0,_2~2,_3~0,_4~0)@nuc #SOCS3nRNA2
+	Species SOCS3nRNA3_nuc @nuc:SOCS3nRNA(_1~0,_2~0,_3~3,_4~0)@nuc #SOCS3nRNA3
+	Species SOCS3nRNA4_nuc @nuc:SOCS3nRNA(_1~0,_2~0,_3~0,_4~4)@nuc #SOCS3nRNA4
+	Species SOCS3nRNA5_nuc @nuc:SOCS3RNA(_5~5,n~N)@nuc #SOCS3nRNA5
+	Species SOCS3RNA_cyt @cyt:SOCS3RNA(_5~0,n~0)@cyt #SOCS3RNA
+	Species SOCS3_cyt @cyt:SOCS3()@cyt #SOCS3
 end observables
 begin functions
 	fRate0() = Epo_cyt*JAK2ActEpo*SOCS3Eqc/(1.0*SOCS3Eqc + SOCS3Inh*SOCS3_cyt)
@@ -121,16 +121,16 @@ begin functions
 	fRate35() = SOCS3Eqc*SOCS3EqcOE*SOCS3Turn*SOCS3oe
 end functions
 begin reaction rules
-	reaction_1: EpoRJAK2(_1~0,EpoRJAK2_CIS~0,p~0,p1~0,p2~0)@cyt -> EpoRJAK2(_1~0,EpoRJAK2_CIS~0,p~P,p1~0,p2~0)@cyt fRate0() #Modifiers(Epo, SOCS3)
-	reaction_2: EpoRJAK2(_1~0,EpoRJAK2_CIS~0,p~P,p1~0,p2~0)@cyt -> EpoRJAK2(_1~0,EpoRJAK2_CIS~0,p~0,p1~0,p2~0)@cyt fRate1() #Modifiers(SHP1Act)
-	reaction_3: EpoRJAK2(_1~0,EpoRJAK2_CIS~0,p~P,p1~0,p2~0)@cyt -> EpoRJAK2(_1~0,EpoRJAK2_CIS~0,p~P,p1~P1,p2~0)@cyt fRate2() #Modifiers(SOCS3)
-	reaction_4: EpoRJAK2(_1~0,EpoRJAK2_CIS~0,p~P,p1~0,p2~0)@cyt -> EpoRJAK2(_1~0,EpoRJAK2_CIS~0,p~P,p1~0,p2~P2)@cyt fRate3() #Modifiers(EpoRJAK2_CIS, SOCS3)
-	reaction_5: EpoRJAK2(_1~0,EpoRJAK2_CIS~0,p~P,p1~P1,p2~0)@cyt -> EpoRJAK2(_1~1,EpoRJAK2_CIS~0,p~P,p1~0,p2~P2)@cyt fRate4() #Modifiers(EpoRJAK2_CIS, SOCS3)
-	reaction_6: EpoRJAK2(_1~0,EpoRJAK2_CIS~0,p~P,p1~0,p2~P2)@cyt -> EpoRJAK2(_1~1,EpoRJAK2_CIS~0,p~P,p1~0,p2~P2)@cyt fRate5() #Modifiers(SOCS3)
-	reaction_7: EpoRJAK2(_1~0,EpoRJAK2_CIS~0,p~P,p1~P1,p2~0)@cyt -> EpoRJAK2(_1~0,EpoRJAK2_CIS~0,p~0,p1~0,p2~0)@cyt fRate6() #Modifiers(SHP1Act)
-	reaction_8: EpoRJAK2(_1~0,EpoRJAK2_CIS~0,p~P,p1~0,p2~P2)@cyt -> EpoRJAK2(_1~0,EpoRJAK2_CIS~0,p~0,p1~0,p2~0)@cyt fRate7() #Modifiers(SHP1Act)
-	reaction_9: EpoRJAK2(_1~1,EpoRJAK2_CIS~0,p~P,p1~0,p2~P2)@cyt -> EpoRJAK2(_1~0,EpoRJAK2_CIS~0,p~0,p1~0,p2~0)@cyt fRate8() #Modifiers(SHP1Act)
-	reaction_10_reactants_0: 0  -> EpoRJAK2(_1~0,EpoRJAK2_CIS~EpoRJAK2_CIS,p~0,p1~0,p2~0)@cyt -1*(fRate9()) #Modifiers(p12EpoRpJAK2, p1EpoRpJAK2)
+	reaction_1: EpoRJAK2(_2~0,EpoRJAK2_CIS~0,p~0,p1~0,p2~0)@cyt -> EpoRJAK2(_2~0,EpoRJAK2_CIS~0,p~P,p1~0,p2~0)@cyt fRate0() #Modifiers(Epo, SOCS3)
+	reaction_2: EpoRJAK2(_2~0,EpoRJAK2_CIS~0,p~P,p1~0,p2~0)@cyt -> EpoRJAK2(_2~0,EpoRJAK2_CIS~0,p~0,p1~0,p2~0)@cyt fRate1() #Modifiers(SHP1Act)
+	reaction_3: EpoRJAK2(_2~0,EpoRJAK2_CIS~0,p~P,p1~0,p2~0)@cyt -> EpoRJAK2(_2~0,EpoRJAK2_CIS~0,p~P,p1~P1,p2~0)@cyt fRate2() #Modifiers(SOCS3)
+	reaction_4: EpoRJAK2(_2~0,EpoRJAK2_CIS~0,p~P,p1~0,p2~0)@cyt -> EpoRJAK2(_2~0,EpoRJAK2_CIS~0,p~P,p1~0,p2~P2)@cyt fRate3() #Modifiers(EpoRJAK2_CIS, SOCS3)
+	reaction_5: EpoRJAK2(_2~0,EpoRJAK2_CIS~0,p~P,p1~P1,p2~0)@cyt -> EpoRJAK2(_2~2,EpoRJAK2_CIS~0,p~P,p1~P1,p2~0)@cyt fRate4() #Modifiers(EpoRJAK2_CIS, SOCS3)
+	reaction_6: EpoRJAK2(_2~0,EpoRJAK2_CIS~0,p~P,p1~0,p2~P2)@cyt -> EpoRJAK2(_2~2,EpoRJAK2_CIS~0,p~P,p1~P1,p2~0)@cyt fRate5() #Modifiers(SOCS3)
+	reaction_7: EpoRJAK2(_2~0,EpoRJAK2_CIS~0,p~P,p1~P1,p2~0)@cyt -> EpoRJAK2(_2~0,EpoRJAK2_CIS~0,p~0,p1~0,p2~0)@cyt fRate6() #Modifiers(SHP1Act)
+	reaction_8: EpoRJAK2(_2~0,EpoRJAK2_CIS~0,p~P,p1~0,p2~P2)@cyt -> EpoRJAK2(_2~0,EpoRJAK2_CIS~0,p~0,p1~0,p2~0)@cyt fRate7() #Modifiers(SHP1Act)
+	reaction_9: EpoRJAK2(_2~2,EpoRJAK2_CIS~0,p~P,p1~P1,p2~0)@cyt -> EpoRJAK2(_2~0,EpoRJAK2_CIS~0,p~0,p1~0,p2~0)@cyt fRate8() #Modifiers(SHP1Act)
+	reaction_10_reactants_0: 0  -> EpoRJAK2(_2~0,EpoRJAK2_CIS~EpoRJAK2_CIS,p~0,p1~0,p2~0)@cyt -1*(fRate9()) #Modifiers(p12EpoRpJAK2, p1EpoRpJAK2)
 	reaction_11_reactants_0: 0  -> SHP1(act~0)@cyt -1*(fRate10()) #Modifiers(EpoRpJAK2, p12EpoRpJAK2, p1EpoRpJAK2, p2EpoRpJAK2)
 	reaction_11_products_0: 0  -> SHP1(act~ACT)@cyt fRate10() #Modifiers(EpoRpJAK2, p12EpoRpJAK2, p1EpoRpJAK2, p2EpoRpJAK2)
 	reaction_12: SHP1(act~ACT)@cyt -> SHP1(act~0)@cyt SHP1Dea

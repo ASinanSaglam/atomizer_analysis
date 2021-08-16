@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000877_atomized">
+    <ListOfParameters>
+      <Parameter id="r" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="K" type="Constant" value="2139" expr="2139.0"/>
+      <Parameter id="beta" type="Constant" value="0.01" expr="0.01"/>
+      <Parameter id="alpha" type="Constant" value="0.5" expr="0.5"/>
+      <Parameter id="delta_u" type="Constant" value="50" expr="50.0"/>
+      <Parameter id="K_c" type="Constant" value="10000" expr="10000.0"/>
+      <Parameter id="delta" type="Constant" value="0.5" expr="0.5"/>
+      <Parameter id="delta_i" type="Constant" value="60" expr="60.0"/>
+      <Parameter id="b" type="Constant" value="0.5" expr="0.5"/>
+      <Parameter id="gamma" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="mu" type="Constant" value="150" expr="150.0"/>
+      <Parameter id="psi" type="Constant" value="4.17" expr="4.17"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="C"/>
+      <MoleculeType id="U">
+        <ListOfComponentTypes>
+          <ComponentType id="v"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="V">
+        <ListOfComponentTypes>
+          <ComponentType id="u"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="6.022e+25" name="U(v)">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="U">
+            <ListOfComponents>
+              <Component id="S1_M1_C1" name="v" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="6.022e+24" name="U(v!1).V(u!1)">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="U">
+            <ListOfComponents>
+              <Component id="S2_M1_C1" name="v" numberOfBonds="1"/>
+            </ListOfComponents>
+          </Molecule>
+          <Molecule id="S2_M2" name="V">
+            <ListOfComponents>
+              <Component id="S2_M2_C1" name="u" numberOfBonds="1"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+        <ListOfBonds>
+          <Bond id="S2_B1" site1="S2_M1_C1" site2="S2_M2_C1"/>
+        </ListOfBonds>
+      </Species>
+      <Species id="S3"  concentration="6.022e+24" name="V(u)">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="V">
+            <ListOfComponents>
+              <Component id="S3_M1_C1" name="u" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S4"  concentration="1.8066000000000001e+25" name="C()">
+        <ListOfMolecules>
+          <Molecule id="S4_M1" name="C"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="Tumor_Growth_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="U">
+                <ListOfComponents>
+                  <Component id="RR1_PP1_M1_C1" name="v" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="Tumor_Cell_Infection" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="U">
+                <ListOfComponents>
+                  <Component id="RR2_RP1_M1_C1" name="v" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR2_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP2_M1" name="V">
+                <ListOfComponents>
+                  <Component id="RR2_RP2_M1_C1" name="u" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="V">
+                <ListOfComponents>
+                  <Component id="RR2_PP1_M1_C1" name="u" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR2_PP1_M2" name="U">
+                <ListOfComponents>
+                  <Component id="RR2_PP1_M2_C1" name="v" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR2_PP1_B1" site1="RR2_PP1_M1_C1" site2="RR2_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="fRate1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1" targetID="RR2_PP1_M2"/>
+          <MapItem sourceID="RR2_RP1_M1_C1" targetID="RR2_PP1_M2_C1"/>
+          <MapItem sourceID="RR2_RP2_M1" targetID="RR2_PP1_M1"/>
+          <MapItem sourceID="RR2_RP2_M1_C1" targetID="RR2_PP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR2_RP2_M1_C1" site2="RR2_RP1_M1_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="Uninfected_Tumor_Lysis_Drug" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="U">
+                <ListOfComponents>
+                  <Component id="RR3_RP1_M1_C1" name="v" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="fRate2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1"/>
+          <MapItem sourceID="RR3_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR3_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="Infected_Tumor_Lysis_Drug" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="V">
+                <ListOfComponents>
+                  <Component id="RR4_RP1_M1_C1" name="u" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR4_RP1_M2" name="U">
+                <ListOfComponents>
+                  <Component id="RR4_RP1_M2_C1" name="v" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR4_RP1_B1" site1="RR4_RP1_M1_C1" site2="RR4_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="fRate3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1"/>
+          <MapItem sourceID="RR4_RP1_M1_C1"/>
+          <MapItem sourceID="RR4_RP1_M2"/>
+          <MapItem sourceID="RR4_RP1_M2_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR4_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="Infected_Tumor_Death" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR5_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP1_M1" name="V">
+                <ListOfComponents>
+                  <Component id="RR5_RP1_M1_C1" name="u" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR5_RP1_M2" name="U">
+                <ListOfComponents>
+                  <Component id="RR5_RP1_M2_C1" name="v" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR5_RP1_B1" site1="RR5_RP1_M1_C1" site2="RR5_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="delta"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR5_RP1_M1"/>
+          <MapItem sourceID="RR5_RP1_M1_C1"/>
+          <MapItem sourceID="RR5_RP1_M2"/>
+          <MapItem sourceID="RR5_RP1_M2_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR5_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="Virus_Production" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="V">
+                <ListOfComponents>
+                  <Component id="RR6_PP1_M1_C1" name="u" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Function" name="fRate5" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR6_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="Virus_Decay" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR7_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_RP1_M1" name="V">
+                <ListOfComponents>
+                  <Component id="RR7_RP1_M1_C1" name="u" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="gamma"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR7_RP1_M1"/>
+          <MapItem sourceID="RR7_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR7_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="Drug_Injection" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR8_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP1_M1" name="C"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="mu"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR8_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="Drug_Decay" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR9_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_RP1_M1" name="C"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="psi"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR9_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR9_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="U" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="U">
+                <ListOfComponents>
+                  <Component id="O1_P1_M1_C1" name="v" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="I" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="V">
+                <ListOfComponents>
+                  <Component id="O2_P1_M1_C1" name="u" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O2_P1_M2" name="U">
+                <ListOfComponents>
+                  <Component id="O2_P1_M2_C1" name="v" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O2_P1_B1" site1="O2_P1_M1_C1" site2="O2_P1_M2_C1"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="V" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="V">
+                <ListOfComponents>
+                  <Component id="O3_P1_M1_C1" name="u" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="C" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="C"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="K" type="Constant"/>
+          <Reference name="r" type="Constant"/>
+          <Reference name="I" type="Observable"/>
+          <Reference name="U" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (U*r)*(1-((I+U)/K)) </Expression>
+      </Function>
+      <Function id="fRate1">
+        <ListOfReferences>
+          <Reference name="alpha" type="Constant"/>
+          <Reference name="beta" type="Constant"/>
+          <Reference name="I" type="Observable"/>
+          <Reference name="U" type="Observable"/>
+        </ListOfReferences>
+        <Expression> beta/((I+U)+alpha) </Expression>
+      </Function>
+      <Function id="fRate2">
+        <ListOfReferences>
+          <Reference name="K_c" type="Constant"/>
+          <Reference name="delta_u" type="Constant"/>
+          <Reference name="C" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (C*delta_u)/(C+K_c) </Expression>
+      </Function>
+      <Function id="fRate3">
+        <ListOfReferences>
+          <Reference name="K_c" type="Constant"/>
+          <Reference name="delta_i" type="Constant"/>
+          <Reference name="C" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (C*delta_i)/(C+K_c) </Expression>
+      </Function>
+      <Function id="fRate5">
+        <ListOfReferences>
+          <Reference name="b" type="Constant"/>
+          <Reference name="delta" type="Constant"/>
+          <Reference name="I" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (I*b)*delta </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

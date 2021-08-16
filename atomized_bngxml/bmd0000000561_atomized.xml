@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000561_atomized">
+    <ListOfParameters>
+      <Parameter id="kb" type="Constant" value="0.001" expr="0.001"/>
+      <Parameter id="ka" type="Constant" value="0.5" expr="0.5"/>
+      <Parameter id="sigmao" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="V" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="C" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="C_0" type="Constant" value="2" expr="2.0"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+    </ListOfReactionRules>
+    <ListOfObservables>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="gamma">
+        <ListOfReferences>
+          <Reference name="C" type="Constant"/>
+          <Reference name="C_0" type="Constant"/>
+        </ListOfReferences>
+        <Expression> ((-C)+C_0)/C </Expression>
+      </Function>
+      <Function id="deltamt">
+        <ListOfReferences>
+          <Reference name="C" type="Constant"/>
+          <Reference name="V" type="Constant"/>
+          <Reference name="sigmao" type="Constant"/>
+          <Reference name="gamma" type="Function"/>
+        </ListOfReferences>
+        <Expression> ((C*V)*gamma)*sigmao </Expression>
+      </Function>
+      <Function id="Amyloid_ar">
+        <ListOfReferences>
+          <Reference name="ka" type="Constant"/>
+          <Reference name="kb" type="Constant"/>
+          <Reference name="deltamt" type="Function"/>
+        </ListOfReferences>
+        <Expression> deltamt*(1-(1/((kb*(exp((ka*time()))-1))+1))) </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

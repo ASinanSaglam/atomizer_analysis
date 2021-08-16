@@ -1,0 +1,1388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000439_atomized">
+    <ListOfParameters>
+      <Parameter id="ka" type="Constant" value="1.5" expr="1.5"/>
+      <Parameter id="Ligand_conc" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="r1_k1" type="Constant" value="0.0025" expr="0.002500"/>
+      <Parameter id="r2_k2" type="Constant" value="0.005" expr="0.005000"/>
+      <Parameter id="r3_k3" type="Constant" value="0.02" expr="0.020000"/>
+      <Parameter id="r4_k4" type="Constant" value="0.005" expr="0.005000"/>
+      <Parameter id="r5_k5" type="Constant" value="50" expr="50.000000"/>
+      <Parameter id="r6_k6" type="Constant" value="0.2" expr="0.200000"/>
+      <Parameter id="r7_k7" type="Constant" value="500" expr="500.000000"/>
+      <Parameter id="r8_k8" type="Constant" value="2.5" expr="2.500000"/>
+      <Parameter id="r9_k9" type="Constant" value="0.005" expr="0.005000"/>
+      <Parameter id="r10_k10" type="Constant" value="10" expr="10.000000"/>
+      <Parameter id="r11_k11" type="Constant" value="1" expr="1.000000"/>
+      <Parameter id="r12_k12" type="Constant" value="50" expr="50.000000"/>
+      <Parameter id="r13_k13" type="Constant" value="0.3" expr="0.300000"/>
+      <Parameter id="r14_k14" type="Constant" value="0.005" expr="0.005000"/>
+      <Parameter id="r15_k15" type="Constant" value="1000" expr="1000.000000"/>
+      <Parameter id="r16_k16" type="Constant" value="1000" expr="1000.000000"/>
+      <Parameter id="r17_k17" type="Constant" value="10" expr="10.000000"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="Effector"/>
+      <MoleculeType id="GaGDP">
+        <ListOfComponentTypes>
+          <ComponentType id="GaGTP">
+            <ListOfAllowedStates>
+              <AllowedState id="GaGTP"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="gbg"/>
+          <ComponentType id="p"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="GaGTPEffector"/>
+      <MoleculeType id="Gbg">
+        <ListOfComponentTypes>
+          <ComponentType id="gagdp"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="L">
+        <ListOfComponentTypes>
+          <ComponentType id="r"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="P">
+        <ListOfComponentTypes>
+          <ComponentType id="gagdp"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="R">
+        <ListOfComponentTypes>
+          <ComponentType id="l"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="RGS"/>
+      <MoleculeType id="RGSGaGTP"/>
+      <MoleculeType id="RGSinertGaGTP"/>
+      <MoleculeType id="RGabg"/>
+      <MoleculeType id="RGabgL"/>
+      <MoleculeType id="inertGaGTP"/>
+      <MoleculeType id="z1">
+        <ListOfComponentTypes>
+          <ComponentType id="z2">
+            <ListOfAllowedStates>
+              <AllowedState id="z2"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="z3">
+            <ListOfAllowedStates>
+              <AllowedState id="z3"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="1.23451e+26" name="R(l)">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="R">
+            <ListOfComponents>
+              <Component id="S1_M1_C1" name="l" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="1.23451e+26" name="Gbg(gagdp)">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="Gbg">
+            <ListOfComponents>
+              <Component id="S2_M1_C1" name="gagdp" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="3.6132000000000002e+25" name="RGS()">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="RGS"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S4"  concentration="1.23451e+26" name="Effector()">
+        <ListOfMolecules>
+          <Molecule id="S4_M1" name="Effector"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S5"  concentration="1.23451e+26" name="GaGDP(GaGTP~0,gbg,p)">
+        <ListOfMolecules>
+          <Molecule id="S5_M1" name="GaGDP">
+            <ListOfComponents>
+              <Component id="S5_M1_C1" name="GaGTP" state="0" numberOfBonds="0"/>
+              <Component id="S5_M1_C2" name="gbg" numberOfBonds="0"/>
+              <Component id="S5_M1_C3" name="p" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="R1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR1_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_RP1_M1" name="R">
+                <ListOfComponents>
+                  <Component id="RR1_RP1_M1_C1" name="l" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR1_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR1_RP2_M1" name="L">
+                <ListOfComponents>
+                  <Component id="RR1_RP2_M1_C1" name="r" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="R">
+                <ListOfComponents>
+                  <Component id="RR1_PP1_M1_C1" name="l" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR1_PP1_M2" name="L">
+                <ListOfComponents>
+                  <Component id="RR1_PP1_M2_C1" name="r" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR1_PP1_B1" site1="RR1_PP1_M1_C1" site2="RR1_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r1_k1"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR1_RP1_M1" targetID="RR1_PP1_M1"/>
+          <MapItem sourceID="RR1_RP1_M1_C1" targetID="RR1_PP1_M1_C1"/>
+          <MapItem sourceID="RR1_RP2_M1" targetID="RR1_PP1_M2"/>
+          <MapItem sourceID="RR1_RP2_M1_C1" targetID="RR1_PP1_M2_C1"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR1_RP1_M1_C1" site2="RR1_RP2_M1_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="R2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="R">
+                <ListOfComponents>
+                  <Component id="RR2_RP1_M1_C1" name="l" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR2_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP2_M1" name="GaGDP">
+                <ListOfComponents>
+                  <Component id="RR2_RP2_M1_C1" name="GaGTP" state="GaGTP" numberOfBonds="0"/>
+                  <Component id="RR2_RP2_M1_C2" name="gbg" numberOfBonds="1"/>
+                  <Component id="RR2_RP2_M1_C3" name="p" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR2_RP2_M2" name="Gbg">
+                <ListOfComponents>
+                  <Component id="RR2_RP2_M2_C1" name="gagdp" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR2_RP2_B1" site1="RR2_RP2_M1_C2" site2="RR2_RP2_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="RGabg"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r2_k2"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1"/>
+          <MapItem sourceID="RR2_RP1_M1_C1"/>
+          <MapItem sourceID="RR2_RP2_M1"/>
+          <MapItem sourceID="RR2_RP2_M1_C1"/>
+          <MapItem sourceID="RR2_RP2_M1_C2"/>
+          <MapItem sourceID="RR2_RP2_M1_C3"/>
+          <MapItem sourceID="RR2_RP2_M2"/>
+          <MapItem sourceID="RR2_RP2_M2_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+          <Delete id="RR2_RP1" DeleteMolecules="0"/>
+          <Delete id="RR2_RP2" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="R3" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="R">
+                <ListOfComponents>
+                  <Component id="RR3_RP1_M1_C1" name="l" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR3_RP1_M2" name="L">
+                <ListOfComponents>
+                  <Component id="RR3_RP1_M2_C1" name="r" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR3_RP1_B1" site1="RR3_RP1_M1_C1" site2="RR3_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+          <ReactantPattern id="RR3_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP2_M1" name="GaGDP">
+                <ListOfComponents>
+                  <Component id="RR3_RP2_M1_C1" name="GaGTP" state="GaGTP" numberOfBonds="0"/>
+                  <Component id="RR3_RP2_M1_C2" name="gbg" numberOfBonds="1"/>
+                  <Component id="RR3_RP2_M1_C3" name="p" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR3_RP2_M2" name="Gbg">
+                <ListOfComponents>
+                  <Component id="RR3_RP2_M2_C1" name="gagdp" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR3_RP2_B1" site1="RR3_RP2_M1_C2" site2="RR3_RP2_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="RGabgL"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r3_k3"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1"/>
+          <MapItem sourceID="RR3_RP1_M1_C1"/>
+          <MapItem sourceID="RR3_RP1_M2"/>
+          <MapItem sourceID="RR3_RP1_M2_C1"/>
+          <MapItem sourceID="RR3_RP2_M1"/>
+          <MapItem sourceID="RR3_RP2_M1_C1"/>
+          <MapItem sourceID="RR3_RP2_M1_C2"/>
+          <MapItem sourceID="RR3_RP2_M1_C3"/>
+          <MapItem sourceID="RR3_RP2_M2"/>
+          <MapItem sourceID="RR3_RP2_M2_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+          <Delete id="RR3_RP1" DeleteMolecules="0"/>
+          <Delete id="RR3_RP2" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="R4" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="RGabg"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR4_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP2_M1" name="L">
+                <ListOfComponents>
+                  <Component id="RR4_RP2_M1_C1" name="r" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="RGabgL"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r4_k4"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1"/>
+          <MapItem sourceID="RR4_RP2_M1"/>
+          <MapItem sourceID="RR4_RP2_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR4_PP1_M1"/>
+          <Delete id="RR4_RP1" DeleteMolecules="0"/>
+          <Delete id="RR4_RP2" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="R5" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR5_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP1_M1" name="RGabgL"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="R">
+                <ListOfComponents>
+                  <Component id="RR5_PP1_M1_C1" name="l" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR5_PP1_M2" name="L">
+                <ListOfComponents>
+                  <Component id="RR5_PP1_M2_C1" name="r" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR5_PP1_B1" site1="RR5_PP1_M1_C1" site2="RR5_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+          <ProductPattern id="RR5_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP2_M1" name="GaGDP">
+                <ListOfComponents>
+                  <Component id="RR5_PP2_M1_C1" name="GaGTP" state="GaGTP" numberOfBonds="0"/>
+                  <Component id="RR5_PP2_M1_C2" name="gbg" numberOfBonds="0"/>
+                  <Component id="RR5_PP2_M1_C3" name="p" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR5_PP3">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP3_M1" name="Gbg">
+                <ListOfComponents>
+                  <Component id="RR5_PP3_M1_C1" name="gagdp" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r5_k5"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR5_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR5_PP1_M1"/>
+          <Add id="RR5_PP1_M2"/>
+          <Add id="RR5_PP2_M1"/>
+          <Add id="RR5_PP3_M1"/>
+          <AddBond site1="RR5_PP1_M1_C1" site2="RR5_PP1_M2_C1"/>
+          <Delete id="RR5_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="R6" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR6_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_RP1_M1" name="GaGDP">
+                <ListOfComponents>
+                  <Component id="RR6_RP1_M1_C1" name="GaGTP" state="GaGTP" numberOfBonds="0"/>
+                  <Component id="RR6_RP1_M1_C2" name="gbg" numberOfBonds="1"/>
+                  <Component id="RR6_RP1_M1_C3" name="p" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR6_RP1_M2" name="Gbg">
+                <ListOfComponents>
+                  <Component id="RR6_RP1_M2_C1" name="gagdp" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR6_RP1_B1" site1="RR6_RP1_M1_C2" site2="RR6_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="GaGDP">
+                <ListOfComponents>
+                  <Component id="RR6_PP1_M1_C1" name="GaGTP" state="GaGTP" numberOfBonds="0"/>
+                  <Component id="RR6_PP1_M1_C2" name="gbg" numberOfBonds="0"/>
+                  <Component id="RR6_PP1_M1_C3" name="p" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR6_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP2_M1" name="Gbg">
+                <ListOfComponents>
+                  <Component id="RR6_PP2_M1_C1" name="gagdp" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r6_k6"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR6_RP1_M1" targetID="RR6_PP1_M1"/>
+          <MapItem sourceID="RR6_RP1_M1_C1" targetID="RR6_PP1_M1_C1"/>
+          <MapItem sourceID="RR6_RP1_M1_C2" targetID="RR6_PP1_M1_C2"/>
+          <MapItem sourceID="RR6_RP1_M1_C3" targetID="RR6_PP1_M1_C3"/>
+          <MapItem sourceID="RR6_RP1_M2" targetID="RR6_PP2_M1"/>
+          <MapItem sourceID="RR6_RP1_M2_C1" targetID="RR6_PP2_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <DeleteBond site1="RR6_RP1_M1_C2" site2="RR6_RP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="R7" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR7_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_RP1_M1" name="GaGDP">
+                <ListOfComponents>
+                  <Component id="RR7_RP1_M1_C1" name="GaGTP" state="GaGTP" numberOfBonds="0"/>
+                  <Component id="RR7_RP1_M1_C2" name="gbg" numberOfBonds="0"/>
+                  <Component id="RR7_RP1_M1_C3" name="p" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR7_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR7_RP2_M1" name="RGS"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="RGSGaGTP"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r7_k7"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR7_RP1_M1"/>
+          <MapItem sourceID="RR7_RP1_M1_C1"/>
+          <MapItem sourceID="RR7_RP1_M1_C2"/>
+          <MapItem sourceID="RR7_RP1_M1_C3"/>
+          <MapItem sourceID="RR7_RP2_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR7_PP1_M1"/>
+          <Delete id="RR7_RP1" DeleteMolecules="0"/>
+          <Delete id="RR7_RP2" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="R8" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR8_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_RP1_M1" name="RGSGaGTP"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR8_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP1_M1" name="GaGDP">
+                <ListOfComponents>
+                  <Component id="RR8_PP1_M1_C1" name="GaGTP" state="0" numberOfBonds="0"/>
+                  <Component id="RR8_PP1_M1_C2" name="gbg" numberOfBonds="0"/>
+                  <Component id="RR8_PP1_M1_C3" name="p" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR8_PP1_M2" name="P">
+                <ListOfComponents>
+                  <Component id="RR8_PP1_M2_C1" name="gagdp" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR8_PP1_B1" site1="RR8_PP1_M1_C3" site2="RR8_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+          <ProductPattern id="RR8_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP2_M1" name="RGS"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r8_k8"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR8_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR8_PP1_M1"/>
+          <Add id="RR8_PP1_M2"/>
+          <Add id="RR8_PP2_M1"/>
+          <AddBond site1="RR8_PP1_M1_C3" site2="RR8_PP1_M2_C1"/>
+          <Delete id="RR8_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="R9" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR9_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_RP1_M1" name="GaGDP">
+                <ListOfComponents>
+                  <Component id="RR9_RP1_M1_C1" name="GaGTP" state="GaGTP" numberOfBonds="0"/>
+                  <Component id="RR9_RP1_M1_C2" name="gbg" numberOfBonds="0"/>
+                  <Component id="RR9_RP1_M1_C3" name="p" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR9_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP1_M1" name="GaGDP">
+                <ListOfComponents>
+                  <Component id="RR9_PP1_M1_C1" name="GaGTP" state="0" numberOfBonds="0"/>
+                  <Component id="RR9_PP1_M1_C2" name="gbg" numberOfBonds="0"/>
+                  <Component id="RR9_PP1_M1_C3" name="p" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR9_PP1_M2" name="P">
+                <ListOfComponents>
+                  <Component id="RR9_PP1_M2_C1" name="gagdp" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR9_PP1_B1" site1="RR9_PP1_M1_C3" site2="RR9_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r9_k9"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR9_RP1_M1" targetID="RR9_PP1_M1"/>
+          <MapItem sourceID="RR9_RP1_M1_C1" targetID="RR9_PP1_M1_C1"/>
+          <MapItem sourceID="RR9_RP1_M1_C2" targetID="RR9_PP1_M1_C2"/>
+          <MapItem sourceID="RR9_RP1_M1_C3" targetID="RR9_PP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR9_RP1_M1_C1" finalState="0"/>
+          <Add id="RR9_PP1_M2"/>
+          <AddBond site1="RR9_RP1_M1_C3" site2="RR9_PP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="R10" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR10_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_RP1_M1" name="Effector"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR10_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR10_RP2_M1" name="GaGDP">
+                <ListOfComponents>
+                  <Component id="RR10_RP2_M1_C1" name="GaGTP" state="GaGTP" numberOfBonds="0"/>
+                  <Component id="RR10_RP2_M1_C2" name="gbg" numberOfBonds="0"/>
+                  <Component id="RR10_RP2_M1_C3" name="p" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR10_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_PP1_M1" name="GaGTPEffector"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r10_k10"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR10_RP1_M1"/>
+          <MapItem sourceID="RR10_RP2_M1"/>
+          <MapItem sourceID="RR10_RP2_M1_C1"/>
+          <MapItem sourceID="RR10_RP2_M1_C2"/>
+          <MapItem sourceID="RR10_RP2_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR10_PP1_M1"/>
+          <Delete id="RR10_RP1" DeleteMolecules="0"/>
+          <Delete id="RR10_RP2" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR11" name="R11" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR11_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_RP1_M1" name="GaGTPEffector"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR11_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_PP1_M1" name="inertGaGTP"/>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR11_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR11_PP2_M1" name="Effector"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR11_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r11_k11"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR11_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR11_PP1_M1"/>
+          <Add id="RR11_PP2_M1"/>
+          <Delete id="RR11_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR12" name="R12" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR12_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_RP1_M1" name="inertGaGTP"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR12_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR12_RP2_M1" name="RGS"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR12_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_PP1_M1" name="RGSinertGaGTP"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR12_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r12_k12"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR12_RP1_M1"/>
+          <MapItem sourceID="RR12_RP2_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR12_PP1_M1"/>
+          <Delete id="RR12_RP1" DeleteMolecules="0"/>
+          <Delete id="RR12_RP2" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR13" name="R13" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR13_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_RP1_M1" name="RGSinertGaGTP"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR13_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_PP1_M1" name="GaGDP">
+                <ListOfComponents>
+                  <Component id="RR13_PP1_M1_C1" name="GaGTP" state="0" numberOfBonds="0"/>
+                  <Component id="RR13_PP1_M1_C2" name="gbg" numberOfBonds="0"/>
+                  <Component id="RR13_PP1_M1_C3" name="p" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR13_PP1_M2" name="P">
+                <ListOfComponents>
+                  <Component id="RR13_PP1_M2_C1" name="gagdp" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR13_PP1_B1" site1="RR13_PP1_M1_C3" site2="RR13_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+          <ProductPattern id="RR13_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR13_PP2_M1" name="RGS"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR13_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r13_k13"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR13_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR13_PP1_M1"/>
+          <Add id="RR13_PP1_M2"/>
+          <Add id="RR13_PP2_M1"/>
+          <AddBond site1="RR13_PP1_M1_C3" site2="RR13_PP1_M2_C1"/>
+          <Delete id="RR13_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR14" name="R14" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR14_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_RP1_M1" name="inertGaGTP"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR14_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_PP1_M1" name="GaGDP">
+                <ListOfComponents>
+                  <Component id="RR14_PP1_M1_C1" name="GaGTP" state="0" numberOfBonds="0"/>
+                  <Component id="RR14_PP1_M1_C2" name="gbg" numberOfBonds="0"/>
+                  <Component id="RR14_PP1_M1_C3" name="p" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR14_PP1_M2" name="P">
+                <ListOfComponents>
+                  <Component id="RR14_PP1_M2_C1" name="gagdp" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR14_PP1_B1" site1="RR14_PP1_M1_C3" site2="RR14_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR14_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r14_k14"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR14_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR14_PP1_M1"/>
+          <Add id="RR14_PP1_M2"/>
+          <AddBond site1="RR14_PP1_M1_C3" site2="RR14_PP1_M2_C1"/>
+          <Delete id="RR14_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR15" name="R15" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR15_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR15_RP1_M1" name="GaGDP">
+                <ListOfComponents>
+                  <Component id="RR15_RP1_M1_C1" name="GaGTP" state="0" numberOfBonds="0"/>
+                  <Component id="RR15_RP1_M1_C2" name="gbg" numberOfBonds="0"/>
+                  <Component id="RR15_RP1_M1_C3" name="p" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR15_RP1_M2" name="P">
+                <ListOfComponents>
+                  <Component id="RR15_RP1_M2_C1" name="gagdp" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR15_RP1_B1" site1="RR15_RP1_M1_C3" site2="RR15_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR15_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR15_PP1_M1" name="GaGDP">
+                <ListOfComponents>
+                  <Component id="RR15_PP1_M1_C1" name="GaGTP" state="0" numberOfBonds="0"/>
+                  <Component id="RR15_PP1_M1_C2" name="gbg" numberOfBonds="0"/>
+                  <Component id="RR15_PP1_M1_C3" name="p" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR15_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR15_PP2_M1" name="P">
+                <ListOfComponents>
+                  <Component id="RR15_PP2_M1_C1" name="gagdp" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR15_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r15_k15"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR15_RP1_M1" targetID="RR15_PP1_M1"/>
+          <MapItem sourceID="RR15_RP1_M1_C1" targetID="RR15_PP1_M1_C1"/>
+          <MapItem sourceID="RR15_RP1_M1_C2" targetID="RR15_PP1_M1_C2"/>
+          <MapItem sourceID="RR15_RP1_M1_C3" targetID="RR15_PP1_M1_C3"/>
+          <MapItem sourceID="RR15_RP1_M2" targetID="RR15_PP2_M1"/>
+          <MapItem sourceID="RR15_RP1_M2_C1" targetID="RR15_PP2_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <DeleteBond site1="RR15_RP1_M1_C3" site2="RR15_RP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR16" name="R16" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR16_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR16_RP1_M1" name="GaGDP">
+                <ListOfComponents>
+                  <Component id="RR16_RP1_M1_C1" name="GaGTP" state="0" numberOfBonds="0"/>
+                  <Component id="RR16_RP1_M1_C2" name="gbg" numberOfBonds="0"/>
+                  <Component id="RR16_RP1_M1_C3" name="p" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR16_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR16_RP2_M1" name="Gbg">
+                <ListOfComponents>
+                  <Component id="RR16_RP2_M1_C1" name="gagdp" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR16_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR16_PP1_M1" name="GaGDP">
+                <ListOfComponents>
+                  <Component id="RR16_PP1_M1_C1" name="GaGTP" state="GaGTP" numberOfBonds="0"/>
+                  <Component id="RR16_PP1_M1_C2" name="gbg" numberOfBonds="1"/>
+                  <Component id="RR16_PP1_M1_C3" name="p" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR16_PP1_M2" name="Gbg">
+                <ListOfComponents>
+                  <Component id="RR16_PP1_M2_C1" name="gagdp" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR16_PP1_B1" site1="RR16_PP1_M1_C2" site2="RR16_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR16_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r16_k16"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR16_RP1_M1" targetID="RR16_PP1_M1"/>
+          <MapItem sourceID="RR16_RP1_M1_C1" targetID="RR16_PP1_M1_C1"/>
+          <MapItem sourceID="RR16_RP1_M1_C2" targetID="RR16_PP1_M1_C2"/>
+          <MapItem sourceID="RR16_RP1_M1_C3" targetID="RR16_PP1_M1_C3"/>
+          <MapItem sourceID="RR16_RP2_M1" targetID="RR16_PP1_M2"/>
+          <MapItem sourceID="RR16_RP2_M1_C1" targetID="RR16_PP1_M2_C1"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR16_RP1_M1_C1" finalState="GaGTP"/>
+          <AddBond site1="RR16_RP1_M1_C2" site2="RR16_RP2_M1_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR17" name="R17" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR17_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR17_RP1_M1" name="P">
+                <ListOfComponents>
+                  <Component id="RR17_RP1_M1_C1" name="gagdp" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR17_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r17_k17"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR17_RP1_M1"/>
+          <MapItem sourceID="RR17_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR17_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR18" name="R18" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR18_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR18_PP1_M1" name="z1">
+                <ListOfComponents>
+                  <Component id="RR18_PP1_M1_C1" name="z2" state="0" numberOfBonds="0"/>
+                  <Component id="RR18_PP1_M1_C2" name="z3" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR18_RateLaw" type="Function" name="fRate17" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR18_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR19" name="R19" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR19_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR19_RP1_M1" name="z1">
+                <ListOfComponents>
+                  <Component id="RR19_RP1_M1_C1" name="z2" state="0" numberOfBonds="0"/>
+                  <Component id="RR19_RP1_M1_C2" name="z3" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR19_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR19_PP1_M1" name="z1">
+                <ListOfComponents>
+                  <Component id="RR19_PP1_M1_C1" name="z2" state="z2" numberOfBonds="0"/>
+                  <Component id="RR19_PP1_M1_C2" name="z3" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR19_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="ka"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR19_RP1_M1" targetID="RR19_PP1_M1"/>
+          <MapItem sourceID="RR19_RP1_M1_C1" targetID="RR19_PP1_M1_C1"/>
+          <MapItem sourceID="RR19_RP1_M1_C2" targetID="RR19_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR19_RP1_M1_C1" finalState="z2"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR20" name="R20" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR20_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR20_RP1_M1" name="z1">
+                <ListOfComponents>
+                  <Component id="RR20_RP1_M1_C1" name="z2" state="z2" numberOfBonds="0"/>
+                  <Component id="RR20_RP1_M1_C2" name="z3" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR20_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR20_PP1_M1" name="z1">
+                <ListOfComponents>
+                  <Component id="RR20_PP1_M1_C1" name="z2" state="0" numberOfBonds="0"/>
+                  <Component id="RR20_PP1_M1_C2" name="z3" state="z3" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR20_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="ka"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR20_RP1_M1" targetID="RR20_PP1_M1"/>
+          <MapItem sourceID="RR20_RP1_M1_C1" targetID="RR20_PP1_M1_C1"/>
+          <MapItem sourceID="RR20_RP1_M1_C2" targetID="RR20_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR20_RP1_M1_C1" finalState="0"/>
+          <StateChange site="RR20_RP1_M1_C2" finalState="z3"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR21" name="R21" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR21_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR21_RP1_M1" name="z1">
+                <ListOfComponents>
+                  <Component id="RR21_RP1_M1_C1" name="z2" state="0" numberOfBonds="0"/>
+                  <Component id="RR21_RP1_M1_C2" name="z3" state="z3" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR21_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="ka"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR21_RP1_M1"/>
+          <MapItem sourceID="RR21_RP1_M1_C1"/>
+          <MapItem sourceID="RR21_RP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR21_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="R" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="R">
+                <ListOfComponents>
+                  <Component id="O1_P1_M1_C1" name="l" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="L" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="L">
+                <ListOfComponents>
+                  <Component id="O2_P1_M1_C1" name="r" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="RL" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="R">
+                <ListOfComponents>
+                  <Component id="O3_P1_M1_C1" name="l" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O3_P1_M2" name="L">
+                <ListOfComponents>
+                  <Component id="O3_P1_M2_C1" name="r" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O3_P1_B1" site1="O3_P1_M1_C1" site2="O3_P1_M2_C1"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="Gabg" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="GaGDP">
+                <ListOfComponents>
+                  <Component id="O4_P1_M1_C1" name="GaGTP" state="GaGTP" numberOfBonds="0"/>
+                  <Component id="O4_P1_M1_C2" name="gbg" numberOfBonds="1"/>
+                  <Component id="O4_P1_M1_C3" name="p" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O4_P1_M2" name="Gbg">
+                <ListOfComponents>
+                  <Component id="O4_P1_M2_C1" name="gagdp" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O4_P1_B1" site1="O4_P1_M1_C2" site2="O4_P1_M2_C1"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="RGabg" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="RGabg"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O6" name="RGabgL" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O6_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O6_P1_M1" name="RGabgL"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O7" name="GaGTP" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O7_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O7_P1_M1" name="GaGDP">
+                <ListOfComponents>
+                  <Component id="O7_P1_M1_C1" name="GaGTP" state="GaGTP" numberOfBonds="0"/>
+                  <Component id="O7_P1_M1_C2" name="gbg" numberOfBonds="0"/>
+                  <Component id="O7_P1_M1_C3" name="p" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O8" name="Gbg" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O8_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O8_P1_M1" name="Gbg">
+                <ListOfComponents>
+                  <Component id="O8_P1_M1_C1" name="gagdp" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O9" name="RGS" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O9_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O9_P1_M1" name="RGS"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O10" name="RGSGaGTP" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O10_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O10_P1_M1" name="RGSGaGTP"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O11" name="GaGDPP" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O11_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O11_P1_M1" name="GaGDP">
+                <ListOfComponents>
+                  <Component id="O11_P1_M1_C1" name="GaGTP" state="0" numberOfBonds="0"/>
+                  <Component id="O11_P1_M1_C2" name="gbg" numberOfBonds="0"/>
+                  <Component id="O11_P1_M1_C3" name="p" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O11_P1_M2" name="P">
+                <ListOfComponents>
+                  <Component id="O11_P1_M2_C1" name="gagdp" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O11_P1_B1" site1="O11_P1_M1_C3" site2="O11_P1_M2_C1"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O12" name="Effector" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O12_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O12_P1_M1" name="Effector"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O13" name="GaGTPEffector" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O13_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O13_P1_M1" name="GaGTPEffector"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O14" name="inertGaGTP" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O14_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O14_P1_M1" name="inertGaGTP"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O15" name="RGSinertGaGTP" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O15_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O15_P1_M1" name="RGSinertGaGTP"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O16" name="GaGDP" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O16_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O16_P1_M1" name="GaGDP">
+                <ListOfComponents>
+                  <Component id="O16_P1_M1_C1" name="GaGTP" state="0" numberOfBonds="0"/>
+                  <Component id="O16_P1_M1_C2" name="gbg" numberOfBonds="0"/>
+                  <Component id="O16_P1_M1_C3" name="p" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O17" name="P" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O17_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O17_P1_M1" name="P">
+                <ListOfComponents>
+                  <Component id="O17_P1_M1_C1" name="gagdp" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O18" name="z1" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O18_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O18_P1_M1" name="z1">
+                <ListOfComponents>
+                  <Component id="O18_P1_M1_C1" name="z2" state="0" numberOfBonds="0"/>
+                  <Component id="O18_P1_M1_C2" name="z3" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O19" name="z2" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O19_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O19_P1_M1" name="z1">
+                <ListOfComponents>
+                  <Component id="O19_P1_M1_C1" name="z2" state="z2" numberOfBonds="0"/>
+                  <Component id="O19_P1_M1_C2" name="z3" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O20" name="z3" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O20_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O20_P1_M1" name="z1">
+                <ListOfComponents>
+                  <Component id="O20_P1_M1_C1" name="z2" state="0" numberOfBonds="0"/>
+                  <Component id="O20_P1_M1_C2" name="z3" state="z3" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="fRate17">
+        <ListOfReferences>
+          <Reference name="ka" type="Constant"/>
+          <Reference name="GaGTPEffector" type="Observable"/>
+        </ListOfReferences>
+        <Expression> GaGTPEffector*ka </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

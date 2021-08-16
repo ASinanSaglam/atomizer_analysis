@@ -1,12 +1,12 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL6622689184', 'http://identifiers.org/biomodels.db/BIOMD0000000043']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000043', 'http://identifiers.org/biomodels.db/MODEL6622689184']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/17029867']
-#@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0019722', 'http://identifiers.org/obo.go/GO:0048016']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0048016', 'http://identifiers.org/obo.go/GO:0019722']
 #@BQB_IS:['http://identifiers.org/kegg.pathway/rno04020']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10114']
 #@creatorEmail:'lenov@ebi.ac.uk'
 #@creatorName:'Le Novère Nicolas'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 5 molecules and 7 reactions. The translated model has 2 molecules and 9 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 5 molecules and 7 reactions. The translated model has 2 molecules and 9 rules'
 ###
 begin model
 begin parameters
@@ -37,14 +37,14 @@ begin molecule types
 	Rho(Fraction_Inactive_Channels~Fraction_Inactive_Channels~0)
 end molecule types
 begin seed species
-	@intravesicular:Z(EC~0,Y~Y) 2.16792e+17 # (0.36 * 1e-06)mol/L * 6.022e23/mol *1.0L #Y #Y
+	@intravesicular:Z(EC~0,Y~Y)@intravesicular 2.16792e+17 # (0.36 * 1e-06)mol/L * 6.022e23/mol *1.0L #Y #Y
 end seed species
 begin observables
-	Species EC_extracellular @extracellular:Z(EC~EC,Y~0) #EC
-	Species Z_cytosol @cytosol:Z(EC~0,Y~0) #Z
-	Species Rho_cytosol @cytosol:Rho(Fraction_Inactive_Channels~0) #Rho
-	Species Y_intravesicular @intravesicular:Z(EC~0,Y~Y) #Y
-	Species Fraction_Inactive_Channels_cytosol @cytosol:Rho(Fraction_Inactive_Channels~Fraction_Inactive_Channels) #Fraction_Inactive_Channels
+	Species EC_extracellular @extracellular:Z(EC~EC,Y~0)@extracellular #EC
+	Species Z_cytosol @cytosol:Z(EC~0,Y~0)@cytosol #Z
+	Species Rho_cytosol @cytosol:Rho(Fraction_Inactive_Channels~0)@cytosol #Rho
+	Species Y_intravesicular @intravesicular:Z(EC~0,Y~Y)@intravesicular #Y
+	Species Fraction_Inactive_Channels_cytosol @cytosol:Rho(Fraction_Inactive_Channels~Fraction_Inactive_Channels)@cytosol #Fraction_Inactive_Channels
 end observables
 begin functions
 	fRate0() = 1.0*beta + 1.0

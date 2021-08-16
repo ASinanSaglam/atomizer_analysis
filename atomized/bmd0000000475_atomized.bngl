@@ -1,11 +1,11 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1211260000', 'http://identifiers.org/biomodels.db/BIOMD0000000475']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000475', 'http://identifiers.org/biomodels.db/MODEL1211260000']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/23514624']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/4932']
 #@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0006301']
 #@creatorEmail:'juty@ebi.ac.uk'
 #@creatorName:'Juty Nick'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 23 molecules and 25 reactions. The translated model has 15 molecules and 25 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 23 molecules and 25 reactions. The translated model has 15 molecules and 25 rules'
 ###
 begin model
 begin parameters
@@ -36,42 +36,42 @@ begin parameters
 	r25_k1 0.005000
 end parameters
 begin molecule types
-	#^ bqbiol:isVersionOf uniprot:P06104
-	Rad6(u)
-	#^ bqbiol:isVersionOf uniprot:P10862
-	Rad18(rad18,u)
-	#^ bqbiol:isVersionOf go:GO:0035861
-	L(pcna)
-	#^ bqbiol:is uniprot:P15873
-	PCNA(l)
+	#^ bqbiol:isVersionOf uniprot:P15873
+	PCNAoff(u,u,u)
+	#^ bqbiol:hasPart uniprot:P32849, uniprot:P15873
+	#^ bqbiol:hasProperty go:GO:0006513
+	Rad5_PCNAonU()
+	#^ bqbiol:hasPart uniprot:P32849, uniprot:P15873
+	#^ bqbiol:hasProperty go:GO:0000209
+	Rad5_PCNAonU_U_U()
+	#^ bqbiol:isVersionOf uniprot:P0CG63
+	U(pcnaoff,rad18,rad6,ubc13_mms2)
+	#^ bqbiol:hasPart uniprot:P53152, uniprot:P52490
+	Ubc13_Mms2(u)
 	#^ bqbiol:hasPart uniprot:P32849, uniprot:P15873
 	#^ bqbiol:hasProperty psimod:MOD:01148
 	Rad5_PCNAonU_U()
 	#^ bqbiol:hasPart uniprot:P52490, uniprot:P53152, uniprot:P32849, uniprot:P15873
 	#^ bqbiol:isPropertyOf psimod:MOD:01148
 	Ubc13U_Mms2_Rad5_PCNAonU()
-	#^ bqbiol:hasPart uniprot:P53152, uniprot:P52490
-	Ubc13_Mms2(u)
-	#^ bqbiol:isVersionOf uniprot:P32849
-	Rad5()
-	#^ bqbiol:hasPart uniprot:P15873, uniprot:P0CG63, uniprot:P53152, uniprot:P52490, uniprot:P32849
-	#^ bqbiol:hasProperty go:GO:0000209
-	Ubc13U_Mms2_Rad5_PCNAonU_U()
-	#^ bqbiol:isVersionOf uniprot:P15873
-	PCNAoff(u,u,u)
-	#^ bqbiol:isVersionOf uniprot:P0CG63
-	U(pcnaoff,rad18,rad6,ubc13_mms2)
-	#^ bqbiol:hasPart uniprot:P32849, uniprot:P15873
-	#^ bqbiol:hasProperty go:GO:0000209
-	Rad5_PCNAonU_U_U()
+	#^ bqbiol:hasPart uniprot:P10862, uniprot:P15873
+	Rad18_Rad18_PCNAon()
+	#^ bqbiol:isVersionOf go:GO:0035861
+	L(pcna)
 	#^ bqbiol:hasPart uniprot:P10862, uniprot:P15873, uniprot:P06104
 	#^ bqbiol:hasProperty go:GO:0006513
 	Rad18_Rad18_PCNAon_Rad6U()
-	#^ bqbiol:hasPart uniprot:P10862, uniprot:P15873
-	Rad18_Rad18_PCNAon()
-	#^ bqbiol:hasPart uniprot:P32849, uniprot:P15873
-	#^ bqbiol:hasProperty go:GO:0006513
-	Rad5_PCNAonU()
+	#^ bqbiol:hasPart uniprot:P15873, uniprot:P0CG63, uniprot:P53152, uniprot:P52490, uniprot:P32849
+	#^ bqbiol:hasProperty go:GO:0000209
+	Ubc13U_Mms2_Rad5_PCNAonU_U()
+	#^ bqbiol:is uniprot:P15873
+	PCNA(l)
+	#^ bqbiol:isVersionOf uniprot:P32849
+	Rad5()
+	#^ bqbiol:isVersionOf uniprot:P10862
+	Rad18(rad18,u)
+	#^ bqbiol:isVersionOf uniprot:P06104
+	Rad6(u)
 end molecule types
 begin seed species
 	L(pcna) 6.028022e+26 # 1001.0mol/L * 6.022e23/mol *1.0L #L #species_1
@@ -85,56 +85,56 @@ end seed species
 begin observables
 	Species L L(pcna) #L
 	Species PCNA PCNA(l) #PCNA
-	Species PCNAon PCNA(l!902).L(pcna!902) #PCNAon
-	Species Rad18_Rad18 Rad18(rad18!904,u).Rad18(rad18!904,u) #Rad18:Rad18
+	Species PCNAon PCNA(l!897).L(pcna!897) #PCNAon
+	Species Rad18_Rad18 Rad18(rad18!899,u).Rad18(rad18!899,u) #Rad18:Rad18
 	Species Rad18 Rad18(rad18,u) #Rad18
 	Species Rad6 Rad6(u) #Rad6
-	Species Rad6U U(pcnaoff,rad18,rad6!901,ubc13_mms2).Rad6(u!901) #Rad6U
+	Species Rad6U U(pcnaoff,rad18,rad6!896,ubc13_mms2).Rad6(u!896) #Rad6U
 	Species U U(pcnaoff,rad18,rad6,ubc13_mms2) #U
 	Species Rad18_Rad18_PCNAon Rad18_Rad18_PCNAon() #Rad18:Rad18:PCNAon
 	Species Rad18_Rad18_PCNAon_Rad6U Rad18_Rad18_PCNAon_Rad6U() #Rad18:Rad18:PCNAon:Rad6U
-	Species Rad18_Rad18_PCNAonU U(pcnaoff!903,rad18!908,rad6,ubc13_mms2).PCNAoff(u!903,u,u).Rad18(rad18!904,u).Rad18(rad18!904,u!908) #Rad18:Rad18:PCNAonU
-	Species PCNAonU U(pcnaoff!903,rad18,rad6,ubc13_mms2).PCNAoff(u!903,u,u) #PCNAonU
+	Species Rad18_Rad18_PCNAonU U(pcnaoff!898,rad18!903,rad6,ubc13_mms2).PCNAoff(u!898,u,u).Rad18(rad18!899,u).Rad18(rad18!899,u!903) #Rad18:Rad18:PCNAonU
+	Species PCNAonU U(pcnaoff!898,rad18,rad6,ubc13_mms2).PCNAoff(u!898,u,u) #PCNAonU
 	Species Rad5 Rad5() #Rad5
 	Species Rad5_PCNAonU Rad5_PCNAonU() #Rad5:PCNAonU
-	Species Ubc13U_Mms2 U(pcnaoff,rad18,rad6,ubc13_mms2!905).Ubc13_Mms2(u!905) #Ubc13U:Mms2
+	Species Ubc13U_Mms2 U(pcnaoff,rad18,rad6,ubc13_mms2!900).Ubc13_Mms2(u!900) #Ubc13U:Mms2
 	Species Ubc13U_Mms2_Rad5_PCNAonU Ubc13U_Mms2_Rad5_PCNAonU() #Ubc13U:Mms2:Rad5:PCNAonU
 	Species Rad5_PCNAonU_U Rad5_PCNAonU_U() #Rad5:PCNAonU:U
 	Species Ubc13_Mms2 Ubc13_Mms2(u) #Ubc13:Mms2
-	Species PCNAonU_U U(pcnaoff!903,rad18,rad6,ubc13_mms2).U(pcnaoff!906,rad18,rad6,ubc13_mms2).PCNAoff(u!903,u!906,u) #PCNAonU:U
+	Species PCNAonU_U U(pcnaoff!898,rad18,rad6,ubc13_mms2).U(pcnaoff!901,rad18,rad6,ubc13_mms2).PCNAoff(u!898,u!901,u) #PCNAonU:U
 	Species Ubc13U_Mms2_Rad5_PCNAonU_U Ubc13U_Mms2_Rad5_PCNAonU_U() #Ubc13U:Mms2:Rad5:PCNAonU:U
 	Species Rad5_PCNAonU_U_U Rad5_PCNAonU_U_U() #Rad5:PCNAonU:U:U
-	Species PCNAonU_U_U U(pcnaoff!903,rad18,rad6,ubc13_mms2).U(pcnaoff!906,rad18,rad6,ubc13_mms2).U(pcnaoff!907,rad18,rad6,ubc13_mms2).PCNAoff(u!903,u!906,u!907) #PCNAonU:U:U
+	Species PCNAonU_U_U U(pcnaoff!898,rad18,rad6,ubc13_mms2).U(pcnaoff!901,rad18,rad6,ubc13_mms2).U(pcnaoff!902,rad18,rad6,ubc13_mms2).PCNAoff(u!898,u!901,u!902) #PCNAonU:U:U
 	Species PCNAoff PCNAoff(u,u,u) #PCNAoff
 end observables
 begin functions
 	parameter_1() = PCNAonU + PCNAonU_U + PCNAonU_U_U + Rad18_Rad18_PCNAonU + Rad5_PCNAonU + Rad5_PCNAonU_U + Rad5_PCNAonU_U_U + Ubc13U_Mms2_Rad5_PCNAonU + Ubc13U_Mms2_Rad5_PCNAonU_U
 end functions
 begin reaction rules
-	reaction_1: PCNA(l) + L(pcna) -> PCNA(l!902).L(pcna!902) r1_k1 #Modifiers(species_2, species_1)
-	reaction_2: Rad18(rad18,u) + Rad18(rad18,u) -> Rad18(rad18!904,u).Rad18(rad18!904,u) r2_k1 #Modifiers(species_5)
-	reaction_3: Rad18(rad18!904,u).Rad18(rad18!904,u) -> Rad18(rad18,u) + Rad18(rad18,u) r3_k1 #Modifiers(species_4)
-	reaction_4: Rad6(u) + U(pcnaoff,rad18,rad6,ubc13_mms2) -> U(pcnaoff,rad18,rad6!901,ubc13_mms2).Rad6(u!901) r4_k1 #Modifiers(species_6, species_8)
-	reaction_5: PCNA(l!902).L(pcna!902) + Rad18(rad18!904,u).Rad18(rad18!904,u) -> Rad18_Rad18_PCNAon() r5_k1 #Modifiers(species_3, species_4)
-	reaction_6: Rad18_Rad18_PCNAon() -> PCNA(l!902).L(pcna!902) + Rad18(rad18!904,u).Rad18(rad18!904,u) r6_k1 #Modifiers(species_9)
-	reaction_7: U(pcnaoff,rad18,rad6!901,ubc13_mms2).Rad6(u!901) + Rad18_Rad18_PCNAon() -> Rad18_Rad18_PCNAon_Rad6U() r7_k1 #Modifiers(species_7, species_9)
-	reaction_8: Rad18_Rad18_PCNAon_Rad6U() -> U(pcnaoff,rad18,rad6!901,ubc13_mms2).Rad6(u!901) + Rad18_Rad18_PCNAon() r8_k1 #Modifiers(species_10)
-	reaction_9: Rad18_Rad18_PCNAon_Rad6U() -> Rad6(u) + U(pcnaoff!903,rad18!908,rad6,ubc13_mms2).PCNAoff(u!903,u,u).Rad18(rad18!904,u).Rad18(rad18!904,u!908) r9_k1 #Modifiers(species_10)
-	reaction_10: U(pcnaoff!903,rad18!908,rad6,ubc13_mms2).PCNAoff(u!903,u,u).Rad18(rad18!904,u).Rad18(rad18!904,u!908) -> Rad18(rad18!904,u).Rad18(rad18!904,u) + U(pcnaoff!903,rad18,rad6,ubc13_mms2).PCNAoff(u!903,u,u) r10_k1 #Modifiers(species_11)
-	reaction_11: U(pcnaoff,rad18,rad6,ubc13_mms2) + Ubc13_Mms2(u) -> U(pcnaoff,rad18,rad6,ubc13_mms2!905).Ubc13_Mms2(u!905) r11_k1 #Modifiers(species_8, species_18)
-	reaction_12: U(pcnaoff!903,rad18,rad6,ubc13_mms2).PCNAoff(u!903,u,u) + Rad5() -> Rad5_PCNAonU() r12_k1 #Modifiers(species_12, species_13)
-	reaction_13: Rad5_PCNAonU() -> U(pcnaoff!903,rad18,rad6,ubc13_mms2).PCNAoff(u!903,u,u) + Rad5() r13_k1 #Modifiers(species_14)
-	reaction_14: Rad5_PCNAonU() + U(pcnaoff,rad18,rad6,ubc13_mms2!905).Ubc13_Mms2(u!905) -> Ubc13U_Mms2_Rad5_PCNAonU() r14_k1 #Modifiers(species_14, species_15)
-	reaction_15: Ubc13U_Mms2_Rad5_PCNAonU() -> Rad5_PCNAonU() + U(pcnaoff,rad18,rad6,ubc13_mms2!905).Ubc13_Mms2(u!905) r15_k1 #Modifiers(species_16)
+	reaction_1: PCNA(l) + L(pcna) -> PCNA(l!897).L(pcna!897) r1_k1 #Modifiers(species_2, species_1)
+	reaction_2: Rad18(rad18,u) + Rad18(rad18,u) -> Rad18(rad18!899,u).Rad18(rad18!899,u) r2_k1 #Modifiers(species_5)
+	reaction_3: Rad18(rad18!899,u).Rad18(rad18!899,u) -> Rad18(rad18,u) + Rad18(rad18,u) r3_k1 #Modifiers(species_4)
+	reaction_4: Rad6(u) + U(pcnaoff,rad18,rad6,ubc13_mms2) -> U(pcnaoff,rad18,rad6!896,ubc13_mms2).Rad6(u!896) r4_k1 #Modifiers(species_6, species_8)
+	reaction_5: PCNA(l!897).L(pcna!897) + Rad18(rad18!899,u).Rad18(rad18!899,u) -> Rad18_Rad18_PCNAon() r5_k1 #Modifiers(species_3, species_4)
+	reaction_6: Rad18_Rad18_PCNAon() -> PCNA(l!897).L(pcna!897) + Rad18(rad18!899,u).Rad18(rad18!899,u) r6_k1 #Modifiers(species_9)
+	reaction_7: U(pcnaoff,rad18,rad6!896,ubc13_mms2).Rad6(u!896) + Rad18_Rad18_PCNAon() -> Rad18_Rad18_PCNAon_Rad6U() r7_k1 #Modifiers(species_7, species_9)
+	reaction_8: Rad18_Rad18_PCNAon_Rad6U() -> U(pcnaoff,rad18,rad6!896,ubc13_mms2).Rad6(u!896) + Rad18_Rad18_PCNAon() r8_k1 #Modifiers(species_10)
+	reaction_9: Rad18_Rad18_PCNAon_Rad6U() -> Rad6(u) + U(pcnaoff!898,rad18!903,rad6,ubc13_mms2).PCNAoff(u!898,u,u).Rad18(rad18!899,u).Rad18(rad18!899,u!903) r9_k1 #Modifiers(species_10)
+	reaction_10: U(pcnaoff!898,rad18!903,rad6,ubc13_mms2).PCNAoff(u!898,u,u).Rad18(rad18!899,u).Rad18(rad18!899,u!903) -> Rad18(rad18!899,u).Rad18(rad18!899,u) + U(pcnaoff!898,rad18,rad6,ubc13_mms2).PCNAoff(u!898,u,u) r10_k1 #Modifiers(species_11)
+	reaction_11: U(pcnaoff,rad18,rad6,ubc13_mms2) + Ubc13_Mms2(u) -> U(pcnaoff,rad18,rad6,ubc13_mms2!900).Ubc13_Mms2(u!900) r11_k1 #Modifiers(species_8, species_18)
+	reaction_12: U(pcnaoff!898,rad18,rad6,ubc13_mms2).PCNAoff(u!898,u,u) + Rad5() -> Rad5_PCNAonU() r12_k1 #Modifiers(species_12, species_13)
+	reaction_13: Rad5_PCNAonU() -> U(pcnaoff!898,rad18,rad6,ubc13_mms2).PCNAoff(u!898,u,u) + Rad5() r13_k1 #Modifiers(species_14)
+	reaction_14: Rad5_PCNAonU() + U(pcnaoff,rad18,rad6,ubc13_mms2!900).Ubc13_Mms2(u!900) -> Ubc13U_Mms2_Rad5_PCNAonU() r14_k1 #Modifiers(species_14, species_15)
+	reaction_15: Ubc13U_Mms2_Rad5_PCNAonU() -> Rad5_PCNAonU() + U(pcnaoff,rad18,rad6,ubc13_mms2!900).Ubc13_Mms2(u!900) r15_k1 #Modifiers(species_16)
 	reaction_16: Ubc13U_Mms2_Rad5_PCNAonU() -> Ubc13_Mms2(u) + Rad5_PCNAonU_U() r16_k1 #Modifiers(species_16)
-	reaction_17: Rad5_PCNAonU_U() -> Rad5() + U(pcnaoff!903,rad18,rad6,ubc13_mms2).U(pcnaoff!906,rad18,rad6,ubc13_mms2).PCNAoff(u!903,u!906,u) r17_k1 #Modifiers(species_17)
-	reaction_18: Rad5() + U(pcnaoff!903,rad18,rad6,ubc13_mms2).U(pcnaoff!906,rad18,rad6,ubc13_mms2).PCNAoff(u!903,u!906,u) -> Rad5_PCNAonU_U() r18_k1 #Modifiers(species_13, species_19)
-	reaction_19: U(pcnaoff,rad18,rad6,ubc13_mms2!905).Ubc13_Mms2(u!905) + Rad5_PCNAonU_U() -> Ubc13U_Mms2_Rad5_PCNAonU_U() r19_k1 #Modifiers(species_15, species_17)
-	reaction_20: Ubc13U_Mms2_Rad5_PCNAonU_U() -> U(pcnaoff,rad18,rad6,ubc13_mms2!905).Ubc13_Mms2(u!905) + Rad5_PCNAonU_U() r20_k1 #Modifiers(species_20)
+	reaction_17: Rad5_PCNAonU_U() -> Rad5() + U(pcnaoff!898,rad18,rad6,ubc13_mms2).U(pcnaoff!901,rad18,rad6,ubc13_mms2).PCNAoff(u!898,u!901,u) r17_k1 #Modifiers(species_17)
+	reaction_18: Rad5() + U(pcnaoff!898,rad18,rad6,ubc13_mms2).U(pcnaoff!901,rad18,rad6,ubc13_mms2).PCNAoff(u!898,u!901,u) -> Rad5_PCNAonU_U() r18_k1 #Modifiers(species_13, species_19)
+	reaction_19: U(pcnaoff,rad18,rad6,ubc13_mms2!900).Ubc13_Mms2(u!900) + Rad5_PCNAonU_U() -> Ubc13U_Mms2_Rad5_PCNAonU_U() r19_k1 #Modifiers(species_15, species_17)
+	reaction_20: Ubc13U_Mms2_Rad5_PCNAonU_U() -> U(pcnaoff,rad18,rad6,ubc13_mms2!900).Ubc13_Mms2(u!900) + Rad5_PCNAonU_U() r20_k1 #Modifiers(species_20)
 	reaction_21: Ubc13U_Mms2_Rad5_PCNAonU_U() -> Ubc13_Mms2(u) + Rad5_PCNAonU_U_U() r21_k1 #Modifiers(species_20)
-	reaction_22: Rad5_PCNAonU_U_U() -> Rad5() + U(pcnaoff!903,rad18,rad6,ubc13_mms2).U(pcnaoff!906,rad18,rad6,ubc13_mms2).U(pcnaoff!907,rad18,rad6,ubc13_mms2).PCNAoff(u!903,u!906,u!907) r22_k1 #Modifiers(species_21)
-	reaction_23: U(pcnaoff!903,rad18,rad6,ubc13_mms2).PCNAoff(u!903,u,u) -> U(pcnaoff,rad18,rad6,ubc13_mms2) + PCNAoff(u,u,u) r23_k1 #Modifiers(species_12)
-	reaction_24: U(pcnaoff!903,rad18,rad6,ubc13_mms2).U(pcnaoff!906,rad18,rad6,ubc13_mms2).PCNAoff(u!903,u!906,u) -> U(pcnaoff,rad18,rad6,ubc13_mms2) + U(pcnaoff,rad18,rad6,ubc13_mms2) + PCNAoff(u,u,u) r24_k1 #Modifiers(species_19)
-	reaction_25: U(pcnaoff!903,rad18,rad6,ubc13_mms2).U(pcnaoff!906,rad18,rad6,ubc13_mms2).U(pcnaoff!907,rad18,rad6,ubc13_mms2).PCNAoff(u!903,u!906,u!907) -> U(pcnaoff,rad18,rad6,ubc13_mms2) + U(pcnaoff,rad18,rad6,ubc13_mms2) + U(pcnaoff,rad18,rad6,ubc13_mms2) + PCNAoff(u,u,u) r25_k1 #Modifiers(species_22)
+	reaction_22: Rad5_PCNAonU_U_U() -> Rad5() + U(pcnaoff!898,rad18,rad6,ubc13_mms2).U(pcnaoff!901,rad18,rad6,ubc13_mms2).U(pcnaoff!902,rad18,rad6,ubc13_mms2).PCNAoff(u!898,u!901,u!902) r22_k1 #Modifiers(species_21)
+	reaction_23: U(pcnaoff!898,rad18,rad6,ubc13_mms2).PCNAoff(u!898,u,u) -> U(pcnaoff,rad18,rad6,ubc13_mms2) + PCNAoff(u,u,u) r23_k1 #Modifiers(species_12)
+	reaction_24: U(pcnaoff!898,rad18,rad6,ubc13_mms2).U(pcnaoff!901,rad18,rad6,ubc13_mms2).PCNAoff(u!898,u!901,u) -> U(pcnaoff,rad18,rad6,ubc13_mms2) + U(pcnaoff,rad18,rad6,ubc13_mms2) + PCNAoff(u,u,u) r24_k1 #Modifiers(species_19)
+	reaction_25: U(pcnaoff!898,rad18,rad6,ubc13_mms2).U(pcnaoff!901,rad18,rad6,ubc13_mms2).U(pcnaoff!902,rad18,rad6,ubc13_mms2).PCNAoff(u!898,u!901,u!902) -> U(pcnaoff,rad18,rad6,ubc13_mms2) + U(pcnaoff,rad18,rad6,ubc13_mms2) + U(pcnaoff,rad18,rad6,ubc13_mms2) + PCNAoff(u,u,u) r25_k1 #Modifiers(species_22)
 end reaction rules
 end model

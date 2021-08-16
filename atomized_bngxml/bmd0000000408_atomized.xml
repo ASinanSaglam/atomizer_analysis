@@ -1,0 +1,1106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000408_atomized">
+    <ListOfParameters>
+      <Parameter id="stepsize" type="Constant" value="0.001" expr="0.001"/>
+      <Parameter id="heartrate_bpm" type="Constant" value="135" expr="135.0"/>
+      <Parameter id="heartrate_basis" type="Constant" value="135" expr="135.0"/>
+      <Parameter id="heartrate_test" type="Constant" value="220" expr="220.0"/>
+      <Parameter id="fracSysUp" type="Constant" value="0.16666667" expr="0.1666666666"/>
+      <Parameter id="fracSysDown" type="Constant" value="0.16666667" expr="0.1666666666"/>
+      <Parameter id="time_Jhyd_step" type="Constant" value="40" expr="40.0"/>
+      <Parameter id="Jhyd_test" type="Constant" value="627.6" expr="627.6"/>
+      <Parameter id="Jhyd_basis" type="Constant" value="486.5" expr="486.5"/>
+      <Parameter id="Jhyd" type="Constant" value="486.5" expr="486.5"/>
+      <Parameter id="ck_factor_iaa" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="ck_factor_ia" type="Constant" value="0.0286" expr="0.0286"/>
+      <Parameter id="PSmomATP" type="Constant" value="13.29477" expr="13.29477"/>
+      <Parameter id="K_CK_eq" type="Constant" value="152" expr="152.0"/>
+      <Parameter id="VmaxMif_full_activity" type="Constant" value="882.0756" expr="882.0756"/>
+      <Parameter id="VmaxMMf_full_activity" type="Constant" value="11441.78" expr="11441.78"/>
+      <Parameter id="KiaMi" type="Constant" value="750" expr="750.0"/>
+      <Parameter id="KbMi" type="Constant" value="5200" expr="5200.0"/>
+      <Parameter id="KicMi" type="Constant" value="204.8" expr="204.8"/>
+      <Parameter id="KdMi" type="Constant" value="500" expr="500.0"/>
+      <Parameter id="KibMi" type="Constant" value="28800" expr="28800.0"/>
+      <Parameter id="KidMi" type="Constant" value="1600" expr="1600.0"/>
+      <Parameter id="KiaMM" type="Constant" value="900" expr="900.0"/>
+      <Parameter id="KbMM" type="Constant" value="15500" expr="15500.0"/>
+      <Parameter id="KicMM" type="Constant" value="222.4" expr="222.4"/>
+      <Parameter id="KdMM" type="Constant" value="1670" expr="1670.0"/>
+      <Parameter id="KibMM" type="Constant" value="34900" expr="34900.0"/>
+      <Parameter id="KidMM" type="Constant" value="4730" expr="4730.0"/>
+      <Parameter id="Vmaxsyn" type="Constant" value="1503.74" expr="1503.74"/>
+      <Parameter id="Kadp" type="Constant" value="25" expr="25.0"/>
+      <Parameter id="Kpi" type="Constant" value="800" expr="800.0"/>
+      <Parameter id="PSmomPi" type="Constant" value="194" expr="194.0"/>
+      <Parameter id="PSmomCr" type="Constant" value="155" expr="155.0"/>
+      <Parameter id="PSmomPCr" type="Constant" value="155" expr="155.0"/>
+      <Parameter id="pulsatility" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="last_time_fired" type="Constant" value="0" expr="0"/>
+      <Parameter id="tmito_factor" type="Constant" value="0" expr="0"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="ADP"/>
+      <MoleculeType id="ADPi">
+        <ListOfComponentTypes>
+          <ComponentType id="p_ii"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="ATP"/>
+      <MoleculeType id="Cr"/>
+      <MoleculeType id="Cri"/>
+      <MoleculeType id="PCr"/>
+      <MoleculeType id="PCri"/>
+      <MoleculeType id="P_i"/>
+      <MoleculeType id="P_ii">
+        <ListOfComponentTypes>
+          <ComponentType id="adpi"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="tmito"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+      <compartment id="IMS" spatialDimensions="3" size="0.0625"/>
+      <compartment id="CYT" spatialDimensions="3" size="0.75"/>
+      <compartment id="cell" spatialDimensions="3" size="1.0"/>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="1.4678625000000002e+24" name="@IMS::ADPi(p_ii)" compartment="IMS">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="ADPi" compartment="IMS">
+            <ListOfComponents>
+              <Component id="S1_M1_C1" name="p_ii" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="2.11748575e+26" name="@IMS::ADPi(p_ii!1).P_ii(adpi!1)" compartment="IMS">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="ADPi" compartment="IMS">
+            <ListOfComponents>
+              <Component id="S2_M1_C1" name="p_ii" numberOfBonds="1"/>
+            </ListOfComponents>
+          </Molecule>
+          <Molecule id="S2_M2" name="P_ii" compartment="IMS">
+            <ListOfComponents>
+              <Component id="S2_M2_C1" name="adpi" numberOfBonds="1"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+        <ListOfBonds>
+          <Bond id="S2_B1" site1="S2_M1_C1" site2="S2_M2_C1"/>
+        </ListOfBonds>
+      </Species>
+      <Species id="S3"  concentration="3.684334875e+26" name="@IMS::Cri()" compartment="IMS">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="Cri" compartment="IMS"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S4"  concentration="2.149477625e+26" name="@IMS::PCri()" compartment="IMS">
+        <ListOfMolecules>
+          <Molecule id="S4_M1" name="PCri" compartment="IMS"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S5"  concentration="2.5789215e+27" name="@CYT::PCr()" compartment="CYT">
+        <ListOfMolecules>
+          <Molecule id="S5_M1" name="PCr" compartment="CYT"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S6"  concentration="2.89056e+25" name="@CYT::ADP()" compartment="CYT">
+        <ListOfMolecules>
+          <Molecule id="S6_M1" name="ADP" compartment="CYT"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S7"  concentration="2.52969165e+27" name="@CYT::ATP()" compartment="CYT">
+        <ListOfMolecules>
+          <Molecule id="S7_M1" name="ATP" compartment="CYT"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S8"  concentration="4.42120185e+27" name="@CYT::Cr()" compartment="CYT">
+        <ListOfMolecules>
+          <Molecule id="S8_M1" name="Cr" compartment="CYT"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S9"  concentration="3.4250125e+25" name="@IMS::P_ii(adpi)" compartment="IMS">
+        <ListOfMolecules>
+          <Molecule id="S9_M1" name="P_ii" compartment="IMS">
+            <ListOfComponents>
+              <Component id="S9_M1_C1" name="adpi" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S10"  concentration="4.1190480000000004e+26" name="@CYT::P_i()" compartment="CYT">
+        <ListOfMolecules>
+          <Molecule id="S10_M1" name="P_i" compartment="CYT"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S11"  concentration="0" name="@IMS::tmito()" compartment="IMS">
+        <ListOfMolecules>
+          <Molecule id="S11_M1" name="tmito" compartment="IMS"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="Jsyn" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR1_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_RP1_M1" name="P_ii" compartment="IMS">
+                <ListOfComponents>
+                  <Component id="RR1_RP1_M1_C1" name="adpi" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR1_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR1_RP2_M1" name="ADPi" compartment="IMS">
+                <ListOfComponents>
+                  <Component id="RR1_RP2_M1_C1" name="p_ii" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="P_ii" compartment="IMS">
+                <ListOfComponents>
+                  <Component id="RR1_PP1_M1_C1" name="adpi" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR1_PP1_M2" name="ADPi" compartment="IMS">
+                <ListOfComponents>
+                  <Component id="RR1_PP1_M2_C1" name="p_ii" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR1_PP1_B1" site1="RR1_PP1_M1_C1" site2="RR1_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR1_RP1_M1" targetID="RR1_PP1_M1"/>
+          <MapItem sourceID="RR1_RP1_M1_C1" targetID="RR1_PP1_M1_C1"/>
+          <MapItem sourceID="RR1_RP2_M1" targetID="RR1_PP1_M2"/>
+          <MapItem sourceID="RR1_RP2_M1_C1" targetID="RR1_PP1_M2_C1"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR1_RP1_M1_C1" site2="RR1_RP2_M1_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="J_CK_Mi_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="P_ii" compartment="IMS">
+                <ListOfComponents>
+                  <Component id="RR2_PP1_M1_C1" name="adpi" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR2_PP1_M2" name="ADPi" compartment="IMS">
+                <ListOfComponents>
+                  <Component id="RR2_PP1_M2_C1" name="p_ii" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR2_PP1_B1" site1="RR2_PP1_M1_C1" site2="RR2_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="_rateLaw1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+          <Add id="RR2_PP1_M2"/>
+          <AddBond site1="RR2_PP1_M1_C1" site2="RR2_PP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="J_CK_Mi_reactants_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="Cri" compartment="IMS"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="_rateLaw2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="J_CK_Mi_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="PCri" compartment="IMS"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="fRate1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR4_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="J_CK_Mi_products_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="ADPi" compartment="IMS">
+                <ListOfComponents>
+                  <Component id="RR5_PP1_M1_C1" name="p_ii" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Function" name="fRate1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR5_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="J_CK_MM_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="Cr" compartment="CYT"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Function" name="_rateLaw3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR6_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="J_CK_MM_reactants_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="ATP" compartment="CYT"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Function" name="_rateLaw4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR7_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="J_CK_MM_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR8_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP1_M1" name="PCr" compartment="CYT"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Function" name="fRate2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR8_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="J_CK_MM_products_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR9_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP1_M1" name="ADP" compartment="CYT"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Function" name="fRate2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR9_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="Jhyd_reaction_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR10_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_PP1_M1" name="ATP" compartment="CYT"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Function" name="_rateLaw5" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR10_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR11" name="Jhyd_reaction_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR11_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_PP1_M1" name="ADP" compartment="CYT"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR11_RateLaw" type="Function" name="fRate3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR11_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR12" name="Jhyd_reaction_products_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR12_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_PP1_M1" name="P_i" compartment="CYT"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR12_RateLaw" type="Function" name="fRate3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR12_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR13" name="J_diff_Pi_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR13_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_PP1_M1" name="P_ii" compartment="IMS">
+                <ListOfComponents>
+                  <Component id="RR13_PP1_M1_C1" name="adpi" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR13_RateLaw" type="Function" name="_rateLaw6" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR13_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR14" name="J_diff_Pi_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR14_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_PP1_M1" name="P_i" compartment="CYT"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR14_RateLaw" type="Function" name="fRate4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR14_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR15" name="J_diff_Cr_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR15_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR15_PP1_M1" name="Cri" compartment="IMS"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR15_RateLaw" type="Function" name="_rateLaw7" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR15_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR16" name="J_diff_Cr_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR16_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR16_PP1_M1" name="Cr" compartment="CYT"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR16_RateLaw" type="Function" name="fRate5" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR16_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR17" name="J_diff_ADP_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR17_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR17_PP1_M1" name="ADPi" compartment="IMS">
+                <ListOfComponents>
+                  <Component id="RR17_PP1_M1_C1" name="p_ii" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR17_RateLaw" type="Function" name="_rateLaw8" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR17_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR18" name="J_diff_ADP_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR18_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR18_PP1_M1" name="ADP" compartment="CYT"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR18_RateLaw" type="Function" name="fRate6" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR18_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR19" name="J_diff_PCr_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR19_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR19_PP1_M1" name="PCri" compartment="IMS"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR19_RateLaw" type="Function" name="_rateLaw9" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR19_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR20" name="J_diff_PCr_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR20_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR20_PP1_M1" name="PCr" compartment="CYT"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR20_RateLaw" type="Function" name="fRate7" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR20_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR21" name="J_diff_ATP_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR21_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR21_PP1_M1" name="P_ii" compartment="IMS">
+                <ListOfComponents>
+                  <Component id="RR21_PP1_M1_C1" name="adpi" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR21_PP1_M2" name="ADPi" compartment="IMS">
+                <ListOfComponents>
+                  <Component id="RR21_PP1_M2_C1" name="p_ii" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR21_PP1_B1" site1="RR21_PP1_M1_C1" site2="RR21_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR21_RateLaw" type="Function" name="_rateLaw10" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR21_PP1_M1"/>
+          <Add id="RR21_PP1_M2"/>
+          <AddBond site1="RR21_PP1_M1_C1" site2="RR21_PP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR22" name="J_diff_ATP_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR22_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR22_PP1_M1" name="ATP" compartment="CYT"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR22_RateLaw" type="Function" name="fRate8" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR22_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR23" name="_R1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR23_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR23_PP1_M1" name="tmito" compartment="IMS"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR23_RateLaw" type="Function" name="arRatetmito" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR23_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="ADPi_IMS" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" compartment="IMS" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="ADPi">
+                <ListOfComponents>
+                  <Component id="O1_P1_M1_C1" name="p_ii" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="ATPi_IMS" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" compartment="IMS" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="P_ii">
+                <ListOfComponents>
+                  <Component id="O2_P1_M1_C1" name="adpi" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O2_P1_M2" name="ADPi">
+                <ListOfComponents>
+                  <Component id="O2_P1_M2_C1" name="p_ii" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O2_P1_B1" site1="O2_P1_M1_C1" site2="O2_P1_M2_C1"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="Cri_IMS" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" compartment="IMS" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="Cri"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="PCri_IMS" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" compartment="IMS" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="PCri"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="PCr_CYT" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" compartment="CYT" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="PCr"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O6" name="ADP_CYT" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O6_P1" compartment="CYT" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O6_P1_M1" name="ADP"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O7" name="ATP_CYT" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O7_P1" compartment="CYT" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O7_P1_M1" name="ATP"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O8" name="Cr_CYT" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O8_P1" compartment="CYT" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O8_P1_M1" name="Cr"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O9" name="P_ii_IMS" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O9_P1" compartment="IMS" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O9_P1_M1" name="P_ii">
+                <ListOfComponents>
+                  <Component id="O9_P1_M1_C1" name="adpi" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O10" name="P_i_CYT" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O10_P1" compartment="CYT" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O10_P1_M1" name="P_i"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O11" name="tmito" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O11_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O11_P1_M1" name="tmito"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="VmaxMMf">
+        <ListOfReferences>
+          <Reference name="VmaxMMf_full_activity" type="Constant"/>
+          <Reference name="ck_factor_iaa" type="Constant"/>
+        </ListOfReferences>
+        <Expression> VmaxMMf_full_activity*ck_factor_iaa </Expression>
+      </Function>
+      <Function id="VmaxMMb">
+        <ListOfReferences>
+          <Reference name="K_CK_eq" type="Constant"/>
+          <Reference name="KbMM" type="Constant"/>
+          <Reference name="KdMM" type="Constant"/>
+          <Reference name="KiaMM" type="Constant"/>
+          <Reference name="KicMM" type="Constant"/>
+          <Reference name="VmaxMMf" type="Function"/>
+        </ListOfReferences>
+        <Expression> (((K_CK_eq*KdMM)*KicMM)*VmaxMMf)/(KbMM*KiaMM) </Expression>
+      </Function>
+      <Function id="j_ck_mm">
+        <ListOfReferences>
+          <Reference name="KbMM" type="Constant"/>
+          <Reference name="KdMM" type="Constant"/>
+          <Reference name="KiaMM" type="Constant"/>
+          <Reference name="KibMM" type="Constant"/>
+          <Reference name="KicMM" type="Constant"/>
+          <Reference name="KidMM" type="Constant"/>
+          <Reference name="VmaxMMb" type="Function"/>
+          <Reference name="VmaxMMf" type="Function"/>
+          <Reference name="ADP_CYT" type="Observable"/>
+          <Reference name="ATP_CYT" type="Observable"/>
+          <Reference name="Cr_CYT" type="Observable"/>
+          <Reference name="PCr_CYT" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((((-ADP_CYT)*PCr_CYT)*VmaxMMb)/(KdMM*KicMM))+(((ATP_CYT*Cr_CYT)*VmaxMMf)/(KbMM*KiaMM)))/(((((ADP_CYT*(((Cr_CYT/(KibMM*KicMM))+(1/KicMM))+(PCr_CYT/(KdMM*KicMM))))+(ATP_CYT*((Cr_CYT/(KbMM*KiaMM))+(1/KiaMM))))+(Cr_CYT/KibMM))+1)+(PCr_CYT/KidMM)) </Expression>
+      </Function>
+      <Function id="VmaxMif">
+        <ListOfReferences>
+          <Reference name="VmaxMif_full_activity" type="Constant"/>
+          <Reference name="ck_factor_iaa" type="Constant"/>
+        </ListOfReferences>
+        <Expression> VmaxMif_full_activity*ck_factor_iaa </Expression>
+      </Function>
+      <Function id="VmaxMib">
+        <ListOfReferences>
+          <Reference name="K_CK_eq" type="Constant"/>
+          <Reference name="KbMi" type="Constant"/>
+          <Reference name="KdMi" type="Constant"/>
+          <Reference name="KiaMi" type="Constant"/>
+          <Reference name="KicMi" type="Constant"/>
+          <Reference name="VmaxMif" type="Function"/>
+        </ListOfReferences>
+        <Expression> (((K_CK_eq*KdMi)*KicMi)*VmaxMif)/(KbMi*KiaMi) </Expression>
+      </Function>
+      <Function id="j_ck_mi">
+        <ListOfReferences>
+          <Reference name="KbMi" type="Constant"/>
+          <Reference name="KdMi" type="Constant"/>
+          <Reference name="KiaMi" type="Constant"/>
+          <Reference name="KibMi" type="Constant"/>
+          <Reference name="KicMi" type="Constant"/>
+          <Reference name="KidMi" type="Constant"/>
+          <Reference name="VmaxMib" type="Function"/>
+          <Reference name="VmaxMif" type="Function"/>
+          <Reference name="ADPi_IMS" type="Observable"/>
+          <Reference name="ATPi_IMS" type="Observable"/>
+          <Reference name="Cri_IMS" type="Observable"/>
+          <Reference name="PCri_IMS" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((((-ADPi_IMS)*PCri_IMS)*VmaxMib)/(KdMi*KicMi))+(((ATPi_IMS*Cri_IMS)*VmaxMif)/(KbMi*KiaMi)))/(((((ADPi_IMS*(((Cri_IMS/(KibMi*KicMi))+(1/KicMi))+(PCri_IMS/(KdMi*KicMi))))+(ATPi_IMS*((Cri_IMS/(KbMi*KiaMi))+(1/KiaMi))))+(Cri_IMS/KibMi))+1)+(PCri_IMS/KidMi)) </Expression>
+      </Function>
+      <Function id="j_diff_pcr">
+        <ListOfReferences>
+          <Reference name="PSmomPCr" type="Constant"/>
+          <Reference name="PCr_CYT" type="Observable"/>
+          <Reference name="PCri_IMS" type="Observable"/>
+        </ListOfReferences>
+        <Expression> PSmomPCr*((-PCr_CYT)+PCri_IMS) </Expression>
+      </Function>
+      <Function id="j_diff_atp">
+        <ListOfReferences>
+          <Reference name="PSmomATP" type="Constant"/>
+          <Reference name="ATP_CYT" type="Observable"/>
+          <Reference name="ATPi_IMS" type="Observable"/>
+        </ListOfReferences>
+        <Expression> PSmomATP*((-ATP_CYT)+ATPi_IMS) </Expression>
+      </Function>
+      <Function id="r_diff_pcr">
+        <ListOfReferences>
+          <Reference name="j_diff_atp" type="Function"/>
+          <Reference name="j_diff_pcr" type="Function"/>
+        </ListOfReferences>
+        <Expression> j_diff_pcr/(j_diff_atp+j_diff_pcr) </Expression>
+      </Function>
+      <Function id="densyn">
+        <ListOfReferences>
+          <Reference name="Kadp" type="Constant"/>
+          <Reference name="Kpi" type="Constant"/>
+          <Reference name="ADPi_IMS" type="Observable"/>
+          <Reference name="P_ii_IMS" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((ADPi_IMS/Kadp)+((ADPi_IMS*P_ii_IMS)/(Kadp*Kpi)))+1)+(P_ii_IMS/Kpi) </Expression>
+      </Function>
+      <Function id="jsyn">
+        <ListOfReferences>
+          <Reference name="Kadp" type="Constant"/>
+          <Reference name="Kpi" type="Constant"/>
+          <Reference name="Vmaxsyn" type="Constant"/>
+          <Reference name="densyn" type="Function"/>
+          <Reference name="ADPi_IMS" type="Observable"/>
+          <Reference name="P_ii_IMS" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((ADPi_IMS*P_ii_IMS)*Vmaxsyn)/((Kadp*Kpi)*densyn) </Expression>
+      </Function>
+      <Function id="vatpnorm">
+        <ListOfReferences>
+          <Reference name="Jhyd_basis" type="Constant"/>
+          <Reference name="Jhyd_test" type="Constant"/>
+          <Reference name="tmito_factor" type="Constant"/>
+          <Reference name="jsyn" type="Function"/>
+        </ListOfReferences>
+        <Expression> (tmito_factor*(Jhyd_test-jsyn))/((-Jhyd_basis)+Jhyd_test) </Expression>
+      </Function>
+      <Function id="arRatetmito">
+        <ListOfReferences>
+          <Reference name="vatpnorm" type="Function"/>
+        </ListOfReferences>
+        <Expression> vatpnorm </Expression>
+      </Function>
+      <Function id="j_diff_cr">
+        <ListOfReferences>
+          <Reference name="PSmomCr" type="Constant"/>
+          <Reference name="Cr_CYT" type="Observable"/>
+          <Reference name="Cri_IMS" type="Observable"/>
+        </ListOfReferences>
+        <Expression> PSmomCr*((-Cr_CYT)+Cri_IMS) </Expression>
+      </Function>
+      <Function id="j_diff_pi">
+        <ListOfReferences>
+          <Reference name="PSmomPi" type="Constant"/>
+          <Reference name="P_i_CYT" type="Observable"/>
+          <Reference name="P_ii_IMS" type="Observable"/>
+        </ListOfReferences>
+        <Expression> PSmomPi*((-P_i_CYT)+P_ii_IMS) </Expression>
+      </Function>
+      <Function id="j_diff_adp">
+        <ListOfReferences>
+          <Reference name="PSmomATP" type="Constant"/>
+          <Reference name="ADP_CYT" type="Observable"/>
+          <Reference name="ADPi_IMS" type="Observable"/>
+        </ListOfReferences>
+        <Expression> PSmomATP*((-ADP_CYT)+ADPi_IMS) </Expression>
+      </Function>
+      <Function id="VhydAmp_test">
+        <ListOfReferences>
+          <Reference name="Jhyd_test" type="Constant"/>
+          <Reference name="fracSysDown" type="Constant"/>
+          <Reference name="fracSysUp" type="Constant"/>
+        </ListOfReferences>
+        <Expression> (2*Jhyd_test)/(fracSysDown+fracSysUp) </Expression>
+      </Function>
+      <Function id="VhydAmp_basis">
+        <ListOfReferences>
+          <Reference name="Jhyd_basis" type="Constant"/>
+          <Reference name="fracSysDown" type="Constant"/>
+          <Reference name="fracSysUp" type="Constant"/>
+        </ListOfReferences>
+        <Expression> (2*Jhyd_basis)/(fracSysDown+fracSysUp) </Expression>
+      </Function>
+      <Function id="fracDia">
+        <ListOfReferences>
+          <Reference name="fracSysDown" type="Constant"/>
+          <Reference name="fracSysUp" type="Constant"/>
+        </ListOfReferences>
+        <Expression> ((-fracSysDown)-fracSysUp)+1 </Expression>
+      </Function>
+      <Function id="phase">
+        <ListOfReferences>
+          <Reference name="heartrate_bpm" type="Constant"/>
+          <Reference name="time_Jhyd_step" type="Constant"/>
+        </ListOfReferences>
+        <Expression> (heartrate_bpm*(abs(((-time_Jhyd_step)+time()))-((60*min(rint((((heartrate_bpm*abs(((-time_Jhyd_step)+time())))/60)-0.5)),rint((((heartrate_bpm*abs(((-time_Jhyd_step)+time())))/60)+0.5))))/heartrate_bpm)))/60 </Expression>
+      </Function>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="Kadp" type="Constant"/>
+          <Reference name="Kpi" type="Constant"/>
+          <Reference name="Vmaxsyn" type="Constant"/>
+          <Reference name="ADPi_IMS" type="Observable"/>
+          <Reference name="P_ii_IMS" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Vmaxsyn/((((ADPi_IMS*Kpi)+(ADPi_IMS*P_ii_IMS))+(Kadp*Kpi))+(Kadp*P_ii_IMS)) </Expression>
+      </Function>
+      <Function id="fRate1">
+        <ListOfReferences>
+          <Reference name="j_ck_mi" type="Function"/>
+        </ListOfReferences>
+        <Expression> j_ck_mi </Expression>
+      </Function>
+      <Function id="fRate2">
+        <ListOfReferences>
+          <Reference name="j_ck_mm" type="Function"/>
+        </ListOfReferences>
+        <Expression> j_ck_mm </Expression>
+      </Function>
+      <Function id="fRate3">
+        <ListOfReferences>
+          <Reference name="Jhyd" type="Constant"/>
+        </ListOfReferences>
+        <Expression> Jhyd </Expression>
+      </Function>
+      <Function id="fRate4">
+        <ListOfReferences>
+          <Reference name="j_diff_pi" type="Function"/>
+        </ListOfReferences>
+        <Expression> j_diff_pi </Expression>
+      </Function>
+      <Function id="fRate5">
+        <ListOfReferences>
+          <Reference name="j_diff_cr" type="Function"/>
+        </ListOfReferences>
+        <Expression> j_diff_cr </Expression>
+      </Function>
+      <Function id="fRate6">
+        <ListOfReferences>
+          <Reference name="j_diff_adp" type="Function"/>
+        </ListOfReferences>
+        <Expression> j_diff_adp </Expression>
+      </Function>
+      <Function id="fRate7">
+        <ListOfReferences>
+          <Reference name="j_diff_pcr" type="Function"/>
+        </ListOfReferences>
+        <Expression> j_diff_pcr </Expression>
+      </Function>
+      <Function id="fRate8">
+        <ListOfReferences>
+          <Reference name="j_diff_atp" type="Function"/>
+        </ListOfReferences>
+        <Expression> j_diff_atp </Expression>
+      </Function>
+      <Function id="_rateLaw1">
+        <ListOfReferences>
+          <Reference name="fRate1" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate1() </Expression>
+      </Function>
+      <Function id="_rateLaw2">
+        <ListOfReferences>
+          <Reference name="fRate1" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate1() </Expression>
+      </Function>
+      <Function id="_rateLaw3">
+        <ListOfReferences>
+          <Reference name="fRate2" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate2() </Expression>
+      </Function>
+      <Function id="_rateLaw4">
+        <ListOfReferences>
+          <Reference name="fRate2" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate2() </Expression>
+      </Function>
+      <Function id="_rateLaw5">
+        <ListOfReferences>
+          <Reference name="fRate3" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate3() </Expression>
+      </Function>
+      <Function id="_rateLaw6">
+        <ListOfReferences>
+          <Reference name="fRate4" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate4() </Expression>
+      </Function>
+      <Function id="_rateLaw7">
+        <ListOfReferences>
+          <Reference name="fRate5" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate5() </Expression>
+      </Function>
+      <Function id="_rateLaw8">
+        <ListOfReferences>
+          <Reference name="fRate6" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate6() </Expression>
+      </Function>
+      <Function id="_rateLaw9">
+        <ListOfReferences>
+          <Reference name="fRate7" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate7() </Expression>
+      </Function>
+      <Function id="_rateLaw10">
+        <ListOfReferences>
+          <Reference name="fRate8" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate8() </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

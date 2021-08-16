@@ -4,10 +4,10 @@
 #@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0001211']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
 #@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/go/GO:0007179', 'http://identifiers.org/go/GO:0038105']
-#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1712050006', 'http://identifiers.org/biomodels.db/BIOMD0000000997']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000997', 'http://identifiers.org/biomodels.db/MODEL1712050006']
 #@creatorEmail:'tiwarik@babraham.ac.uk'
 #@creatorName:'Tiwari Krishna'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 23 molecules and 65 reactions. The translated model has 15 molecules and 65 rules'
+#@notes:'This is an atomized translation of an SBML model created on 14/08/2021. The original model has 23 molecules and 65 reactions. The translated model has 15 molecules and 65 rules'
 ###
 begin model
 begin parameters
@@ -68,40 +68,40 @@ begin compartments
 	nuc 3 1.0
 end compartments
 begin molecule types
-	#^ bqbiol:is uniprot:O15105, bao:274
-	SMAD7_mRNA(_1~1~0)
-	#^ bqbiol:is uniprot:O15105
-	SMAD7()
-	#^ bqbiol:hasPart uniprot:Q15796, uniprot:Q13485
-	#^ bqbiol:hasProperty pr:PR:000037070, ncit:C13226
-	pSMAD2_pSMAD2_SMAD4_c()
 	#^ bqbiol:hasPart uniprot:P36897, uniprot:P01137, uniprot:P37173
 	#^ bqbiol:hasProperty ncit:C154407
 	Inactive_TGFb_TGFR1_TGFR2()
+	#^ bqbiol:is uniprot:O15105
+	SMAD7()
+	#^ bqbiol:is uniprot:P01137
+	TGFb()
+	#^ bqbiol:hasPart uniprot:Q15796, uniprot:Q13485
+	#^ bqbiol:hasProperty pr:PR:000037070, ncit:C13226
+	pSMAD2_pSMAD2_SMAD4_c()
+	TGFb_TGFR1(_endo~_ENDO~0,_surface~_SURFACE~0,active_tgfr2)
+	SMAD2(_c~_C~0,_n~_N~0,p~P~0,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2)
+	#^ bqbiol:is uniprot:Q15796
+	#^ bqbiol:hasProperty go:GO:0070206, pr:PR:000037070, ncit:C13226
+	pSMAD2_trimer_c()
+	SMAD4(_c~_C~0,_n~_N~0)
+	#^ bqbiol:hasPart uniprot:P37173, uniprot:P36897, uniprot:P01137
+	#^ bqbiol:hasProperty go:GO:0016197, ncit:C45329
+	Active_TGFb_TGFR1_TGFR2_endo()
 	#^ bqbiol:is uniprot:Q15796
 	#^ bqbiol:hasProperty pr:PR:000037070, ncit:C13197
 	pSMAD2_trimer_n()
+	TGFb_TGFR2(_endo~_ENDO~0,_surface~_SURFACE~0)
 	#^ bqbiol:hasPart uniprot:Q15796, uniprot:Q13485
 	#^ bqbiol:hasProperty pr:PR:000037070, ncit:C13197
 	pSMAD2_pSMAD2_SMAD4_n()
 	#^ bqbiol:is uniprot:P37173
 	#^ bqbiol:hasProperty ncit:C45329
 	Active_TGFR2(tgfb_tgfr1)
-	TGFb_TGFR2(_endo~_ENDO~0,_surface~_SURFACE~0)
+	#^ bqbiol:is uniprot:O15105, bao:274
+	SMAD7_mRNA(_1~1~0)
 	#^ bqbiol:is uniprot:P01137
 	#^ bqbiol:hasProperty go:GO:0016197
 	TGFb_In()
-	SMAD2(_c~_C~0,_n~_N~0,p~P~0,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2)
-	#^ bqbiol:hasPart uniprot:P37173, uniprot:P36897, uniprot:P01137
-	#^ bqbiol:hasProperty go:GO:0016197, ncit:C45329
-	Active_TGFb_TGFR1_TGFR2_endo()
-	#^ bqbiol:is uniprot:P01137
-	TGFb()
-	#^ bqbiol:is uniprot:Q15796
-	#^ bqbiol:hasProperty go:GO:0070206, pr:PR:000037070, ncit:C13226
-	pSMAD2_trimer_c()
-	SMAD4(_c~_C~0,_n~_N~0)
-	TGFb_TGFR1(_endo~_ENDO~0,_surface~_SURFACE~0,active_tgfr2)
 end molecule types
 begin seed species
 	@cyt:TGFb() (100.0) #TGFb
@@ -121,7 +121,7 @@ begin observables
 	Species TGFb_cyt @cyt:TGFb() #TGFb
 	Species TGFb_In_cyt @cyt:TGFb_In() #TGFb_In
 	Species Active_TGFR2_cyt @cyt:Active_TGFR2(tgfb_tgfr1) #Active_TGFR2
-	Species Active_TGFb_TGFR1_TGFR2_cyt @cyt:TGFb_TGFR1(_endo~0,_surface~_SURFACE,active_tgfr2!126).Active_TGFR2(tgfb_tgfr1!126) #Active_TGFb-TGFR1-TGFR2
+	Species Active_TGFb_TGFR1_TGFR2_cyt @cyt:TGFb_TGFR1(_endo~0,_surface~_SURFACE,active_tgfr2!923).Active_TGFR2(tgfb_tgfr1!923) #Active_TGFb-TGFR1-TGFR2
 	Species Active_TGFb_TGFR1_TGFR2_endo_cyt @cyt:Active_TGFb_TGFR1_TGFR2_endo() #Active_TGFb-TGFR1-TGFR2_endo
 	Species Inactive_TGFb_TGFR1_TGFR2_cyt @cyt:Inactive_TGFb_TGFR1_TGFR2() #Inactive_TGFb-TGFR1-TGFR2
 	Species pSMAD2_c_cyt @cyt:SMAD2(_c~_C,_n~0,p~P,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2) #pSMAD2_c
@@ -173,22 +173,22 @@ begin reaction rules
 	reaction4: Active_TGFR2(tgfb_tgfr1)@cyt -> 0  fRate3()
 	reaction5: 0  -> TGFb_TGFR2(_endo~0,_surface~_SURFACE)@cyt fRate4() #Modifiers(Active_R2)
 	reaction6: 0  -> TGFb()@cyt fRate5() #Modifiers(Active_R2)
-	reaction7: TGFb_TGFR1(_endo~0,_surface~_SURFACE,active_tgfr2)@cyt + Active_TGFR2(tgfb_tgfr1)@cyt -> TGFb_TGFR1(_endo~0,_surface~_SURFACE,active_tgfr2!126)@cyt.Active_TGFR2(tgfb_tgfr1!126)@cyt kf_R1_activation
-	reaction8: TGFb_TGFR1(_endo~0,_surface~_SURFACE,active_tgfr2!126)@cyt.Active_TGFR2(tgfb_tgfr1!126)@cyt -> TGFb_TGFR1(_endo~0,_surface~_SURFACE,active_tgfr2)@cyt + Active_TGFR2(tgfb_tgfr1)@cyt fRate7()
+	reaction7: TGFb_TGFR1(_endo~0,_surface~_SURFACE,active_tgfr2)@cyt + Active_TGFR2(tgfb_tgfr1)@cyt -> TGFb_TGFR1(_endo~0,_surface~_SURFACE,active_tgfr2!923)@cyt.Active_TGFR2(tgfb_tgfr1!923)@cyt kf_R1_activation
+	reaction8: TGFb_TGFR1(_endo~0,_surface~_SURFACE,active_tgfr2!923)@cyt.Active_TGFR2(tgfb_tgfr1!923)@cyt -> TGFb_TGFR1(_endo~0,_surface~_SURFACE,active_tgfr2)@cyt + Active_TGFR2(tgfb_tgfr1)@cyt fRate7()
 	reaction9: Active_TGFb_TGFR1_TGFR2_endo()@cyt -> TGFb_TGFR1(_endo~_ENDO,_surface~0,active_tgfr2)@cyt + TGFb_In()@cyt kdeg_R2
 	reaction10: Active_TGFb_TGFR1_TGFR2_endo()@cyt -> TGFb_TGFR2(_endo~_ENDO,_surface~0)@cyt + TGFb_In()@cyt kdeg_R1
 	reaction11: Active_TGFb_TGFR1_TGFR2_endo()@cyt -> TGFb_TGFR1(_endo~_ENDO,_surface~0,active_tgfr2)@cyt + TGFb_TGFR2(_endo~_ENDO,_surface~0)@cyt kin_deg_Ligand
 	reaction12: TGFb_TGFR1(_endo~_ENDO,_surface~0,active_tgfr2)@cyt -> 0  kdeg_R1
 	reaction13: TGFb_TGFR2(_endo~_ENDO,_surface~0)@cyt -> 0  kdeg_R2
-	reaction14: TGFb_TGFR1(_endo~0,_surface~_SURFACE,active_tgfr2!126)@cyt.Active_TGFR2(tgfb_tgfr1!126)@cyt + SMAD7()@cyt -> Inactive_TGFb_TGFR1_TGFR2()@cyt kf_Seq_S7_Rec
-	reaction15: Inactive_TGFb_TGFR1_TGFR2()@cyt -> TGFb_TGFR1(_endo~0,_surface~_SURFACE,active_tgfr2!126)@cyt.Active_TGFR2(tgfb_tgfr1!126)@cyt + SMAD7()@cyt fRate14()
+	reaction14: TGFb_TGFR1(_endo~0,_surface~_SURFACE,active_tgfr2!923)@cyt.Active_TGFR2(tgfb_tgfr1!923)@cyt + SMAD7()@cyt -> Inactive_TGFb_TGFR1_TGFR2()@cyt kf_Seq_S7_Rec
+	reaction15: Inactive_TGFb_TGFR1_TGFR2()@cyt -> TGFb_TGFR1(_endo~0,_surface~_SURFACE,active_tgfr2!923)@cyt.Active_TGFR2(tgfb_tgfr1!923)@cyt + SMAD7()@cyt fRate14()
 	reaction16: Inactive_TGFb_TGFR1_TGFR2()@cyt -> TGFb_TGFR1(_endo~0,_surface~_SURFACE,active_tgfr2)@cyt + TGFb_TGFR2(_endo~0,_surface~_SURFACE)@cyt + SMAD7()@cyt fRate15()
 	reaction17: Inactive_TGFb_TGFR1_TGFR2()@cyt -> TGFb_TGFR1(_endo~0,_surface~_SURFACE,active_tgfr2)@cyt + TGFb_In()@cyt + SMAD7()@cyt fRate16()
 	reaction18: TGFb_TGFR1(_endo~0,_surface~_SURFACE,active_tgfr2)@cyt -> TGFb_TGFR1(_endo~_ENDO,_surface~0,active_tgfr2)@cyt k_in_1
 	reaction19: TGFb_TGFR2(_endo~0,_surface~_SURFACE)@cyt -> TGFb_TGFR2(_endo~_ENDO,_surface~0)@cyt k_in_2
 	reaction20: TGFb_TGFR1(_endo~_ENDO,_surface~0,active_tgfr2)@cyt -> TGFb_TGFR1(_endo~0,_surface~_SURFACE,active_tgfr2)@cyt fRate19()
 	reaction21: TGFb_TGFR2(_endo~_ENDO,_surface~0)@cyt -> TGFb_TGFR2(_endo~0,_surface~_SURFACE)@cyt fRate20()
-	reaction22: TGFb_TGFR1(_endo~0,_surface~_SURFACE,active_tgfr2!126)@cyt.Active_TGFR2(tgfb_tgfr1!126)@cyt -> Active_TGFb_TGFR1_TGFR2_endo()@cyt fRate21()
+	reaction22: TGFb_TGFR1(_endo~0,_surface~_SURFACE,active_tgfr2!923)@cyt.Active_TGFR2(tgfb_tgfr1!923)@cyt -> Active_TGFb_TGFR1_TGFR2_endo()@cyt fRate21()
 	reaction23: Active_TGFb_TGFR1_TGFR2_endo()@cyt -> TGFb_TGFR1(_endo~_ENDO,_surface~0,active_tgfr2)@cyt + TGFb_TGFR2(_endo~_ENDO,_surface~0)@cyt + TGFb_In()@cyt k_disso_Active_Rec
 	reaction24: TGFb_In()@cyt -> 0  kin_deg_Ligand
 	reaction25: SMAD2(_c~_C,_n~0,p~0,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2)@cyt -> SMAD2(_c~_C,_n~0,p~P,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2,psmad2)@cyt fRate24() #Modifiers(Active_Rec_endo)

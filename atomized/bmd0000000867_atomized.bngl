@@ -1,11 +1,11 @@
 ###
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/31681292']
-#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/pr/PR:000003041', 'http://identifiers.org/ncit/C12536', 'http://identifiers.org/ncit/C20214', 'http://identifiers.org/ncit/C17380', 'http://identifiers.org/ncit/C28664', 'http://identifiers.org/ncit/C20517']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/ncit/C17380', 'http://identifiers.org/ncit/C20517', 'http://identifiers.org/ncit/C12536', 'http://identifiers.org/ncit/C20214', 'http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/ncit/C28664', 'http://identifiers.org/pr/PR:000003041']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
 #@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1911180002', 'http://identifiers.org/biomodels.db/BIOMD0000000867']
 #@creatorEmail:'johannes.p.meyer@gmail.com'
 #@creatorName:'Meyer Johannes'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 10 molecules and 31 reactions. The translated model has 8 molecules and 32 rules'
+#@notes:'This is an atomized translation of an SBML model created on 14/08/2021. The original model has 10 molecules and 31 reactions. The translated model has 8 molecules and 32 rules'
 ###
 begin model
 begin parameters
@@ -70,18 +70,18 @@ begin molecule types
 	#^ bqbiol:encodes ncit:C20214
 	#^ bqbiol:is ncit:C813
 	y9_HIF_1a_mRNA()
-	#^ bqbiol:is pr:PR:000003041
-	y3_mTOR()
 	#^ bqbiol:is ncit:C28553
 	y5_HIF_1b(y4_hif_1a)
-	#^ bqbiol:is ncit:C20214
-	y4_HIF_1a(y10_HIF_1a_aOH~y10_HIF_1a_aOH~0,y5_hif_1b)
-	#^ bqbiol:is ncit:C41625
-	y2_Akt()
-	#^ bqbiol:is ncit:C20517
-	y1_IL_15()
+	#^ bqbiol:is pr:PR:000003041
+	y3_mTOR()
 	#^ bqbiol:is ncit:C28664
 	y8_STAT3()
+	#^ bqbiol:is ncit:C41625
+	y2_Akt()
+	#^ bqbiol:is ncit:C20214
+	y4_HIF_1a(y10_HIF_1a_aOH~y10_HIF_1a_aOH~0,y5_hif_1b)
+	#^ bqbiol:is ncit:C20517
+	y1_IL_15()
 end molecule types
 begin seed species
 	y1_IL_15() 602200000000000.1 # (1.0 * 1e-09)mol/L * 6.022e23/mol *1.0L #y1_IL_15 #y1_IL_15
@@ -89,7 +89,7 @@ begin seed species
 	y3_mTOR() 602200000000000.1 #original 1.0substance/L #y3_mTOR #y3_mTOR
 	y4_HIF_1a(y10_HIF_1a_aOH~0,y5_hif_1b) 30110000000000.008 #original 0.05substance/L #y4_HIF_1a #y4_HIF_1a
 	y5_HIF_1b(y4_hif_1a) 602200000000000.1 #original 1.0substance/L #y5_HIF_1b #y5_HIF_1b
-	y4_HIF_1a(y10_HIF_1a_aOH~0,y5_hif_1b!80).y5_HIF_1b(y4_hif_1a!80) 30110000000000.008 #original 0.05substance/L #y6_HIF_1_Complex #y6_HIF_1_Complex
+	y4_HIF_1a(y10_HIF_1a_aOH~0,y5_hif_1b!883).y5_HIF_1b(y4_hif_1a!883) 30110000000000.008 #original 0.05substance/L #y6_HIF_1_Complex #y6_HIF_1_Complex
 	y7_NF_KB() 602200000000000.1 #original 1.0substance/L #y7_NF_KB #y7_NF_KB
 	y8_STAT3() 602200000000000.1 #original 1.0substance/L #y8_STAT3 #y8_STAT3
 	y9_HIF_1a_mRNA() 602200000000000.1 #original 1.0substance/L #y9_HIF_1a_mRNA #y9_HIF_1a_mRNA
@@ -101,7 +101,7 @@ begin observables
 	Species y3_mTOR y3_mTOR() #y3_mTOR
 	Species y4_HIF_1a y4_HIF_1a(y10_HIF_1a_aOH~0,y5_hif_1b) #y4_HIF-1a
 	Species y5_HIF_1b y5_HIF_1b(y4_hif_1a) #y5_HIF-1b
-	Species y6_HIF_1_Complex y4_HIF_1a(y10_HIF_1a_aOH~0,y5_hif_1b!80).y5_HIF_1b(y4_hif_1a!80) #y6_HIF-1_Complex
+	Species y6_HIF_1_Complex y4_HIF_1a(y10_HIF_1a_aOH~0,y5_hif_1b!883).y5_HIF_1b(y4_hif_1a!883) #y6_HIF-1_Complex
 	Species y7_NF_KB y7_NF_KB() #y7_NF-KB
 	Species y8_STAT3 y8_STAT3() #y8_STAT3
 	Species y9_HIF_1a_mRNA y9_HIF_1a_mRNA() #y9_HIF-1a_mRNA
@@ -146,8 +146,8 @@ begin reaction rules
 	HIF_1a_mRNA_Regulation_STAT3: 0  -> y9_HIF_1a_mRNA() fRate17() #Modifiers(y8_STAT3)
 	HIF_1a_Translation: 0  -> y4_HIF_1a(y10_HIF_1a_aOH~0,y5_hif_1b) fRate18() #Modifiers(y9_HIF_1a_mRNA)
 	HIF_1a_Decay: y4_HIF_1a(y10_HIF_1a_aOH~0,y5_hif_1b) -> 0  d4
-	HIF_1a_Association_HIF_1b: y4_HIF_1a(y10_HIF_1a_aOH~0,y5_hif_1b) + y5_HIF_1b(y4_hif_1a) -> y4_HIF_1a(y10_HIF_1a_aOH~0,y5_hif_1b!80).y5_HIF_1b(y4_hif_1a!80) k4
-	HIF_1_Complex_Dissociation: y4_HIF_1a(y10_HIF_1a_aOH~0,y5_hif_1b!80).y5_HIF_1b(y4_hif_1a!80) -> y4_HIF_1a(y10_HIF_1a_aOH~0,y5_hif_1b) + y5_HIF_1b(y4_hif_1a) k5
+	HIF_1a_Association_HIF_1b: y4_HIF_1a(y10_HIF_1a_aOH~0,y5_hif_1b) + y5_HIF_1b(y4_hif_1a) -> y4_HIF_1a(y10_HIF_1a_aOH~0,y5_hif_1b!883).y5_HIF_1b(y4_hif_1a!883) k4
+	HIF_1_Complex_Dissociation: y4_HIF_1a(y10_HIF_1a_aOH~0,y5_hif_1b!883).y5_HIF_1b(y4_hif_1a!883) -> y4_HIF_1a(y10_HIF_1a_aOH~0,y5_hif_1b) + y5_HIF_1b(y4_hif_1a) k5
 	HIF_1a_Hydroxylation_PHD_reactants_0: 0  -> y4_HIF_1a(y10_HIF_1a_aOH~0,y5_hif_1b) -1*(fRate22()) #Modifiers(y6_HIF_1_Complex)
 	HIF_1a_Hydroxylation_FIH_reactants_0: 0  -> y4_HIF_1a(y10_HIF_1a_aOH~0,y5_hif_1b) -1*(fRate23())
 	HIF_1a_Hydroxylation_FIH_products_0: 0  -> y4_HIF_1a(y10_HIF_1a_aOH~y10_HIF_1a_aOH,y5_hif_1b) fRate23()
@@ -156,7 +156,7 @@ begin reaction rules
 	HIF_1a_aOH_Decay: y4_HIF_1a(y10_HIF_1a_aOH~y10_HIF_1a_aOH,y5_hif_1b) -> 0  d10
 	HIF_1b_Expression_Constitutive: 0  -> y5_HIF_1b(y4_hif_1a) a5
 	HIF_1b_Decay: y5_HIF_1b(y4_hif_1a) -> 0  d5
-	HIF_1_Complex_Decay: y4_HIF_1a(y10_HIF_1a_aOH~0,y5_hif_1b!80).y5_HIF_1b(y4_hif_1a!80) -> 0  d6
+	HIF_1_Complex_Decay: y4_HIF_1a(y10_HIF_1a_aOH~0,y5_hif_1b!883).y5_HIF_1b(y4_hif_1a!883) -> 0  d6
 	STAT3_Activation_products_0: 0  -> y8_STAT3() fRate30() #Modifiers(y3_mTOR, y1_IL_15)
 end reaction rules
 end model

@@ -1,5 +1,5 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL0243843132', 'http://identifiers.org/biomodels.db/BIOMD0000000171']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000171', 'http://identifiers.org/biomodels.db/MODEL0243843132']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/9486845']
 #@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/BIOMD0000000016']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/7227']
@@ -7,7 +7,7 @@
 #@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0042752']
 #@creatorEmail:'lukas@ebi.ac.uk'
 #@creatorName:'Endler Lukas'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 12 molecules and 26 reactions. The translated model has 5 molecules and 26 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 12 molecules and 26 reactions. The translated model has 5 molecules and 26 rules'
 ###
 begin model
 begin parameters
@@ -64,35 +64,35 @@ begin molecule types
 	PER(_p~_P~0,p~P~0,tim)
 	#^ bqbiol:isVersionOf uniprot:P49021
 	TIM(_p~_P~0,p~P~0,per)
-	#^ bqbiol:hasVersion uniprot:P49021
-	totalTIM(PER_TIMcomplexnuclear~PER_TIMcomplexnuclear~0)
+	#^ bqbiol:hasVersion uniprot:P07663
+	totalPER(PER_TIMcomplexnuclear~PER_TIMcomplexnuclear~0)
 	#^ bqbiol:isVersionOf chebi:CHEBI:33699, kegg.compound:C02100
 	permRNA()
 end molecule types
 begin seed species
-	@cytoplasm:timmRNA() 849102000000000.1 # (1.41 * 1e-09)mol/L * 6.022e23/mol *1.0L #timmRNA #M_T
-	@cytoplasm:permRNA() 54198000000000.0 #original 0.09nanomolar/L #permRNA #M_P
-	@cytoplasm:TIM(_p~0,p~0,per) 325188000000000.06 #original 0.54nanomolar/L #TIM #T0
-	@cytoplasm:TIM(_p~_P,p~0,per) 475738000000000.06 #original 0.79nanomolar/L #TIM_p #T1
-	@cytoplasm:TIM(_p~_P,p~P,per) 2800230000000000.5 #original 4.65nanomolar/L #TIM_pp #T2
-	@cytoplasm:PER(_p~0,p~0,tim) 12044000000000.002 #original 0.02nanomolar/L #PER #P0
-	@cytoplasm:PER(_p~_P,p~0,tim) 12044000000000.002 #original 0.02nanomolar/L #PER_p #P1
-	@cytoplasm:PER(_p~_P,p~P,tim) 6022000000000.001 #original 0.01nanomolar/L #PER_pp #P2
-	@cytoplasm:TIM(_p~_P,p~P,per!256).PER(_p~_P,p~P,tim!256) 108396000000000.0 #original 0.18nanomolar/L #PER_TIMcomplexcytoplasm #C
-	@nucleus:totalTIM(PER_TIMcomplexnuclear~PER_TIMcomplexnuclear) 722640000000000.0 #original 1.2nanomolar/L #PER_TIMcomplexnuclear #CN
+	@cytoplasm:timmRNA()@cytoplasm 849102000000000.1 # (1.41 * 1e-09)mol/L * 6.022e23/mol *1.0L #timmRNA #M_T
+	@cytoplasm:permRNA()@cytoplasm 54198000000000.0 #original 0.09nanomolar/L #permRNA #M_P
+	@cytoplasm:TIM(_p~0,p~0,per)@cytoplasm 325188000000000.06 #original 0.54nanomolar/L #TIM #T0
+	@cytoplasm:TIM(_p~_P,p~0,per)@cytoplasm 475738000000000.06 #original 0.79nanomolar/L #TIM_p #T1
+	@cytoplasm:TIM(_p~_P,p~P,per)@cytoplasm 2800230000000000.5 #original 4.65nanomolar/L #TIM_pp #T2
+	@cytoplasm:PER(_p~0,p~0,tim)@cytoplasm 12044000000000.002 #original 0.02nanomolar/L #PER #P0
+	@cytoplasm:PER(_p~_P,p~0,tim)@cytoplasm 12044000000000.002 #original 0.02nanomolar/L #PER_p #P1
+	@cytoplasm:PER(_p~_P,p~P,tim)@cytoplasm 6022000000000.001 #original 0.01nanomolar/L #PER_pp #P2
+	@cytoplasm:TIM(_p~_P,p~P,per!256)@cytoplasm.PER(_p~_P,p~P,tim!256)@cytoplasm 108396000000000.0 #original 0.18nanomolar/L #PER_TIMcomplexcytoplasm #C
+	@nucleus:totalPER(PER_TIMcomplexnuclear~PER_TIMcomplexnuclear)@nucleus 722640000000000.0 #original 1.2nanomolar/L #PER_TIMcomplexnuclear #CN
 end seed species
 begin observables
-	Species timmRNA_cytoplasm @cytoplasm:timmRNA() #tim mRNA
-	Species permRNA_cytoplasm @cytoplasm:permRNA() #per mRNA
-	Species TIM_cytoplasm @cytoplasm:TIM(_p~0,p~0,per) #TIM
-	Species TIM_p_cytoplasm @cytoplasm:TIM(_p~_P,p~0,per) #TIM-p
-	Species TIM_pp_cytoplasm @cytoplasm:TIM(_p~_P,p~P,per) #TIM-pp
-	Species PER_cytoplasm @cytoplasm:PER(_p~0,p~0,tim) #PER
-	Species PER_p_cytoplasm @cytoplasm:PER(_p~_P,p~0,tim) #PER-p
-	Species PER_pp_cytoplasm @cytoplasm:PER(_p~_P,p~P,tim) #PER-pp
-	Species PER_TIMcomplexcytoplasm_cytoplasm @cytoplasm:TIM(_p~_P,p~P,per!256).PER(_p~_P,p~P,tim!256) #PER_TIM complex cytoplasm
-	Species PER_TIMcomplexnuclear_nucleus @nucleus:totalTIM(PER_TIMcomplexnuclear~PER_TIMcomplexnuclear) #PER_TIM complex nuclear
-	Species totalTIM_cytoplasm @cytoplasm:totalTIM(PER_TIMcomplexnuclear~0) #total TIM
+	Species timmRNA_cytoplasm @cytoplasm:timmRNA()@cytoplasm #tim mRNA
+	Species permRNA_cytoplasm @cytoplasm:permRNA()@cytoplasm #per mRNA
+	Species TIM_cytoplasm @cytoplasm:TIM(_p~0,p~0,per)@cytoplasm #TIM
+	Species TIM_p_cytoplasm @cytoplasm:TIM(_p~_P,p~0,per)@cytoplasm #TIM-p
+	Species TIM_pp_cytoplasm @cytoplasm:TIM(_p~_P,p~P,per)@cytoplasm #TIM-pp
+	Species PER_cytoplasm @cytoplasm:PER(_p~0,p~0,tim)@cytoplasm #PER
+	Species PER_p_cytoplasm @cytoplasm:PER(_p~_P,p~0,tim)@cytoplasm #PER-p
+	Species PER_pp_cytoplasm @cytoplasm:PER(_p~_P,p~P,tim)@cytoplasm #PER-pp
+	Species PER_TIMcomplexcytoplasm_cytoplasm @cytoplasm:TIM(_p~_P,p~P,per!256)@cytoplasm.PER(_p~_P,p~P,tim!256)@cytoplasm #PER_TIM complex cytoplasm
+	Species PER_TIMcomplexnuclear_nucleus @nucleus:totalPER(PER_TIMcomplexnuclear~PER_TIMcomplexnuclear)@nucleus #PER_TIM complex nuclear
+	Species totalPER_cytoplasm @cytoplasm:totalPER(PER_TIMcomplexnuclear~0) #total PER
 end observables
 begin functions
 	v_dT() = v_dT_dark*((v_dT_fac - 1)*min(rint(0.9*sin(3.1415926535*time()/l_d) + 0.5), rint(0.9*sin(3.1415926535*time()/l_d) + 1)) + 1)
@@ -132,8 +132,8 @@ begin reaction rules
 	T2_decay: TIM(_p~_P,p~P,per)@cytoplasm -> 0  kd
 	C_form: PER(_p~_P,p~P,tim)@cytoplasm + TIM(_p~_P,p~P,per)@cytoplasm <-> TIM(_p~_P,p~P,per!256)@cytoplasm.PER(_p~_P,p~P,tim!256)@cytoplasm r13_k3,r13_k4
 	C_decay: TIM(_p~_P,p~P,per!256)@cytoplasm.PER(_p~_P,p~P,tim!256)@cytoplasm -> 0  r14_kd_C
-	CN_decay: totalTIM(PER_TIMcomplexnuclear~PER_TIMcomplexnuclear)@nucleus -> 0  r15_kd_CN
-	C_transp: TIM(_p~_P,p~P,per!256)@cytoplasm.PER(_p~_P,p~P,tim!256)@cytoplasm <-> totalTIM(PER_TIMcomplexnuclear~PER_TIMcomplexnuclear)@nucleus fRate15(),fRate15m()
+	CN_decay: totalPER(PER_TIMcomplexnuclear~PER_TIMcomplexnuclear)@nucleus -> 0  r15_kd_CN
+	C_transp: TIM(_p~_P,p~P,per!256)@cytoplasm.PER(_p~_P,p~P,tim!256)@cytoplasm <-> totalPER(PER_TIMcomplexnuclear~PER_TIMcomplexnuclear)@nucleus fRate15(),fRate15m()
 	P_pho: PER(_p~0,p~0,tim)@cytoplasm -> PER(_p~_P,p~0,tim)@cytoplasm fRate16()
 	P1_pho: PER(_p~_P,p~0,tim)@cytoplasm -> PER(_p~_P,p~P,tim)@cytoplasm fRate17()
 	P1_depho: PER(_p~_P,p~0,tim)@cytoplasm -> PER(_p~0,p~0,tim)@cytoplasm fRate18()

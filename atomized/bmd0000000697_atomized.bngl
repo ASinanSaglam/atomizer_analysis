@@ -7,7 +7,7 @@
 #@BQB_HAS_TAXON:['http://identifiers.org/ncit/C61089']
 #@creatorEmail:'sheriff@ebi.ac.uk'
 #@creatorName:'Sheriff Rahuman'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 16 molecules and 30 reactions. The translated model has 5 molecules and 32 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 16 molecules and 30 reactions. The translated model has 5 molecules and 32 rules'
 ###
 begin model
 begin parameters
@@ -37,19 +37,19 @@ begin parameters
 	Xic_total 6.02199999999996e+20 #original 0.999999999999993substance/volume
 end parameters
 begin molecule types
+	#^ bqbiol:hasVersion uniprot:Q8QGV2
+	#^ bqbiol:hasProperty urn:miriam:pato:PATO_0002354
+	Wee1_a()
 	#^ bqbiol:hasPart uniprot:P50756, uniprot:P23437
 	#^ bqbiol:isVersionOf go:GO:0097134
 	Cdk2_CycE(p~P~0,rem~REM~0,xic)
 	#^ bqbiol:isVersionOf uniprot:P50756
 	#^ bqbiol:hasProperty ncit:C18104
 	Deg_CycE()
-	#^ bqbiol:hasVersion uniprot:Q8QGV2
-	#^ bqbiol:hasProperty urn:miriam:pato:PATO_0002354
-	Wee1_a()
-	#^ bqbiol:isVersionOf ncit:C28597
-	Kin_a()
 	#^ bqbiol:isHomologTo ncbiprotein:NP_001108275.1
 	Xic(cdk2_cyce,rem~REM~0)
+	#^ bqbiol:isVersionOf ncit:C28597
+	Kin_a()
 end molecule types
 begin seed species
 	Cdk2_CycE(p~P,rem~0,xic) 5.66068e+20 # (0.94 * 0.001)mol/L * 6.022e23/mol *1.0L #PCdk2_CycE #PCdk2_CycE
@@ -66,10 +66,10 @@ begin observables
 	Species PCdk2_CycErem Cdk2_CycE(p~P,rem~REM,xic) #PCdk2_CycErem
 	Species Deg_CycE Deg_CycE() #Deg_CycE
 	Species Xic Xic(cdk2_cyce,rem~0) #Xic
-	Species Xic_Cdk2_CycE Cdk2_CycE(p~0,rem~0,xic!711).Xic(cdk2_cyce!711,rem~0) #Xic_Cdk2_CycE
-	Species Xic_PCdk2_CycE Cdk2_CycE(p~P,rem~0,xic!711).Xic(cdk2_cyce!711,rem~0) #Xic_PCdk2_CycE
-	Species Xic_Cdk2_CycErem Cdk2_CycE(p~0,rem~REM,xic!711).Xic(cdk2_cyce!711,rem~0) #Xic_Cdk2_CycErem
-	Species Xic_PCdk2_CycErem Cdk2_CycE(p~P,rem~REM,xic!711).Xic(cdk2_cyce!711,rem~0) #Xic_PCdk2_CycErem
+	Species Xic_Cdk2_CycE Cdk2_CycE(p~0,rem~0,xic!795).Xic(cdk2_cyce!795,rem~0) #Xic_Cdk2_CycE
+	Species Xic_PCdk2_CycE Cdk2_CycE(p~P,rem~0,xic!795).Xic(cdk2_cyce!795,rem~0) #Xic_PCdk2_CycE
+	Species Xic_Cdk2_CycErem Cdk2_CycE(p~0,rem~REM,xic!795).Xic(cdk2_cyce!795,rem~0) #Xic_Cdk2_CycErem
+	Species Xic_PCdk2_CycErem Cdk2_CycE(p~P,rem~REM,xic!795).Xic(cdk2_cyce!795,rem~0) #Xic_PCdk2_CycErem
 	Species Xicrem Xic(cdk2_cyce,rem~REM) #Xicrem
 	Species Kin_a Kin_a() #Kin_a
 end observables
@@ -95,37 +95,37 @@ begin functions
 	fRate29() = -1.0*Kin_a*Wee1_a*kwinact/(Jwinact + Wee1_a) + 1.0*kwact*(-Wee1_a + Wee1_total)/(Jwact - Wee1_a + Wee1_total)
 end functions
 begin reaction rules
-	Xic_Cdk2_CycE_association: Xic(cdk2_cyce,rem~0) + Cdk2_CycE(p~0,rem~0,xic) -> Cdk2_CycE(p~0,rem~0,xic!711).Xic(cdk2_cyce!711,rem~0) kassoc
-	Xic_Cdk2_CycErem_association: Xic(cdk2_cyce,rem~0) + Cdk2_CycE(p~0,rem~REM,xic) -> Cdk2_CycE(p~0,rem~REM,xic!711).Xic(cdk2_cyce!711,rem~0) kassoc
-	Xic_Cdk2_CycE_dissociation: Cdk2_CycE(p~0,rem~0,xic!711).Xic(cdk2_cyce!711,rem~0) -> Xic(cdk2_cyce,rem~0) + Cdk2_CycE(p~0,rem~0,xic) kdissoc
-	Xic_Cdk2_CycErem_dissociation: Cdk2_CycE(p~0,rem~REM,xic!711).Xic(cdk2_cyce!711,rem~0) -> Xic(cdk2_cyce,rem~0) + Cdk2_CycE(p~0,rem~REM,xic) kdissoc
+	Xic_Cdk2_CycE_association: Xic(cdk2_cyce,rem~0) + Cdk2_CycE(p~0,rem~0,xic) -> Cdk2_CycE(p~0,rem~0,xic!795).Xic(cdk2_cyce!795,rem~0) kassoc
+	Xic_Cdk2_CycErem_association: Xic(cdk2_cyce,rem~0) + Cdk2_CycE(p~0,rem~REM,xic) -> Cdk2_CycE(p~0,rem~REM,xic!795).Xic(cdk2_cyce!795,rem~0) kassoc
+	Xic_Cdk2_CycE_dissociation: Cdk2_CycE(p~0,rem~0,xic!795).Xic(cdk2_cyce!795,rem~0) -> Xic(cdk2_cyce,rem~0) + Cdk2_CycE(p~0,rem~0,xic) kdissoc
+	Xic_Cdk2_CycErem_dissociation: Cdk2_CycE(p~0,rem~REM,xic!795).Xic(cdk2_cyce!795,rem~0) -> Xic(cdk2_cyce,rem~0) + Cdk2_CycE(p~0,rem~REM,xic) kdissoc
 	Cdk2_CycErem_to_not_rem: Cdk2_CycE(p~0,rem~REM,xic) -> Cdk2_CycE(p~0,rem~0,xic) koff
 	PCdk2_CycE_to_not_rem: Cdk2_CycE(p~P,rem~REM,xic) -> Cdk2_CycE(p~P,rem~0,xic) koff
 	Cdk2_CycE_to_rem: Cdk2_CycE(p~0,rem~0,xic) -> Cdk2_CycE(p~0,rem~REM,xic) fRate6()
 	PCdk2_CycE_to_rem: Cdk2_CycE(p~P,rem~0,xic) -> Cdk2_CycE(p~P,rem~REM,xic) fRate7()
-	X_degadation: Cdk2_CycE(p~0,rem~REM,xic!711).Xic(cdk2_cyce!711,rem~0) -> Cdk2_CycE(p~0,rem~REM,xic) kxdeg
-	X_degradation_phosphorylated_complex: Cdk2_CycE(p~P,rem~REM,xic!711).Xic(cdk2_cyce!711,rem~0) -> Cdk2_CycE(p~P,rem~REM,xic) kxdeg
-	Degradation_XicPCdk2_CycErem: Cdk2_CycE(p~P,rem~REM,xic!711).Xic(cdk2_cyce!711,rem~0) -> Xic(cdk2_cyce,rem~REM) fRate10() #Modifiers(Deg_a)
-	Degradation_XicCdk2_CycErem: Cdk2_CycE(p~0,rem~REM,xic!711).Xic(cdk2_cyce!711,rem~0) -> Xic(cdk2_cyce,rem~REM) fRate11() #Modifiers(Deg_a)
-	Dephos_Xic_PCdk2_CycE: Cdk2_CycE(p~P,rem~0,xic!711).Xic(cdk2_cyce!711,rem~0) -> Cdk2_CycE(p~0,rem~0,xic!711).Xic(cdk2_cyce!711,rem~0) k25A
+	X_degadation: Cdk2_CycE(p~0,rem~REM,xic!795).Xic(cdk2_cyce!795,rem~0) -> Cdk2_CycE(p~0,rem~REM,xic) kxdeg
+	X_degradation_phosphorylated_complex: Cdk2_CycE(p~P,rem~REM,xic!795).Xic(cdk2_cyce!795,rem~0) -> Cdk2_CycE(p~P,rem~REM,xic) kxdeg
+	Degradation_XicPCdk2_CycErem: Cdk2_CycE(p~P,rem~REM,xic!795).Xic(cdk2_cyce!795,rem~0) -> Xic(cdk2_cyce,rem~REM) fRate10() #Modifiers(Deg_a)
+	Degradation_XicCdk2_CycErem: Cdk2_CycE(p~0,rem~REM,xic!795).Xic(cdk2_cyce!795,rem~0) -> Xic(cdk2_cyce,rem~REM) fRate11() #Modifiers(Deg_a)
+	Dephos_Xic_PCdk2_CycE: Cdk2_CycE(p~P,rem~0,xic!795).Xic(cdk2_cyce!795,rem~0) -> Cdk2_CycE(p~0,rem~0,xic!795).Xic(cdk2_cyce!795,rem~0) k25A
 	Dephos_PCdk2_CycE: Cdk2_CycE(p~P,rem~0,xic) -> Cdk2_CycE(p~0,rem~0,xic) k25A
 	Degradation_increase: 0  -> Deg_CycE() fRate14()
-	Phos_Xic_PCdk2_CycE: Cdk2_CycE(p~0,rem~0,xic!711).Xic(cdk2_cyce!711,rem~0) -> Cdk2_CycE(p~P,rem~0,xic!711).Xic(cdk2_cyce!711,rem~0) fRate15() #Modifiers(Wee1_a)
+	Phos_Xic_PCdk2_CycE: Cdk2_CycE(p~0,rem~0,xic!795).Xic(cdk2_cyce!795,rem~0) -> Cdk2_CycE(p~P,rem~0,xic!795).Xic(cdk2_cyce!795,rem~0) fRate15() #Modifiers(Wee1_a)
 	Phos_PCdk2_CycE: Cdk2_CycE(p~0,rem~0,xic) -> Cdk2_CycE(p~P,rem~0,xic) fRate16() #Modifiers(Wee1_a)
 	Kinase__regulation_reactants_0: 0  -> Cdk2_CycE(p~0,rem~0,xic) -1*(fRate17()) #Modifiers(Cdk2_CycE)
 	Kinase__regulation_products_0: 0  -> Kin_a() fRate17() #Modifiers(Cdk2_CycE)
 	Kinase__regulation_products_1: 0  -> Cdk2_CycE(p~0,rem~0,xic) fRate17() #Modifiers(Cdk2_CycE)
-	Xic_PCdk2_CycE_association: Xic(cdk2_cyce,rem~0) + Cdk2_CycE(p~P,rem~0,xic) -> Cdk2_CycE(p~P,rem~0,xic!711).Xic(cdk2_cyce!711,rem~0) kassoc
-	Xic_PCdk2_CycErem_association: Xic(cdk2_cyce,rem~0) + Cdk2_CycE(p~P,rem~REM,xic) -> Cdk2_CycE(p~P,rem~REM,xic!711).Xic(cdk2_cyce!711,rem~0) kassoc
-	Xic_PCdk2_CycE_dissociation: Cdk2_CycE(p~P,rem~0,xic!711).Xic(cdk2_cyce!711,rem~0) -> Xic(cdk2_cyce,rem~0) + Cdk2_CycE(p~P,rem~0,xic) kdissoc
-	Xic_PCdk2_CycErem_dissociation: Cdk2_CycE(p~P,rem~REM,xic!711).Xic(cdk2_cyce!711,rem~0) -> Xic(cdk2_cyce,rem~0) + Cdk2_CycE(p~P,rem~REM,xic) kdissoc
+	Xic_PCdk2_CycE_association: Xic(cdk2_cyce,rem~0) + Cdk2_CycE(p~P,rem~0,xic) -> Cdk2_CycE(p~P,rem~0,xic!795).Xic(cdk2_cyce!795,rem~0) kassoc
+	Xic_PCdk2_CycErem_association: Xic(cdk2_cyce,rem~0) + Cdk2_CycE(p~P,rem~REM,xic) -> Cdk2_CycE(p~P,rem~REM,xic!795).Xic(cdk2_cyce!795,rem~0) kassoc
+	Xic_PCdk2_CycE_dissociation: Cdk2_CycE(p~P,rem~0,xic!795).Xic(cdk2_cyce!795,rem~0) -> Xic(cdk2_cyce,rem~0) + Cdk2_CycE(p~P,rem~0,xic) kdissoc
+	Xic_PCdk2_CycErem_dissociation: Cdk2_CycE(p~P,rem~REM,xic!795).Xic(cdk2_cyce!795,rem~0) -> Xic(cdk2_cyce,rem~0) + Cdk2_CycE(p~P,rem~REM,xic) kdissoc
 	Degradation_Cdk2_CycErem: Cdk2_CycE(p~0,rem~REM,xic) -> 0  fRate22() #Modifiers(Deg_a)
 	Degradation_PCdk2_CycErem: Cdk2_CycE(p~P,rem~REM,xic) -> 0  fRate23() #Modifiers(Deg_a)
 	Xicrem_degradation: Xic(cdk2_cyce,rem~REM) -> 0  kxdeg
-	Xic_PCdk2_CycErem_to_not_rem: Cdk2_CycE(p~P,rem~REM,xic!711).Xic(cdk2_cyce!711,rem~0) -> Cdk2_CycE(p~P,rem~0,xic!711).Xic(cdk2_cyce!711,rem~0) koff
-	Xic_Cdk2_CycErem_to_not_rem: Cdk2_CycE(p~0,rem~REM,xic!711).Xic(cdk2_cyce!711,rem~0) -> Cdk2_CycE(p~0,rem~0,xic!711).Xic(cdk2_cyce!711,rem~0) koff
-	Xic_PCdk2_CycE_to_rem: Cdk2_CycE(p~P,rem~0,xic!711).Xic(cdk2_cyce!711,rem~0) -> Cdk2_CycE(p~P,rem~REM,xic!711).Xic(cdk2_cyce!711,rem~0) fRate27()
-	Xic_Cdk2_CycE_to_rem: Cdk2_CycE(p~0,rem~0,xic!711).Xic(cdk2_cyce!711,rem~0) -> Cdk2_CycE(p~0,rem~REM,xic!711).Xic(cdk2_cyce!711,rem~0) fRate28()
+	Xic_PCdk2_CycErem_to_not_rem: Cdk2_CycE(p~P,rem~REM,xic!795).Xic(cdk2_cyce!795,rem~0) -> Cdk2_CycE(p~P,rem~0,xic!795).Xic(cdk2_cyce!795,rem~0) koff
+	Xic_Cdk2_CycErem_to_not_rem: Cdk2_CycE(p~0,rem~REM,xic!795).Xic(cdk2_cyce!795,rem~0) -> Cdk2_CycE(p~0,rem~0,xic!795).Xic(cdk2_cyce!795,rem~0) koff
+	Xic_PCdk2_CycE_to_rem: Cdk2_CycE(p~P,rem~0,xic!795).Xic(cdk2_cyce!795,rem~0) -> Cdk2_CycE(p~P,rem~REM,xic!795).Xic(cdk2_cyce!795,rem~0) fRate27()
+	Xic_Cdk2_CycE_to_rem: Cdk2_CycE(p~0,rem~0,xic!795).Xic(cdk2_cyce!795,rem~0) -> Cdk2_CycE(p~0,rem~REM,xic!795).Xic(cdk2_cyce!795,rem~0) fRate28()
 	Wee1_regulation_products_0: 0  -> Wee1_a() fRate29() #Modifiers(Kin_a, Wee1_total)
 end reaction rules
 end model

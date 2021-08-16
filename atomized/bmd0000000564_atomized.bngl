@@ -6,7 +6,7 @@
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/3702']
 #@creatorEmail:'viji@ebi.ac.uk'
 #@creatorName:'Chelliah Vijayalakshmi'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 19 molecules and 38 reactions. The translated model has 18 molecules and 38 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 19 molecules and 38 reactions. The translated model has 18 molecules and 38 rules'
 ###
 begin model
 begin parameters
@@ -118,41 +118,41 @@ begin parameters
 	dawn1 0
 end parameters
 begin molecule types
-	#^ bqbiol:isVersionOf chebi:CHEBI:33699
-	cT_m()
 	#^ bqbiol:isVersionOf chebi:CHEBI:35222
 	cNI()
-	cP()
-	#^ bqbiol:isVersionOf chebi:CHEBI:33699
-	cG_m()
-	#^ bqbiol:is chebi:CHEBI:33699, kegg.compound:C00046
-	cY_m()
-	#^ bqbiol:isVersionOf uniprot:Q8L500
-	cP9()
-	#^ bqbiol:isVersionOf uniprot:Q9SQI2
-	cG(cztl)
-	#^ bqbiol:isVersionOf chebi:CHEBI:33699
-	cL_m()
-	#^ bqbiol:isVersionOf psimod:MOD:00000, uniprot:Q9LKL2
-	cTm()
 	#^ bqbiol:isVersionOf uniprot:Q94BT6
 	cZTL(cg)
+	#^ bqbiol:isVersionOf uniprot:P92973, uniprot:Q6R0H1
+	cL()
+	#^ bqbiol:isVersionOf chebi:CHEBI:33699
+	cG_m()
+	cP()
+	#^ bqbiol:isVersionOf uniprot:Q9LKL2
+	cT()
+	#^ bqbiol:isVersionOf psimod:MOD:00000, uniprot:Q9LKL2
+	cTm()
+	#^ bqbiol:isVersionOf chebi:CHEBI:35222, chebi:CHEBI:33699
+	cNI_m()
+	#^ bqbiol:isVersionOf uniprot:P92973, psimod:MOD:00000, uniprot:Q6R0H1
+	cLm()
+	#^ bqbiol:isVersionOf uniprot:Q8L500
+	cP9()
 	#^ bqbiol:isPartOf chebi:CHEBI:33699
 	cP9_m()
 	#^ bqbiol:isVersionOf chebi:CHEBI:33699
+	cT_m()
+	#^ bqbiol:is chebi:CHEBI:33699, kegg.compound:C00046
+	cY_m()
+	#^ bqbiol:isVersionOf chebi:CHEBI:33699
+	cL_m()
+	#^ bqbiol:isVersionOf uniprot:Q9SQI2
+	cG(cztl)
+	#^ bqbiol:isVersionOf chebi:CHEBI:33699
 	cP7_m()
-	#^ bqbiol:isVersionOf chebi:CHEBI:36080
-	cY()
-	#^ bqbiol:isVersionOf uniprot:P92973, psimod:MOD:00000, uniprot:Q6R0H1
-	cLm()
 	#^ bqbiol:isVersionOf uniprot:Q93WK5
 	cP7()
-	#^ bqbiol:isVersionOf uniprot:Q9LKL2
-	cT()
-	#^ bqbiol:isVersionOf chebi:CHEBI:35222, chebi:CHEBI:33699
-	cNI_m()
-	#^ bqbiol:isVersionOf uniprot:P92973, uniprot:Q6R0H1
-	cL()
+	#^ bqbiol:isVersionOf chebi:CHEBI:36080
+	cY()
 end molecule types
 begin seed species
 	cG(cztl) 1.433236e+22 # 0.0238mol/L * 6.022e23/mol *1.0L #cG #cG
@@ -172,7 +172,7 @@ begin seed species
 	cTm() 1.44528e+23 #original 0.24/L #cTm #cTm
 	cY() 6.022000000000001e+22 #original 0.1/L #cY #cY
 	cY_m() 5.60046e+22 #original 0.093/L #cY_m #cY_m
-	cZTL(cg!40).cG(cztl!40) 4.661028e+22 #original 0.0774/L #cZG #cZG
+	cZTL(cg!141).cG(cztl!141) 4.661028e+22 #original 0.0774/L #cZG #cZG
 	cZTL(cg) 1.945106e+23 #original 0.323/L #cZTL #cZTL
 end seed species
 begin observables
@@ -193,7 +193,7 @@ begin observables
 	Species cTm cTm() #cTm
 	Species cY cY() #cY
 	Species cY_m cY_m() #cY_m
-	Species cZG cZTL(cg!40).cG(cztl!40) #cZG
+	Species cZG cZTL(cg!141).cG(cztl!141) #cZG
 	Species cZTL cZTL(cg) #cZTL
 end observables
 begin functions
@@ -270,9 +270,9 @@ begin reaction rules
 	cG_m_degr: cG_m() -> 0  m18 #Modifiers(cG_m)
 	cG_trsl: 0  -> cG(cztl) fRate32() #Modifiers(cG_m, cG_m)
 	cG_degr: cG(cztl) -> 0  m19 #Modifiers(cG)
-	cG_cZTL_assoc: cG(cztl) + cZTL(cg) <-> cZTL(cg!40).cG(cztl!40) fRate34(),fRate34m() #Modifiers(cG, cZG, cZTL)
+	cG_cZTL_assoc: cG(cztl) + cZTL(cg) <-> cZTL(cg!141).cG(cztl!141) fRate34(),fRate34m() #Modifiers(cG, cZG, cZTL)
 	cZTL_trsl: 0  -> cZTL(cg) p14
 	cZTL_degr: cZTL(cg) -> 0  m20 #Modifiers(cZTL)
-	cZG_degr: cZTL(cg!40).cG(cztl!40) -> 0  m21 #Modifiers(cZG)
+	cZG_degr: cZTL(cg!141).cG(cztl!141) -> 0  m21 #Modifiers(cZG)
 end reaction rules
 end model

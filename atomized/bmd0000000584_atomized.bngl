@@ -6,7 +6,7 @@
 #@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:9065']
 #@creatorEmail:'viji@ebi.ac.uk'
 #@creatorName:'Chelliah Vijayalakshmi'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 35 molecules and 14 reactions. The translated model has 8 molecules and 14 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 35 molecules and 14 reactions. The translated model has 8 molecules and 14 rules'
 ###
 begin model
 begin parameters
@@ -72,24 +72,24 @@ begin parameters
 	ter6 6.022e+24 #original 10.0mol/L
 end parameters
 begin molecule types
-	proAUR1()
-	proLAMDAR()
-	proLACI()
 	proSLS4()
-	proSLS1()
-	IPTG(ia1_activetf)
-	ia1_ActiveTF(iptg)
 	proTETR()
+	IPTG(ia1_activetf)
+	proAUR1()
+	proLACI()
+	proSLS1()
+	proLAMDAR()
+	ia1_ActiveTF(iptg)
 end molecule types
 begin seed species
 	IPTG(ia1_activetf) 6.022e+27 #original 10000.0mol/L #IPTG #IPTG
 	ia1_ActiveTF(iptg) 6.022e+25 #original 100.0mol/L #ia1_ActiveTF #ia1_ActiveTF
-	ia1_ActiveTF(iptg!115).IPTG(ia1_activetf!115) 6.022e+25 #original 100.0mol/L #ia1_InactiveTF #ia1_InactiveTF
+	ia1_ActiveTF(iptg!216).IPTG(ia1_activetf!216) 6.022e+25 #original 100.0mol/L #ia1_InactiveTF #ia1_InactiveTF
 end seed species
 begin observables
 	Species IPTG IPTG(ia1_activetf) #IPTG
 	Species ia1_ActiveTF ia1_ActiveTF(iptg) #ia1_ActiveTF
-	Species ia1_InactiveTF ia1_ActiveTF(iptg!115).IPTG(ia1_activetf!115) #ia1_InactiveTF
+	Species ia1_InactiveTF ia1_ActiveTF(iptg!216).IPTG(ia1_activetf!216) #ia1_InactiveTF
 	Species proAUR1 proAUR1() #proAUR1
 	Species proLACI proLACI() #proLACI
 	Species proLAMDAR proLAMDAR() #proLAMDAR
@@ -123,8 +123,8 @@ begin reaction rules
 	pp1_v2: proSLS1() -> 0  proSLS1_degradation_rate #Modifiers(proSLS1)
 	pp5_v1: 0  -> proLAMDAR() fRate2() #Modifiers(LAMDAR, LAMDAR)
 	pp5_v2: proLAMDAR() -> 0  proLAMDAR_degradation_rate #Modifiers(proLAMDAR)
-	ia1_bind_forward: IPTG(ia1_activetf) + ia1_ActiveTF(iptg) -> ia1_ActiveTF(iptg!115).IPTG(ia1_activetf!115) 1.00000000000000 #Modifiers(IPTG, ia1_ActiveTF)
-	ia1_bind_reverse: ia1_ActiveTF(iptg!115).IPTG(ia1_activetf!115) -> IPTG(ia1_activetf) + ia1_ActiveTF(iptg) ia1_Kd #Modifiers(ia1_InactiveTF)
+	ia1_bind_forward: IPTG(ia1_activetf) + ia1_ActiveTF(iptg) -> ia1_ActiveTF(iptg!216).IPTG(ia1_activetf!216) 1.00000000000000 #Modifiers(IPTG, ia1_ActiveTF)
+	ia1_bind_reverse: ia1_ActiveTF(iptg!216).IPTG(ia1_activetf!216) -> IPTG(ia1_activetf) + ia1_ActiveTF(iptg) ia1_Kd #Modifiers(ia1_InactiveTF)
 	pp2_v1: 0  -> proAUR1() fRate6() #Modifiers(AUR1, AUR1)
 	pp2_v2: proAUR1() -> 0  proAUR1_degradation_rate #Modifiers(proAUR1)
 	pp6_v1: 0  -> proTETR() fRate8() #Modifiers(TETR, TETR)

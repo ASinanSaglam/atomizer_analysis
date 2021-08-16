@@ -1,12 +1,12 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000568', 'http://identifiers.org/biomodels.db/MODEL1502090000']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1502090000', 'http://identifiers.org/biomodels.db/BIOMD0000000568']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/25771250']
 #@BQB_HAS_VERSION:['http://identifiers.org/doid/DOID:409']
 #@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0072574']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10090']
 #@creatorEmail:'lloret@ebi.ac.uk'
 #@creatorName:'Lloret i Villas Audald'
-#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 39 molecules and 69 reactions. The translated model has 24 molecules and 84 rules'
+#@notes:'This is a plain translation of an SBML model created on 14/08/2021. The original model has 39 molecules and 69 reactions. The translated model has 24 molecules and 84 rules'
 ###
 begin model
 begin parameters
@@ -93,30 +93,30 @@ begin compartments
 	Nucleus 3 1.0
 end compartments
 begin molecule types
-	nuc__p21__b__()
-	nuc__C2E__T160U_b1___p21__b1__()
-	nuc__dnapre2____()
-	nuc__dnapre4____()
-	nuc__C2E__T160U_b__()
-	nuc__rb__S788P_S800P_b__()
-	cyto__C2E__T160U_b1___p21__b1__()
-	nuc__dnapre1____()
-	nuc__dnapre3____()
-	nuc__dnapre5____()
-	cyto__C2E__T160U_b__()
-	nuc__e2f__b1___rb__S788U_S800U_b1__()
-	nuc__C2E__T160P_b1___p21__b1__()
-	nuc__dnapre____()
-	nuc__C4D1__b1___p21__b1__()
-	nuc__C4D1__b__()
-	nuc__rb__S788U_S800U_b__()
-	nuc__e2f__b__()
-	nuc__rb__S788P_S800U_b__()
-	cyto__C4D1__b__()
-	cyto__p21__b__()
-	nuc__C2E__T160P_b__()
-	nuc__e2f__b1___rb__S788P_S800U_b1__()
 	cyto__C4D1__b1___p21__b1__()
+	nuc__dnapre2____()
+	cyto__p21__b__()
+	cyto__C2E__T160U_b1___p21__b1__()
+	nuc__dnapre4____()
+	cyto__C2E__T160U_b__()
+	nuc__rb__S788P_S800P_b__()
+	nuc__dnapre1____()
+	nuc__C4D1__b__()
+	nuc__rb__S788P_S800U_b__()
+	nuc__dnapre3____()
+	nuc__e2f__b__()
+	nuc__C2E__T160U_b__()
+	nuc__rb__S788U_S800U_b__()
+	nuc__dnapre____()
+	nuc__p21__b__()
+	nuc__e2f__b1___rb__S788U_S800U_b1__()
+	nuc__e2f__b1___rb__S788P_S800U_b1__()
+	nuc__C2E__T160P_b__()
+	nuc__C4D1__b1___p21__b1__()
+	cyto__C4D1__b__()
+	nuc__dnapre5____()
+	nuc__C2E__T160U_b1___p21__b1__()
+	nuc__C2E__T160P_b1___p21__b1__()
 end molecule types
 begin seed species
 	@cell:cyto__C2E__T160U_b__() 249913000000000.03 # (0.415 * 1e-09)mol/L * 6.022e23/mol *1.0L #cyto__C2E__T160U_b__ #S4
@@ -153,8 +153,8 @@ begin observables
 end observables
 begin functions
 	inhp53_ar() =  if((time()<-1),(0),(if((time()<0),(0),(0))))
-	inhERK_ar() =  if((time()<-1),(0),(if((time()<0),(0),(0))))
 	HGF_ar() =  if((time()<-1),(0),(if((time()<24),(0),(1))))
+	inhERK_ar() =  if((time()<-1),(0),(if((time()<0),(0),(0))))
 	erk() = (1 - inhERK_ar)*(HGF_ar^nerk*(1 - aerk)*(perk^nerk + 1)/(HGF_ar^nerk + perk^nerk) + aerk)
 	inhAKT_ar() =  if((time()<-1),(0),(if((time()<0),(0),(0))))
 	akt() = (1 - inhAKT_ar)*(HGF_ar^nakt*(1 - aakt)*(pakt^nakt + 1)/(HGF_ar^nakt + pakt^nakt) + aakt)

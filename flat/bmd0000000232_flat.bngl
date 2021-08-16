@@ -2,11 +2,11 @@
 #@BQM_IS:['http://identifiers.org/biomodels.db/MODEL2594602728', 'http://identifiers.org/biomodels.db/BIOMD0000000232']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/19007794']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
-#@BQB_HAS_VERSION:['http://identifiers.org/obo.go/GO:0070469', 'http://identifiers.org/obo.go/GO:0006099', 'http://identifiers.org/kegg.pathway/hsa00020', 'http://identifiers.org/obo.go/GO:0006754']
-#@BQB_IS_PART_OF:['http://identifiers.org/reactome/REACT_6305', 'http://identifiers.org/reactome/REACT_2124', 'http://identifiers.org/reactome/REACT_1785']
+#@BQB_HAS_VERSION:['http://identifiers.org/obo.go/GO:0006754', 'http://identifiers.org/obo.go/GO:0070469', 'http://identifiers.org/kegg.pathway/hsa00020', 'http://identifiers.org/obo.go/GO:0006099']
+#@BQB_IS_PART_OF:['http://identifiers.org/reactome/REACT_1785', 'http://identifiers.org/reactome/REACT_6305', 'http://identifiers.org/reactome/REACT_2124']
 #@creatorEmail:'viji@ebi.ac.uk'
 #@creatorName:'Chelliah Vijayalakshmi'
-#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 14 molecules and 12 reactions. The translated model has 14 molecules and 30 rules'
+#@notes:'This is a plain translation of an SBML model created on 14/08/2021. The original model has 14 molecules and 12 reactions. The translated model has 14 molecules and 30 rules'
 ###
 begin model
 begin parameters
@@ -41,19 +41,19 @@ begin compartments
 	mitochondrion 3 1.0 #mitochondrial matrix
 end compartments
 begin molecule types
-	oxygen()
-	NADH()
-	citrate()
-	phosphate()
+	acetyl_CoA()
 	alpha_ketoglutarate()
-	oxaloacetate()
-	Hpl()
-	water()
 	NAD__pl__()
+	oxaloacetate()
+	oxygen()
+	phosphate()
+	water()
+	citrate()
 	ADP()
+	NADH()
 	pyruvate()
 	ATP()
-	acetyl_CoA()
+	Hpl()
 	DeltaPsi
 end molecule types
 begin seed species
@@ -90,11 +90,11 @@ begin observables
 end observables
 begin functions
 	Jresp() = kresp*(-NAD__pl___mitochondrion + Nt)/((exp(a*(DeltaPsi - DeltaPsim)) + 1)*(K - NAD__pl___mitochondrion + Nt))
+	JANT() = ATP_mitochondrion*kANT
 	Jleak() = DeltaPsi*kleak
 	DeltaGtransport() = 1.2*DeltaPsi*F
 	ATPcrit() = At/(1 + exp(-3*DeltaGtransport/(R*T))/(Kapp*phosphate_mitochondrion))
 	JATP() = kATP*(-1 + 2/(exp(b*(ATP_mitochondrion - ATPcrit)) + 1))
-	JANT() = ATP_mitochondrion*kANT
 	arRateDeltaPsi() = (-JANT - 3*JATP - Jleak + 10*Jresp)/C
 	NADH_ar() = -NAD__pl___mitochondrion + Nt
 	ADP_ar() = -ATP_mitochondrion + At

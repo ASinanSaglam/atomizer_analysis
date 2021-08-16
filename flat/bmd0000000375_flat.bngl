@@ -3,11 +3,11 @@
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/9002424']
 #@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/BIOMD0000000374']
 #@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000783']
-#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0015278', 'http://identifiers.org/go/GO:0061469', 'http://identifiers.org/go/GO:0044342']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0044342', 'http://identifiers.org/go/GO:0015278', 'http://identifiers.org/go/GO:0061469']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
 #@creatorEmail:'ajmera@ebi.ac.uk'
 #@creatorName:'Ajmera Ishan'
-#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 5 molecules and 0 reactions. The translated model has 5 molecules and 5 rules'
+#@notes:'This is a plain translation of an SBML model created on 14/08/2021. The original model has 5 molecules and 0 reactions. The translated model has 5 molecules and 5 rules'
 ###
 begin model
 begin parameters
@@ -48,11 +48,11 @@ begin parameters
 	IP3 0
 end parameters
 begin molecule types
+	Ca_i()
 	Ca_er_Ca_equations()
 	V_membrane()
-	Ca_i()
-	n()
 	jm()
+	n()
 end molecule types
 begin seed species
 	n() 0.0005 #n #n
@@ -68,32 +68,32 @@ begin observables
 	Species Ca_i Ca_i() #Ca_i
 end observables
 begin functions
-	m_f_infinity() = 1/(exp(-0.133333333333333*V_membrane - 2.66666666666667) + 1)
-	i_Ca_f() = g_Ca_f*m_f_infinity*(-V_Ca + V_membrane)
-	m_s_infinity() = 1/(exp(-V_membrane/10 - 8/5) + 1)
-	i_Ca_s() = g_Ca_s*m_s_infinity*(1 - jm)*(-V_Ca + V_membrane)
-	i_Ca() = i_Ca_f + i_Ca_s
-	i_leak() = g_leak*(-V_CRAC + V_membrane)
 	r_infinity() = 1/(exp((Ca_er_Ca_equations - Ca_er_bar)/sloper) + 1)
 	i_CRAC() = g_CRAC*r_infinity*(-V_CRAC + V_membrane)
+	i_K() = g_K*n*(-V_K + V_membrane)
 	g_K_ATP() =  if((time()>60000&&time()<660000),(2000),(150))
 	i_K_ATP() = g_K_ATP*(-V_K + V_membrane)
+	m_s_infinity() = 1/(exp(-V_membrane/10 - 8/5) + 1)
+	i_Ca_s() = g_Ca_s*m_s_infinity*(1 - jm)*(-V_Ca + V_membrane)
+	m_f_infinity() = 1/(exp(-0.133333333333333*V_membrane - 2.66666666666667) + 1)
+	i_Ca_f() = g_Ca_f*m_f_infinity*(-V_Ca + V_membrane)
+	i_Ca() = i_Ca_f + i_Ca_s
 	i_K_Ca() = Ca_i^5*g_K_Ca*(-V_K + V_membrane)/(Ca_i^5 + kdkca^5)
-	i_K() = g_K*n*(-V_K + V_membrane)
+	i_leak() = g_leak*(-V_CRAC + V_membrane)
 	arRateV_membrane() = (-i_CRAC - i_Ca - i_K - i_K_ATP - i_K_Ca - i_leak)/Cm
-	a_infinity() = 1/(1 + dact/Ca_i)
+	J_er_p() = Ca_i^2*verp/(Ca_i^2 + kerp^2)
 	b_infinity() = IP3/(IP3 + dip3)
+	a_infinity() = 1/(1 + dact/Ca_i)
 	h_infinity() = 1/(Ca_i/dinh + 1)
 	O() = a_infinity^3*b_infinity^3*h_infinity^3
 	J_er_IP3() = O*(Ca_er_Ca_equations - Ca_i)
-	J_er_p() = Ca_i^2*verp/(Ca_i^2 + kerp^2)
 	J_er_leak() = perl*(Ca_er_Ca_equations - Ca_i)
 	J_er_tot() = J_er_IP3 + J_er_leak - J_er_p
 	Jmp() = Ca_i^2*vmp/(Ca_i^2 + kmp^2)
 	J_mem_tot() = -f*(Jmp + gamma*i_Ca)
 	arRateCa_i() = J_er_tot/lambda_er + J_mem_tot
-	tau_j() = 1500 + 50000/(exp(-V_membrane/4 - 53/4) + exp(V_membrane/4 + 53/4))
 	jm_infinity() = 1 - 1/(exp(V_membrane/2 + 53/2) + 1)
+	tau_j() = 1500 + 50000/(exp(-V_membrane/4 - 53/4) + exp(V_membrane/4 + 53/4))
 	arRatejm() = (-jm + jm_infinity)/tau_j
 	tau_n() = 9.09/(exp(V_membrane/6 + 5/2) + 1)
 	n_infinity() = 1/(exp(-V_membrane/6 - 5/2) + 1)

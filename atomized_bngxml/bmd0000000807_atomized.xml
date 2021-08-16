@@ -1,0 +1,653 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000807_atomized">
+    <ListOfParameters>
+      <Parameter id="r_N" type="Constant" value="1000000" expr="1000000.0"/>
+      <Parameter id="mu_N" type="Constant" value="0.01" expr="0.01"/>
+      <Parameter id="beta_1" type="Constant" value="3.5e-10" expr="3.5e-10"/>
+      <Parameter id="r_G" type="Constant" value="0.05" expr="0.05"/>
+      <Parameter id="mu_G" type="Constant" value="0.01" expr="0.01"/>
+      <Parameter id="xi_G" type="Constant" value="0.01" expr="0.01"/>
+      <Parameter id="beta_2" type="Constant" value="3.5e-10" expr="3.5e-10"/>
+      <Parameter id="delta" type="Constant" value="1e-5" expr="1e-05"/>
+      <Parameter id="xi" type="Constant" value="1000" expr="1000.0"/>
+      <Parameter id="r_A" type="Constant" value="0.05" expr="0.05"/>
+      <Parameter id="K_A" type="Constant" value="10000000" expr="10000000.0"/>
+      <Parameter id="mu_A" type="Constant" value="0.01" expr="0.01"/>
+      <Parameter id="xi_A" type="Constant" value="0.006" expr="0.006"/>
+      <Parameter id="beta_3" type="Constant" value="3.5e-10" expr="3.5e-10"/>
+      <Parameter id="K" type="Constant" value="1e+8" expr="100000000.0"/>
+      <Parameter id="G0" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="beta_4" type="Constant" value="0" expr="0"/>
+      <Parameter id="beta_5" type="Constant" value="0" expr="0"/>
+      <Parameter id="beta_6" type="Constant" value="0" expr="0"/>
+      <Parameter id="A0" type="Constant" value="0" expr="0"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="normalizedcancercella">
+        <ListOfComponentTypes>
+          <ComponentType id="normalizedpre_cancercellg">
+            <ListOfAllowedStates>
+              <AllowedState id="normalizedpre_cancercellg"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="normalizednormalcelln"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="0.99999999" name="normalizednormalcelln()">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="normalizednormalcelln"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="1e-08" name="normalizedcancercella(normalizedpre_cancercellg~normalizedpre_cancercellg)">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="normalizedcancercella">
+            <ListOfComponents>
+              <Component id="S2_M1_C1" name="normalizedpre_cancercellg" state="normalizedpre_cancercellg" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="0" name="normalizedcancercella(normalizedpre_cancercellg~0)">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="normalizedcancercella">
+            <ListOfComponents>
+              <Component id="S3_M1_C1" name="normalizedpre_cancercellg" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="normal_cell_growth" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="normalizednormalcelln"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="normal_cell_death" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="normalizednormalcelln"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="mu_N"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR2_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="normal_cell_damage_A" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="normalizednormalcelln"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="fRate2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR3_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="normal_cell_damage_G" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="normalizednormalcelln"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="fRate3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR4_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="pre_cancer_cell_logistic_growth" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="normalizedcancercella">
+                <ListOfComponents>
+                  <Component id="RR5_PP1_M1_C1" name="normalizedpre_cancercellg" state="normalizedpre_cancercellg" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Function" name="fRate4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR5_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="pre_cancer_cell_natural_death" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR6_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_RP1_M1" name="normalizedcancercella">
+                <ListOfComponents>
+                  <Component id="RR6_RP1_M1_C1" name="normalizedpre_cancercellg" state="normalizedpre_cancercellg" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="mu_G"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR6_RP1_M1"/>
+          <MapItem sourceID="RR6_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR6_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="pre_cancer_cell_death_tissue_repair_system" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR7_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_RP1_M1" name="normalizedcancercella">
+                <ListOfComponents>
+                  <Component id="RR7_RP1_M1_C1" name="normalizedpre_cancercellg" state="normalizedpre_cancercellg" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Function" name="fRate6" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR7_RP1_M1"/>
+          <MapItem sourceID="RR7_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR7_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="pre_cancer_cell_death_apoptosis" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR8_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_RP1_M1" name="normalizedcancercella">
+                <ListOfComponents>
+                  <Component id="RR8_RP1_M1_C1" name="normalizedpre_cancercellg" state="normalizedpre_cancercellg" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="xi_G"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR8_RP1_M1"/>
+          <MapItem sourceID="RR8_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR8_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="negative_effect_on_G_A" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR9_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_RP1_M1" name="normalizedcancercella">
+                <ListOfComponents>
+                  <Component id="RR9_RP1_M1_C1" name="normalizedpre_cancercellg" state="normalizedpre_cancercellg" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Function" name="fRate8" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR9_RP1_M1"/>
+          <MapItem sourceID="RR9_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR9_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="negative_effect_on_A_G" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR10_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_RP1_M1" name="normalizedcancercella">
+                <ListOfComponents>
+                  <Component id="RR10_RP1_M1_C1" name="normalizedpre_cancercellg" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Function" name="fRate9" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR10_RP1_M1"/>
+          <MapItem sourceID="RR10_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR10_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR11" name="cancer_cell_natural_death" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR11_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_RP1_M1" name="normalizedcancercella">
+                <ListOfComponents>
+                  <Component id="RR11_RP1_M1_C1" name="normalizedpre_cancercellg" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR11_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="mu_A"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR11_RP1_M1"/>
+          <MapItem sourceID="RR11_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR11_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR12" name="cancer_cell_logistic_growth" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR12_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_PP1_M1" name="normalizedcancercella">
+                <ListOfComponents>
+                  <Component id="RR12_PP1_M1_C1" name="normalizedpre_cancercellg" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR12_RateLaw" type="Function" name="fRate11" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR12_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR13" name="_reverse_cancer_cell_logistic_growth" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR13_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_RP1_M1" name="normalizedcancercella">
+                <ListOfComponents>
+                  <Component id="RR13_RP1_M1_C1" name="normalizedpre_cancercellg" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR13_RateLaw" type="Function" name="fRate11m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR13_RP1_M1"/>
+          <MapItem sourceID="RR13_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR13_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR14" name="cancer_cell_death_tissue_repair_system" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR14_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_RP1_M1" name="normalizedcancercella">
+                <ListOfComponents>
+                  <Component id="RR14_RP1_M1_C1" name="normalizedpre_cancercellg" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR14_RateLaw" type="Function" name="fRate12" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR14_RP1_M1"/>
+          <MapItem sourceID="RR14_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR14_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR15" name="cancer_cell_death_apoptosis" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR15_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR15_RP1_M1" name="normalizedcancercella">
+                <ListOfComponents>
+                  <Component id="RR15_RP1_M1_C1" name="normalizedpre_cancercellg" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR15_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="xi_A"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR15_RP1_M1"/>
+          <MapItem sourceID="RR15_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR15_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR16" name="transition_to_cancer_cell" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR16_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR16_RP1_M1" name="normalizedcancercella">
+                <ListOfComponents>
+                  <Component id="RR16_RP1_M1_C1" name="normalizedpre_cancercellg" state="normalizedpre_cancercellg" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR16_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR16_PP1_M1" name="normalizedcancercella">
+                <ListOfComponents>
+                  <Component id="RR16_PP1_M1_C1" name="normalizedpre_cancercellg" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR16_RateLaw" type="Function" name="fRate14" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR16_RP1_M1" targetID="RR16_PP1_M1"/>
+          <MapItem sourceID="RR16_RP1_M1_C1" targetID="RR16_PP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR16_RP1_M1_C1" finalState="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="normalizednormalcelln" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="normalizednormalcelln"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="normalizedpre_cancercellg" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="normalizedcancercella">
+                <ListOfComponents>
+                  <Component id="O2_P1_M1_C1" name="normalizedpre_cancercellg" state="normalizedpre_cancercellg" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="normalizedcancercella" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="normalizedcancercella">
+                <ListOfComponents>
+                  <Component id="O3_P1_M1_C1" name="normalizedpre_cancercellg" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="N0">
+        <ListOfReferences>
+          <Reference name="mu_N" type="Constant"/>
+          <Reference name="r_N" type="Constant"/>
+        </ListOfReferences>
+        <Expression> -1+(r_N/mu_N) </Expression>
+      </Function>
+      <Function id="n0">
+        <ListOfReferences>
+          <Reference name="K" type="Constant"/>
+          <Reference name="N0" type="Function"/>
+        </ListOfReferences>
+        <Expression> N0/K </Expression>
+      </Function>
+      <Function id="N">
+        <ListOfReferences>
+          <Reference name="K" type="Constant"/>
+          <Reference name="normalizednormalcelln" type="Observable"/>
+        </ListOfReferences>
+        <Expression> K*normalizednormalcelln </Expression>
+      </Function>
+      <Function id="a0">
+        <ListOfReferences>
+          <Reference name="A0" type="Constant"/>
+          <Reference name="K" type="Constant"/>
+        </ListOfReferences>
+        <Expression> A0/K </Expression>
+      </Function>
+      <Function id="G">
+        <ListOfReferences>
+          <Reference name="K" type="Constant"/>
+          <Reference name="normalizedpre_cancercellg" type="Observable"/>
+        </ListOfReferences>
+        <Expression> K*normalizedpre_cancercellg </Expression>
+      </Function>
+      <Function id="A">
+        <ListOfReferences>
+          <Reference name="K" type="Constant"/>
+          <Reference name="normalizedcancercella" type="Observable"/>
+        </ListOfReferences>
+        <Expression> K*normalizedcancercella </Expression>
+      </Function>
+      <Function id="a">
+        <ListOfReferences>
+          <Reference name="normalizedcancercella" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 10*normalizedcancercella </Expression>
+      </Function>
+      <Function id="g0">
+        <ListOfReferences>
+          <Reference name="G0" type="Constant"/>
+          <Reference name="K" type="Constant"/>
+        </ListOfReferences>
+        <Expression> G0/K </Expression>
+      </Function>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="K" type="Constant"/>
+          <Reference name="r_N" type="Constant"/>
+        </ListOfReferences>
+        <Expression> r_N/K </Expression>
+      </Function>
+      <Function id="fRate2">
+        <ListOfReferences>
+          <Reference name="K" type="Constant"/>
+          <Reference name="beta_1" type="Constant"/>
+          <Reference name="normalizedcancercella" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (K*beta_1)*normalizedcancercella </Expression>
+      </Function>
+      <Function id="fRate3">
+        <ListOfReferences>
+          <Reference name="beta_4" type="Constant"/>
+          <Reference name="normalizedpre_cancercellg" type="Observable"/>
+        </ListOfReferences>
+        <Expression> beta_4*normalizedpre_cancercellg </Expression>
+      </Function>
+      <Function id="fRate4">
+        <ListOfReferences>
+          <Reference name="r_G" type="Constant"/>
+          <Reference name="normalizedpre_cancercellg" type="Observable"/>
+        </ListOfReferences>
+        <Expression> normalizedpre_cancercellg*r_G </Expression>
+      </Function>
+      <Function id="fRate6">
+        <ListOfReferences>
+          <Reference name="K" type="Constant"/>
+          <Reference name="beta_2" type="Constant"/>
+          <Reference name="normalizednormalcelln" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (K*beta_2)*normalizednormalcelln </Expression>
+      </Function>
+      <Function id="fRate8">
+        <ListOfReferences>
+          <Reference name="beta_5" type="Constant"/>
+          <Reference name="normalizedcancercella" type="Observable"/>
+        </ListOfReferences>
+        <Expression> beta_5*normalizedcancercella </Expression>
+      </Function>
+      <Function id="fRate9">
+        <ListOfReferences>
+          <Reference name="beta_6" type="Constant"/>
+          <Reference name="normalizedpre_cancercellg" type="Observable"/>
+        </ListOfReferences>
+        <Expression> beta_6*normalizedpre_cancercellg </Expression>
+      </Function>
+      <Function id="fRate11">
+        <ListOfReferences>
+          <Reference name="r_A" type="Constant"/>
+          <Reference name="normalizedcancercella" type="Observable"/>
+        </ListOfReferences>
+        <Expression> normalizedcancercella*r_A </Expression>
+      </Function>
+      <Function id="fRate11m">
+        <ListOfReferences>
+          <Reference name="K" type="Constant"/>
+          <Reference name="K_A" type="Constant"/>
+          <Reference name="r_A" type="Constant"/>
+          <Reference name="normalizedcancercella" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((K*normalizedcancercella)*r_A)/K_A </Expression>
+      </Function>
+      <Function id="fRate12">
+        <ListOfReferences>
+          <Reference name="K" type="Constant"/>
+          <Reference name="beta_3" type="Constant"/>
+          <Reference name="normalizednormalcelln" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (K*beta_3)*normalizednormalcelln </Expression>
+      </Function>
+      <Function id="fRate14">
+        <ListOfReferences>
+          <Reference name="K" type="Constant"/>
+          <Reference name="delta" type="Constant"/>
+          <Reference name="xi" type="Constant"/>
+          <Reference name="normalizedpre_cancercellg" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((K*delta)*normalizedpre_cancercellg)/((K*normalizedpre_cancercellg)+xi) </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

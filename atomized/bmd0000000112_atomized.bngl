@@ -1,12 +1,12 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL4024559990', 'http://identifiers.org/biomodels.db/BIOMD0000000112']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000112', 'http://identifiers.org/biomodels.db/MODEL4024559990']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/17186703']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/452646']
 #@BQB_IS_PART_OF:['http://identifiers.org/kegg.pathway/hsa04350']
 #@BQB_IS:['http://identifiers.org/obo.go/GO:0007179']
 #@creatorEmail:'hdharuri@cds.caltech.edu'
 #@creatorName:'Dharuri Harish'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 10 molecules and 8 reactions. The translated model has 5 molecules and 8 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 10 molecules and 8 reactions. The translated model has 5 molecules and 8 rules'
 ###
 begin model
 begin parameters
@@ -31,31 +31,31 @@ begin compartments
 end compartments
 begin molecule types
 	R_Smad_P()
-	#^ bqbiol:is obo.chebi:CHEBI:18367, kegg.compound:C00009
-	Pi(r_smad)
+	R_Smad(_cyt~_CYT~0,_nuc~_NUC~0,p_~P_~0,pi,smad4)
 	#^ bqbiol:hasPart uniprot:P36897, uniprot:P37173
 	receptors()
+	#^ bqbiol:is obo.chebi:CHEBI:18367, kegg.compound:C00009
+	Pi(r_smad)
 	Smad4(_cyt~_CYT~0,_nuc~_NUC~0,r_smad)
-	R_Smad(_cyt~_CYT~0,_nuc~_NUC~0,p_~P_~0,pi,smad4)
 end molecule types
 begin seed species
-	@cytoplasm:receptors() 10000.0 #receptors #receptor
-	@cytoplasm:R_Smad(_cyt~_CYT,_nuc~0,p_~0,pi,smad4) 162000.0 #R_Smad_cyt #R_smad_cyt
-	@cytoplasm:Smad4(_cyt~_CYT,_nuc~0,r_smad) 120000.0 #Smad4_cyt #smad4_cyt
-	@nucleus:R_Smad(_cyt~0,_nuc~_NUC,p_~0,pi,smad4) 18000.0 #R_Smad_nuc #R_smad_nuc
-	@nucleus:Smad4(_cyt~0,_nuc~_NUC,r_smad) 30000.0 #Smad4_nuc #smad4_nuc
+	@cytoplasm:receptors()@cytoplasm 10000.0 #receptors #receptor
+	@cytoplasm:R_Smad(_cyt~_CYT,_nuc~0,p_~0,pi,smad4)@cytoplasm 162000.0 #R_Smad_cyt #R_smad_cyt
+	@cytoplasm:Smad4(_cyt~_CYT,_nuc~0,r_smad)@cytoplasm 120000.0 #Smad4_cyt #smad4_cyt
+	@nucleus:R_Smad(_cyt~0,_nuc~_NUC,p_~0,pi,smad4)@nucleus 18000.0 #R_Smad_nuc #R_smad_nuc
+	@nucleus:Smad4(_cyt~0,_nuc~_NUC,r_smad)@nucleus 30000.0 #Smad4_nuc #smad4_nuc
 end seed species
 begin observables
-	Species receptors_cytoplasm @cytoplasm:receptors() #receptors
-	Species R_Smad_cyt_cytoplasm @cytoplasm:R_Smad(_cyt~_CYT,_nuc~0,p_~0,pi,smad4) #R-Smad_cyt
-	Species R_Smad_P_cyt_cytoplasm @cytoplasm:R_Smad(_cyt~_CYT,_nuc~0,p_~P_,pi,smad4) #R-Smad-P_cyt
-	Species Smad4_cyt_cytoplasm @cytoplasm:Smad4(_cyt~_CYT,_nuc~0,r_smad) #Smad4_cyt
-	Species R_Smad_P_Smad4_cyt_cytoplasm @cytoplasm:R_Smad(_cyt~_CYT,_nuc~0,p_~P_,pi,smad4!192).Smad4(_cyt~_CYT,_nuc~0,r_smad!192) #R-Smad-P-Smad4_cyt
-	Species R_Smad_P_Smad4_nuc_nucleus @nucleus:R_Smad(_cyt~0,_nuc~_NUC,p_~0,pi!191,smad4!192).Smad4(_cyt~0,_nuc~_NUC,r_smad!192).Pi(r_smad!191) #R-Smad-P-Smad4_nuc
-	Species R_Smad_nuc_nucleus @nucleus:R_Smad(_cyt~0,_nuc~_NUC,p_~0,pi,smad4) #R-Smad_nuc
-	Species R_Smad_P_nuc_nucleus @nucleus:R_Smad(_cyt~0,_nuc~_NUC,p_~0,pi!191,smad4).Pi(r_smad!191) #R-Smad-P_nuc
-	Species Smad4_nuc_nucleus @nucleus:Smad4(_cyt~0,_nuc~_NUC,r_smad) #Smad4_nuc
-	Species Pi_nucleus @nucleus:Pi(r_smad) #Pi
+	Species receptors_cytoplasm @cytoplasm:receptors()@cytoplasm #receptors
+	Species R_Smad_cyt_cytoplasm @cytoplasm:R_Smad(_cyt~_CYT,_nuc~0,p_~0,pi,smad4)@cytoplasm #R-Smad_cyt
+	Species R_Smad_P_cyt_cytoplasm @cytoplasm:R_Smad(_cyt~_CYT,_nuc~0,p_~P_,pi,smad4)@cytoplasm #R-Smad-P_cyt
+	Species Smad4_cyt_cytoplasm @cytoplasm:Smad4(_cyt~_CYT,_nuc~0,r_smad)@cytoplasm #Smad4_cyt
+	Species R_Smad_P_Smad4_cyt_cytoplasm @cytoplasm:R_Smad(_cyt~_CYT,_nuc~0,p_~P_,pi,smad4!192)@cytoplasm.Smad4(_cyt~_CYT,_nuc~0,r_smad!192)@cytoplasm #R-Smad-P-Smad4_cyt
+	Species R_Smad_P_Smad4_nuc_nucleus @nucleus:R_Smad(_cyt~0,_nuc~_NUC,p_~0,pi!191,smad4!192)@nucleus.Smad4(_cyt~0,_nuc~_NUC,r_smad!192)@nucleus.Pi(r_smad!191)@nucleus #R-Smad-P-Smad4_nuc
+	Species R_Smad_nuc_nucleus @nucleus:R_Smad(_cyt~0,_nuc~_NUC,p_~0,pi,smad4)@nucleus #R-Smad_nuc
+	Species R_Smad_P_nuc_nucleus @nucleus:R_Smad(_cyt~0,_nuc~_NUC,p_~0,pi!191,smad4)@nucleus.Pi(r_smad!191)@nucleus #R-Smad-P_nuc
+	Species Smad4_nuc_nucleus @nucleus:Smad4(_cyt~0,_nuc~_NUC,r_smad)@nucleus #Smad4_nuc
+	Species Pi_nucleus @nucleus:Pi(r_smad)@nucleus #Pi
 end observables
 begin functions
 	sum_smad4_cyt() = R_Smad_P_Smad4_cyt_cytoplasm + Smad4_cyt_cytoplasm

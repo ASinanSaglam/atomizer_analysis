@@ -1,0 +1,1780 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000582_flat">
+    <ListOfParameters>
+      <Parameter id="Akt_S473_phos_by_insulin" type="Constant" value="0.58878315" expr="0.588783148144923"/>
+      <Parameter id="Akt_pS473_dephos_by_mTORC1_pS2448" type="Constant" value="0.11459819" expr="0.114598191621279"/>
+      <Parameter id="AMPK_T172_phos" type="Constant" value="0.35518399" expr="0.355183987378767"/>
+      <Parameter id="AMPK_pT172_dephos_by_Mito_membr_pot_new" type="Constant" value="0.11774469" expr="0.117744691539618"/>
+      <Parameter id="AMPK_pT172_dephos_by_Mito_membr_pot_old" type="Constant" value="1e-6" expr="1.00000000000003e-06"/>
+      <Parameter id="mTORC1_S2448_phos_by_AA" type="Constant" value="1.00009e-6" expr="1.00008999860285e-06"/>
+      <Parameter id="mTORC1_S2448_phos_by_AA_n_Akt_pS473" type="Constant" value="162.47104" expr="162.471039450073"/>
+      <Parameter id="mTORC1_pS2448_dephos_by_AMPK_pT172" type="Constant" value="191.29726" expr="191.297262771509"/>
+      <Parameter id="mitophagy_activ_by_FoxO3a_n_AMPK_pT172" type="Constant" value="1319.8422" expr="1319.84219165251"/>
+      <Parameter id="mitophagy_inactiv_by_mTORC1_pS2448" type="Constant" value="645.99931" expr="645.999307230137"/>
+      <Parameter id="FoxO3a_phos_by_Akt_pS473" type="Constant" value="6.8351112" expr="6.83511123229576"/>
+      <Parameter id="FoxO3a_phos_by_JNK_pT183" type="Constant" value="0.11287763" expr="0.112877630496044"/>
+      <Parameter id="FoxO3a_pS253_degrad" type="Constant" value="39.406861" expr="39.4068609318082"/>
+      <Parameter id="FoxO3a_synthesis" type="Constant" value="407.30741" expr="407.307409980937"/>
+      <Parameter id="CDKN1A_transcr_by_FoxO3a_n_DNA_damage" type="Constant" value="0.085218234" expr="0.0852182335681166"/>
+      <Parameter id="CDKN1A_inactiv_by_Akt_pS473" type="Constant" value="0.066797106" expr="0.0667971061916905"/>
+      <Parameter id="CDKN1B_transcr_by_FoxO3a_n_DNA_damage" type="Constant" value="0.092052657" expr="0.0920526565951487"/>
+      <Parameter id="CDKN1B_inactiv_by_Akt_pS473" type="Constant" value="0.05968416" expr="0.0596841598127919"/>
+      <Parameter id="DNA_damaged_by_irradiation" type="Constant" value="9237.7231" expr="9237.72311545872"/>
+      <Parameter id="DNA_repair" type="Constant" value="0.32572477" expr="0.325724769122274"/>
+      <Parameter id="DNA_damaged_by_ROS" type="Constant" value="0.11887366" expr="0.118873655169353"/>
+      <Parameter id="ROS_prod_by_Mito_membr_pot_new" type="Constant" value="4.5546479" expr="4.55464788075885"/>
+      <Parameter id="ROS_prod_by_Mito_membr_pot_old" type="Constant" value="772.82949" expr="772.829490967078"/>
+      <Parameter id="ROS_turnover" type="Constant" value="3.2308232" expr="3.23082321168464"/>
+      <Parameter id="JNK_activ_by_ROS" type="Constant" value="0.0050232915" expr="0.00502329152478409"/>
+      <Parameter id="JNK_pT183_inactiv" type="Constant" value="0.071842917" expr="0.0718429173444438"/>
+      <Parameter id="IKKbeta_activ_by_ROS" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="IKKbeta_inactiv" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="mTORC1_S2448_phos_by_AA_n_IKKbeta" type="Constant" value="1.00009e-5" expr="1.00008996727694e-05"/>
+      <Parameter id="sen_ass_beta_gal_inc_by_ROS" type="Constant" value="0.070113999" expr="0.0701139988718817"/>
+      <Parameter id="sen_ass_beta_gal_inc_by_Mitophagy" type="Constant" value="1e-6" expr="1.00000000000011e-06"/>
+      <Parameter id="sen_ass_beta_gal_dec" type="Constant" value="0.15482117" expr="0.154821166783837"/>
+      <Parameter id="mito_biogenesis_by_mTORC1_pS2448" type="Constant" value="0.013362012" expr="0.0133620123598202"/>
+      <Parameter id="mito_biogenesis_by_AMPK_pT172" type="Constant" value="5.8915457e-5" expr="5.8915457309741e-05"/>
+      <Parameter id="mitophagy_new" type="Constant" value="0.22465993" expr="0.22465992989378"/>
+      <Parameter id="mitophagy_old" type="Constant" value="0.0012260761" expr="0.00122607614891116"/>
+      <Parameter id="mito_dysfunction" type="Constant" value="0.027069526" expr="0.0270695257507146"/>
+      <Parameter id="mito_membr_pot_new_inc" type="Constant" value="9882.0274" expr="9882.02736076158"/>
+      <Parameter id="mito_membr_pot_old_inc" type="Constant" value="0.0058601788" expr="0.00586017882122243"/>
+      <Parameter id="mito_membr_pot_new_dec" type="Constant" value="1094.5842" expr="1094.58423149719"/>
+      <Parameter id="mito_membr_pot_old_dec" type="Constant" value="0.9549035" expr="0.954903499913184"/>
+      <Parameter id="scale_Akt_pS473_obs" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="scale_FoxO3a_pS253_obs" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="scale_FoxO3a_total_obs" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="scale_AMPK_pT172_obs" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="scale_mTOR_pS2448_obs" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="scale_Mitophagy_obs" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="scale_Mito_Mass_obs" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="scale_Mito_Membr_Pot_obs" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="scale_CDKN1A_obs" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="scale_CDKN1B_obs" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="scale_ROS_obs" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="scale_DNA_damage_gammaH2AX_obs" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="scale_JNK_pT183_obs" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="scale_SA_beta_gal_obs" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="Insulin" type="Constant" value="0" expr="0"/>
+      <Parameter id="Amino_Acids" type="Constant" value="0" expr="0"/>
+      <Parameter id="Irradiation" type="Constant" value="0" expr="0"/>
+      <Parameter id="DNA_damage_gammaH2AX_obs" type="Constant" value="6.022e+23" expr="6.022e+23"/>
+      <Parameter id="Akt_pS473_obs" type="Constant" value="6.022e+24" expr="6.022e+24"/>
+      <Parameter id="mTOR_pS2448_obs" type="Constant" value="6.022e+24" expr="6.022e+24"/>
+      <Parameter id="AMPK_pT172_obs" type="Constant" value="6.022e+24" expr="6.022e+24"/>
+      <Parameter id="CDKN1A_obs" type="Constant" value="6.022e+24" expr="6.022e+24"/>
+      <Parameter id="CDKN1B_obs" type="Constant" value="6.022e+24" expr="6.022e+24"/>
+      <Parameter id="FoxO3a_pS253_obs" type="Constant" value="6.022e+24" expr="6.022e+24"/>
+      <Parameter id="FoxO3a_total_obs" type="Constant" value="1.2044e+25" expr="1.2044e+25"/>
+      <Parameter id="Mito_Mass_obs" type="Constant" value="6.022e+23" expr="6.022e+23"/>
+      <Parameter id="Mito_Membr_Pot_obs" type="Constant" value="7.298664e+24" expr="7.298664e+24"/>
+      <Parameter id="Mitophagy_obs" type="Constant" value="6.022e+24" expr="6.022e+24"/>
+      <Parameter id="ROS_obs" type="Constant" value="6.022e+24" expr="6.022e+24"/>
+      <Parameter id="JNK_pT183_obs" type="Constant" value="6.022e+24" expr="6.022e+24"/>
+      <Parameter id="SA_beta_gal_obs" type="Constant" value="4.87782e+23" expr="4.87782e+23"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="AMPK"/>
+      <MoleculeType id="AMPK_pT172"/>
+      <MoleculeType id="Akt"/>
+      <MoleculeType id="Akt_pS473"/>
+      <MoleculeType id="CDKN1A"/>
+      <MoleculeType id="CDKN1B"/>
+      <MoleculeType id="DNA_damage"/>
+      <MoleculeType id="FoxO3a"/>
+      <MoleculeType id="FoxO3a_pS253"/>
+      <MoleculeType id="IKKbeta"/>
+      <MoleculeType id="JNK"/>
+      <MoleculeType id="JNK_pT183"/>
+      <MoleculeType id="Mito_mass_new"/>
+      <MoleculeType id="Mito_mass_old"/>
+      <MoleculeType id="Mito_mass_turnover"/>
+      <MoleculeType id="Mito_membr_pot_new"/>
+      <MoleculeType id="Mito_membr_pot_old"/>
+      <MoleculeType id="Mitophagy"/>
+      <MoleculeType id="Nil"/>
+      <MoleculeType id="ROS"/>
+      <MoleculeType id="SA_beta_gal"/>
+      <MoleculeType id="mTORC1"/>
+      <MoleculeType id="mTORC1_pS2448"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="6.022e+24" name="Akt()">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="Akt"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="6.022e+24" name="Akt_pS473()">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="Akt_pS473"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="6.022e+24" name="AMPK()">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="AMPK"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S4"  concentration="6.022e+24" name="AMPK_pT172()">
+        <ListOfMolecules>
+          <Molecule id="S4_M1" name="AMPK_pT172"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S5"  concentration="6.022e+24" name="mTORC1()">
+        <ListOfMolecules>
+          <Molecule id="S5_M1" name="mTORC1"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S6"  concentration="6.022e+24" name="mTORC1_pS2448()">
+        <ListOfMolecules>
+          <Molecule id="S6_M1" name="mTORC1_pS2448"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S7"  concentration="6.022e+24" name="Mitophagy()">
+        <ListOfMolecules>
+          <Molecule id="S7_M1" name="Mitophagy"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S8"  concentration="6.022e+24" name="FoxO3a()">
+        <ListOfMolecules>
+          <Molecule id="S8_M1" name="FoxO3a"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S9"  concentration="6.022e+24" name="FoxO3a_pS253()">
+        <ListOfMolecules>
+          <Molecule id="S9_M1" name="FoxO3a_pS253"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S10"  concentration="6.022e+24" name="CDKN1A()">
+        <ListOfMolecules>
+          <Molecule id="S10_M1" name="CDKN1A"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S11"  concentration="6.022e+24" name="CDKN1B()">
+        <ListOfMolecules>
+          <Molecule id="S11_M1" name="CDKN1B"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S12"  concentration="1.5055e+25" name="JNK()">
+        <ListOfMolecules>
+          <Molecule id="S12_M1" name="JNK"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S13"  concentration="6.022e+24" name="JNK_pT183()">
+        <ListOfMolecules>
+          <Molecule id="S13_M1" name="JNK_pT183"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S14"  concentration="6.022e+24" name="ROS()">
+        <ListOfMolecules>
+          <Molecule id="S14_M1" name="ROS"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S15"  concentration="6.022e+23" name="DNA_damage()">
+        <ListOfMolecules>
+          <Molecule id="S15_M1" name="DNA_damage"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S16"  concentration="4.8778200000000004e+23" name="SA_beta_gal()">
+        <ListOfMolecules>
+          <Molecule id="S16_M1" name="SA_beta_gal"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S17"  concentration="6.022e+24" name="IKKbeta()">
+        <ListOfMolecules>
+          <Molecule id="S17_M1" name="IKKbeta"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S18"  concentration="6.022e+23" name="Mito_mass_new()">
+        <ListOfMolecules>
+          <Molecule id="S18_M1" name="Mito_mass_new"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S19"  concentration="1.5055e+25" name="Mito_mass_turnover()">
+        <ListOfMolecules>
+          <Molecule id="S19_M1" name="Mito_mass_turnover"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S20"  concentration="7.298664e+24" name="Mito_membr_pot_new()">
+        <ListOfMolecules>
+          <Molecule id="S20_M1" name="Mito_membr_pot_new"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="reaction_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR1_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_RP1_M1" name="Akt"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="Akt_pS473"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR1_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+          <Delete id="RR1_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="reaction_2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="Akt_pS473"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="Akt"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="fRate1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+          <Delete id="RR2_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="reaction_3" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="AMPK"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="AMPK_pT172"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="AMPK_T172_phos"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+          <Delete id="RR3_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="reaction_4" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="AMPK_pT172"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="AMPK"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="fRate3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR4_PP1_M1"/>
+          <Delete id="RR4_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="reaction_5" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR5_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP1_M1" name="AMPK_pT172"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="AMPK"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Function" name="fRate4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR5_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR5_PP1_M1"/>
+          <Delete id="RR5_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="reaction_6" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR6_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_RP1_M1" name="mTORC1"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="mTORC1_pS2448"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Function" name="fRate5" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR6_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR6_PP1_M1"/>
+          <Delete id="RR6_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="reaction_7" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR7_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_RP1_M1" name="mTORC1"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="mTORC1_pS2448"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Function" name="fRate6" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR7_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR7_PP1_M1"/>
+          <Delete id="RR7_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="reaction_8" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR8_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_RP1_M1" name="mTORC1_pS2448"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR8_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP1_M1" name="mTORC1"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Function" name="fRate7" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR8_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR8_PP1_M1"/>
+          <Delete id="RR8_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="reaction_9" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR9_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP1_M1" name="Mitophagy"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Function" name="fRate8" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR9_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="reaction_10" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR10_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_RP1_M1" name="Mitophagy"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR10_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_PP1_M1" name="Nil"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Function" name="fRate9" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR10_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR10_PP1_M1"/>
+          <Delete id="RR10_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR11" name="reaction_11" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR11_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_RP1_M1" name="FoxO3a"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR11_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_PP1_M1" name="FoxO3a_pS253"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR11_RateLaw" type="Function" name="fRate10" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR11_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR11_PP1_M1"/>
+          <Delete id="RR11_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR12" name="reaction_12" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR12_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_RP1_M1" name="FoxO3a_pS253"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR12_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_PP1_M1" name="FoxO3a"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR12_RateLaw" type="Function" name="fRate11" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR12_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR12_PP1_M1"/>
+          <Delete id="RR12_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR13" name="reaction_13" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR13_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_RP1_M1" name="FoxO3a_pS253"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR13_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_PP1_M1" name="Nil"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR13_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="FoxO3a_pS253_degrad"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR13_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR13_PP1_M1"/>
+          <Delete id="RR13_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR14" name="reaction_14" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR14_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_PP1_M1" name="FoxO3a"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR14_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="FoxO3a_synthesis"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR14_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR15" name="reaction_15" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR15_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR15_PP1_M1" name="CDKN1A"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR15_RateLaw" type="Function" name="fRate14" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR15_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR16" name="reaction_16" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR16_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR16_RP1_M1" name="CDKN1A"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR16_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR16_PP1_M1" name="Nil"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR16_RateLaw" type="Function" name="fRate15" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR16_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR16_PP1_M1"/>
+          <Delete id="RR16_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR17" name="reaction_17" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR17_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR17_PP1_M1" name="CDKN1B"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR17_RateLaw" type="Function" name="fRate16" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR17_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR18" name="reaction_18" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR18_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR18_RP1_M1" name="CDKN1B"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR18_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR18_PP1_M1" name="Nil"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR18_RateLaw" type="Function" name="fRate17" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR18_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR18_PP1_M1"/>
+          <Delete id="RR18_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR19" name="reaction_19" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR19_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR19_PP1_M1" name="DNA_damage"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR19_RateLaw" type="Function" name="fRate18" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR19_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR20" name="reaction_20" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR20_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR20_PP1_M1" name="DNA_damage"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR20_RateLaw" type="Function" name="fRate19" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR20_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR21" name="reaction_21" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR21_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR21_RP1_M1" name="DNA_damage"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR21_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR21_PP1_M1" name="Nil"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR21_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="DNA_repair"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR21_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR21_PP1_M1"/>
+          <Delete id="RR21_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR22" name="reaction_22" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR22_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR22_PP1_M1" name="ROS"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR22_RateLaw" type="Function" name="fRate21" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR22_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR23" name="reaction_23" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR23_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR23_PP1_M1" name="ROS"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR23_RateLaw" type="Function" name="fRate22" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR23_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR24" name="reaction_24" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR24_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR24_RP1_M1" name="ROS"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR24_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR24_PP1_M1" name="Nil"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR24_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="ROS_turnover"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR24_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR24_PP1_M1"/>
+          <Delete id="RR24_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR25" name="reaction_25" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR25_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR25_RP1_M1" name="JNK"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR25_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR25_PP1_M1" name="JNK_pT183"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR25_RateLaw" type="Function" name="fRate24" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR25_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR25_PP1_M1"/>
+          <Delete id="RR25_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR26" name="reaction_26" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR26_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR26_RP1_M1" name="JNK_pT183"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR26_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR26_PP1_M1" name="JNK"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR26_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="JNK_pT183_inactiv"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR26_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR26_PP1_M1"/>
+          <Delete id="RR26_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR27" name="reaction_27" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR27_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR27_PP1_M1" name="SA_beta_gal"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR27_RateLaw" type="Function" name="fRate26" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR27_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR28" name="reaction_28" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR28_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR28_PP1_M1" name="SA_beta_gal"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR28_RateLaw" type="Function" name="fRate27" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR28_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR29" name="reaction_29" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR29_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR29_RP1_M1" name="SA_beta_gal"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR29_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="sen_ass_beta_gal_dec"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR29_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR29_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR30" name="reaction_30" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR30_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR30_RP1_M1" name="Mito_mass_turnover"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR30_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR30_PP1_M1" name="Mito_mass_new"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR30_RateLaw" type="Function" name="fRate29" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR30_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR30_PP1_M1"/>
+          <Delete id="RR30_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR31" name="reaction_31" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR31_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR31_RP1_M1" name="Mito_mass_turnover"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR31_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR31_PP1_M1" name="Mito_mass_new"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR31_RateLaw" type="Function" name="fRate30" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR31_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR31_PP1_M1"/>
+          <Delete id="RR31_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR32" name="reaction_32" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR32_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR32_RP1_M1" name="Mito_mass_new"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR32_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR32_PP1_M1" name="Mito_mass_turnover"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR32_RateLaw" type="Function" name="fRate31" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR32_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR32_PP1_M1"/>
+          <Delete id="RR32_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR33" name="reaction_33" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR33_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR33_RP1_M1" name="Mito_mass_old"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR33_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR33_PP1_M1" name="Mito_mass_turnover"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR33_RateLaw" type="Function" name="fRate32" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR33_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR33_PP1_M1"/>
+          <Delete id="RR33_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR34" name="reaction_34" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR34_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR34_RP1_M1" name="Mito_mass_new"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR34_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR34_PP1_M1" name="Mito_mass_old"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR34_RateLaw" type="Function" name="fRate33" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR34_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR34_PP1_M1"/>
+          <Delete id="RR34_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR35" name="reaction_35" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR35_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR35_PP1_M1" name="Mito_membr_pot_new"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR35_RateLaw" type="Function" name="fRate34" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR35_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR36" name="reaction_36" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR36_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR36_PP1_M1" name="Mito_membr_pot_old"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR36_RateLaw" type="Function" name="fRate35" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR36_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR37" name="reaction_37" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR37_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR37_RP1_M1" name="Mito_membr_pot_new"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR37_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR37_PP1_M1" name="Nil"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR37_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="mito_membr_pot_new_dec"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR37_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR37_PP1_M1"/>
+          <Delete id="RR37_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR38" name="reaction_38" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR38_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR38_RP1_M1" name="Mito_membr_pot_old"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR38_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR38_PP1_M1" name="Nil"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR38_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="mito_membr_pot_old_dec"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR38_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR38_PP1_M1"/>
+          <Delete id="RR38_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR39" name="reaction_39" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR39_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR39_PP1_M1" name="IKKbeta"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR39_RateLaw" type="Function" name="fRate38" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR39_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR40" name="reaction_40" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR40_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR40_RP1_M1" name="IKKbeta"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR40_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR40_PP1_M1" name="Nil"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR40_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="IKKbeta_inactiv"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR40_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR40_PP1_M1"/>
+          <Delete id="RR40_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR41" name="reaction_41" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR41_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR41_RP1_M1" name="mTORC1"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR41_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR41_PP1_M1" name="mTORC1_pS2448"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR41_RateLaw" type="Function" name="fRate40" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR41_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR41_PP1_M1"/>
+          <Delete id="RR41_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="Akt" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="Akt"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="Akt_pS473" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="Akt_pS473"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="AMPK" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="AMPK"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="AMPK_pT172" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="AMPK_pT172"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="mTORC1" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="mTORC1"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O6" name="mTORC1_pS2448" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O6_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O6_P1_M1" name="mTORC1_pS2448"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O7" name="Mitophagy" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O7_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O7_P1_M1" name="Mitophagy"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O8" name="FoxO3a" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O8_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O8_P1_M1" name="FoxO3a"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O9" name="FoxO3a_pS253" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O9_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O9_P1_M1" name="FoxO3a_pS253"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O10" name="CDKN1A" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O10_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O10_P1_M1" name="CDKN1A"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O11" name="CDKN1B" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O11_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O11_P1_M1" name="CDKN1B"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O12" name="JNK" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O12_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O12_P1_M1" name="JNK"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O13" name="JNK_pT183" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O13_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O13_P1_M1" name="JNK_pT183"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O14" name="ROS" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O14_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O14_P1_M1" name="ROS"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O15" name="DNA_damage" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O15_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O15_P1_M1" name="DNA_damage"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O16" name="SA_beta_gal" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O16_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O16_P1_M1" name="SA_beta_gal"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O17" name="IKKbeta" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O17_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O17_P1_M1" name="IKKbeta"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O18" name="Mito_mass_new" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O18_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O18_P1_M1" name="Mito_mass_new"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O19" name="Mito_mass_old" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O19_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O19_P1_M1" name="Mito_mass_old"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O20" name="Mito_mass_turnover" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O20_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O20_P1_M1" name="Mito_mass_turnover"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O21" name="Mito_membr_pot_new" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O21_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O21_P1_M1" name="Mito_membr_pot_new"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O22" name="Mito_membr_pot_old" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O22_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O22_P1_M1" name="Mito_membr_pot_old"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O23" name="Nil" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O23_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O23_P1_M1" name="Nil"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="mTOR_pS2448_obs_ar">
+        <ListOfReferences>
+          <Reference name="scale_mTOR_pS2448_obs" type="Constant"/>
+          <Reference name="mTORC1_pS2448" type="Observable"/>
+        </ListOfReferences>
+        <Expression> mTORC1_pS2448*scale_mTOR_pS2448_obs </Expression>
+      </Function>
+      <Function id="FoxO3a_pS253_obs_ar">
+        <ListOfReferences>
+          <Reference name="scale_FoxO3a_pS253_obs" type="Constant"/>
+          <Reference name="FoxO3a_pS253" type="Observable"/>
+        </ListOfReferences>
+        <Expression> FoxO3a_pS253*scale_FoxO3a_pS253_obs </Expression>
+      </Function>
+      <Function id="AMPK_pT172_obs_ar">
+        <ListOfReferences>
+          <Reference name="scale_AMPK_pT172_obs" type="Constant"/>
+          <Reference name="AMPK_pT172" type="Observable"/>
+        </ListOfReferences>
+        <Expression> AMPK_pT172*scale_AMPK_pT172_obs </Expression>
+      </Function>
+      <Function id="Mito_Mass_obs_ar">
+        <ListOfReferences>
+          <Reference name="scale_Mito_Mass_obs" type="Constant"/>
+          <Reference name="Mito_mass_new" type="Observable"/>
+          <Reference name="Mito_mass_old" type="Observable"/>
+        </ListOfReferences>
+        <Expression> scale_Mito_Mass_obs*(Mito_mass_new+Mito_mass_old) </Expression>
+      </Function>
+      <Function id="CDKN1A_obs_ar">
+        <ListOfReferences>
+          <Reference name="scale_CDKN1A_obs" type="Constant"/>
+          <Reference name="CDKN1A" type="Observable"/>
+        </ListOfReferences>
+        <Expression> CDKN1A*scale_CDKN1A_obs </Expression>
+      </Function>
+      <Function id="CDKN1B_obs_ar">
+        <ListOfReferences>
+          <Reference name="scale_CDKN1B_obs" type="Constant"/>
+          <Reference name="CDKN1B" type="Observable"/>
+        </ListOfReferences>
+        <Expression> CDKN1B*scale_CDKN1B_obs </Expression>
+      </Function>
+      <Function id="Mito_Membr_Pot_obs_ar">
+        <ListOfReferences>
+          <Reference name="scale_Mito_Membr_Pot_obs" type="Constant"/>
+          <Reference name="Mito_membr_pot_new" type="Observable"/>
+          <Reference name="Mito_membr_pot_old" type="Observable"/>
+        </ListOfReferences>
+        <Expression> scale_Mito_Membr_Pot_obs*(Mito_membr_pot_new+Mito_membr_pot_old) </Expression>
+      </Function>
+      <Function id="Mitophagy_obs_ar">
+        <ListOfReferences>
+          <Reference name="scale_Mitophagy_obs" type="Constant"/>
+          <Reference name="Mitophagy" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Mitophagy*scale_Mitophagy_obs </Expression>
+      </Function>
+      <Function id="FoxO3a_total_obs_ar">
+        <ListOfReferences>
+          <Reference name="scale_FoxO3a_total_obs" type="Constant"/>
+          <Reference name="FoxO3a" type="Observable"/>
+          <Reference name="FoxO3a_pS253" type="Observable"/>
+        </ListOfReferences>
+        <Expression> scale_FoxO3a_total_obs*(FoxO3a+FoxO3a_pS253) </Expression>
+      </Function>
+      <Function id="ROS_obs_ar">
+        <ListOfReferences>
+          <Reference name="scale_ROS_obs" type="Constant"/>
+          <Reference name="ROS" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ROS*scale_ROS_obs </Expression>
+      </Function>
+      <Function id="JNK_pT183_obs_ar">
+        <ListOfReferences>
+          <Reference name="scale_JNK_pT183_obs" type="Constant"/>
+          <Reference name="JNK_pT183" type="Observable"/>
+        </ListOfReferences>
+        <Expression> JNK_pT183*scale_JNK_pT183_obs </Expression>
+      </Function>
+      <Function id="SA_beta_gal_obs_ar">
+        <ListOfReferences>
+          <Reference name="scale_SA_beta_gal_obs" type="Constant"/>
+          <Reference name="SA_beta_gal" type="Observable"/>
+        </ListOfReferences>
+        <Expression> SA_beta_gal*scale_SA_beta_gal_obs </Expression>
+      </Function>
+      <Function id="Akt_pS473_obs_ar">
+        <ListOfReferences>
+          <Reference name="scale_Akt_pS473_obs" type="Constant"/>
+          <Reference name="Akt_pS473" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Akt_pS473*scale_Akt_pS473_obs </Expression>
+      </Function>
+      <Function id="Irradiation_ar">
+        <ListOfReferences>
+        </ListOfReferences>
+        <Expression> if((time()&lt;-1),0,if((time()&lt;0),0,if((time()&lt;0.003472),1,0))) </Expression>
+      </Function>
+      <Function id="Amino_Acids_ar">
+        <ListOfReferences>
+        </ListOfReferences>
+        <Expression> if((time()&lt;-1),1,if((time()&lt;0),1,1)) </Expression>
+      </Function>
+      <Function id="Insulin_ar">
+        <ListOfReferences>
+        </ListOfReferences>
+        <Expression> if((time()&lt;-1),1,if((time()&lt;0),1,1)) </Expression>
+      </Function>
+      <Function id="DNA_damage_gammaH2AX_obs_ar">
+        <ListOfReferences>
+          <Reference name="scale_DNA_damage_gammaH2AX_obs" type="Constant"/>
+          <Reference name="DNA_damage" type="Observable"/>
+        </ListOfReferences>
+        <Expression> DNA_damage*scale_DNA_damage_gammaH2AX_obs </Expression>
+      </Function>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="Akt_S473_phos_by_insulin" type="Constant"/>
+          <Reference name="Insulin_ar" type="Function"/>
+        </ListOfReferences>
+        <Expression> Akt_S473_phos_by_insulin*Insulin_ar </Expression>
+      </Function>
+      <Function id="fRate1">
+        <ListOfReferences>
+          <Reference name="Akt_pS473_dephos_by_mTORC1_pS2448" type="Constant"/>
+          <Reference name="mTORC1_pS2448" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Akt_pS473_dephos_by_mTORC1_pS2448*mTORC1_pS2448 </Expression>
+      </Function>
+      <Function id="fRate3">
+        <ListOfReferences>
+          <Reference name="AMPK_pT172_dephos_by_Mito_membr_pot_new" type="Constant"/>
+          <Reference name="Mito_membr_pot_new" type="Observable"/>
+        </ListOfReferences>
+        <Expression> AMPK_pT172_dephos_by_Mito_membr_pot_new*Mito_membr_pot_new </Expression>
+      </Function>
+      <Function id="fRate4">
+        <ListOfReferences>
+          <Reference name="AMPK_pT172_dephos_by_Mito_membr_pot_old" type="Constant"/>
+          <Reference name="Mito_membr_pot_old" type="Observable"/>
+        </ListOfReferences>
+        <Expression> AMPK_pT172_dephos_by_Mito_membr_pot_old*Mito_membr_pot_old </Expression>
+      </Function>
+      <Function id="fRate5">
+        <ListOfReferences>
+          <Reference name="mTORC1_S2448_phos_by_AA" type="Constant"/>
+          <Reference name="Amino_Acids_ar" type="Function"/>
+        </ListOfReferences>
+        <Expression> Amino_Acids_ar*mTORC1_S2448_phos_by_AA </Expression>
+      </Function>
+      <Function id="fRate6">
+        <ListOfReferences>
+          <Reference name="mTORC1_S2448_phos_by_AA_n_Akt_pS473" type="Constant"/>
+          <Reference name="Amino_Acids_ar" type="Function"/>
+          <Reference name="Akt_pS473" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (Akt_pS473*Amino_Acids_ar)*mTORC1_S2448_phos_by_AA_n_Akt_pS473 </Expression>
+      </Function>
+      <Function id="fRate7">
+        <ListOfReferences>
+          <Reference name="mTORC1_pS2448_dephos_by_AMPK_pT172" type="Constant"/>
+          <Reference name="AMPK_pT172" type="Observable"/>
+        </ListOfReferences>
+        <Expression> AMPK_pT172*mTORC1_pS2448_dephos_by_AMPK_pT172 </Expression>
+      </Function>
+      <Function id="fRate8">
+        <ListOfReferences>
+          <Reference name="mitophagy_activ_by_FoxO3a_n_AMPK_pT172" type="Constant"/>
+          <Reference name="AMPK_pT172" type="Observable"/>
+          <Reference name="FoxO3a" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (AMPK_pT172*FoxO3a)*mitophagy_activ_by_FoxO3a_n_AMPK_pT172 </Expression>
+      </Function>
+      <Function id="fRate9">
+        <ListOfReferences>
+          <Reference name="mitophagy_inactiv_by_mTORC1_pS2448" type="Constant"/>
+          <Reference name="mTORC1_pS2448" type="Observable"/>
+        </ListOfReferences>
+        <Expression> mTORC1_pS2448*mitophagy_inactiv_by_mTORC1_pS2448 </Expression>
+      </Function>
+      <Function id="fRate10">
+        <ListOfReferences>
+          <Reference name="FoxO3a_phos_by_Akt_pS473" type="Constant"/>
+          <Reference name="Akt_pS473" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Akt_pS473*FoxO3a_phos_by_Akt_pS473 </Expression>
+      </Function>
+      <Function id="fRate11">
+        <ListOfReferences>
+          <Reference name="FoxO3a_phos_by_JNK_pT183" type="Constant"/>
+          <Reference name="JNK_pT183" type="Observable"/>
+        </ListOfReferences>
+        <Expression> FoxO3a_phos_by_JNK_pT183*JNK_pT183 </Expression>
+      </Function>
+      <Function id="fRate14">
+        <ListOfReferences>
+          <Reference name="CDKN1A_transcr_by_FoxO3a_n_DNA_damage" type="Constant"/>
+          <Reference name="DNA_damage" type="Observable"/>
+          <Reference name="FoxO3a" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (CDKN1A_transcr_by_FoxO3a_n_DNA_damage*DNA_damage)*FoxO3a </Expression>
+      </Function>
+      <Function id="fRate15">
+        <ListOfReferences>
+          <Reference name="CDKN1A_inactiv_by_Akt_pS473" type="Constant"/>
+          <Reference name="Akt_pS473" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Akt_pS473*CDKN1A_inactiv_by_Akt_pS473 </Expression>
+      </Function>
+      <Function id="fRate16">
+        <ListOfReferences>
+          <Reference name="CDKN1B_transcr_by_FoxO3a_n_DNA_damage" type="Constant"/>
+          <Reference name="DNA_damage" type="Observable"/>
+          <Reference name="FoxO3a" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (CDKN1B_transcr_by_FoxO3a_n_DNA_damage*DNA_damage)*FoxO3a </Expression>
+      </Function>
+      <Function id="fRate17">
+        <ListOfReferences>
+          <Reference name="CDKN1B_inactiv_by_Akt_pS473" type="Constant"/>
+          <Reference name="Akt_pS473" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Akt_pS473*CDKN1B_inactiv_by_Akt_pS473 </Expression>
+      </Function>
+      <Function id="fRate18">
+        <ListOfReferences>
+          <Reference name="DNA_damaged_by_irradiation" type="Constant"/>
+          <Reference name="Irradiation_ar" type="Function"/>
+        </ListOfReferences>
+        <Expression> DNA_damaged_by_irradiation*Irradiation_ar </Expression>
+      </Function>
+      <Function id="fRate19">
+        <ListOfReferences>
+          <Reference name="DNA_damaged_by_ROS" type="Constant"/>
+          <Reference name="ROS" type="Observable"/>
+        </ListOfReferences>
+        <Expression> DNA_damaged_by_ROS*ROS </Expression>
+      </Function>
+      <Function id="fRate21">
+        <ListOfReferences>
+          <Reference name="ROS_prod_by_Mito_membr_pot_new" type="Constant"/>
+          <Reference name="Mito_membr_pot_new" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Mito_membr_pot_new*ROS_prod_by_Mito_membr_pot_new </Expression>
+      </Function>
+      <Function id="fRate22">
+        <ListOfReferences>
+          <Reference name="ROS_prod_by_Mito_membr_pot_old" type="Constant"/>
+          <Reference name="Mito_membr_pot_old" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Mito_membr_pot_old*ROS_prod_by_Mito_membr_pot_old </Expression>
+      </Function>
+      <Function id="fRate24">
+        <ListOfReferences>
+          <Reference name="JNK_activ_by_ROS" type="Constant"/>
+          <Reference name="ROS" type="Observable"/>
+        </ListOfReferences>
+        <Expression> JNK_activ_by_ROS*ROS </Expression>
+      </Function>
+      <Function id="fRate26">
+        <ListOfReferences>
+          <Reference name="sen_ass_beta_gal_inc_by_ROS" type="Constant"/>
+          <Reference name="ROS" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ROS*sen_ass_beta_gal_inc_by_ROS </Expression>
+      </Function>
+      <Function id="fRate27">
+        <ListOfReferences>
+          <Reference name="sen_ass_beta_gal_inc_by_Mitophagy" type="Constant"/>
+          <Reference name="Mitophagy" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Mitophagy*sen_ass_beta_gal_inc_by_Mitophagy </Expression>
+      </Function>
+      <Function id="fRate29">
+        <ListOfReferences>
+          <Reference name="mito_biogenesis_by_mTORC1_pS2448" type="Constant"/>
+          <Reference name="mTORC1_pS2448" type="Observable"/>
+        </ListOfReferences>
+        <Expression> mTORC1_pS2448*mito_biogenesis_by_mTORC1_pS2448 </Expression>
+      </Function>
+      <Function id="fRate30">
+        <ListOfReferences>
+          <Reference name="mito_biogenesis_by_AMPK_pT172" type="Constant"/>
+          <Reference name="mTORC1_pS2448" type="Observable"/>
+        </ListOfReferences>
+        <Expression> mTORC1_pS2448*mito_biogenesis_by_AMPK_pT172 </Expression>
+      </Function>
+      <Function id="fRate31">
+        <ListOfReferences>
+          <Reference name="mitophagy_new" type="Constant"/>
+          <Reference name="Mitophagy" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Mitophagy*mitophagy_new </Expression>
+      </Function>
+      <Function id="fRate32">
+        <ListOfReferences>
+          <Reference name="mitophagy_old" type="Constant"/>
+          <Reference name="Mitophagy" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Mitophagy*mitophagy_old </Expression>
+      </Function>
+      <Function id="fRate33">
+        <ListOfReferences>
+          <Reference name="mito_dysfunction" type="Constant"/>
+          <Reference name="CDKN1A" type="Observable"/>
+        </ListOfReferences>
+        <Expression> CDKN1A*mito_dysfunction </Expression>
+      </Function>
+      <Function id="fRate34">
+        <ListOfReferences>
+          <Reference name="mito_membr_pot_new_inc" type="Constant"/>
+          <Reference name="Mito_mass_new" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Mito_mass_new*mito_membr_pot_new_inc </Expression>
+      </Function>
+      <Function id="fRate35">
+        <ListOfReferences>
+          <Reference name="mito_membr_pot_old_inc" type="Constant"/>
+          <Reference name="Mito_mass_old" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Mito_mass_old*mito_membr_pot_old_inc </Expression>
+      </Function>
+      <Function id="fRate38">
+        <ListOfReferences>
+          <Reference name="IKKbeta_activ_by_ROS" type="Constant"/>
+          <Reference name="ROS" type="Observable"/>
+        </ListOfReferences>
+        <Expression> IKKbeta_activ_by_ROS*ROS </Expression>
+      </Function>
+      <Function id="fRate40">
+        <ListOfReferences>
+          <Reference name="mTORC1_S2448_phos_by_AA_n_IKKbeta" type="Constant"/>
+          <Reference name="Amino_Acids_ar" type="Function"/>
+          <Reference name="IKKbeta" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (Amino_Acids_ar*IKKbeta)*mTORC1_S2448_phos_by_AA_n_IKKbeta </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

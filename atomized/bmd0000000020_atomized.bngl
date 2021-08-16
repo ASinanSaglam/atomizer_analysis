@@ -1,11 +1,11 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000020', 'http://identifiers.org/biomodels.db/MODEL6617668482']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL6617668482', 'http://identifiers.org/biomodels.db/BIOMD0000000020']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/12991237']
-#@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0005248', 'http://identifiers.org/obo.go/GO:0019227', 'http://identifiers.org/obo.go/GO:0005249']
-#@BQB_HAS_TAXON:['http://identifiers.org/obo.go/GO:0042757', 'http://identifiers.org/taxonomy/6618']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0019227', 'http://identifiers.org/obo.go/GO:0005248', 'http://identifiers.org/obo.go/GO:0005249']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/6618', 'http://identifiers.org/obo.go/GO:0042757']
 #@creatorEmail:'m.j.1.schilstra@herts.ac.uk'
 #@creatorName:'Schilstra Maria'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 0 molecules and 0 reactions. The translated model has 4 molecules and 4 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 0 molecules and 0 reactions. The translated model has 4 molecules and 4 rules'
 ###
 begin model
 begin parameters
@@ -44,16 +44,16 @@ end observables
 begin functions
 	V_L() = E_L - E_R
 	i_L() = g_L*(V - V_L)
-	V_Na() = E_Na - E_R
-	i_Na() = g_Na*h*m^3*(V - V_Na)
 	V_K() = E_K - E_R
 	i_K() = g_K*n^4*(V - V_K)
+	V_Na() = E_Na - E_R
+	i_Na() = g_Na*h*m^3*(V - V_Na)
 	arRateV() = (I - i_K - i_L - i_Na)/Cm
-	beta_n() = 0.125*exp(V/80)
 	alpha_n() = (0.01*V + 0.1)/(exp(V/10 + 1) - 1)
+	beta_n() = 0.125*exp(V/80)
 	arRaten() = alpha_n*(1 - n) - beta_n*n
-	beta_h() = 1/(exp(V/10 + 3) + 1)
 	alpha_h() = 0.07*exp(V/20)
+	beta_h() = 1/(exp(V/10 + 3) + 1)
 	arRateh() = alpha_h*(1 - h) - beta_h*h
 	alpha_m() = (0.1*V + 2.5)/(exp(V/10 + 5/2) - 1)
 	beta_m() = 4*exp(V/18)

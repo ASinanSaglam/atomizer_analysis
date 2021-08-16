@@ -1,11 +1,11 @@
 ###
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/27527217']
-#@BQB_HAS_PROPERTY:['http://identifiers.org/ncit/NCIT:C38981', 'http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/go/GO:0035329', 'http://identifiers.org/ncit/NCIT:C38834']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/ncit/NCIT:C38981', 'http://identifiers.org/ncit/NCIT:C38834', 'http://identifiers.org/go/GO:0035329']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
-#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1909250001', 'http://identifiers.org/biomodels.db/BIOMD0000000832']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000832', 'http://identifiers.org/biomodels.db/MODEL1909250001']
 #@creatorEmail:'johannes.p.meyer@gmail.com'
 #@creatorName:'Meyer Johannes'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 20 molecules and 26 reactions. The translated model has 7 molecules and 26 rules'
+#@notes:'This is an atomized translation of an SBML model created on 14/08/2021. The original model has 20 molecules and 26 reactions. The translated model has 7 molecules and 26 rules'
 ###
 begin model
 begin parameters
@@ -69,17 +69,17 @@ begin parameters
 	ModelValue_53 (226.84)
 end parameters
 begin molecule types
-	#^ bqbiol:isVersionOf ncit:C60667
-	RASSF1A(mst2)
+	#^ bqbiol:is uniprot:P04049
+	Raf1(a~A~0,i~I~0,mst2,p~P~0)
+	#^ bmbiol:isDerivedFrom pr:PR:000009686
+	LATS1(a~A~0)
 	#^ bqbiol:isVersionOf ncit:C131221
 	MST2(a~A~0,i~I~0,mst2,raf1,rassf1a)
 	RasG(dp~DP~0,tp~TP~0)
-	#^ bqbiol:is uniprot:P04049
-	Raf1(a~A~0,i~I~0,mst2,p~P~0)
+	#^ bqbiol:isVersionOf ncit:C60667
+	RASSF1A(mst2)
 	#^ bqbiol:is pr:PR:000029189
 	Akt(p~P~0)
-	#^ bmbiol:isDerivedFrom pr:PR:000009686
-	LATS1(a~A~0)
 	#^ bqbiol:is uniprot:P27361
 	ERK(pp~PP~0)
 end molecule types
@@ -87,11 +87,11 @@ begin seed species
 	Akt(p~0) 1.2044e+26 # 200.0mol/L * 6.022e23/mol *1.0L #Akt #Akt
 	RASSF1A(mst2) 1.065894e+24 #original 1.77substance/volume #RASSF1A #RASSF1A
 	MST2(a~0,i~0,mst2,raf1,rassf1a) 1.2044000000000002e+23 #original 0.2substance/volume #MST2 #MST2
-	MST2(a~0,i~0,mst2!57,raf1,rassf1a).MST2(a~0,i~0,mst2!57,raf1,rassf1a) 2.1077e+26 #original 350.0substance/volume #dMST2 #dMST2
+	MST2(a~0,i~0,mst2!860,raf1,rassf1a).MST2(a~0,i~0,mst2!860,raf1,rassf1a) 2.1077e+26 #original 350.0substance/volume #dMST2 #dMST2
 	MST2(a~A,i~0,mst2,raf1,rassf1a) 1.1176832000000001e+26 #original 185.6substance/volume #aMST2 #aMST2
-	MST2(a~A,i~0,mst2,raf1,rassf1a!58).RASSF1A(mst2!58) 6.859058e+25 #original 113.9substance/volume #aMST2uRASSF1A #aMST2uRASSF1A
-	MST2(a~0,i~0,mst2,raf1,rassf1a!58).RASSF1A(mst2!58) 1.3850600000000002e+23 #original 0.23substance/volume #MST2uRASSF1A #MST2uRASSF1A
-	MST2(a~0,i~I,mst2,raf1!59,rassf1a).Raf1(a~0,i~I,mst2!59,p~0) 1.2044e+26 #original 200.0substance/volume #iRaf1uiMST2 #iRaf1uiMST2
+	MST2(a~A,i~0,mst2,raf1,rassf1a!861).RASSF1A(mst2!861) 6.859058e+25 #original 113.9substance/volume #aMST2uRASSF1A #aMST2uRASSF1A
+	MST2(a~0,i~0,mst2,raf1,rassf1a!861).RASSF1A(mst2!861) 1.3850600000000002e+23 #original 0.23substance/volume #MST2uRASSF1A #MST2uRASSF1A
+	MST2(a~0,i~I,mst2,raf1!862,rassf1a).Raf1(a~0,i~I,mst2!862,p~0) 1.2044e+26 #original 200.0substance/volume #iRaf1uiMST2 #iRaf1uiMST2
 	LATS1(a~A) 1.1574284e+26 #original 192.2substance/volume #aLATS1 #aLATS1
 	LATS1(a~0) 4.69716e+24 #original 7.8substance/volume #LATS1 #LATS1
 	Raf1(a~0,i~I,mst2,p~0) 4.5165e+26 #original 750.0substance/volume #iRaf1 #iRaf1
@@ -102,12 +102,12 @@ begin observables
 	Species Akt Akt(p~0) #Akt
 	Species RASSF1A RASSF1A(mst2) #RASSF1A
 	Species MST2 MST2(a~0,i~0,mst2,raf1,rassf1a) #MST2
-	Species dMST2 MST2(a~0,i~0,mst2!57,raf1,rassf1a).MST2(a~0,i~0,mst2!57,raf1,rassf1a) #dMST2
+	Species dMST2 MST2(a~0,i~0,mst2!860,raf1,rassf1a).MST2(a~0,i~0,mst2!860,raf1,rassf1a) #dMST2
 	Species aMST2 MST2(a~A,i~0,mst2,raf1,rassf1a) #aMST2
-	Species aMST2uRASSF1A MST2(a~A,i~0,mst2,raf1,rassf1a!58).RASSF1A(mst2!58) #aMST2uRASSF1A
-	Species MST2uRASSF1A MST2(a~0,i~0,mst2,raf1,rassf1a!58).RASSF1A(mst2!58) #MST2uRASSF1A
+	Species aMST2uRASSF1A MST2(a~A,i~0,mst2,raf1,rassf1a!861).RASSF1A(mst2!861) #aMST2uRASSF1A
+	Species MST2uRASSF1A MST2(a~0,i~0,mst2,raf1,rassf1a!861).RASSF1A(mst2!861) #MST2uRASSF1A
 	Species iMST2 MST2(a~0,i~I,mst2,raf1,rassf1a) #iMST2
-	Species iRaf1uiMST2 MST2(a~0,i~I,mst2,raf1!59,rassf1a).Raf1(a~0,i~I,mst2!59,p~0) #iRaf1uiMST2
+	Species iRaf1uiMST2 MST2(a~0,i~I,mst2,raf1!862,rassf1a).Raf1(a~0,i~I,mst2!862,p~0) #iRaf1uiMST2
 	Species aLATS1 LATS1(a~A) #aLATS1
 	Species LATS1 LATS1(a~0) #LATS1
 	Species iRaf1 Raf1(a~0,i~I,mst2,p~0) #iRaf1
@@ -155,13 +155,13 @@ begin reaction rules
 	v3: Akt(p~0) -> Akt(p~P) fRate2() #Modifiers(RasGTP)
 	v4: MST2(a~A,i~0,mst2,raf1,rassf1a) -> MST2(a~0,i~0,mst2,raf1,rassf1a) fRate3()
 	v5: MST2(a~0,i~I,mst2,raf1,rassf1a) -> MST2(a~0,i~0,mst2,raf1,rassf1a) fRate4()
-	v6: MST2(a~0,i~0,mst2,raf1,rassf1a) + MST2(a~0,i~0,mst2,raf1,rassf1a) -> MST2(a~0,i~0,mst2!57,raf1,rassf1a).MST2(a~0,i~0,mst2!57,raf1,rassf1a) ka_21
-	v7: MST2(a~0,i~0,mst2,raf1,rassf1a) + RASSF1A(mst2) <-> MST2(a~0,i~0,mst2,raf1,rassf1a!58).RASSF1A(mst2!58) ka_22,fRate6m()
+	v6: MST2(a~0,i~0,mst2,raf1,rassf1a) + MST2(a~0,i~0,mst2,raf1,rassf1a) -> MST2(a~0,i~0,mst2!860,raf1,rassf1a).MST2(a~0,i~0,mst2!860,raf1,rassf1a) ka_21
+	v7: MST2(a~0,i~0,mst2,raf1,rassf1a) + RASSF1A(mst2) <-> MST2(a~0,i~0,mst2,raf1,rassf1a!861).RASSF1A(mst2!861) ka_22,fRate6m()
 	v8: MST2(a~0,i~0,mst2,raf1,rassf1a) -> MST2(a~0,i~I,mst2,raf1,rassf1a) fRate7() #Modifiers(pAkt)
-	v9: MST2(a~0,i~0,mst2!57,raf1,rassf1a).MST2(a~0,i~0,mst2!57,raf1,rassf1a) -> MST2(a~A,i~0,mst2,raf1,rassf1a) + MST2(a~A,i~0,mst2,raf1,rassf1a) kd_31
-	v10: MST2(a~A,i~0,mst2,raf1,rassf1a) + RASSF1A(mst2) <-> MST2(a~A,i~0,mst2,raf1,rassf1a!58).RASSF1A(mst2!58) ka_41,fRate9m()
-	v11: MST2(a~0,i~0,mst2,raf1,rassf1a!58).RASSF1A(mst2!58) -> MST2(a~A,i~0,mst2,raf1,rassf1a!58).RASSF1A(mst2!58) fRate10()
-	v12: MST2(a~0,i~I,mst2,raf1,rassf1a) + Raf1(a~0,i~I,mst2,p~0) <-> MST2(a~0,i~I,mst2,raf1!59,rassf1a).Raf1(a~0,i~I,mst2!59,p~0) ka_71,fRate11m()
+	v9: MST2(a~0,i~0,mst2!860,raf1,rassf1a).MST2(a~0,i~0,mst2!860,raf1,rassf1a) -> MST2(a~A,i~0,mst2,raf1,rassf1a) + MST2(a~A,i~0,mst2,raf1,rassf1a) kd_31
+	v10: MST2(a~A,i~0,mst2,raf1,rassf1a) + RASSF1A(mst2) <-> MST2(a~A,i~0,mst2,raf1,rassf1a!861).RASSF1A(mst2!861) ka_41,fRate9m()
+	v11: MST2(a~0,i~0,mst2,raf1,rassf1a!861).RASSF1A(mst2!861) -> MST2(a~A,i~0,mst2,raf1,rassf1a!861).RASSF1A(mst2!861) fRate10()
+	v12: MST2(a~0,i~I,mst2,raf1,rassf1a) + Raf1(a~0,i~I,mst2,p~0) <-> MST2(a~0,i~I,mst2,raf1!862,rassf1a).Raf1(a~0,i~I,mst2!862,p~0) ka_71,fRate11m()
 	v13: LATS1(a~A) -> LATS1(a~0) fRate12()
 	v14: LATS1(a~0) -> LATS1(a~A) fRate13() #Modifiers(aMST2)
 	v15: LATS1(a~0) -> LATS1(a~A) fRate14() #Modifiers(aMST2uRASSF1A)

@@ -5,7 +5,7 @@
 #@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0030157']
 #@creatorEmail:'lukas@ebi.ac.uk'
 #@creatorName:'Endler Lukas'
-#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 8 molecules and 11 reactions. The translated model has 3 molecules and 24 rules'
+#@notes:'This is a plain translation of an SBML model created on 14/08/2021. The original model has 8 molecules and 11 reactions. The translated model has 3 molecules and 24 rules'
 ###
 begin model
 begin parameters
@@ -45,9 +45,9 @@ begin compartments
 	lumen 3 0.1
 end compartments
 begin molecule types
+	HCO3_()
 	Napl()
 	CL_()
-	HCO3_()
 end molecule types
 begin seed species
 	@plasma:$HCO3_() 1.32484e+22 # (22.0 * 0.001)mol/L * 6.022e23/mol *1.0L #HCO3_ #bb
@@ -70,13 +70,13 @@ begin observables
 end observables
 begin functions
 	enbc() = r*temp*ln(1)/f
-	kbcf() = zoo*HCO3__lumen^2*g_bi*gcftr*ln(1)
-	ec() = r*temp*ln(1)/f
-	eb() = r*temp*ln(1)/f
 	CL__ar() = 160 - HCO3__lumen
 	kccf() = zoo*CL__ar^2*g_cl*gcftr*ln(1)
-	knbc() = gnbc
 	ena() = r*temp*ln(1)/f
+	kbcf() = zoo*HCO3__lumen^2*g_bi*gcftr*ln(1)
+	knbc() = gnbc
+	ec() = r*temp*ln(1)/f
+	eb() = r*temp*ln(1)/f
 	v() = (eb*kbcf + ec*kccf + ek*gk + ena*gnaleak + enbc*knbc)/(gk + kbcf + kccf + knbc)
 	jccftr() = kccf*(-ec + v)
 	jbcftr() = kbcf*(-eb + v)

@@ -1,0 +1,1283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000232_atomized">
+    <ListOfParameters>
+      <Parameter id="At" type="Constant" value="4.16" expr="4.16"/>
+      <Parameter id="C" type="Constant" value="6.75e-6" expr="6.75e-06"/>
+      <Parameter id="DeltaPsim" type="Constant" value="150" expr="150.0"/>
+      <Parameter id="F" type="Constant" value="96485" expr="96485.0"/>
+      <Parameter id="K" type="Constant" value="2" expr="2.0"/>
+      <Parameter id="Kapp" type="Constant" value="4.4e-9" expr="4.4e-09"/>
+      <Parameter id="Nt" type="Constant" value="1.07" expr="1.07"/>
+      <Parameter id="R" type="Constant" value="8314" expr="8314.0"/>
+      <Parameter id="T" type="Constant" value="298" expr="298.0"/>
+      <Parameter id="a" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="b" type="Constant" value="0.004" expr="0.004"/>
+      <Parameter id="kANT" type="Constant" value="0.05387" expr="0.05387"/>
+      <Parameter id="kATP" type="Constant" value="131.9" expr="131.9"/>
+      <Parameter id="kleak" type="Constant" value="0.000426" expr="0.000426"/>
+      <Parameter id="kresp" type="Constant" value="2.5" expr="2.5"/>
+      <Parameter id="r1_k1" type="Constant" value="0.038" expr="0.038000"/>
+      <Parameter id="r2_k2" type="Constant" value="0.152" expr="0.152000"/>
+      <Parameter id="r3_k3" type="Constant" value="57.142" expr="57.142000"/>
+      <Parameter id="r4_k4" type="Constant" value="0.053" expr="0.053000"/>
+      <Parameter id="r5_k5" type="Constant" value="0.082361" expr="0.082361"/>
+      <Parameter id="r6_k6" type="Constant" value="0.0032" expr="0.003200"/>
+      <Parameter id="r6_Keq" type="Constant" value="0.3975" expr="0.397500"/>
+      <Parameter id="r7_k7" type="Constant" value="0.04" expr="0.040000"/>
+      <Parameter id="r8_k8" type="Constant" value="3.6" expr="3.600000"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="ADP"/>
+      <MoleculeType id="ATP"/>
+      <MoleculeType id="DeltaPsi"/>
+      <MoleculeType id="Hpl"/>
+      <MoleculeType id="NADH"/>
+      <MoleculeType id="NAD__pl__"/>
+      <MoleculeType id="acetyl_CoA">
+        <ListOfComponentTypes>
+          <ComponentType id="oxaloacetate"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="alpha_ketoglutarate"/>
+      <MoleculeType id="oxaloacetate">
+        <ListOfComponentTypes>
+          <ComponentType id="acetyl_coa"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="oxygen"/>
+      <MoleculeType id="phosphate"/>
+      <MoleculeType id="pyruvate"/>
+      <MoleculeType id="water"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+      <compartment id="cytoplasm" spatialDimensions="3" size="1.0"/>
+      <compartment id="mitochondrion" spatialDimensions="3" size="1.0"/>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="2.1293792000000003e+21" name="@mitochondrion::ATP()" compartment="mitochondrion">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="ATP" compartment="mitochondrion"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="6.022e+20" name="@mitochondrion::$Hpl()" compartment="mitochondrion" Fixed="1">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="Hpl" compartment="mitochondrion"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="6.022e+20" name="@cytoplasm::$Hpl()" compartment="cytoplasm" Fixed="1">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="Hpl" compartment="cytoplasm"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S4"  concentration="5.154832e+20" name="@mitochondrion::NAD__pl__()" compartment="mitochondrion">
+        <ListOfMolecules>
+          <Molecule id="S4_M1" name="NAD__pl__" compartment="mitochondrion"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S5"  concentration="3.79386e+19" name="@mitochondrion::acetyl_CoA(oxaloacetate)" compartment="mitochondrion">
+        <ListOfMolecules>
+          <Molecule id="S5_M1" name="acetyl_CoA" compartment="mitochondrion">
+            <ListOfComponents>
+              <Component id="S5_M1_C1" name="oxaloacetate" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S6"  concentration="1.3549500000000002e+20" name="@mitochondrion::alpha_ketoglutarate()" compartment="mitochondrion">
+        <ListOfMolecules>
+          <Molecule id="S6_M1" name="alpha_ketoglutarate" compartment="mitochondrion"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S7"  concentration="2.6496800000000003e+20" name="@mitochondrion::acetyl_CoA(oxaloacetate!1).oxaloacetate(acetyl_coa!1)" compartment="mitochondrion">
+        <ListOfMolecules>
+          <Molecule id="S7_M1" name="acetyl_CoA" compartment="mitochondrion">
+            <ListOfComponents>
+              <Component id="S7_M1_C1" name="oxaloacetate" numberOfBonds="1"/>
+            </ListOfComponents>
+          </Molecule>
+          <Molecule id="S7_M2" name="oxaloacetate" compartment="mitochondrion">
+            <ListOfComponents>
+              <Component id="S7_M2_C1" name="acetyl_coa" numberOfBonds="1"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+        <ListOfBonds>
+          <Bond id="S7_B1" site1="S7_M1_C1" site2="S7_M2_C1"/>
+        </ListOfBonds>
+      </Species>
+      <Species id="S8"  concentration="3.0110000000000005e+18" name="@mitochondrion::oxaloacetate(acetyl_coa)" compartment="mitochondrion">
+        <ListOfMolecules>
+          <Molecule id="S8_M1" name="oxaloacetate" compartment="mitochondrion">
+            <ListOfComponents>
+              <Component id="S8_M1_C1" name="acetyl_coa" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S9"  concentration="6.022e+20" name="@mitochondrion::$oxygen()" compartment="mitochondrion" Fixed="1">
+        <ListOfMolecules>
+          <Molecule id="S9_M1" name="oxygen" compartment="mitochondrion"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S10"  concentration="1.469368e+21" name="@mitochondrion::$phosphate()" compartment="mitochondrion" Fixed="1">
+        <ListOfMolecules>
+          <Molecule id="S10_M1" name="phosphate" compartment="mitochondrion"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S11"  concentration="9.27388e+19" name="@mitochondrion::pyruvate()" compartment="mitochondrion">
+        <ListOfMolecules>
+          <Molecule id="S11_M1" name="pyruvate" compartment="mitochondrion"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S12"  concentration="6.022e+20" name="@mitochondrion::$water()" compartment="mitochondrion" Fixed="1">
+        <ListOfMolecules>
+          <Molecule id="S12_M1" name="water" compartment="mitochondrion"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S13"  concentration="150" name="@cytoplasm::DeltaPsi()" compartment="cytoplasm">
+        <ListOfMolecules>
+          <Molecule id="S13_M1" name="DeltaPsi" compartment="cytoplasm"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="v1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="pyruvate" compartment="mitochondrion"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r1_k1"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="v2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="pyruvate" compartment="mitochondrion"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR2_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP2_M1" name="NAD__pl__" compartment="mitochondrion"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="acetyl_CoA" compartment="mitochondrion">
+                <ListOfComponents>
+                  <Component id="RR2_PP1_M1_C1" name="oxaloacetate" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR2_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP2_M1" name="NADH" compartment="mitochondrion"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r2_k2"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1"/>
+          <MapItem sourceID="RR2_RP2_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+          <Add id="RR2_PP2_M1"/>
+          <Delete id="RR2_RP1" DeleteMolecules="0"/>
+          <Delete id="RR2_RP2" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="v3" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="oxaloacetate" compartment="mitochondrion">
+                <ListOfComponents>
+                  <Component id="RR3_RP1_M1_C1" name="acetyl_coa" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR3_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP2_M1" name="acetyl_CoA" compartment="mitochondrion">
+                <ListOfComponents>
+                  <Component id="RR3_RP2_M1_C1" name="oxaloacetate" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="oxaloacetate" compartment="mitochondrion">
+                <ListOfComponents>
+                  <Component id="RR3_PP1_M1_C1" name="acetyl_coa" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR3_PP1_M2" name="acetyl_CoA" compartment="mitochondrion">
+                <ListOfComponents>
+                  <Component id="RR3_PP1_M2_C1" name="oxaloacetate" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR3_PP1_B1" site1="RR3_PP1_M1_C1" site2="RR3_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r3_k3"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1" targetID="RR3_PP1_M1"/>
+          <MapItem sourceID="RR3_RP1_M1_C1" targetID="RR3_PP1_M1_C1"/>
+          <MapItem sourceID="RR3_RP2_M1" targetID="RR3_PP1_M2"/>
+          <MapItem sourceID="RR3_RP2_M1_C1" targetID="RR3_PP1_M2_C1"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR3_RP1_M1_C1" site2="RR3_RP2_M1_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="v4" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="oxaloacetate" compartment="mitochondrion">
+                <ListOfComponents>
+                  <Component id="RR4_RP1_M1_C1" name="acetyl_coa" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR4_RP1_M2" name="acetyl_CoA" compartment="mitochondrion">
+                <ListOfComponents>
+                  <Component id="RR4_RP1_M2_C1" name="oxaloacetate" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR4_RP1_B1" site1="RR4_RP1_M1_C1" site2="RR4_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+          <ReactantPattern id="RR4_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP2_M1" name="NAD__pl__" compartment="mitochondrion"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="alpha_ketoglutarate" compartment="mitochondrion"/>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR4_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP2_M1" name="NADH" compartment="mitochondrion"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r4_k4"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1"/>
+          <MapItem sourceID="RR4_RP1_M1_C1"/>
+          <MapItem sourceID="RR4_RP1_M2"/>
+          <MapItem sourceID="RR4_RP1_M2_C1"/>
+          <MapItem sourceID="RR4_RP2_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR4_PP1_M1"/>
+          <Add id="RR4_PP2_M1"/>
+          <Delete id="RR4_RP1" DeleteMolecules="0"/>
+          <Delete id="RR4_RP2" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="v5_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="alpha_ketoglutarate" compartment="mitochondrion"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Function" name="_rateLaw1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR5_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="v5_reactants_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="ADP" compartment="mitochondrion"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Function" name="_rateLaw2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR6_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="v5_reactants_2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="NAD__pl__" compartment="mitochondrion"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Function" name="_rateLaw3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR7_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="v5_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR8_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP1_M1" name="oxaloacetate" compartment="mitochondrion">
+                <ListOfComponents>
+                  <Component id="RR8_PP1_M1_C1" name="acetyl_coa" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Function" name="fRate4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR8_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="v5_products_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR9_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP1_M1" name="ATP" compartment="mitochondrion"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Function" name="fRate4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR9_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="v5_products_2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR10_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_PP1_M1" name="NADH" compartment="mitochondrion"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Function" name="_rateLaw4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR10_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR11" name="v6" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR11_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_RP1_M1" name="oxaloacetate" compartment="mitochondrion">
+                <ListOfComponents>
+                  <Component id="RR11_RP1_M1_C1" name="acetyl_coa" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR11_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_PP1_M1" name="alpha_ketoglutarate" compartment="mitochondrion"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR11_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r6_k6"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR11_RP1_M1"/>
+          <MapItem sourceID="RR11_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR11_PP1_M1"/>
+          <Delete id="RR11_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR12" name="_reverse_v6" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR12_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_RP1_M1" name="alpha_ketoglutarate" compartment="mitochondrion"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR12_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_PP1_M1" name="oxaloacetate" compartment="mitochondrion">
+                <ListOfComponents>
+                  <Component id="RR12_PP1_M1_C1" name="acetyl_coa" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR12_RateLaw" type="Function" name="fRate5m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR12_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR12_PP1_M1"/>
+          <Delete id="RR12_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR13" name="v7" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR13_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_RP1_M1" name="pyruvate" compartment="mitochondrion"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR13_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR13_RP2_M1" name="ATP" compartment="mitochondrion"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR13_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_PP1_M1" name="oxaloacetate" compartment="mitochondrion">
+                <ListOfComponents>
+                  <Component id="RR13_PP1_M1_C1" name="acetyl_coa" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR13_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR13_PP2_M1" name="ADP" compartment="mitochondrion"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR13_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r7_k7"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR13_RP1_M1"/>
+          <MapItem sourceID="RR13_RP2_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR13_PP1_M1"/>
+          <Add id="RR13_PP2_M1"/>
+          <Delete id="RR13_RP1" DeleteMolecules="0"/>
+          <Delete id="RR13_RP2" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR14" name="v8" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR14_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_RP1_M1" name="oxaloacetate" compartment="mitochondrion">
+                <ListOfComponents>
+                  <Component id="RR14_RP1_M1_C1" name="acetyl_coa" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR14_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r8_k8"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR14_RP1_M1"/>
+          <MapItem sourceID="RR14_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR14_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR15" name="vresp_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR15_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR15_PP1_M1" name="NADH" compartment="mitochondrion"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR15_RateLaw" type="Function" name="_rateLaw5" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR15_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR16" name="vresp_reactants_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR16_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR16_PP1_M1" name="oxygen" compartment="mitochondrion"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR16_RateLaw" type="Function" name="_rateLaw6" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR16_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR17" name="vresp_reactants_2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR17_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR17_PP1_M1" name="Hpl" compartment="mitochondrion"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR17_RateLaw" type="Function" name="_rateLaw7" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR17_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR18" name="vresp_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR18_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR18_PP1_M1" name="NAD__pl__" compartment="mitochondrion"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR18_RateLaw" type="Function" name="fRate8" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR18_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR19" name="vresp_products_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR19_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR19_PP1_M1" name="water" compartment="mitochondrion"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR19_RateLaw" type="Function" name="fRate8" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR19_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR20" name="vresp_products_2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR20_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR20_PP1_M1" name="Hpl" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR20_RateLaw" type="Function" name="_rateLaw8" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR20_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR21" name="vATP_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR21_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR21_PP1_M1" name="ADP" compartment="mitochondrion"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR21_RateLaw" type="Function" name="_rateLaw9" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR21_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR22" name="vATP_reactants_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR22_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR22_PP1_M1" name="phosphate" compartment="mitochondrion"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR22_RateLaw" type="Function" name="_rateLaw10" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR22_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR23" name="vATP_reactants_2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR23_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR23_PP1_M1" name="Hpl" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR23_RateLaw" type="Function" name="_rateLaw11" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR23_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR24" name="vATP_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR24_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR24_PP1_M1" name="ATP" compartment="mitochondrion"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR24_RateLaw" type="Function" name="fRate9" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR24_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR25" name="vATP_products_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR25_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR25_PP1_M1" name="water" compartment="mitochondrion"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR25_RateLaw" type="Function" name="fRate9" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR25_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR26" name="vATP_products_2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR26_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR26_PP1_M1" name="Hpl" compartment="mitochondrion"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR26_RateLaw" type="Function" name="_rateLaw12" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR26_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR27" name="vANT_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR27_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR27_PP1_M1" name="ATP" compartment="mitochondrion"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR27_RateLaw" type="Function" name="_rateLaw13" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR27_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR28" name="vANT_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR28_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR28_PP1_M1" name="ADP" compartment="mitochondrion"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR28_RateLaw" type="Function" name="fRate10" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR28_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR29" name="vleak_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR29_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR29_PP1_M1" name="Hpl" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR29_RateLaw" type="Function" name="_rateLaw14" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR29_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR30" name="vleak_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR30_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR30_PP1_M1" name="Hpl" compartment="mitochondrion"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR30_RateLaw" type="Function" name="fRate11" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR30_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR31" name="_R1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR31_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR31_PP1_M1" name="DeltaPsi" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR31_RateLaw" type="Function" name="arRateDeltaPsi" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR31_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="ADP_mitochondrion" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" compartment="mitochondrion" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="ADP"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="ATP_mitochondrion" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" compartment="mitochondrion" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="ATP"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="Hpl_mitochondrion" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" compartment="mitochondrion" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="Hpl"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="Hpl_cytoplasm" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" compartment="cytoplasm" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="Hpl"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="NAD__pl___mitochondrion" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" compartment="mitochondrion" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="NAD__pl__"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O6" name="NADH_mitochondrion" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O6_P1" compartment="mitochondrion" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O6_P1_M1" name="NADH"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O7" name="acetyl_CoA_mitochondrion" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O7_P1" compartment="mitochondrion" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O7_P1_M1" name="acetyl_CoA">
+                <ListOfComponents>
+                  <Component id="O7_P1_M1_C1" name="oxaloacetate" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O8" name="alpha_ketoglutarate_mitochondrion" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O8_P1" compartment="mitochondrion" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O8_P1_M1" name="alpha_ketoglutarate"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O9" name="citrate_mitochondrion" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O9_P1" compartment="mitochondrion" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O9_P1_M1" name="oxaloacetate">
+                <ListOfComponents>
+                  <Component id="O9_P1_M1_C1" name="acetyl_coa" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O9_P1_M2" name="acetyl_CoA">
+                <ListOfComponents>
+                  <Component id="O9_P1_M2_C1" name="oxaloacetate" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O9_P1_B1" site1="O9_P1_M1_C1" site2="O9_P1_M2_C1"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O10" name="oxaloacetate_mitochondrion" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O10_P1" compartment="mitochondrion" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O10_P1_M1" name="oxaloacetate">
+                <ListOfComponents>
+                  <Component id="O10_P1_M1_C1" name="acetyl_coa" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O11" name="oxygen_mitochondrion" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O11_P1" compartment="mitochondrion" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O11_P1_M1" name="oxygen"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O12" name="phosphate_mitochondrion" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O12_P1" compartment="mitochondrion" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O12_P1_M1" name="phosphate"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O13" name="pyruvate_mitochondrion" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O13_P1" compartment="mitochondrion" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O13_P1_M1" name="pyruvate"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O14" name="water_mitochondrion" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O14_P1" compartment="mitochondrion" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O14_P1_M1" name="water"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O15" name="DeltaPsi" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O15_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O15_P1_M1" name="DeltaPsi"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="JANT">
+        <ListOfReferences>
+          <Reference name="kANT" type="Constant"/>
+          <Reference name="ATP_mitochondrion" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ATP_mitochondrion*kANT </Expression>
+      </Function>
+      <Function id="DeltaGtransport">
+        <ListOfReferences>
+          <Reference name="F" type="Constant"/>
+          <Reference name="DeltaPsi" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (1.2*DeltaPsi)*F </Expression>
+      </Function>
+      <Function id="ATPcrit">
+        <ListOfReferences>
+          <Reference name="At" type="Constant"/>
+          <Reference name="Kapp" type="Constant"/>
+          <Reference name="R" type="Constant"/>
+          <Reference name="T" type="Constant"/>
+          <Reference name="DeltaGtransport" type="Function"/>
+          <Reference name="phosphate_mitochondrion" type="Observable"/>
+        </ListOfReferences>
+        <Expression> At/(1+(exp(((-3*DeltaGtransport)/(R*T)))/(Kapp*phosphate_mitochondrion))) </Expression>
+      </Function>
+      <Function id="JATP">
+        <ListOfReferences>
+          <Reference name="b" type="Constant"/>
+          <Reference name="kATP" type="Constant"/>
+          <Reference name="ATPcrit" type="Function"/>
+          <Reference name="ATP_mitochondrion" type="Observable"/>
+        </ListOfReferences>
+        <Expression> kATP*(-1+(2/(exp((b*(ATP_mitochondrion-ATPcrit)))+1))) </Expression>
+      </Function>
+      <Function id="Jresp">
+        <ListOfReferences>
+          <Reference name="DeltaPsim" type="Constant"/>
+          <Reference name="K" type="Constant"/>
+          <Reference name="Nt" type="Constant"/>
+          <Reference name="a" type="Constant"/>
+          <Reference name="kresp" type="Constant"/>
+          <Reference name="DeltaPsi" type="Observable"/>
+          <Reference name="NAD__pl___mitochondrion" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (kresp*((-NAD__pl___mitochondrion)+Nt))/((exp((a*(DeltaPsi-DeltaPsim)))+1)*((K-NAD__pl___mitochondrion)+Nt)) </Expression>
+      </Function>
+      <Function id="Jleak">
+        <ListOfReferences>
+          <Reference name="kleak" type="Constant"/>
+          <Reference name="DeltaPsi" type="Observable"/>
+        </ListOfReferences>
+        <Expression> DeltaPsi*kleak </Expression>
+      </Function>
+      <Function id="arRateDeltaPsi">
+        <ListOfReferences>
+          <Reference name="C" type="Constant"/>
+          <Reference name="JANT" type="Function"/>
+          <Reference name="JATP" type="Function"/>
+          <Reference name="Jleak" type="Function"/>
+          <Reference name="Jresp" type="Function"/>
+        </ListOfReferences>
+        <Expression> ((((-JANT)-(3*JATP))-Jleak)+(10*Jresp))/C </Expression>
+      </Function>
+      <Function id="NADH_ar">
+        <ListOfReferences>
+          <Reference name="Nt" type="Constant"/>
+          <Reference name="NAD__pl___mitochondrion" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (-NAD__pl___mitochondrion)+Nt </Expression>
+      </Function>
+      <Function id="ADP_ar">
+        <ListOfReferences>
+          <Reference name="At" type="Constant"/>
+          <Reference name="ATP_mitochondrion" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (-ATP_mitochondrion)+At </Expression>
+      </Function>
+      <Function id="fRate4">
+        <ListOfReferences>
+          <Reference name="At" type="Constant"/>
+          <Reference name="ATP_mitochondrion" type="Observable"/>
+          <Reference name="NAD__pl___mitochondrion" type="Observable"/>
+          <Reference name="alpha_ketoglutarate_mitochondrion" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((0.082361*NAD__pl___mitochondrion)*alpha_ketoglutarate_mitochondrion)*((-ATP_mitochondrion)+At) </Expression>
+      </Function>
+      <Function id="fRate5m">
+        <ListOfReferences>
+        </ListOfReferences>
+        <Expression> 0.0080503144654088 </Expression>
+      </Function>
+      <Function id="fRate8">
+        <ListOfReferences>
+          <Reference name="Jresp" type="Function"/>
+        </ListOfReferences>
+        <Expression> Jresp </Expression>
+      </Function>
+      <Function id="fRate9">
+        <ListOfReferences>
+          <Reference name="JATP" type="Function"/>
+        </ListOfReferences>
+        <Expression> JATP </Expression>
+      </Function>
+      <Function id="fRate10">
+        <ListOfReferences>
+          <Reference name="JANT" type="Function"/>
+        </ListOfReferences>
+        <Expression> JANT </Expression>
+      </Function>
+      <Function id="fRate11">
+        <ListOfReferences>
+          <Reference name="Jleak" type="Function"/>
+        </ListOfReferences>
+        <Expression> Jleak </Expression>
+      </Function>
+      <Function id="_rateLaw1">
+        <ListOfReferences>
+          <Reference name="fRate4" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate4() </Expression>
+      </Function>
+      <Function id="_rateLaw2">
+        <ListOfReferences>
+          <Reference name="fRate4" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate4() </Expression>
+      </Function>
+      <Function id="_rateLaw3">
+        <ListOfReferences>
+          <Reference name="fRate4" type="Function"/>
+        </ListOfReferences>
+        <Expression> (-1*2.0)*fRate4() </Expression>
+      </Function>
+      <Function id="_rateLaw4">
+        <ListOfReferences>
+          <Reference name="fRate4" type="Function"/>
+        </ListOfReferences>
+        <Expression> 2.0*fRate4() </Expression>
+      </Function>
+      <Function id="_rateLaw5">
+        <ListOfReferences>
+          <Reference name="fRate8" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate8() </Expression>
+      </Function>
+      <Function id="_rateLaw6">
+        <ListOfReferences>
+          <Reference name="fRate8" type="Function"/>
+        </ListOfReferences>
+        <Expression> (-1*0.5)*fRate8() </Expression>
+      </Function>
+      <Function id="_rateLaw7">
+        <ListOfReferences>
+          <Reference name="fRate8" type="Function"/>
+        </ListOfReferences>
+        <Expression> (-1*11.0)*fRate8() </Expression>
+      </Function>
+      <Function id="_rateLaw8">
+        <ListOfReferences>
+          <Reference name="fRate8" type="Function"/>
+        </ListOfReferences>
+        <Expression> 10.0*fRate8() </Expression>
+      </Function>
+      <Function id="_rateLaw9">
+        <ListOfReferences>
+          <Reference name="fRate9" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate9() </Expression>
+      </Function>
+      <Function id="_rateLaw10">
+        <ListOfReferences>
+          <Reference name="fRate9" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate9() </Expression>
+      </Function>
+      <Function id="_rateLaw11">
+        <ListOfReferences>
+          <Reference name="fRate9" type="Function"/>
+        </ListOfReferences>
+        <Expression> (-1*3.0)*fRate9() </Expression>
+      </Function>
+      <Function id="_rateLaw12">
+        <ListOfReferences>
+          <Reference name="fRate9" type="Function"/>
+        </ListOfReferences>
+        <Expression> 3.0*fRate9() </Expression>
+      </Function>
+      <Function id="_rateLaw13">
+        <ListOfReferences>
+          <Reference name="fRate10" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate10() </Expression>
+      </Function>
+      <Function id="_rateLaw14">
+        <ListOfReferences>
+          <Reference name="fRate11" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate11() </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

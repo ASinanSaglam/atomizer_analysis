@@ -1,11 +1,11 @@
 ###
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/25628036']
-#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/ncit/C16650', 'http://identifiers.org/go/GO:0051021', 'http://identifiers.org/ncit/C17494', 'http://identifiers.org/ncit/C17298']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/ncit/C17494', 'http://identifiers.org/ncit/C17298', 'http://identifiers.org/go/GO:0051021', 'http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/ncit/C16650']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
-#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1912170003', 'http://identifiers.org/biomodels.db/BIOMD0000000899']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000899', 'http://identifiers.org/biomodels.db/MODEL1912170003']
 #@creatorEmail:'johannes.p.meyer@gmail.com'
 #@creatorName:'Meyer Johannes'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 12 molecules and 8 reactions. The translated model has 6 molecules and 8 rules'
+#@notes:'This is an atomized translation of an SBML model created on 14/08/2021. The original model has 12 molecules and 8 reactions. The translated model has 6 molecules and 8 rules'
 ###
 begin model
 begin parameters
@@ -27,24 +27,24 @@ begin parameters
 	r8_k9 0.180000
 end parameters
 begin molecule types
+	#^ bqbiol:hasProperty ncit:C45329
+	ActiveGEF()
+	#^ bqbiol:isVersionOf chebi:CHEBI:35224
+	Effector(gdp_rho)
+	#^ bqbiol:is ncit:C17494
+	GEF()
 	#^ bqbiol:isVersionOf ncit:C154897
 	#^ bqbiol:hasProperty ncit:C154407
 	Degrade(Activator~Activator~0)
 	#^ bqbiol:hasVersion pr:PR:000000122
 	GDP_Rho(GTP_Rho~GTP_Rho~0,effector,gdi)
-	#^ bqbiol:is ncit:C17494
-	GEF()
-	#^ bqbiol:isVersionOf chebi:CHEBI:35224
-	Effector(gdp_rho)
 	GDI(gdp_rho)
-	#^ bqbiol:hasProperty ncit:C45329
-	ActiveGEF()
 end molecule types
 begin seed species
 	Degrade(Activator~Activator) 6.022e+17 # (1.0 * 1e-06)mol/L * 6.022e23/mol *1.0L #Activator #s1
 	GEF() 1.86682e+17 #original 0.31substance/L  #GEF #s3
 	Effector(gdp_rho) 6.022e+17 #original 1.0substance/L  #Effector #s9
-	GDP_Rho(GTP_Rho~0,effector,gdi!95).GDI(gdp_rho!95) 7.8286e+17 #original 1.3substance/L  #GDIGDP_Rho #s10
+	GDP_Rho(GTP_Rho~0,effector,gdi!898).GDI(gdp_rho!898) 7.8286e+17 #original 1.3substance/L  #GDIGDP_Rho #s10
 end seed species
 begin observables
 	Species Activator Degrade(Activator~Activator) #Activator
@@ -55,9 +55,9 @@ begin observables
 	Species GTP_Rho GDP_Rho(GTP_Rho~GTP_Rho,effector,gdi) #GTP-Rho
 	Species GDI GDI(gdp_rho) #GDI
 	Species Effector Effector(gdp_rho) #Effector
-	Species GDIGDP_Rho GDP_Rho(GTP_Rho~0,effector,gdi!95).GDI(gdp_rho!95) #GDI·GDP-Rho
-	Species GDIGTP_Rho GDP_Rho(GTP_Rho~GTP_Rho,effector,gdi!95).GDI(gdp_rho!95) #GDI·GTP-Rho
-	Species EffectorGTP_Rho GDP_Rho(GTP_Rho~GTP_Rho,effector!96,gdi).Effector(gdp_rho!96) #Effector·GTP-Rho
+	Species GDIGDP_Rho GDP_Rho(GTP_Rho~0,effector,gdi!898).GDI(gdp_rho!898) #GDI·GDP-Rho
+	Species GDIGTP_Rho GDP_Rho(GTP_Rho~GTP_Rho,effector,gdi!898).GDI(gdp_rho!898) #GDI·GTP-Rho
+	Species EffectorGTP_Rho GDP_Rho(GTP_Rho~GTP_Rho,effector!899,gdi).Effector(gdp_rho!899) #Effector·GTP-Rho
 end observables
 begin functions
 	fRate0() = 1.0*Activator
@@ -72,8 +72,8 @@ begin reaction rules
 	re3: Degrade(Activator~Activator) -> Degrade(Activator~0) r3_k3
 	re4: GDP_Rho(GTP_Rho~0,effector,gdi) -> GDP_Rho(GTP_Rho~GTP_Rho,effector,gdi) fRate3() #Modifiers(s4, s7)
 	re5: GDP_Rho(GTP_Rho~GTP_Rho,effector,gdi) -> GDP_Rho(GTP_Rho~0,effector,gdi) fRate4() #Modifiers(s8, s7)
-	re6: GDP_Rho(GTP_Rho~0,effector,gdi) + GDI(gdp_rho) <-> GDP_Rho(GTP_Rho~0,effector,gdi!95).GDI(gdp_rho!95) r6_k4,r6_k5
-	re7: GDI(gdp_rho) + GDP_Rho(GTP_Rho~GTP_Rho,effector,gdi) <-> GDP_Rho(GTP_Rho~GTP_Rho,effector,gdi!95).GDI(gdp_rho!95) r7_k6,fRate6m()
-	re8: GDP_Rho(GTP_Rho~GTP_Rho,effector,gdi) + Effector(gdp_rho) <-> GDP_Rho(GTP_Rho~GTP_Rho,effector!96,gdi).Effector(gdp_rho!96) r8_k8,fRate7m()
+	re6: GDP_Rho(GTP_Rho~0,effector,gdi) + GDI(gdp_rho) <-> GDP_Rho(GTP_Rho~0,effector,gdi!898).GDI(gdp_rho!898) r6_k4,r6_k5
+	re7: GDI(gdp_rho) + GDP_Rho(GTP_Rho~GTP_Rho,effector,gdi) <-> GDP_Rho(GTP_Rho~GTP_Rho,effector,gdi!898).GDI(gdp_rho!898) r7_k6,fRate6m()
+	re8: GDP_Rho(GTP_Rho~GTP_Rho,effector,gdi) + Effector(gdp_rho) <-> GDP_Rho(GTP_Rho~GTP_Rho,effector!899,gdi).Effector(gdp_rho!899) r8_k8,fRate7m()
 end reaction rules
 end model

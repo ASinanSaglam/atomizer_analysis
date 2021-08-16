@@ -1,0 +1,2405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000660_atomized">
+    <ListOfParameters>
+      <Parameter id="kSyMrna" type="Constant" value="0.02" expr="0.02"/>
+      <Parameter id="kSyMrnaP53" type="Constant" value="0.08" expr="0.08"/>
+      <Parameter id="kDeMrna" type="Constant" value="0.02" expr="0.02"/>
+      <Parameter id="kSyP21" type="Constant" value="0.0018" expr="0.0018"/>
+      <Parameter id="kDeP21" type="Constant" value="0.0025" expr="0.0025"/>
+      <Parameter id="kDeP21Cy" type="Constant" value="0.007" expr="0.007"/>
+      <Parameter id="kDeP21aRc" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="kSyCy" type="Constant" value="0.005" expr="0.005"/>
+      <Parameter id="kAsCyP21" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="kDsCyP21" type="Constant" value="0.05" expr="0.05"/>
+      <Parameter id="kDeCy" type="Constant" value="0.002" expr="0.002"/>
+      <Parameter id="kDeCyCy" type="Constant" value="0.0002" expr="0.0002"/>
+      <Parameter id="kImPc" type="Constant" value="0.003" expr="0.003"/>
+      <Parameter id="kExPc" type="Constant" value="0.006" expr="0.006"/>
+      <Parameter id="kPhRc" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="kDpRc" type="Constant" value="0.01" expr="0.01"/>
+      <Parameter id="jCy" type="Constant" value="1.8" expr="1.8"/>
+      <Parameter id="n" type="Constant" value="6" expr="6.0"/>
+      <Parameter id="kAsRcPc" type="Constant" value="0.01" expr="0.01"/>
+      <Parameter id="kDsRcPc" type="Constant" value="0.001" expr="0.001"/>
+      <Parameter id="kAsPcP21" type="Constant" value="100" expr="100.0"/>
+      <Parameter id="kDsPcP21" type="Constant" value="0.01" expr="0.01"/>
+      <Parameter id="kSyDna" type="Constant" value="0.007" expr="0.007"/>
+      <Parameter id="kSyP53" type="Constant" value="0.05" expr="0.05"/>
+      <Parameter id="kDeP53" type="Constant" value="0.05" expr="0.05"/>
+      <Parameter id="jP53" type="Constant" value="0.01" expr="0.01"/>
+      <Parameter id="kGeDam" type="Constant" value="0.001" expr="0.001"/>
+      <Parameter id="kGeDamArc" type="Constant" value="0.005" expr="0.005"/>
+      <Parameter id="kReDam" type="Constant" value="0.001" expr="0.001"/>
+      <Parameter id="kReDamP53" type="Constant" value="0.005" expr="0.005"/>
+      <Parameter id="jDam" type="Constant" value="0.5" expr="0.5"/>
+      <Parameter id="Skp2" type="Constant" value="6.022e+20" expr="6.022e+20"/>
+      <Parameter id="Cdt2" type="Constant" value="6.022e+20" expr="6.022e+20"/>
+      <Parameter id="tP21" type="Constant" value="4.33584e+20" expr="4.33584e+20"/>
+      <Parameter id="tCy" type="Constant" value="2.4088e+20" expr="2.4088e+20"/>
+      <Parameter id="tPcna" type="Constant" value="3.011e+20" expr="3.011e+20"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="Cy">
+        <ListOfComponentTypes>
+          <ComponentType id="p21"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="Dam"/>
+      <MoleculeType id="Dna"/>
+      <MoleculeType id="MrnaCy"/>
+      <MoleculeType id="MrnaP21"/>
+      <MoleculeType id="MrnaP53"/>
+      <MoleculeType id="P21">
+        <ListOfComponentTypes>
+          <ComponentType id="apcna"/>
+          <ComponentType id="cy"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="P53"/>
+      <MoleculeType id="Rc">
+        <ListOfComponentTypes>
+          <ComponentType id="apcna"/>
+          <ComponentType id="p">
+            <ListOfAllowedStates>
+              <AllowedState id="P"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="aPcna">
+        <ListOfComponentTypes>
+          <ComponentType id="p21"/>
+          <ComponentType id="rc"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="6.022e+20" name="MrnaP21()">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="MrnaP21"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="6.022e+20" name="MrnaCy()">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="MrnaCy"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="6.022e+20" name="MrnaP53()">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="MrnaP53"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S4"  concentration="4.33584e+20" name="P21(apcna,cy)">
+        <ListOfMolecules>
+          <Molecule id="S4_M1" name="P21">
+            <ListOfComponents>
+              <Component id="S4_M1_C1" name="apcna" numberOfBonds="0"/>
+              <Component id="S4_M1_C2" name="cy" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S5"  concentration="2.4088000000000003e+20" name="Cy(p21)">
+        <ListOfMolecules>
+          <Molecule id="S5_M1" name="Cy">
+            <ListOfComponents>
+              <Component id="S5_M1_C1" name="p21" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S6"  concentration="3.011e+20" name="aPcna(p21,rc)">
+        <ListOfMolecules>
+          <Molecule id="S6_M1" name="aPcna">
+            <ListOfComponents>
+              <Component id="S6_M1_C1" name="p21" numberOfBonds="0"/>
+              <Component id="S6_M1_C2" name="rc" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S7"  concentration="6.022e+20" name="Rc(apcna,p~0)">
+        <ListOfMolecules>
+          <Molecule id="S7_M1" name="Rc">
+            <ListOfComponents>
+              <Component id="S7_M1_C1" name="apcna" numberOfBonds="0"/>
+              <Component id="S7_M1_C2" name="p" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="Synthesis_of_p21_mRNAs" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="MrnaP21"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kSyMrna"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="Synthesis_of_p21_mRNAs_by_p53" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="P53"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="MrnaP21"/>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR2_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP2_M1" name="P53"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kSyMrnaP53"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1" targetID="RR2_PP2_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="Synthesis_of_cyclin_mRNAs" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="MrnaCy"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kSyMrna"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="Synthesis_of_p53_mRNAs" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="MrnaP53"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kSyMrna"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR4_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="Degradation_of_p21_mRNAs" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR5_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP1_M1" name="MrnaP21"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kDeMrna"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR5_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR5_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="Degradation_of_cyclin_mRNAs" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR6_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_RP1_M1" name="MrnaCy"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kDeMrna"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR6_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR6_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="Degradation_of_p53_mRNAs" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR7_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_RP1_M1" name="MrnaP53"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kDeMrna"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR7_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR7_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="Synthesis_of_p21" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR8_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_RP1_M1" name="MrnaP21"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR8_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP1_M1" name="MrnaP21"/>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR8_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP2_M1" name="P21">
+                <ListOfComponents>
+                  <Component id="RR8_PP2_M1_C1" name="apcna" numberOfBonds="0"/>
+                  <Component id="RR8_PP2_M1_C2" name="cy" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kSyP21"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR8_RP1_M1" targetID="RR8_PP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR8_PP2_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="Degradation_of_p21_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR9_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP1_M1" name="P21">
+                <ListOfComponents>
+                  <Component id="RR9_PP1_M1_C1" name="apcna" numberOfBonds="0"/>
+                  <Component id="RR9_PP1_M1_C2" name="cy" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Function" name="_rateLaw1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR9_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="Synthesis_of_cyclins" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR10_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_RP1_M1" name="MrnaCy"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR10_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_PP1_M1" name="MrnaCy"/>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR10_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR10_PP2_M1" name="Cy">
+                <ListOfComponents>
+                  <Component id="RR10_PP2_M1_C1" name="p21" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kSyCy"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR10_RP1_M1" targetID="RR10_PP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR10_PP2_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR11" name="Degradation_of_cyclins_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR11_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_PP1_M1" name="Cy">
+                <ListOfComponents>
+                  <Component id="RR11_PP1_M1_C1" name="p21" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR11_RateLaw" type="Function" name="_rateLaw2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR11_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR12" name="Association_and_dissociation_of_CDK2_Cyclin_and_p21" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR12_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_RP1_M1" name="Cy">
+                <ListOfComponents>
+                  <Component id="RR12_RP1_M1_C1" name="p21" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR12_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR12_RP2_M1" name="P21">
+                <ListOfComponents>
+                  <Component id="RR12_RP2_M1_C1" name="apcna" numberOfBonds="0"/>
+                  <Component id="RR12_RP2_M1_C2" name="cy" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR12_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_PP1_M1" name="P21">
+                <ListOfComponents>
+                  <Component id="RR12_PP1_M1_C1" name="apcna" numberOfBonds="0"/>
+                  <Component id="RR12_PP1_M1_C2" name="cy" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR12_PP1_M2" name="Cy">
+                <ListOfComponents>
+                  <Component id="RR12_PP1_M2_C1" name="p21" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR12_PP1_B1" site1="RR12_PP1_M1_C2" site2="RR12_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR12_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kAsCyP21"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR12_RP1_M1" targetID="RR12_PP1_M2"/>
+          <MapItem sourceID="RR12_RP1_M1_C1" targetID="RR12_PP1_M2_C1"/>
+          <MapItem sourceID="RR12_RP2_M1" targetID="RR12_PP1_M1"/>
+          <MapItem sourceID="RR12_RP2_M1_C1" targetID="RR12_PP1_M1_C1"/>
+          <MapItem sourceID="RR12_RP2_M1_C2" targetID="RR12_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR12_RP2_M1_C2" site2="RR12_RP1_M1_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR13" name="_reverse_Association_and_dissociation_of_CDK2_Cyclin_and_p21" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR13_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_RP1_M1" name="P21">
+                <ListOfComponents>
+                  <Component id="RR13_RP1_M1_C1" name="apcna" numberOfBonds="0"/>
+                  <Component id="RR13_RP1_M1_C2" name="cy" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR13_RP1_M2" name="Cy">
+                <ListOfComponents>
+                  <Component id="RR13_RP1_M2_C1" name="p21" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR13_RP1_B1" site1="RR13_RP1_M1_C2" site2="RR13_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR13_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_PP1_M1" name="Cy">
+                <ListOfComponents>
+                  <Component id="RR13_PP1_M1_C1" name="p21" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR13_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR13_PP2_M1" name="P21">
+                <ListOfComponents>
+                  <Component id="RR13_PP2_M1_C1" name="apcna" numberOfBonds="0"/>
+                  <Component id="RR13_PP2_M1_C2" name="cy" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR13_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kDsCyP21"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR13_RP1_M1" targetID="RR13_PP2_M1"/>
+          <MapItem sourceID="RR13_RP1_M1_C1" targetID="RR13_PP2_M1_C1"/>
+          <MapItem sourceID="RR13_RP1_M1_C2" targetID="RR13_PP2_M1_C2"/>
+          <MapItem sourceID="RR13_RP1_M2" targetID="RR13_PP1_M1"/>
+          <MapItem sourceID="RR13_RP1_M2_C1" targetID="RR13_PP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <DeleteBond site1="RR13_RP1_M1_C2" site2="RR13_RP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR14" name="Degradation_of_cyclin_in_CDK2_Cyclin_p21_complexes_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR14_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_PP1_M1" name="P21">
+                <ListOfComponents>
+                  <Component id="RR14_PP1_M1_C1" name="apcna" numberOfBonds="0"/>
+                  <Component id="RR14_PP1_M1_C2" name="cy" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR14_PP1_M2" name="Cy">
+                <ListOfComponents>
+                  <Component id="RR14_PP1_M2_C1" name="p21" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR14_PP1_B1" site1="RR14_PP1_M1_C2" site2="RR14_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR14_RateLaw" type="Function" name="_rateLaw3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR14_PP1_M1"/>
+          <Add id="RR14_PP1_M2"/>
+          <AddBond site1="RR14_PP1_M1_C2" site2="RR14_PP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR15" name="Degradation_of_cyclin_in_CDK2_Cyclin_p21_complexes_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR15_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR15_PP1_M1" name="P21">
+                <ListOfComponents>
+                  <Component id="RR15_PP1_M1_C1" name="apcna" numberOfBonds="0"/>
+                  <Component id="RR15_PP1_M1_C2" name="cy" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR15_RateLaw" type="Function" name="fRate12" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR15_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR16" name="Degradation_of_p21_in_CDK2_Cyclin_p21_complexes_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR16_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR16_PP1_M1" name="P21">
+                <ListOfComponents>
+                  <Component id="RR16_PP1_M1_C1" name="apcna" numberOfBonds="0"/>
+                  <Component id="RR16_PP1_M1_C2" name="cy" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR16_PP1_M2" name="Cy">
+                <ListOfComponents>
+                  <Component id="RR16_PP1_M2_C1" name="p21" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR16_PP1_B1" site1="RR16_PP1_M1_C2" site2="RR16_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR16_RateLaw" type="Function" name="_rateLaw4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR16_PP1_M1"/>
+          <Add id="RR16_PP1_M2"/>
+          <AddBond site1="RR16_PP1_M1_C2" site2="RR16_PP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR17" name="Degradation_of_p21_in_CDK2_Cyclin_p21_complexes_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR17_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR17_PP1_M1" name="Cy">
+                <ListOfComponents>
+                  <Component id="RR17_PP1_M1_C1" name="p21" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR17_RateLaw" type="Function" name="fRate13" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR17_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR18" name="Import_of_active_PCNA" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR18_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR18_PP1_M1" name="aPcna">
+                <ListOfComponents>
+                  <Component id="RR18_PP1_M1_C1" name="p21" numberOfBonds="0"/>
+                  <Component id="RR18_PP1_M1_C2" name="rc" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR18_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kImPc"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR18_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR19" name="Export_of_active_PCNA" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR19_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR19_RP1_M1" name="aPcna">
+                <ListOfComponents>
+                  <Component id="RR19_RP1_M1_C1" name="p21" numberOfBonds="0"/>
+                  <Component id="RR19_RP1_M1_C2" name="rc" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR19_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kExPc"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR19_RP1_M1"/>
+          <MapItem sourceID="RR19_RP1_M1_C1"/>
+          <MapItem sourceID="RR19_RP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR19_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR20" name="Export_of_inactive_PCNA" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR20_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR20_RP1_M1" name="aPcna">
+                <ListOfComponents>
+                  <Component id="RR20_RP1_M1_C1" name="p21" numberOfBonds="1"/>
+                  <Component id="RR20_RP1_M1_C2" name="rc" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR20_RP1_M2" name="P21">
+                <ListOfComponents>
+                  <Component id="RR20_RP1_M2_C1" name="apcna" numberOfBonds="1"/>
+                  <Component id="RR20_RP1_M2_C2" name="cy" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR20_RP1_B1" site1="RR20_RP1_M1_C1" site2="RR20_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR20_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR20_PP1_M1" name="P21">
+                <ListOfComponents>
+                  <Component id="RR20_PP1_M1_C1" name="apcna" numberOfBonds="0"/>
+                  <Component id="RR20_PP1_M1_C2" name="cy" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR20_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kExPc"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR20_RP1_M1"/>
+          <MapItem sourceID="RR20_RP1_M1_C1"/>
+          <MapItem sourceID="RR20_RP1_M1_C2"/>
+          <MapItem sourceID="RR20_RP1_M2" targetID="RR20_PP1_M1"/>
+          <MapItem sourceID="RR20_RP1_M2_C1" targetID="RR20_PP1_M1_C1"/>
+          <MapItem sourceID="RR20_RP1_M2_C2" targetID="RR20_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR20_RP1_M1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR21" name="Association_and_dissociation_of_PCNA_and_p21" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR21_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR21_RP1_M1" name="aPcna">
+                <ListOfComponents>
+                  <Component id="RR21_RP1_M1_C1" name="p21" numberOfBonds="0"/>
+                  <Component id="RR21_RP1_M1_C2" name="rc" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR21_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR21_RP2_M1" name="P21">
+                <ListOfComponents>
+                  <Component id="RR21_RP2_M1_C1" name="apcna" numberOfBonds="0"/>
+                  <Component id="RR21_RP2_M1_C2" name="cy" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR21_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR21_PP1_M1" name="aPcna">
+                <ListOfComponents>
+                  <Component id="RR21_PP1_M1_C1" name="p21" numberOfBonds="1"/>
+                  <Component id="RR21_PP1_M1_C2" name="rc" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR21_PP1_M2" name="P21">
+                <ListOfComponents>
+                  <Component id="RR21_PP1_M2_C1" name="apcna" numberOfBonds="1"/>
+                  <Component id="RR21_PP1_M2_C2" name="cy" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR21_PP1_B1" site1="RR21_PP1_M1_C1" site2="RR21_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR21_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kAsPcP21"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR21_RP1_M1" targetID="RR21_PP1_M1"/>
+          <MapItem sourceID="RR21_RP1_M1_C1" targetID="RR21_PP1_M1_C1"/>
+          <MapItem sourceID="RR21_RP1_M1_C2" targetID="RR21_PP1_M1_C2"/>
+          <MapItem sourceID="RR21_RP2_M1" targetID="RR21_PP1_M2"/>
+          <MapItem sourceID="RR21_RP2_M1_C1" targetID="RR21_PP1_M2_C1"/>
+          <MapItem sourceID="RR21_RP2_M1_C2" targetID="RR21_PP1_M2_C2"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR21_RP1_M1_C1" site2="RR21_RP2_M1_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR22" name="_reverse_Association_and_dissociation_of_PCNA_and_p21" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR22_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR22_RP1_M1" name="aPcna">
+                <ListOfComponents>
+                  <Component id="RR22_RP1_M1_C1" name="p21" numberOfBonds="1"/>
+                  <Component id="RR22_RP1_M1_C2" name="rc" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR22_RP1_M2" name="P21">
+                <ListOfComponents>
+                  <Component id="RR22_RP1_M2_C1" name="apcna" numberOfBonds="1"/>
+                  <Component id="RR22_RP1_M2_C2" name="cy" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR22_RP1_B1" site1="RR22_RP1_M1_C1" site2="RR22_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR22_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR22_PP1_M1" name="aPcna">
+                <ListOfComponents>
+                  <Component id="RR22_PP1_M1_C1" name="p21" numberOfBonds="0"/>
+                  <Component id="RR22_PP1_M1_C2" name="rc" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR22_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR22_PP2_M1" name="P21">
+                <ListOfComponents>
+                  <Component id="RR22_PP2_M1_C1" name="apcna" numberOfBonds="0"/>
+                  <Component id="RR22_PP2_M1_C2" name="cy" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR22_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kDsPcP21"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR22_RP1_M1" targetID="RR22_PP1_M1"/>
+          <MapItem sourceID="RR22_RP1_M1_C1" targetID="RR22_PP1_M1_C1"/>
+          <MapItem sourceID="RR22_RP1_M1_C2" targetID="RR22_PP1_M1_C2"/>
+          <MapItem sourceID="RR22_RP1_M2" targetID="RR22_PP2_M1"/>
+          <MapItem sourceID="RR22_RP1_M2_C1" targetID="RR22_PP2_M1_C1"/>
+          <MapItem sourceID="RR22_RP1_M2_C2" targetID="RR22_PP2_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <DeleteBond site1="RR22_RP1_M1_C1" site2="RR22_RP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR23" name="Degradation_of_p21_in_PCNA_p21_complexes_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR23_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR23_PP1_M1" name="aPcna">
+                <ListOfComponents>
+                  <Component id="RR23_PP1_M1_C1" name="p21" numberOfBonds="1"/>
+                  <Component id="RR23_PP1_M1_C2" name="rc" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR23_PP1_M2" name="P21">
+                <ListOfComponents>
+                  <Component id="RR23_PP1_M2_C1" name="apcna" numberOfBonds="1"/>
+                  <Component id="RR23_PP1_M2_C2" name="cy" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR23_PP1_B1" site1="RR23_PP1_M1_C1" site2="RR23_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR23_RateLaw" type="Function" name="_rateLaw5" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR23_PP1_M1"/>
+          <Add id="RR23_PP1_M2"/>
+          <AddBond site1="RR23_PP1_M1_C1" site2="RR23_PP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR24" name="Degradation_of_p21_in_PCNA_p21_complexes_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR24_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR24_PP1_M1" name="aPcna">
+                <ListOfComponents>
+                  <Component id="RR24_PP1_M1_C1" name="p21" numberOfBonds="0"/>
+                  <Component id="RR24_PP1_M1_C2" name="rc" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR24_RateLaw" type="Function" name="fRate18" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR24_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR25" name="Phosphorylation_priming_of_replication_complexes" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR25_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR25_RP1_M1" name="Rc">
+                <ListOfComponents>
+                  <Component id="RR25_RP1_M1_C1" name="apcna" numberOfBonds="0"/>
+                  <Component id="RR25_RP1_M1_C2" name="p" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR25_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR25_PP1_M1" name="Rc">
+                <ListOfComponents>
+                  <Component id="RR25_PP1_M1_C1" name="apcna" numberOfBonds="0"/>
+                  <Component id="RR25_PP1_M1_C2" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR25_RateLaw" type="Function" name="fRate19" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR25_RP1_M1" targetID="RR25_PP1_M1"/>
+          <MapItem sourceID="RR25_RP1_M1_C1" targetID="RR25_PP1_M1_C1"/>
+          <MapItem sourceID="RR25_RP1_M1_C2" targetID="RR25_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR25_RP1_M1_C2" finalState="P"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR26" name="Dephosphorylation_of_replication_complexes" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR26_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR26_RP1_M1" name="Rc">
+                <ListOfComponents>
+                  <Component id="RR26_RP1_M1_C1" name="apcna" numberOfBonds="0"/>
+                  <Component id="RR26_RP1_M1_C2" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR26_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR26_PP1_M1" name="Rc">
+                <ListOfComponents>
+                  <Component id="RR26_PP1_M1_C1" name="apcna" numberOfBonds="0"/>
+                  <Component id="RR26_PP1_M1_C2" name="p" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR26_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kDpRc"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR26_RP1_M1" targetID="RR26_PP1_M1"/>
+          <MapItem sourceID="RR26_RP1_M1_C1" targetID="RR26_PP1_M1_C1"/>
+          <MapItem sourceID="RR26_RP1_M1_C2" targetID="RR26_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR26_RP1_M1_C2" finalState="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR27" name="Association_and_dissociation_of_active_PCNA_and_replication_complexes" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR27_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR27_RP1_M1" name="aPcna">
+                <ListOfComponents>
+                  <Component id="RR27_RP1_M1_C1" name="p21" numberOfBonds="0"/>
+                  <Component id="RR27_RP1_M1_C2" name="rc" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR27_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR27_RP2_M1" name="Rc">
+                <ListOfComponents>
+                  <Component id="RR27_RP2_M1_C1" name="apcna" numberOfBonds="0"/>
+                  <Component id="RR27_RP2_M1_C2" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR27_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR27_PP1_M1" name="aPcna">
+                <ListOfComponents>
+                  <Component id="RR27_PP1_M1_C1" name="p21" numberOfBonds="0"/>
+                  <Component id="RR27_PP1_M1_C2" name="rc" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR27_PP1_M2" name="Rc">
+                <ListOfComponents>
+                  <Component id="RR27_PP1_M2_C1" name="apcna" numberOfBonds="1"/>
+                  <Component id="RR27_PP1_M2_C2" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR27_PP1_B1" site1="RR27_PP1_M1_C2" site2="RR27_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR27_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kAsRcPc"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR27_RP1_M1" targetID="RR27_PP1_M1"/>
+          <MapItem sourceID="RR27_RP1_M1_C1" targetID="RR27_PP1_M1_C1"/>
+          <MapItem sourceID="RR27_RP1_M1_C2" targetID="RR27_PP1_M1_C2"/>
+          <MapItem sourceID="RR27_RP2_M1" targetID="RR27_PP1_M2"/>
+          <MapItem sourceID="RR27_RP2_M1_C1" targetID="RR27_PP1_M2_C1"/>
+          <MapItem sourceID="RR27_RP2_M1_C2" targetID="RR27_PP1_M2_C2"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR27_RP1_M1_C2" site2="RR27_RP2_M1_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR28" name="_reverse_Association_and_dissociation_of_active_PCNA_and_replication_complexes" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR28_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR28_RP1_M1" name="aPcna">
+                <ListOfComponents>
+                  <Component id="RR28_RP1_M1_C1" name="p21" numberOfBonds="0"/>
+                  <Component id="RR28_RP1_M1_C2" name="rc" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR28_RP1_M2" name="Rc">
+                <ListOfComponents>
+                  <Component id="RR28_RP1_M2_C1" name="apcna" numberOfBonds="1"/>
+                  <Component id="RR28_RP1_M2_C2" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR28_RP1_B1" site1="RR28_RP1_M1_C2" site2="RR28_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR28_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR28_PP1_M1" name="aPcna">
+                <ListOfComponents>
+                  <Component id="RR28_PP1_M1_C1" name="p21" numberOfBonds="0"/>
+                  <Component id="RR28_PP1_M1_C2" name="rc" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR28_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR28_PP2_M1" name="Rc">
+                <ListOfComponents>
+                  <Component id="RR28_PP2_M1_C1" name="apcna" numberOfBonds="0"/>
+                  <Component id="RR28_PP2_M1_C2" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR28_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kDsRcPc"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR28_RP1_M1" targetID="RR28_PP1_M1"/>
+          <MapItem sourceID="RR28_RP1_M1_C1" targetID="RR28_PP1_M1_C1"/>
+          <MapItem sourceID="RR28_RP1_M1_C2" targetID="RR28_PP1_M1_C2"/>
+          <MapItem sourceID="RR28_RP1_M2" targetID="RR28_PP2_M1"/>
+          <MapItem sourceID="RR28_RP1_M2_C1" targetID="RR28_PP2_M1_C1"/>
+          <MapItem sourceID="RR28_RP1_M2_C2" targetID="RR28_PP2_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <DeleteBond site1="RR28_RP1_M1_C2" site2="RR28_RP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR29" name="Association_and_dissociation_of_inactive_PCNA_and_replication_complexes" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR29_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR29_RP1_M1" name="aPcna">
+                <ListOfComponents>
+                  <Component id="RR29_RP1_M1_C1" name="p21" numberOfBonds="1"/>
+                  <Component id="RR29_RP1_M1_C2" name="rc" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR29_RP1_M2" name="P21">
+                <ListOfComponents>
+                  <Component id="RR29_RP1_M2_C1" name="apcna" numberOfBonds="1"/>
+                  <Component id="RR29_RP1_M2_C2" name="cy" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR29_RP1_B1" site1="RR29_RP1_M1_C1" site2="RR29_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+          <ReactantPattern id="RR29_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR29_RP2_M1" name="Rc">
+                <ListOfComponents>
+                  <Component id="RR29_RP2_M1_C1" name="apcna" numberOfBonds="0"/>
+                  <Component id="RR29_RP2_M1_C2" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR29_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR29_PP1_M1" name="P21">
+                <ListOfComponents>
+                  <Component id="RR29_PP1_M1_C1" name="apcna" numberOfBonds="1"/>
+                  <Component id="RR29_PP1_M1_C2" name="cy" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR29_PP1_M2" name="aPcna">
+                <ListOfComponents>
+                  <Component id="RR29_PP1_M2_C1" name="p21" numberOfBonds="1"/>
+                  <Component id="RR29_PP1_M2_C2" name="rc" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR29_PP1_M3" name="Rc">
+                <ListOfComponents>
+                  <Component id="RR29_PP1_M3_C1" name="apcna" numberOfBonds="1"/>
+                  <Component id="RR29_PP1_M3_C2" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR29_PP1_B1" site1="RR29_PP1_M1_C1" site2="RR29_PP1_M2_C1"/>
+              <Bond id="RR29_PP1_B2" site1="RR29_PP1_M2_C2" site2="RR29_PP1_M3_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR29_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kAsRcPc"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR29_RP1_M1" targetID="RR29_PP1_M2"/>
+          <MapItem sourceID="RR29_RP1_M1_C1" targetID="RR29_PP1_M2_C1"/>
+          <MapItem sourceID="RR29_RP1_M1_C2" targetID="RR29_PP1_M2_C2"/>
+          <MapItem sourceID="RR29_RP1_M2" targetID="RR29_PP1_M1"/>
+          <MapItem sourceID="RR29_RP1_M2_C1" targetID="RR29_PP1_M1_C1"/>
+          <MapItem sourceID="RR29_RP1_M2_C2" targetID="RR29_PP1_M1_C2"/>
+          <MapItem sourceID="RR29_RP2_M1" targetID="RR29_PP1_M3"/>
+          <MapItem sourceID="RR29_RP2_M1_C1" targetID="RR29_PP1_M3_C1"/>
+          <MapItem sourceID="RR29_RP2_M1_C2" targetID="RR29_PP1_M3_C2"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR29_RP1_M1_C2" site2="RR29_RP2_M1_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR30" name="_reverse_Association_and_dissociation_of_inactive_PCNA_and_replication_complexes" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR30_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR30_RP1_M1" name="P21">
+                <ListOfComponents>
+                  <Component id="RR30_RP1_M1_C1" name="apcna" numberOfBonds="1"/>
+                  <Component id="RR30_RP1_M1_C2" name="cy" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR30_RP1_M2" name="aPcna">
+                <ListOfComponents>
+                  <Component id="RR30_RP1_M2_C1" name="p21" numberOfBonds="1"/>
+                  <Component id="RR30_RP1_M2_C2" name="rc" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR30_RP1_M3" name="Rc">
+                <ListOfComponents>
+                  <Component id="RR30_RP1_M3_C1" name="apcna" numberOfBonds="1"/>
+                  <Component id="RR30_RP1_M3_C2" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR30_RP1_B1" site1="RR30_RP1_M1_C1" site2="RR30_RP1_M2_C1"/>
+              <Bond id="RR30_RP1_B2" site1="RR30_RP1_M2_C2" site2="RR30_RP1_M3_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR30_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR30_PP1_M1" name="aPcna">
+                <ListOfComponents>
+                  <Component id="RR30_PP1_M1_C1" name="p21" numberOfBonds="1"/>
+                  <Component id="RR30_PP1_M1_C2" name="rc" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR30_PP1_M2" name="P21">
+                <ListOfComponents>
+                  <Component id="RR30_PP1_M2_C1" name="apcna" numberOfBonds="1"/>
+                  <Component id="RR30_PP1_M2_C2" name="cy" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR30_PP1_B1" site1="RR30_PP1_M1_C1" site2="RR30_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+          <ProductPattern id="RR30_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR30_PP2_M1" name="Rc">
+                <ListOfComponents>
+                  <Component id="RR30_PP2_M1_C1" name="apcna" numberOfBonds="0"/>
+                  <Component id="RR30_PP2_M1_C2" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR30_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kDsRcPc"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR30_RP1_M1" targetID="RR30_PP1_M2"/>
+          <MapItem sourceID="RR30_RP1_M1_C1" targetID="RR30_PP1_M2_C1"/>
+          <MapItem sourceID="RR30_RP1_M1_C2" targetID="RR30_PP1_M2_C2"/>
+          <MapItem sourceID="RR30_RP1_M2" targetID="RR30_PP1_M1"/>
+          <MapItem sourceID="RR30_RP1_M2_C1" targetID="RR30_PP1_M1_C1"/>
+          <MapItem sourceID="RR30_RP1_M2_C2" targetID="RR30_PP1_M1_C2"/>
+          <MapItem sourceID="RR30_RP1_M3" targetID="RR30_PP2_M1"/>
+          <MapItem sourceID="RR30_RP1_M3_C1" targetID="RR30_PP2_M1_C1"/>
+          <MapItem sourceID="RR30_RP1_M3_C2" targetID="RR30_PP2_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <DeleteBond site1="RR30_RP1_M2_C2" site2="RR30_RP1_M3_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR31" name="Association_and_dissociation_of_p21_and_replication_complexes" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR31_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR31_RP1_M1" name="aPcna">
+                <ListOfComponents>
+                  <Component id="RR31_RP1_M1_C1" name="p21" numberOfBonds="0"/>
+                  <Component id="RR31_RP1_M1_C2" name="rc" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR31_RP1_M2" name="Rc">
+                <ListOfComponents>
+                  <Component id="RR31_RP1_M2_C1" name="apcna" numberOfBonds="1"/>
+                  <Component id="RR31_RP1_M2_C2" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR31_RP1_B1" site1="RR31_RP1_M1_C2" site2="RR31_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+          <ReactantPattern id="RR31_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR31_RP2_M1" name="P21">
+                <ListOfComponents>
+                  <Component id="RR31_RP2_M1_C1" name="apcna" numberOfBonds="0"/>
+                  <Component id="RR31_RP2_M1_C2" name="cy" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR31_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR31_PP1_M1" name="P21">
+                <ListOfComponents>
+                  <Component id="RR31_PP1_M1_C1" name="apcna" numberOfBonds="1"/>
+                  <Component id="RR31_PP1_M1_C2" name="cy" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR31_PP1_M2" name="aPcna">
+                <ListOfComponents>
+                  <Component id="RR31_PP1_M2_C1" name="p21" numberOfBonds="1"/>
+                  <Component id="RR31_PP1_M2_C2" name="rc" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR31_PP1_M3" name="Rc">
+                <ListOfComponents>
+                  <Component id="RR31_PP1_M3_C1" name="apcna" numberOfBonds="1"/>
+                  <Component id="RR31_PP1_M3_C2" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR31_PP1_B1" site1="RR31_PP1_M1_C1" site2="RR31_PP1_M2_C1"/>
+              <Bond id="RR31_PP1_B2" site1="RR31_PP1_M2_C2" site2="RR31_PP1_M3_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR31_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kAsPcP21"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR31_RP1_M1" targetID="RR31_PP1_M2"/>
+          <MapItem sourceID="RR31_RP1_M1_C1" targetID="RR31_PP1_M2_C1"/>
+          <MapItem sourceID="RR31_RP1_M1_C2" targetID="RR31_PP1_M2_C2"/>
+          <MapItem sourceID="RR31_RP1_M2" targetID="RR31_PP1_M3"/>
+          <MapItem sourceID="RR31_RP1_M2_C1" targetID="RR31_PP1_M3_C1"/>
+          <MapItem sourceID="RR31_RP1_M2_C2" targetID="RR31_PP1_M3_C2"/>
+          <MapItem sourceID="RR31_RP2_M1" targetID="RR31_PP1_M1"/>
+          <MapItem sourceID="RR31_RP2_M1_C1" targetID="RR31_PP1_M1_C1"/>
+          <MapItem sourceID="RR31_RP2_M1_C2" targetID="RR31_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR31_RP2_M1_C1" site2="RR31_RP1_M1_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR32" name="_reverse_Association_and_dissociation_of_p21_and_replication_complexes" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR32_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR32_RP1_M1" name="P21">
+                <ListOfComponents>
+                  <Component id="RR32_RP1_M1_C1" name="apcna" numberOfBonds="1"/>
+                  <Component id="RR32_RP1_M1_C2" name="cy" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR32_RP1_M2" name="aPcna">
+                <ListOfComponents>
+                  <Component id="RR32_RP1_M2_C1" name="p21" numberOfBonds="1"/>
+                  <Component id="RR32_RP1_M2_C2" name="rc" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR32_RP1_M3" name="Rc">
+                <ListOfComponents>
+                  <Component id="RR32_RP1_M3_C1" name="apcna" numberOfBonds="1"/>
+                  <Component id="RR32_RP1_M3_C2" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR32_RP1_B1" site1="RR32_RP1_M1_C1" site2="RR32_RP1_M2_C1"/>
+              <Bond id="RR32_RP1_B2" site1="RR32_RP1_M2_C2" site2="RR32_RP1_M3_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR32_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR32_PP1_M1" name="aPcna">
+                <ListOfComponents>
+                  <Component id="RR32_PP1_M1_C1" name="p21" numberOfBonds="0"/>
+                  <Component id="RR32_PP1_M1_C2" name="rc" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR32_PP1_M2" name="Rc">
+                <ListOfComponents>
+                  <Component id="RR32_PP1_M2_C1" name="apcna" numberOfBonds="1"/>
+                  <Component id="RR32_PP1_M2_C2" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR32_PP1_B1" site1="RR32_PP1_M1_C2" site2="RR32_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+          <ProductPattern id="RR32_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR32_PP2_M1" name="P21">
+                <ListOfComponents>
+                  <Component id="RR32_PP2_M1_C1" name="apcna" numberOfBonds="0"/>
+                  <Component id="RR32_PP2_M1_C2" name="cy" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR32_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kDsPcP21"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR32_RP1_M1" targetID="RR32_PP2_M1"/>
+          <MapItem sourceID="RR32_RP1_M1_C1" targetID="RR32_PP2_M1_C1"/>
+          <MapItem sourceID="RR32_RP1_M1_C2" targetID="RR32_PP2_M1_C2"/>
+          <MapItem sourceID="RR32_RP1_M2" targetID="RR32_PP1_M1"/>
+          <MapItem sourceID="RR32_RP1_M2_C1" targetID="RR32_PP1_M1_C1"/>
+          <MapItem sourceID="RR32_RP1_M2_C2" targetID="RR32_PP1_M1_C2"/>
+          <MapItem sourceID="RR32_RP1_M3" targetID="RR32_PP1_M2"/>
+          <MapItem sourceID="RR32_RP1_M3_C1" targetID="RR32_PP1_M2_C1"/>
+          <MapItem sourceID="RR32_RP1_M3_C2" targetID="RR32_PP1_M2_C2"/>
+        </Map>
+        <ListOfOperations>
+          <DeleteBond site1="RR32_RP1_M1_C1" site2="RR32_RP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR33" name="Degradation_of_p21_in_inactive_replication_complexes_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR33_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR33_PP1_M1" name="P21">
+                <ListOfComponents>
+                  <Component id="RR33_PP1_M1_C1" name="apcna" numberOfBonds="1"/>
+                  <Component id="RR33_PP1_M1_C2" name="cy" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR33_PP1_M2" name="aPcna">
+                <ListOfComponents>
+                  <Component id="RR33_PP1_M2_C1" name="p21" numberOfBonds="1"/>
+                  <Component id="RR33_PP1_M2_C2" name="rc" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR33_PP1_M3" name="Rc">
+                <ListOfComponents>
+                  <Component id="RR33_PP1_M3_C1" name="apcna" numberOfBonds="1"/>
+                  <Component id="RR33_PP1_M3_C2" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR33_PP1_B1" site1="RR33_PP1_M1_C1" site2="RR33_PP1_M2_C1"/>
+              <Bond id="RR33_PP1_B2" site1="RR33_PP1_M2_C2" site2="RR33_PP1_M3_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR33_RateLaw" type="Function" name="_rateLaw6" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR33_PP1_M1"/>
+          <Add id="RR33_PP1_M2"/>
+          <Add id="RR33_PP1_M3"/>
+          <AddBond site1="RR33_PP1_M1_C1" site2="RR33_PP1_M2_C1"/>
+          <AddBond site1="RR33_PP1_M2_C2" site2="RR33_PP1_M3_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR34" name="Degradation_of_p21_in_inactive_replication_complexes_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR34_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR34_PP1_M1" name="aPcna">
+                <ListOfComponents>
+                  <Component id="RR34_PP1_M1_C1" name="p21" numberOfBonds="0"/>
+                  <Component id="RR34_PP1_M1_C2" name="rc" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR34_PP1_M2" name="Rc">
+                <ListOfComponents>
+                  <Component id="RR34_PP1_M2_C1" name="apcna" numberOfBonds="1"/>
+                  <Component id="RR34_PP1_M2_C2" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR34_PP1_B1" site1="RR34_PP1_M1_C2" site2="RR34_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR34_RateLaw" type="Function" name="fRate24" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR34_PP1_M1"/>
+          <Add id="RR34_PP1_M2"/>
+          <AddBond site1="RR34_PP1_M1_C2" site2="RR34_PP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR35" name="Synthesis_of_DNA" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR35_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR35_RP1_M1" name="aPcna">
+                <ListOfComponents>
+                  <Component id="RR35_RP1_M1_C1" name="p21" numberOfBonds="0"/>
+                  <Component id="RR35_RP1_M1_C2" name="rc" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR35_RP1_M2" name="Rc">
+                <ListOfComponents>
+                  <Component id="RR35_RP1_M2_C1" name="apcna" numberOfBonds="1"/>
+                  <Component id="RR35_RP1_M2_C2" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR35_RP1_B1" site1="RR35_RP1_M1_C2" site2="RR35_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR35_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR35_PP1_M1" name="aPcna">
+                <ListOfComponents>
+                  <Component id="RR35_PP1_M1_C1" name="p21" numberOfBonds="0"/>
+                  <Component id="RR35_PP1_M1_C2" name="rc" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR35_PP1_M2" name="Rc">
+                <ListOfComponents>
+                  <Component id="RR35_PP1_M2_C1" name="apcna" numberOfBonds="1"/>
+                  <Component id="RR35_PP1_M2_C2" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR35_PP1_B1" site1="RR35_PP1_M1_C2" site2="RR35_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+          <ProductPattern id="RR35_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR35_PP2_M1" name="Dna"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR35_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kSyDna"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR35_RP1_M1" targetID="RR35_PP1_M1"/>
+          <MapItem sourceID="RR35_RP1_M1_C1" targetID="RR35_PP1_M1_C1"/>
+          <MapItem sourceID="RR35_RP1_M1_C2" targetID="RR35_PP1_M1_C2"/>
+          <MapItem sourceID="RR35_RP1_M2" targetID="RR35_PP1_M2"/>
+          <MapItem sourceID="RR35_RP1_M2_C1" targetID="RR35_PP1_M2_C1"/>
+          <MapItem sourceID="RR35_RP1_M2_C2" targetID="RR35_PP1_M2_C2"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR35_PP2_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR36" name="Dissassembly_of_RC_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR36_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR36_PP1_M1" name="Rc">
+                <ListOfComponents>
+                  <Component id="RR36_PP1_M1_C1" name="apcna" numberOfBonds="0"/>
+                  <Component id="RR36_PP1_M1_C2" name="p" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR36_RateLaw" type="Function" name="_rateLaw7" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR36_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR37" name="Dissassembly_of_pRC_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR37_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR37_PP1_M1" name="Rc">
+                <ListOfComponents>
+                  <Component id="RR37_PP1_M1_C1" name="apcna" numberOfBonds="0"/>
+                  <Component id="RR37_PP1_M1_C2" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR37_RateLaw" type="Function" name="_rateLaw8" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR37_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR38" name="Dissassembly_of_aRC_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR38_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR38_PP1_M1" name="aPcna">
+                <ListOfComponents>
+                  <Component id="RR38_PP1_M1_C1" name="p21" numberOfBonds="0"/>
+                  <Component id="RR38_PP1_M1_C2" name="rc" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR38_PP1_M2" name="Rc">
+                <ListOfComponents>
+                  <Component id="RR38_PP1_M2_C1" name="apcna" numberOfBonds="1"/>
+                  <Component id="RR38_PP1_M2_C2" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR38_PP1_B1" site1="RR38_PP1_M1_C2" site2="RR38_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR38_RateLaw" type="Function" name="_rateLaw9" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR38_PP1_M1"/>
+          <Add id="RR38_PP1_M2"/>
+          <AddBond site1="RR38_PP1_M1_C2" site2="RR38_PP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR39" name="Dissassembly_of_aRC_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR39_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR39_PP1_M1" name="aPcna">
+                <ListOfComponents>
+                  <Component id="RR39_PP1_M1_C1" name="p21" numberOfBonds="0"/>
+                  <Component id="RR39_PP1_M1_C2" name="rc" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR39_RateLaw" type="Function" name="fRate28" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR39_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR40" name="Dissassembly_of_iRC_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR40_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR40_PP1_M1" name="P21">
+                <ListOfComponents>
+                  <Component id="RR40_PP1_M1_C1" name="apcna" numberOfBonds="1"/>
+                  <Component id="RR40_PP1_M1_C2" name="cy" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR40_PP1_M2" name="aPcna">
+                <ListOfComponents>
+                  <Component id="RR40_PP1_M2_C1" name="p21" numberOfBonds="1"/>
+                  <Component id="RR40_PP1_M2_C2" name="rc" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR40_PP1_M3" name="Rc">
+                <ListOfComponents>
+                  <Component id="RR40_PP1_M3_C1" name="apcna" numberOfBonds="1"/>
+                  <Component id="RR40_PP1_M3_C2" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR40_PP1_B1" site1="RR40_PP1_M1_C1" site2="RR40_PP1_M2_C1"/>
+              <Bond id="RR40_PP1_B2" site1="RR40_PP1_M2_C2" site2="RR40_PP1_M3_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR40_RateLaw" type="Function" name="_rateLaw10" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR40_PP1_M1"/>
+          <Add id="RR40_PP1_M2"/>
+          <Add id="RR40_PP1_M3"/>
+          <AddBond site1="RR40_PP1_M1_C1" site2="RR40_PP1_M2_C1"/>
+          <AddBond site1="RR40_PP1_M2_C2" site2="RR40_PP1_M3_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR41" name="Dissassembly_of_iRC_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR41_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR41_PP1_M1" name="aPcna">
+                <ListOfComponents>
+                  <Component id="RR41_PP1_M1_C1" name="p21" numberOfBonds="1"/>
+                  <Component id="RR41_PP1_M1_C2" name="rc" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR41_PP1_M2" name="P21">
+                <ListOfComponents>
+                  <Component id="RR41_PP1_M2_C1" name="apcna" numberOfBonds="1"/>
+                  <Component id="RR41_PP1_M2_C2" name="cy" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR41_PP1_B1" site1="RR41_PP1_M1_C1" site2="RR41_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR41_RateLaw" type="Function" name="fRate29" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR41_PP1_M1"/>
+          <Add id="RR41_PP1_M2"/>
+          <AddBond site1="RR41_PP1_M1_C1" site2="RR41_PP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR42" name="Synthesis_of_p53" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR42_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR42_RP1_M1" name="MrnaP53"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR42_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR42_PP1_M1" name="MrnaP53"/>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR42_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR42_PP2_M1" name="P53"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR42_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kSyP53"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR42_RP1_M1" targetID="RR42_PP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR42_PP2_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR43" name="Degradation_of_p53" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR43_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR43_RP1_M1" name="P53"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR43_RateLaw" type="Function" name="fRate31" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR43_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR43_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR44" name="Induction_of_DNA_damage" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR44_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR44_PP1_M1" name="Dam"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR44_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kGeDam"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR44_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR45" name="Induction_of_DNA_damage_by_replication" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR45_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR45_RP1_M1" name="aPcna">
+                <ListOfComponents>
+                  <Component id="RR45_RP1_M1_C1" name="p21" numberOfBonds="0"/>
+                  <Component id="RR45_RP1_M1_C2" name="rc" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR45_RP1_M2" name="Rc">
+                <ListOfComponents>
+                  <Component id="RR45_RP1_M2_C1" name="apcna" numberOfBonds="1"/>
+                  <Component id="RR45_RP1_M2_C2" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR45_RP1_B1" site1="RR45_RP1_M1_C2" site2="RR45_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR45_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR45_PP1_M1" name="aPcna">
+                <ListOfComponents>
+                  <Component id="RR45_PP1_M1_C1" name="p21" numberOfBonds="0"/>
+                  <Component id="RR45_PP1_M1_C2" name="rc" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR45_PP1_M2" name="Rc">
+                <ListOfComponents>
+                  <Component id="RR45_PP1_M2_C1" name="apcna" numberOfBonds="1"/>
+                  <Component id="RR45_PP1_M2_C2" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR45_PP1_B1" site1="RR45_PP1_M1_C2" site2="RR45_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+          <ProductPattern id="RR45_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR45_PP2_M1" name="Dam"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR45_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kGeDamArc"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR45_RP1_M1" targetID="RR45_PP1_M1"/>
+          <MapItem sourceID="RR45_RP1_M1_C1" targetID="RR45_PP1_M1_C1"/>
+          <MapItem sourceID="RR45_RP1_M1_C2" targetID="RR45_PP1_M1_C2"/>
+          <MapItem sourceID="RR45_RP1_M2" targetID="RR45_PP1_M2"/>
+          <MapItem sourceID="RR45_RP1_M2_C1" targetID="RR45_PP1_M2_C1"/>
+          <MapItem sourceID="RR45_RP1_M2_C2" targetID="RR45_PP1_M2_C2"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR45_PP2_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR46" name="Repair_of_DNA_damage_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR46_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR46_PP1_M1" name="Dam"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR46_RateLaw" type="Function" name="_rateLaw11" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR46_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="MrnaP21" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="MrnaP21"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="MrnaCy" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="MrnaCy"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="MrnaP53" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="MrnaP53"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="P21" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="P21">
+                <ListOfComponents>
+                  <Component id="O4_P1_M1_C1" name="apcna" numberOfBonds="0"/>
+                  <Component id="O4_P1_M1_C2" name="cy" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="Cy" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="Cy">
+                <ListOfComponents>
+                  <Component id="O5_P1_M1_C1" name="p21" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O6" name="CyP21" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O6_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O6_P1_M1" name="P21">
+                <ListOfComponents>
+                  <Component id="O6_P1_M1_C1" name="apcna" numberOfBonds="0"/>
+                  <Component id="O6_P1_M1_C2" name="cy" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O6_P1_M2" name="Cy">
+                <ListOfComponents>
+                  <Component id="O6_P1_M2_C1" name="p21" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O6_P1_B1" site1="O6_P1_M1_C2" site2="O6_P1_M2_C1"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O7" name="aPcna" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O7_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O7_P1_M1" name="aPcna">
+                <ListOfComponents>
+                  <Component id="O7_P1_M1_C1" name="p21" numberOfBonds="0"/>
+                  <Component id="O7_P1_M1_C2" name="rc" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O8" name="Rc" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O8_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O8_P1_M1" name="Rc">
+                <ListOfComponents>
+                  <Component id="O8_P1_M1_C1" name="apcna" numberOfBonds="0"/>
+                  <Component id="O8_P1_M1_C2" name="p" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O9" name="pRc" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O9_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O9_P1_M1" name="Rc">
+                <ListOfComponents>
+                  <Component id="O9_P1_M1_C1" name="apcna" numberOfBonds="0"/>
+                  <Component id="O9_P1_M1_C2" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O10" name="aRc" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O10_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O10_P1_M1" name="aPcna">
+                <ListOfComponents>
+                  <Component id="O10_P1_M1_C1" name="p21" numberOfBonds="0"/>
+                  <Component id="O10_P1_M1_C2" name="rc" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O10_P1_M2" name="Rc">
+                <ListOfComponents>
+                  <Component id="O10_P1_M2_C1" name="apcna" numberOfBonds="1"/>
+                  <Component id="O10_P1_M2_C2" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O10_P1_B1" site1="O10_P1_M1_C2" site2="O10_P1_M2_C1"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O11" name="iRc" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O11_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O11_P1_M1" name="P21">
+                <ListOfComponents>
+                  <Component id="O11_P1_M1_C1" name="apcna" numberOfBonds="1"/>
+                  <Component id="O11_P1_M1_C2" name="cy" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O11_P1_M2" name="aPcna">
+                <ListOfComponents>
+                  <Component id="O11_P1_M2_C1" name="p21" numberOfBonds="1"/>
+                  <Component id="O11_P1_M2_C2" name="rc" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O11_P1_M3" name="Rc">
+                <ListOfComponents>
+                  <Component id="O11_P1_M3_C1" name="apcna" numberOfBonds="1"/>
+                  <Component id="O11_P1_M3_C2" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O11_P1_B1" site1="O11_P1_M1_C1" site2="O11_P1_M2_C1"/>
+              <Bond id="O11_P1_B2" site1="O11_P1_M2_C2" site2="O11_P1_M3_C1"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O12" name="Dna" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O12_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O12_P1_M1" name="Dna"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O13" name="Dam" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O13_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O13_P1_M1" name="Dam"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O14" name="P53" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O14_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O14_P1_M1" name="P53"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O15" name="iPcna" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O15_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O15_P1_M1" name="aPcna">
+                <ListOfComponents>
+                  <Component id="O15_P1_M1_C1" name="p21" numberOfBonds="1"/>
+                  <Component id="O15_P1_M1_C2" name="rc" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O15_P1_M2" name="P21">
+                <ListOfComponents>
+                  <Component id="O15_P1_M2_C1" name="apcna" numberOfBonds="1"/>
+                  <Component id="O15_P1_M2_C2" name="cy" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O15_P1_B1" site1="O15_P1_M1_C1" site2="O15_P1_M2_C1"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="tPcna_ar">
+        <ListOfReferences>
+          <Reference name="aPcna" type="Observable"/>
+          <Reference name="aRc" type="Observable"/>
+          <Reference name="iPcna" type="Observable"/>
+          <Reference name="iRc" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((aPcna+aRc)+iPcna)+iRc </Expression>
+      </Function>
+      <Function id="tCy_ar">
+        <ListOfReferences>
+          <Reference name="Cy" type="Observable"/>
+          <Reference name="CyP21" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Cy+CyP21 </Expression>
+      </Function>
+      <Function id="tP21_ar">
+        <ListOfReferences>
+          <Reference name="CyP21" type="Observable"/>
+          <Reference name="P21" type="Observable"/>
+          <Reference name="iPcna" type="Observable"/>
+          <Reference name="iRc" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((CyP21+P21)+iPcna)+iRc </Expression>
+      </Function>
+      <Function id="fRate8">
+        <ListOfReferences>
+          <Reference name="Cdt2" type="Constant"/>
+          <Reference name="Skp2" type="Constant"/>
+          <Reference name="kDeP21" type="Constant"/>
+          <Reference name="kDeP21Cy" type="Constant"/>
+          <Reference name="kDeP21aRc" type="Constant"/>
+          <Reference name="Cy" type="Observable"/>
+          <Reference name="P21" type="Observable"/>
+          <Reference name="aRc" type="Observable"/>
+        </ListOfReferences>
+        <Expression> P21*((((Cdt2*aRc)*kDeP21aRc)+((Cy*Skp2)*kDeP21Cy))+kDeP21) </Expression>
+      </Function>
+      <Function id="fRate10">
+        <ListOfReferences>
+          <Reference name="Skp2" type="Constant"/>
+          <Reference name="kDeCy" type="Constant"/>
+          <Reference name="kDeCyCy" type="Constant"/>
+          <Reference name="Cy" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Cy*(((Cy*Skp2)*kDeCyCy)+kDeCy) </Expression>
+      </Function>
+      <Function id="fRate12">
+        <ListOfReferences>
+          <Reference name="Skp2" type="Constant"/>
+          <Reference name="kDeCy" type="Constant"/>
+          <Reference name="kDeCyCy" type="Constant"/>
+          <Reference name="Cy" type="Observable"/>
+          <Reference name="CyP21" type="Observable"/>
+        </ListOfReferences>
+        <Expression> CyP21*(((Cy*Skp2)*kDeCyCy)+kDeCy) </Expression>
+      </Function>
+      <Function id="fRate13">
+        <ListOfReferences>
+          <Reference name="Cdt2" type="Constant"/>
+          <Reference name="Skp2" type="Constant"/>
+          <Reference name="kDeP21" type="Constant"/>
+          <Reference name="kDeP21Cy" type="Constant"/>
+          <Reference name="kDeP21aRc" type="Constant"/>
+          <Reference name="Cy" type="Observable"/>
+          <Reference name="CyP21" type="Observable"/>
+          <Reference name="aRc" type="Observable"/>
+        </ListOfReferences>
+        <Expression> CyP21*((((Cdt2*aRc)*kDeP21aRc)+((Cy*Skp2)*kDeP21Cy))+kDeP21) </Expression>
+      </Function>
+      <Function id="fRate18">
+        <ListOfReferences>
+          <Reference name="Cdt2" type="Constant"/>
+          <Reference name="Skp2" type="Constant"/>
+          <Reference name="kDeP21" type="Constant"/>
+          <Reference name="kDeP21Cy" type="Constant"/>
+          <Reference name="kDeP21aRc" type="Constant"/>
+          <Reference name="Cy" type="Observable"/>
+          <Reference name="aRc" type="Observable"/>
+          <Reference name="iPcna" type="Observable"/>
+        </ListOfReferences>
+        <Expression> iPcna*((((Cdt2*aRc)*kDeP21aRc)+((Cy*Skp2)*kDeP21Cy))+kDeP21) </Expression>
+      </Function>
+      <Function id="fRate19">
+        <ListOfReferences>
+          <Reference name="jCy" type="Constant"/>
+          <Reference name="kPhRc" type="Constant"/>
+          <Reference name="n" type="Constant"/>
+          <Reference name="Cy" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((Cy^n)*kPhRc)/((Cy^n)+(jCy^n)) </Expression>
+      </Function>
+      <Function id="fRate24">
+        <ListOfReferences>
+          <Reference name="Cdt2" type="Constant"/>
+          <Reference name="Skp2" type="Constant"/>
+          <Reference name="kDeP21" type="Constant"/>
+          <Reference name="kDeP21Cy" type="Constant"/>
+          <Reference name="kDeP21aRc" type="Constant"/>
+          <Reference name="Cy" type="Observable"/>
+          <Reference name="aRc" type="Observable"/>
+          <Reference name="iRc" type="Observable"/>
+        </ListOfReferences>
+        <Expression> iRc*((((Cdt2*aRc)*kDeP21aRc)+((Cy*Skp2)*kDeP21Cy))+kDeP21) </Expression>
+      </Function>
+      <Function id="fRate26">
+        <ListOfReferences>
+          <Reference name="Dna" type="Observable"/>
+          <Reference name="Rc" type="Observable"/>
+        </ListOfReferences>
+        <Expression> if((Dna&lt;1),0,if((Dna&gt;1),(1*Rc),(0.5*Rc))) </Expression>
+      </Function>
+      <Function id="fRate27">
+        <ListOfReferences>
+          <Reference name="Dna" type="Observable"/>
+          <Reference name="pRc" type="Observable"/>
+        </ListOfReferences>
+        <Expression> if((Dna&lt;1),0,if((Dna&gt;1),(1*pRc),(0.5*pRc))) </Expression>
+      </Function>
+      <Function id="fRate28">
+        <ListOfReferences>
+          <Reference name="Dna" type="Observable"/>
+          <Reference name="aRc" type="Observable"/>
+        </ListOfReferences>
+        <Expression> if((Dna&lt;1),0,if((Dna&gt;1),(1*aRc),(0.5*aRc))) </Expression>
+      </Function>
+      <Function id="fRate29">
+        <ListOfReferences>
+          <Reference name="Dna" type="Observable"/>
+          <Reference name="iRc" type="Observable"/>
+        </ListOfReferences>
+        <Expression> if((Dna&lt;1),0,if((Dna&gt;1),(1*iRc),(0.5*iRc))) </Expression>
+      </Function>
+      <Function id="fRate31">
+        <ListOfReferences>
+          <Reference name="jP53" type="Constant"/>
+          <Reference name="kDeP53" type="Constant"/>
+          <Reference name="Dam" type="Observable"/>
+        </ListOfReferences>
+        <Expression> kDeP53/(Dam+jP53) </Expression>
+      </Function>
+      <Function id="fRate34">
+        <ListOfReferences>
+          <Reference name="jDam" type="Constant"/>
+          <Reference name="kReDam" type="Constant"/>
+          <Reference name="kReDamP53" type="Constant"/>
+          <Reference name="Dam" type="Observable"/>
+          <Reference name="P53" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Dam*(((P53*kReDamP53)/(Dam+jDam))+kReDam) </Expression>
+      </Function>
+      <Function id="_rateLaw1">
+        <ListOfReferences>
+          <Reference name="fRate8" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate8() </Expression>
+      </Function>
+      <Function id="_rateLaw2">
+        <ListOfReferences>
+          <Reference name="fRate10" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate10() </Expression>
+      </Function>
+      <Function id="_rateLaw3">
+        <ListOfReferences>
+          <Reference name="fRate12" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate12() </Expression>
+      </Function>
+      <Function id="_rateLaw4">
+        <ListOfReferences>
+          <Reference name="fRate13" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate13() </Expression>
+      </Function>
+      <Function id="_rateLaw5">
+        <ListOfReferences>
+          <Reference name="fRate18" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate18() </Expression>
+      </Function>
+      <Function id="_rateLaw6">
+        <ListOfReferences>
+          <Reference name="fRate24" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate24() </Expression>
+      </Function>
+      <Function id="_rateLaw7">
+        <ListOfReferences>
+          <Reference name="fRate26" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate26() </Expression>
+      </Function>
+      <Function id="_rateLaw8">
+        <ListOfReferences>
+          <Reference name="fRate27" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate27() </Expression>
+      </Function>
+      <Function id="_rateLaw9">
+        <ListOfReferences>
+          <Reference name="fRate28" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate28() </Expression>
+      </Function>
+      <Function id="_rateLaw10">
+        <ListOfReferences>
+          <Reference name="fRate29" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate29() </Expression>
+      </Function>
+      <Function id="_rateLaw11">
+        <ListOfReferences>
+          <Reference name="fRate34" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate34() </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

@@ -1,13 +1,13 @@
 ###
 #@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000167', 'http://identifiers.org/biomodels.db/MODEL6095659304']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/17091582']
-#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/12552139', 'http://identifiers.org/pubmed/15240442', 'http://identifiers.org/biomodels.db/BIOMD0000000094', 'http://identifiers.org/biomodels.db/BIOMD0000000093']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/12552139', 'http://identifiers.org/pubmed/15240442', 'http://identifiers.org/biomodels.db/BIOMD0000000093', 'http://identifiers.org/biomodels.db/BIOMD0000000094']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/131567']
 #@BQB_HAS_PART:['http://identifiers.org/kegg.pathway/hsa04630']
 #@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0042509']
 #@creatorEmail:'hdharuri@cds.caltech.edu'
 #@creatorName:'Dharuri Harish'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 9 molecules and 7 reactions. The translated model has 2 molecules and 8 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 9 molecules and 7 reactions. The translated model has 2 molecules and 8 rules'
 ###
 begin model
 begin parameters
@@ -40,16 +40,16 @@ begin molecule types
 	species_test()
 end molecule types
 begin seed species
-	@sol:stat(p~0,stat) 8.807175e+18 # (1.0 * 1e-06)mol/L * 6.022e23/mol *14.625L #stat #stat_sol
+	@sol:stat(p~0,stat)@nuc 8.807175e+18 # (1.0 * 1e-06)mol/L * 6.022e23/mol *14.625L #stat #stat_sol
 end seed species
 begin observables
-	Species stat_sol @sol:stat(p~0,stat) #stat_sol
-	Species Pstat_sol @sol:stat(p~P,stat) #Pstat_sol
-	Species PstatDimer_sol @sol:stat(p~P,stat!291).stat(p~P,stat!291) #PstatDimer_sol
-	Species PstatDimer_nuc @nuc:stat(p~P,stat!291).stat(p~P,stat!291) #PstatDimer_nuc
-	Species stat_nuc @nuc:stat(p~0,stat) #stat_nuc
-	Species Pstat_nuc @nuc:stat(p~P,stat) #Pstat_nuc
-	Species species_test_sol @sol:species_test() #species_test
+	Species stat_sol @sol:stat(p~0,stat)@nuc #stat_sol
+	Species Pstat_sol @sol:stat(p~P,stat)@nuc #Pstat_sol
+	Species PstatDimer_sol @sol:stat(p~P,stat!291)@nuc.stat(p~P,stat!291)@nuc #PstatDimer_sol
+	Species PstatDimer_nuc @nuc:stat(p~P,stat!291)@nuc.stat(p~P,stat!291)@nuc #PstatDimer_nuc
+	Species stat_nuc @nuc:stat(p~0,stat)@nuc #stat_nuc
+	Species Pstat_nuc @nuc:stat(p~P,stat)@nuc #Pstat_nuc
+	Species species_test_sol @sol:species_test()@sol #species_test
 end observables
 begin functions
 	statKinase_ar() =  if((time()>500&&time()<2502.54614894971),(0.01*sin(0.001571*time()-0.7855)),(0))

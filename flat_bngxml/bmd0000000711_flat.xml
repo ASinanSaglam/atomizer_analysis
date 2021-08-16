@@ -1,0 +1,956 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000711_flat">
+    <ListOfParameters>
+      <Parameter id="gammaV" type="Constant" value="510" expr="510.0"/>
+      <Parameter id="gammaVA" type="Constant" value="619.2" expr="619.2"/>
+      <Parameter id="gammaVH" type="Constant" value="1.02" expr="1.02"/>
+      <Parameter id="alphaV" type="Constant" value="1.7" expr="1.7"/>
+      <Parameter id="aV1" type="Constant" value="100" expr="100.0"/>
+      <Parameter id="aV2" type="Constant" value="23000" expr="23000.0"/>
+      <Parameter id="bHD" type="Constant" value="4" expr="4.0"/>
+      <Parameter id="aR" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="gammaHV" type="Constant" value="0.34" expr="0.34"/>
+      <Parameter id="bHF" type="Constant" value="0.01" expr="0.01"/>
+      <Parameter id="bIE" type="Constant" value="0.066" expr="0.066"/>
+      <Parameter id="aI" type="Constant" value="1.5" expr="1.5"/>
+      <Parameter id="bMD" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="bMV" type="Constant" value="0.0037" expr="0.0037"/>
+      <Parameter id="aM" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="bF" type="Constant" value="250000" expr="250000.0"/>
+      <Parameter id="cF" type="Constant" value="2000" expr="2000.0"/>
+      <Parameter id="bFH" type="Constant" value="17" expr="17.0"/>
+      <Parameter id="aF" type="Constant" value="8" expr="8.0"/>
+      <Parameter id="bEM" type="Constant" value="8.3" expr="8.3"/>
+      <Parameter id="bEI" type="Constant" value="2.72" expr="2.72"/>
+      <Parameter id="aE" type="Constant" value="0.4" expr="0.4"/>
+      <Parameter id="bPM" type="Constant" value="11.5" expr="11.5"/>
+      <Parameter id="aP" type="Constant" value="0.4" expr="0.4"/>
+      <Parameter id="bA" type="Constant" value="0.043" expr="0.043"/>
+      <Parameter id="gammaAV" type="Constant" value="146.25" expr="146.25"/>
+      <Parameter id="aA" type="Constant" value="0.043" expr="0.043"/>
+      <Parameter id="r" type="Constant" value="3e-5" expr="3e-05"/>
+      <Parameter id="r20_aE" type="Constant" value="0.1" expr="0.100000"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="APCcells__M__"/>
+      <MoleculeType id="Antibodies__A__"/>
+      <MoleculeType id="Antigeniccompatibility__S__"/>
+      <MoleculeType id="Effectorcells__E__"/>
+      <MoleculeType id="HealthyEpithelialcells__H__"/>
+      <MoleculeType id="InfectedEpithelialcells__I__"/>
+      <MoleculeType id="Interferons__F__"/>
+      <MoleculeType id="Plasmacells__P__"/>
+      <MoleculeType id="Resistantcells__R__"/>
+      <MoleculeType id="ViralLoad__V__"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="6.022000000000001e+18" name="ViralLoad__V__()">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="ViralLoad__V__"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="6.022e+20" name="HealthyEpithelialcells__H__()">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="HealthyEpithelialcells__H__"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="6.022e+20" name="Effectorcells__E__()">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="Effectorcells__E__"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S4"  concentration="6.022e+20" name="Plasmacells__P__()">
+        <ListOfMolecules>
+          <Molecule id="S4_M1" name="Plasmacells__P__"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S5"  concentration="6.022e+20" name="Antibodies__A__()">
+        <ListOfMolecules>
+          <Molecule id="S5_M1" name="Antibodies__A__"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S6"  concentration="6.022000000000001e+19" name="Antigeniccompatibility__S__()">
+        <ListOfMolecules>
+          <Molecule id="S6_M1" name="Antigeniccompatibility__S__"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="Secretion_of_Virus__V__by_Infected_epithelial_cells__I" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="ViralLoad__V__"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="Neutralization_of_Virus__V__by_Antibody__A" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="ViralLoad__V__"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="fRate1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR2_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="Adsorption_of_Virus__V__by_Healthy_epithelial_cells__H" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="ViralLoad__V__"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="fRate2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR3_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="Non_Specific_Removal_of_Virus__V___alphaV" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="ViralLoad__V__"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="alphaV"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR4_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="Non_Specific_Removal_of_Virus__V___aV1_aV2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR5_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP1_M1" name="ViralLoad__V__"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Function" name="fRate4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR5_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR5_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="Regeneration_of_Healthy_Epithelial_cells__H" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="HealthyEpithelialcells__H__"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Function" name="fRate5" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR6_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="R_virus_resistant_state_decay" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR7_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_RP1_M1" name="Resistantcells__R__"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="HealthyEpithelialcells__H__"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="aR"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR7_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR7_PP1_M1"/>
+          <Delete id="RR7_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="Infection_of_Healthy_Epithelial_cells_by__V" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR8_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_RP1_M1" name="HealthyEpithelialcells__H__"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR8_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP1_M1" name="InfectedEpithelialcells__I__"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Function" name="fRate7" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR8_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR8_PP1_M1"/>
+          <Delete id="RR8_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="H_virus_resistant_state_induction" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR9_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_RP1_M1" name="HealthyEpithelialcells__H__"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR9_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP1_M1" name="Resistantcells__R__"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Function" name="fRate8" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR9_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR9_PP1_M1"/>
+          <Delete id="RR9_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="Degradation_of_Infected_Epithelial_cells___E" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR10_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_RP1_M1" name="InfectedEpithelialcells__I__"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Function" name="fRate9" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR10_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR10_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR11" name="Degradation_of_Infected_Epithelial_cells___Cytopathicity_of_V" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR11_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_RP1_M1" name="InfectedEpithelialcells__I__"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR11_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="aI"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR11_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR11_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR12" name="Stimulation_of_APC_cells__M__by_Dead_cells__D__and_Virus__V_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR12_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_PP1_M1" name="APCcells__M__"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR12_RateLaw" type="Function" name="fRate11" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR12_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR13" name="Stimulates_State_loss_of_APC_cells__M" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR13_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_RP1_M1" name="APCcells__M__"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR13_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="aM"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR13_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR13_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR14" name="Synthesis_of_Interferons__F___M" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR14_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_PP1_M1" name="Interferons__F__"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR14_RateLaw" type="Function" name="fRate13" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR14_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR15" name="Synthesis_of_Interferons__F___I" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR15_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR15_PP1_M1" name="Interferons__F__"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR15_RateLaw" type="Function" name="fRate14" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR15_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR16" name="Binding_of_Healthy_epithelial_cells__H__and_Interferons__F" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR16_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR16_RP1_M1" name="Interferons__F__"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR16_RateLaw" type="Function" name="fRate15" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR16_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR16_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR17" name="Degradation_of_Interferons__F" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR17_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR17_RP1_M1" name="Interferons__F__"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR17_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="aF"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR17_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR17_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR18" name="Stimulation_of_Effector_cells__E___M" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR18_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR18_PP1_M1" name="Effectorcells__E__"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR18_RateLaw" type="Function" name="fRate17" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR18_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR19" name="Degradation_of_Effector_cells__E___Mod_I" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR19_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR19_RP1_M1" name="Effectorcells__E__"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR19_RateLaw" type="Function" name="fRate18" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR19_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR19_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR20" name="Degradation_of_Effector_cells__E" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR20_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR20_RP1_M1" name="Effectorcells__E__"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR20_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r20_aE"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR20_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR20_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR21" name="_reverse_Degradation_of_Effector_cells__E" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR21_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR21_PP1_M1" name="Effectorcells__E__"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR21_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r20_aE"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR21_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR22" name="Synthesis_of_Plasma_cells__P___Mod_M" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR22_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR22_PP1_M1" name="Plasmacells__P__"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR22_RateLaw" type="Function" name="fRate20" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR22_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR23" name="Degradation_of_Plasma_cells__P" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR23_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR23_RP1_M1" name="Plasmacells__P__"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR23_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="aP"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR23_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR23_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR24" name="_reverse_Degradation_of_Plasma_cells__P" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR24_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR24_PP1_M1" name="Plasmacells__P__"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR24_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="aP"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR24_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR25" name="Synthesis_of_Antibody__A___Mod_P" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR25_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR25_PP1_M1" name="Antibodies__A__"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR25_RateLaw" type="Function" name="fRate22" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR25_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR26" name="Binding_of_Antibody__A__and_Virus__V" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR26_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR26_RP1_M1" name="Antibodies__A__"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR26_RateLaw" type="Function" name="fRate23" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR26_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR26_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR27" name="Degradation_of_Antibody__A" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR27_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR27_RP1_M1" name="Antibodies__A__"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR27_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="aA"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR27_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR27_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR28" name="Antigenic_Compatibility_variable" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR28_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR28_PP1_M1" name="Antigeniccompatibility__S__"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR28_RateLaw" type="Function" name="fRate25" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR28_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR29" name="_reverse_Antigenic_Compatibility_variable" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR29_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR29_RP1_M1" name="Antigeniccompatibility__S__"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR29_RateLaw" type="Function" name="fRate25m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR29_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR29_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="ViralLoad__V__" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="ViralLoad__V__"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="HealthyEpithelialcells__H__" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="HealthyEpithelialcells__H__"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="InfectedEpithelialcells__I__" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="InfectedEpithelialcells__I__"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="APCcells__M__" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="APCcells__M__"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="Interferons__F__" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="Interferons__F__"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O6" name="Resistantcells__R__" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O6_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O6_P1_M1" name="Resistantcells__R__"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O7" name="Effectorcells__E__" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O7_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O7_P1_M1" name="Effectorcells__E__"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O8" name="Plasmacells__P__" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O8_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O8_P1_M1" name="Plasmacells__P__"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O9" name="Antibodies__A__" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O9_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O9_P1_M1" name="Antibodies__A__"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O10" name="Antigeniccompatibility__S__" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O10_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O10_P1_M1" name="Antigeniccompatibility__S__"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="Deadcells__D___ar">
+        <ListOfReferences>
+          <Reference name="HealthyEpithelialcells__H__" type="Observable"/>
+          <Reference name="InfectedEpithelialcells__I__" type="Observable"/>
+          <Reference name="Resistantcells__R__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((-HealthyEpithelialcells__H__)-InfectedEpithelialcells__I__)-Resistantcells__R__)+1 </Expression>
+      </Function>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="gammaV" type="Constant"/>
+          <Reference name="InfectedEpithelialcells__I__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> InfectedEpithelialcells__I__*gammaV </Expression>
+      </Function>
+      <Function id="fRate1">
+        <ListOfReferences>
+          <Reference name="gammaVA" type="Constant"/>
+          <Reference name="Antibodies__A__" type="Observable"/>
+          <Reference name="Antigeniccompatibility__S__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (Antibodies__A__*Antigeniccompatibility__S__)*gammaVA </Expression>
+      </Function>
+      <Function id="fRate2">
+        <ListOfReferences>
+          <Reference name="gammaVH" type="Constant"/>
+          <Reference name="HealthyEpithelialcells__H__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> HealthyEpithelialcells__H__*gammaVH </Expression>
+      </Function>
+      <Function id="fRate4">
+        <ListOfReferences>
+          <Reference name="aV1" type="Constant"/>
+          <Reference name="aV2" type="Constant"/>
+          <Reference name="ViralLoad__V__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> aV1/((ViralLoad__V__*aV2)+1.0) </Expression>
+      </Function>
+      <Function id="fRate5">
+        <ListOfReferences>
+          <Reference name="bHD" type="Constant"/>
+          <Reference name="Deadcells__D___ar" type="Function"/>
+          <Reference name="HealthyEpithelialcells__H__" type="Observable"/>
+          <Reference name="Resistantcells__R__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (Deadcells__D___ar*bHD)*(HealthyEpithelialcells__H__+Resistantcells__R__) </Expression>
+      </Function>
+      <Function id="fRate7">
+        <ListOfReferences>
+          <Reference name="gammaHV" type="Constant"/>
+          <Reference name="ViralLoad__V__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ViralLoad__V__*gammaHV </Expression>
+      </Function>
+      <Function id="fRate8">
+        <ListOfReferences>
+          <Reference name="bHF" type="Constant"/>
+          <Reference name="Interferons__F__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Interferons__F__*bHF </Expression>
+      </Function>
+      <Function id="fRate9">
+        <ListOfReferences>
+          <Reference name="bIE" type="Constant"/>
+          <Reference name="Effectorcells__E__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Effectorcells__E__*bIE </Expression>
+      </Function>
+      <Function id="fRate11">
+        <ListOfReferences>
+          <Reference name="bMD" type="Constant"/>
+          <Reference name="bMV" type="Constant"/>
+          <Reference name="Deadcells__D___ar" type="Function"/>
+          <Reference name="APCcells__M__" type="Observable"/>
+          <Reference name="ViralLoad__V__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (1-APCcells__M__)*((Deadcells__D___ar*bMD)+(ViralLoad__V__*bMV)) </Expression>
+      </Function>
+      <Function id="fRate13">
+        <ListOfReferences>
+          <Reference name="bF" type="Constant"/>
+          <Reference name="APCcells__M__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> APCcells__M__*bF </Expression>
+      </Function>
+      <Function id="fRate14">
+        <ListOfReferences>
+          <Reference name="cF" type="Constant"/>
+          <Reference name="InfectedEpithelialcells__I__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> InfectedEpithelialcells__I__*cF </Expression>
+      </Function>
+      <Function id="fRate15">
+        <ListOfReferences>
+          <Reference name="bFH" type="Constant"/>
+          <Reference name="HealthyEpithelialcells__H__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> HealthyEpithelialcells__H__*bFH </Expression>
+      </Function>
+      <Function id="fRate17">
+        <ListOfReferences>
+          <Reference name="bEM" type="Constant"/>
+          <Reference name="APCcells__M__" type="Observable"/>
+          <Reference name="Effectorcells__E__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (APCcells__M__*Effectorcells__E__)*bEM </Expression>
+      </Function>
+      <Function id="fRate18">
+        <ListOfReferences>
+          <Reference name="bEI" type="Constant"/>
+          <Reference name="InfectedEpithelialcells__I__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> InfectedEpithelialcells__I__*bEI </Expression>
+      </Function>
+      <Function id="fRate20">
+        <ListOfReferences>
+          <Reference name="bPM" type="Constant"/>
+          <Reference name="APCcells__M__" type="Observable"/>
+          <Reference name="Plasmacells__P__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (APCcells__M__*Plasmacells__P__)*bPM </Expression>
+      </Function>
+      <Function id="fRate22">
+        <ListOfReferences>
+          <Reference name="bA" type="Constant"/>
+          <Reference name="Plasmacells__P__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Plasmacells__P__*bA </Expression>
+      </Function>
+      <Function id="fRate23">
+        <ListOfReferences>
+          <Reference name="gammaAV" type="Constant"/>
+          <Reference name="Antigeniccompatibility__S__" type="Observable"/>
+          <Reference name="ViralLoad__V__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (Antigeniccompatibility__S__*ViralLoad__V__)*gammaAV </Expression>
+      </Function>
+      <Function id="fRate25">
+        <ListOfReferences>
+          <Reference name="r" type="Constant"/>
+          <Reference name="Plasmacells__P__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Plasmacells__P__*r </Expression>
+      </Function>
+      <Function id="fRate25m">
+        <ListOfReferences>
+          <Reference name="r" type="Constant"/>
+          <Reference name="Plasmacells__P__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Plasmacells__P__*r </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

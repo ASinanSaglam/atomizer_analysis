@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000824_flat">
+    <ListOfParameters>
+      <Parameter id="p" type="Constant" value="0.17" expr="0.17"/>
+      <Parameter id="gamma_0" type="Constant" value="1.8e+10" expr="18000000000.0"/>
+      <Parameter id="a" type="Constant" value="0.044" expr="0.044"/>
+      <Parameter id="myu_0" type="Constant" value="0.18" expr="0.18"/>
+      <Parameter id="myu_1" type="Constant" value="0.04" expr="0.04"/>
+      <Parameter id="K" type="Constant" value="1e+10" expr="10000000000.0"/>
+      <Parameter id="myu" type="Constant" value="0.22" expr="0.22"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="NaiveT_cellsN"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="6.022e+20" name="NaiveT_cellsN()">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="NaiveT_cellsN"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="export_of_mature_naive_T_cells" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="NaiveT_cellsN"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="gamma" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="peripheral_prolieferation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="NaiveT_cellsN"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="fRate1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="cell_removal_due_to_death_or_phenotypic_changes" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="NaiveT_cellsN"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="myu_ar" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR3_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="NaiveT_cellsN" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="NaiveT_cellsN"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="gamma">
+        <ListOfReferences>
+          <Reference name="a" type="Constant"/>
+          <Reference name="gamma_0" type="Constant"/>
+        </ListOfReferences>
+        <Expression> gamma_0*exp(((-a)*time())) </Expression>
+      </Function>
+      <Function id="myu_ar">
+        <ListOfReferences>
+          <Reference name="K" type="Constant"/>
+          <Reference name="myu_0" type="Constant"/>
+          <Reference name="myu_1" type="Constant"/>
+          <Reference name="NaiveT_cellsN" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((NaiveT_cellsN^2)*myu_1)/((K^2)+(NaiveT_cellsN^2)))+myu_0 </Expression>
+      </Function>
+      <Function id="fRate1">
+        <ListOfReferences>
+          <Reference name="p" type="Constant"/>
+          <Reference name="NaiveT_cellsN" type="Observable"/>
+        </ListOfReferences>
+        <Expression> NaiveT_cellsN*p </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

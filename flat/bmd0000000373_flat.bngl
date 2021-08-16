@@ -3,12 +3,12 @@
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/15347584']
 #@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/15294427']
 #@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000783']
-#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0006096', 'http://identifiers.org/go/GO:0061469', 'http://identifiers.org/go/GO:0044342']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0044342', 'http://identifiers.org/go/GO:0006096', 'http://identifiers.org/go/GO:0061469']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
 #@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:9351']
 #@creatorEmail:'ajmera@ebi.ac.uk'
 #@creatorName:'Ajmera Ishan'
-#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 7 molecules and 0 reactions. The translated model has 7 molecules and 7 rules'
+#@notes:'This is a plain translation of an SBML model created on 14/08/2021. The original model has 7 molecules and 0 reactions. The translated model has 7 molecules and 7 rules'
 ###
 begin model
 begin parameters
@@ -56,13 +56,13 @@ begin parameters
 	topa1 0
 end parameters
 begin molecule types
-	V()
+	c()
 	fbp()
 	cer()
-	c()
+	V()
 	adp()
-	g6p()
 	n()
+	g6p()
 end molecule types
 begin seed species
 	n() 0.025 #n #n
@@ -82,44 +82,60 @@ begin observables
 	Species adp adp() #adp
 end observables
 begin functions
-	minf() = 1/(exp(-V/12 - 5/3) + 1)
-	ICa() = gCa*minf*(V - VCa)
-	IK() = gK*n*(V - VK)
-	IKCa() = gKCa*(V - VK)/(1 + kd^2/c^2)
 	mgadp() = 0.165*adp
-	adp3m() = 0.135*adp
+	topo() = 0.08 + 0.16*mgadp/kdd + 0.89*mgadp^2/kdd^2
 	rad() = sqrt(abs(-4*adp^2 + (adp - atot)^2))
 	atp() = -0.5*adp + 0.5*atot + 0.5*rad
 	atp4m() = 0.05*atp
+	adp3m() = 0.135*adp
 	bottomo() = (1 + mgadp/kdd)^2*(adp3m/ktd + atp4m/ktt + 1)
-	topo() = 0.08 + 0.16*mgadp/kdd + 0.89*mgadp^2/kdd^2
 	katpo() = topo/bottomo
 	IKATP() = gkatpbar*katpo*(V - VK)
+	IK() = gK*n*(V - VK)
+	IKCa() = gKCa*(V - VK)/(1 + kd^2/c^2)
+	minf() = 1/(exp(-V/12 - 5/3) + 1)
+	ICa() = gCa*minf*(V - VCa)
 	arRateV() = (-ICa - IK - IKATP - IKCa)/Cm
-	f6p() = 0.3*g6p
 	amp() = adp^2/atp
+	f6p() = 0.3*g6p
 	weight15() = amp*f6p^2*fbp/(famp*ffbp*k1*k2*k3)
 	topb() = weight15
-	weight14() = amp*atp^2*fbp/(fbt*fmt*k1*k2*k4)
 	weight12() = amp*atp^2*f6p^2/(famp*fatp*fmt*k1*k3*k4)
-	weight11() = amp*f6p^2/(famp*k1*k3)
-	weight6() = atp^2*fbp/(fbt*k2*k4)
+	weight7() = f6p^2*fbp/(ffbp*k2*k3)
+	weight4() = atp^2*f6p^2/(fatp*k3*k4)
+	topa2() = topa1
 	weight3() = f6p^2/k3
+	topa3() = topa2 + weight3
+	topa4() = topa3 + weight4
+	topa5() = topa4
+	topa6() = topa5
+	topa7() = topa6 + weight7
+	weight8() = atp^2*f6p^2*fbp/(fatp*fbt*ffbp*k2*k3*k4)
+	topa8() = topa7 + weight8
+	topa9() = topa8
+	topa10() = topa9
+	weight11() = amp*f6p^2/(famp*k1*k3)
+	topa11() = topa10 + weight11
+	topa12() = topa11 + weight12
+	topa13() = topa12
+	topa14() = topa13
+	topa15() = topa14
+	weight16() = amp*atp^2*f6p^2*fbp/(famp*fatp*fbt*ffbp*fmt*k1*k2*k3*k4)
+	topa16() = topa15 + weight16
+	weight14() = amp*atp^2*fbp/(fbt*fmt*k1*k2*k4)
+	weight10() = amp*atp^2/(fmt*k1*k4)
+	weight6() = atp^2*fbp/(fbt*k2*k4)
+	weight5() = fbp/k2
 	weight2() = atp^2/k4
 	bottom2() = bottom1 + weight2
 	bottom3() = bottom2 + weight3
-	weight4() = atp^2*f6p^2/(fatp*k3*k4)
 	bottom4() = bottom3 + weight4
-	weight5() = fbp/k2
 	bottom5() = bottom4 + weight5
 	bottom6() = bottom5 + weight6
-	weight7() = f6p^2*fbp/(ffbp*k2*k3)
 	bottom7() = bottom6 + weight7
-	weight8() = atp^2*f6p^2*fbp/(fatp*fbt*ffbp*k2*k3*k4)
 	bottom8() = bottom7 + weight8
 	weight9() = amp/k1
 	bottom9() = bottom8 + weight9
-	weight10() = amp*atp^2/(fmt*k1*k4)
 	bottom10() = bottom9 + weight10
 	bottom11() = bottom10 + weight11
 	bottom12() = bottom11 + weight12
@@ -127,32 +143,16 @@ begin functions
 	bottom13() = bottom12 + weight13
 	bottom14() = bottom13 + weight14
 	bottom15() = bottom14 + weight15
-	weight16() = amp*atp^2*f6p^2*fbp/(famp*fatp*fbt*ffbp*fmt*k1*k2*k3*k4)
 	bottom16() = bottom15 + weight16
-	topa2() = topa1
-	topa3() = topa2 + weight3
-	topa4() = topa3 + weight4
-	topa5() = topa4
-	topa6() = topa5
-	topa7() = topa6 + weight7
-	topa8() = topa7 + weight8
-	topa9() = topa8
-	topa10() = topa9
-	topa11() = topa10 + weight11
-	topa12() = topa11 + weight12
-	topa13() = topa12
-	topa14() = topa13
-	topa15() = topa14
-	topa16() = topa15 + weight16
 	pfk() = (cat*pfkbas*topa16 + cat*topb)/bottom16
 	rgpdh() = 0.2*sqrt(abs(fbp))
 	y() = rgpdh*vg/(kg + rgpdh)
 	fback() = r + y
 	arRateadp() = (-adp*exp(fback*(-c/r1 + 1)) + atp)/taua
-	Jmem() = -ICa*alpha - c*kpmca
-	Jleak() = pleak*(-c + cer)
 	Jserca() = Kserca*c
+	Jleak() = pleak*(-c + cer)
 	Jer() = epser*(Jleak - Jserca)/lambdaer
+	Jmem() = -ICa*alpha - c*kpmca
 	arRatec() = fcyt*(Jer + Jmem)
 	arRatecer() = -Jer*fer*sigmaV
 	ninf() = 1/(exp(-V/5 - 16/5) + 1)

@@ -5,7 +5,7 @@
 #@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000765', 'http://identifiers.org/biomodels.db/MODEL1907290001']
 #@creatorEmail:'johannes.p.meyer'
 #@creatorName:'Meyer Johannes'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 4 molecules and 9 reactions. The translated model has 3 molecules and 9 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 4 molecules and 9 reactions. The translated model has 3 molecules and 9 rules'
 ###
 begin model
 begin parameters
@@ -30,21 +30,21 @@ begin molecule types
 	#^ bqbiol:is chebi:CHEBI:23888
 	#^ bqbiol:occursIn ncit:C16353
 	C(r)
+	#^ bqbiol:isVersionOf ncit:C18106
+	R(c)
 	#^ bqbiol:is chebi:CHEBI:23888
 	#^ bqbiol:occursIn ncit:C12801
 	A_T()
-	#^ bqbiol:isVersionOf ncit:C18106
-	R(c)
 end molecule types
 begin seed species
-	@Central:C(r) 2.4088e+24 # (4000.0 * 0.001)mol/L * 6.022e23/mol *1.0L #C #C
-	@Central:R(c) 3.19166e+22 #original 53.0substance/volume #R #R
+	@Central:C(r)@Central 2.4088e+24 # (4000.0 * 0.001)mol/L * 6.022e23/mol *1.0L #C #C
+	@Central:R(c)@Central 3.19166e+22 #original 53.0substance/volume #R #R
 end seed species
 begin observables
-	Species C_Central @Central:C(r) #C
-	Species A_T_Peripheral_Tissue @Peripheral_Tissue:A_T() #A_T
-	Species R_Central @Central:R(c) #R
-	Species RC_Central @Central:R(c!36).C(r!36) #RC
+	Species C_Central @Central:C(r)@Central #C
+	Species A_T_Peripheral_Tissue @Peripheral_Tissue:A_T()@Peripheral_Tissue #A_T
+	Species R_Central @Central:R(c)@Central #R
+	Species RC_Central @Central:R(c!839)@Central.C(r!839)@Central #RC
 end observables
 begin functions
 	C_tot() = (C_Central + RC_Central)/ModelValue_1
@@ -56,9 +56,9 @@ begin functions
 	fRate5() = C_Central*V_c*k_pt
 end functions
 begin reaction rules
-	Complex_Formation: R(c)@Central + C(r)@Central -> R(c!36)@Central.C(r!36)@Central k_on
+	Complex_Formation: R(c)@Central + C(r)@Central -> R(c!839)@Central.C(r!839)@Central k_on
 	Complex_Dissociation: 0  -> R(c)@Central + C(r)@Central fRate1() #Modifiers(RC)
-	Complex_Internalisation_reactants_0: 0  -> R(c!36)@Central.C(r!36)@Central -1*(fRate2())
+	Complex_Internalisation_reactants_0: 0  -> R(c!839)@Central.C(r!839)@Central -1*(fRate2())
 	Drug_Exit_Central_reactants_0: 0  -> C(r)@Central -1*(fRate3())
 	Drug_Distribution_Tissue_to_Central: 0  -> C(r)@Central fRate4() #Modifiers(A_T)
 	Drug_Distribution_Central_to_Tissue: 0  -> A_T()@Peripheral_Tissue fRate5() #Modifiers(C)

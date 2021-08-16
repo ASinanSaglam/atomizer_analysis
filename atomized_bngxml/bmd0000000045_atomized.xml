@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000045_atomized">
+    <ListOfParameters>
+      <Parameter id="beta" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="r1_v0" type="Constant" value="0.015" expr="0.015000"/>
+      <Parameter id="r1_v1" type="Constant" value="0.012" expr="0.012000"/>
+      <Parameter id="r2_Vm2i" type="Constant" value="3.1" expr="3.100000"/>
+      <Parameter id="r2_K2i" type="Constant" value="0.005" expr="0.005000"/>
+      <Parameter id="r3_Vm3i" type="Constant" value="25" expr="25.000000"/>
+      <Parameter id="r3_K3y" type="Constant" value="0.065" expr="0.065000"/>
+      <Parameter id="r3_K3z" type="Constant" value="0.022" expr="0.022000"/>
+      <Parameter id="r4_Kf" type="Constant" value="0.5" expr="0.500000"/>
+      <Parameter id="r5_K" type="Constant" value="1" expr="1.000000"/>
+      <Parameter id="r6_Kf" type="Constant" value="0.5" expr="0.500000"/>
+      <Parameter id="r7_Vm2s" type="Constant" value="1.5" expr="1.500000"/>
+      <Parameter id="r7_K2s" type="Constant" value="0.0265" expr="0.026500"/>
+      <Parameter id="r8_Vm3s" type="Constant" value="0.169" expr="0.169000"/>
+      <Parameter id="r8_K3s" type="Constant" value="0.1" expr="0.100000"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="X">
+        <ListOfComponentTypes>
+          <ComponentType id="EC">
+            <ListOfAllowedStates>
+              <AllowedState id="EC"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="Y">
+            <ListOfAllowedStates>
+              <AllowedState id="Y"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="Z">
+            <ListOfAllowedStates>
+              <AllowedState id="Z"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+      <compartment id="extracellular" spatialDimensions="3" size="1.0"/>
+      <compartment id="cytosol" spatialDimensions="3" size="1.0"/>
+      <compartment id="intravesicular1" spatialDimensions="3" size="1.0"/>
+      <compartment id="intravesicular2" spatialDimensions="3" size="1.0"/>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="3.011e+17" name="@intravesicular1::X(EC~0,Y~0,Z~0)" compartment="intravesicular1">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="X" compartment="intravesicular1">
+            <ListOfComponents>
+              <Component id="S1_M1_C1" name="EC" state="0" numberOfBonds="0"/>
+              <Component id="S1_M1_C2" name="Y" state="0" numberOfBonds="0"/>
+              <Component id="S1_M1_C3" name="Z" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="vin_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="X" compartment="extracellular">
+                <ListOfComponents>
+                  <Component id="RR1_PP1_M1_C1" name="EC" state="EC" numberOfBonds="0"/>
+                  <Component id="RR1_PP1_M1_C2" name="Y" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_PP1_M1_C3" name="Z" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="_rateLaw1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="vin_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="X" compartment="cytosol">
+                <ListOfComponents>
+                  <Component id="RR2_PP1_M1_C1" name="EC" state="0" numberOfBonds="0"/>
+                  <Component id="RR2_PP1_M1_C2" name="Y" state="0" numberOfBonds="0"/>
+                  <Component id="RR2_PP1_M1_C3" name="Z" state="Z" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="v2i" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="X" compartment="cytosol">
+                <ListOfComponents>
+                  <Component id="RR3_RP1_M1_C1" name="EC" state="0" numberOfBonds="0"/>
+                  <Component id="RR3_RP1_M1_C2" name="Y" state="0" numberOfBonds="0"/>
+                  <Component id="RR3_RP1_M1_C3" name="Z" state="Z" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="X" compartment="intravesicular2">
+                <ListOfComponents>
+                  <Component id="RR3_PP1_M1_C1" name="EC" state="0" numberOfBonds="0"/>
+                  <Component id="RR3_PP1_M1_C2" name="Y" state="Y" numberOfBonds="0"/>
+                  <Component id="RR3_PP1_M1_C3" name="Z" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="fRate1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1" targetID="RR3_PP1_M1"/>
+          <MapItem sourceID="RR3_RP1_M1_C1" targetID="RR3_PP1_M1_C1"/>
+          <MapItem sourceID="RR3_RP1_M1_C2" targetID="RR3_PP1_M1_C2"/>
+          <MapItem sourceID="RR3_RP1_M1_C3" targetID="RR3_PP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR3_RP1_M1_C2" finalState="Y"/>
+          <StateChange site="RR3_RP1_M1_C3" finalState="0"/>
+          <ChangeCompartment id="RR3_RP1_M1" source="cytosol" destination="intravesicular2" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="v3i" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="X" compartment="intravesicular2">
+                <ListOfComponents>
+                  <Component id="RR4_RP1_M1_C1" name="EC" state="0" numberOfBonds="0"/>
+                  <Component id="RR4_RP1_M1_C2" name="Y" state="Y" numberOfBonds="0"/>
+                  <Component id="RR4_RP1_M1_C3" name="Z" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="X" compartment="cytosol">
+                <ListOfComponents>
+                  <Component id="RR4_PP1_M1_C1" name="EC" state="0" numberOfBonds="0"/>
+                  <Component id="RR4_PP1_M1_C2" name="Y" state="0" numberOfBonds="0"/>
+                  <Component id="RR4_PP1_M1_C3" name="Z" state="Z" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="fRate2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1" targetID="RR4_PP1_M1"/>
+          <MapItem sourceID="RR4_RP1_M1_C1" targetID="RR4_PP1_M1_C1"/>
+          <MapItem sourceID="RR4_RP1_M1_C2" targetID="RR4_PP1_M1_C2"/>
+          <MapItem sourceID="RR4_RP1_M1_C3" targetID="RR4_PP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR4_RP1_M1_C2" finalState="0"/>
+          <StateChange site="RR4_RP1_M1_C3" finalState="Z"/>
+          <ChangeCompartment id="RR4_RP1_M1" source="intravesicular2" destination="cytosol" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="v4" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR5_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP1_M1" name="X" compartment="intravesicular2">
+                <ListOfComponents>
+                  <Component id="RR5_RP1_M1_C1" name="EC" state="0" numberOfBonds="0"/>
+                  <Component id="RR5_RP1_M1_C2" name="Y" state="Y" numberOfBonds="0"/>
+                  <Component id="RR5_RP1_M1_C3" name="Z" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="X" compartment="cytosol">
+                <ListOfComponents>
+                  <Component id="RR5_PP1_M1_C1" name="EC" state="0" numberOfBonds="0"/>
+                  <Component id="RR5_PP1_M1_C2" name="Y" state="0" numberOfBonds="0"/>
+                  <Component id="RR5_PP1_M1_C3" name="Z" state="Z" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r4_Kf"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR5_RP1_M1" targetID="RR5_PP1_M1"/>
+          <MapItem sourceID="RR5_RP1_M1_C1" targetID="RR5_PP1_M1_C1"/>
+          <MapItem sourceID="RR5_RP1_M1_C2" targetID="RR5_PP1_M1_C2"/>
+          <MapItem sourceID="RR5_RP1_M1_C3" targetID="RR5_PP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR5_RP1_M1_C2" finalState="0"/>
+          <StateChange site="RR5_RP1_M1_C3" finalState="Z"/>
+          <ChangeCompartment id="RR5_RP1_M1" source="intravesicular2" destination="cytosol" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="v5" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR6_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_RP1_M1" name="X" compartment="cytosol">
+                <ListOfComponents>
+                  <Component id="RR6_RP1_M1_C1" name="EC" state="0" numberOfBonds="0"/>
+                  <Component id="RR6_RP1_M1_C2" name="Y" state="0" numberOfBonds="0"/>
+                  <Component id="RR6_RP1_M1_C3" name="Z" state="Z" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="X" compartment="extracellular">
+                <ListOfComponents>
+                  <Component id="RR6_PP1_M1_C1" name="EC" state="EC" numberOfBonds="0"/>
+                  <Component id="RR6_PP1_M1_C2" name="Y" state="0" numberOfBonds="0"/>
+                  <Component id="RR6_PP1_M1_C3" name="Z" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r5_K"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR6_RP1_M1" targetID="RR6_PP1_M1"/>
+          <MapItem sourceID="RR6_RP1_M1_C1" targetID="RR6_PP1_M1_C1"/>
+          <MapItem sourceID="RR6_RP1_M1_C2" targetID="RR6_PP1_M1_C2"/>
+          <MapItem sourceID="RR6_RP1_M1_C3" targetID="RR6_PP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR6_RP1_M1_C1" finalState="EC"/>
+          <StateChange site="RR6_RP1_M1_C3" finalState="0"/>
+          <ChangeCompartment id="RR6_RP1_M1" source="cytosol" destination="extracellular" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="v6" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR7_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_RP1_M1" name="X" compartment="intravesicular1">
+                <ListOfComponents>
+                  <Component id="RR7_RP1_M1_C1" name="EC" state="0" numberOfBonds="0"/>
+                  <Component id="RR7_RP1_M1_C2" name="Y" state="0" numberOfBonds="0"/>
+                  <Component id="RR7_RP1_M1_C3" name="Z" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="X" compartment="cytosol">
+                <ListOfComponents>
+                  <Component id="RR7_PP1_M1_C1" name="EC" state="0" numberOfBonds="0"/>
+                  <Component id="RR7_PP1_M1_C2" name="Y" state="0" numberOfBonds="0"/>
+                  <Component id="RR7_PP1_M1_C3" name="Z" state="Z" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r6_Kf"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR7_RP1_M1" targetID="RR7_PP1_M1"/>
+          <MapItem sourceID="RR7_RP1_M1_C1" targetID="RR7_PP1_M1_C1"/>
+          <MapItem sourceID="RR7_RP1_M1_C2" targetID="RR7_PP1_M1_C2"/>
+          <MapItem sourceID="RR7_RP1_M1_C3" targetID="RR7_PP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR7_RP1_M1_C3" finalState="Z"/>
+          <ChangeCompartment id="RR7_RP1_M1" source="intravesicular1" destination="cytosol" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="v2s" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR8_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_RP1_M1" name="X" compartment="cytosol">
+                <ListOfComponents>
+                  <Component id="RR8_RP1_M1_C1" name="EC" state="0" numberOfBonds="0"/>
+                  <Component id="RR8_RP1_M1_C2" name="Y" state="0" numberOfBonds="0"/>
+                  <Component id="RR8_RP1_M1_C3" name="Z" state="Z" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR8_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP1_M1" name="X" compartment="intravesicular1">
+                <ListOfComponents>
+                  <Component id="RR8_PP1_M1_C1" name="EC" state="0" numberOfBonds="0"/>
+                  <Component id="RR8_PP1_M1_C2" name="Y" state="0" numberOfBonds="0"/>
+                  <Component id="RR8_PP1_M1_C3" name="Z" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Function" name="fRate6" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR8_RP1_M1" targetID="RR8_PP1_M1"/>
+          <MapItem sourceID="RR8_RP1_M1_C1" targetID="RR8_PP1_M1_C1"/>
+          <MapItem sourceID="RR8_RP1_M1_C2" targetID="RR8_PP1_M1_C2"/>
+          <MapItem sourceID="RR8_RP1_M1_C3" targetID="RR8_PP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR8_RP1_M1_C3" finalState="0"/>
+          <ChangeCompartment id="RR8_RP1_M1" source="cytosol" destination="intravesicular1" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="v3s" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR9_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_RP1_M1" name="X" compartment="intravesicular1">
+                <ListOfComponents>
+                  <Component id="RR9_RP1_M1_C1" name="EC" state="0" numberOfBonds="0"/>
+                  <Component id="RR9_RP1_M1_C2" name="Y" state="0" numberOfBonds="0"/>
+                  <Component id="RR9_RP1_M1_C3" name="Z" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR9_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP1_M1" name="X" compartment="cytosol">
+                <ListOfComponents>
+                  <Component id="RR9_PP1_M1_C1" name="EC" state="0" numberOfBonds="0"/>
+                  <Component id="RR9_PP1_M1_C2" name="Y" state="0" numberOfBonds="0"/>
+                  <Component id="RR9_PP1_M1_C3" name="Z" state="Z" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Function" name="fRate7" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR9_RP1_M1" targetID="RR9_PP1_M1"/>
+          <MapItem sourceID="RR9_RP1_M1_C1" targetID="RR9_PP1_M1_C1"/>
+          <MapItem sourceID="RR9_RP1_M1_C2" targetID="RR9_PP1_M1_C2"/>
+          <MapItem sourceID="RR9_RP1_M1_C3" targetID="RR9_PP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR9_RP1_M1_C3" finalState="Z"/>
+          <ChangeCompartment id="RR9_RP1_M1" source="intravesicular1" destination="cytosol" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="EC_extracellular" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" compartment="extracellular" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="X">
+                <ListOfComponents>
+                  <Component id="O1_P1_M1_C1" name="EC" state="EC" numberOfBonds="0"/>
+                  <Component id="O1_P1_M1_C2" name="Y" state="0" numberOfBonds="0"/>
+                  <Component id="O1_P1_M1_C3" name="Z" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="Z_cytosol" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" compartment="cytosol" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="X">
+                <ListOfComponents>
+                  <Component id="O2_P1_M1_C1" name="EC" state="0" numberOfBonds="0"/>
+                  <Component id="O2_P1_M1_C2" name="Y" state="0" numberOfBonds="0"/>
+                  <Component id="O2_P1_M1_C3" name="Z" state="Z" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="Y_intravesicular2" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" compartment="intravesicular2" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="X">
+                <ListOfComponents>
+                  <Component id="O3_P1_M1_C1" name="EC" state="0" numberOfBonds="0"/>
+                  <Component id="O3_P1_M1_C2" name="Y" state="Y" numberOfBonds="0"/>
+                  <Component id="O3_P1_M1_C3" name="Z" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="X_intravesicular1" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" compartment="intravesicular1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="X">
+                <ListOfComponents>
+                  <Component id="O4_P1_M1_C1" name="EC" state="0" numberOfBonds="0"/>
+                  <Component id="O4_P1_M1_C2" name="Y" state="0" numberOfBonds="0"/>
+                  <Component id="O4_P1_M1_C3" name="Z" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="beta" type="Constant"/>
+        </ListOfReferences>
+        <Expression> (0.012*beta)+0.015 </Expression>
+      </Function>
+      <Function id="fRate1">
+        <ListOfReferences>
+          <Reference name="Z_cytosol" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (3.1*Z_cytosol)/((Z_cytosol^2)+2.5e-5) </Expression>
+      </Function>
+      <Function id="fRate2">
+        <ListOfReferences>
+          <Reference name="Y_intravesicular2" type="Observable"/>
+          <Reference name="Z_cytosol" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((25.0*Y_intravesicular2)*(Z_cytosol^2))/(((((Y_intravesicular2^2)*(Z_cytosol^2))+(0.000484*(Y_intravesicular2^2)))+(0.004225*(Z_cytosol^2)))+2.0449e-6) </Expression>
+      </Function>
+      <Function id="fRate6">
+        <ListOfReferences>
+          <Reference name="Z_cytosol" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (1.5*Z_cytosol)/((Z_cytosol^2)+0.00070225) </Expression>
+      </Function>
+      <Function id="fRate7">
+        <ListOfReferences>
+          <Reference name="beta" type="Constant"/>
+          <Reference name="X_intravesicular1" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((0.169*X_intravesicular1)*beta)/((X_intravesicular1^2)+0.01) </Expression>
+      </Function>
+      <Function id="_rateLaw1">
+        <ListOfReferences>
+          <Reference name="fRate0" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate0() </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

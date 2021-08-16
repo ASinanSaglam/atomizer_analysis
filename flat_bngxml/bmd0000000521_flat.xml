@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000521_flat">
+    <ListOfParameters>
+      <Parameter id="P0" type="Constant" value="7.13" expr="7.13"/>
+      <Parameter id="Q0" type="Constant" value="41.2" expr="41.2"/>
+      <Parameter id="lambda_P" type="Constant" value="0.121" expr="0.121"/>
+      <Parameter id="k_PQ" type="Constant" value="0.00295" expr="0.00295"/>
+      <Parameter id="k_Qp_P" type="Constant" value="0.0031" expr="0.0031"/>
+      <Parameter id="delta_QP" type="Constant" value="0.0087" expr="0.0087"/>
+      <Parameter id="gamma" type="Constant" value="0.729" expr="0.729"/>
+      <Parameter id="KDE" type="Constant" value="0.24" expr="0.24"/>
+      <Parameter id="K" type="Constant" value="100" expr="100.0"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="PCV_plasma"/>
+      <MoleculeType id="Proliferativetissue"/>
+      <MoleculeType id="damagedquiescentcells"/>
+      <MoleculeType id="nonproliferativequiescenttissue"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+      <compartment id="plama" spatialDimensions="3" size="1.0"/>
+      <compartment id="tissue" spatialDimensions="3" size="1.0"/>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="6.022e+23" name="@plama::PCV_plasma()" compartment="plama">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="PCV_plasma" compartment="plama"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="4.293686e+24" name="@tissue::Proliferativetissue()" compartment="tissue">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="Proliferativetissue" compartment="tissue"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="2.4810640000000004e+25" name="@tissue::nonproliferativequiescenttissue()" compartment="tissue">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="nonproliferativequiescenttissue" compartment="tissue"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="_R1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="PCV_plasma" compartment="plama"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="arRateC" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="_R2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="Proliferativetissue" compartment="tissue"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="arRateP" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="_R3" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="nonproliferativequiescenttissue" compartment="tissue"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="arRateQ" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="_R4" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="damagedquiescentcells" compartment="tissue"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="arRateQp" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR4_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="PCV_plasma_plama" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" compartment="plama" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="PCV_plasma"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="Proliferativetissue_tissue" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" compartment="tissue" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="Proliferativetissue"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="nonproliferativequiescenttissue_tissue" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" compartment="tissue" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="nonproliferativequiescenttissue"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="damagedquiescentcells_tissue" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" compartment="tissue" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="damagedquiescentcells"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="Pstar">
+        <ListOfReferences>
+          <Reference name="Proliferativetissue_tissue" type="Observable"/>
+          <Reference name="damagedquiescentcells_tissue" type="Observable"/>
+          <Reference name="nonproliferativequiescenttissue_tissue" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (Proliferativetissue_tissue+damagedquiescentcells_tissue)+nonproliferativequiescenttissue_tissue </Expression>
+      </Function>
+      <Function id="arRateP">
+        <ListOfReferences>
+          <Reference name="K" type="Constant"/>
+          <Reference name="KDE" type="Constant"/>
+          <Reference name="gamma" type="Constant"/>
+          <Reference name="k_PQ" type="Constant"/>
+          <Reference name="k_Qp_P" type="Constant"/>
+          <Reference name="lambda_P" type="Constant"/>
+          <Reference name="Pstar" type="Function"/>
+          <Reference name="PCV_plasma_plama" type="Observable"/>
+          <Reference name="Proliferativetissue_tissue" type="Observable"/>
+          <Reference name="damagedquiescentcells_tissue" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((((((-KDE)*PCV_plasma_plama)*Proliferativetissue_tissue)*gamma)-(Proliferativetissue_tissue*k_PQ))+((Proliferativetissue_tissue*lambda_P)*(1-(Pstar/K))))+(damagedquiescentcells_tissue*k_Qp_P) </Expression>
+      </Function>
+      <Function id="arRateQp">
+        <ListOfReferences>
+          <Reference name="KDE" type="Constant"/>
+          <Reference name="delta_QP" type="Constant"/>
+          <Reference name="gamma" type="Constant"/>
+          <Reference name="k_Qp_P" type="Constant"/>
+          <Reference name="PCV_plasma_plama" type="Observable"/>
+          <Reference name="damagedquiescentcells_tissue" type="Observable"/>
+          <Reference name="nonproliferativequiescenttissue_tissue" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((((KDE*PCV_plasma_plama)*gamma)*nonproliferativequiescenttissue_tissue)-(damagedquiescentcells_tissue*delta_QP))-(damagedquiescentcells_tissue*k_Qp_P) </Expression>
+      </Function>
+      <Function id="arRateQ">
+        <ListOfReferences>
+          <Reference name="KDE" type="Constant"/>
+          <Reference name="gamma" type="Constant"/>
+          <Reference name="k_PQ" type="Constant"/>
+          <Reference name="PCV_plasma_plama" type="Observable"/>
+          <Reference name="nonproliferativequiescenttissue_tissue" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((((-KDE)*PCV_plasma_plama)*gamma)*nonproliferativequiescenttissue_tissue)+k_PQ </Expression>
+      </Function>
+      <Function id="arRateC">
+        <ListOfReferences>
+          <Reference name="KDE" type="Constant"/>
+          <Reference name="PCV_plasma_plama" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (-KDE)*PCV_plasma_plama </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

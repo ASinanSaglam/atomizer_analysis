@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000933_atomized">
+    <ListOfParameters>
+      <Parameter id="kd" type="Constant" value="0.25" expr="0.25"/>
+      <Parameter id="vi" type="Constant" value="0.25" expr="0.25"/>
+      <Parameter id="Kc" type="Constant" value="0.5" expr="0.5"/>
+      <Parameter id="VM1" type="Constant" value="3" expr="3.0"/>
+      <Parameter id="V2" type="Constant" value="1.5" expr="1.5"/>
+      <Parameter id="VM3" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="V4" type="Constant" value="0.7" expr="0.7"/>
+      <Parameter id="vd" type="Constant" value="0.25" expr="0.25"/>
+      <Parameter id="kj" type="Constant" value="0.001" expr="0.001"/>
+      <Parameter id="j" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="epislon" type="Constant" value="0.001" expr="0.001"/>
+      <Parameter id="Kd" type="Constant" value="0" expr="0"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="C"/>
+      <MoleculeType id="M"/>
+      <MoleculeType id="X"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="1.8066e+20" name="C()">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="C"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="Production_of_Cyclin_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="C"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="Cdc2_kinase_activation_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="M"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="fRate1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="activation_of_cyclin_protease_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="X"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="fRate2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="C" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="C"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="M" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="M"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="X" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="X"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="V3M">
+        <ListOfReferences>
+          <Reference name="VM3" type="Constant"/>
+          <Reference name="M" type="Observable"/>
+        </ListOfReferences>
+        <Expression> M*VM3 </Expression>
+      </Function>
+      <Function id="V1C">
+        <ListOfReferences>
+          <Reference name="Kc" type="Constant"/>
+          <Reference name="VM1" type="Constant"/>
+          <Reference name="C" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (C*VM1)/(C+Kc) </Expression>
+      </Function>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="C" type="Observable"/>
+          <Reference name="X" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((-C)/4)-(X/4))+(1/4) </Expression>
+      </Function>
+      <Function id="fRate1">
+        <ListOfReferences>
+          <Reference name="epislon" type="Constant"/>
+          <Reference name="C" type="Observable"/>
+          <Reference name="M" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((6.0*C)*(1-M))/(((2*C)+1)*(((-M)+epislon)+1)))-((3.0*M)/((2*M)+(2*epislon))) </Expression>
+      </Function>
+      <Function id="fRate2">
+        <ListOfReferences>
+          <Reference name="epislon" type="Constant"/>
+          <Reference name="M" type="Observable"/>
+          <Reference name="X" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((1.0*M)*(1-X))/(((-X)+epislon)+1))-((7.0*X)/((10*X)+(10*epislon))) </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

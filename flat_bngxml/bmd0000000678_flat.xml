@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000678_flat">
+    <ListOfParameters>
+      <Parameter id="k1" type="Constant" value="0.359" expr="0.359"/>
+      <Parameter id="k2" type="Constant" value="0.147" expr="0.147"/>
+      <Parameter id="k3" type="Constant" value="0.06" expr="0.06"/>
+      <Parameter id="k4" type="Constant" value="0.035" expr="0.035"/>
+      <Parameter id="stim_frequency" type="Constant" value="3" expr="3.0"/>
+      <Parameter id="stim_duration" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="ModelValue_17" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="ModelValue_13" type="Constant" value="3" expr="3.0"/>
+      <Parameter id="stimulus" type="Constant" value="0" expr="0"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="NFAT_dephosphorylated"/>
+      <MoleculeType id="NFAT_phosphorylated"/>
+      <MoleculeType id="NFAT_transported"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="6.022e+20" name="NFAT_phosphorylated()">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="NFAT_phosphorylated"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="Dephosphorylation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR1_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_RP1_M1" name="NFAT_phosphorylated"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="NFAT_dephosphorylated"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR1_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+          <Delete id="RR1_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="Phosphorylation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="NFAT_dephosphorylated"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="NFAT_phosphorylated"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k2"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+          <Delete id="RR2_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="Translocation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="NFAT_dephosphorylated"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="NFAT_transported"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k3"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+          <Delete id="RR3_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="Nuclear_export" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="NFAT_transported"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="NFAT_phosphorylated"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k4"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR4_PP1_M1"/>
+          <Delete id="RR4_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="NFAT_phosphorylated" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="NFAT_phosphorylated"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="NFAT_dephosphorylated" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="NFAT_dephosphorylated"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="NFAT_transported" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="NFAT_transported"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="NFAT_transported_ar">
+        <ListOfReferences>
+          <Reference name="NFAT_dephosphorylated" type="Observable"/>
+          <Reference name="NFAT_phosphorylated" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((-NFAT_dephosphorylated)-NFAT_phosphorylated)+1 </Expression>
+      </Function>
+      <Function id="tNFAT">
+        <ListOfReferences>
+          <Reference name="NFAT_transported_ar" type="Function"/>
+        </ListOfReferences>
+        <Expression> 100*NFAT_transported_ar </Expression>
+      </Function>
+      <Function id="stimulus_ar">
+        <ListOfReferences>
+          <Reference name="ModelValue_13" type="Constant"/>
+          <Reference name="ModelValue_17" type="Constant"/>
+        </ListOfReferences>
+        <Expression> if(((((-ModelValue_13)*min(rint(((time()/ModelValue_13)-0.5)),rint(((time()/ModelValue_13)+0.5))))+time())&lt;ModelValue_17),1,0) </Expression>
+      </Function>
+      <Function id="dNFAT">
+        <ListOfReferences>
+          <Reference name="NFAT_dephosphorylated" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 100*NFAT_dephosphorylated </Expression>
+      </Function>
+      <Function id="pNFAT">
+        <ListOfReferences>
+          <Reference name="NFAT_phosphorylated" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 100*NFAT_phosphorylated </Expression>
+      </Function>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="k1" type="Constant"/>
+          <Reference name="stimulus_ar" type="Function"/>
+        </ListOfReferences>
+        <Expression> k1*stimulus_ar </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

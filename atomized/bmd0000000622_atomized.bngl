@@ -5,7 +5,7 @@
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/131567']
 #@creatorEmail:'tvarusai@ebi.ac.uk'
 #@creatorName:'Varusai Thawfeek'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 11 molecules and 17 reactions. The translated model has 3 molecules and 20 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 11 molecules and 17 reactions. The translated model has 3 molecules and 20 rules'
 ###
 begin model
 begin parameters
@@ -36,20 +36,20 @@ begin parameters
 	r17_k1 0.000030
 end parameters
 begin molecule types
-	#^ bqbiol:isVersionOf uniprot:Q06587
-	R1B(bmi1,ub~UB~0,uba~UBA~0,ubd~UBD~0)
 	#^ bqbiol:isVersionOf uniprot:P16104
 	H2A(uba~UBA~0)
 	#^ bqbiol:isVersionOf uniprot:P35226
 	Bmi1(r1b,ub~UB~0,ubd~UBD~0)
+	#^ bqbiol:isVersionOf uniprot:Q06587
+	R1B(bmi1,ub~UB~0,uba~UBA~0,ubd~UBD~0)
 end molecule types
 begin seed species
 	Bmi1(r1b,ub~0,ubd~0) 6.624200000000001e+20 # (1.1 * 0.001)mol/L * 6.022e23/mol *1.0L #Bmi1 #Bmi1
 	Bmi1(r1b,ub~0,ubd~UBD) 6.50376e+20 #original 1.08substance/volume  #Bmi1ubd #Bmi1ubd
 	R1B(bmi1,ub~0,uba~0,ubd~0) 6.022000000000001e+19 #original 0.1substance/volume  #R1B #R1B
 	R1B(bmi1,ub~0,uba~0,ubd~UBD) 7.226400000000001e+19 #original 0.12substance/volume  #R1Bubd #R1Bubd
-	R1B(bmi1!215,ub~0,uba~0,ubd~0).Bmi1(r1b!215,ub~0,ubd~0) 1.2044000000000002e+20 #original 0.2substance/volume  #Z #Z
-	R1B(bmi1!215,ub~0,uba~0,ubd~0).Bmi1(r1b!215,ub~UB,ubd~0) 7.226400000000001e+19 #original 0.12substance/volume  #Zub #Zub
+	R1B(bmi1!313,ub~0,uba~0,ubd~0).Bmi1(r1b!313,ub~0,ubd~0) 1.2044000000000002e+20 #original 0.2substance/volume  #Z #Z
+	R1B(bmi1!313,ub~0,uba~0,ubd~0).Bmi1(r1b!313,ub~UB,ubd~0) 7.226400000000001e+19 #original 0.12substance/volume  #Zub #Zub
 	R1B(bmi1,ub~0,uba~UBA,ubd~0) 2.6496800000000003e+20 #original 0.44substance/volume  #R1Buba #R1Buba
 	R1B(bmi1,ub~UB,uba~0,ubd~0) 1.2044000000000002e+19 #original 0.02substance/volume  #R1Bub #R1Bub
 	H2A(uba~0) 6.022000000000001e+19 #original 0.1substance/volume  #H2A #H2A
@@ -59,8 +59,8 @@ begin observables
 	Species Bmi1ubd Bmi1(r1b,ub~0,ubd~UBD) #Bmi1ubd
 	Species R1B R1B(bmi1,ub~0,uba~0,ubd~0) #R1B
 	Species R1Bubd R1B(bmi1,ub~0,uba~0,ubd~UBD) #R1Bubd
-	Species Z R1B(bmi1!215,ub~0,uba~0,ubd~0).Bmi1(r1b!215,ub~0,ubd~0) #Z
-	Species Zub R1B(bmi1!215,ub~0,uba~0,ubd~0).Bmi1(r1b!215,ub~UB,ubd~0) #Zub
+	Species Z R1B(bmi1!313,ub~0,uba~0,ubd~0).Bmi1(r1b!313,ub~0,ubd~0) #Z
+	Species Zub R1B(bmi1!313,ub~0,uba~0,ubd~0).Bmi1(r1b!313,ub~UB,ubd~0) #Zub
 	Species R1Buba R1B(bmi1,ub~0,uba~UBA,ubd~0) #R1Buba
 	Species R1Bub R1B(bmi1,ub~UB,uba~0,ubd~0) #R1Bub
 	Species H2A H2A(uba~0) #H2A
@@ -80,11 +80,11 @@ begin reaction rules
 	R2: Bmi1(r1b,ub~0,ubd~UBD) -> Bmi1(r1b,ub~0,ubd~0) r2_k1
 	R3: R1B(bmi1,ub~0,uba~0,ubd~0) -> R1B(bmi1,ub~0,uba~0,ubd~UBD) r3_k1
 	R4: R1B(bmi1,ub~0,uba~0,ubd~UBD) -> R1B(bmi1,ub~0,uba~0,ubd~0) fRate3() #Modifiers(USP7tot)
-	R5: Bmi1(r1b,ub~0,ubd~0) + R1B(bmi1,ub~0,uba~0,ubd~0) <-> R1B(bmi1!215,ub~0,uba~0,ubd~0).Bmi1(r1b!215,ub~0,ubd~0) r5_k1,r5_k2
-	R6_reactants_0: 0  -> R1B(bmi1!215,ub~0,uba~0,ubd~0).Bmi1(r1b!215,ub~0,ubd~0) -1*(fRate5())
-	R6_products_0: 0  -> R1B(bmi1!215,ub~0,uba~0,ubd~0).Bmi1(r1b!215,ub~UB,ubd~0) fRate5()
-	R7: R1B(bmi1!215,ub~0,uba~0,ubd~0).Bmi1(r1b!215,ub~UB,ubd~0) -> R1B(bmi1!215,ub~0,uba~0,ubd~0).Bmi1(r1b!215,ub~0,ubd~0) fRate6() #Modifiers(USP7tot)
-	R8: R1B(bmi1!215,ub~0,uba~0,ubd~0).Bmi1(r1b!215,ub~UB,ubd~0) <-> R1B(bmi1,ub~0,uba~UBA,ubd~0) + Bmi1(r1b,ub~0,ubd~0) r8_k1,r8_k2
+	R5: Bmi1(r1b,ub~0,ubd~0) + R1B(bmi1,ub~0,uba~0,ubd~0) <-> R1B(bmi1!313,ub~0,uba~0,ubd~0).Bmi1(r1b!313,ub~0,ubd~0) r5_k1,r5_k2
+	R6_reactants_0: 0  -> R1B(bmi1!313,ub~0,uba~0,ubd~0).Bmi1(r1b!313,ub~0,ubd~0) -1*(fRate5())
+	R6_products_0: 0  -> R1B(bmi1!313,ub~0,uba~0,ubd~0).Bmi1(r1b!313,ub~UB,ubd~0) fRate5()
+	R7: R1B(bmi1!313,ub~0,uba~0,ubd~0).Bmi1(r1b!313,ub~UB,ubd~0) -> R1B(bmi1!313,ub~0,uba~0,ubd~0).Bmi1(r1b!313,ub~0,ubd~0) fRate6() #Modifiers(USP7tot)
+	R8: R1B(bmi1!313,ub~0,uba~0,ubd~0).Bmi1(r1b!313,ub~UB,ubd~0) <-> R1B(bmi1,ub~0,uba~UBA,ubd~0) + Bmi1(r1b,ub~0,ubd~0) r8_k1,r8_k2
 	R9_reactants_0: 0  -> R1B(bmi1,ub~0,uba~0,ubd~0) -1*(fRate8())
 	R9_products_0: 0  -> R1B(bmi1,ub~UB,uba~0,ubd~0) fRate8()
 	R10: R1B(bmi1,ub~UB,uba~0,ubd~0) -> R1B(bmi1,ub~0,uba~0,ubd~0) fRate9() #Modifiers(USP7tot)

@@ -1,13 +1,13 @@
 ###
 #@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1112260000', 'http://identifiers.org/biomodels.db/BIOMD0000000705']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/20567500']
-#@BQB_HAS_PART:['http://identifiers.org/go/GO:0008152', 'http://identifiers.org/ncit/C17557', 'http://identifiers.org/go/GO:0043687', 'http://identifiers.org/go/GO:0051726']
+#@BQB_HAS_PART:['http://identifiers.org/ncit/C17557', 'http://identifiers.org/go/GO:0008152', 'http://identifiers.org/go/GO:0043687', 'http://identifiers.org/go/GO:0051726']
 #@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/2759']
 #@BQB_IS_DESCRIBED_BY:['http://identifiers.org/doi/doi:10.1371/journal.pone.0011092']
 #@creatorEmail:'matt.maire@free.fr'
 #@creatorName:'MAIRE Matthieu'
-#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 43 molecules and 61 reactions. The translated model has 20 molecules and 74 rules'
+#@notes:'This is a plain translation of an SBML model created on 14/08/2021. The original model has 43 molecules and 61 reactions. The translated model has 20 molecules and 74 rules'
 ###
 begin model
 begin parameters
@@ -60,26 +60,26 @@ begin compartments
 	dnabound 3 1e-13
 end compartments
 begin molecule types
-	dnabound_Foxo1_polyubiquitinated_phosphorylated()
-	dnabound_Foxo1_phosphorylated()
-	cytoplasm_Foxo1_polyubiquitinated()
-	cytoplasm_Sod2()
-	cytoplasm_Inr()
-	nucleus_RNA_Sod2()
-	nucleus_Foxo1_unpolyubiquitinated_unphosphorylated()
-	nucleus_Foxo1_polyubiquitinated()
-	cytoplasm_Foxo1_unpolyubiquitinated_unphosphorylated()
-	cytoplasm_Foxo1_phosphorylated()
-	nucleus_Foxo1_polyubiquitinated_phosphorylated()
-	cytoplasm_Foxo1_polyubiquitinated_phosphorylated()
-	degr_Foxo1()
-	cytoplasm_RNA_Sod2()
-	nucleus_Foxo1_phosphorylated()
-	dnabound_Foxo1_unpolyubiquitinated_unphosphorylated()
 	null()
+	cytoplasm_Sod2()
+	degr_Foxo1()
 	cytoplasm_RNA_Inr()
+	cytoplasm_Foxo1_unpolyubiquitinated_unphosphorylated()
+	nucleus_Foxo1_phosphorylated()
 	dnabound_Foxo1_polyubiquitinated()
+	cytoplasm_RNA_Sod2()
+	nucleus_Foxo1_polyubiquitinated_phosphorylated()
+	dnabound_Foxo1_phosphorylated()
+	cytoplasm_Foxo1_phosphorylated()
+	cytoplasm_Inr()
+	cytoplasm_Foxo1_polyubiquitinated()
 	nucleus_RNA_Inr()
+	dnabound_Foxo1_unpolyubiquitinated_unphosphorylated()
+	nucleus_Foxo1_polyubiquitinated()
+	nucleus_RNA_Sod2()
+	dnabound_Foxo1_polyubiquitinated_phosphorylated()
+	cytoplasm_Foxo1_polyubiquitinated_phosphorylated()
+	nucleus_Foxo1_unpolyubiquitinated_unphosphorylated()
 end molecule types
 begin seed species
 	@cytoplasm:cytoplasm_Foxo1_unpolyubiquitinated_unphosphorylated() 6.0220000000000006e+26 # 60606060606060.6mol/L * 6.022e23/mol *1.65e-11L #cytoplasm_Foxo1_unpolyubiquitinated_unphosphorylated #cytoplasm_Foxo1_Pa0_pUb0
@@ -107,9 +107,9 @@ begin observables
 	Species cytoplasm_Sod2_cytoplasm @cytoplasm:cytoplasm_Sod2() #cytoplasm_Sod2
 end observables
 begin functions
-	dnabound_Foxo1_total_ar() = 0.0120481927710843*dnabound_Foxo1_phosphorylated_dnabound + 0.0120481927710843*dnabound_Foxo1_polyubiquitinated_dnabound + 0.0120481927710843*dnabound_Foxo1_polyubiquitinated_phosphorylated_dnabound + 0.0120481927710843*dnabound_Foxo1_unpolyubiquitinated_unphosphorylated_dnabound
-	nucleus_Foxo1_total_ar() = 0.0602409638554217*nucleus_Foxo1_phosphorylated_nucleus + 0.0602409638554217*nucleus_Foxo1_polyubiquitinated_nucleus + 0.0602409638554217*nucleus_Foxo1_polyubiquitinated_phosphorylated_nucleus + 0.0602409638554217*nucleus_Foxo1_unpolyubiquitinated_unphosphorylated_nucleus
 	cytoplasm_Foxo1_total_ar() = 1.98795180722892*cytoplasm_Foxo1_phosphorylated_cytoplasm + 1.98795180722892*cytoplasm_Foxo1_polyubiquitinated_cytoplasm + 1.98795180722892*cytoplasm_Foxo1_polyubiquitinated_phosphorylated_cytoplasm + 1.98795180722892*cytoplasm_Foxo1_unpolyubiquitinated_unphosphorylated_cytoplasm
+	nucleus_Foxo1_total_ar() = 0.0602409638554217*nucleus_Foxo1_phosphorylated_nucleus + 0.0602409638554217*nucleus_Foxo1_polyubiquitinated_nucleus + 0.0602409638554217*nucleus_Foxo1_polyubiquitinated_phosphorylated_nucleus + 0.0602409638554217*nucleus_Foxo1_unpolyubiquitinated_unphosphorylated_nucleus
+	dnabound_Foxo1_total_ar() = 0.0120481927710843*dnabound_Foxo1_phosphorylated_dnabound + 0.0120481927710843*dnabound_Foxo1_polyubiquitinated_dnabound + 0.0120481927710843*dnabound_Foxo1_polyubiquitinated_phosphorylated_dnabound + 0.0120481927710843*dnabound_Foxo1_unpolyubiquitinated_unphosphorylated_dnabound
 	Foxo1_total_ar() = 1.0*cytoplasm_Foxo1_total_ar + 1.0*dnabound_Foxo1_total_ar + 1.0*nucleus_Foxo1_total_ar
 	Foxo1_total_rate_ar() = Foxo1_total_ar/Metabolite_21
 	Foxo1_unpolyubiquitinated_total_ar() = 1.98795180722892*cytoplasm_Foxo1_phosphorylated_cytoplasm + 1.98795180722892*cytoplasm_Foxo1_unpolyubiquitinated_unphosphorylated_cytoplasm + 0.0120481927710843*dnabound_Foxo1_phosphorylated_dnabound + 0.0120481927710843*dnabound_Foxo1_unpolyubiquitinated_unphosphorylated_dnabound + 0.0602409638554217*nucleus_Foxo1_phosphorylated_nucleus + 0.0602409638554217*nucleus_Foxo1_unpolyubiquitinated_unphosphorylated_nucleus

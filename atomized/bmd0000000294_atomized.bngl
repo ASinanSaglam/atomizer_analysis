@@ -1,13 +1,13 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1012210000', 'http://identifiers.org/biomodels.db/BIOMD0000000294']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000294', 'http://identifiers.org/biomodels.db/MODEL1012210000']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/17210532']
 #@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/460412', 'http://identifiers.org/pubmed/460424', 'http://identifiers.org/biomodels.db/BIOMD0000000249']
-#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606', 'http://identifiers.org/taxonomy/520']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/520', 'http://identifiers.org/taxonomy/9606']
 #@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/doid/DOID:1116']
-#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0009814', 'http://identifiers.org/go/GO:0035635']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0035635', 'http://identifiers.org/go/GO:0009814']
 #@creatorEmail:'lukas@ebi.ac.uk'
 #@creatorName:'Endler Lukas'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 11 molecules and 26 reactions. The translated model has 4 molecules and 31 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 11 molecules and 26 reactions. The translated model has 4 molecules and 31 rules'
 ###
 begin model
 begin parameters
@@ -24,14 +24,14 @@ begin parameters
 	N 1.0
 end parameters
 begin molecule types
+	#^ bqbiol:hasVersion taxonomy:9606, taxonomy:520
+	I2(R2~R2~0)
 	#^ bqbiol:isVersionOf taxonomy:9606
 	V()
 	#^ bqbiol:isVersionOf taxonomy:9606
 	R(Iv2~Iv2~0,J1~J1~0,J2~J2~0,S~S~0)
 	#^ bqbiol:hasVersion taxonomy:9606, taxonomy:520
 	I1(R1~R1~0)
-	#^ bqbiol:hasVersion taxonomy:9606, taxonomy:520
-	I2(R2~R2~0)
 end molecule types
 begin seed species
 	R(Iv2~0,J1~0,J2~0,S~S) 0.0588235 #S #S
@@ -54,8 +54,8 @@ begin observables
 	Species R R(Iv2~0,J1~0,J2~0,S~0) #R
 end observables
 begin functions
-	gamma() = 365/tInf
 	mu() = 1/l_e
+	gamma() = 365/tInf
 	beta() = R0*(gamma + mu)
 	R_frac() = R/N
 	R_2_frac() = (R + R2)/N

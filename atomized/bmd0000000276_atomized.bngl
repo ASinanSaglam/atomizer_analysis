@@ -6,7 +6,7 @@
 #@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:10575']
 #@creatorEmail:'viji@ebi.ac.uk'
 #@creatorName:'Chelliah Vijayalakshmi'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 3 molecules and 0 reactions. The translated model has 2 molecules and 2 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 3 molecules and 0 reactions. The translated model has 2 molecules and 2 rules'
 ###
 begin model
 begin parameters
@@ -44,11 +44,11 @@ begin observables
 	Species PTH_in_Plasma_Plasma_pool @Plasma_pool:PTH_in_Plasma() #PTH_in_Plasma
 end observables
 begin functions
-	k() = lambda_1*x1_n + lambda_2*x2_n
-	B() = lambda_1*lambda_2*x2_min/(k - lambda_2*x2_min)
 	Ca_in_Plasma_ar() =  if((time()<t0),(Ca0),(Ca0-Ca1*(1-exp(-alpha*(-t0+time())))))
 	m_Ca() = m1/(exp(-beta*(-Ca_in_Plasma_ar + R)) + 1) + m2
+	k() = lambda_1*x1_n + lambda_2*x2_n
 	A() = lambda_1*lambda_2*x2_max/(k - lambda_2*x2_max)
+	B() = lambda_1*lambda_2*x2_min/(k - lambda_2*x2_min)
 	S() = Ca0_baseline*((-B*x1_n + lambda_2*x2_n)/(A*x1_n - lambda_2*x2_n))^(1/m_Ca)
 	lambda_Ca() = B + (A - B)/((Ca_in_Plasma_ar/S)^m_Ca + 1)
 	arRatex1() = -PTH_in_PTG_PTG_pool*lambda_1 - PTH_in_PTG_PTG_pool*lambda_Ca + k

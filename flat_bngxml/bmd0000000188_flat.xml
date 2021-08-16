@@ -1,0 +1,899 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000188_flat">
+    <ListOfParameters>
+      <Parameter id="ksynMdm2" type="Constant" value="0.000495" expr="0.000495"/>
+      <Parameter id="kdegMdm2" type="Constant" value="0.000433" expr="0.000433"/>
+      <Parameter id="ksynp53" type="Constant" value="0.006" expr="0.006"/>
+      <Parameter id="kdegp53" type="Constant" value="0.000825" expr="0.000825"/>
+      <Parameter id="kbinMdm2p53" type="Constant" value="0.001155" expr="0.001155"/>
+      <Parameter id="krelMdm2p53" type="Constant" value="1.155e-5" expr="1.155e-05"/>
+      <Parameter id="ksynMdm2mRNA" type="Constant" value="0.0001" expr="0.0001"/>
+      <Parameter id="kdegMdm2mRNA" type="Constant" value="0.0001" expr="0.0001"/>
+      <Parameter id="kactATM" type="Constant" value="0.0001" expr="0.0001"/>
+      <Parameter id="kdegATMMdm2" type="Constant" value="0.0004" expr="0.0004"/>
+      <Parameter id="kinactATM" type="Constant" value="0.0005" expr="0.0005"/>
+      <Parameter id="kphosp53" type="Constant" value="0.0005" expr="0.0005"/>
+      <Parameter id="kdephosp53" type="Constant" value="0.5" expr="0.5"/>
+      <Parameter id="kphosMdm2" type="Constant" value="2" expr="2.0"/>
+      <Parameter id="kdephosMdm2" type="Constant" value="0.5" expr="0.5"/>
+      <Parameter id="kdam" type="Constant" value="0.08" expr="0.08"/>
+      <Parameter id="krepair" type="Constant" value="2e-5" expr="2e-05"/>
+      <Parameter id="kproteff" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="ksynp53mRNA" type="Constant" value="0.001" expr="0.001"/>
+      <Parameter id="kdegp53mRNA" type="Constant" value="0.0001" expr="0.0001"/>
+      <Parameter id="IR" type="Constant" value="0" expr="0"/>
+      <Parameter id="Sink" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="Source" type="Constant" value="1" expr="1.0"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="ATMA"/>
+      <MoleculeType id="ATMI"/>
+      <MoleculeType id="Mdm2"/>
+      <MoleculeType id="Mdm2_P"/>
+      <MoleculeType id="Mdm2_mRNA"/>
+      <MoleculeType id="Mdm2_p53"/>
+      <MoleculeType id="Mdm2mRNAdeg"/>
+      <MoleculeType id="Mdm2mRNAsyn"/>
+      <MoleculeType id="damDNA"/>
+      <MoleculeType id="mdm2deg"/>
+      <MoleculeType id="mdm2syn"/>
+      <MoleculeType id="p53"/>
+      <MoleculeType id="p53_P"/>
+      <MoleculeType id="p53_mRNA"/>
+      <MoleculeType id="p53deg"/>
+      <MoleculeType id="p53syn"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="5.0" name="Mdm2()">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="Mdm2"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="5.0" name="p53()">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="p53"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="95.0" name="Mdm2_p53()">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="Mdm2_p53"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S4"  concentration="10.0" name="Mdm2_mRNA()">
+        <ListOfMolecules>
+          <Molecule id="S4_M1" name="Mdm2_mRNA"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S5"  concentration="10.0" name="p53_mRNA()">
+        <ListOfMolecules>
+          <Molecule id="S5_M1" name="p53_mRNA"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S6"  concentration="200.0" name="ATMI()">
+        <ListOfMolecules>
+          <Molecule id="S6_M1" name="ATMI"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="p53mRNASynthesis" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="p53_mRNA"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="p53mRNADegradation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="p53_mRNA"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kdegp53mRNA"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR2_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="Mdm2Synthesis" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="Mdm2_mRNA"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="Mdm2_mRNA"/>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR3_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP2_M1" name="Mdm2"/>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR3_PP3">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP3_M1" name="mdm2syn"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="ksynMdm2"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1" targetID="RR3_PP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP2_M1"/>
+          <Add id="RR3_PP3_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="Mdm2mRNASynthesis1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="p53"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="p53"/>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR4_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP2_M1" name="Mdm2_mRNA"/>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR4_PP3">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP3_M1" name="Mdm2mRNAsyn"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="ksynMdm2mRNA"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1" targetID="RR4_PP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR4_PP2_M1"/>
+          <Add id="RR4_PP3_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="Mdm2mRNASynthesis2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR5_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP1_M1" name="p53_P"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="p53_P"/>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR5_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP2_M1" name="Mdm2_mRNA"/>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR5_PP3">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP3_M1" name="Mdm2mRNAsyn"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="ksynMdm2mRNA"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR5_RP1_M1" targetID="RR5_PP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR5_PP2_M1"/>
+          <Add id="RR5_PP3_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="Mdm2mRNADegradation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR6_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_RP1_M1" name="Mdm2_mRNA"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="Mdm2mRNAdeg"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kdegMdm2mRNA"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR6_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR6_PP1_M1"/>
+          <Delete id="RR6_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="Mdm2Degradation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR7_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_RP1_M1" name="Mdm2"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="mdm2deg"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Function" name="fRate6" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR7_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR7_PP1_M1"/>
+          <Delete id="RR7_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="p53Synthesis" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR8_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_RP1_M1" name="p53_mRNA"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR8_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP1_M1" name="p53"/>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR8_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP2_M1" name="p53_mRNA"/>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR8_PP3">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP3_M1" name="p53syn"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="ksynp53"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR8_RP1_M1" targetID="RR8_PP2_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR8_PP1_M1"/>
+          <Add id="RR8_PP3_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="p53Degradation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR9_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_RP1_M1" name="Mdm2_p53"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR9_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP1_M1" name="Mdm2"/>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR9_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP2_M1" name="p53deg"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Function" name="fRate8" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR9_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR9_PP1_M1"/>
+          <Add id="RR9_PP2_M1"/>
+          <Delete id="RR9_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="P53_Mdm2Binding" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR10_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_RP1_M1" name="p53"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR10_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR10_RP2_M1" name="Mdm2"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR10_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_PP1_M1" name="Mdm2_p53"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kbinMdm2p53"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR10_RP1_M1"/>
+          <MapItem sourceID="RR10_RP2_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR10_PP1_M1"/>
+          <Delete id="RR10_RP1" DeleteMolecules="0"/>
+          <Delete id="RR10_RP2" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR11" name="P53_Mdm2Release" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR11_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_RP1_M1" name="Mdm2_p53"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR11_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_PP1_M1" name="p53"/>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR11_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR11_PP2_M1" name="Mdm2"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR11_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="krelMdm2p53"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR11_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR11_PP1_M1"/>
+          <Add id="RR11_PP2_M1"/>
+          <Delete id="RR11_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR12" name="DNAdamage" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR12_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_PP1_M1" name="damDNA"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR12_RateLaw" type="Function" name="fRate11" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR12_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR13" name="DNArepair" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR13_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_RP1_M1" name="damDNA"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR13_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="krepair"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR13_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR13_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR14" name="ATMactivation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR14_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_RP1_M1" name="damDNA"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR14_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR14_RP2_M1" name="ATMI"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR14_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_PP1_M1" name="damDNA"/>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR14_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR14_PP2_M1" name="ATMA"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR14_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kactATM"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR14_RP1_M1" targetID="RR14_PP1_M1"/>
+          <MapItem sourceID="RR14_RP2_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR14_PP2_M1"/>
+          <Delete id="RR14_RP2" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR15" name="p53phoshorylation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR15_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR15_RP1_M1" name="p53"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR15_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR15_RP2_M1" name="ATMA"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR15_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR15_PP1_M1" name="p53_P"/>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR15_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR15_PP2_M1" name="ATMA"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR15_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kphosp53"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR15_RP1_M1"/>
+          <MapItem sourceID="RR15_RP2_M1" targetID="RR15_PP2_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR15_PP1_M1"/>
+          <Delete id="RR15_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR16" name="p53dephosorylation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR16_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR16_RP1_M1" name="p53_P"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR16_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR16_PP1_M1" name="p53"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR16_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kdephosp53"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR16_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR16_PP1_M1"/>
+          <Delete id="RR16_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR17" name="Mdm2phoshorylation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR17_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR17_RP1_M1" name="Mdm2"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR17_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR17_RP2_M1" name="ATMA"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR17_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR17_PP1_M1" name="Mdm2_P"/>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR17_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR17_PP2_M1" name="ATMA"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR17_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kphosMdm2"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR17_RP1_M1"/>
+          <MapItem sourceID="RR17_RP2_M1" targetID="RR17_PP2_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR17_PP1_M1"/>
+          <Delete id="RR17_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR18" name="Mdm2dephosorylation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR18_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR18_RP1_M1" name="Mdm2_P"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR18_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR18_PP1_M1" name="Mdm2"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR18_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kdephosMdm2"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR18_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR18_PP1_M1"/>
+          <Delete id="RR18_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR19" name="Mdm2Pdegradation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR19_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR19_RP1_M1" name="Mdm2_P"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR19_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR19_PP1_M1" name="mdm2deg"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR19_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kdegATMMdm2"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR19_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR19_PP1_M1"/>
+          <Delete id="RR19_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR20" name="ATMInactivation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR20_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR20_RP1_M1" name="ATMA"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR20_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR20_PP1_M1" name="ATMI"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR20_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kinactATM"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR20_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR20_PP1_M1"/>
+          <Delete id="RR20_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="Mdm2" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="Mdm2"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="p53" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="p53"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="Mdm2_p53" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="Mdm2_p53"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="Mdm2_mRNA" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="Mdm2_mRNA"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="p53_mRNA" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="p53_mRNA"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O6" name="ATMA" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O6_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O6_P1_M1" name="ATMA"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O7" name="ATMI" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O7_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O7_P1_M1" name="ATMI"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O8" name="p53_P" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O8_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O8_P1_M1" name="p53_P"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O9" name="Mdm2_P" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O9_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O9_P1_M1" name="Mdm2_P"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O10" name="damDNA" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O10_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O10_P1_M1" name="damDNA"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O11" name="p53deg" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O11_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O11_P1_M1" name="p53deg"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O12" name="p53syn" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O12_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O12_P1_M1" name="p53syn"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O13" name="mdm2deg" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O13_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O13_P1_M1" name="mdm2deg"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O14" name="mdm2syn" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O14_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O14_P1_M1" name="mdm2syn"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O15" name="Mdm2mRNAdeg" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O15_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O15_P1_M1" name="Mdm2mRNAdeg"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O16" name="Mdm2mRNAsyn" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O16_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O16_P1_M1" name="Mdm2mRNAsyn"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="totMdm2_ar">
+        <ListOfReferences>
+          <Reference name="Mdm2" type="Observable"/>
+          <Reference name="Mdm2_P" type="Observable"/>
+          <Reference name="Mdm2_p53" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (Mdm2+Mdm2_P)+Mdm2_p53 </Expression>
+      </Function>
+      <Function id="totp53_ar">
+        <ListOfReferences>
+          <Reference name="Mdm2_p53" type="Observable"/>
+          <Reference name="p53" type="Observable"/>
+          <Reference name="p53_P" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (Mdm2_p53+p53)+p53_P </Expression>
+      </Function>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="Source" type="Constant"/>
+          <Reference name="ksynp53mRNA" type="Constant"/>
+        </ListOfReferences>
+        <Expression> Source*ksynp53mRNA </Expression>
+      </Function>
+      <Function id="fRate6">
+        <ListOfReferences>
+          <Reference name="kdegMdm2" type="Constant"/>
+          <Reference name="kproteff" type="Constant"/>
+        </ListOfReferences>
+        <Expression> kdegMdm2*kproteff </Expression>
+      </Function>
+      <Function id="fRate8">
+        <ListOfReferences>
+          <Reference name="kdegp53" type="Constant"/>
+          <Reference name="kproteff" type="Constant"/>
+        </ListOfReferences>
+        <Expression> kdegp53*kproteff </Expression>
+      </Function>
+      <Function id="fRate11">
+        <ListOfReferences>
+          <Reference name="IR" type="Constant"/>
+          <Reference name="kdam" type="Constant"/>
+        </ListOfReferences>
+        <Expression> IR*kdam </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

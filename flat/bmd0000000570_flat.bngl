@@ -1,11 +1,11 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000570', 'http://identifiers.org/biomodels.db/MODEL1503020000']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1503020000', 'http://identifiers.org/biomodels.db/BIOMD0000000570']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/12414257']
 #@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0006091']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
 #@creatorEmail:'winter@kapora.de'
 #@creatorName:'Winter Felix'
-#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 20 molecules and 18 reactions. The translated model has 15 molecules and 28 rules'
+#@notes:'This is a plain translation of an SBML model created on 14/08/2021. The original model has 20 molecules and 18 reactions. The translated model has 15 molecules and 28 rules'
 ###
 begin model
 begin parameters
@@ -72,20 +72,20 @@ begin compartments
 	compartment_4 3 0.0237 #Venous balloon
 end compartments
 begin molecule types
-	NADH()
+	O2()
+	dHb()
 	PYR()
 	NADpl()
-	PCr()
 	GLC()
-	O2()
-	LAC()
-	ADP()
 	Cr()
-	dHb()
+	LAC()
 	PEP()
+	PCr()
+	ADP()
 	Napl()
-	ATP()
+	NADH()
 	GAP()
+	ATP()
 	parameter_7
 end molecule types
 begin seed species
@@ -135,8 +135,8 @@ begin observables
 	Species parameter_7 parameter_7
 end observables
 begin functions
-	maximum() = ModelValue_35*ModelValue_50
 	slope_up() = ModelValue_51*time()/ModelValue_52
+	maximum() = ModelValue_35*ModelValue_50
 	slope_down() = maximum*(t_end + t_on - time())/t_on
 	parameter_37() = is_falling*slope_down + is_maximum*maximum + is_rising*slope_up + parameter_36
 	F_out() = parameter_36*(227.349430861571*parameter_37*(1/Compartment_7)^(-0.5)/Compartment_7 + 0.00056169/Compartment_7^2)/(1 + 227.349430861571*parameter_36*(1/Compartment_7)^(-0.5)/Compartment_7)

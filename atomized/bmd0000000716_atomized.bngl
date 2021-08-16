@@ -5,7 +5,7 @@
 #@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000716', 'http://identifiers.org/biomodels.db/MODEL1808280009']
 #@creatorEmail:'sarubini.kananathan@hotmail.co.uk'
 #@creatorName:'Kananathan Sarubini'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 4 molecules and 10 reactions. The translated model has 2 molecules and 10 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 4 molecules and 10 reactions. The translated model has 2 molecules and 10 rules'
 ###
 begin model
 begin parameters
@@ -33,15 +33,15 @@ begin molecule types
 	Infectedbird__I_b__(Susceptiblebird__S_b__~Susceptiblebird__S_b__~0)
 end molecule types
 begin seed species
-	@compartment:Infectedbird__I_b__(Susceptiblebird__S_b__~Susceptiblebird__S_b__) 1.4751250320000002e+26 # (244956.0 * 0.001)mol/L * 6.022e23/mol *1.0L #Susceptiblebird__S_b__ #S_b
-	@compartment:Infectedbird__I_b__(Susceptiblebird__S_b__~0) 2.1971267e+25 #original 36485.0substance/volume #Infectedbird__I_b__ #I_b
-	@Human_Population:InfectedHuman__I_a__(Susceptiblehuman__S_h__~Susceptiblehuman__S_h__) 1.0356454940000001e+26 #original 171977.0substance/volume #Susceptiblehuman__S_h__ #S_h
+	@compartment:Infectedbird__I_b__(Susceptiblebird__S_b__~Susceptiblebird__S_b__)@compartment 1.4751250320000002e+26 # (244956.0 * 0.001)mol/L * 6.022e23/mol *1.0L #Susceptiblebird__S_b__ #S_b
+	@compartment:Infectedbird__I_b__(Susceptiblebird__S_b__~0)@compartment 2.1971267e+25 #original 36485.0substance/volume #Infectedbird__I_b__ #I_b
+	@Human_Population:InfectedHuman__I_a__(Susceptiblehuman__S_h__~Susceptiblehuman__S_h__)@Human_Population 1.0356454940000001e+26 #original 171977.0substance/volume #Susceptiblehuman__S_h__ #S_h
 end seed species
 begin observables
-	Species Susceptiblebird__S_b___compartment @compartment:Infectedbird__I_b__(Susceptiblebird__S_b__~Susceptiblebird__S_b__) #Susceptible bird (S_b)
-	Species Infectedbird__I_b___compartment @compartment:Infectedbird__I_b__(Susceptiblebird__S_b__~0) #Infected bird (I_b)
-	Species Susceptiblehuman__S_h___Human_Population @Human_Population:InfectedHuman__I_a__(Susceptiblehuman__S_h__~Susceptiblehuman__S_h__) #Susceptible human (S_h)
-	Species InfectedHuman__I_a___Human_Population @Human_Population:InfectedHuman__I_a__(Susceptiblehuman__S_h__~0) #Infected Human (I_a)
+	Species Susceptiblebird__S_b___compartment @compartment:Infectedbird__I_b__(Susceptiblebird__S_b__~Susceptiblebird__S_b__)@compartment #Susceptible bird (S_b)
+	Species Infectedbird__I_b___compartment @compartment:Infectedbird__I_b__(Susceptiblebird__S_b__~0)@compartment #Infected bird (I_b)
+	Species Susceptiblehuman__S_h___Human_Population @Human_Population:InfectedHuman__I_a__(Susceptiblehuman__S_h__~Susceptiblehuman__S_h__)@Human_Population #Susceptible human (S_h)
+	Species InfectedHuman__I_a___Human_Population @Human_Population:InfectedHuman__I_a__(Susceptiblehuman__S_h__~0)@Human_Population #Infected Human (I_a)
 end observables
 begin functions
 	delta_b() = 22841/6587955

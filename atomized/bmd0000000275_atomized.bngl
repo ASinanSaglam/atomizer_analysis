@@ -6,7 +6,7 @@
 #@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0001756']
 #@creatorEmail:'lukas@ebi.ac.uk'
 #@creatorName:'Endler Lukas'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 5 molecules and 9 reactions. The translated model has 4 molecules and 9 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 5 molecules and 9 reactions. The translated model has 4 molecules and 9 rules'
 ###
 begin model
 begin parameters
@@ -32,20 +32,20 @@ begin parameters
 	kd5 0
 end parameters
 begin molecule types
-	#^ bqbiol:hasProperty go:GO:0005111, go:GO:0005105, go:GO:0008083
-	#^ bqbiol:isHomologTo uniprot:P55075
-	#^ bqbiol:isVersionOf interpro:IPR002348
-	FGF()
-	#^ bqbiol:hasProperty go:GO:0008401
-	#^ bqbiol:isHomologTo kegg.orthology:K12665, kegg.orthology:K12664, kegg.orthology:K07437, uniprot:Q9NR63, uniprot:Q6V0L0, uniprot:O43174
-	#^ bqbiol:isVersionOf interpro:IPR001128
-	CYP26()
 	#^ bqbiol:is chebi:CHEBI:26536
 	RA()
 	#^ bqbiol:encodes interpro:IPR001128
 	#^ bqbiol:isVersionOf kegg.compound:C02339
 	#^ bqbiol:is chebi:CHEBI:33699
 	cyp26_mRNA()
+	#^ bqbiol:hasProperty go:GO:0008401
+	#^ bqbiol:isHomologTo kegg.orthology:K12665, kegg.orthology:K12664, kegg.orthology:K07437, uniprot:Q9NR63, uniprot:Q6V0L0, uniprot:O43174
+	#^ bqbiol:isVersionOf interpro:IPR001128
+	CYP26()
+	#^ bqbiol:hasProperty go:GO:0005111, go:GO:0005105, go:GO:0008083
+	#^ bqbiol:isHomologTo uniprot:P55075
+	#^ bqbiol:isVersionOf interpro:IPR002348
+	FGF()
 end molecule types
 begin seed species
 	RA() 60220000000000.016 # (0.1 * 1e-09)mol/L * 6.022e23/mol *1.0L #RA #RA
@@ -60,8 +60,8 @@ begin observables
 	Species FGF FGF() #FGF
 end observables
 begin functions
-	alpha1() = RA/(Kr1 + RA)
 	alpha2() = FGF/(FGF + Kr2)
+	alpha1() = RA/(Kr1 + RA)
 	rho() = alpha2/alpha1
 	vs1() = RALDH2_0*ks1*(1 - x/L)
 	FGF_mRNA_ar() = M_0*x/L

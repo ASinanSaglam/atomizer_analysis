@@ -1,11 +1,11 @@
 ###
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/24594370']
-#@BQB_HAS_PROPERTY:['http://identifiers.org/ncit/C18011', 'http://identifiers.org/pr/PR:000044797', 'http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/ncit/C20493']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/pr/PR:000044797', 'http://identifiers.org/ncit/C18011', 'http://identifiers.org/ncit/C20493']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
-#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1912120001', 'http://identifiers.org/biomodels.db/BIOMD0000000889']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000889', 'http://identifiers.org/biomodels.db/MODEL1912120001']
 #@creatorEmail:'johannes.p.meyer@gmail.com'
 #@creatorName:'Meyer Johannes'
-#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 12 molecules and 20 reactions. The translated model has 12 molecules and 20 rules'
+#@notes:'This is a plain translation of an SBML model created on 14/08/2021. The original model has 12 molecules and 20 reactions. The translated model has 12 molecules and 20 rules'
 ###
 begin model
 begin parameters
@@ -51,18 +51,18 @@ begin parameters
 	C 500000.0
 end parameters
 begin molecule types
+	IFNBm()
+	IFNam()
+	TNFam()
+	IFNBenv()
+	STATm()
+	STATP2n()
 	IRF7Pn()
 	IFNaenv()
+	TFNenv()
 	STAT()
-	IFNam()
-	IFNBenv()
 	SOCSm()
 	IRF7m()
-	STATP2n()
-	TFNenv()
-	TNFam()
-	IFNBm()
-	STATm()
 end molecule types
 begin seed species
 	IFNBm() 6.022e+17 # (1.0 * 1e-06)mol/L * 6.022e23/mol *1.0L #IFNBm #IFNBm
@@ -93,8 +93,8 @@ begin observables
 	Species STAT STAT() #STAT
 end observables
 begin functions
-	NS() = r_5*time()^n_3/(b_m^n_3 + time()^n_3)
 	sv() = 0.333333333333333
+	NS() = r_5*time()^n_3/(b_m^n_3 + time()^n_3)
 	IC2() = (sv*(NS/delta_2)^n_2 + 1)/((NS/delta_2)^n_2 + 1)
 	IC1() = (sp*(NS/delta_1)^n_1 + 1)/((NS/delta_1)^n_1 + 1)
 	v_max217() = 72360.0

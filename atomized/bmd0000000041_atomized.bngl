@@ -2,11 +2,11 @@
 #@BQM_IS:['http://identifiers.org/biomodels.db/MODEL6622188656', 'http://identifiers.org/biomodels.db/BIOMD0000000041']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/doi/10.1038/npre.2007.1317.1']
 #@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/10751324']
-#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0046034', 'http://identifiers.org/go/GO:0006600']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0006600', 'http://identifiers.org/go/GO:0046034']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9984']
 #@creatorEmail:'lenov@ebi.ac.uk'
 #@creatorName:'Le Novère Nicolas'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 10 molecules and 9 reactions. The translated model has 4 molecules and 9 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 10 molecules and 9 reactions. The translated model has 4 molecules and 9 rules'
 ###
 begin model
 begin parameters
@@ -42,31 +42,31 @@ begin compartments
 	CYT 3 0.75
 end compartments
 begin molecule types
-	#^ bqbiol:is chebi:CHEBI:16761, kegg.compound:C00008
-	ADP(i~I~0,pi)
-	#^ bqbiol:is chebi:CHEBI:17287, kegg.compound:C02305
-	PCr(i~I~0)
 	#^ bqbiol:is chebi:CHEBI:18367, kegg.compound:C00009
 	Pi(adp,i~I~0)
+	#^ bqbiol:is chebi:CHEBI:17287, kegg.compound:C02305
+	PCr(i~I~0)
 	#^ bqbiol:is chebi:CHEBI:16919, kegg.compound:C00300
 	Cr(i~I~0)
+	#^ bqbiol:is chebi:CHEBI:16761, kegg.compound:C00008
+	ADP(i~I~0,pi)
 end molecule types
 begin seed species
-	@CYT:Pi(adp!59,i~0).ADP(i~0,pi!59) 4.381005000000001e+21 # (9700.0 * 1e-06)mol/L * 6.022e23/mol *0.75L #ATP #ATP
-	@CYT:Cr(i~0) 1.17429e+22 #original 26000.0micromole/L  #Cr #Cr
-	@IMS:Pi(adp,i~I) 1.2044e+21 #original 32000.0micromole/L  #Pii #Pi
+	@CYT:Pi(adp!59,i~0)@CYT.ADP(i~0,pi!59)@CYT 4.381005000000001e+21 # (9700.0 * 1e-06)mol/L * 6.022e23/mol *0.75L #ATP #ATP
+	@CYT:Cr(i~0)@CYT 1.17429e+22 #original 26000.0micromole/L  #Cr #Cr
+	@IMS:Pi(adp,i~I)@IMS 1.2044e+21 #original 32000.0micromole/L  #Pii #Pi
 end seed species
 begin observables
-	Species ADPi_IMS @IMS:ADP(i~I,pi) #ADPi
-	Species ATPi_IMS @IMS:ADP(i~0,pi!59).Pi(adp!59,i~I) #ATPi
-	Species Cri_IMS @IMS:Cr(i~I) #Cri
-	Species PCri_IMS @IMS:PCr(i~I) #PCri
-	Species PCr_CYT @CYT:PCr(i~0) #PCr
-	Species ADP_CYT @CYT:ADP(i~0,pi) #ADP
-	Species ATP_CYT @CYT:Pi(adp!59,i~0).ADP(i~0,pi!59) #ATP
-	Species Cr_CYT @CYT:Cr(i~0) #Cr
-	Species Pii_IMS @IMS:Pi(adp,i~I) #Pii
-	Species Pi_CYT @CYT:Pi(adp,i~0) #Pi
+	Species ADPi_IMS @IMS:ADP(i~I,pi)@IMS #ADPi
+	Species ATPi_IMS @IMS:ADP(i~0,pi!59)@IMS.Pi(adp!59,i~I)@IMS #ATPi
+	Species Cri_IMS @IMS:Cr(i~I)@IMS #Cri
+	Species PCri_IMS @IMS:PCr(i~I)@IMS #PCri
+	Species PCr_CYT @CYT:PCr(i~0)@CYT #PCr
+	Species ADP_CYT @CYT:ADP(i~0,pi)@CYT #ADP
+	Species ATP_CYT @CYT:Pi(adp!59,i~0)@CYT.ADP(i~0,pi!59)@CYT #ATP
+	Species Cr_CYT @CYT:Cr(i~0)@CYT #Cr
+	Species Pii_IMS @IMS:Pi(adp,i~I)@IMS #Pii
+	Species Pi_CYT @CYT:Pi(adp,i~0)@CYT #Pi
 end observables
 begin functions
 	fRate0() = 4600.0/(ADPi_IMS*Pii_IMS + 20.0*ADPi_IMS + 800.0*Pii_IMS + 16000.0)

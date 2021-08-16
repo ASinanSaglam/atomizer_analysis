@@ -2,11 +2,11 @@
 #@BQM_UNKNOWN:['http://identifiers.org/mamo/MAMO_0000046']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/17245126']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
-#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/pw/PW:0000718', 'http://identifiers.org/pw/PW:0001360']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/pw/PW:0001360', 'http://identifiers.org/pw/PW:0000718']
 #@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000001010', 'http://identifiers.org/biomodels.db/MODEL2106230002']
 #@creatorEmail:'ktiwari@ebi.ac.uk'
 #@creatorName:'Tiwari Krishna'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 3 molecules and 4 reactions. The translated model has 2 molecules and 4 rules'
+#@notes:'This is an atomized translation of an SBML model created on 14/08/2021. The original model has 3 molecules and 4 reactions. The translated model has 2 molecules and 4 rules'
 ###
 begin model
 begin parameters
@@ -47,10 +47,10 @@ begin observables
 	Species MDM2_cyt @cyt:MDM2() #MDM2
 end observables
 begin functions
-	r() = J2/p53_nuc
-	v() = Q
-	u() = MDM2_cyt
 	q() = J1/p53_nuc
+	v() = Q
+	r() = J2/p53_nuc
+	u() = MDM2_cyt
 	G_u_v_q_r() = 2*r*u/(q*v + r*u - u + v + (-4*r*u*(-u + v) + (q*v + r*u - u + v)^2)^0.5)
 	max() =   if(( ( 0 )   >= ( Dam0-krepair*(-Tdam+time()) )   ),( ( 0 )   ),( ( Dam0-krepair*(-Tdam+time()) )   )) 
 	heav_x() =  if((x<0),(0),(if((x>0),(1),(0))))

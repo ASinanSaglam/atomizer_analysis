@@ -6,7 +6,7 @@
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/131567']
 #@creatorEmail:'hdharuri@cds.caltech.edu'
 #@creatorName:'Dharuri Harish'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 9 molecules and 15 reactions. The translated model has 7 molecules and 18 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 9 molecules and 15 reactions. The translated model has 7 molecules and 18 rules'
 ###
 begin model
 begin parameters
@@ -59,31 +59,31 @@ begin compartments
 	PM 3 1.0
 end compartments
 begin molecule types
-	#^ bqbiol:is chebi:CHEBI:16595, kegg.compound:C01245
-	IP3_Cyt()
-	#^ bqbiol:isVersionOf uniprot:Q13586
-	S4()
 	Oc(O_o~O_o~0)
+	#^ bqbiol:is chebi:CHEBI:29108, kegg.compound:C00076
+	Ca()
 	#^ bqbiol:is chebi:CHEBI:29108, kegg.compound:C00076
 	Ca_Cyt()
 	#^ bqbiol:isVersionOf uniprot:Q13586
+	S4()
+	#^ bqbiol:is chebi:CHEBI:16595, kegg.compound:C01245
+	IP3_Cyt()
+	#^ bqbiol:isVersionOf uniprot:Q13586
 	S2a()
-	#^ bqbiol:is chebi:CHEBI:29108, kegg.compound:C00076
-	Ca()
 	h
 end molecule types
 begin seed species
-	@ER:S2a() 6684420000000000.0 #original 0.06micromole/L #S2a #S2a
+	@ER:S2a()@ER 6684420000000000.0 #original 0.06micromole/L #S2a #S2a
 	h@Cytoplasm 0
 end seed species
 begin observables
-	Species Ca_Cyt_Cytoplasm @Cytoplasm:Ca_Cyt() #Ca_Cyt
-	Species IP3_Cyt_Cytoplasm @Cytoplasm:IP3_Cyt() #IP3_Cyt
-	Species Ca_ER @ER:Ca() #Ca_ER
-	Species S2a_ER @ER:S2a() #S2a
-	Species S4_ER @ER:S4() #S4
-	Species Oc_PM @PM:Oc(O_o~0) #Oc
-	Species O_o_PM @PM:Oc(O_o~O_o) #O_o
+	Species Ca_Cyt_Cytoplasm @Cytoplasm:Ca_Cyt()@Cytoplasm #Ca_Cyt
+	Species IP3_Cyt_Cytoplasm @Cytoplasm:IP3_Cyt()@Cytoplasm #IP3_Cyt
+	Species Ca_ER @ER:Ca()@ER #Ca_ER
+	Species S2a_ER @ER:S2a()@ER #S2a
+	Species S4_ER @ER:S4()@ER #S4
+	Species Oc_PM @PM:Oc(O_o~0)@PM #Oc
+	Species O_o_PM @PM:Oc(O_o~O_o)@PM #O_o
 	Species h h
 end observables
 begin functions

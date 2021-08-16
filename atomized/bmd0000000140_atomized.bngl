@@ -5,7 +5,7 @@
 #@BQB_IS_PART_OF:['http://identifiers.org/obo.go/GO:0007249', 'http://identifiers.org/kegg.pathway/mmu04660']
 #@creatorEmail:'hdharuri@cds.caltech.edu'
 #@creatorName:'Dharuri Harish'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 24 molecules and 45 reactions. The translated model has 9 molecules and 47 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 24 molecules and 45 reactions. The translated model has 9 molecules and 47 rules'
 ###
 begin model
 begin parameters
@@ -57,52 +57,52 @@ begin compartments
 	nucleus 3 1.0
 end compartments
 begin molecule types
-	IkBalpha_transcript()
-	IkBeps_transcript()
 	#^ bqbiol:isVersionOf uniprot:O54910
 	IkBeps(_nuc~_NUC~0,ikk,nfkb)
 	#^ bqbiol:isVersionOf uniprot:P25799
 	NFkB(_nuc~_NUC~0,ikbalpha,ikbbeta,ikbeps)
-	#^ bqbiol:isVersionOf uniprot:Q9Z1E3
-	IkBalpha(_nuc~_NUC~0,ikk,nfkb)
 	IkBbeta_transcript()
+	IkBeps_transcript()
 	#^ bqbiol:isVersionOf uniprot:Q60778
 	IkBbeta(_nuc~_NUC~0,ikk,nfkb)
 	#^ bqbiol:hasPart uniprot:O88351, uniprot:O88522, uniprot:Q60680
 	IKK(ikbalpha,ikbbeta,ikbeps)
+	IkBalpha_transcript()
+	#^ bqbiol:isVersionOf uniprot:Q9Z1E3
+	IkBalpha(_nuc~_NUC~0,ikk,nfkb)
 	fr_after_trigger
 end molecule types
 begin seed species
-	@cytoplasm:IkBalpha(_nuc~0,ikk,nfkb) 6.022e+16 # (0.1 * 1e-06)mol/L * 6.022e23/mol *1.0L #IkBalpha #IkBalpha
-	@cytoplasm:NFkB(_nuc~0,ikbalpha,ikbbeta,ikbeps) 6.022e+16 #original 0.1micro mole/L #NFkB #NFkB
-	@nucleus:NFkB(_nuc~_NUC,ikbalpha,ikbbeta,ikbeps) 602200000000000.1 #original 0.001micro mole/L #NFkB_nuc #NFkB_nuc
+	@cytoplasm:IkBalpha(_nuc~0,ikk,nfkb)@cytoplasm 6.022e+16 # (0.1 * 1e-06)mol/L * 6.022e23/mol *1.0L #IkBalpha #IkBalpha
+	@cytoplasm:NFkB(_nuc~0,ikbalpha,ikbbeta,ikbeps)@cytoplasm 6.022e+16 #original 0.1micro mole/L #NFkB #NFkB
+	@nucleus:NFkB(_nuc~_NUC,ikbalpha,ikbbeta,ikbeps)@nucleus 602200000000000.1 #original 0.001micro mole/L #NFkB_nuc #NFkB_nuc
 	fr_after_trigger@cytoplasm 0.5
 end seed species
 begin observables
-	Species IkBalpha_cytoplasm @cytoplasm:IkBalpha(_nuc~0,ikk,nfkb) #IkBalpha
-	Species NFkB_cytoplasm @cytoplasm:NFkB(_nuc~0,ikbalpha,ikbbeta,ikbeps) #NFkB
-	Species IkBalpha_NFkB_cytoplasm @cytoplasm:NFkB(_nuc~0,ikbalpha!201,ikbbeta,ikbeps).IkBalpha(_nuc~0,ikk,nfkb!201) #IkBalpha_NFkB
-	Species IkBbeta_cytoplasm @cytoplasm:IkBbeta(_nuc~0,ikk,nfkb) #IkBbeta
-	Species IkBbeta_NFkB_cytoplasm @cytoplasm:NFkB(_nuc~0,ikbalpha,ikbbeta!199,ikbeps).IkBbeta(_nuc~0,ikk,nfkb!199) #IkBbeta_NFkB
-	Species IkBeps_cytoplasm @cytoplasm:IkBeps(_nuc~0,ikk,nfkb) #IkBeps
-	Species IkBeps_NFkB_cytoplasm @cytoplasm:NFkB(_nuc~0,ikbalpha,ikbbeta,ikbeps!197).IkBeps(_nuc~0,ikk,nfkb!197) #IkBeps_NFkB
-	Species IKK_IkBalpha_cytoplasm @cytoplasm:IkBalpha(_nuc~0,ikk!200,nfkb).IKK(ikbalpha!200,ikbbeta,ikbeps) #IKK_IkBalpha
-	Species IKK_IkBalpha_NFkB_cytoplasm @cytoplasm:NFkB(_nuc~0,ikbalpha!201,ikbbeta,ikbeps).IKK(ikbalpha!200,ikbbeta,ikbeps).IkBalpha(_nuc~0,ikk!200,nfkb!201) #IKK_IkBalpha_NFkB
-	Species IKK_cytoplasm @cytoplasm:IKK(ikbalpha,ikbbeta,ikbeps) #IKK
-	Species IKK_IkBbeta_cytoplasm @cytoplasm:IkBbeta(_nuc~0,ikk!198,nfkb).IKK(ikbalpha,ikbbeta!198,ikbeps) #IKK_IkBbeta
-	Species IKK_IkBbeta_NFkB_cytoplasm @cytoplasm:NFkB(_nuc~0,ikbalpha,ikbbeta!199,ikbeps).IKK(ikbalpha,ikbbeta!198,ikbeps).IkBbeta(_nuc~0,ikk!198,nfkb!199) #IKK_IkBbeta_NFkB
-	Species IKK_IkBeps_cytoplasm @cytoplasm:IkBeps(_nuc~0,ikk!196,nfkb).IKK(ikbalpha,ikbbeta,ikbeps!196) #IKK_IkBeps
-	Species IKK_IkBeps_NFkB_cytoplasm @cytoplasm:NFkB(_nuc~0,ikbalpha,ikbbeta,ikbeps!197).IKK(ikbalpha,ikbbeta,ikbeps!196).IkBeps(_nuc~0,ikk!196,nfkb!197) #IKK_IkBeps_NFkB
-	Species NFkB_nuc_nucleus @nucleus:NFkB(_nuc~_NUC,ikbalpha,ikbbeta,ikbeps) #NFkB_nuc
-	Species IkBalpha_nuc_nucleus @nucleus:IkBalpha(_nuc~_NUC,ikk,nfkb) #IkBalpha_nuc
-	Species IkBalpha_nuc_NFkB_nuc_nucleus @nucleus:NFkB(_nuc~_NUC,ikbalpha!201,ikbbeta,ikbeps).IkBalpha(_nuc~_NUC,ikk,nfkb!201) #IkBalpha_nuc_NFkB_nuc
-	Species IkBbeta_nuc_nucleus @nucleus:IkBbeta(_nuc~_NUC,ikk,nfkb) #IkBbeta_nuc
-	Species IkBbeta_nuc_NFkB_nuc_nucleus @nucleus:NFkB(_nuc~_NUC,ikbalpha,ikbbeta!199,ikbeps).IkBbeta(_nuc~_NUC,ikk,nfkb!199) #IkBbeta_nuc_NFkB_nuc
-	Species IkBeps_nuc_nucleus @nucleus:IkBeps(_nuc~_NUC,ikk,nfkb) #IkBeps_nuc
-	Species IkBalpha_transcript_nucleus @nucleus:IkBalpha_transcript() #IkBalpha_transcript
-	Species IkBbeta_transcript_nucleus @nucleus:IkBbeta_transcript() #IkBbeta_transcript
-	Species IkBeps_transcript_nucleus @nucleus:IkBeps_transcript() #IkBeps_transcript
-	Species IkBeps_nuc_NFkB_nuc_nucleus @nucleus:NFkB(_nuc~_NUC,ikbalpha,ikbbeta,ikbeps!197).IkBeps(_nuc~_NUC,ikk,nfkb!197) #IkBeps_nuc_NFkB_nuc
+	Species IkBalpha_cytoplasm @cytoplasm:IkBalpha(_nuc~0,ikk,nfkb)@cytoplasm #IkBalpha
+	Species NFkB_cytoplasm @cytoplasm:NFkB(_nuc~0,ikbalpha,ikbbeta,ikbeps)@cytoplasm #NFkB
+	Species IkBalpha_NFkB_cytoplasm @cytoplasm:NFkB(_nuc~0,ikbalpha!201,ikbbeta,ikbeps)@cytoplasm.IkBalpha(_nuc~0,ikk,nfkb!201)@cytoplasm #IkBalpha_NFkB
+	Species IkBbeta_cytoplasm @cytoplasm:IkBbeta(_nuc~0,ikk,nfkb)@cytoplasm #IkBbeta
+	Species IkBbeta_NFkB_cytoplasm @cytoplasm:NFkB(_nuc~0,ikbalpha,ikbbeta!199,ikbeps)@cytoplasm.IkBbeta(_nuc~0,ikk,nfkb!199)@cytoplasm #IkBbeta_NFkB
+	Species IkBeps_cytoplasm @cytoplasm:IkBeps(_nuc~0,ikk,nfkb)@cytoplasm #IkBeps
+	Species IkBeps_NFkB_cytoplasm @cytoplasm:NFkB(_nuc~0,ikbalpha,ikbbeta,ikbeps!197)@cytoplasm.IkBeps(_nuc~0,ikk,nfkb!197)@cytoplasm #IkBeps_NFkB
+	Species IKK_IkBalpha_cytoplasm @cytoplasm:IkBalpha(_nuc~0,ikk!200,nfkb)@cytoplasm.IKK(ikbalpha!200,ikbbeta,ikbeps)@cytoplasm #IKK_IkBalpha
+	Species IKK_IkBalpha_NFkB_cytoplasm @cytoplasm:NFkB(_nuc~0,ikbalpha!201,ikbbeta,ikbeps)@cytoplasm.IKK(ikbalpha!200,ikbbeta,ikbeps)@cytoplasm.IkBalpha(_nuc~0,ikk!200,nfkb!201)@cytoplasm #IKK_IkBalpha_NFkB
+	Species IKK_cytoplasm @cytoplasm:IKK(ikbalpha,ikbbeta,ikbeps)@cytoplasm #IKK
+	Species IKK_IkBbeta_cytoplasm @cytoplasm:IkBbeta(_nuc~0,ikk!198,nfkb)@cytoplasm.IKK(ikbalpha,ikbbeta!198,ikbeps)@cytoplasm #IKK_IkBbeta
+	Species IKK_IkBbeta_NFkB_cytoplasm @cytoplasm:NFkB(_nuc~0,ikbalpha,ikbbeta!199,ikbeps)@cytoplasm.IKK(ikbalpha,ikbbeta!198,ikbeps)@cytoplasm.IkBbeta(_nuc~0,ikk!198,nfkb!199)@cytoplasm #IKK_IkBbeta_NFkB
+	Species IKK_IkBeps_cytoplasm @cytoplasm:IkBeps(_nuc~0,ikk!196,nfkb)@cytoplasm.IKK(ikbalpha,ikbbeta,ikbeps!196)@cytoplasm #IKK_IkBeps
+	Species IKK_IkBeps_NFkB_cytoplasm @cytoplasm:NFkB(_nuc~0,ikbalpha,ikbbeta,ikbeps!197)@cytoplasm.IKK(ikbalpha,ikbbeta,ikbeps!196)@cytoplasm.IkBeps(_nuc~0,ikk!196,nfkb!197)@cytoplasm #IKK_IkBeps_NFkB
+	Species NFkB_nuc_nucleus @nucleus:NFkB(_nuc~_NUC,ikbalpha,ikbbeta,ikbeps)@nucleus #NFkB_nuc
+	Species IkBalpha_nuc_nucleus @nucleus:IkBalpha(_nuc~_NUC,ikk,nfkb)@nucleus #IkBalpha_nuc
+	Species IkBalpha_nuc_NFkB_nuc_nucleus @nucleus:NFkB(_nuc~_NUC,ikbalpha!201,ikbbeta,ikbeps)@nucleus.IkBalpha(_nuc~_NUC,ikk,nfkb!201)@nucleus #IkBalpha_nuc_NFkB_nuc
+	Species IkBbeta_nuc_nucleus @nucleus:IkBbeta(_nuc~_NUC,ikk,nfkb)@nucleus #IkBbeta_nuc
+	Species IkBbeta_nuc_NFkB_nuc_nucleus @nucleus:NFkB(_nuc~_NUC,ikbalpha,ikbbeta!199,ikbeps)@nucleus.IkBbeta(_nuc~_NUC,ikk,nfkb!199)@nucleus #IkBbeta_nuc_NFkB_nuc
+	Species IkBeps_nuc_nucleus @nucleus:IkBeps(_nuc~_NUC,ikk,nfkb)@nucleus #IkBeps_nuc
+	Species IkBalpha_transcript_nucleus @nucleus:IkBalpha_transcript()@nucleus #IkBalpha_transcript
+	Species IkBbeta_transcript_nucleus @nucleus:IkBbeta_transcript()@nucleus #IkBbeta_transcript
+	Species IkBeps_transcript_nucleus @nucleus:IkBeps_transcript()@nucleus #IkBeps_transcript
+	Species IkBeps_nuc_NFkB_nuc_nucleus @nucleus:NFkB(_nuc~_NUC,ikbalpha,ikbbeta,ikbeps!197)@nucleus.IkBeps(_nuc~_NUC,ikk,nfkb!197)@nucleus #IkBeps_nuc_NFkB_nuc
 	Species fr_after_trigger fr_after_trigger
 end observables
 begin functions

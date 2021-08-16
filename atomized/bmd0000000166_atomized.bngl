@@ -6,7 +6,7 @@
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/131567']
 #@creatorEmail:'hdharuri@cds.caltech.edu'
 #@creatorName:'Dharuri Harish'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 3 molecules and 9 reactions. The translated model has 2 molecules and 11 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 3 molecules and 9 reactions. The translated model has 2 molecules and 11 rules'
 ###
 begin model
 begin parameters
@@ -37,17 +37,17 @@ begin compartments
 	store 3 1.0
 end compartments
 begin molecule types
-	Calciumin(cytoplasm~CYTOPLASM~0,store~STORE~0)
 	TF_A()
+	Calciumin(cytoplasm~CYTOPLASM~0,store~STORE~0)
 end molecule types
 begin seed species
-	@cytoplasm:TF_A() 9.033e+18 # (15.0 * 1e-06)mol/L * 6.022e23/mol *1.0L #TF_A #X
-	@cytoplasm:Calciumin(cytoplasm~CYTOPLASM,store~0) 1.5055e+17 #original 0.25micro mole/L #Calciumincytoplasm #Z
+	@cytoplasm:TF_A()@cytoplasm 9.033e+18 # (15.0 * 1e-06)mol/L * 6.022e23/mol *1.0L #TF_A #X
+	@cytoplasm:Calciumin(cytoplasm~CYTOPLASM,store~0)@cytoplasm 1.5055e+17 #original 0.25micro mole/L #Calciumincytoplasm #Z
 end seed species
 begin observables
-	Species TF_A_cytoplasm @cytoplasm:TF_A() #TF_A
-	Species Calciuminstore_store @store:Calciumin(cytoplasm~0,store~STORE) #Calcium in store
-	Species Calciumincytoplasm_cytoplasm @cytoplasm:Calciumin(cytoplasm~CYTOPLASM,store~0) #Calcium in cytoplasm
+	Species TF_A_cytoplasm @cytoplasm:TF_A()@cytoplasm #TF_A
+	Species Calciuminstore_store @store:Calciumin(cytoplasm~0,store~STORE)@store #Calcium in store
+	Species Calciumincytoplasm_cytoplasm @cytoplasm:Calciumin(cytoplasm~CYTOPLASM,store~0)@cytoplasm #Calcium in cytoplasm
 end observables
 begin functions
 	Kd() = Kd0/(Calciumincytoplasm_cytoplasm^4/Kb^4 + 1)

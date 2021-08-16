@@ -1,5 +1,5 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1101060000', 'http://identifiers.org/biomodels.db/BIOMD0000000291']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000291', 'http://identifiers.org/biomodels.db/MODEL1101060000']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/16307060']
 #@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0006789']
 #@BQB_IS_PART_OF:['http://identifiers.org/kegg.pathway/ko00860']
@@ -7,7 +7,7 @@
 #@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:409']
 #@creatorEmail:'viji@ebi.ac.uk'
 #@creatorName:'Chelliah Vijayalakshmi'
-#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 10 molecules and 0 reactions. The translated model has 4 molecules and 4 rules'
+#@notes:'This is a plain translation of an SBML model created on 14/08/2021. The original model has 10 molecules and 0 reactions. The translated model has 4 molecules and 4 rules'
 ###
 begin model
 begin parameters
@@ -32,10 +32,10 @@ begin parameters
 	C0 7.069828e+23 #original 1.174mol/L
 end parameters
 begin molecule types
-	BC()
-	AlB()
-	AlCn()
 	AlB2()
+	BC()
+	AlCn()
+	AlB()
 end molecule types
 begin seed species
 end seed species
@@ -46,8 +46,8 @@ begin observables
 	Species AlB2 AlB2() #AlB2
 end observables
 begin functions
-	C_ar() = -AlCn*n - BC + C0
 	Al_ar() = A0 - AlB - AlB2 - AlCn
+	C_ar() = -AlCn*n - BC + C0
 	B_ar() = -AlB - 2*AlB2 + B0 - BC
 	arRatex1() = -AlB*B_ar*K_AlB2*k4 - AlB*C_ar^(n + 1)*k9 - AlB*k3 + AlB2*C_ar*k10 + AlB2*k4 + Al_ar*B_ar*K_AlB*k3
 	arRatex4() = AlB*B_ar*K_AlB2*k4 - AlB2*C_ar*k10 - AlB2*k4

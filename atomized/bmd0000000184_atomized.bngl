@@ -1,11 +1,11 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL9223106020', 'http://identifiers.org/biomodels.db/BIOMD0000000184']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000184', 'http://identifiers.org/biomodels.db/MODEL9223106020']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/18275973']
 #@BQB_HAS_PART:['http://identifiers.org/obo.go/GO:0019722']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/40674']
 #@creatorEmail:'hdharuri@cds.caltech.edu'
 #@creatorName:'Dharuri Harish'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 3 molecules and 7 reactions. The translated model has 2 molecules and 7 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 3 molecules and 7 reactions. The translated model has 2 molecules and 7 rules'
 ###
 begin model
 begin parameters
@@ -36,14 +36,14 @@ begin molecule types
 	IP3()
 end molecule types
 begin seed species
-	@compartment:CalciuminER(CytoplasmicCalcium~CytoplasmicCalcium) 6.022e+16 # (0.1 * 1e-06)mol/L * 6.022e23/mol *1.0L #CytoplasmicCalcium #X
-	@ER:CalciuminER(CytoplasmicCalcium~0) 9.033e+17 #original 1.5micro mole/L  #CalciuminER #Y
-	@compartment:IP3() 6.022e+16 #original 0.1micro mole/L  #IP3 #Z
+	@compartment:CalciuminER(CytoplasmicCalcium~CytoplasmicCalcium)@compartment 6.022e+16 # (0.1 * 1e-06)mol/L * 6.022e23/mol *1.0L #CytoplasmicCalcium #X
+	@ER:CalciuminER(CytoplasmicCalcium~0)@ER 9.033e+17 #original 1.5micro mole/L  #CalciuminER #Y
+	@compartment:IP3()@compartment 6.022e+16 #original 0.1micro mole/L  #IP3 #Z
 end seed species
 begin observables
-	Species CytoplasmicCalcium_compartment @compartment:CalciuminER(CytoplasmicCalcium~CytoplasmicCalcium) #Cytoplasmic Calcium
-	Species CalciuminER_ER @ER:CalciuminER(CytoplasmicCalcium~0) #Calcium in ER
-	Species IP3_compartment @compartment:IP3() #IP3
+	Species CytoplasmicCalcium_compartment @compartment:CalciuminER(CytoplasmicCalcium~CytoplasmicCalcium)@compartment #Cytoplasmic Calcium
+	Species CalciuminER_ER @ER:CalciuminER(CytoplasmicCalcium~0)@ER #Calcium in ER
+	Species IP3_compartment @compartment:IP3()@compartment #IP3
 end observables
 begin functions
 	fRate2() = 4.0*CytoplasmicCalcium_compartment^n*IP3_compartment^m*k_CaA^n*vM3/(CytoplasmicCalcium_compartment^n*IP3_compartment^m*k_CaA^n + CytoplasmicCalcium_compartment^n*IP3_compartment^m*k_CaI^n + CytoplasmicCalcium_compartment^n*k_CaA^n*kip3^m + CytoplasmicCalcium_compartment^n*k_CaI^n*kip3^m + CytoplasmicCalcium_compartment^(2.0*n)*IP3_compartment^m + CytoplasmicCalcium_compartment^(2.0*n)*kip3^m + IP3_compartment^m*k_CaA^n*k_CaI^n + k_CaA^n*k_CaI^n*kip3^m)

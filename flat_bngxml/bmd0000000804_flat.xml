@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000804_flat">
+    <ListOfParameters>
+      <Parameter id="ac" type="Constant" value="3" expr="3.0"/>
+      <Parameter id="ab" type="Constant" value="4" expr="4.0"/>
+      <Parameter id="gbc" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="gcb" type="Constant" value="-0.5" expr="-0.5"/>
+      <Parameter id="gtt" type="Constant" value="0.5" expr="0.5"/>
+      <Parameter id="bc" type="Constant" value="0.2" expr="0.2"/>
+      <Parameter id="bb" type="Constant" value="0.02" expr="0.02"/>
+      <Parameter id="bt" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="at" type="Constant" value="0.31622777" expr="1/(10^(1/2))"/>
+      <Parameter id="Metabolite_1" type="Constant" value="208.00838" expr="208.00838230519"/>
+      <Parameter id="Metabolite_0" type="Constant" value="1.1440461" expr="1.14404610267855"/>
+      <Parameter id="Metabolite_2" type="Constant" value="10" expr="10.0"/>
+      <Parameter id="gcc" type="Constant" value="0" expr="0"/>
+      <Parameter id="gtc" type="Constant" value="0" expr="0"/>
+      <Parameter id="gbb" type="Constant" value="0" expr="0"/>
+      <Parameter id="hct" type="Constant" value="0" expr="0"/>
+      <Parameter id="hbt" type="Constant" value="0" expr="0"/>
+      <Parameter id="_InitialConc1" type="Constant" value="1.1440461" expr="(1.1*(3000^(2/3)))/200"/>
+      <Parameter id="_InitialConc2" type="Constant" value="208.00838" expr="3000^(2/3)"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="B"/>
+      <MoleculeType id="C"/>
+      <MoleculeType id="T"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="6.022e+21" name="T()">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="T"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="_InitialConc1" name="C()">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="C"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="_InitialConc2" name="B()">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="B"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="osteoclast_growth" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="C"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="osteoblast_growth_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="B"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="fRate1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="myeloma_growth" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="T"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="fRate2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="osteoclast_death" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="C"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="bc"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR4_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="osteoblast_death" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR5_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP1_M1" name="B"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="bb"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR5_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR5_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="myeloma_death" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR6_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_RP1_M1" name="T"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="bt"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR6_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR6_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="C" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="C"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="B" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="B"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="T" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="T"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="T_plot">
+        <ListOfReferences>
+          <Reference name="Metabolite_2" type="Constant"/>
+          <Reference name="T" type="Observable"/>
+        </ListOfReferences>
+        <Expression> T/Metabolite_2 </Expression>
+      </Function>
+      <Function id="C_plot">
+        <ListOfReferences>
+          <Reference name="Metabolite_0" type="Constant"/>
+          <Reference name="C" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (1.1*C)/Metabolite_0 </Expression>
+      </Function>
+      <Function id="B_plot">
+        <ListOfReferences>
+          <Reference name="Metabolite_1" type="Constant"/>
+          <Reference name="B" type="Observable"/>
+        </ListOfReferences>
+        <Expression> B/Metabolite_1 </Expression>
+      </Function>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="ac" type="Constant"/>
+          <Reference name="gcb" type="Constant"/>
+          <Reference name="gcc" type="Constant"/>
+          <Reference name="hct" type="Constant"/>
+          <Reference name="B" type="Observable"/>
+          <Reference name="C" type="Observable"/>
+          <Reference name="T" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((B^gcb)*(C^gcc))*ac)*((T*hct)+1) </Expression>
+      </Function>
+      <Function id="fRate1">
+        <ListOfReferences>
+          <Reference name="ab" type="Constant"/>
+          <Reference name="gbb" type="Constant"/>
+          <Reference name="gbc" type="Constant"/>
+          <Reference name="hbt" type="Constant"/>
+          <Reference name="B" type="Observable"/>
+          <Reference name="C" type="Observable"/>
+          <Reference name="T" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((B^gbb)*(C^gbc))*ab)*(((-T)*hbt)+1) </Expression>
+      </Function>
+      <Function id="fRate2">
+        <ListOfReferences>
+          <Reference name="at" type="Constant"/>
+          <Reference name="gtc" type="Constant"/>
+          <Reference name="gtt" type="Constant"/>
+          <Reference name="C" type="Observable"/>
+          <Reference name="T" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((C^gtc)*(T^gtt))*at </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

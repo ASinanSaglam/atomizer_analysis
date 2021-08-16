@@ -1,12 +1,12 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000699', 'http://identifiers.org/biomodels.db/MODEL1202090002']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1202090002', 'http://identifiers.org/biomodels.db/BIOMD0000000699']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/22580890']
-#@BQB_HAS_PROPERTY:['http://identifiers.org/go/GO:0031578', 'http://identifiers.org/go/GO:0007052', 'http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/go/GO:0051726']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/go/GO:0007052', 'http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/go/GO:0031578', 'http://identifiers.org/go/GO:0051726']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/4932']
 #@BQB_IS_DESCRIBED_BY:['http://identifiers.org/doi/doi:10.1038/msb.2012.15']
 #@creatorEmail:'matt.maire@free.fr'
 #@creatorName:'MAIRE Matthieu'
-#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 36 molecules and 48 reactions. The translated model has 24 molecules and 48 rules'
+#@notes:'This is a plain translation of an SBML model created on 14/08/2021. The original model has 36 molecules and 48 reactions. The translated model has 24 molecules and 48 rules'
 ###
 begin model
 begin parameters
@@ -54,30 +54,30 @@ begin compartments
 	c3 3 3e-18 #SPB
 end compartments
 begin molecule types
-	B()
-	B_Bfa1P4_Tem1GDP()
-	B_Bfa1P5_Tem1GDP()
-	Bfa1P5()
-	Bfa1P5_Tem1GTP()
-	B_Bfa1()
-	Bfa1_Tem1GDP()
-	Bfa1()
-	Tem1GTP()
-	Bfa1P4_Tem1GTP()
-	B_Bfa1_Tem1GDP()
-	Tem1GDP()
-	Bfa1P4_Tem1GDP()
-	Bfa1P4()
-	T_Tem1GDP()
-	B_Bfa1P5()
-	T_Tem1GTP()
-	Bfa1P5_Tem1GDP()
-	B_Bfa1P5_Tem1GTP()
-	B_Bfa1P4_Tem1GTP()
-	Bfa1_Tem1GTP()
-	B_Bfa1_Tem1GTP()
 	T()
+	Bfa1_Tem1GTP()
+	B_Bfa1()
+	Bfa1()
+	T_Tem1GTP()
+	B_Bfa1_Tem1GTP()
+	Bfa1P5_Tem1GTP()
+	B()
+	Bfa1P5_Tem1GDP()
+	Bfa1_Tem1GDP()
+	Bfa1P4()
+	Tem1GDP()
+	B_Bfa1_Tem1GDP()
+	T_Tem1GDP()
+	Bfa1P4_Tem1GTP()
+	B_Bfa1P4_Tem1GTP()
+	Bfa1P4_Tem1GDP()
+	Bfa1P5()
+	Tem1GTP()
+	B_Bfa1P4_Tem1GDP()
 	B_Bfa1P4()
+	B_Bfa1P5()
+	B_Bfa1P5_Tem1GTP()
+	B_Bfa1P5_Tem1GDP()
 end molecule types
 begin seed species
 	@c3:B() 150.48978000000002 # 8.33e-05mol/L * 6.022e23/mol *3e-18L #B #SPB_B
@@ -123,8 +123,8 @@ begin functions
 	ActiveBfa1attheCytosol_ar() = 1.0e-13*avogadro*(Bfa1P4_Tem1GDP_c2 + Bfa1P4_Tem1GTP_c2 + Bfa1P4_c2 + q*(Bfa1_Tem1GDP_c2 + Bfa1_Tem1GTP_c2 + Bfa1_c2))
 	InactiveBfa1inthecytosol_ar() = 1.0e-13*avogadro*(Bfa1P5_Tem1GDP_c2 + Bfa1P5_Tem1GTP_c2 + Bfa1P5_c2 + (1 - q)*(Bfa1_Tem1GDP_c2 + Bfa1_Tem1GTP_c2 + Bfa1_c2))
 	TotalBfa1intheCytosol_ar() = ActiveBfa1attheCytosol_ar + InactiveBfa1inthecytosol_ar
-	InactiveTem1attheSPB_ar() = 3.0e-18*avogadro*(B_Bfa1P4_Tem1GDP_c3 + B_Bfa1P5_Tem1GDP_c3 + B_Bfa1_Tem1GDP_c3 + T_Tem1GDP_c3)
 	ActiveTem1attheSPB_ar() = 3.0e-18*avogadro*(B_Bfa1P4_Tem1GTP_c3 + B_Bfa1P5_Tem1GTP_c3 + B_Bfa1_Tem1GTP_c3 + T_Tem1GTP_c3)
+	InactiveTem1attheSPB_ar() = 3.0e-18*avogadro*(B_Bfa1P4_Tem1GDP_c3 + B_Bfa1P5_Tem1GDP_c3 + B_Bfa1_Tem1GDP_c3 + T_Tem1GDP_c3)
 	TotalTem1attheSPB_ar() = ActiveTem1attheSPB_ar + InactiveTem1attheSPB_ar
 	fRate15() = alpha*konBT
 	fRate15m() = 10000000000000.0*koffBT

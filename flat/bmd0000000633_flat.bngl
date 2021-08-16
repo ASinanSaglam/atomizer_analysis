@@ -1,11 +1,11 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1603030000', 'http://identifiers.org/biomodels.db/BIOMD0000000633']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000633', 'http://identifiers.org/biomodels.db/MODEL1603030000']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/26935066']
-#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000009', 'http://identifiers.org/go/GO:0055085', 'http://identifiers.org/go/GO:0010906', 'http://identifiers.org/go/GO:0006468']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000009', 'http://identifiers.org/go/GO:0010906', 'http://identifiers.org/go/GO:0055085', 'http://identifiers.org/go/GO:0006468']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10116']
 #@creatorEmail:'rgutenk@email.arizona.edu'
 #@creatorName:'Gutenkunst Ryan'
-#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 50 molecules and 35 reactions. The translated model has 30 molecules and 77 rules'
+#@notes:'This is a plain translation of an SBML model created on 14/08/2021. The original model has 50 molecules and 35 reactions. The translated model has 30 molecules and 77 rules'
 ###
 begin model
 begin parameters
@@ -294,36 +294,36 @@ begin compartments
 	mito 3 1.0
 end compartments
 begin molecule types
-	fru26bp()
-	gap()
-	gtp()
-	gdp_gdp_mito()
-	glc_glc_er()
-	fru16bp()
-	lac_lac()
-	udpglc()
-	gdp()
-	oa()
-	oa_oa_mito()
-	mal_mal_mito()
+	glc6p_glc6p_er()
 	mal()
-	glc_glc()
+	gdp()
+	pyr_pyr_mito()
+	oa()
+	gtp()
+	mal_mal_mito()
+	oa_oa_mito()
+	pg2()
 	pep_pep_mito()
 	udp()
-	utp()
-	glc1p()
-	fru6p()
-	pg2()
-	bpg13()
-	pg3()
-	glc6p_glc6p_er()
 	gtp_gtp_mito()
-	glc6p()
-	glyglc()
+	lac_lac()
+	utp()
+	fru6p()
 	pep()
-	pyr()
-	pyr_pyr_mito()
+	glyglc()
+	fru26bp()
+	fru16bp()
+	pg3()
 	dhap()
+	udpglc()
+	glc_glc()
+	bpg13()
+	glc6p()
+	pyr()
+	gdp_gdp_mito()
+	gap()
+	glc_glc_er()
+	glc1p()
 end molecule types
 begin seed species
 	@cyto:glc_glc() 2.964366968669653e+24 #original 4.92256221964406mol/L #glc_glc #glc
@@ -390,28 +390,28 @@ begin observables
 	Species gdp_gdp_mito_mito @mito:gdp_gdp_mito() #gdp_mito
 end observables
 begin functions
-	km_atp_pfk1() = fru26bp_cyto*k0_atp_pfk1_km_atp/(fru26bp_cyto + ka_fru26bp_pfk1_km_atp)
 	ki_atp_pfk1() = ki0_atp_pfk1*(ONE + f_fru26bp_pfk1_ki_atp*fru26bp_cyto/(fru26bp_cyto + ka_fru26bp_pfk1_ki_atp))
-	km_fru6p_pfk1() = k0_fru6p_pfk1_km_fru6p*(ONE + atp_cyto/ki_atp_pfk1_km_fru6p)*(ONE + cit_cyto/ki_cit_pfk1_km_fru6p)*(ONE - amp_cyto^n_amp_pfk1_km_fru6p*f_amp_pfk1_km_fru6p/(amp_cyto^n_amp_pfk1_km_fru6p + ka_amp_pfk1_km_fru6p^n_amp_pfk1_km_fru6p))*(ONE - f_fru26bp_pfk1_km_fru6p*fru26bp_cyto^n_fru26bp_pfk1_km_fru6p/(fru26bp_cyto^n_fru26bp_pfk1_km_fru6p + ka_fru26bp_pfk1_km_fru6p^n_fru26bp_pfk1_km_fru6p))*(ONE - f_p_pfk1_km_fru6p*p_p_cyto/(ka_p_pfk1_km_fru6p + p_p_cyto))
+	km_atp_pfk1() = fru26bp_cyto*k0_atp_pfk1_km_atp/(fru26bp_cyto + ka_fru26bp_pfk1_km_atp)
 	n_fru6p_pfk1() = (ONE - amp_cyto^n_amp_pfk1_n_fru6p*f_amp_pfk1_n_fru6p/(amp_cyto^n_amp_pfk1_n_fru6p + ka_amp_pfk1_n_fru6p^n_amp_pfk1_n_fru6p))*(ONE + cit_cyto^n_cit_pfk1_n_fru6p*f_cit_pfk1_n_fru6p/(cit_cyto^n_cit_pfk1_n_fru6p + ki_cit_pfk1_n_fru6p^n_cit_pfk1_n_fru6p))*(ONE - f_fru26bp_pfk1_n_fru6p*fru26bp_cyto^n_fru26bp_pfk1_n_fru6p/(fru26bp_cyto^n_fru26bp_pfk1_n_fru6p + ka_fru26bp_pfk1_n_fru6p^n_fru26bp_pfk1_n_fru6p))*(ONE - f_p_pfk1_n_fru6p*p_p_cyto^n_p_pfk1_n_fru6p/(ka_p_pfk1_n_fru6p^n_p_pfk1_n_fru6p + p_p_cyto^n_p_pfk1_n_fru6p))*(atp_cyto^n_atp_pfk1_n_fru6p/(atp_cyto^n_atp_pfk1_n_fru6p + ki_atp_pfk1_n_fru6p^n_atp_pfk1_n_fru6p) + n0_pfk1_n_fru6p)
+	km_fru6p_pfk1() = k0_fru6p_pfk1_km_fru6p*(ONE + atp_cyto/ki_atp_pfk1_km_fru6p)*(ONE + cit_cyto/ki_cit_pfk1_km_fru6p)*(ONE - amp_cyto^n_amp_pfk1_km_fru6p*f_amp_pfk1_km_fru6p/(amp_cyto^n_amp_pfk1_km_fru6p + ka_amp_pfk1_km_fru6p^n_amp_pfk1_km_fru6p))*(ONE - f_fru26bp_pfk1_km_fru6p*fru26bp_cyto^n_fru26bp_pfk1_km_fru6p/(fru26bp_cyto^n_fru26bp_pfk1_km_fru6p + ka_fru26bp_pfk1_km_fru6p^n_fru26bp_pfk1_km_fru6p))*(ONE - f_p_pfk1_km_fru6p*p_p_cyto/(ka_p_pfk1_km_fru6p + p_p_cyto))
 	v_PFK1() = atp_cyto*fru6p_cyto^n_fru6p_pfk1*vmax_pfk1*(ONE - atp_cyto^ni_pfk1/(atp_cyto^ni_pfk1 + ki_atp_pfk1^ni_pfk1))/((atp_cyto + km_atp_pfk1)*(fru6p_cyto^n_fru6p_pfk1 + km_fru6p_pfk1^n_fru6p_pfk1))
 	km_udpglc_gs_phospho() = k0_udpglc_gs_phospho*(ONE - glc6p_cyto/(glc6p_cyto + ka_glc6p_gs_phospho)) + kb_udpglc_gs_phospho
 	v_gs_phospho() = udpglc_cyto/(km_udpglc_gs_phospho + udpglc_cyto)
-	ins() = glc_glc_cyto^n_ins*ins0/(glc_glc_cyto^n_ins + km_glc_ext_ins^n_ins)
-	glucagon() = glucagon0*(ONE - glc_glc_cyto^n_glucagon/(glc_glc_cyto^n_glucagon + km_glc_ext_glucagon^n_glucagon)) + glucagonb
-	gamma() = O5*(ONE + glucagon^n_glucagon_gamma/(glucagon^n_glucagon_gamma + km_glucagon_gamma^n_glucagon_gamma) - ins^n_ins_gamma/(ins^n_ins_gamma + km_ins_gamma^n_ins_gamma))
-	gamma_gs() = gamma
 	vmax_gs() = v0_gs*(-glyglc_cyto + store)/(O1*store - glyglc_cyto + store)
 	km_udpglc_gs_native() = k0_udpglc_gs_native*(ONE - glc6p_cyto/(glc6p_cyto + ka_glc6p_gs_native)) + kb_udpglc_gs_native
 	v_gs_native() = udpglc_cyto/(km_udpglc_gs_native + udpglc_cyto)
+	glucagon() = glucagon0*(ONE - glc_glc_cyto^n_glucagon/(glc_glc_cyto^n_glucagon + km_glc_ext_glucagon^n_glucagon)) + glucagonb
+	ins() = glc_glc_cyto^n_ins*ins0/(glc_glc_cyto^n_ins + km_glc_ext_ins^n_ins)
+	gamma() = O5*(ONE + glucagon^n_glucagon_gamma/(glucagon^n_glucagon_gamma + km_glucagon_gamma^n_glucagon_gamma) - ins^n_ins_gamma/(ins^n_ins_gamma + km_ins_gamma^n_ins_gamma))
+	gamma_gs() = gamma
 	v_GS() = vmax_gs*(gamma_gs*v_gs_phospho + v_gs_native*(ONE - gamma_gs))
 	vmax_gp() = glyglc_cyto*v0_gp/store
-	vmax_gp_phospho() = amp_cyto/(km_glyglc_gp_phospho*km_p_gp_phospho*(amp_cyto + ka_amp_gp_phospho))
-	v_gp_phospho() = vmax_gp_phospho*(-glc1p_cyto/keq_gp + glyglc_cyto*p_p_cyto)/(glc1p_cyto/km_glc1p_gp_phospho + (ONE + glyglc_cyto/km_glyglc_gp_phospho)*(ONE + p_p_cyto/km_p_gp_phospho))
-	vmax_gp_native() = amp_cyto/(km_glyglc_gp_native*km_p_gp_native*(amp_cyto + ka_amp_gp_native))
 	km_glc1p_gp_native() = k0_glc1p_gp*(ONE - amp_cyto/(amp_cyto + ka_amp_glc1p_gp))
+	vmax_gp_native() = amp_cyto/(km_glyglc_gp_native*km_p_gp_native*(amp_cyto + ka_amp_gp_native))
 	v_gp_native() = vmax_gp_native*(-glc1p_cyto/keq_gp + glyglc_cyto*p_p_cyto)/(glc1p_cyto/km_glc1p_gp_native + (ONE + glyglc_cyto/km_glyglc_gp_native)*(ONE + p_p_cyto/km_p_gp_native))
 	gamma_gp() = gamma
+	vmax_gp_phospho() = amp_cyto/(km_glyglc_gp_phospho*km_p_gp_phospho*(amp_cyto + ka_amp_gp_phospho))
+	v_gp_phospho() = vmax_gp_phospho*(-glc1p_cyto/keq_gp + glyglc_cyto*p_p_cyto)/(glc1p_cyto/km_glc1p_gp_phospho + (ONE + glyglc_cyto/km_glyglc_gp_phospho)*(ONE + p_p_cyto/km_p_gp_phospho))
 	v_GP() = vmax_gp*(gamma_gp*v_gp_phospho + v_gp_native*(ONE - gamma_gp))
 	v_pk_native() = adp_cyto*pep_cyto/((adp_cyto + km_adp_pk_native)*(km_pep_pk_native*(ONE + atp_cyto/ki_atp_pk_native)*(ONE - fru16bp_cyto/(fru16bp_cyto + ka_fru16bp_pk_native)) + pep_cyto))
 	gamma_pk() = gamma
@@ -421,13 +421,13 @@ begin functions
 	v_fbp2_native() = fru26bp_cyto/((ONE + fru6p_cyto/ki_fru6p_fbp2_native)*(fru26bp_cyto + km_fru26bp_fbp2_native))
 	gamma_fbp2() = gamma
 	v_FBP2() = vmax_fbp2*(gamma_fbp2*v_fbp2_phospho + v_fbp2_native*(ONE - gamma_fbp2))
-	v_pfk2_phospho() = atp_cyto*fru6p_cyto^n_fru6p_pfk2_phospho*(ONE - n0_pfk2*pep_cyto/(ki_pep_pfk2 + pep_cyto))/((atp_cyto + km_atp_pfk2_phospho)*(fru6p_cyto^n_fru6p_pfk2_phospho + km_fru6p_pfk2_phospho^n_fru6p_pfk2_phospho))
 	v_pfk2_native() = atp_cyto*fru6p_cyto^n_fru6p_pfk2_native*(ONE - n0_pfk2*pep_cyto/(ki_pep_pfk2 + pep_cyto))/((atp_cyto + km_atp_pfk2_native)*(fru6p_cyto^n_fru6p_pfk2_native + km_fru6p_pfk2_native^n_fru6p_pfk2_native))
 	gamma_pfk2() = gamma
+	v_pfk2_phospho() = atp_cyto*fru6p_cyto^n_fru6p_pfk2_phospho*(ONE - n0_pfk2*pep_cyto/(ki_pep_pfk2 + pep_cyto))/((atp_cyto + km_atp_pfk2_phospho)*(fru6p_cyto^n_fru6p_pfk2_phospho + km_fru6p_pfk2_phospho^n_fru6p_pfk2_phospho))
 	v_PFK2() = vmax_pfk2*(gamma_pfk2*v_pfk2_phospho + v_pfk2_native*(ONE - gamma_pfk2))
 	v_fbp1_phospho() = fru16bp_cyto/((ONE + (amp_cyto/ki_amp_fbp1)^n_amp_fbp1)*(ONE + (fru26bp_cyto/ki_fru26bp_fbp1)^n_fbp1)*(fru16bp_cyto + km_fru16bp_fbp1_phospho))
-	gamma_fbp1() = gamma
 	v_fbp1_native() = fru16bp_cyto/((ONE + (amp_cyto/ki_amp_fbp1)^n_amp_fbp1)*(ONE + (fru26bp_cyto/ki_fru26bp_fbp1)^n_fbp1)*(fru16bp_cyto + km_fru16bp_fbp1_native))
+	gamma_fbp1() = gamma
 	v_FBP1() = vmax_fbp1*(gamma_fbp1*v_fbp1_phospho + v_fbp1_native*(ONE - gamma_fbp1))
 	keq_pept() = exp(F*M1*Vmm/(R*T))
 	v_PEPT() = vmax_pept*(pep_pep_mito_mito - pep_cyto/keq_pept)/(ONE + pep_cyto/km_pep_pept + pep_pep_mito_mito/km_pep_mito_pept)

@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000923_atomized">
+    <ListOfParameters>
+      <Parameter id="alpha1" type="Constant" value="3" expr="3.0"/>
+      <Parameter id="alpha2" type="Constant" value="4" expr="4.0"/>
+      <Parameter id="beta1" type="Constant" value="0.2" expr="0.2"/>
+      <Parameter id="beta2" type="Constant" value="0.02" expr="0.02"/>
+      <Parameter id="g11" type="Constant" value="1.1" expr="1.1"/>
+      <Parameter id="g12" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="g21" type="Constant" value="-0.5" expr="-0.5"/>
+      <Parameter id="k1" type="Constant" value="0.0748" expr="0.0748"/>
+      <Parameter id="k2" type="Constant" value="0.0006395" expr="0.0006395"/>
+      <Parameter id="g_ageing" type="Constant" value="2" expr="2.0"/>
+      <Parameter id="g_por" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="gamma_B" type="Constant" value="0.005" expr="0.005"/>
+      <Parameter id="s" type="Constant" value="100" expr="100.0"/>
+      <Parameter id="V" type="Constant" value="0.007" expr="0.007"/>
+      <Parameter id="t_treat" type="Constant" value="200" expr="200.0"/>
+      <Parameter id="f11" type="Constant" value="0.005" expr="0.005"/>
+      <Parameter id="f22" type="Constant" value="0.2" expr="0.2"/>
+      <Parameter id="f21" type="Constant" value="0.005" expr="0.005"/>
+      <Parameter id="O_cbar" type="Constant" value="1.78" expr="1.78"/>
+      <Parameter id="O_bbar" type="Constant" value="177.91" expr="177.91"/>
+      <Parameter id="g22" type="Constant" value="0" expr="0"/>
+      <Parameter id="f12" type="Constant" value="0" expr="0"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="B"/>
+      <MoleculeType id="BoneDensity__z__"/>
+      <MoleculeType id="Osteoblasts__O_b__"/>
+      <MoleculeType id="Osteoclasts__O_c__"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="6.022000000000001e+22" name="BoneDensity__z__()">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="BoneDensity__z__"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="1.902952e+23" name="Osteoblasts__O_b__()">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="Osteoblasts__O_b__"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="9.033e+21" name="Osteoclasts__O_c__()">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="Osteoclasts__O_c__"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S4"  concentration="6.022e+20" name="B()">
+        <ListOfMolecules>
+          <Molecule id="S4_M1" name="B"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="reaction_fo_z" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="BoneDensity__z__"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="reaction_for_O_b" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="Osteoblasts__O_b__"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="fRate1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="_reverse_reaction_for_O_b" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="Osteoblasts__O_b__"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="fRate1m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR3_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="reaction_for_O_c" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="Osteoclasts__O_c__"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="fRate2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR4_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="_reverse_reaction_for_O_c" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR5_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP1_M1" name="Osteoclasts__O_c__"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Function" name="fRate2m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR5_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR5_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="reaction_for_B" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="B"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Function" name="fRate3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR6_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="_reverse_reaction_for_B" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR7_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_RP1_M1" name="B"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Function" name="fRate3m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR7_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR7_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="BoneDensity__z__" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="BoneDensity__z__"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="Osteoblasts__O_b__" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="Osteoblasts__O_b__"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="Osteoclasts__O_c__" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="Osteoclasts__O_c__"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="B" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="B"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="O_bbar" type="Constant"/>
+          <Reference name="O_cbar" type="Constant"/>
+          <Reference name="k1" type="Constant"/>
+          <Reference name="k2" type="Constant"/>
+          <Reference name="Osteoblasts__O_b__" type="Observable"/>
+          <Reference name="Osteoclasts__O_c__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((-k1)*if(((Osteoclasts__O_c__-O_cbar)&gt;=0),(Osteoclasts__O_c__-O_cbar),0))+(k2*if(((Osteoblasts__O_b__-O_bbar)&gt;=0),(Osteoblasts__O_b__-O_bbar),0)) </Expression>
+      </Function>
+      <Function id="fRate1">
+        <ListOfReferences>
+          <Reference name="alpha2" type="Constant"/>
+          <Reference name="f12" type="Constant"/>
+          <Reference name="f22" type="Constant"/>
+          <Reference name="g12" type="Constant"/>
+          <Reference name="g22" type="Constant"/>
+          <Reference name="s" type="Constant"/>
+          <Reference name="B" type="Observable"/>
+          <Reference name="Osteoblasts__O_b__" type="Observable"/>
+          <Reference name="Osteoclasts__O_c__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((Osteoblasts__O_b__^((((-B)*f22)/s)+g22))*(Osteoclasts__O_c__^(g12*(((B*f12)/s)+1))))*alpha2 </Expression>
+      </Function>
+      <Function id="fRate1m">
+        <ListOfReferences>
+          <Reference name="beta2" type="Constant"/>
+        </ListOfReferences>
+        <Expression> 1.0*beta2 </Expression>
+      </Function>
+      <Function id="fRate2">
+        <ListOfReferences>
+          <Reference name="alpha1" type="Constant"/>
+          <Reference name="f11" type="Constant"/>
+          <Reference name="f21" type="Constant"/>
+          <Reference name="g11" type="Constant"/>
+          <Reference name="g21" type="Constant"/>
+          <Reference name="s" type="Constant"/>
+          <Reference name="B" type="Observable"/>
+          <Reference name="Osteoblasts__O_b__" type="Observable"/>
+          <Reference name="Osteoclasts__O_c__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((Osteoblasts__O_b__^((g21*((B*f21)+s))/s))*(Osteoclasts__O_c__^((g11*((B*f11)+s))/s)))*alpha1 </Expression>
+      </Function>
+      <Function id="fRate2m">
+        <ListOfReferences>
+          <Reference name="beta1" type="Constant"/>
+        </ListOfReferences>
+        <Expression> 1.0*beta1 </Expression>
+      </Function>
+      <Function id="fRate3">
+        <ListOfReferences>
+          <Reference name="gamma_B" type="Constant"/>
+          <Reference name="s" type="Constant"/>
+          <Reference name="B" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (B*gamma_B)*log10((s/B)) </Expression>
+      </Function>
+      <Function id="fRate3m">
+        <ListOfReferences>
+          <Reference name="V" type="Constant"/>
+          <Reference name="s" type="Constant"/>
+          <Reference name="B" type="Observable"/>
+        </ListOfReferences>
+        <Expression> V*log10((s/B)) </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

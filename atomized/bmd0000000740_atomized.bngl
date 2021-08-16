@@ -6,7 +6,7 @@
 #@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000740', 'http://identifiers.org/biomodels.db/MODEL1808160002']
 #@creatorEmail:'mroberts@ebi.ac.uk'
 #@creatorName:'Roberts Matthew Grant'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 43 molecules and 0 reactions. The translated model has 24 molecules and 24 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 43 molecules and 0 reactions. The translated model has 24 molecules and 24 rules'
 ###
 begin model
 begin parameters
@@ -88,30 +88,30 @@ begin parameters
 	Phospholipid 45165000000.0 #original 7.5e-05substance/volume
 end parameters
 begin molecule types
-	XIa()
 	VII()
-	IXa()
-	VII_TF()
-	APC()
-	X()
-	AT_III()
-	XI()
-	V()
-	PC()
-	fibrin()
-	II()
-	IIa()
-	IX()
-	VIIa()
-	Xa()
-	TFPI()
-	fibrinogen()
 	Va()
-	VIII()
+	IIa()
+	II()
 	VIIIa()
+	IXa()
 	Xa_TFPI()
+	APC()
+	IX()
+	Xa()
 	VIIa_TF()
+	AT_III()
+	TFPI()
+	VII_TF()
+	VIIa()
+	XI()
+	fibrinogen()
+	PC()
+	VIII()
 	TF()
+	XIa()
+	fibrin()
+	X()
+	V()
 end molecule types
 begin seed species
 	TF() 3011000000000.0005 # (0.005 * 1e-09)mol/L * 6.022e23/mol *1.0L #TF #TF
@@ -156,14 +156,14 @@ end observables
 begin functions
 	XB_ar() = Phospholipid*X*n25/(K25*(II/K26 + 1 + X/K25))
 	IXaBF_ar() = IXa*Phospholipid*n20/(IXa + K20)
-	VIIIaBF_ar() = Phospholipid*VIIIa*n21/((1 + XB_ar*(1 + ProteinS_inhibitor/K22)/(K10*Phospholipid))*(K21 + VIIIa))
 	VaB_ar() = Phospholipid*Va*n27/(K27 + Va)
 	Xa_Vab_ar() = VaB_ar*Xa/(K23*(1 + ProteinS_inhibitor/K24 + Xa/K23) + VaB_ar)
 	XaF_ar() = Xa - Xa_Vab_ar
+	VIIIaBF_ar() = Phospholipid*VIIIa*n21/((1 + XB_ar*(1 + ProteinS_inhibitor/K22)/(K10*Phospholipid))*(K21 + VIIIa))
 	VIIa_TFF_ar() = VIIa_TF/(IX/K04 + 1 + X/K06)
 	arRateXa() = -AT_III*Xa_Vab_ar*h08 + IXaBF_ar*VIIIaBF_ar*XB_ar/(K09*Phospholipid^2) + IXaBF_ar*XB_ar*k07/(K07*Phospholipid) - TFPI*XaF_ar*k11 - XaF_ar*(AT_III*h04 + ProteinC_Inhibitor*h07 + alpha1_antitrypsin*h06 + alpha2_macroglobulin*h05) + Xa_TFPI*k_11 + VIIa_TFF_ar*X*k06/K06
-	IIaF_ar() = IIa/(1 + (fibrin + fibrinogen)/K14)
 	IIB_ar() = II*Phospholipid*n25/(K26*(II/K26 + 1 + X/K25))
+	IIaF_ar() = IIa/(1 + (fibrin + fibrinogen)/K14)
 	arRateIIa() = II*Phospholipid*XaF_ar*k12 + IIB_ar*Xa_Vab_ar*k13/Phospholipid - IIaF_ar*(AT_III*h09 + ProteinC_Inhibitor*h12 + alpha1_antitrypsin*h11 + alpha2_macroglobulin*h10 + h13*heparin_cofactor2)
 	arRateX() = -IXaBF_ar*VIIIaBF_ar*XB_ar/(K09*Phospholipid^2) - IXaBF_ar*XB_ar*k07/(K07*Phospholipid) - VIIa_TFF_ar*X*k06/K06
 	Xa_VIIa_TF_ar() = VIIa_TFF_ar*X*k06/(K06*k_19)

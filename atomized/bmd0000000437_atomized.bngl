@@ -1,12 +1,12 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000437', 'http://identifiers.org/biomodels.db/MODEL1212150000']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1212150000', 'http://identifiers.org/biomodels.db/BIOMD0000000437']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/22496627']
 #@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/BIOMD0000000299', 'http://identifiers.org/pubmed/17965132', 'http://identifiers.org/pubmed/15653726']
 #@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0010378']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/5141']
 #@creatorEmail:'viji@ebi.ac.uk'
 #@creatorName:'Chelliah Vijayalakshmi'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 61 molecules and 40 reactions. The translated model has 16 molecules and 46 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 61 molecules and 40 reactions. The translated model has 16 molecules and 46 rules'
 ###
 begin model
 begin parameters
@@ -80,27 +80,27 @@ begin compartments
 	c2 3 1.0 #Nucleus
 end compartments
 begin molecule types
-	hyper(c~C~0,degraded_~DEGRADED_~0,degraded_hyperFFCn~degraded_hyperFFCn~0,hyperFRQ~hyperFRQ~0,n~N~0)
-	frq(frq_gene~frq_gene~0,frq_mRNA~frq_mRNA~0)
-	FRQ(c~C~0,hypo~HYPO~0,n~N~0)
 	#^ bqbiol:isVersionOf uniprot:P19970
 	total_FRQ(c~C~0,n~N~0)
+	#^ bqbiol:hasPart uniprot:Q01371, uniprot:P78714
+	total_WCCn(hypo~HYPO~0)
+	hyper(c~C~0,degraded_~DEGRADED_~0,degraded_hyperFFCn~degraded_hyperFFCn~0,hyperFRQ~hyperFRQ~0,n~N~0)
+	frq(frq_gene~frq_gene~0,frq_mRNA~frq_mRNA~0)
+	vvd(VVDc~VVDc~0,degraded_~DEGRADED_~0,n~N~0,vvd_gene~vvd_gene~0,vvd_mRNA~vvd_mRNA~0)
+	#^ bqbiol:hasPart uniprot:Q01371, uniprot:P78714
+	L_WCC(degraded_L_WCCCVVDn~degraded_L_WCCCVVDn~0)
 	#^ bqbiol:is pato:PATO:0000146
 	T()
-	wc1(WC1c~WC1c~0,degraded_~DEGRADED_~0,wc1_gene~wc1_gene~0,wc1_mRNA~wc1_mRNA~0,wc2)
-	FRQc()
-	time()
 	degraded_frq_mRNA()
 	#^ bqbiol:hasPart uniprot:Q01371, uniprot:P78714
 	L_WCCVVDn()
-	WCC(active_~ACTIVE_~0,degraded_~DEGRADED_~0,hypo~HYPO~0,n~N~0)
-	#^ bqbiol:hasPart uniprot:Q01371, uniprot:P78714
-	L_WCC(degraded_L_WCCCVVDn~degraded_L_WCCCVVDn~0)
-	vvd(VVDc~VVDc~0,degraded_~DEGRADED_~0,n~N~0,vvd_gene~vvd_gene~0,vvd_mRNA~vvd_mRNA~0)
-	wc2(WC2c~WC2c~0,degraded_~DEGRADED_~0,wc1,wc2_gene~wc2_gene~0,wc2_mRNA~wc2_mRNA~0)
+	time()
+	wc1(WC1c~WC1c~0,degraded_~DEGRADED_~0,wc1_gene~wc1_gene~0,wc1_mRNA~wc1_mRNA~0,wc2)
 	hyperWCC(c~C~0,degraded_~DEGRADED_~0,n~N~0)
-	#^ bqbiol:hasPart uniprot:Q01371, uniprot:P78714
-	total_WCCn(hypo~HYPO~0)
+	FRQ(c~C~0,hypo~HYPO~0,n~N~0)
+	wc2(WC2c~WC2c~0,degraded_~DEGRADED_~0,wc1,wc2_gene~wc2_gene~0,wc2_mRNA~wc2_mRNA~0)
+	FRQc()
+	WCC(active_~ACTIVE_~0,degraded_~DEGRADED_~0,hypo~HYPO~0,n~N~0)
 end molecule types
 begin seed species
 	@c1:wc1(WC1c~WC1c,degraded_~0,wc1_gene~0,wc1_mRNA~0,wc2) 2.34858e+22 # 0.039mol/L * 6.022e23/mol *1.0L #WC1c #WC1c
@@ -169,8 +169,8 @@ begin observables
 	Species wc2_mRNA_c1 @c1:wc2(WC2c~0,degraded_~0,wc1,wc2_gene~0,wc2_mRNA~wc2_mRNA) #wc2_mRNA
 end observables
 begin functions
-	total_hyperWCC_ar() = hyperWCCc_c1 + hyperWCCn_c2
 	total_hypoWCC_ar() = hypoWCCc_c1 + hypoWCCn_c2
+	total_hyperWCC_ar() = hyperWCCc_c1 + hyperWCCn_c2
 	hyper_hypo_WCC_ar() = total_hyperWCC_ar/total_hypoWCC_ar
 	total_WCCn_ar() = L_WCC_c2 + active_hypoWCCn_c2 + hyperWCCn_c2 + hypoWCCn_c2
 	total_WC2_ar() = L_WCC_c2 + WC2c_c1 + active_hypoWCCn_c2 + hyperWCCc_c1 + hyperWCCn_c2 + hypoWCCc_c1 + hypoWCCn_c2

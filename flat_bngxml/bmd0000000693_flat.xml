@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000693_flat">
+    <ListOfParameters>
+      <Parameter id="gNa_max" type="Constant" value="0.9" expr="0.9"/>
+      <Parameter id="gcabar" type="Constant" value="0.05" expr="0.05"/>
+      <Parameter id="gk_max" type="Constant" value="0.42" expr="0.42"/>
+      <Parameter id="gL_max" type="Constant" value="0.0024" expr="0.0024"/>
+      <Parameter id="gKca" type="Constant" value="0.5" expr="0.5"/>
+      <Parameter id="ENa" type="Constant" value="50" expr="50.0"/>
+      <Parameter id="EK" type="Constant" value="-70" expr="-70.0"/>
+      <Parameter id="EL" type="Constant" value="-75" expr="-75.0"/>
+      <Parameter id="ECa" type="Constant" value="50" expr="50.0"/>
+      <Parameter id="En" type="Constant" value="-40" expr="-40.0"/>
+      <Parameter id="Em" type="Constant" value="-42" expr="-42.0"/>
+      <Parameter id="Eh" type="Constant" value="-41" expr="-41.0"/>
+      <Parameter id="Ct" type="Constant" value="0.04" expr="0.04"/>
+      <Parameter id="Cm" type="Constant" value="0.009" expr="0.009"/>
+      <Parameter id="Rs" type="Constant" value="15" expr="15.0"/>
+      <Parameter id="Am" type="Constant" value="200" expr="200.0"/>
+      <Parameter id="alpha_n_max" type="Constant" value="0.0229" expr="0.0229"/>
+      <Parameter id="beta_n_max" type="Constant" value="0.09616" expr="0.09616"/>
+      <Parameter id="v_alpha_m" type="Constant" value="10" expr="10.0"/>
+      <Parameter id="v_alpha_n" type="Constant" value="7" expr="7.0"/>
+      <Parameter id="v_alpha_h" type="Constant" value="14.7" expr="14.7"/>
+      <Parameter id="alpha_m_max" type="Constant" value="0.208" expr="0.208"/>
+      <Parameter id="beta_m_max" type="Constant" value="2.081" expr="2.081"/>
+      <Parameter id="v_beta_n" type="Constant" value="40" expr="40.0"/>
+      <Parameter id="v_beta_m" type="Constant" value="18" expr="18.0"/>
+      <Parameter id="v_beta_h" type="Constant" value="7.6" expr="7.6"/>
+      <Parameter id="alpha_h_max" type="Constant" value="0.0156" expr="0.0156"/>
+      <Parameter id="beta_h_max" type="Constant" value="3.382" expr="3.382"/>
+      <Parameter id="kd" type="Constant" value="0.18" expr="0.18"/>
+      <Parameter id="alpha" type="Constant" value="4.5e-6" expr="4.5e-06"/>
+      <Parameter id="kpmca" type="Constant" value="0.2" expr="0.2"/>
+      <Parameter id="pleak" type="Constant" value="0.0005" expr="0.0005"/>
+      <Parameter id="kserca" type="Constant" value="0.4" expr="0.4"/>
+      <Parameter id="d1" type="Constant" value="0.84" expr="0.84"/>
+      <Parameter id="d2" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="k1" type="Constant" value="0.18" expr="0.18"/>
+      <Parameter id="k2" type="Constant" value="0.011" expr="0.011"/>
+      <Parameter id="bbar" type="Constant" value="0.28" expr="0.28"/>
+      <Parameter id="abar" type="Constant" value="0.48" expr="0.48"/>
+      <Parameter id="fer" type="Constant" value="0.01" expr="0.01"/>
+      <Parameter id="vcytver" type="Constant" value="5" expr="5.0"/>
+      <Parameter id="fcyt" type="Constant" value="0.01" expr="0.01"/>
+      <Parameter id="Stimulus_Period" type="Constant" value="50" expr="50.0"/>
+      <Parameter id="Stimulus_Magnitude" type="Constant" value="2" expr="2.0"/>
+      <Parameter id="Stimulus_Start" type="Constant" value="5" expr="5.0"/>
+      <Parameter id="Stimulus_Duration" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="beta_n" type="Constant" value="0.035375287" expr="0.09616*exp(-1.0)"/>
+      <Parameter id="beta_m" type="Constant" value="0.20179867" expr="2.081*exp(-2.33333333333333)"/>
+      <Parameter id="beta_h" type="Constant" value="3.3667137" expr="3.382/(exp(-5.39473684210526)+1.0)"/>
+      <Parameter id="alpha_n" type="Constant" value="0.91903143" expr="0.916/(1.0-exp(-5.71428571428571))"/>
+      <Parameter id="alpha_m" type="Constant" value="8.8689957" expr="8.736/(1.0-exp(-4.2))"/>
+      <Parameter id="alpha_h" type="Constant" value="0.00025853374" expr="0.0156*exp(-4.1)"/>
+      <Parameter id="w" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="jleak" type="Constant" value="6.0174835e+19" expr="6.0174835e+19"/>
+      <Parameter id="jserca" type="Constant" value="3.6132e+19" expr="3.6132e+19"/>
+      <Parameter id="jer" type="Constant" value="0" expr="0"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="Vm"/>
+      <MoleculeType id="Vt"/>
+      <MoleculeType id="c"/>
+      <MoleculeType id="cer"/>
+      <MoleculeType id="d"/>
+      <MoleculeType id="h"/>
+      <MoleculeType id="m"/>
+      <MoleculeType id="n"/>
+      <MoleculeType id="o"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="6.022e+20" name="h()">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="h"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="6.022000000000001e+19" name="n()">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="n"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="6.022000000000001e+19" name="o()">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="o"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S4"  concentration="9.033e+19" name="c()">
+        <ListOfMolecules>
+          <Molecule id="S4_M1" name="c"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S5"  concentration="1.2044000000000002e+23" name="cer()">
+        <ListOfMolecules>
+          <Molecule id="S5_M1" name="cer"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="_R1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="Vm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="arRateVm" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="_R2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="m"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="arRatem" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="_R3" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="h"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="arRateh" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="_R4" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="n"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="arRaten" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR4_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="_R5" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="Vt"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Function" name="arRateVt" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR5_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="_R6" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="d"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Function" name="arRated" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR6_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="_R7" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="o"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Function" name="arRateo" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR7_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="_R8" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR8_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP1_M1" name="c"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Function" name="arRatec" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR8_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="_R9" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR9_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP1_M1" name="cer"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Function" name="arRatecer" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR9_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="Vm" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="Vm"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="m" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="m"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="h" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="h"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="n" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="n"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="Vt" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="Vt"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O6" name="d" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O6_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O6_P1_M1" name="d"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O7" name="o" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O7_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O7_P1_M1" name="o"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O8" name="c" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O8_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O8_P1_M1" name="c"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O9" name="cer" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O9_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O9_P1_M1" name="cer"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="Stimulus_ar">
+        <ListOfReferences>
+          <Reference name="Stimulus_Duration" type="Constant"/>
+          <Reference name="Stimulus_Magnitude" type="Constant"/>
+          <Reference name="Stimulus_Period" type="Constant"/>
+          <Reference name="Stimulus_Start" type="Constant"/>
+        </ListOfReferences>
+        <Expression> if(((time()&gt;=Stimulus_Start)and(((((-Stimulus_Period)*min(rint(((((-Stimulus_Start)+time())/Stimulus_Period)-0.5)),rint(((((-Stimulus_Start)+time())/Stimulus_Period)+0.5))))-Stimulus_Start)+time())&lt;Stimulus_Duration)),Stimulus_Magnitude,0) </Expression>
+      </Function>
+      <Function id="gca">
+        <ListOfReferences>
+          <Reference name="gcabar" type="Constant"/>
+          <Reference name="Vm" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((-Vm)*gcabar)/(exp((0.117*Vm))-1) </Expression>
+      </Function>
+      <Function id="ICa_ar">
+        <ListOfReferences>
+          <Reference name="gca" type="Function"/>
+          <Reference name="d" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (d^2)*gca </Expression>
+      </Function>
+      <Function id="IL_ar">
+        <ListOfReferences>
+          <Reference name="EL" type="Constant"/>
+          <Reference name="gL_max" type="Constant"/>
+          <Reference name="Vm" type="Observable"/>
+        </ListOfReferences>
+        <Expression> gL_max*((-EL)+Vm) </Expression>
+      </Function>
+      <Function id="w_ar">
+        <ListOfReferences>
+          <Reference name="kd" type="Constant"/>
+          <Reference name="c" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (c^5)/((c^5)+(kd^5)) </Expression>
+      </Function>
+      <Function id="IKCa_ar">
+        <ListOfReferences>
+          <Reference name="EK" type="Constant"/>
+          <Reference name="gKca" type="Constant"/>
+          <Reference name="w_ar" type="Function"/>
+          <Reference name="Vm" type="Observable"/>
+          <Reference name="o" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((gKca*o)*w_ar)*((-EK)+Vm) </Expression>
+      </Function>
+      <Function id="IT_ar">
+        <ListOfReferences>
+          <Reference name="Rs" type="Constant"/>
+          <Reference name="Vm" type="Observable"/>
+          <Reference name="Vt" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (Vm-Vt)/Rs </Expression>
+      </Function>
+      <Function id="IK_ar">
+        <ListOfReferences>
+          <Reference name="EK" type="Constant"/>
+          <Reference name="gk_max" type="Constant"/>
+          <Reference name="Vm" type="Observable"/>
+          <Reference name="n" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (gk_max*(n^4))*((-EK)+Vm) </Expression>
+      </Function>
+      <Function id="INa_ar">
+        <ListOfReferences>
+          <Reference name="ENa" type="Constant"/>
+          <Reference name="gNa_max" type="Constant"/>
+          <Reference name="Vm" type="Observable"/>
+          <Reference name="h" type="Observable"/>
+          <Reference name="m" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((gNa_max*h)*(m^3))*((-ENa)+Vm) </Expression>
+      </Function>
+      <Function id="arRateVm">
+        <ListOfReferences>
+          <Reference name="Cm" type="Constant"/>
+          <Reference name="ICa_ar" type="Function"/>
+          <Reference name="IKCa_ar" type="Function"/>
+          <Reference name="IK_ar" type="Function"/>
+          <Reference name="IL_ar" type="Function"/>
+          <Reference name="INa_ar" type="Function"/>
+          <Reference name="IT_ar" type="Function"/>
+          <Reference name="Stimulus_ar" type="Function"/>
+        </ListOfReferences>
+        <Expression> (((((((-ICa_ar)-IKCa_ar)-IK_ar)-IL_ar)-INa_ar)-IT_ar)+Stimulus_ar)/Cm </Expression>
+      </Function>
+      <Function id="jmem_ar">
+        <ListOfReferences>
+          <Reference name="alpha" type="Constant"/>
+          <Reference name="kpmca" type="Constant"/>
+          <Reference name="ICa_ar" type="Function"/>
+          <Reference name="c" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((-ICa_ar)*alpha)-(c*kpmca) </Expression>
+      </Function>
+      <Function id="jserca_ar">
+        <ListOfReferences>
+          <Reference name="kserca" type="Constant"/>
+          <Reference name="c" type="Observable"/>
+        </ListOfReferences>
+        <Expression> c*kserca </Expression>
+      </Function>
+      <Function id="jleak_ar">
+        <ListOfReferences>
+          <Reference name="pleak" type="Constant"/>
+          <Reference name="c" type="Observable"/>
+          <Reference name="cer" type="Observable"/>
+        </ListOfReferences>
+        <Expression> pleak*((-c)+cer) </Expression>
+      </Function>
+      <Function id="jer_ar">
+        <ListOfReferences>
+          <Reference name="jleak_ar" type="Function"/>
+          <Reference name="jserca_ar" type="Function"/>
+        </ListOfReferences>
+        <Expression> jleak_ar-jserca_ar </Expression>
+      </Function>
+      <Function id="arRatec">
+        <ListOfReferences>
+          <Reference name="fcyt" type="Constant"/>
+          <Reference name="jer_ar" type="Function"/>
+          <Reference name="jmem_ar" type="Function"/>
+        </ListOfReferences>
+        <Expression> fcyt*(jer_ar+jmem_ar) </Expression>
+      </Function>
+      <Function id="alp">
+        <ListOfReferences>
+          <Reference name="abar" type="Constant"/>
+          <Reference name="d1" type="Constant"/>
+          <Reference name="k1" type="Constant"/>
+          <Reference name="Vm" type="Observable"/>
+          <Reference name="c" type="Observable"/>
+        </ListOfReferences>
+        <Expression> abar/(1+((k1*exp(((-0.0748769545457734*Vm)*d1)))/c)) </Expression>
+      </Function>
+      <Function id="beta">
+        <ListOfReferences>
+          <Reference name="bbar" type="Constant"/>
+          <Reference name="d2" type="Constant"/>
+          <Reference name="k2" type="Constant"/>
+          <Reference name="Vm" type="Observable"/>
+          <Reference name="c" type="Observable"/>
+        </ListOfReferences>
+        <Expression> bbar/((c/(k2*exp(((-0.0748769545457734*Vm)*d2))))+1) </Expression>
+      </Function>
+      <Function id="tau">
+        <ListOfReferences>
+          <Reference name="alp" type="Function"/>
+          <Reference name="beta" type="Function"/>
+        </ListOfReferences>
+        <Expression> 1/(alp+beta) </Expression>
+      </Function>
+      <Function id="ooinf">
+        <ListOfReferences>
+          <Reference name="alp" type="Function"/>
+          <Reference name="tau" type="Function"/>
+        </ListOfReferences>
+        <Expression> alp*tau </Expression>
+      </Function>
+      <Function id="arRateo">
+        <ListOfReferences>
+          <Reference name="ooinf" type="Function"/>
+          <Reference name="tau" type="Function"/>
+          <Reference name="o" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((-o)+ooinf)/tau </Expression>
+      </Function>
+      <Function id="dinf">
+        <ListOfReferences>
+          <Reference name="Vm" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 1/(exp(((-0.0884955752212389*Vm)-2.17699115044248))+1) </Expression>
+      </Function>
+      <Function id="taud">
+        <ListOfReferences>
+          <Reference name="Vm" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 80*cosh(((-0.031*Vm)-1.1501)) </Expression>
+      </Function>
+      <Function id="alphad">
+        <ListOfReferences>
+          <Reference name="dinf" type="Function"/>
+          <Reference name="taud" type="Function"/>
+        </ListOfReferences>
+        <Expression> dinf/taud </Expression>
+      </Function>
+      <Function id="betad">
+        <ListOfReferences>
+          <Reference name="dinf" type="Function"/>
+          <Reference name="taud" type="Function"/>
+        </ListOfReferences>
+        <Expression> (1-dinf)/taud </Expression>
+      </Function>
+      <Function id="arRated">
+        <ListOfReferences>
+          <Reference name="alphad" type="Function"/>
+          <Reference name="betad" type="Function"/>
+          <Reference name="d" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (alphad*(1-d))-(betad*d) </Expression>
+      </Function>
+      <Function id="beta_n_ar">
+        <ListOfReferences>
+          <Reference name="En" type="Constant"/>
+          <Reference name="beta_n_max" type="Constant"/>
+          <Reference name="v_beta_n" type="Constant"/>
+          <Reference name="Vm" type="Observable"/>
+        </ListOfReferences>
+        <Expression> beta_n_max*exp(((En-Vm)/v_beta_n)) </Expression>
+      </Function>
+      <Function id="alpha_n_ar">
+        <ListOfReferences>
+          <Reference name="En" type="Constant"/>
+          <Reference name="alpha_n_max" type="Constant"/>
+          <Reference name="v_alpha_n" type="Constant"/>
+          <Reference name="Vm" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (alpha_n_max*((-En)+Vm))/(1-exp(((En-Vm)/v_alpha_n))) </Expression>
+      </Function>
+      <Function id="arRaten">
+        <ListOfReferences>
+          <Reference name="alpha_n_ar" type="Function"/>
+          <Reference name="beta_n_ar" type="Function"/>
+          <Reference name="n" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (alpha_n_ar*(1-n))-(beta_n_ar*n) </Expression>
+      </Function>
+      <Function id="alpha_h_ar">
+        <ListOfReferences>
+          <Reference name="Eh" type="Constant"/>
+          <Reference name="alpha_h_max" type="Constant"/>
+          <Reference name="v_alpha_m" type="Constant"/>
+          <Reference name="Vm" type="Observable"/>
+        </ListOfReferences>
+        <Expression> alpha_h_max*exp(((Eh-Vm)/v_alpha_m)) </Expression>
+      </Function>
+      <Function id="beta_h_ar">
+        <ListOfReferences>
+          <Reference name="Eh" type="Constant"/>
+          <Reference name="beta_h_max" type="Constant"/>
+          <Reference name="v_beta_h" type="Constant"/>
+          <Reference name="Vm" type="Observable"/>
+        </ListOfReferences>
+        <Expression> beta_h_max/(exp(((Eh-Vm)/v_beta_h))+1) </Expression>
+      </Function>
+      <Function id="arRateh">
+        <ListOfReferences>
+          <Reference name="alpha_h_ar" type="Function"/>
+          <Reference name="beta_h_ar" type="Function"/>
+          <Reference name="h" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (alpha_h_ar*(1-h))-(beta_h_ar*h) </Expression>
+      </Function>
+      <Function id="alpha_m_ar">
+        <ListOfReferences>
+          <Reference name="Em" type="Constant"/>
+          <Reference name="alpha_m_max" type="Constant"/>
+          <Reference name="v_alpha_m" type="Constant"/>
+          <Reference name="Vm" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (alpha_m_max*((-Em)+Vm))/(1-exp(((Em-Vm)/v_alpha_m))) </Expression>
+      </Function>
+      <Function id="beta_m_ar">
+        <ListOfReferences>
+          <Reference name="Em" type="Constant"/>
+          <Reference name="beta_m_max" type="Constant"/>
+          <Reference name="v_beta_m" type="Constant"/>
+          <Reference name="Vm" type="Observable"/>
+        </ListOfReferences>
+        <Expression> beta_m_max*exp(((Em-Vm)/v_beta_m)) </Expression>
+      </Function>
+      <Function id="arRatem">
+        <ListOfReferences>
+          <Reference name="alpha_m_ar" type="Function"/>
+          <Reference name="beta_m_ar" type="Function"/>
+          <Reference name="m" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (alpha_m_ar*(1-m))-(beta_m_ar*m) </Expression>
+      </Function>
+      <Function id="arRatecer">
+        <ListOfReferences>
+          <Reference name="fer" type="Constant"/>
+          <Reference name="vcytver" type="Constant"/>
+          <Reference name="jer_ar" type="Function"/>
+        </ListOfReferences>
+        <Expression> ((-fer)*jer_ar)*vcytver </Expression>
+      </Function>
+      <Function id="arRateVt">
+        <ListOfReferences>
+          <Reference name="Ct" type="Constant"/>
+          <Reference name="Rs" type="Constant"/>
+          <Reference name="Vm" type="Observable"/>
+          <Reference name="Vt" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (Vm-Vt)/(Ct*Rs) </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

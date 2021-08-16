@@ -7,7 +7,7 @@
 #@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1809060004', 'http://identifiers.org/biomodels.db/BIOMD0000000953']
 #@creatorEmail:'matt.maire@free.fr'
 #@creatorName:'MAIRE Matthieu'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 27 molecules and 29 reactions. The translated model has 13 molecules and 29 rules'
+#@notes:'This is an atomized translation of an SBML model created on 14/08/2021. The original model has 27 molecules and 29 reactions. The translated model has 13 molecules and 29 rules'
 ###
 begin model
 begin parameters
@@ -71,32 +71,32 @@ begin parameters
 	Cdc14x2 0 #original 0.03substance/volume
 end parameters
 begin molecule types
-	#^ bqbiol:isVersionOf uniprot:Q03018
-	separase_total()
-	#^ bqbiol:isHomologTo uniprot:P32562
-	polo()
-	#^ bqbiol:isVersionOf uniprot:P26309
-	cdc20()
-	#^ bqbiol:isHomologTo uniprot:P32562
-	polo_total()
-	#^ bqbiol:isVersionOf uniprot:P38987
-	tem1()
-	#^ bqbiol:isVersionOf uniprot:P47035
-	net1(cdc14)
-	#^ bqbiol:hasPart uniprot:P40316, uniprot:Q03018
-	#^ bqbiol:hasProperty sbo:SBO:0000297
-	securin_separase()
+	#^ bqbiol:isVersionOf uniprot:P24869
+	clb2()
+	men()
 	#^ bqbiol:isVersionOf uniprot:P53197
 	cdh1()
 	#^ bqbiol:isVersionOf uniprot:P40316
 	securin_total()
-	#^ bqbiol:isVersionOf uniprot:P27636
-	cdc15()
-	men()
-	#^ bqbiol:isVersionOf uniprot:P24869
-	clb2()
+	#^ bqbiol:isVersionOf uniprot:Q03018
+	separase_total()
 	#^ bqbiol:isVersionOf uniprot:Q00684
 	cdc14(net1)
+	#^ bqbiol:hasPart uniprot:P40316, uniprot:Q03018
+	#^ bqbiol:hasProperty sbo:SBO:0000297
+	securin_separase()
+	#^ bqbiol:isVersionOf uniprot:P47035
+	net1(cdc14)
+	#^ bqbiol:isVersionOf uniprot:P27636
+	cdc15()
+	#^ bqbiol:isHomologTo uniprot:P32562
+	polo_total()
+	#^ bqbiol:isVersionOf uniprot:P26309
+	cdc20()
+	#^ bqbiol:isVersionOf uniprot:P38987
+	tem1()
+	#^ bqbiol:isHomologTo uniprot:P32562
+	polo()
 end molecule types
 begin seed species
 	clb2() 6.003934e+20 # (0.997 * 0.001)mol/L * 6.022e23/mol *1.0L #clb2 #clb2
@@ -105,7 +105,7 @@ begin seed species
 	securin_separase() 1.493456e+20 #original 0.248substance/volume #securin_separase #securin_separase
 	net1(cdc14) 5.901560000000001e+19 #original 0.098substance/volume #net1 #net1
 	cdc14(net1) 9.033e+18 #original 0.015substance/volume #cdc14 #cdc14
-	net1(cdc14!114).cdc14(net1!114) 2.92067e+20 #original 0.485substance/volume #net1cdc14 #net1cdc14
+	net1(cdc14!912).cdc14(net1!912) 2.92067e+20 #original 0.485substance/volume #net1cdc14 #net1cdc14
 	polo_total() 5.961780000000001e+20 #original 0.99substance/volume #polo_total #polo_total
 	men() 4817600000000001.0 #original 8e-06substance/volume #men #men
 	polo() 5.69079e+20 #original 0.945substance/volume #polo #polo
@@ -121,7 +121,7 @@ begin observables
 	Species securin_separase securin_separase() #securin_separase
 	Species net1 net1(cdc14) #net1
 	Species cdc14 cdc14(net1) #cdc14
-	Species net1cdc14 net1(cdc14!114).cdc14(net1!114) #net1cdc14
+	Species net1cdc14 net1(cdc14!912).cdc14(net1!912) #net1cdc14
 	Species polo_total polo_total() #polo_total
 	Species men men() #men
 	Species polo polo() #polo
@@ -173,8 +173,8 @@ begin reaction rules
 	R12_Securin_separase_dissociation_reactants_0: 0  -> securin_separase() -1*(fRate11()) #Modifiers(cdc20)
 	R13_Net1_dephosphorylation: 0  -> net1(cdc14) fRate12() #Modifiers(cdc14, pp2a, net1p)
 	R14_Net1_phosphorylation_reactants_0: 0  -> net1(cdc14) -1*(fRate13()) #Modifiers(cdk, men, net1cdc14)
-	R15_Net1_Cdc14_association: net1(cdc14) + cdc14(net1) <-> net1(cdc14!114).cdc14(net1!114) l_a_net,l_d_net
-	R16_Net1_Cdc14_dissociation_reactants_0: 0  -> net1(cdc14!114).cdc14(net1!114) -1*(fRate15()) #Modifiers(cdk, men, net1)
+	R15_Net1_Cdc14_association: net1(cdc14) + cdc14(net1) <-> net1(cdc14!912).cdc14(net1!912) l_a_net,l_d_net
+	R16_Net1_Cdc14_dissociation_reactants_0: 0  -> net1(cdc14!912).cdc14(net1!912) -1*(fRate15()) #Modifiers(cdk, men, net1)
 	R17_Polo_synthesis: 0  -> polo_total() ks_polo
 	R18_Polo_degradation_reactants_0: 0  -> polo_total() -1*(fRate17()) #Modifiers(cdh1)
 	R19_Polo_activation_products_0: 0  -> polo() fRate18() #Modifiers(cdk, polo_total)

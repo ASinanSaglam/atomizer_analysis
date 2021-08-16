@@ -1,0 +1,793 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000318_atomized">
+    <ListOfParameters>
+      <Parameter id="S" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="r1_KS" type="Constant" value="0.5" expr="0.500000"/>
+      <Parameter id="r1_kM" type="Constant" value="1" expr="1.000000"/>
+      <Parameter id="r2_KS" type="Constant" value="0.5" expr="0.500000"/>
+      <Parameter id="r2_kkCDS" type="Constant" value="0.45" expr="0.450000"/>
+      <Parameter id="r3_KEF" type="Constant" value="0.15" expr="0.150000"/>
+      <Parameter id="r3_KMC" type="Constant" value="0.15" expr="0.150000"/>
+      <Parameter id="r3_kkEF" type="Constant" value="0.4" expr="0.400000"/>
+      <Parameter id="r3_kkb" type="Constant" value="0.003" expr="0.003000"/>
+      <Parameter id="r4_KEF" type="Constant" value="0.15" expr="0.150000"/>
+      <Parameter id="r4_kkCE" type="Constant" value="0.35" expr="0.350000"/>
+      <Parameter id="r5_KMC" type="Constant" value="0.15" expr="0.150000"/>
+      <Parameter id="r5_kkCD" type="Constant" value="0.03" expr="0.030000"/>
+      <Parameter id="r6_kkRB" type="Constant" value="0.18" expr="0.180000"/>
+      <Parameter id="r7_KD" type="Constant" value="0.92" expr="0.920000"/>
+      <Parameter id="r7_KE" type="Constant" value="0.92" expr="0.920000"/>
+      <Parameter id="r7_kkRBPP" type="Constant" value="18" expr="18.000000"/>
+      <Parameter id="r8_kkRE" type="Constant" value="180" expr="180.000000"/>
+      <Parameter id="r9_KD" type="Constant" value="0.92" expr="0.920000"/>
+      <Parameter id="r9_KE" type="Constant" value="0.92" expr="0.920000"/>
+      <Parameter id="r9_kkRBP" type="Constant" value="18" expr="18.000000"/>
+      <Parameter id="r9_kkRBP2" type="Constant" value="18" expr="18.000000"/>
+      <Parameter id="r10_Kp" type="Constant" value="0.01" expr="0.010000"/>
+      <Parameter id="r10_kkRBUP" type="Constant" value="3.6" expr="3.600000"/>
+      <Parameter id="r11_dMC" type="Constant" value="0.7" expr="0.700000"/>
+      <Parameter id="r12_dEF" type="Constant" value="0.25" expr="0.250000"/>
+      <Parameter id="r13_dCE" type="Constant" value="1.5" expr="1.500000"/>
+      <Parameter id="r14_dCD" type="Constant" value="1.5" expr="1.500000"/>
+      <Parameter id="r15_dRB" type="Constant" value="0.06" expr="0.060000"/>
+      <Parameter id="r16_dRP" type="Constant" value="0.06" expr="0.060000"/>
+      <Parameter id="r17_dRE" type="Constant" value="0.03" expr="0.030000"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="CycD"/>
+      <MoleculeType id="CycE"/>
+      <MoleculeType id="E2F">
+        <ListOfComponentTypes>
+          <ComponentType id="rb"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="Myc"/>
+      <MoleculeType id="Rb">
+        <ListOfComponentTypes>
+          <ComponentType id="e2f"/>
+          <ComponentType id="phosphorylatedRb">
+            <ListOfAllowedStates>
+              <AllowedState id="phosphorylatedRb"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="3.3121e+17" name="E2F(rb!1).Rb(e2f!1,phosphorylatedRb~0)">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="E2F">
+            <ListOfComponents>
+              <Component id="S1_M1_C1" name="rb" numberOfBonds="1"/>
+            </ListOfComponents>
+          </Molecule>
+          <Molecule id="S1_M2" name="Rb">
+            <ListOfComponents>
+              <Component id="S1_M2_C1" name="e2f" numberOfBonds="1"/>
+              <Component id="S1_M2_C2" name="phosphorylatedRb" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+        <ListOfBonds>
+          <Bond id="S1_B1" site1="S1_M1_C1" site2="S1_M2_C1"/>
+        </ListOfBonds>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="r1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="Myc"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="r2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="CycD"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="fRate1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="r3" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="E2F">
+                <ListOfComponents>
+                  <Component id="RR3_PP1_M1_C1" name="rb" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="fRate2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="r4" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="CycE"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="fRate3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR4_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="r5" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="CycD"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Function" name="fRate4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR5_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="r6" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="Rb">
+                <ListOfComponents>
+                  <Component id="RR6_PP1_M1_C1" name="e2f" numberOfBonds="0"/>
+                  <Component id="RR6_PP1_M1_C2" name="phosphorylatedRb" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r6_kkRB"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR6_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="r7_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="Rb">
+                <ListOfComponents>
+                  <Component id="RR7_PP1_M1_C1" name="e2f" numberOfBonds="1"/>
+                  <Component id="RR7_PP1_M1_C2" name="phosphorylatedRb" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR7_PP1_M2" name="E2F">
+                <ListOfComponents>
+                  <Component id="RR7_PP1_M2_C1" name="rb" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR7_PP1_B1" site1="RR7_PP1_M1_C1" site2="RR7_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Function" name="_rateLaw1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR7_PP1_M1"/>
+          <Add id="RR7_PP1_M2"/>
+          <AddBond site1="RR7_PP1_M1_C1" site2="RR7_PP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="r7_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR8_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP1_M1" name="E2F">
+                <ListOfComponents>
+                  <Component id="RR8_PP1_M1_C1" name="rb" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Function" name="fRate6" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR8_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="r7_products_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR9_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP1_M1" name="Rb">
+                <ListOfComponents>
+                  <Component id="RR9_PP1_M1_C1" name="e2f" numberOfBonds="0"/>
+                  <Component id="RR9_PP1_M1_C2" name="phosphorylatedRb" state="phosphorylatedRb" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Function" name="fRate6" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR9_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="r8" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR10_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_RP1_M1" name="E2F">
+                <ListOfComponents>
+                  <Component id="RR10_RP1_M1_C1" name="rb" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR10_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR10_RP2_M1" name="Rb">
+                <ListOfComponents>
+                  <Component id="RR10_RP2_M1_C1" name="e2f" numberOfBonds="0"/>
+                  <Component id="RR10_RP2_M1_C2" name="phosphorylatedRb" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR10_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_PP1_M1" name="Rb">
+                <ListOfComponents>
+                  <Component id="RR10_PP1_M1_C1" name="e2f" numberOfBonds="1"/>
+                  <Component id="RR10_PP1_M1_C2" name="phosphorylatedRb" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR10_PP1_M2" name="E2F">
+                <ListOfComponents>
+                  <Component id="RR10_PP1_M2_C1" name="rb" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR10_PP1_B1" site1="RR10_PP1_M1_C1" site2="RR10_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r8_kkRE"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR10_RP1_M1" targetID="RR10_PP1_M2"/>
+          <MapItem sourceID="RR10_RP1_M1_C1" targetID="RR10_PP1_M2_C1"/>
+          <MapItem sourceID="RR10_RP2_M1" targetID="RR10_PP1_M1"/>
+          <MapItem sourceID="RR10_RP2_M1_C1" targetID="RR10_PP1_M1_C1"/>
+          <MapItem sourceID="RR10_RP2_M1_C2" targetID="RR10_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR10_RP2_M1_C1" site2="RR10_RP1_M1_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR11" name="r9_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR11_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_PP1_M1" name="Rb">
+                <ListOfComponents>
+                  <Component id="RR11_PP1_M1_C1" name="e2f" numberOfBonds="0"/>
+                  <Component id="RR11_PP1_M1_C2" name="phosphorylatedRb" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR11_RateLaw" type="Function" name="_rateLaw2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR11_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR12" name="r9_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR12_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_PP1_M1" name="Rb">
+                <ListOfComponents>
+                  <Component id="RR12_PP1_M1_C1" name="e2f" numberOfBonds="0"/>
+                  <Component id="RR12_PP1_M1_C2" name="phosphorylatedRb" state="phosphorylatedRb" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR12_RateLaw" type="Function" name="fRate8" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR12_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR13" name="r10" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR13_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_RP1_M1" name="Rb">
+                <ListOfComponents>
+                  <Component id="RR13_RP1_M1_C1" name="e2f" numberOfBonds="0"/>
+                  <Component id="RR13_RP1_M1_C2" name="phosphorylatedRb" state="phosphorylatedRb" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR13_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_PP1_M1" name="Rb">
+                <ListOfComponents>
+                  <Component id="RR13_PP1_M1_C1" name="e2f" numberOfBonds="0"/>
+                  <Component id="RR13_PP1_M1_C2" name="phosphorylatedRb" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR13_RateLaw" type="Function" name="fRate9" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR13_RP1_M1" targetID="RR13_PP1_M1"/>
+          <MapItem sourceID="RR13_RP1_M1_C1" targetID="RR13_PP1_M1_C1"/>
+          <MapItem sourceID="RR13_RP1_M1_C2" targetID="RR13_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR13_RP1_M1_C2" finalState="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR14" name="r11" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR14_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_RP1_M1" name="Myc"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR14_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r11_dMC"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR14_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR14_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR15" name="r12" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR15_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR15_RP1_M1" name="E2F">
+                <ListOfComponents>
+                  <Component id="RR15_RP1_M1_C1" name="rb" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR15_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r12_dEF"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR15_RP1_M1"/>
+          <MapItem sourceID="RR15_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR15_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR16" name="r13" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR16_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR16_RP1_M1" name="CycE"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR16_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r13_dCE"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR16_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR16_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR17" name="r14" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR17_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR17_RP1_M1" name="CycD"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR17_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r14_dCD"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR17_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR17_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR18" name="r15" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR18_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR18_RP1_M1" name="Rb">
+                <ListOfComponents>
+                  <Component id="RR18_RP1_M1_C1" name="e2f" numberOfBonds="0"/>
+                  <Component id="RR18_RP1_M1_C2" name="phosphorylatedRb" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR18_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r15_dRB"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR18_RP1_M1"/>
+          <MapItem sourceID="RR18_RP1_M1_C1"/>
+          <MapItem sourceID="RR18_RP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR18_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR19" name="r16" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR19_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR19_RP1_M1" name="Rb">
+                <ListOfComponents>
+                  <Component id="RR19_RP1_M1_C1" name="e2f" numberOfBonds="0"/>
+                  <Component id="RR19_RP1_M1_C2" name="phosphorylatedRb" state="phosphorylatedRb" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR19_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r16_dRP"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR19_RP1_M1"/>
+          <MapItem sourceID="RR19_RP1_M1_C1"/>
+          <MapItem sourceID="RR19_RP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR19_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR20" name="r17" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR20_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR20_RP1_M1" name="Rb">
+                <ListOfComponents>
+                  <Component id="RR20_RP1_M1_C1" name="e2f" numberOfBonds="1"/>
+                  <Component id="RR20_RP1_M1_C2" name="phosphorylatedRb" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR20_RP1_M2" name="E2F">
+                <ListOfComponents>
+                  <Component id="RR20_RP1_M2_C1" name="rb" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR20_RP1_B1" site1="RR20_RP1_M1_C1" site2="RR20_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR20_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r17_dRE"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR20_RP1_M1"/>
+          <MapItem sourceID="RR20_RP1_M1_C1"/>
+          <MapItem sourceID="RR20_RP1_M1_C2"/>
+          <MapItem sourceID="RR20_RP1_M2"/>
+          <MapItem sourceID="RR20_RP1_M2_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR20_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="Myc" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="Myc"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="E2F" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="E2F">
+                <ListOfComponents>
+                  <Component id="O2_P1_M1_C1" name="rb" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="CycD" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="CycD"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="CycE" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="CycE"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="Rb" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="Rb">
+                <ListOfComponents>
+                  <Component id="O5_P1_M1_C1" name="e2f" numberOfBonds="0"/>
+                  <Component id="O5_P1_M1_C2" name="phosphorylatedRb" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O6" name="Rb_E2Fcomplex" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O6_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O6_P1_M1" name="Rb">
+                <ListOfComponents>
+                  <Component id="O6_P1_M1_C1" name="e2f" numberOfBonds="1"/>
+                  <Component id="O6_P1_M1_C2" name="phosphorylatedRb" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O6_P1_M2" name="E2F">
+                <ListOfComponents>
+                  <Component id="O6_P1_M2_C1" name="rb" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O6_P1_B1" site1="O6_P1_M1_C1" site2="O6_P1_M2_C1"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O7" name="phosphorylatedRb" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O7_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O7_P1_M1" name="Rb">
+                <ListOfComponents>
+                  <Component id="O7_P1_M1_C1" name="e2f" numberOfBonds="0"/>
+                  <Component id="O7_P1_M1_C2" name="phosphorylatedRb" state="phosphorylatedRb" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="S" type="Constant"/>
+        </ListOfReferences>
+        <Expression> (1.0*S)/(S+0.5) </Expression>
+      </Function>
+      <Function id="fRate1">
+        <ListOfReferences>
+          <Reference name="S" type="Constant"/>
+        </ListOfReferences>
+        <Expression> (0.45*S)/(S+0.5) </Expression>
+      </Function>
+      <Function id="fRate2">
+        <ListOfReferences>
+          <Reference name="E2F" type="Observable"/>
+          <Reference name="Myc" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (Myc*((0.403*E2F)+0.00045))/((((E2F*Myc)+(0.15*E2F))+(0.15*Myc))+0.0225) </Expression>
+      </Function>
+      <Function id="fRate3">
+        <ListOfReferences>
+          <Reference name="E2F" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (0.35*E2F)/(E2F+0.15) </Expression>
+      </Function>
+      <Function id="fRate4">
+        <ListOfReferences>
+          <Reference name="Myc" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (0.03*Myc)/(Myc+0.15) </Expression>
+      </Function>
+      <Function id="fRate6">
+        <ListOfReferences>
+          <Reference name="CycD" type="Observable"/>
+          <Reference name="CycE" type="Observable"/>
+          <Reference name="Rb_E2Fcomplex" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((18.0*CycD)*Rb_E2Fcomplex)/(Rb_E2Fcomplex+0.92))+(((18.0*CycE)*Rb_E2Fcomplex)/(Rb_E2Fcomplex+0.92)) </Expression>
+      </Function>
+      <Function id="fRate8">
+        <ListOfReferences>
+          <Reference name="CycD" type="Observable"/>
+          <Reference name="CycE" type="Observable"/>
+          <Reference name="Rb" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((18.0*CycD)*Rb)/(Rb+0.92))+(((18.0*CycE)*Rb)/(Rb+0.92)) </Expression>
+      </Function>
+      <Function id="fRate9">
+        <ListOfReferences>
+          <Reference name="phosphorylatedRb" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 3.6/(phosphorylatedRb+0.01) </Expression>
+      </Function>
+      <Function id="_rateLaw1">
+        <ListOfReferences>
+          <Reference name="fRate6" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate6() </Expression>
+      </Function>
+      <Function id="_rateLaw2">
+        <ListOfReferences>
+          <Reference name="fRate8" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate8() </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

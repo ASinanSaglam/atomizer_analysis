@@ -6,7 +6,7 @@
 #@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0000278', 'http://identifiers.org/cco/CCO:P0000038']
 #@creatorEmail:'viji@ebi.ac.uk'
 #@creatorName:'Chelliah Vijayalakshmi'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 32 molecules and 0 reactions. The translated model has 23 molecules and 24 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 32 molecules and 0 reactions. The translated model has 23 molecules and 24 rules'
 ###
 begin model
 begin parameters
@@ -107,37 +107,37 @@ begin parameters
 	Net1p 7.8286e+21 #original 0.013mol/L
 end parameters
 begin molecule types
-	Tem1()
-	#^ bqbiol:hasPart uniprot:P00546, uniprot:P30283, uniprot:P38634
-	Trim5(Trim2~Trim2~0)
-	MEN()
 	MBF()
-	RENTp()
-	RENT()
-	Cln()
-	Pds1T()
-	Esp1T()
-	Net1dep()
-	Cdh1()
-	Sic1T()
-	Net1pp()
-	Swi5()
-	Esp1b()
-	Cdc20()
-	Cdc14n()
-	Cdc15()
-	Polo()
-	Clb2T()
 	Mcm()
 	PoloT()
+	Sic1T()
+	Net1dep()
+	MEN()
+	Esp1b()
+	Cln()
+	Esp1T()
+	Cdc15()
+	Cdh1()
+	RENT()
+	Polo()
 	Clb5T()
+	Clb2T()
+	RENTp()
+	Swi5()
+	#^ bqbiol:hasPart uniprot:P00546, uniprot:P24869, uniprot:P38634
+	Trim2(Trim5~Trim5~0)
+	Tem1()
+	Net1pp()
+	Cdc20()
+	Pds1T()
+	Cdc14n()
 end molecule types
 begin seed species
 	Clb2T() 6.016622354e+23 # 0.999107mol/L * 6.022e23/mol *1.0L #Clb2T #Clb2T_1
 	Clb5T() 1.216305494e+23 #original 0.201977mol/L #Clb5T #Clb5T_1
 	Cln() 2.4563738e+22 #original 0.04079mol/L #Cln #Cln_1
 	Sic1T() 1.0135026000000001e+21 #original 0.001683mol/L #Sic1T #Sic1T_1
-	Trim5(Trim2~Trim2) 8.731899999999999e+20 #original 0.00145mol/L #Trim2 #Trim2_1
+	Trim2(Trim5~0) 8.731899999999999e+20 #original 0.00145mol/L #Trim2 #Trim2_1
 	Mcm() 6.0023863460000006e+23 #original 0.996743mol/L #Mcm #Mcm_1
 	MBF() 1.1905494000000002e+21 #original 0.001977mol/L #MBF #MBF_1
 	Pds1T() 3.625105494e+23 #original 0.601977mol/L #Pds1T #Pds1T_1
@@ -160,8 +160,8 @@ begin observables
 	Species Cdc20 Cdc20() #Cdc20
 	Species Cdh1 Cdh1() #Cdh1
 	Species Sic1T Sic1T() #Sic1T
-	Species Trim2 Trim5(Trim2~Trim2) #Trim2
-	Species Trim5 Trim5(Trim2~0) #Trim5
+	Species Trim2 Trim2(Trim5~0) #Trim2
+	Species Trim5 Trim2(Trim5~Trim5) #Trim5
 	Species Swi5 Swi5() #Swi5
 	Species Mcm Mcm() #Mcm
 	Species MBF MBF() #MBF
@@ -180,11 +180,11 @@ begin observables
 	Species Esp1b Esp1b() #Esp1b
 end observables
 begin functions
-	Clb2_ar() = Clb2T + Clb2nd_1 - Trim2
 	Clb5_ar() = Clb5T - Trim5
-	Vdsic_1() = Clb2_ar*kdsic_2 + Clb5_ar*kdsic_1 + Cln*kdsic_4 + kdsic_3
-	Sic1_ar() = Sic1T - Trim2 - Trim5
 	V6_1() = Cdc20*kdclb5_2 + kdclb5_1
+	Sic1_ar() = Sic1T - Trim2 - Trim5
+	Clb2_ar() = Clb2T + Clb2nd_1 - Trim2
+	Vdsic_1() = Clb2_ar*kdsic_2 + Clb5_ar*kdsic_1 + Cln*kdsic_4 + kdsic_3
 	arRateTrim5_1() = Clb5_ar*Sic1_ar*kasic5_1 - Trim5*(V6_1 + Vdsic_1 + kdsic5_1)
 	V2_1() = Cdc20*kdclb2_2 + Cdh1*kdclb2_3 + kdclb2_1
 	arRateTrim2_1() = Clb2_ar*Sic1_ar*kasic2_1 - Trim2*(V2_1 + Vdsic_1 + kdsic2_1)
@@ -194,9 +194,9 @@ begin functions
 	arRateCdc15_1() = -Cdc15*(Clb2_ar*kic15_2 + kic15_1)/(Cdc15 + Jcdc15_1) + (1 - Cdc15)*(Cdc14c_ar*kac15_2 + kac15_1)/(-Cdc15 + Jcdc15_1 + 1)
 	Vexp_1() = MEN*kexp_2 + kexp_1
 	arRateCdc14n_1() = Cdc14c_ar*kimp_1 - Cdc14n*Vexp_1 - Cdc14n*lanet_1*(Net1T_1 - Net1pp - RENT) + Polo*RENTp*kp_1 + RENT*ldnet_1
+	Vp_1() = (Clb2_ar*kp_3 + MEN*kp_4)/(Jnet_1 + Net1dep)
 	PP_1() = PPT_1*(Esp1_ar*ki_1*kpp_1 + 1)/(Esp1_ar + ki_1 + 1)
 	Vd_1() = (Cdc14n*kd_1 + PP_1*kd_2)/(Jnet_1 + Net1T_1 - Net1dep)
-	Vp_1() = (Clb2_ar*kp_3 + MEN*kp_4)/(Jnet_1 + Net1dep)
 	arRateRENTp_1() = Cdc14n*lanet_1*(Net1T_1 - Net1dep - Net1pp - RENTp) - Polo*RENTp*kp_1 - RENTp*Vd_1 - RENTp*ldnet_1 + Vp_1*(RENT - RENTp)
 	arRateNet1dep_1() = -Net1dep*Vp_1 + Vd_1*(Net1T_1 - Net1dep)
 	Pds1_ar() = -Esp1b + Pds1T
@@ -230,8 +230,8 @@ begin reaction rules
 	0  -> Cdc20() arRateCdc20_1 #rateLaw
 	0  -> Cdh1() arRateCdh1_1 #rateLaw
 	0  -> Sic1T() arRateSic1T_1 #rateLaw
-	0  -> Trim5(Trim2~Trim2) arRateTrim2_1 #rateLaw
-	0  -> Trim5(Trim2~0) arRateTrim5_1 #rateLaw
+	0  -> Trim2(Trim5~0) arRateTrim2_1 #rateLaw
+	0  -> Trim2(Trim5~Trim5) arRateTrim5_1 #rateLaw
 	0  -> Swi5() arRateSwi5_1 #rateLaw
 	0  -> Mcm() arRateMcm_1 #rateLaw
 	0  -> MBF() arRateMBF_1 #rateLaw

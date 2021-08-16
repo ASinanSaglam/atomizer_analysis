@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000733_flat">
+    <ListOfParameters>
+      <Parameter id="Sn" type="Constant" value="0.37" expr="0.37"/>
+      <Parameter id="n" type="Constant" value="720" expr="720.0"/>
+      <Parameter id="Kn" type="Constant" value="0.062" expr="0.062"/>
+      <Parameter id="De" type="Constant" value="0.3" expr="0.3"/>
+      <Parameter id="gamma_E" type="Constant" value="0.057" expr="0.057"/>
+      <Parameter id="An" type="Constant" value="0.14" expr="0.14"/>
+      <Parameter id="Ae" type="Constant" value="0.98" expr="0.98"/>
+      <Parameter id="Dn" type="Constant" value="0.23" expr="0.23"/>
+      <Parameter id="Rc" type="Constant" value="0.0057" expr="0.0057"/>
+      <Parameter id="Cmax" type="Constant" value="230000" expr="230000.0"/>
+      <Parameter id="Dc" type="Constant" value="0.024" expr="0.024"/>
+      <Parameter id="gamma_C" type="Constant" value="0.0034" expr="0.0034"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="eff_Tcells"/>
+      <MoleculeType id="naive_Tcells"/>
+      <MoleculeType id="tumor_cells"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="9.093220000000001e+23" name="naive_Tcells()">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="naive_Tcells"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="1.2044e+22" name="eff_Tcells()">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="eff_Tcells"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="6.022e+24" name="tumor_cells()">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="tumor_cells"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="Naive_Tcells_production" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="naive_Tcells"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="Sn"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="Naive_Tcells_degradation_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="naive_Tcells"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="_rateLaw1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="eff_Tcells_production" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="eff_Tcells"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="fRate2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="eff_Tcells_degradation_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="eff_Tcells"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="_rateLaw2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR4_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="Tumor_growth" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="tumor_cells"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Function" name="fRate4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR5_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="Tumor_killing" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR6_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_RP1_M1" name="tumor_cells"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="Dc"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR6_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR6_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="_reverse_Tumor_killing" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="tumor_cells"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Function" name="fRate5m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR7_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="naive_Tcells" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="naive_Tcells"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="eff_Tcells" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="eff_Tcells"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="tumor_cells" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="tumor_cells"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="fRate1">
+        <ListOfReferences>
+          <Reference name="Dn" type="Constant"/>
+          <Reference name="Kn" type="Constant"/>
+          <Reference name="n" type="Constant"/>
+          <Reference name="naive_Tcells" type="Observable"/>
+          <Reference name="tumor_cells" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((1.0*Dn)*naive_Tcells)+((((1.0*Kn)*naive_Tcells)*tumor_cells)/(n+tumor_cells)) </Expression>
+      </Function>
+      <Function id="fRate2">
+        <ListOfReferences>
+          <Reference name="Ae" type="Constant"/>
+          <Reference name="An" type="Constant"/>
+          <Reference name="Kn" type="Constant"/>
+          <Reference name="n" type="Constant"/>
+          <Reference name="eff_Tcells" type="Observable"/>
+          <Reference name="naive_Tcells" type="Observable"/>
+          <Reference name="tumor_cells" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (tumor_cells*((Ae*eff_Tcells)+(((1.0*An)*Kn)*naive_Tcells)))/((1.0*n)+(1.0*tumor_cells)) </Expression>
+      </Function>
+      <Function id="fRate3">
+        <ListOfReferences>
+          <Reference name="De" type="Constant"/>
+          <Reference name="gamma_E" type="Constant"/>
+          <Reference name="eff_Tcells" type="Observable"/>
+          <Reference name="tumor_cells" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((1.0*De)*eff_Tcells)+(((1.0*eff_Tcells)*gamma_E)*tumor_cells) </Expression>
+      </Function>
+      <Function id="fRate4">
+        <ListOfReferences>
+          <Reference name="Cmax" type="Constant"/>
+          <Reference name="Rc" type="Constant"/>
+          <Reference name="tumor_cells" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (Rc*tumor_cells)*ln((Cmax/tumor_cells)) </Expression>
+      </Function>
+      <Function id="fRate5m">
+        <ListOfReferences>
+          <Reference name="gamma_C" type="Constant"/>
+          <Reference name="eff_Tcells" type="Observable"/>
+          <Reference name="tumor_cells" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((1.0*eff_Tcells)*gamma_C)*tumor_cells </Expression>
+      </Function>
+      <Function id="_rateLaw1">
+        <ListOfReferences>
+          <Reference name="fRate1" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate1() </Expression>
+      </Function>
+      <Function id="_rateLaw2">
+        <ListOfReferences>
+          <Reference name="fRate3" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate3() </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

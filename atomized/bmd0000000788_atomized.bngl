@@ -6,7 +6,7 @@
 #@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000788', 'http://identifiers.org/biomodels.db/MODEL1907240003']
 #@creatorEmail:'johannes.p.meyer@gmail.com'
 #@creatorName:'Meyer Johannes'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 8 molecules and 22 reactions. The translated model has 5 molecules and 22 rules'
+#@notes:'This is an atomized translation of an SBML model created on 14/08/2021. The original model has 8 molecules and 22 reactions. The translated model has 5 molecules and 22 rules'
 ###
 begin model
 begin parameters
@@ -38,33 +38,33 @@ begin compartments
 	Peripheral 3 1.0
 end compartments
 begin molecule types
+	#^ bqbiol:isVersionOf ncit:C28227
+	C_free(r_a,r_b)
 	#^ bqbiol:isVersionOf ncit:C18106
 	R_B(c_free)
+	#^ bqbiol:isVersionOf ncit:C18106
+	R_A(c_free)
 	#^ bqbiol:isVersionOf ncit:C1454, ncit:C28227
 	#^ bqbiol:occursIn ncit:C38299
 	AD()
 	#^ bqbiol:isVersionOf ncit:C1454, ncit:C28227
 	#^ bqbiol:occursIn bto:BTO:0000553
 	AP()
-	#^ bqbiol:isVersionOf ncit:C28227
-	C_free(r_a,r_b)
-	#^ bqbiol:isVersionOf ncit:C18106
-	R_A(c_free)
 end molecule types
 begin seed species
-	@Central:C_free(r_a,r_b) 3.0110000000000004e+16 # (50.0 * 1e-09)mol/L * 6.022e23/mol *1.0L #C_free #C_free
-	@Central:R_A(c_free) 6022000000000000.0 #original 10.0substance/L  #R_A #R_A
-	@Central:R_B(c_free) 6.022000000000001e+16 #original 100.0substance/L  #R_B #R_B
+	@Central:C_free(r_a,r_b)@Central 3.0110000000000004e+16 # (50.0 * 1e-09)mol/L * 6.022e23/mol *1.0L #C_free #C_free
+	@Central:R_A(c_free)@Central 6022000000000000.0 #original 10.0substance/L  #R_A #R_A
+	@Central:R_B(c_free)@Central 6.022000000000001e+16 #original 100.0substance/L  #R_B #R_B
 end seed species
 begin observables
-	Species C_free_Central @Central:C_free(r_a,r_b) #C_free
-	Species R_A_Central @Central:R_A(c_free) #R_A
-	Species R_B_Central @Central:R_B(c_free) #R_B
-	Species RC_A_Central @Central:C_free(r_a!41,r_b).R_A(c_free!41) #RC_A
-	Species RC_B_Central @Central:C_free(r_a,r_b!42).R_B(c_free!42) #RC_B
-	Species RC_AB_Central @Central:C_free(r_a!41,r_b!42).R_A(c_free!41).R_B(c_free!42) #RC_AB
-	Species AP_Peripheral @Peripheral:AP() #AP
-	Species AD_Peripheral @Peripheral:AD() #AD
+	Species C_free_Central @Central:C_free(r_a,r_b)@Central #C_free
+	Species R_A_Central @Central:R_A(c_free)@Central #R_A
+	Species R_B_Central @Central:R_B(c_free)@Central #R_B
+	Species RC_A_Central @Central:C_free(r_a!844,r_b)@Central.R_A(c_free!844)@Central #RC_A
+	Species RC_B_Central @Central:C_free(r_a,r_b!845)@Central.R_B(c_free!845)@Central #RC_B
+	Species RC_AB_Central @Central:C_free(r_a!844,r_b!845)@Central.R_A(c_free!844)@Central.R_B(c_free!845)@Central #RC_AB
+	Species AP_Peripheral @Peripheral:AP()@Peripheral #AP
+	Species AD_Peripheral @Peripheral:AD()@Peripheral #AD
 end observables
 begin functions
 	fRate4() = RC_A_Central*k_off_1
@@ -79,14 +79,14 @@ begin functions
 	fRate21() = RC_AB_Central*(k_int_AB + k_off_3 + k_off_4)
 end functions
 begin reaction rules
-	Binding_C_R_A: C_free(r_a,r_b)@Central + R_A(c_free)@Central -> C_free(r_a!41,r_b)@Central.R_A(c_free!41)@Central k_on_1
-	Binding_C_R_B: C_free(r_a,r_b)@Central + R_B(c_free)@Central -> C_free(r_a,r_b!42)@Central.R_B(c_free!42)@Central k_on_2
-	Binding_RC_A_R_B: C_free(r_a!41,r_b)@Central.R_A(c_free!41)@Central + R_B(c_free)@Central -> C_free(r_a!41,r_b!42)@Central.R_A(c_free!41)@Central.R_B(c_free!42)@Central k_on_3
-	Binding_RC_B_R_A: C_free(r_a,r_b!42)@Central.R_B(c_free!42)@Central + R_A(c_free)@Central -> C_free(r_a!41,r_b!42)@Central.R_A(c_free!41)@Central.R_B(c_free!42)@Central k_on_4
+	Binding_C_R_A: C_free(r_a,r_b)@Central + R_A(c_free)@Central -> C_free(r_a!844,r_b)@Central.R_A(c_free!844)@Central k_on_1
+	Binding_C_R_B: C_free(r_a,r_b)@Central + R_B(c_free)@Central -> C_free(r_a,r_b!845)@Central.R_B(c_free!845)@Central k_on_2
+	Binding_RC_A_R_B: C_free(r_a!844,r_b)@Central.R_A(c_free!844)@Central + R_B(c_free)@Central -> C_free(r_a!844,r_b!845)@Central.R_A(c_free!844)@Central.R_B(c_free!845)@Central k_on_3
+	Binding_RC_B_R_A: C_free(r_a,r_b!845)@Central.R_B(c_free!845)@Central + R_A(c_free)@Central -> C_free(r_a!844,r_b!845)@Central.R_A(c_free!844)@Central.R_B(c_free!845)@Central k_on_4
 	Disassociation_RC_A: 0  -> C_free(r_a,r_b)@Central + R_A(c_free)@Central fRate4() #Modifiers(RC_A)
 	Disassociation_RC_B: 0  -> C_free(r_a,r_b)@Central + R_B(c_free)@Central fRate5() #Modifiers(RC_B)
-	Disassociation_RC_AB_3: 0  -> C_free(r_a,r_b!42)@Central.R_B(c_free!42)@Central + R_B(c_free)@Central fRate6() #Modifiers(RC_AB)
-	Disassociation_RC_AB_4: 0  -> C_free(r_a!41,r_b)@Central.R_A(c_free!41)@Central + R_A(c_free)@Central fRate7() #Modifiers(RC_AB)
+	Disassociation_RC_AB_3: 0  -> C_free(r_a,r_b!845)@Central.R_B(c_free!845)@Central + R_B(c_free)@Central fRate6() #Modifiers(RC_AB)
+	Disassociation_RC_AB_4: 0  -> C_free(r_a!844,r_b)@Central.R_A(c_free!844)@Central + R_A(c_free)@Central fRate7() #Modifiers(RC_AB)
 	Elimination_C: C_free(r_a,r_b)@Central -> 0  k_el
 	Distribution_C_Central: C_free(r_a,r_b)@Central -> 0  k_12
 	Distribution_C_Peripheral: 0  -> C_free(r_a,r_b)@Central fRate10() #Modifiers(AP)
@@ -98,8 +98,8 @@ begin reaction rules
 	Synthesis_R_B: 0  -> R_B(c_free)@Central k_syn_B
 	Degradation_R_A: R_A(c_free)@Central -> 0  k_deg_A
 	Degradation_R_B: R_B(c_free)@Central -> 0  k_deg_B
-	Internalisation_RC_A_reactants_0: 0  -> C_free(r_a!41,r_b)@Central.R_A(c_free!41)@Central -1*(fRate19())
-	Internalisation_RC_B_reactants_0: 0  -> C_free(r_a,r_b!42)@Central.R_B(c_free!42)@Central -1*(fRate20())
-	Internalisation_RC_AB_reactants_0: 0  -> C_free(r_a!41,r_b!42)@Central.R_A(c_free!41)@Central.R_B(c_free!42)@Central -1*(fRate21())
+	Internalisation_RC_A_reactants_0: 0  -> C_free(r_a!844,r_b)@Central.R_A(c_free!844)@Central -1*(fRate19())
+	Internalisation_RC_B_reactants_0: 0  -> C_free(r_a,r_b!845)@Central.R_B(c_free!845)@Central -1*(fRate20())
+	Internalisation_RC_AB_reactants_0: 0  -> C_free(r_a!844,r_b!845)@Central.R_A(c_free!844)@Central.R_B(c_free!845)@Central -1*(fRate21())
 end reaction rules
 end model

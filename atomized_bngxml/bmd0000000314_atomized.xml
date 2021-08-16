@@ -1,0 +1,748 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000314_atomized">
+    <ListOfParameters>
+      <Parameter id="IL13stimulation" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="Kon_IL13Rec" type="Constant" value="0.00174087" expr="0.00174087"/>
+      <Parameter id="Rec_phosphorylation" type="Constant" value="9.07541" expr="9.07541"/>
+      <Parameter id="pRec_intern" type="Constant" value="0.324132" expr="0.324132"/>
+      <Parameter id="pRec_degradation" type="Constant" value="0.417538" expr="0.417538"/>
+      <Parameter id="Rec_intern" type="Constant" value="0.259686" expr="0.259686"/>
+      <Parameter id="Rec_recycle" type="Constant" value="0.0039243" expr="0.0039243"/>
+      <Parameter id="JAK2_phosphorylation" type="Constant" value="0.300019" expr="0.300019"/>
+      <Parameter id="pJAK2_dephosphorylation" type="Constant" value="0.0981611" expr="0.0981611"/>
+      <Parameter id="STAT5_phosphorylation" type="Constant" value="0.00426767" expr="0.00426767"/>
+      <Parameter id="pSTAT5_dephosphorylation" type="Constant" value="0.0116389" expr="0.0116389"/>
+      <Parameter id="CD274mRNA_production" type="Constant" value="0.0115928" expr="0.0115928"/>
+      <Parameter id="SHP1" type="Constant" value="5.66068e+24" expr="5.66068e+24"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="CD274mRNA"/>
+      <MoleculeType id="JAK2">
+        <ListOfComponentTypes>
+          <ComponentType id="p">
+            <ListOfAllowedStates>
+              <AllowedState id="P"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="Rec">
+        <ListOfComponentTypes>
+          <ComponentType id="IL13_Rec">
+            <ListOfAllowedStates>
+              <AllowedState id="IL13_Rec"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="_i">
+            <ListOfAllowedStates>
+              <AllowedState id="_I"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="p_">
+            <ListOfAllowedStates>
+              <AllowedState id="P_"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="STAT5">
+        <ListOfComponentTypes>
+          <ComponentType id="p">
+            <ListOfAllowedStates>
+              <AllowedState id="P"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="1.08396e+24" name="Rec(IL13_Rec~0,_i~0,p_~0)">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="Rec">
+            <ListOfComponents>
+              <Component id="S1_M1_C1" name="IL13_Rec" state="0" numberOfBonds="0"/>
+              <Component id="S1_M1_C2" name="_i" state="0" numberOfBonds="0"/>
+              <Component id="S1_M1_C3" name="p_" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="7.14197156e+25" name="Rec(IL13_Rec~0,_i~_I,p_~0)">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="Rec">
+            <ListOfComponents>
+              <Component id="S2_M1_C1" name="IL13_Rec" state="0" numberOfBonds="0"/>
+              <Component id="S2_M1_C2" name="_i" state="_I" numberOfBonds="0"/>
+              <Component id="S2_M1_C3" name="p_" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="1.44528e+25" name="JAK2(p~0)">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="JAK2">
+            <ListOfComponents>
+              <Component id="S3_M1_C1" name="p" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S4"  concentration="1.2585980000000001e+26" name="STAT5(p~0)">
+        <ListOfMolecules>
+          <Molecule id="S4_M1" name="STAT5">
+            <ListOfComponents>
+              <Component id="S4_M1_C1" name="p" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="reaction_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR1_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_RP1_M1" name="Rec">
+                <ListOfComponents>
+                  <Component id="RR1_RP1_M1_C1" name="IL13_Rec" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_RP1_M1_C2" name="_i" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_RP1_M1_C3" name="p_" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="Rec">
+                <ListOfComponents>
+                  <Component id="RR1_PP1_M1_C1" name="IL13_Rec" state="IL13_Rec" numberOfBonds="0"/>
+                  <Component id="RR1_PP1_M1_C2" name="_i" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_PP1_M1_C3" name="p_" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR1_RP1_M1" targetID="RR1_PP1_M1"/>
+          <MapItem sourceID="RR1_RP1_M1_C1" targetID="RR1_PP1_M1_C1"/>
+          <MapItem sourceID="RR1_RP1_M1_C2" targetID="RR1_PP1_M1_C2"/>
+          <MapItem sourceID="RR1_RP1_M1_C3" targetID="RR1_PP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR1_RP1_M1_C1" finalState="IL13_Rec"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="reaction_2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="Rec">
+                <ListOfComponents>
+                  <Component id="RR2_RP1_M1_C1" name="IL13_Rec" state="0" numberOfBonds="0"/>
+                  <Component id="RR2_RP1_M1_C2" name="_i" state="0" numberOfBonds="0"/>
+                  <Component id="RR2_RP1_M1_C3" name="p_" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="Rec">
+                <ListOfComponents>
+                  <Component id="RR2_PP1_M1_C1" name="IL13_Rec" state="0" numberOfBonds="0"/>
+                  <Component id="RR2_PP1_M1_C2" name="_i" state="_I" numberOfBonds="0"/>
+                  <Component id="RR2_PP1_M1_C3" name="p_" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="Rec_intern"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1" targetID="RR2_PP1_M1"/>
+          <MapItem sourceID="RR2_RP1_M1_C1" targetID="RR2_PP1_M1_C1"/>
+          <MapItem sourceID="RR2_RP1_M1_C2" targetID="RR2_PP1_M1_C2"/>
+          <MapItem sourceID="RR2_RP1_M1_C3" targetID="RR2_PP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR2_RP1_M1_C2" finalState="_I"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="reaction_3" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="Rec">
+                <ListOfComponents>
+                  <Component id="RR3_RP1_M1_C1" name="IL13_Rec" state="0" numberOfBonds="0"/>
+                  <Component id="RR3_RP1_M1_C2" name="_i" state="_I" numberOfBonds="0"/>
+                  <Component id="RR3_RP1_M1_C3" name="p_" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="Rec">
+                <ListOfComponents>
+                  <Component id="RR3_PP1_M1_C1" name="IL13_Rec" state="0" numberOfBonds="0"/>
+                  <Component id="RR3_PP1_M1_C2" name="_i" state="0" numberOfBonds="0"/>
+                  <Component id="RR3_PP1_M1_C3" name="p_" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="Rec_recycle"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1" targetID="RR3_PP1_M1"/>
+          <MapItem sourceID="RR3_RP1_M1_C1" targetID="RR3_PP1_M1_C1"/>
+          <MapItem sourceID="RR3_RP1_M1_C2" targetID="RR3_PP1_M1_C2"/>
+          <MapItem sourceID="RR3_RP1_M1_C3" targetID="RR3_PP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR3_RP1_M1_C2" finalState="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="reaction_4" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="Rec">
+                <ListOfComponents>
+                  <Component id="RR4_RP1_M1_C1" name="IL13_Rec" state="IL13_Rec" numberOfBonds="0"/>
+                  <Component id="RR4_RP1_M1_C2" name="_i" state="0" numberOfBonds="0"/>
+                  <Component id="RR4_RP1_M1_C3" name="p_" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="Rec">
+                <ListOfComponents>
+                  <Component id="RR4_PP1_M1_C1" name="IL13_Rec" state="IL13_Rec" numberOfBonds="0"/>
+                  <Component id="RR4_PP1_M1_C2" name="_i" state="0" numberOfBonds="0"/>
+                  <Component id="RR4_PP1_M1_C3" name="p_" state="P_" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="fRate3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1" targetID="RR4_PP1_M1"/>
+          <MapItem sourceID="RR4_RP1_M1_C1" targetID="RR4_PP1_M1_C1"/>
+          <MapItem sourceID="RR4_RP1_M1_C2" targetID="RR4_PP1_M1_C2"/>
+          <MapItem sourceID="RR4_RP1_M1_C3" targetID="RR4_PP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR4_RP1_M1_C3" finalState="P_"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="reaction_5" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR5_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP1_M1" name="JAK2">
+                <ListOfComponents>
+                  <Component id="RR5_RP1_M1_C1" name="p" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="JAK2">
+                <ListOfComponents>
+                  <Component id="RR5_PP1_M1_C1" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Function" name="fRate4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR5_RP1_M1" targetID="RR5_PP1_M1"/>
+          <MapItem sourceID="RR5_RP1_M1_C1" targetID="RR5_PP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR5_RP1_M1_C1" finalState="P"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="reaction_6" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR6_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_RP1_M1" name="JAK2">
+                <ListOfComponents>
+                  <Component id="RR6_RP1_M1_C1" name="p" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="JAK2">
+                <ListOfComponents>
+                  <Component id="RR6_PP1_M1_C1" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Function" name="fRate5" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR6_RP1_M1" targetID="RR6_PP1_M1"/>
+          <MapItem sourceID="RR6_RP1_M1_C1" targetID="RR6_PP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR6_RP1_M1_C1" finalState="P"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="reaction_7" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR7_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_RP1_M1" name="Rec">
+                <ListOfComponents>
+                  <Component id="RR7_RP1_M1_C1" name="IL13_Rec" state="IL13_Rec" numberOfBonds="0"/>
+                  <Component id="RR7_RP1_M1_C2" name="_i" state="0" numberOfBonds="0"/>
+                  <Component id="RR7_RP1_M1_C3" name="p_" state="P_" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="Rec">
+                <ListOfComponents>
+                  <Component id="RR7_PP1_M1_C1" name="IL13_Rec" state="IL13_Rec" numberOfBonds="0"/>
+                  <Component id="RR7_PP1_M1_C2" name="_i" state="_I" numberOfBonds="0"/>
+                  <Component id="RR7_PP1_M1_C3" name="p_" state="P_" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="pRec_intern"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR7_RP1_M1" targetID="RR7_PP1_M1"/>
+          <MapItem sourceID="RR7_RP1_M1_C1" targetID="RR7_PP1_M1_C1"/>
+          <MapItem sourceID="RR7_RP1_M1_C2" targetID="RR7_PP1_M1_C2"/>
+          <MapItem sourceID="RR7_RP1_M1_C3" targetID="RR7_PP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR7_RP1_M1_C2" finalState="_I"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="reaction_8" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR8_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_RP1_M1" name="Rec">
+                <ListOfComponents>
+                  <Component id="RR8_RP1_M1_C1" name="IL13_Rec" state="IL13_Rec" numberOfBonds="0"/>
+                  <Component id="RR8_RP1_M1_C2" name="_i" state="_I" numberOfBonds="0"/>
+                  <Component id="RR8_RP1_M1_C3" name="p_" state="P_" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="pRec_degradation"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR8_RP1_M1"/>
+          <MapItem sourceID="RR8_RP1_M1_C1"/>
+          <MapItem sourceID="RR8_RP1_M1_C2"/>
+          <MapItem sourceID="RR8_RP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR8_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="reaction_9" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR9_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_RP1_M1" name="JAK2">
+                <ListOfComponents>
+                  <Component id="RR9_RP1_M1_C1" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR9_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP1_M1" name="JAK2">
+                <ListOfComponents>
+                  <Component id="RR9_PP1_M1_C1" name="p" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Function" name="fRate8" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR9_RP1_M1" targetID="RR9_PP1_M1"/>
+          <MapItem sourceID="RR9_RP1_M1_C1" targetID="RR9_PP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR9_RP1_M1_C1" finalState="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="reaction_10" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR10_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_RP1_M1" name="STAT5">
+                <ListOfComponents>
+                  <Component id="RR10_RP1_M1_C1" name="p" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR10_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_PP1_M1" name="STAT5">
+                <ListOfComponents>
+                  <Component id="RR10_PP1_M1_C1" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Function" name="fRate9" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR10_RP1_M1" targetID="RR10_PP1_M1"/>
+          <MapItem sourceID="RR10_RP1_M1_C1" targetID="RR10_PP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR10_RP1_M1_C1" finalState="P"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR11" name="reaction_11" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR11_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_RP1_M1" name="STAT5">
+                <ListOfComponents>
+                  <Component id="RR11_RP1_M1_C1" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR11_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_PP1_M1" name="STAT5">
+                <ListOfComponents>
+                  <Component id="RR11_PP1_M1_C1" name="p" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR11_RateLaw" type="Function" name="fRate10" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR11_RP1_M1" targetID="RR11_PP1_M1"/>
+          <MapItem sourceID="RR11_RP1_M1_C1" targetID="RR11_PP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR11_RP1_M1_C1" finalState="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR12" name="reaction_12" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR12_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_PP1_M1" name="CD274mRNA"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR12_RateLaw" type="Function" name="fRate11" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR12_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="Rec" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="Rec">
+                <ListOfComponents>
+                  <Component id="O1_P1_M1_C1" name="IL13_Rec" state="0" numberOfBonds="0"/>
+                  <Component id="O1_P1_M1_C2" name="_i" state="0" numberOfBonds="0"/>
+                  <Component id="O1_P1_M1_C3" name="p_" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="Rec_i" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="Rec">
+                <ListOfComponents>
+                  <Component id="O2_P1_M1_C1" name="IL13_Rec" state="0" numberOfBonds="0"/>
+                  <Component id="O2_P1_M1_C2" name="_i" state="_I" numberOfBonds="0"/>
+                  <Component id="O2_P1_M1_C3" name="p_" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="IL13_Rec" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="Rec">
+                <ListOfComponents>
+                  <Component id="O3_P1_M1_C1" name="IL13_Rec" state="IL13_Rec" numberOfBonds="0"/>
+                  <Component id="O3_P1_M1_C2" name="_i" state="0" numberOfBonds="0"/>
+                  <Component id="O3_P1_M1_C3" name="p_" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="p_IL13_Rec" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="Rec">
+                <ListOfComponents>
+                  <Component id="O4_P1_M1_C1" name="IL13_Rec" state="IL13_Rec" numberOfBonds="0"/>
+                  <Component id="O4_P1_M1_C2" name="_i" state="0" numberOfBonds="0"/>
+                  <Component id="O4_P1_M1_C3" name="p_" state="P_" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="p_IL13_Rec_i" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="Rec">
+                <ListOfComponents>
+                  <Component id="O5_P1_M1_C1" name="IL13_Rec" state="IL13_Rec" numberOfBonds="0"/>
+                  <Component id="O5_P1_M1_C2" name="_i" state="_I" numberOfBonds="0"/>
+                  <Component id="O5_P1_M1_C3" name="p_" state="P_" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O6" name="JAK2" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O6_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O6_P1_M1" name="JAK2">
+                <ListOfComponents>
+                  <Component id="O6_P1_M1_C1" name="p" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O7" name="pJAK2" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O7_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O7_P1_M1" name="JAK2">
+                <ListOfComponents>
+                  <Component id="O7_P1_M1_C1" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O8" name="STAT5" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O8_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O8_P1_M1" name="STAT5">
+                <ListOfComponents>
+                  <Component id="O8_P1_M1_C1" name="p" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O9" name="pSTAT5" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O9_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O9_P1_M1" name="STAT5">
+                <ListOfComponents>
+                  <Component id="O9_P1_M1_C1" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O10" name="CD274mRNA" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O10_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O10_P1_M1" name="CD274mRNA"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="IL13_ar">
+        <ListOfReferences>
+          <Reference name="IL13stimulation" type="Constant"/>
+        </ListOfReferences>
+        <Expression> 3.776*IL13stimulation </Expression>
+      </Function>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="Kon_IL13Rec" type="Constant"/>
+          <Reference name="IL13_ar" type="Function"/>
+        </ListOfReferences>
+        <Expression> IL13_ar*Kon_IL13Rec </Expression>
+      </Function>
+      <Function id="fRate3">
+        <ListOfReferences>
+          <Reference name="Rec_phosphorylation" type="Constant"/>
+          <Reference name="pJAK2" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Rec_phosphorylation*pJAK2 </Expression>
+      </Function>
+      <Function id="fRate4">
+        <ListOfReferences>
+          <Reference name="JAK2_phosphorylation" type="Constant"/>
+          <Reference name="IL13_Rec" type="Observable"/>
+        </ListOfReferences>
+        <Expression> IL13_Rec*JAK2_phosphorylation </Expression>
+      </Function>
+      <Function id="fRate5">
+        <ListOfReferences>
+          <Reference name="JAK2_phosphorylation" type="Constant"/>
+          <Reference name="p_IL13_Rec" type="Observable"/>
+        </ListOfReferences>
+        <Expression> JAK2_phosphorylation*p_IL13_Rec </Expression>
+      </Function>
+      <Function id="fRate8">
+        <ListOfReferences>
+          <Reference name="SHP1" type="Constant"/>
+          <Reference name="pJAK2_dephosphorylation" type="Constant"/>
+        </ListOfReferences>
+        <Expression> SHP1*pJAK2_dephosphorylation </Expression>
+      </Function>
+      <Function id="fRate9">
+        <ListOfReferences>
+          <Reference name="STAT5_phosphorylation" type="Constant"/>
+          <Reference name="pJAK2" type="Observable"/>
+        </ListOfReferences>
+        <Expression> STAT5_phosphorylation*pJAK2 </Expression>
+      </Function>
+      <Function id="fRate10">
+        <ListOfReferences>
+          <Reference name="SHP1" type="Constant"/>
+          <Reference name="pSTAT5_dephosphorylation" type="Constant"/>
+        </ListOfReferences>
+        <Expression> SHP1*pSTAT5_dephosphorylation </Expression>
+      </Function>
+      <Function id="fRate11">
+        <ListOfReferences>
+          <Reference name="CD274mRNA_production" type="Constant"/>
+          <Reference name="pSTAT5" type="Observable"/>
+        </ListOfReferences>
+        <Expression> CD274mRNA_production*pSTAT5 </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

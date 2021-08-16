@@ -1,0 +1,1612 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000163_atomized">
+    <ListOfParameters>
+      <Parameter id="v_T1R" type="Constant" value="0.0103" expr="0.0103"/>
+      <Parameter id="v_T2R" type="Constant" value="0.02869" expr="0.02869"/>
+      <Parameter id="ki_EE" type="Constant" value="0.33" expr="0.33"/>
+      <Parameter id="kr_EE" type="Constant" value="0.033" expr="0.033"/>
+      <Parameter id="ki_Cave" type="Constant" value="0.33" expr="0.33"/>
+      <Parameter id="kr_Cave" type="Constant" value="0.03742" expr="0.03742"/>
+      <Parameter id="Kcd" type="Constant" value="0.005" expr="0.005"/>
+      <Parameter id="k_LRC" type="Constant" value="2197" expr="2197.0"/>
+      <Parameter id="Klid" type="Constant" value="0.02609" expr="0.02609"/>
+      <Parameter id="Kdeg_T1R_EE" type="Constant" value="0.005" expr="0.005"/>
+      <Parameter id="Kdeg_T2R_EE" type="Constant" value="0.025" expr="0.025"/>
+      <Parameter id="Kimp_Smad2c" type="Constant" value="0.16" expr="0.16"/>
+      <Parameter id="Kexp_Smad2n" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="Kimp_Smad4c" type="Constant" value="0.08" expr="0.08"/>
+      <Parameter id="Kexp_Smad4n" type="Constant" value="0.5" expr="0.5"/>
+      <Parameter id="k_Smads_Complex_c" type="Constant" value="6.85e-5" expr="6.85e-05"/>
+      <Parameter id="Kimp_Smads_Complex_c" type="Constant" value="0.16" expr="0.16"/>
+      <Parameter id="Kdiss_Smads_Complex_n" type="Constant" value="0.1174" expr="0.1174"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="LRC_Cave"/>
+      <MoleculeType id="LRC_EE"/>
+      <MoleculeType id="LRC_Surf"/>
+      <MoleculeType id="Smad2">
+        <ListOfComponentTypes>
+          <ComponentType id="c">
+            <ListOfAllowedStates>
+              <AllowedState id="C"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="n">
+            <ListOfAllowedStates>
+              <AllowedState id="N"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="smad4"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="Smad4">
+        <ListOfComponentTypes>
+          <ComponentType id="c">
+            <ListOfAllowedStates>
+              <AllowedState id="C"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="n">
+            <ListOfAllowedStates>
+              <AllowedState id="N"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="smad2"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="T1R_EE">
+        <ListOfComponentTypes>
+          <ComponentType id="T1R_Cave">
+            <ListOfAllowedStates>
+              <AllowedState id="T1R_Cave"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="T1R_Surf">
+            <ListOfAllowedStates>
+              <AllowedState id="T1R_Surf"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="T2R_Surf">
+        <ListOfComponentTypes>
+          <ComponentType id="T2R_Cave">
+            <ListOfAllowedStates>
+              <AllowedState id="T2R_Cave"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="tgf_beta"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="TGF_beta">
+        <ListOfComponentTypes>
+          <ComponentType id="t2r_surf"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+      <compartment id="V_medium" spatialDimensions="3" size="1.0"/>
+      <compartment id="V_nuc" spatialDimensions="3" size="0.00035"/>
+      <compartment id="V_cyt" spatialDimensions="3" size="0.00105"/>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="311482229100000.0" name="@V_cyt::Smad2(c~C,n~0,smad4)" compartment="V_cyt">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="Smad2" compartment="V_cyt">
+            <ListOfComponents>
+              <Component id="S1_M1_C1" name="c" state="C" numberOfBonds="0"/>
+              <Component id="S1_M1_C2" name="n" state="0" numberOfBonds="0"/>
+              <Component id="S1_M1_C3" name="smad4" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="49836566500000.01" name="@V_nuc::Smad2(c~0,n~N,smad4)" compartment="V_nuc">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="Smad2" compartment="V_nuc">
+            <ListOfComponents>
+              <Component id="S2_M1_C1" name="c" state="0" numberOfBonds="0"/>
+              <Component id="S2_M1_C2" name="n" state="N" numberOfBonds="0"/>
+              <Component id="S2_M1_C3" name="smad4" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="726777114000000.1" name="@V_cyt::Smad4(c~C,n~0,smad2)" compartment="V_cyt">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="Smad4" compartment="V_cyt">
+            <ListOfComponents>
+              <Component id="S3_M1_C1" name="c" state="C" numberOfBonds="0"/>
+              <Component id="S3_M1_C2" name="n" state="0" numberOfBonds="0"/>
+              <Component id="S3_M1_C3" name="smad2" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S4"  concentration="116286024400000.02" name="@V_nuc::Smad4(c~0,n~N,smad2)" compartment="V_nuc">
+        <ListOfMolecules>
+          <Molecule id="S4_M1" name="Smad4" compartment="V_nuc">
+            <ListOfComponents>
+              <Component id="S4_M1_C1" name="c" state="0" numberOfBonds="0"/>
+              <Component id="S4_M1_C2" name="n" state="N" numberOfBonds="0"/>
+              <Component id="S4_M1_C3" name="smad2" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S5"  concentration="149857470000.0" name="@V_cyt::T1R_EE(T1R_Cave~0,T1R_Surf~T1R_Surf)" compartment="V_cyt">
+        <ListOfMolecules>
+          <Molecule id="S5_M1" name="T1R_EE" compartment="V_cyt">
+            <ListOfComponents>
+              <Component id="S5_M1_C1" name="T1R_Cave" state="0" numberOfBonds="0"/>
+              <Component id="S5_M1_C2" name="T1R_Surf" state="T1R_Surf" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S6"  concentration="1322792520000.0002" name="@V_cyt::T1R_EE(T1R_Cave~T1R_Cave,T1R_Surf~0)" compartment="V_cyt">
+        <ListOfMolecules>
+          <Molecule id="S6_M1" name="T1R_EE" compartment="V_cyt">
+            <ListOfComponents>
+              <Component id="S6_M1_C1" name="T1R_Cave" state="T1R_Cave" numberOfBonds="0"/>
+              <Component id="S6_M1_C2" name="T1R_Surf" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S7"  concentration="1302558600000.0002" name="@V_cyt::T1R_EE(T1R_Cave~0,T1R_Surf~0)" compartment="V_cyt">
+        <ListOfMolecules>
+          <Molecule id="S7_M1" name="T1R_EE" compartment="V_cyt">
+            <ListOfComponents>
+              <Component id="S7_M1_C1" name="T1R_Cave" state="0" numberOfBonds="0"/>
+              <Component id="S7_M1_C2" name="T1R_Surf" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S8"  concentration="127726620000.00002" name="@V_cyt::T2R_Surf(T2R_Cave~0,tgf_beta)" compartment="V_cyt">
+        <ListOfMolecules>
+          <Molecule id="S8_M1" name="T2R_Surf" compartment="V_cyt">
+            <ListOfComponents>
+              <Component id="S8_M1_C1" name="T2R_Cave" state="0" numberOfBonds="0"/>
+              <Component id="S8_M1_C2" name="tgf_beta" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S9"  concentration="1124247180000.0" name="@V_cyt::T2R_Surf(T2R_Cave~T2R_Cave,tgf_beta)" compartment="V_cyt">
+        <ListOfMolecules>
+          <Molecule id="S9_M1" name="T2R_Surf" compartment="V_cyt">
+            <ListOfComponents>
+              <Component id="S9_M1_C1" name="T2R_Cave" state="T2R_Cave" numberOfBonds="0"/>
+              <Component id="S9_M1_C2" name="tgf_beta" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S10"  concentration="725891880000.0" name="@V_cyt::T2R_Surf(T2R_Cave~0,tgf_beta!1).TGF_beta(t2r_surf!1)" compartment="V_cyt">
+        <ListOfMolecules>
+          <Molecule id="S10_M1" name="T2R_Surf" compartment="V_cyt">
+            <ListOfComponents>
+              <Component id="S10_M1_C1" name="T2R_Cave" state="0" numberOfBonds="0"/>
+              <Component id="S10_M1_C2" name="tgf_beta" numberOfBonds="1"/>
+            </ListOfComponents>
+          </Molecule>
+          <Molecule id="S10_M2" name="TGF_beta" compartment="V_cyt">
+            <ListOfComponents>
+              <Component id="S10_M2_C1" name="t2r_surf" numberOfBonds="1"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+        <ListOfBonds>
+          <Bond id="S10_B1" site1="S10_M1_C2" site2="S10_M2_C1"/>
+        </ListOfBonds>
+      </Species>
+      <Species id="S11"  concentration="48176000000000.01" name="@V_medium::TGF_beta(t2r_surf)" compartment="V_medium">
+        <ListOfMolecules>
+          <Molecule id="S11_M1" name="TGF_beta" compartment="V_medium">
+            <ListOfComponents>
+              <Component id="S11_M1_C1" name="t2r_surf" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="R1_Smad2_import" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR1_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_RP1_M1" name="Smad2" compartment="V_cyt">
+                <ListOfComponents>
+                  <Component id="RR1_RP1_M1_C1" name="c" state="C" numberOfBonds="0"/>
+                  <Component id="RR1_RP1_M1_C2" name="n" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_RP1_M1_C3" name="smad4" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="Smad2" compartment="V_nuc">
+                <ListOfComponents>
+                  <Component id="RR1_PP1_M1_C1" name="c" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_PP1_M1_C2" name="n" state="N" numberOfBonds="0"/>
+                  <Component id="RR1_PP1_M1_C3" name="smad4" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="Kimp_Smad2c"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR1_RP1_M1" targetID="RR1_PP1_M1"/>
+          <MapItem sourceID="RR1_RP1_M1_C1" targetID="RR1_PP1_M1_C1"/>
+          <MapItem sourceID="RR1_RP1_M1_C2" targetID="RR1_PP1_M1_C2"/>
+          <MapItem sourceID="RR1_RP1_M1_C3" targetID="RR1_PP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR1_RP1_M1_C1" finalState="0"/>
+          <StateChange site="RR1_RP1_M1_C2" finalState="N"/>
+          <ChangeCompartment id="RR1_RP1_M1" source="V_cyt" destination="V_nuc" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="R2_Smad2_export" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="Smad2" compartment="V_nuc">
+                <ListOfComponents>
+                  <Component id="RR2_RP1_M1_C1" name="c" state="0" numberOfBonds="0"/>
+                  <Component id="RR2_RP1_M1_C2" name="n" state="N" numberOfBonds="0"/>
+                  <Component id="RR2_RP1_M1_C3" name="smad4" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="Smad2" compartment="V_cyt">
+                <ListOfComponents>
+                  <Component id="RR2_PP1_M1_C1" name="c" state="C" numberOfBonds="0"/>
+                  <Component id="RR2_PP1_M1_C2" name="n" state="0" numberOfBonds="0"/>
+                  <Component id="RR2_PP1_M1_C3" name="smad4" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="Kexp_Smad2n"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1" targetID="RR2_PP1_M1"/>
+          <MapItem sourceID="RR2_RP1_M1_C1" targetID="RR2_PP1_M1_C1"/>
+          <MapItem sourceID="RR2_RP1_M1_C2" targetID="RR2_PP1_M1_C2"/>
+          <MapItem sourceID="RR2_RP1_M1_C3" targetID="RR2_PP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR2_RP1_M1_C1" finalState="C"/>
+          <StateChange site="RR2_RP1_M1_C2" finalState="0"/>
+          <ChangeCompartment id="RR2_RP1_M1" source="V_nuc" destination="V_cyt" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="R3_Smad4_import" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="Smad4" compartment="V_cyt">
+                <ListOfComponents>
+                  <Component id="RR3_RP1_M1_C1" name="c" state="C" numberOfBonds="0"/>
+                  <Component id="RR3_RP1_M1_C2" name="n" state="0" numberOfBonds="0"/>
+                  <Component id="RR3_RP1_M1_C3" name="smad2" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="Smad4" compartment="V_nuc">
+                <ListOfComponents>
+                  <Component id="RR3_PP1_M1_C1" name="c" state="0" numberOfBonds="0"/>
+                  <Component id="RR3_PP1_M1_C2" name="n" state="N" numberOfBonds="0"/>
+                  <Component id="RR3_PP1_M1_C3" name="smad2" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="Kimp_Smad4c"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1" targetID="RR3_PP1_M1"/>
+          <MapItem sourceID="RR3_RP1_M1_C1" targetID="RR3_PP1_M1_C1"/>
+          <MapItem sourceID="RR3_RP1_M1_C2" targetID="RR3_PP1_M1_C2"/>
+          <MapItem sourceID="RR3_RP1_M1_C3" targetID="RR3_PP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR3_RP1_M1_C1" finalState="0"/>
+          <StateChange site="RR3_RP1_M1_C2" finalState="N"/>
+          <ChangeCompartment id="RR3_RP1_M1" source="V_cyt" destination="V_nuc" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="R4_Smad4_export" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="Smad4" compartment="V_nuc">
+                <ListOfComponents>
+                  <Component id="RR4_RP1_M1_C1" name="c" state="0" numberOfBonds="0"/>
+                  <Component id="RR4_RP1_M1_C2" name="n" state="N" numberOfBonds="0"/>
+                  <Component id="RR4_RP1_M1_C3" name="smad2" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="Smad4" compartment="V_cyt">
+                <ListOfComponents>
+                  <Component id="RR4_PP1_M1_C1" name="c" state="C" numberOfBonds="0"/>
+                  <Component id="RR4_PP1_M1_C2" name="n" state="0" numberOfBonds="0"/>
+                  <Component id="RR4_PP1_M1_C3" name="smad2" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="Kexp_Smad4n"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1" targetID="RR4_PP1_M1"/>
+          <MapItem sourceID="RR4_RP1_M1_C1" targetID="RR4_PP1_M1_C1"/>
+          <MapItem sourceID="RR4_RP1_M1_C2" targetID="RR4_PP1_M1_C2"/>
+          <MapItem sourceID="RR4_RP1_M1_C3" targetID="RR4_PP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR4_RP1_M1_C1" finalState="C"/>
+          <StateChange site="RR4_RP1_M1_C2" finalState="0"/>
+          <ChangeCompartment id="RR4_RP1_M1" source="V_nuc" destination="V_cyt" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="R5_T1R_production" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="T1R_EE" compartment="V_cyt">
+                <ListOfComponents>
+                  <Component id="RR5_PP1_M1_C1" name="T1R_Cave" state="0" numberOfBonds="0"/>
+                  <Component id="RR5_PP1_M1_C2" name="T1R_Surf" state="T1R_Surf" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="v_T1R"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR5_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="R6_T1R_Cave_formation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR6_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_RP1_M1" name="T1R_EE" compartment="V_cyt">
+                <ListOfComponents>
+                  <Component id="RR6_RP1_M1_C1" name="T1R_Cave" state="0" numberOfBonds="0"/>
+                  <Component id="RR6_RP1_M1_C2" name="T1R_Surf" state="T1R_Surf" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="T1R_EE" compartment="V_cyt">
+                <ListOfComponents>
+                  <Component id="RR6_PP1_M1_C1" name="T1R_Cave" state="T1R_Cave" numberOfBonds="0"/>
+                  <Component id="RR6_PP1_M1_C2" name="T1R_Surf" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="ki_Cave"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR6_RP1_M1" targetID="RR6_PP1_M1"/>
+          <MapItem sourceID="RR6_RP1_M1_C1" targetID="RR6_PP1_M1_C1"/>
+          <MapItem sourceID="RR6_RP1_M1_C2" targetID="RR6_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR6_RP1_M1_C1" finalState="T1R_Cave"/>
+          <StateChange site="RR6_RP1_M1_C2" finalState="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="R7_T1R_Cave_recycling" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR7_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_RP1_M1" name="T1R_EE" compartment="V_cyt">
+                <ListOfComponents>
+                  <Component id="RR7_RP1_M1_C1" name="T1R_Cave" state="T1R_Cave" numberOfBonds="0"/>
+                  <Component id="RR7_RP1_M1_C2" name="T1R_Surf" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="T1R_EE" compartment="V_cyt">
+                <ListOfComponents>
+                  <Component id="RR7_PP1_M1_C1" name="T1R_Cave" state="0" numberOfBonds="0"/>
+                  <Component id="RR7_PP1_M1_C2" name="T1R_Surf" state="T1R_Surf" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kr_Cave"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR7_RP1_M1" targetID="RR7_PP1_M1"/>
+          <MapItem sourceID="RR7_RP1_M1_C1" targetID="RR7_PP1_M1_C1"/>
+          <MapItem sourceID="RR7_RP1_M1_C2" targetID="RR7_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR7_RP1_M1_C1" finalState="0"/>
+          <StateChange site="RR7_RP1_M1_C2" finalState="T1R_Surf"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="R8_T1R_EE_formation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR8_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_RP1_M1" name="T1R_EE" compartment="V_cyt">
+                <ListOfComponents>
+                  <Component id="RR8_RP1_M1_C1" name="T1R_Cave" state="0" numberOfBonds="0"/>
+                  <Component id="RR8_RP1_M1_C2" name="T1R_Surf" state="T1R_Surf" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR8_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP1_M1" name="T1R_EE" compartment="V_cyt">
+                <ListOfComponents>
+                  <Component id="RR8_PP1_M1_C1" name="T1R_Cave" state="0" numberOfBonds="0"/>
+                  <Component id="RR8_PP1_M1_C2" name="T1R_Surf" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="ki_EE"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR8_RP1_M1" targetID="RR8_PP1_M1"/>
+          <MapItem sourceID="RR8_RP1_M1_C1" targetID="RR8_PP1_M1_C1"/>
+          <MapItem sourceID="RR8_RP1_M1_C2" targetID="RR8_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR8_RP1_M1_C2" finalState="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="R9_T1R_EE_recycling" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR9_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_RP1_M1" name="T1R_EE" compartment="V_cyt">
+                <ListOfComponents>
+                  <Component id="RR9_RP1_M1_C1" name="T1R_Cave" state="0" numberOfBonds="0"/>
+                  <Component id="RR9_RP1_M1_C2" name="T1R_Surf" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR9_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP1_M1" name="T1R_EE" compartment="V_cyt">
+                <ListOfComponents>
+                  <Component id="RR9_PP1_M1_C1" name="T1R_Cave" state="0" numberOfBonds="0"/>
+                  <Component id="RR9_PP1_M1_C2" name="T1R_Surf" state="T1R_Surf" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kr_EE"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR9_RP1_M1" targetID="RR9_PP1_M1"/>
+          <MapItem sourceID="RR9_RP1_M1_C1" targetID="RR9_PP1_M1_C1"/>
+          <MapItem sourceID="RR9_RP1_M1_C2" targetID="RR9_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR9_RP1_M1_C2" finalState="T1R_Surf"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="R10_T1R_EE_degradation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR10_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_RP1_M1" name="T1R_EE" compartment="V_cyt">
+                <ListOfComponents>
+                  <Component id="RR10_RP1_M1_C1" name="T1R_Cave" state="0" numberOfBonds="0"/>
+                  <Component id="RR10_RP1_M1_C2" name="T1R_Surf" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="Kdeg_T1R_EE"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR10_RP1_M1"/>
+          <MapItem sourceID="RR10_RP1_M1_C1"/>
+          <MapItem sourceID="RR10_RP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR10_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR11" name="R11_T2R_production" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR11_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_PP1_M1" name="T2R_Surf" compartment="V_cyt">
+                <ListOfComponents>
+                  <Component id="RR11_PP1_M1_C1" name="T2R_Cave" state="0" numberOfBonds="0"/>
+                  <Component id="RR11_PP1_M1_C2" name="tgf_beta" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR11_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="v_T2R"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR11_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR12" name="R12_T2R_Cave_formation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR12_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_RP1_M1" name="T2R_Surf" compartment="V_cyt">
+                <ListOfComponents>
+                  <Component id="RR12_RP1_M1_C1" name="T2R_Cave" state="0" numberOfBonds="0"/>
+                  <Component id="RR12_RP1_M1_C2" name="tgf_beta" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR12_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_PP1_M1" name="T2R_Surf" compartment="V_cyt">
+                <ListOfComponents>
+                  <Component id="RR12_PP1_M1_C1" name="T2R_Cave" state="T2R_Cave" numberOfBonds="0"/>
+                  <Component id="RR12_PP1_M1_C2" name="tgf_beta" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR12_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="ki_Cave"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR12_RP1_M1" targetID="RR12_PP1_M1"/>
+          <MapItem sourceID="RR12_RP1_M1_C1" targetID="RR12_PP1_M1_C1"/>
+          <MapItem sourceID="RR12_RP1_M1_C2" targetID="RR12_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR12_RP1_M1_C1" finalState="T2R_Cave"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR13" name="R13_T2R_Cave_recycling" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR13_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_RP1_M1" name="T2R_Surf" compartment="V_cyt">
+                <ListOfComponents>
+                  <Component id="RR13_RP1_M1_C1" name="T2R_Cave" state="T2R_Cave" numberOfBonds="0"/>
+                  <Component id="RR13_RP1_M1_C2" name="tgf_beta" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR13_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_PP1_M1" name="T2R_Surf" compartment="V_cyt">
+                <ListOfComponents>
+                  <Component id="RR13_PP1_M1_C1" name="T2R_Cave" state="0" numberOfBonds="0"/>
+                  <Component id="RR13_PP1_M1_C2" name="tgf_beta" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR13_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kr_Cave"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR13_RP1_M1" targetID="RR13_PP1_M1"/>
+          <MapItem sourceID="RR13_RP1_M1_C1" targetID="RR13_PP1_M1_C1"/>
+          <MapItem sourceID="RR13_RP1_M1_C2" targetID="RR13_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR13_RP1_M1_C1" finalState="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR14" name="R14_T2R_EE_formation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR14_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_RP1_M1" name="T2R_Surf" compartment="V_cyt">
+                <ListOfComponents>
+                  <Component id="RR14_RP1_M1_C1" name="T2R_Cave" state="0" numberOfBonds="0"/>
+                  <Component id="RR14_RP1_M1_C2" name="tgf_beta" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR14_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_PP1_M1" name="T2R_Surf" compartment="V_cyt">
+                <ListOfComponents>
+                  <Component id="RR14_PP1_M1_C1" name="T2R_Cave" state="0" numberOfBonds="0"/>
+                  <Component id="RR14_PP1_M1_C2" name="tgf_beta" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR14_PP1_M2" name="TGF_beta" compartment="V_cyt">
+                <ListOfComponents>
+                  <Component id="RR14_PP1_M2_C1" name="t2r_surf" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR14_PP1_B1" site1="RR14_PP1_M1_C2" site2="RR14_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR14_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="ki_EE"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR14_RP1_M1" targetID="RR14_PP1_M1"/>
+          <MapItem sourceID="RR14_RP1_M1_C1" targetID="RR14_PP1_M1_C1"/>
+          <MapItem sourceID="RR14_RP1_M1_C2" targetID="RR14_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR14_PP1_M2"/>
+          <AddBond site1="RR14_RP1_M1_C2" site2="RR14_PP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR15" name="R15_T2R_EE_recycling" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR15_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR15_RP1_M1" name="T2R_Surf" compartment="V_cyt">
+                <ListOfComponents>
+                  <Component id="RR15_RP1_M1_C1" name="T2R_Cave" state="0" numberOfBonds="0"/>
+                  <Component id="RR15_RP1_M1_C2" name="tgf_beta" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR15_RP1_M2" name="TGF_beta" compartment="V_cyt">
+                <ListOfComponents>
+                  <Component id="RR15_RP1_M2_C1" name="t2r_surf" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR15_RP1_B1" site1="RR15_RP1_M1_C2" site2="RR15_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR15_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR15_PP1_M1" name="T2R_Surf" compartment="V_cyt">
+                <ListOfComponents>
+                  <Component id="RR15_PP1_M1_C1" name="T2R_Cave" state="0" numberOfBonds="0"/>
+                  <Component id="RR15_PP1_M1_C2" name="tgf_beta" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR15_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR15_PP2_M1" name="TGF_beta" compartment="V_medium">
+                <ListOfComponents>
+                  <Component id="RR15_PP2_M1_C1" name="t2r_surf" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR15_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kr_EE"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR15_RP1_M1" targetID="RR15_PP1_M1"/>
+          <MapItem sourceID="RR15_RP1_M1_C1" targetID="RR15_PP1_M1_C1"/>
+          <MapItem sourceID="RR15_RP1_M1_C2" targetID="RR15_PP1_M1_C2"/>
+          <MapItem sourceID="RR15_RP1_M2" targetID="RR15_PP2_M1"/>
+          <MapItem sourceID="RR15_RP1_M2_C1" targetID="RR15_PP2_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <ChangeCompartment id="RR15_RP1_M2" source="V_cyt" destination="V_medium" flipOrientation="0" moveConnected="0"/>
+          <DeleteBond site1="RR15_RP1_M1_C2" site2="RR15_RP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR16" name="R16_T2R_EE_degradation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR16_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR16_RP1_M1" name="T2R_Surf" compartment="V_cyt">
+                <ListOfComponents>
+                  <Component id="RR16_RP1_M1_C1" name="T2R_Cave" state="0" numberOfBonds="0"/>
+                  <Component id="RR16_RP1_M1_C2" name="tgf_beta" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR16_RP1_M2" name="TGF_beta" compartment="V_cyt">
+                <ListOfComponents>
+                  <Component id="RR16_RP1_M2_C1" name="t2r_surf" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR16_RP1_B1" site1="RR16_RP1_M1_C2" site2="RR16_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR16_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="Kdeg_T2R_EE"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR16_RP1_M1"/>
+          <MapItem sourceID="RR16_RP1_M1_C1"/>
+          <MapItem sourceID="RR16_RP1_M1_C2"/>
+          <MapItem sourceID="RR16_RP1_M2"/>
+          <MapItem sourceID="RR16_RP1_M2_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR16_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR17" name="R17_LRC_formation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR17_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR17_RP1_M1" name="TGF_beta" compartment="V_medium">
+                <ListOfComponents>
+                  <Component id="RR17_RP1_M1_C1" name="t2r_surf" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR17_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR17_RP2_M1" name="T2R_Surf" compartment="V_cyt">
+                <ListOfComponents>
+                  <Component id="RR17_RP2_M1_C1" name="T2R_Cave" state="0" numberOfBonds="0"/>
+                  <Component id="RR17_RP2_M1_C2" name="tgf_beta" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR17_RP3">
+            <ListOfMolecules>
+              <Molecule id="RR17_RP3_M1" name="T1R_EE" compartment="V_cyt">
+                <ListOfComponents>
+                  <Component id="RR17_RP3_M1_C1" name="T1R_Cave" state="0" numberOfBonds="0"/>
+                  <Component id="RR17_RP3_M1_C2" name="T1R_Surf" state="T1R_Surf" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR17_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR17_PP1_M1" name="LRC_Surf" compartment="V_cyt"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR17_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k_LRC"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR17_RP1_M1"/>
+          <MapItem sourceID="RR17_RP1_M1_C1"/>
+          <MapItem sourceID="RR17_RP2_M1"/>
+          <MapItem sourceID="RR17_RP2_M1_C1"/>
+          <MapItem sourceID="RR17_RP2_M1_C2"/>
+          <MapItem sourceID="RR17_RP3_M1"/>
+          <MapItem sourceID="RR17_RP3_M1_C1"/>
+          <MapItem sourceID="RR17_RP3_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR17_PP1_M1"/>
+          <Delete id="RR17_RP1" DeleteMolecules="0"/>
+          <Delete id="RR17_RP2" DeleteMolecules="0"/>
+          <Delete id="RR17_RP3" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR18" name="R18_LRC_Cave_formation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR18_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR18_RP1_M1" name="LRC_Surf" compartment="V_cyt"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR18_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR18_PP1_M1" name="LRC_Cave" compartment="V_cyt"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR18_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="ki_Cave"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR18_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR18_PP1_M1"/>
+          <Delete id="RR18_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR19" name="R19_LRC_Cave_recycling" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR19_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR19_RP1_M1" name="LRC_Cave" compartment="V_cyt"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR19_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR19_PP1_M1" name="T1R_EE" compartment="V_cyt">
+                <ListOfComponents>
+                  <Component id="RR19_PP1_M1_C1" name="T1R_Cave" state="0" numberOfBonds="0"/>
+                  <Component id="RR19_PP1_M1_C2" name="T1R_Surf" state="T1R_Surf" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR19_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR19_PP2_M1" name="TGF_beta" compartment="V_medium">
+                <ListOfComponents>
+                  <Component id="RR19_PP2_M1_C1" name="t2r_surf" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR19_PP3">
+            <ListOfMolecules>
+              <Molecule id="RR19_PP3_M1" name="T2R_Surf" compartment="V_cyt">
+                <ListOfComponents>
+                  <Component id="RR19_PP3_M1_C1" name="T2R_Cave" state="0" numberOfBonds="0"/>
+                  <Component id="RR19_PP3_M1_C2" name="tgf_beta" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR19_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kr_Cave"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR19_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR19_PP1_M1"/>
+          <Add id="RR19_PP2_M1"/>
+          <Add id="RR19_PP3_M1"/>
+          <Delete id="RR19_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR20" name="R20_LRC_EE_formation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR20_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR20_RP1_M1" name="LRC_Surf" compartment="V_cyt"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR20_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR20_PP1_M1" name="LRC_EE" compartment="V_cyt"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR20_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="ki_EE"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR20_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR20_PP1_M1"/>
+          <Delete id="RR20_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR21" name="R21_LRC_EE_recycling" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR21_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR21_RP1_M1" name="LRC_EE" compartment="V_cyt"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR21_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR21_PP1_M1" name="T1R_EE" compartment="V_cyt">
+                <ListOfComponents>
+                  <Component id="RR21_PP1_M1_C1" name="T1R_Cave" state="0" numberOfBonds="0"/>
+                  <Component id="RR21_PP1_M1_C2" name="T1R_Surf" state="T1R_Surf" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR21_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR21_PP2_M1" name="T2R_Surf" compartment="V_cyt">
+                <ListOfComponents>
+                  <Component id="RR21_PP2_M1_C1" name="T2R_Cave" state="0" numberOfBonds="0"/>
+                  <Component id="RR21_PP2_M1_C2" name="tgf_beta" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR21_PP3">
+            <ListOfMolecules>
+              <Molecule id="RR21_PP3_M1" name="TGF_beta" compartment="V_medium">
+                <ListOfComponents>
+                  <Component id="RR21_PP3_M1_C1" name="t2r_surf" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR21_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kr_EE"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR21_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR21_PP1_M1"/>
+          <Add id="RR21_PP2_M1"/>
+          <Add id="RR21_PP3_M1"/>
+          <Delete id="RR21_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR22" name="R22_LRC_EE_degradation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR22_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR22_RP1_M1" name="LRC_EE" compartment="V_cyt"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR22_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="Kcd"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR22_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR22_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR23" name="R23_Smads_Complex_formation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR23_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR23_RP1_M1" name="Smad2" compartment="V_cyt">
+                <ListOfComponents>
+                  <Component id="RR23_RP1_M1_C1" name="c" state="C" numberOfBonds="0"/>
+                  <Component id="RR23_RP1_M1_C2" name="n" state="0" numberOfBonds="0"/>
+                  <Component id="RR23_RP1_M1_C3" name="smad4" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR23_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR23_RP2_M1" name="Smad4" compartment="V_cyt">
+                <ListOfComponents>
+                  <Component id="RR23_RP2_M1_C1" name="c" state="C" numberOfBonds="0"/>
+                  <Component id="RR23_RP2_M1_C2" name="n" state="0" numberOfBonds="0"/>
+                  <Component id="RR23_RP2_M1_C3" name="smad2" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR23_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR23_PP1_M1" name="Smad4" compartment="V_cyt">
+                <ListOfComponents>
+                  <Component id="RR23_PP1_M1_C1" name="c" state="C" numberOfBonds="0"/>
+                  <Component id="RR23_PP1_M1_C2" name="n" state="0" numberOfBonds="0"/>
+                  <Component id="RR23_PP1_M1_C3" name="smad2" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR23_PP1_M2" name="Smad2" compartment="V_cyt">
+                <ListOfComponents>
+                  <Component id="RR23_PP1_M2_C1" name="c" state="C" numberOfBonds="0"/>
+                  <Component id="RR23_PP1_M2_C2" name="n" state="0" numberOfBonds="0"/>
+                  <Component id="RR23_PP1_M2_C3" name="smad4" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR23_PP1_B1" site1="RR23_PP1_M1_C3" site2="RR23_PP1_M2_C3"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR23_RateLaw" type="Function" name="fRate22" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR23_RP1_M1" targetID="RR23_PP1_M2"/>
+          <MapItem sourceID="RR23_RP1_M1_C1" targetID="RR23_PP1_M2_C1"/>
+          <MapItem sourceID="RR23_RP1_M1_C2" targetID="RR23_PP1_M2_C2"/>
+          <MapItem sourceID="RR23_RP1_M1_C3" targetID="RR23_PP1_M2_C3"/>
+          <MapItem sourceID="RR23_RP2_M1" targetID="RR23_PP1_M1"/>
+          <MapItem sourceID="RR23_RP2_M1_C1" targetID="RR23_PP1_M1_C1"/>
+          <MapItem sourceID="RR23_RP2_M1_C2" targetID="RR23_PP1_M1_C2"/>
+          <MapItem sourceID="RR23_RP2_M1_C3" targetID="RR23_PP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR23_RP2_M1_C3" site2="RR23_RP1_M1_C3"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR24" name="R24_Smads_Complex_import" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR24_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR24_RP1_M1" name="Smad4" compartment="V_cyt">
+                <ListOfComponents>
+                  <Component id="RR24_RP1_M1_C1" name="c" state="C" numberOfBonds="0"/>
+                  <Component id="RR24_RP1_M1_C2" name="n" state="0" numberOfBonds="0"/>
+                  <Component id="RR24_RP1_M1_C3" name="smad2" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR24_RP1_M2" name="Smad2" compartment="V_cyt">
+                <ListOfComponents>
+                  <Component id="RR24_RP1_M2_C1" name="c" state="C" numberOfBonds="0"/>
+                  <Component id="RR24_RP1_M2_C2" name="n" state="0" numberOfBonds="0"/>
+                  <Component id="RR24_RP1_M2_C3" name="smad4" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR24_RP1_B1" site1="RR24_RP1_M1_C3" site2="RR24_RP1_M2_C3"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR24_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR24_PP1_M1" name="Smad4" compartment="V_nuc">
+                <ListOfComponents>
+                  <Component id="RR24_PP1_M1_C1" name="c" state="0" numberOfBonds="0"/>
+                  <Component id="RR24_PP1_M1_C2" name="n" state="N" numberOfBonds="0"/>
+                  <Component id="RR24_PP1_M1_C3" name="smad2" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR24_PP1_M2" name="Smad2" compartment="V_nuc">
+                <ListOfComponents>
+                  <Component id="RR24_PP1_M2_C1" name="c" state="0" numberOfBonds="0"/>
+                  <Component id="RR24_PP1_M2_C2" name="n" state="N" numberOfBonds="0"/>
+                  <Component id="RR24_PP1_M2_C3" name="smad4" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR24_PP1_B1" site1="RR24_PP1_M1_C3" site2="RR24_PP1_M2_C3"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR24_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="Kimp_Smads_Complex_c"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR24_RP1_M1" targetID="RR24_PP1_M1"/>
+          <MapItem sourceID="RR24_RP1_M1_C1" targetID="RR24_PP1_M1_C1"/>
+          <MapItem sourceID="RR24_RP1_M1_C2" targetID="RR24_PP1_M1_C2"/>
+          <MapItem sourceID="RR24_RP1_M1_C3" targetID="RR24_PP1_M1_C3"/>
+          <MapItem sourceID="RR24_RP1_M2" targetID="RR24_PP1_M2"/>
+          <MapItem sourceID="RR24_RP1_M2_C1" targetID="RR24_PP1_M2_C1"/>
+          <MapItem sourceID="RR24_RP1_M2_C2" targetID="RR24_PP1_M2_C2"/>
+          <MapItem sourceID="RR24_RP1_M2_C3" targetID="RR24_PP1_M2_C3"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR24_RP1_M1_C1" finalState="0"/>
+          <StateChange site="RR24_RP1_M1_C2" finalState="N"/>
+          <StateChange site="RR24_RP1_M2_C1" finalState="0"/>
+          <StateChange site="RR24_RP1_M2_C2" finalState="N"/>
+          <ChangeCompartment id="RR24_RP1_M1" source="V_cyt" destination="V_nuc" flipOrientation="0" moveConnected="0"/>
+          <ChangeCompartment id="RR24_RP1_M2" source="V_cyt" destination="V_nuc" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR25" name="R25_Smads_Complex_Dissociation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR25_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR25_RP1_M1" name="Smad4" compartment="V_nuc">
+                <ListOfComponents>
+                  <Component id="RR25_RP1_M1_C1" name="c" state="0" numberOfBonds="0"/>
+                  <Component id="RR25_RP1_M1_C2" name="n" state="N" numberOfBonds="0"/>
+                  <Component id="RR25_RP1_M1_C3" name="smad2" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR25_RP1_M2" name="Smad2" compartment="V_nuc">
+                <ListOfComponents>
+                  <Component id="RR25_RP1_M2_C1" name="c" state="0" numberOfBonds="0"/>
+                  <Component id="RR25_RP1_M2_C2" name="n" state="N" numberOfBonds="0"/>
+                  <Component id="RR25_RP1_M2_C3" name="smad4" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR25_RP1_B1" site1="RR25_RP1_M1_C3" site2="RR25_RP1_M2_C3"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR25_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR25_PP1_M1" name="Smad4" compartment="V_nuc">
+                <ListOfComponents>
+                  <Component id="RR25_PP1_M1_C1" name="c" state="0" numberOfBonds="0"/>
+                  <Component id="RR25_PP1_M1_C2" name="n" state="N" numberOfBonds="0"/>
+                  <Component id="RR25_PP1_M1_C3" name="smad2" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR25_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR25_PP2_M1" name="Smad2" compartment="V_nuc">
+                <ListOfComponents>
+                  <Component id="RR25_PP2_M1_C1" name="c" state="0" numberOfBonds="0"/>
+                  <Component id="RR25_PP2_M1_C2" name="n" state="N" numberOfBonds="0"/>
+                  <Component id="RR25_PP2_M1_C3" name="smad4" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR25_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="Kdiss_Smads_Complex_n"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR25_RP1_M1" targetID="RR25_PP1_M1"/>
+          <MapItem sourceID="RR25_RP1_M1_C1" targetID="RR25_PP1_M1_C1"/>
+          <MapItem sourceID="RR25_RP1_M1_C2" targetID="RR25_PP1_M1_C2"/>
+          <MapItem sourceID="RR25_RP1_M1_C3" targetID="RR25_PP1_M1_C3"/>
+          <MapItem sourceID="RR25_RP1_M2" targetID="RR25_PP2_M1"/>
+          <MapItem sourceID="RR25_RP1_M2_C1" targetID="RR25_PP2_M1_C1"/>
+          <MapItem sourceID="RR25_RP1_M2_C2" targetID="RR25_PP2_M1_C2"/>
+          <MapItem sourceID="RR25_RP1_M2_C3" targetID="RR25_PP2_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <DeleteBond site1="RR25_RP1_M1_C3" site2="RR25_RP1_M2_C3"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR26" name="R26_LRC_Cave_degradation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR26_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR26_RP1_M1" name="LRC_Cave" compartment="V_cyt"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR26_RateLaw" type="Function" name="fRate25" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR26_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR26_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="Smad2c_V_cyt" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" compartment="V_cyt" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="Smad2">
+                <ListOfComponents>
+                  <Component id="O1_P1_M1_C1" name="c" state="C" numberOfBonds="0"/>
+                  <Component id="O1_P1_M1_C2" name="n" state="0" numberOfBonds="0"/>
+                  <Component id="O1_P1_M1_C3" name="smad4" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="Smad2n_V_nuc" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" compartment="V_nuc" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="Smad2">
+                <ListOfComponents>
+                  <Component id="O2_P1_M1_C1" name="c" state="0" numberOfBonds="0"/>
+                  <Component id="O2_P1_M1_C2" name="n" state="N" numberOfBonds="0"/>
+                  <Component id="O2_P1_M1_C3" name="smad4" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="Smad4c_V_cyt" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" compartment="V_cyt" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="Smad4">
+                <ListOfComponents>
+                  <Component id="O3_P1_M1_C1" name="c" state="C" numberOfBonds="0"/>
+                  <Component id="O3_P1_M1_C2" name="n" state="0" numberOfBonds="0"/>
+                  <Component id="O3_P1_M1_C3" name="smad2" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="Smad4n_V_nuc" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" compartment="V_nuc" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="Smad4">
+                <ListOfComponents>
+                  <Component id="O4_P1_M1_C1" name="c" state="0" numberOfBonds="0"/>
+                  <Component id="O4_P1_M1_C2" name="n" state="N" numberOfBonds="0"/>
+                  <Component id="O4_P1_M1_C3" name="smad2" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="T1R_Surf_V_cyt" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" compartment="V_cyt" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="T1R_EE">
+                <ListOfComponents>
+                  <Component id="O5_P1_M1_C1" name="T1R_Cave" state="0" numberOfBonds="0"/>
+                  <Component id="O5_P1_M1_C2" name="T1R_Surf" state="T1R_Surf" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O6" name="T1R_Cave_V_cyt" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O6_P1" compartment="V_cyt" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O6_P1_M1" name="T1R_EE">
+                <ListOfComponents>
+                  <Component id="O6_P1_M1_C1" name="T1R_Cave" state="T1R_Cave" numberOfBonds="0"/>
+                  <Component id="O6_P1_M1_C2" name="T1R_Surf" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O7" name="T1R_EE_V_cyt" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O7_P1" compartment="V_cyt" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O7_P1_M1" name="T1R_EE">
+                <ListOfComponents>
+                  <Component id="O7_P1_M1_C1" name="T1R_Cave" state="0" numberOfBonds="0"/>
+                  <Component id="O7_P1_M1_C2" name="T1R_Surf" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O8" name="T2R_Surf_V_cyt" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O8_P1" compartment="V_cyt" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O8_P1_M1" name="T2R_Surf">
+                <ListOfComponents>
+                  <Component id="O8_P1_M1_C1" name="T2R_Cave" state="0" numberOfBonds="0"/>
+                  <Component id="O8_P1_M1_C2" name="tgf_beta" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O9" name="T2R_Cave_V_cyt" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O9_P1" compartment="V_cyt" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O9_P1_M1" name="T2R_Surf">
+                <ListOfComponents>
+                  <Component id="O9_P1_M1_C1" name="T2R_Cave" state="T2R_Cave" numberOfBonds="0"/>
+                  <Component id="O9_P1_M1_C2" name="tgf_beta" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O10" name="T2R_EE_V_cyt" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O10_P1" compartment="V_cyt" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O10_P1_M1" name="T2R_Surf">
+                <ListOfComponents>
+                  <Component id="O10_P1_M1_C1" name="T2R_Cave" state="0" numberOfBonds="0"/>
+                  <Component id="O10_P1_M1_C2" name="tgf_beta" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O10_P1_M2" name="TGF_beta">
+                <ListOfComponents>
+                  <Component id="O10_P1_M2_C1" name="t2r_surf" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O10_P1_B1" site1="O10_P1_M1_C2" site2="O10_P1_M2_C1"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O11" name="LRC_Surf_V_cyt" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O11_P1" compartment="V_cyt" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O11_P1_M1" name="LRC_Surf"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O12" name="LRC_Cave_V_cyt" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O12_P1" compartment="V_cyt" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O12_P1_M1" name="LRC_Cave"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O13" name="LRC_EE_V_cyt" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O13_P1" compartment="V_cyt" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O13_P1_M1" name="LRC_EE"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O14" name="Smads_Complex_c_V_cyt" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O14_P1" compartment="V_cyt" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O14_P1_M1" name="Smad4">
+                <ListOfComponents>
+                  <Component id="O14_P1_M1_C1" name="c" state="C" numberOfBonds="0"/>
+                  <Component id="O14_P1_M1_C2" name="n" state="0" numberOfBonds="0"/>
+                  <Component id="O14_P1_M1_C3" name="smad2" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O14_P1_M2" name="Smad2">
+                <ListOfComponents>
+                  <Component id="O14_P1_M2_C1" name="c" state="C" numberOfBonds="0"/>
+                  <Component id="O14_P1_M2_C2" name="n" state="0" numberOfBonds="0"/>
+                  <Component id="O14_P1_M2_C3" name="smad4" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O14_P1_B1" site1="O14_P1_M1_C3" site2="O14_P1_M2_C3"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O15" name="Smads_Complex_n_V_nuc" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O15_P1" compartment="V_nuc" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O15_P1_M1" name="Smad4">
+                <ListOfComponents>
+                  <Component id="O15_P1_M1_C1" name="c" state="0" numberOfBonds="0"/>
+                  <Component id="O15_P1_M1_C2" name="n" state="N" numberOfBonds="0"/>
+                  <Component id="O15_P1_M1_C3" name="smad2" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O15_P1_M2" name="Smad2">
+                <ListOfComponents>
+                  <Component id="O15_P1_M2_C1" name="c" state="0" numberOfBonds="0"/>
+                  <Component id="O15_P1_M2_C2" name="n" state="N" numberOfBonds="0"/>
+                  <Component id="O15_P1_M2_C3" name="smad4" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O15_P1_B1" site1="O15_P1_M1_C3" site2="O15_P1_M2_C3"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O16" name="TGF_beta_V_medium" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O16_P1" compartment="V_medium" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O16_P1_M1" name="TGF_beta">
+                <ListOfComponents>
+                  <Component id="O16_P1_M1_C1" name="t2r_surf" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="Total_Smad2c">
+        <ListOfReferences>
+          <Reference name="Smad2c_V_cyt" type="Observable"/>
+          <Reference name="Smads_Complex_c_V_cyt" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Smad2c_V_cyt+Smads_Complex_c_V_cyt </Expression>
+      </Function>
+      <Function id="Total_Smad2n">
+        <ListOfReferences>
+          <Reference name="Smad2n_V_nuc" type="Observable"/>
+          <Reference name="Smads_Complex_n_V_nuc" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Smad2n_V_nuc+Smads_Complex_n_V_nuc </Expression>
+      </Function>
+      <Function id="fRate22">
+        <ListOfReferences>
+          <Reference name="k_Smads_Complex_c" type="Constant"/>
+          <Reference name="LRC_EE_V_cyt" type="Observable"/>
+        </ListOfReferences>
+        <Expression> LRC_EE_V_cyt*k_Smads_Complex_c </Expression>
+      </Function>
+      <Function id="fRate25">
+        <ListOfReferences>
+          <Reference name="Klid" type="Constant"/>
+          <Reference name="Smads_Complex_n_V_nuc" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Klid*Smads_Complex_n_V_nuc </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

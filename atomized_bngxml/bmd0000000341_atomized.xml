@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000341_atomized">
+    <ListOfParameters>
+      <Parameter id="si" type="Constant" value="0.72" expr="0.72"/>
+      <Parameter id="Eg0" type="Constant" value="1.44" expr="1.44"/>
+      <Parameter id="R0" type="Constant" value="864" expr="864.0"/>
+      <Parameter id="sigma" type="Constant" value="43.2" expr="43.2"/>
+      <Parameter id="alpha" type="Constant" value="20000" expr="20000.0"/>
+      <Parameter id="k" type="Constant" value="432" expr="432.0"/>
+      <Parameter id="d0" type="Constant" value="0.06" expr="0.06"/>
+      <Parameter id="r1" type="Constant" value="0.00084" expr="0.00084"/>
+      <Parameter id="r2" type="Constant" value="2.4e-6" expr="2.4e-06"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="Mass"/>
+      <MoleculeType id="glucose"/>
+      <MoleculeType id="insulin"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="1.5055000000000001e+26" name="glucose()">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="glucose"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="1.68616e+24" name="insulin()">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="insulin"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="2.22814e+25" name="Mass()">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="Mass"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="_R1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="glucose"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="arRateG" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="_R2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="insulin"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="arRateI" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="_R3" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="Mass"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="arRateB" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="glucose" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="glucose"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="insulin" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="insulin"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="Mass" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="Mass"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="arRateB">
+        <ListOfReferences>
+          <Reference name="d0" type="Constant"/>
+          <Reference name="r1" type="Constant"/>
+          <Reference name="r2" type="Constant"/>
+          <Reference name="Mass" type="Observable"/>
+          <Reference name="glucose" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Mass*(((-d0)-((glucose^2)*r2))+(glucose*r1)) </Expression>
+      </Function>
+      <Function id="arRateI">
+        <ListOfReferences>
+          <Reference name="alpha" type="Constant"/>
+          <Reference name="k" type="Constant"/>
+          <Reference name="sigma" type="Constant"/>
+          <Reference name="Mass" type="Observable"/>
+          <Reference name="glucose" type="Observable"/>
+          <Reference name="insulin" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((Mass*(glucose^2))*sigma)/(alpha+(glucose^2)))-(insulin*k) </Expression>
+      </Function>
+      <Function id="arRateG">
+        <ListOfReferences>
+          <Reference name="Eg0" type="Constant"/>
+          <Reference name="R0" type="Constant"/>
+          <Reference name="si" type="Constant"/>
+          <Reference name="glucose" type="Observable"/>
+          <Reference name="insulin" type="Observable"/>
+        </ListOfReferences>
+        <Expression> R0-(glucose*(Eg0+(insulin*si))) </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

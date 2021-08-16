@@ -3,10 +3,10 @@
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606', 'http://identifiers.org/taxonomy/2697049']
 #@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/32532983']
 #@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000028']
-#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000988', 'http://identifiers.org/biomodels.db/MODEL2102120001']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL2102120001', 'http://identifiers.org/biomodels.db/BIOMD0000000988']
 #@creatorEmail:'s6pajost@uni-bonn.de'
 #@creatorName:'Jost Paul Jonas'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 20 molecules and 18 reactions. The translated model has 3 molecules and 18 rules'
+#@notes:'This is an atomized translation of an SBML model created on 14/08/2021. The original model has 20 molecules and 18 reactions. The translated model has 3 molecules and 18 rules'
 ###
 begin model
 begin parameters
@@ -38,11 +38,11 @@ end parameters
 begin molecule types
 	#^ bqbiol:is ido:0000514
 	susceptible()
-	#^ bqbiol:is ncit:C28554
-	dead_noncorona()
 	#^ bqbiol:is ido:0000511, ncit:C171133
 	#^ bqbiol:hasProperty ncit:C47891
 	infected_tested(dead_corona_tested~dead_corona_tested~0,non~NON~0,recovered_nontested~recovered_nontested~0,recovered_tested~recovered_tested~0,symptoms_tested~symptoms_tested~0,un~UN~0)
+	#^ bqbiol:is ncit:C28554
+	dead_noncorona()
 end molecule types
 begin seed species
 	infected_tested(dead_corona_tested~0,non~NON,recovered_nontested~0,recovered_tested~0,symptoms_tested~0,un~0) 1.2044e+24 # 2.0mol/L * 6.022e23/mol *1.0L #infected_nontested #infected_nontested_0
@@ -69,8 +69,8 @@ begin functions
 	epidemic_extinguished_bool_ar() =  if((infected_nontested+infected_tested+symptoms_nontested+symptoms_tested<number_cutoff),(1),(0))
 	Total_Infection_coefficient() = (1 - epidemic_extinguished_bool_ar)*(Infection_from_non_tested_no_symptoms_0*infected_nontested + Infection_from_non_tested_symptoms*symptoms_nontested + Infection_from_tested_no_symptoms_0*infected_tested + Infection_from_tested_symptoms*symptoms_tested)/Social_Distance
 	total_population_ar() = infected_nontested + infected_tested + recovered_nontested + recovered_tested + symptoms_nontested + symptoms_tested + uninfected_nontested + uninfected_tested
-	dead_noncorona_perc_ar() = 100*dead_noncorona/total_population_ar
 	dead_corona_perc_ar() = (100*dead_corona_nontested + 100*dead_corona_tested)/total_population_ar
+	dead_noncorona_perc_ar() = 100*dead_noncorona/total_population_ar
 	frac_coronaDeadOfAllDead_ar() = 100*dead_corona_perc_ar/(dead_corona_perc_ar + dead_noncorona_perc_ar)
 	n_lockdowns() =  if((-Time_government_action_0+time()>0),(1),(0))+if((-Time_government_action_0+time()>lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>2*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>3*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>4*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>5*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>6*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>7*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>8*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>9*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>10*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>11*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>12*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>13*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>14*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>15*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>16*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>17*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>18*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>19*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>20*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>21*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>22*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>23*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>24*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>25*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>26*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>27*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>28*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>29*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>30*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>31*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>32*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>33*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>34*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>35*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>36*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>37*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>38*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>39*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>40*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>41*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>42*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>43*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>44*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>45*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>46*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>47*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>48*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>49*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>50*lockdown_duration),(1),(0))+if((-Time_government_action_0+time()>51*lockdown_duration),(1),(0))
 	intermittent_time() = -lockdownPause_duration_0*n_pauses - lockdown_duration*n_lockdowns + time()

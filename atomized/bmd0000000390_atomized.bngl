@@ -1,11 +1,11 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1109270005', 'http://identifiers.org/biomodels.db/BIOMD0000000390']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000390', 'http://identifiers.org/biomodels.db/MODEL1109270005']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/22001849']
 #@BQB_ENCODES:['http://identifiers.org/go/GO:0019253']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/33090']
 #@creatorEmail:'viji@ebi.ac.uk'
 #@creatorName:'Chelliah Vijayalakshmi'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 11 molecules and 6 reactions. The translated model has 7 molecules and 10 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 11 molecules and 6 reactions. The translated model has 7 molecules and 10 rules'
 ###
 begin model
 begin parameters
@@ -37,43 +37,43 @@ begin compartments
 	cytosol 3 1.0
 end compartments
 begin molecule types
-	#^ bqbiol:isVersionOf pubchem.compound:24794350
-	TP(c~C~0)
+	#^ bqbiol:is chebi:CHEBI:16761
+	ADP(pi)
 	#^ bqbiol:isVersionOf chebi:CHEBI:16710
 	RuBP()
-	#^ bqbiol:isVersionOf chebi:CHEBI:17363
-	Ru5P()
 	totRuBP()
+	#^ bqbiol:isVersionOf pubchem.compound:24794350
+	TP(c~C~0)
 	#^ bqbiol:isVersionOf chebi:CHEBI:17050
 	PGA()
 	#^ bqbiol:isVersionOf chebi:CHEBI:43474
 	Pi(adp,c~C~0)
-	#^ bqbiol:is chebi:CHEBI:16761
-	ADP(pi)
+	#^ bqbiol:isVersionOf chebi:CHEBI:17363
+	Ru5P()
 end molecule types
 begin seed species
-	@chloroplast:RuBP() 1.2044e+21 # (2.0 * 0.001)mol/L * 6.022e23/mol *1.0L #RuBP #RuBP
-	@chloroplast:PGA() 1.44528e+21 #original 2.4/ #PGA #PGA
-	@chloroplast:TP(c~0) 3.011e+20 #original 0.5/ #TP #TP
-	@chloroplast:Ru5P() 3.0155007473841558e+19 #original 0.0500747384155456/ #Ru5P #Ru5P
-	@chloroplast:Pi(adp,c~0) 3.011e+21 #original 5.0/ #Pi #Pi
-	@chloroplast:Pi(adp!59,c~0).ADP(pi!59) 4.0949600000000007e+20 #original 0.68/ #ATP #ATP
-	@chloroplast:ADP(pi) 4.93804e+20 #original 0.82/ #ADP #ADP
-	@chloroplast:totRuBP() -2.59851550373692e+21 #original 3.68496263079223/ #totRuBP #totRuBP
-	@cytosol:$TP(c~C) 1.2044000000000002e+20 #original 0.2/ #TPc #TPc
-	@cytosol:$Pi(adp,c~C) 8.4308e+20 #original 1.4/ #Pic #Pic
+	@chloroplast:RuBP()@chloroplast 1.2044e+21 # (2.0 * 0.001)mol/L * 6.022e23/mol *1.0L #RuBP #RuBP
+	@chloroplast:PGA()@chloroplast 1.44528e+21 #original 2.4/ #PGA #PGA
+	@chloroplast:TP(c~0)@chloroplast 3.011e+20 #original 0.5/ #TP #TP
+	@chloroplast:Ru5P()@chloroplast 3.0155007473841558e+19 #original 0.0500747384155456/ #Ru5P #Ru5P
+	@chloroplast:Pi(adp,c~0)@chloroplast 3.011e+21 #original 5.0/ #Pi #Pi
+	@chloroplast:Pi(adp!59,c~0)@chloroplast.ADP(pi!59)@chloroplast 4.0949600000000007e+20 #original 0.68/ #ATP #ATP
+	@chloroplast:ADP(pi)@chloroplast 4.93804e+20 #original 0.82/ #ADP #ADP
+	@chloroplast:totRuBP()@chloroplast -2.59851550373692e+21 #original 3.68496263079223/ #totRuBP #totRuBP
+	@cytosol:$TP(c~C)@cytosol 1.2044000000000002e+20 #original 0.2/ #TPc #TPc
+	@cytosol:$Pi(adp,c~C)@cytosol 8.4308e+20 #original 1.4/ #Pic #Pic
 end seed species
 begin observables
-	Species RuBP_chloroplast @chloroplast:RuBP() #RuBP
-	Species PGA_chloroplast @chloroplast:PGA() #PGA
-	Species TP_chloroplast @chloroplast:TP(c~0) #TP
-	Species Ru5P_chloroplast @chloroplast:Ru5P() #Ru5P
-	Species Pi_chloroplast @chloroplast:Pi(adp,c~0) #Pi
-	Species ATP_chloroplast @chloroplast:Pi(adp!59,c~0).ADP(pi!59) #ATP
-	Species ADP_chloroplast @chloroplast:ADP(pi) #ADP
-	Species totRuBP_chloroplast @chloroplast:totRuBP() #totRuBP
-	Species TPc_cytosol @cytosol:TP(c~C) #TPc
-	Species Pic_cytosol @cytosol:Pi(adp,c~C) #Pic
+	Species RuBP_chloroplast @chloroplast:RuBP()@chloroplast #RuBP
+	Species PGA_chloroplast @chloroplast:PGA()@chloroplast #PGA
+	Species TP_chloroplast @chloroplast:TP(c~0)@chloroplast #TP
+	Species Ru5P_chloroplast @chloroplast:Ru5P()@chloroplast #Ru5P
+	Species Pi_chloroplast @chloroplast:Pi(adp,c~0)@chloroplast #Pi
+	Species ATP_chloroplast @chloroplast:Pi(adp!59,c~0)@chloroplast.ADP(pi!59)@chloroplast #ATP
+	Species ADP_chloroplast @chloroplast:ADP(pi)@chloroplast #ADP
+	Species totRuBP_chloroplast @chloroplast:totRuBP()@chloroplast #totRuBP
+	Species TPc_cytosol @cytosol:TP(c~C)@cytosol #TPc
+	Species Pic_cytosol @cytosol:Pi(adp,c~C)@cytosol #Pic
 end observables
 begin functions
 	totRuBP_ar() = -ATP_chloroplast/2 - PGA_chloroplast/2 + P_0/2 - Pi_chloroplast/2 - Ru5P_chloroplast/2 - TP_chloroplast/2

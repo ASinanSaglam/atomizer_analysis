@@ -8,7 +8,7 @@
 #@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/15178199']
 #@creatorEmail:'mcho099@aucklanduni.ac.nz'
 #@creatorName:'Choi Ethan'
-#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 0 molecules and 0 reactions. The translated model has 5 molecules and 5 rules'
+#@notes:'This is a plain translation of an SBML model created on 14/08/2021. The original model has 0 molecules and 0 reactions. The translated model has 5 molecules and 5 rules'
 ###
 begin model
 begin parameters
@@ -59,12 +59,12 @@ begin observables
 	Species c c
 end observables
 begin functions
-	I_KATP() = g_KATP_*(-V_K + V_membrane)/ATP
 	m_infinity() = 1/(exp((-V_membrane + v_m)/s_m) + 1)
 	I_Ca() = g_Ca_*m_infinity*(-V_Ca + V_membrane)
+	I_KATP() = g_KATP_*(-V_K + V_membrane)/ATP
+	I_K() = g_K_*n*(-V_K + V_membrane)
 	omega() = 1/(1 + k_D/c)
 	I_KCa() = g_KCa_*omega*(-V_K + V_membrane)
-	I_K() = g_K_*n*(-V_K + V_membrane)
 	arRateV_membrane() = (-I_Ca - I_K - I_KATP - I_KCa)/C_m
 	J_mem() = -f*(I_Ca*alpha + c*k_c)
 	arRatec() = J_mem

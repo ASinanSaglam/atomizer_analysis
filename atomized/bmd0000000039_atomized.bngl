@@ -1,12 +1,12 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL6621933497', 'http://identifiers.org/biomodels.db/BIOMD0000000039']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000039', 'http://identifiers.org/biomodels.db/MODEL6621933497']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/11004387']
 #@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/17029696', 'http://identifiers.org/pubmed/12362939']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/8355']
-#@BQB_IS:['http://identifiers.org/go/GO:0019722', 'http://identifiers.org/kegg.pathway/hsa04020', 'http://identifiers.org/go/GO:0048016']
+#@BQB_IS:['http://identifiers.org/go/GO:0019722', 'http://identifiers.org/go/GO:0048016', 'http://identifiers.org/kegg.pathway/hsa04020']
 #@creatorEmail:'lenov@ebi.ac.uk'
 #@creatorName:'Le Novère Nicolas'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 5 molecules and 7 reactions. The translated model has 4 molecules and 12 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 5 molecules and 7 reactions. The translated model has 4 molecules and 12 rules'
 ###
 begin model
 begin parameters
@@ -29,28 +29,28 @@ begin compartments
 	Mitochondria 3 1.0
 end compartments
 begin molecule types
+	#^ bqbiol:isVersionOf kegg.compound:C00017, chebi:CHEBI:16541
+	Pr(ca_cyt)
 	#^ bqbiol:is chebi:CHEBI:29108
 	CaM()
 	#^ bqbiol:is chebi:CHEBI:29108
 	Ca_cyt(pr)
-	#^ bqbiol:isVersionOf kegg.compound:C00017, chebi:CHEBI:16541
-	Pr(ca_cyt)
 	#^ bqbiol:is chebi:CHEBI:29108
 	CaER()
 end molecule types
 begin seed species
-	@Cytosol:Ca_cyt(pr) 2.1077e+17 # (0.35 * 1e-06)mol/L * 6.022e23/mol *1.0L #Ca_cyt #Ca_cyt
-	@Endoplasmic_Reticulum:CaER() 4.57672e+17 #original 0.76micromole (default)/L  #CaER #CaER
-	@Mitochondria:CaM() 1.74638e+17 #original 0.29micromole (default)/L  #CaM #CaM
-	@Cytosol:Pr(ca_cyt!58).Ca_cyt(pr!58) 5.145799000000001e+19 #original 85.45micromole (default)/L  #CaPr #CaPr
-	@Cytosol:Pr(ca_cyt) 2.0806009999999996e+19 #original 34.55micromole (default)/L  #Pr #Pr
+	@Cytosol:Ca_cyt(pr)@Cytosol 2.1077e+17 # (0.35 * 1e-06)mol/L * 6.022e23/mol *1.0L #Ca_cyt #Ca_cyt
+	@Endoplasmic_Reticulum:CaER()@Endoplasmic_Reticulum 4.57672e+17 #original 0.76micromole (default)/L  #CaER #CaER
+	@Mitochondria:CaM()@Mitochondria 1.74638e+17 #original 0.29micromole (default)/L  #CaM #CaM
+	@Cytosol:Pr(ca_cyt!58)@Cytosol.Ca_cyt(pr!58)@Cytosol 5.145799000000001e+19 #original 85.45micromole (default)/L  #CaPr #CaPr
+	@Cytosol:Pr(ca_cyt)@Cytosol 2.0806009999999996e+19 #original 34.55micromole (default)/L  #Pr #Pr
 end seed species
 begin observables
-	Species Ca_cyt_Cytosol @Cytosol:Ca_cyt(pr) #Ca_cyt
-	Species CaER_Endoplasmic_Reticulum @Endoplasmic_Reticulum:CaER() #CaER
-	Species CaM_Mitochondria @Mitochondria:CaM() #CaM
-	Species CaPr_Cytosol @Cytosol:Pr(ca_cyt!58).Ca_cyt(pr!58) #CaPr
-	Species Pr_Cytosol @Cytosol:Pr(ca_cyt) #Pr
+	Species Ca_cyt_Cytosol @Cytosol:Ca_cyt(pr)@Cytosol #Ca_cyt
+	Species CaER_Endoplasmic_Reticulum @Endoplasmic_Reticulum:CaER()@Endoplasmic_Reticulum #CaER
+	Species CaM_Mitochondria @Mitochondria:CaM()@Mitochondria #CaM
+	Species CaPr_Cytosol @Cytosol:Pr(ca_cyt!58)@Cytosol.Ca_cyt(pr!58)@Cytosol #CaPr
+	Species Pr_Cytosol @Cytosol:Pr(ca_cyt)@Cytosol #Pr
 end observables
 begin functions
 	fRate0() = 4100.0*Ca_cyt_Cytosol^2*(CaER_Endoplasmic_Reticulum - Ca_cyt_Cytosol)/(Ca_cyt_Cytosol^2 + 25.0)

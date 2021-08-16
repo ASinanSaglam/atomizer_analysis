@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000417_flat">
+    <ListOfParameters>
+      <Parameter id="Kd" type="Constant" value="1e-5" expr="1e-05"/>
+      <Parameter id="Ksp" type="Constant" value="0.001" expr="0.001"/>
+      <Parameter id="P" type="Constant" value="40" expr="40.0"/>
+      <Parameter id="h" type="Constant" value="2" expr="2.0"/>
+      <Parameter id="k0" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="ka" type="Constant" value="40" expr="40.0"/>
+      <Parameter id="ks" type="Constant" value="10" expr="10.0"/>
+      <Parameter id="ku" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="s" type="Constant" value="1000" expr="1000.0"/>
+      <Parameter id="r2___RATE__" type="Constant" value="0.1" expr="0.100000"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="Target"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="10.0" name="Target()">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="Target"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="___r1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="Target"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="___r2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="Target"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r2___RATE__"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR2_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="Target" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="Target"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="dspksp">
+        <ListOfReferences>
+          <Reference name="Ksp" type="Constant"/>
+          <Reference name="P" type="Constant"/>
+          <Reference name="s" type="Constant"/>
+        </ListOfReferences>
+        <Expression> (Ksp*((((-(((1+((P+s)/Ksp))^2)-(((4*P)*s)/(Ksp^2))))^0.5)+1)+((P+s)/Ksp)))/2 </Expression>
+      </Function>
+      <Function id="dspspkd">
+        <ListOfReferences>
+          <Reference name="Kd" type="Constant"/>
+          <Reference name="dspksp" type="Function"/>
+        </ListOfReferences>
+        <Expression> (Kd*((((-(((1+((2*dspksp)/Kd))^2)-((4*(dspksp^2))/(Kd^2))))^0.5)+1)+((2*dspksp)/Kd)))/2 </Expression>
+      </Function>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="h" type="Constant"/>
+          <Reference name="k0" type="Constant"/>
+          <Reference name="ka" type="Constant"/>
+          <Reference name="ks" type="Constant"/>
+          <Reference name="dspspkd" type="Function"/>
+        </ListOfReferences>
+        <Expression> (ks*(k0+((dspspkd/ka)^h)))/(((dspspkd/ka)^h)+1.0) </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

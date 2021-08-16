@@ -1,12 +1,12 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000170', 'http://identifiers.org/biomodels.db/MODEL8378813456']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL8378813456', 'http://identifiers.org/biomodels.db/BIOMD0000000170']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/15347590']
 #@BQB_IS_PART_OF:['http://identifiers.org/kegg.pathway/hsa04710']
 #@BQB_IS:['http://identifiers.org/obo.go/GO:0007623']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/40674']
 #@creatorEmail:'hdharuri@cds.caltech.edu'
 #@creatorName:'Dharuri Harish'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 7 molecules and 17 reactions. The translated model has 5 molecules and 17 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 7 molecules and 17 reactions. The translated model has 5 molecules and 17 rules'
 ###
 begin model
 begin parameters
@@ -41,33 +41,33 @@ begin compartments
 	Cytoplasm 3 1.0
 end compartments
 begin molecule types
-	#^ bqbiol:isVersionOf obo.chebi:CHEBI:33699, kegg.compound:C00046
-	#^ bqbiol:encodes uniprot:Q8IUT4
-	Bmal1mRNA()
+	BMAL1(_cytoplasm~_CYTOPLASM~0,_nucleus~_NUCLEUS~0)
 	PER2_CRY_complex(_cytoplasm~_CYTOPLASM~0,_nucleus~_NUCLEUS~0)
 	#^ bqbiol:isVersionOf uniprot:Q8IUT4
 	ActiveBMAL1()
+	#^ bqbiol:isVersionOf obo.chebi:CHEBI:33699, kegg.compound:C00046
+	#^ bqbiol:encodes uniprot:Q8IUT4
+	Bmal1mRNA()
 	#^ bqbiol:encodes uniprot:O15055, uniprot:Q16526
 	#^ bqbiol:isVersionOf obo.chebi:CHEBI:33699, kegg.compound:C00046
 	Per2orCrymRNA()
-	BMAL1(_cytoplasm~_CYTOPLASM~0,_nucleus~_NUCLEUS~0)
 end molecule types
 begin seed species
-	@Cytoplasm:Per2orCrymRNA() 120440000000000.03 # (0.2 * 1e-09)mol/L * 6.022e23/mol *1.0L #Per2orCrymRNA #y1
-	@Nucleus:PER2_CRY_complex(_cytoplasm~0,_nucleus~_NUCLEUS) 662420000000000.1 #original 1.1nano mole/L #PER2_CRY_complex_nucleus #y3
-	@Cytoplasm:Bmal1mRNA() 481760000000000.1 #original 0.8nano mole/L #Bmal1mRNA #y4
-	@Cytoplasm:BMAL1(_cytoplasm~_CYTOPLASM,_nucleus~0) 602200000000000.1 #original 1.0nano mole/L #BMAL1_cytoplasm #y5
-	@Nucleus:BMAL1(_cytoplasm~0,_nucleus~_NUCLEUS) 602200000000000.1 #original 1.0nano mole/L #BMAL1_nucleus #y6
-	@Nucleus:ActiveBMAL1() 632310000000000.1 #original 1.05nano mole/L #ActiveBMAL1 #y7
+	@Cytoplasm:Per2orCrymRNA()@Cytoplasm 120440000000000.03 # (0.2 * 1e-09)mol/L * 6.022e23/mol *1.0L #Per2orCrymRNA #y1
+	@Nucleus:PER2_CRY_complex(_cytoplasm~0,_nucleus~_NUCLEUS)@Nucleus 662420000000000.1 #original 1.1nano mole/L #PER2_CRY_complex_nucleus #y3
+	@Cytoplasm:Bmal1mRNA()@Cytoplasm 481760000000000.1 #original 0.8nano mole/L #Bmal1mRNA #y4
+	@Cytoplasm:BMAL1(_cytoplasm~_CYTOPLASM,_nucleus~0)@Cytoplasm 602200000000000.1 #original 1.0nano mole/L #BMAL1_cytoplasm #y5
+	@Nucleus:BMAL1(_cytoplasm~0,_nucleus~_NUCLEUS)@Nucleus 602200000000000.1 #original 1.0nano mole/L #BMAL1_nucleus #y6
+	@Nucleus:ActiveBMAL1()@Nucleus 632310000000000.1 #original 1.05nano mole/L #ActiveBMAL1 #y7
 end seed species
 begin observables
-	Species Per2orCrymRNA_Cytoplasm @Cytoplasm:Per2orCrymRNA() #Per2 or Cry mRNA
-	Species PER2_CRY_complex_cytoplasm_Cytoplasm @Cytoplasm:PER2_CRY_complex(_cytoplasm~_CYTOPLASM,_nucleus~0) #PER2_CRY_complex_cytoplasm
-	Species PER2_CRY_complex_nucleus_Nucleus @Nucleus:PER2_CRY_complex(_cytoplasm~0,_nucleus~_NUCLEUS) #PER2_CRY_complex_nucleus
-	Species Bmal1mRNA_Cytoplasm @Cytoplasm:Bmal1mRNA() #Bmal1 mRNA
-	Species BMAL1_cytoplasm_Cytoplasm @Cytoplasm:BMAL1(_cytoplasm~_CYTOPLASM,_nucleus~0) #BMAL1_cytoplasm
-	Species BMAL1_nucleus_Nucleus @Nucleus:BMAL1(_cytoplasm~0,_nucleus~_NUCLEUS) #BMAL1_nucleus
-	Species ActiveBMAL1_Nucleus @Nucleus:ActiveBMAL1() #Active BMAL1
+	Species Per2orCrymRNA_Cytoplasm @Cytoplasm:Per2orCrymRNA()@Cytoplasm #Per2 or Cry mRNA
+	Species PER2_CRY_complex_cytoplasm_Cytoplasm @Cytoplasm:PER2_CRY_complex(_cytoplasm~_CYTOPLASM,_nucleus~0)@Cytoplasm #PER2_CRY_complex_cytoplasm
+	Species PER2_CRY_complex_nucleus_Nucleus @Nucleus:PER2_CRY_complex(_cytoplasm~0,_nucleus~_NUCLEUS)@Nucleus #PER2_CRY_complex_nucleus
+	Species Bmal1mRNA_Cytoplasm @Cytoplasm:Bmal1mRNA()@Cytoplasm #Bmal1 mRNA
+	Species BMAL1_cytoplasm_Cytoplasm @Cytoplasm:BMAL1(_cytoplasm~_CYTOPLASM,_nucleus~0)@Cytoplasm #BMAL1_cytoplasm
+	Species BMAL1_nucleus_Nucleus @Nucleus:BMAL1(_cytoplasm~0,_nucleus~_NUCLEUS)@Nucleus #BMAL1_nucleus
+	Species ActiveBMAL1_Nucleus @Nucleus:ActiveBMAL1()@Nucleus #Active BMAL1
 end observables
 begin functions
 	y5_y6_y7() = ActiveBMAL1_Nucleus + BMAL1_cytoplasm_Cytoplasm + BMAL1_nucleus_Nucleus

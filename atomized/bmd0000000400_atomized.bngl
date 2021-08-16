@@ -1,12 +1,12 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000400', 'http://identifiers.org/biomodels.db/MODEL0913194523']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL0913194523', 'http://identifiers.org/biomodels.db/BIOMD0000000400']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/17693463']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10090']
-#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0003300', 'http://identifiers.org/go/GO:0048016', 'http://identifiers.org/fma/FMA:83108', 'http://identifiers.org/go/GO:0003015']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/fma/FMA:83108', 'http://identifiers.org/go/GO:0048016', 'http://identifiers.org/go/GO:0003300', 'http://identifiers.org/go/GO:0003015']
 #@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
 #@creatorEmail:'m.cooling@aukland.ac.nz'
 #@creatorName:'Cooling Mike'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 13 molecules and 0 reactions. The translated model has 6 molecules and 13 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 13 molecules and 0 reactions. The translated model has 5 molecules and 13 rules'
 ###
 begin model
 begin parameters
@@ -44,68 +44,66 @@ begin parameters
 end parameters
 begin molecule types
 	R()
-	P()
-	#^ bqbiol:hasPart chebi:CHEBI:29108, uniprot:Q9Z1B3
-	Pc(Pcg~Pcg~0,Pg~Pg~0)
 	IP3()
-	#^ bqbiol:hasPart chebi:CHEBI:17552, uniprot:P27600
-	Gd(Gt~Gt~0,Rg~Rg~0,Rl~Rl~0,Rlg~Rlg~0,Rlgp~Rlgp~0)
 	Ca()
+	#^ bqbiol:hasPart chebi:CHEBI:15996, uniprot:P27600
+	Gt(Gd~Gd~0,Pc~Pc~0,Pcg~Pcg~0,Pg~Pg~0,Rg~Rg~0,Rl~Rl~0,Rlg~Rlg~0,Rlgp~Rlgp~0)
+	P()
 end molecule types
 begin seed species
-	Gd(Gt~0,Rg~0,Rl~0,Rlg~0,Rlgp~0) 6.022e+27 # 10000.0mol/L * 6.022e23/mol *1.0L #Gd #Gd
+	Gt(Gd~Gd,Pc~0,Pcg~0,Pg~0,Rg~0,Rl~0,Rlg~0,Rlgp~0) 6.022e+27 # 10000.0mol/L * 6.022e23/mol *1.0L #Gd #Gd
 	R() 8.370580000000001e+24 #original 13.9mol/L #R #R
-	Gd(Gt~0,Rg~Rg,Rl~0,Rlg~0,Rlgp~0) 3.0471319999999997e+24 #original 5.06mol/L #Rg #Rg
+	Gt(Gd~0,Pc~0,Pcg~0,Pg~0,Rg~Rg,Rl~0,Rlg~0,Rlgp~0) 3.0471319999999997e+24 #original 5.06mol/L #Rg #Rg
 	IP3() 9.033e+21 #original 0.015mol/L #IP3 #IP3
-	Pc(Pcg~0,Pg~0) 5.473998e+24 #original 9.09mol/L #Pc #Pc
+	Gt(Gd~0,Pc~Pc,Pcg~0,Pg~0,Rg~0,Rl~0,Rlg~0,Rlgp~0) 5.473998e+24 #original 9.09mol/L #Pc #Pc
 	P() 5.473998000000001e+25 #original 90.9mol/L #P #P
 	Ca() 6.022000000000001e+22 #original 0.1mol/L #Ca #Ca
 end seed species
 begin observables
-	Species Gd Gd(Gt~0,Rg~0,Rl~0,Rlg~0,Rlgp~0) #Gd
-	Species Gt Gd(Gt~Gt,Rg~0,Rl~0,Rlg~0,Rlgp~0) #Gt
+	Species Gd Gt(Gd~Gd,Pc~0,Pcg~0,Pg~0,Rg~0,Rl~0,Rlg~0,Rlgp~0) #Gd
+	Species Gt Gt(Gd~0,Pc~0,Pcg~0,Pg~0,Rg~0,Rl~0,Rlg~0,Rlgp~0) #Gt
 	Species R R() #R
-	Species Rl Gd(Gt~0,Rg~0,Rl~Rl,Rlg~0,Rlgp~0) #Rl
-	Species Rg Gd(Gt~0,Rg~Rg,Rl~0,Rlg~0,Rlgp~0) #Rg
-	Species Rlg Gd(Gt~0,Rg~0,Rl~0,Rlg~Rlg,Rlgp~0) #Rlg
-	Species Rlgp Gd(Gt~0,Rg~0,Rl~0,Rlg~0,Rlgp~Rlgp) #Rlgp
+	Species Rl Gt(Gd~0,Pc~0,Pcg~0,Pg~0,Rg~0,Rl~Rl,Rlg~0,Rlgp~0) #Rl
+	Species Rg Gt(Gd~0,Pc~0,Pcg~0,Pg~0,Rg~Rg,Rl~0,Rlg~0,Rlgp~0) #Rg
+	Species Rlg Gt(Gd~0,Pc~0,Pcg~0,Pg~0,Rg~0,Rl~0,Rlg~Rlg,Rlgp~0) #Rlg
+	Species Rlgp Gt(Gd~0,Pc~0,Pcg~0,Pg~0,Rg~0,Rl~0,Rlg~0,Rlgp~Rlgp) #Rlgp
 	Species IP3 IP3() #IP3
-	Species Pc Pc(Pcg~0,Pg~0) #Pc
-	Species Pcg Pc(Pcg~Pcg,Pg~0) #Pcg
+	Species Pc Gt(Gd~0,Pc~Pc,Pcg~0,Pg~0,Rg~0,Rl~0,Rlg~0,Rlgp~0) #Pc
+	Species Pcg Gt(Gd~0,Pc~0,Pcg~Pcg,Pg~0,Rg~0,Rl~0,Rlg~0,Rlgp~0) #Pcg
 	Species P P() #P
-	Species Pg Pc(Pcg~0,Pg~Pg) #Pg
+	Species Pg Gt(Gd~0,Pc~0,Pcg~0,Pg~Pg,Rg~0,Rl~0,Rlg~0,Rlgp~0) #Pg
 	Species Ca Ca() #Ca
 end observables
 begin functions
+	J12() = Pcg*kf12
+	J13() = Pg*kf13
 	kr2() = Kd2*kf2
 	J2() = Gd*R*kf2 - Rg*kr2
-	J13() = Pg*kf13
-	J3() = Gd*Rl*kf3 - Rlg*kr3
-	J12() = Pcg*kf12
 	J7() = Gt*kf7
+	J3() = Gd*Rl*kf3 - Rlg*kr3
 	arRateGd() = J12 + J13 - J2 - J3 + J7
+	J6() = Rlg*kf6
+	J5() = Rlg*kf5
 	kr4() = Kd4*kf4
 	L() =  if((time()<ts+0.15&&time()>=ts),(Ls/(exp(-80*time()+80*ts+4.0)+1)),if((time()>=ts+0.15),(Ls),(0)))
 	J4() = L*Rg*kf4 - Rlg*kr4
-	J5() = Rlg*kf5
-	J6() = Rlg*kf6
 	arRateRlg() = J3 + J4 - J5 - J6
-	J9() = Gt*P*kf9 - Pg*kr9
 	J10() = Gt*Pc*kf10 - Pcg*kr10
+	J9() = Gt*P*kf9 - Pg*kr9
 	arRateGt() = -J10 + J6 - J7 - J9
-	Cp() = 1/(Rpc*Vc)
-	Cc() = 0.00166057788110262/Vc
-	Cpc() = Cc/Cp
-	J15() = PIP2*Pcg*kf15/(PIP2 + Km15/Cpc)
 	J16() = IP3*kf16
+	Cc() = 0.00166057788110262/Vc
+	Cp() = 1/(Rpc*Vc)
+	Cpc() = Cc/Cp
 	J14() = PIP2*Pc*kf14/(PIP2 + Km14/Cpc)
+	J15() = PIP2*Pcg*kf15/(PIP2 + Km15/Cpc)
 	arRateIP3() = Cpc*(J14 + J15) - J16
 	kr1() = Kd1*kf1
 	J1() = L*R*kf1 - Rl*kr1
 	arRateRl() = J1 - J3 + J6
+	J8() = Ca*P*kf8 - Pc*kr8
 	kr11() = Kd11*kf11
 	J11() = Ca*Pg*kf11 - Pcg*kr11
-	J8() = Ca*P*kf8 - Pc*kr8
 	arRateCa() = -Cpc*(J11 + J8)
 	arRatePcg() = J10 + J11 - J12
 	arRatePc() = -J10 + J12 + J8
@@ -117,17 +115,17 @@ begin functions
 end functions
 begin reaction rules
 	0  -> P() arRateP #rateLaw
-	0  -> Pc(Pcg~0,Pg~Pg) arRatePg #rateLaw
-	0  -> Pc(Pcg~0,Pg~0) arRatePc #rateLaw
-	0  -> Pc(Pcg~Pcg,Pg~0) arRatePcg #rateLaw
+	0  -> Gt(Gd~0,Pc~0,Pcg~0,Pg~Pg,Rg~0,Rl~0,Rlg~0,Rlgp~0) arRatePg #rateLaw
+	0  -> Gt(Gd~0,Pc~Pc,Pcg~0,Pg~0,Rg~0,Rl~0,Rlg~0,Rlgp~0) arRatePc #rateLaw
+	0  -> Gt(Gd~0,Pc~0,Pcg~Pcg,Pg~0,Rg~0,Rl~0,Rlg~0,Rlgp~0) arRatePcg #rateLaw
 	0  -> IP3() arRateIP3 #rateLaw
-	0  -> Gd(Gt~0,Rg~0,Rl~0,Rlg~0,Rlgp~0) arRateGd #rateLaw
-	0  -> Gd(Gt~Gt,Rg~0,Rl~0,Rlg~0,Rlgp~0) arRateGt #rateLaw
+	0  -> Gt(Gd~Gd,Pc~0,Pcg~0,Pg~0,Rg~0,Rl~0,Rlg~0,Rlgp~0) arRateGd #rateLaw
+	0  -> Gt(Gd~0,Pc~0,Pcg~0,Pg~0,Rg~0,Rl~0,Rlg~0,Rlgp~0) arRateGt #rateLaw
 	0  -> Ca() arRateCa #rateLaw
 	0  -> R() arRateR #rateLaw
-	0  -> Gd(Gt~0,Rg~0,Rl~Rl,Rlg~0,Rlgp~0) arRateRl #rateLaw
-	0  -> Gd(Gt~0,Rg~Rg,Rl~0,Rlg~0,Rlgp~0) arRateRg #rateLaw
-	0  -> Gd(Gt~0,Rg~0,Rl~0,Rlg~0,Rlgp~Rlgp) arRateRlgp #rateLaw
-	0  -> Gd(Gt~0,Rg~0,Rl~0,Rlg~Rlg,Rlgp~0) arRateRlg #rateLaw
+	0  -> Gt(Gd~0,Pc~0,Pcg~0,Pg~0,Rg~0,Rl~Rl,Rlg~0,Rlgp~0) arRateRl #rateLaw
+	0  -> Gt(Gd~0,Pc~0,Pcg~0,Pg~0,Rg~Rg,Rl~0,Rlg~0,Rlgp~0) arRateRg #rateLaw
+	0  -> Gt(Gd~0,Pc~0,Pcg~0,Pg~0,Rg~0,Rl~0,Rlg~0,Rlgp~Rlgp) arRateRlgp #rateLaw
+	0  -> Gt(Gd~0,Pc~0,Pcg~0,Pg~0,Rg~0,Rl~0,Rlg~Rlg,Rlgp~0) arRateRlg #rateLaw
 end reaction rules
 end model

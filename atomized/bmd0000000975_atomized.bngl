@@ -1,12 +1,12 @@
 ###
-#@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/BIOMD0000000073', 'http://identifiers.org/biomodels.db/BIOMD0000000083', 'http://identifiers.org/go/GO:0043153', 'http://identifiers.org/biomodels.db/MODEL0478895291', 'http://identifiers.org/biomodels.db/BIOMD0000000074', 'http://identifiers.org/biomodels.db/BIOMD0000000078', 'http://identifiers.org/taxonomy/9606']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/BIOMD0000000073', 'http://identifiers.org/biomodels.db/BIOMD0000000083', 'http://identifiers.org/biomodels.db/BIOMD0000000074', 'http://identifiers.org/go/GO:0043153', 'http://identifiers.org/taxonomy/9606', 'http://identifiers.org/biomodels.db/BIOMD0000000078', 'http://identifiers.org/biomodels.db/MODEL0478895291']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/biomodels.db/BIOMD0000000073', 'http://identifiers.org/pubmed/15363675', 'http://identifiers.org/biomodels.db/BIOMD0000000083', 'http://identifiers.org/biomodels.db/BIOMD0000000074', 'http://identifiers.org/biomodels.db/BIOMD0000000078']
 #@BQB_IS:['http://identifiers.org/biomodels.db/MODEL0478895291']
 #@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0043153']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
 #@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
-#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000975', 'http://identifiers.org/biomodels.db/MODEL0478895291']
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 19 molecules and 48 reactions. The translated model has 24 molecules and 64 rules'
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL0478895291', 'http://identifiers.org/biomodels.db/BIOMD0000000975']
+#@notes:'This is an atomized translation of an SBML model created on 14/08/2021. The original model has 19 molecules and 48 reactions. The translated model has 24 molecules and 64 rules'
 ###
 begin model
 begin parameters
@@ -72,17 +72,17 @@ begin parameters
 	sp_IN 602200000000000.1 #original 1.0substance/volume
 end parameters
 begin molecule types
+	PCN(bc,p~P~0)
+	Tot(BTot~BTot~0,c~C~0,p~P~0)
+	BC(n~N~0,p~P~0,pcn)
+	CC(p~P~0,p2~P~0,pc)
+	PC(cc,p~P~0)
+	#^ bqbiol:isEncodedBy ensembl:ENST00000008527
+	MC()
 	#^ bqbiol:isEncodedBy ensembl:ENST00000317276
 	#^ bqbiol:isDescribedBy pubmed:---
 	MP()
-	PC(cc,p~P~0)
-	Tot(BTot~BTot~0,c~C~0,p~P~0)
-	#^ bqbiol:isEncodedBy ensembl:ENST00000008527
-	MC()
-	BC(n~N~0,p~P~0,pcn)
-	PCN(bc,p~P~0)
 	MB()
-	CC(p~P~0,pc,phospho~PP~0)
 	MP
 	MC
 	MB
@@ -145,8 +145,8 @@ begin observables
 	Species IN IN
 end observables
 begin functions
-	V1P() = Vphos
 	ksP() = 0.6*kstot
+	V1P() = Vphos
 	arRatePC() = -CC*PC*k3 + MP*ksP - PC*V1P/(Kp + PC) - PC*kdn + PCC*k4 + PCP*V2P/(Kdp + PCP)
 	ksB() = 0.12*kstot
 	arRateBC() = -BC*V1B/(BC + Kp) - BC*k5 - BC*kdn + BCP*V2B/(BCP + Kdp) + BN*k6 + MB*ksB
@@ -203,15 +203,15 @@ begin functions
 	fRate34() = vdBN/(Kd + sp_BNP)
 end functions
 begin reaction rules
-	Reversible_reaction__between_PER_CRY_complex_in_cytosol_and_nucleus: CC(p~0,pc!124,phospho~0).PC(cc!124,p~0) <-> PCN(bc,p~0) k1,k2
+	Reversible_reaction__between_PER_CRY_complex_in_cytosol_and_nucleus: CC(p~0,p2~0,pc!921).PC(cc!921,p~0) <-> PCN(bc,p~0) k1,k2
 	Phosphorylation_of_PER_CRY_complex_in_nucleus: PCN(bc,p~0) -> PCN(bc,p~P) fRate1()
 	Dephosphorylation_of_PER_CRY_complex_in_nucleus: PCN(bc,p~P) -> PCN(bc,p~0) fRate2()
-	Phosphorylation_of_PER_CRY_complex_in_cytosol: CC(p~0,pc!124,phospho~0).PC(cc!124,p~0) -> CC(p~0,pc,phospho~PP) fRate3()
-	Dephosphorylation_of_PER_CRY_complex_in_cytosol: CC(p~0,pc,phospho~PP) -> CC(p~0,pc!124,phospho~0).PC(cc!124,p~0) fRate4()
-	Reversible_reaction_between_PER__CRY_and_PER_CRY_complex_in_cytosol: CC(p~0,pc,phospho~0) + PC(cc,p~0) <-> CC(p~0,pc!124,phospho~0).PC(cc!124,p~0) k3,k4
-	Phosphorylation_of_CRY_in_cytosol: CC(p~0,pc,phospho~0) -> CC(p~P,pc,phospho~0) fRate6()
-	Dephosphorylation_of_CRY_in_cytosol: CC(p~P,pc,phospho~0) -> CC(p~0,pc,phospho~0) fRate7()
-	Translation_of_Cry_mRNA_to_CRY_protein_in_cytosol: 0  -> CC(p~0,pc,phospho~0) fRate8() #Modifiers(MC_0)
+	Phosphorylation_of_PER_CRY_complex_in_cytosol: CC(p~0,p2~0,pc!921).PC(cc!921,p~0) -> CC(p~P,p2~P,pc) fRate3()
+	Dephosphorylation_of_PER_CRY_complex_in_cytosol: CC(p~P,p2~P,pc) -> CC(p~0,p2~0,pc!921).PC(cc!921,p~0) fRate4()
+	Reversible_reaction_between_PER__CRY_and_PER_CRY_complex_in_cytosol: CC(p~0,p2~0,pc) + PC(cc,p~0) <-> CC(p~0,p2~0,pc!921).PC(cc!921,p~0) k3,k4
+	Phosphorylation_of_CRY_in_cytosol: CC(p~0,p2~0,pc) -> CC(p~P,p2~0,pc) fRate6()
+	Dephosphorylation_of_CRY_in_cytosol: CC(p~P,p2~0,pc) -> CC(p~0,p2~0,pc) fRate7()
+	Translation_of_Cry_mRNA_to_CRY_protein_in_cytosol: 0  -> CC(p~0,p2~0,pc) fRate8() #Modifiers(MC_0)
 	Transcription_of_Cry_gene_to_Cry_mRNA: 0  -> MC() fRate9() #Modifiers(BN_0)
 	Transcription_of_Per_gene_to_Per_mRNA: 0  -> MP() fRate10() #Modifiers(BN_0)
 	Translation_of_Per_mRNA_to_PER_protein: 0  -> PC(cc,p~0) fRate11() #Modifiers(MP_0)
@@ -224,12 +224,12 @@ begin reaction rules
 	Reversible_reation_between_BMAL1_in_cytosol_and_nucleus: BC(n~0,p~0,pcn) <-> BC(n~N,p~0,pcn) k5,k6
 	Phosphorylation_of_BMAL1_in_nucleus: BC(n~N,p~0,pcn) -> BC(n~N,p~P,pcn) fRate19()
 	Dephosphorylation_of_BMAL1_in_nucleus: BC(n~N,p~P,pcn) -> BC(n~N,p~0,pcn) fRate20()
-	Reversible_reaction_between_PER_CRY_complex_and_PER_CRY_CLOCK_BMAL1_in_nuclues: PCN(bc,p~0) + BC(n~N,p~0,pcn) <-> BC(n~N,p~0,pcn!125).PCN(bc!125,p~0) k7,k8
-	Degradation_of_the_PER_CRY_CLOCK_BMAL1_complex: BC(n~N,p~0,pcn!125).PCN(bc!125,p~0) -> 0  fRate22()
+	Reversible_reaction_between_PER_CRY_complex_and_PER_CRY_CLOCK_BMAL1_in_nuclues: PCN(bc,p~0) + BC(n~N,p~0,pcn) <-> BC(n~N,p~0,pcn!922).PCN(bc!922,p~0) k7,k8
+	Degradation_of_the_PER_CRY_CLOCK_BMAL1_complex: BC(n~N,p~0,pcn!922).PCN(bc!922,p~0) -> 0  fRate22()
 	Degradation_of_Cry_mRNA: MC() -> 0  fRate23()
-	Degradation_of_CRY_P_protein_in_cytosol: CC(p~P,pc,phospho~0) -> 0  fRate24()
+	Degradation_of_CRY_P_protein_in_cytosol: CC(p~P,p2~0,pc) -> 0  fRate24()
 	Non_specific_degradation_of_Cry_mRNA: MC() -> 0  kdmc
-	Degradation_of_PER_CRY_complex_in_cytosol: CC(p~0,pc,phospho~PP) -> 0  fRate26()
+	Degradation_of_PER_CRY_complex_in_cytosol: CC(p~P,p2~P,pc) -> 0  fRate26()
 	Degradation_of_PER_CRY_complex_in_nucleus: PCN(bc,p~P) -> 0  fRate27()
 	Degradation_of_Per_mRNA: MP() -> 0  fRate28()
 	Degradation_of_PER_P_in_cytosol: PC(cc,p~P) -> 0  fRate29()
@@ -239,33 +239,33 @@ begin reaction rules
 	Degradation_of_BMAL1_P_in_cytosol: BC(n~0,p~P,pcn) -> 0  fRate33()
 	Degradation_of_BMAL1_P_in_nucleus: BC(n~N,p~P,pcn) -> 0  fRate34()
 	Non_specific_degradation_of_PER_protein_in_cytosol: PC(cc,p~0) -> 0  kdn
-	Non_specific_degradation_of_CRY_protein_in_cytosol: CC(p~0,pc,phospho~0) -> 0  kdnc
+	Non_specific_degradation_of_CRY_protein_in_cytosol: CC(p~0,p2~0,pc) -> 0  kdnc
 	Non_specific_degradation_of_PER_P_protein_in_cytosol: PC(cc,p~P) -> 0  kdn
-	Non_specific_degradation_of_CRY_P_protein_in_cytosol: CC(p~P,pc,phospho~0) -> 0  kdn
-	Non_specific_degradation_of_PER_CRY_protein_complex_in_cytosol: CC(p~0,pc!124,phospho~0).PC(cc!124,p~0) -> 0  kdn
+	Non_specific_degradation_of_CRY_P_protein_in_cytosol: CC(p~P,p2~0,pc) -> 0  kdn
+	Non_specific_degradation_of_PER_CRY_protein_complex_in_cytosol: CC(p~0,p2~0,pc!921).PC(cc!921,p~0) -> 0  kdn
 	Non_specific_degradation_of_PER_CRY_protein_complex_in_nucleus: PCN(bc,p~0) -> 0  kdn
-	Non_specific_degradation_of_PER_CRY_P_protein_complex_in_cytosol: CC(p~0,pc,phospho~PP) -> 0  kdn
+	Non_specific_degradation_of_PER_CRY_P_protein_complex_in_cytosol: CC(p~P,p2~P,pc) -> 0  kdn
 	Non_specific_degradation_of_PER_CRY_P_protein_complex_in_nucleus: PCN(bc,p~P) -> 0  kdn
 	Non_specific_degradation_of_BMAL1_protein_in_cytosol: BC(n~0,p~0,pcn) -> 0  kdn
 	Non_specific_degradation_of_BMAL1_P_protein_in_cytosol: BC(n~0,p~P,pcn) -> 0  kdn
 	Non_specific_degradation_of_BMAL1_protein_in_nucleus: BC(n~N,p~0,pcn) -> 0  kdn
 	Non_specific_degradation_of_BMAL1_P_protein_in_nucleus: BC(n~N,p~P,pcn) -> 0  kdn
-	Non_specific_degradation_of_PER_CRY_BMAL1_CLOCK_complex_in_nucleus: BC(n~N,p~0,pcn!125).PCN(bc!125,p~0) -> 0  kdn
+	Non_specific_degradation_of_PER_CRY_BMAL1_CLOCK_complex_in_nucleus: BC(n~N,p~0,pcn!922).PCN(bc!922,p~0) -> 0  kdn
 	0  -> MP() arRateMP #rateLaw
 	0  -> MC() arRateMC #rateLaw
 	0  -> MB() arRateMB #rateLaw
 	0  -> PC(cc,p~0) arRatePC #rateLaw
-	0  -> CC(p~0,pc,phospho~0) arRateCC #rateLaw
+	0  -> CC(p~0,p2~0,pc) arRateCC #rateLaw
 	0  -> PC(cc,p~P) arRatePCP #rateLaw
-	0  -> CC(p~P,pc,phospho~0) arRateCCP #rateLaw
-	0  -> CC(p~0,pc!124,phospho~0).PC(cc!124,p~0) arRatePCC #rateLaw
+	0  -> CC(p~P,p2~0,pc) arRateCCP #rateLaw
+	0  -> CC(p~0,p2~0,pc!921).PC(cc!921,p~0) arRatePCC #rateLaw
 	0  -> PCN(bc,p~0) arRatePCN #rateLaw
-	0  -> CC(p~0,pc,phospho~PP) arRatePCCP #rateLaw
+	0  -> CC(p~P,p2~P,pc) arRatePCCP #rateLaw
 	0  -> PCN(bc,p~P) arRatePCNP #rateLaw
 	0  -> BC(n~0,p~0,pcn) arRateBC #rateLaw
 	0  -> BC(n~0,p~P,pcn) arRateBCP #rateLaw
 	0  -> BC(n~N,p~0,pcn) arRateBN #rateLaw
 	0  -> BC(n~N,p~P,pcn) arRateBNP #rateLaw
-	0  -> BC(n~N,p~0,pcn!125).PCN(bc!125,p~0) arRateIN #rateLaw
+	0  -> BC(n~N,p~0,pcn!922).PCN(bc!922,p~0) arRateIN #rateLaw
 end reaction rules
 end model

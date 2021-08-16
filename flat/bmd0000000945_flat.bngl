@@ -1,5 +1,5 @@
 ###
-#@BQB_HAS_PART:['http://identifiers.org/chebi/CHEBI:63632', 'http://identifiers.org/chebi/CHEBI:70727']
+#@BQB_HAS_PART:['http://identifiers.org/chebi/CHEBI:70727', 'http://identifiers.org/chebi/CHEBI:63632']
 #@BQB_IS_VERSION_OF:['http://identifiers.org/pw/PW:0002367']
 #@BQB_OCCURS_IN:['http://identifiers.org/efo/0006492']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
@@ -8,7 +8,7 @@
 #@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000945', 'http://identifiers.org/biomodels.db/MODEL1805170002']
 #@creatorEmail:'mroberts@ebi.ac.uk'
 #@creatorName:'Roberts Matthew Grant'
-#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 5 molecules and 0 reactions. The translated model has 5 molecules and 5 rules'
+#@notes:'This is a plain translation of an SBML model created on 14/08/2021. The original model has 5 molecules and 0 reactions. The translated model has 5 molecules and 5 rules'
 ###
 begin model
 begin parameters
@@ -27,11 +27,11 @@ begin parameters
 	D 10.0
 end parameters
 begin molecule types
-	H_c()
 	L_c()
+	H_c()
 	L_m()
-	L_n()
 	H_m()
+	L_n()
 end molecule types
 begin seed species
 	L_m()() (10.0) #L_m
@@ -44,8 +44,8 @@ begin observables
 	Species L_n L_n() #L_n
 end observables
 begin functions
-	v_1() = 2.5e-9*V_m/V_c
 	v_2() = V_n/V_c
+	v_1() = 2.5e-9*V_m/V_c
 	arRateL_c() = H_c*k_c_c - L_c*k_b*(B_T - L_n) - L_c*(k_e + k_o_c) + L_m*k_i*v_1 + L_n*k_d*v_2
 	arRateL_n() = L_c*k_b*v_2*(B_T - L_n) - L_n*k_d
 	arRateL_m() = H_m*k_c_m + L_c*k_e*v_1 + L_m*(-k_0_m - k_i)

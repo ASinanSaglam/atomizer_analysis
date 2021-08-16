@@ -1,5 +1,5 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000182', 'http://identifiers.org/biomodels.db/MODEL8609366518']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL8609366518', 'http://identifiers.org/biomodels.db/BIOMD0000000182']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/18485874']
 #@BQB_IS_PART_OF:['http://identifiers.org/kegg.pathway/rno04010']
 #@BQB_HAS_PART:['http://identifiers.org/go/GO:0000165', 'http://identifiers.org/go/GO:0007190']
@@ -7,7 +7,7 @@
 #@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0000902']
 #@creatorEmail:'hdharuri@cds.caltech.edu'
 #@creatorName:'Dharuri Harish'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 37 molecules and 32 reactions. The translated model has 19 molecules and 32 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 37 molecules and 32 reactions. The translated model has 19 molecules and 32 rules'
 ###
 begin model
 begin parameters
@@ -91,92 +91,92 @@ begin compartments
 	cyto_mem 2 0.2
 end compartments
 begin molecule types
-	#^ bqbiol:isVersionOf uniprot:P49445
-	PTP()
+	#^ bqbiol:isVersionOf uniprot:P63086
+	MAPK(_active~_ACTIVE~0)
+	#^ bqbiol:isVersionOf uniprot:P54748, interpro:IPR003607
+	PDE4(_p~_P~0)
 	#^ bqbiol:isVersionOf go:GO:0005952
 	R2C2(camp,camp,camp,camp)
-	#^ bqbiol:hasPart uniprot:P18090, go:GO:0005834
-	iso_BAR_G()
-	bg(g_a_s,grk)
-	#^ bqbiol:isVersionOf uniprot:P18090
-	BAR_G()
-	#^ bqbiol:is chebi:CHEBI:17489, kegg.compound:C00575
-	cAMP(r2c2)
-	#^ bqbiol:isVersionOf uniprot:Q01986
-	MEK(_active~_ACTIVE~0)
 	#^ bqbiol:isVersionOf uniprot:P26769
 	#^ bqbiol:hasPart interpro:IPR001054
 	AC(g_a_s)
-	#^ bqbiol:isVersionOf uniprot:P54748, interpro:IPR003607
-	PDE4(_p~_P~0)
-	#^ bqbiol:is chebi:CHEBI:15422, kegg.compound:C00002
-	ATP()
+	#^ bqbiol:is chebi:CHEBI:17489, kegg.compound:C00575
+	cAMP(r2c2)
 	iso(bar)
-	#^ bqbiol:isVersionOf uniprot:P63086
-	MAPK(_active~_ACTIVE~0)
-	#^ bqbiol:isVersionOf uniprot:Q8CGK7
-	G_a_s(G_GDP~G_GDP~0,ac,bg)
-	#^ bqbiol:is chebi:CHEBI:16027, kegg.compound:C00020
-	AMP()
-	GRK(bg)
-	#^ bqbiol:hasPart uniprot:A1L1M0, uniprot:P26769, interpro:IPR001054
-	AC_PKA()
-	#^ bqbiol:isVersionOf uniprot:Q99MC6
-	B_Raf(_active~_ACTIVE~0)
-	#^ bqbiol:hasPart uniprot:P49445, uniprot:A1L1M0
-	PTP_PKA()
 	#^ bqbiol:isVersionOf uniprot:P18090
 	BAR(_p~_P~0,iso)
+	#^ bqbiol:is chebi:CHEBI:15422, kegg.compound:C00002
+	ATP()
+	bg(g_a_s,grk)
+	#^ bqbiol:isVersionOf uniprot:Q01986
+	MEK(_active~_ACTIVE~0)
+	GRK(bg)
+	#^ bqbiol:isVersionOf uniprot:P18090
+	BAR_G()
+	#^ bqbiol:is chebi:CHEBI:16027, kegg.compound:C00020
+	AMP()
+	#^ bqbiol:hasPart uniprot:P18090, go:GO:0005834
+	iso_BAR_G()
+	#^ bqbiol:isVersionOf uniprot:P49445
+	PTP()
+	#^ bqbiol:hasPart uniprot:P49445, uniprot:A1L1M0
+	PTP_PKA()
+	#^ bqbiol:isVersionOf uniprot:Q8CGK7
+	G_a_s(G_GDP~G_GDP~0,ac,bg)
+	#^ bqbiol:isVersionOf uniprot:Q99MC6
+	B_Raf(_active~_ACTIVE~0)
+	#^ bqbiol:hasPart uniprot:A1L1M0, uniprot:P26769, interpro:IPR001054
+	AC_PKA()
 end molecule types
 begin seed species
-	@cyto:G_a_s(G_GDP~G_GDP,ac,bg!326).bg(g_a_s!326,grk) 1.30508784e+27 # 2167.2mol/L * 6.022e23/mol *1.0L #G_protein #G_protein_cyto
-	@cyto:PDE4(_p~0) 1.4500976000000001e+26 #original 240.8/ #PDE4 #PDE4_cyto
-	@cyto:ATP() 1.812622e+30 #original 3010000.0/ #ATP #ATP_cyto
-	@cyto:R2C2(camp,camp,camp,camp) 7.2504880000000004e+25 #original 120.4/ #R2C2 #R2C2_cyto
-	@cyto_mem:BAR(_p~0,iso) 1.132136e+25 #original 94.0/ #BAR #BAR_cyto_mem
-	@extra:iso(bar) 4.028048888888885e+26 #original 6020.0/ #iso #iso_extra
-	@cyto:MEK(_active~0) 6.5254392e+25 #original 108.36/ #MEK #MEK_cyto
-	@cyto:B_Raf(_active~0) 7.2504880000000004e+25 #original 120.4/ #B_Raf #B_Raf_cyto
-	@cyto_mem:AC(g_a_s) 3.6132000000000002e+25 #original 300.0/ #AC #AC_cyto_mem
-	@cyto:AMP() 1.812622e+30 #original 3010000.0/ #AMP #AMP_cyto
-	@cyto:GRK(bg) 3.625244e+23 #original 0.602/ #GRK #GRK_cyto
-	@cyto:MAPK(_active~0) 1.30508784e+26 #original 216.72/ #MAPK #MAPK_cyto
-	@cyto:PTP() 7.2504880000000004e+25 #original 120.4/ #PTP #PTP_cyto
+	@cyto:G_a_s(G_GDP~G_GDP,ac,bg!326)@cyto.bg(g_a_s!326,grk)@cyto 1.30508784e+27 # 2167.2mol/L * 6.022e23/mol *1.0L #G_protein #G_protein_cyto
+	@cyto:PDE4(_p~0)@cyto 1.4500976000000001e+26 #original 240.8/ #PDE4 #PDE4_cyto
+	@cyto:ATP()@cyto 1.812622e+30 #original 3010000.0/ #ATP #ATP_cyto
+	@cyto:R2C2(camp,camp,camp,camp)@cyto 7.2504880000000004e+25 #original 120.4/ #R2C2 #R2C2_cyto
+	@cyto_mem:BAR(_p~0,iso)@cyto_mem 1.132136e+25 #original 94.0/ #BAR #BAR_cyto_mem
+	@extra:iso(bar)@extra 4.028048888888885e+26 #original 6020.0/ #iso #iso_extra
+	@cyto:MEK(_active~0)@cyto 6.5254392e+25 #original 108.36/ #MEK #MEK_cyto
+	@cyto:B_Raf(_active~0)@cyto 7.2504880000000004e+25 #original 120.4/ #B_Raf #B_Raf_cyto
+	@cyto_mem:AC(g_a_s)@cyto_mem 3.6132000000000002e+25 #original 300.0/ #AC #AC_cyto_mem
+	@cyto:AMP()@cyto 1.812622e+30 #original 3010000.0/ #AMP #AMP_cyto
+	@cyto:GRK(bg)@cyto 3.625244e+23 #original 0.602/ #GRK #GRK_cyto
+	@cyto:MAPK(_active~0)@cyto 1.30508784e+26 #original 216.72/ #MAPK #MAPK_cyto
+	@cyto:PTP()@cyto 7.2504880000000004e+25 #original 120.4/ #PTP #PTP_cyto
 end seed species
 begin observables
-	Species AC_active_cyto_mem @cyto_mem:G_a_s(G_GDP~0,ac!325,bg).AC(g_a_s!325) #AC_active_cyto_mem
-	Species G_GDP_cyto @cyto:G_a_s(G_GDP~G_GDP,ac,bg) #G_GDP_cyto
-	Species G_protein_cyto @cyto:G_a_s(G_GDP~G_GDP,ac,bg!326).bg(g_a_s!326,grk) #G_protein_cyto
-	Species G_a_s_cyto @cyto:G_a_s(G_GDP~0,ac,bg) #G_a_s_cyto
-	Species GRK_bg_cyto @cyto:bg(g_a_s,grk!323).GRK(bg!323) #GRK_bg_cyto
-	Species iso_BAR_p_cyto_mem @cyto_mem:BAR(_p~_P,iso!324).iso(bar!324) #iso_BAR_p_cyto_mem
-	Species PDE4_cyto @cyto:PDE4(_p~0) #PDE4_cyto
-	Species ATP_cyto @cyto:ATP() #ATP_cyto
+	Species AC_active_cyto_mem @cyto_mem:G_a_s(G_GDP~0,ac!325,bg)@cyto_mem.AC(g_a_s!325)@cyto_mem #AC_active_cyto_mem
+	Species G_GDP_cyto @cyto:G_a_s(G_GDP~G_GDP,ac,bg)@cyto #G_GDP_cyto
+	Species G_protein_cyto @cyto:G_a_s(G_GDP~G_GDP,ac,bg!326)@cyto.bg(g_a_s!326,grk)@cyto #G_protein_cyto
+	Species G_a_s_cyto @cyto:G_a_s(G_GDP~0,ac,bg)@cyto #G_a_s_cyto
+	Species GRK_bg_cyto @cyto:bg(g_a_s,grk!323)@cyto.GRK(bg!323)@cyto #GRK_bg_cyto
+	Species iso_BAR_p_cyto_mem @cyto_mem:BAR(_p~_P,iso!324)@cyto_mem.iso(bar!324)@cyto_mem #iso_BAR_p_cyto_mem
+	Species PDE4_cyto @cyto:PDE4(_p~0)@cyto #PDE4_cyto
+	Species ATP_cyto @cyto:ATP()@cyto #ATP_cyto
 	Species AC_PKA_cyto_mem @cyto_mem:AC_PKA() #AC_PKA_cyto_mem
-	Species R2C2_cyto @cyto:R2C2(camp,camp,camp,camp) #R2C2_cyto
-	Species BAR_cyto_mem @cyto_mem:BAR(_p~0,iso) #BAR_cyto_mem
-	Species BAR_G_cyto_mem @cyto_mem:BAR_G() #BAR_G_cyto_mem
-	Species iso_extra @extra:iso(bar) #iso_extra
-	Species iso_BAR_cyto_mem @cyto_mem:BAR(_p~0,iso!324).iso(bar!324) #iso_BAR_cyto_mem
-	Species MAPK_active_cyto @cyto:MAPK(_active~_ACTIVE) #MAPK_active_cyto
-	Species MEK_cyto @cyto:MEK(_active~0) #MEK_cyto
-	Species MEK_active_cyto @cyto:MEK(_active~_ACTIVE) #MEK_active_cyto
-	Species B_Raf_active_cyto @cyto:B_Raf(_active~_ACTIVE) #B_Raf_active_cyto
-	Species bg_cyto @cyto:bg(g_a_s,grk) #bg_cyto
-	Species B_Raf_cyto @cyto:B_Raf(_active~0) #B_Raf_cyto
-	Species PKA_cyto @cyto:R2C2(camp!242,camp!247,camp!248,camp!327).cAMP(r2c2!242).cAMP(r2c2!247).cAMP(r2c2!248).cAMP(r2c2!327) #PKA_cyto
-	Species AC_cyto_mem @cyto_mem:AC(g_a_s) #AC_cyto_mem
-	Species AMP_cyto @cyto:AMP() #AMP_cyto
-	Species GRK_cyto @cyto:GRK(bg) #GRK_cyto
-	Species MAPK_cyto @cyto:MAPK(_active~0) #MAPK_cyto
-	Species PTP_cyto @cyto:PTP() #PTP_cyto
-	Species PTP_PKA_cyto @cyto:PTP_PKA() #PTP_PKA_cyto
-	Species c_R2C2_cyto @cyto:R2C2(camp!242,camp,camp,camp).cAMP(r2c2!242) #c_R2C2_cyto
-	Species c2_R2C2_cyto @cyto:R2C2(camp!242,camp!247,camp,camp).cAMP(r2c2!242).cAMP(r2c2!247) #c2_R2C2_cyto
-	Species c3_R2C2_cyto @cyto:R2C2(camp!242,camp!247,camp!248,camp).cAMP(r2c2!242).cAMP(r2c2!247).cAMP(r2c2!248) #c3_R2C2_cyto
-	Species iso_BAR_G_cyto_mem @cyto_mem:iso_BAR_G() #iso_BAR_G_cyto_mem
-	Species cAMP_cyto @cyto:cAMP(r2c2) #cAMP_cyto
-	Species PDE4_P_cyto @cyto:PDE4(_p~_P) #PDE4_P_cyto
+	Species R2C2_cyto @cyto:R2C2(camp,camp,camp,camp)@cyto #R2C2_cyto
+	Species BAR_cyto_mem @cyto_mem:BAR(_p~0,iso)@cyto_mem #BAR_cyto_mem
+	Species BAR_G_cyto_mem @cyto_mem:BAR_G()@cyto_mem #BAR_G_cyto_mem
+	Species iso_extra @extra:iso(bar)@extra #iso_extra
+	Species iso_BAR_cyto_mem @cyto_mem:BAR(_p~0,iso!324)@cyto_mem.iso(bar!324)@cyto_mem #iso_BAR_cyto_mem
+	Species MAPK_active_cyto @cyto:MAPK(_active~_ACTIVE)@cyto #MAPK_active_cyto
+	Species MEK_cyto @cyto:MEK(_active~0)@cyto #MEK_cyto
+	Species MEK_active_cyto @cyto:MEK(_active~_ACTIVE)@cyto #MEK_active_cyto
+	Species B_Raf_active_cyto @cyto:B_Raf(_active~_ACTIVE)@cyto #B_Raf_active_cyto
+	Species bg_cyto @cyto:bg(g_a_s,grk)@cyto #bg_cyto
+	Species B_Raf_cyto @cyto:B_Raf(_active~0)@cyto #B_Raf_cyto
+	Species PKA_cyto @cyto:R2C2(camp!242,camp!247,camp!248,camp!327)@cyto.cAMP(r2c2!242)@cyto.cAMP(r2c2!247)@cyto.cAMP(r2c2!248)@cyto.cAMP(r2c2!327)@cyto #PKA_cyto
+	Species AC_cyto_mem @cyto_mem:AC(g_a_s)@cyto_mem #AC_cyto_mem
+	Species AMP_cyto @cyto:AMP()@cyto #AMP_cyto
+	Species GRK_cyto @cyto:GRK(bg)@cyto #GRK_cyto
+	Species MAPK_cyto @cyto:MAPK(_active~0)@cyto #MAPK_cyto
+	Species PTP_cyto @cyto:PTP()@cyto #PTP_cyto
+	Species PTP_PKA_cyto @cyto:PTP_PKA()@cyto #PTP_PKA_cyto
+	Species c_R2C2_cyto @cyto:R2C2(camp!242,camp,camp,camp)@cyto.cAMP(r2c2!242)@cyto #c_R2C2_cyto
+	Species c2_R2C2_cyto @cyto:R2C2(camp!242,camp!247,camp,camp)@cyto.cAMP(r2c2!242)@cyto.cAMP(r2c2!247)@cyto #c2_R2C2_cyto
+	Species c3_R2C2_cyto @cyto:R2C2(camp!242,camp!247,camp!248,camp)@cyto.cAMP(r2c2!242)@cyto.cAMP(r2c2!247)@cyto.cAMP(r2c2!248)@cyto #c3_R2C2_cyto
+	Species iso_BAR_G_cyto_mem @cyto_mem:iso_BAR_G()@cyto_mem #iso_BAR_G_cyto_mem
+	Species cAMP_cyto @cyto:cAMP(r2c2)@cyto #cAMP_cyto
+	Species PDE4_P_cyto @cyto:PDE4(_p~_P)@cyto #PDE4_P_cyto
 end observables
 begin functions
 	Vmax_PPase_mek() = 0.00166112956810631*PP2A_cyto*kcat_PPase_mek

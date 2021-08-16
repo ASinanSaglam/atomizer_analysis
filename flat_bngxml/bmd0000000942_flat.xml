@@ -1,0 +1,731 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000942_flat">
+    <ListOfParameters>
+      <Parameter id="k1" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="v2" type="Constant" value="0.005" expr="0.005"/>
+      <Parameter id="v2_" type="Constant" value="0.25" expr="0.25"/>
+      <Parameter id="k3" type="Constant" value="0.005" expr="0.005"/>
+      <Parameter id="v25" type="Constant" value="0.017" expr="0.017"/>
+      <Parameter id="v25_" type="Constant" value="0.17" expr="0.17"/>
+      <Parameter id="vwee" type="Constant" value="0.01" expr="0.01"/>
+      <Parameter id="vwee_" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="ka" type="Constant" value="0.02" expr="0.02"/>
+      <Parameter id="KKa" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="kb" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="KKb" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="kc" type="Constant" value="0.13" expr="0.13"/>
+      <Parameter id="KKc" type="Constant" value="0.01" expr="0.01"/>
+      <Parameter id="kd" type="Constant" value="0.13" expr="0.13"/>
+      <Parameter id="KKd" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="ke" type="Constant" value="0.02" expr="0.02"/>
+      <Parameter id="KKe" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="kf" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="KKf" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="kg" type="Constant" value="0.02" expr="0.02"/>
+      <Parameter id="KKg" type="Constant" value="0.01" expr="0.01"/>
+      <Parameter id="kh" type="Constant" value="0.15" expr="0.15"/>
+      <Parameter id="KKh" type="Constant" value="0.01" expr="0.01"/>
+      <Parameter id="Cdc25" type="Constant" value="6.022e+20" expr="6.022e+20"/>
+      <Parameter id="Wee1" type="Constant" value="6.022e+20" expr="6.022e+20"/>
+      <Parameter id="Cdk1" type="Constant" value="6.022e+22" expr="6.022e+22"/>
+      <Parameter id="Cdk1_total" type="Constant" value="6.022e+22" expr="6.022000000000001e+22"/>
+      <Parameter id="Cdc25_total" type="Constant" value="6.022e+20" expr="6.022e+20"/>
+      <Parameter id="Wee1_total" type="Constant" value="6.022e+20" expr="6.022e+20"/>
+      <Parameter id="IE_total" type="Constant" value="6.022e+20" expr="6.022e+20"/>
+      <Parameter id="APC_total" type="Constant" value="6.022e+20" expr="6.022e+20"/>
+      <Parameter id="ppase" type="Constant" value="6.022e+20" expr="6.022e+20"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="APC_active"/>
+      <MoleculeType id="Cdc25_phosphorylated"/>
+      <MoleculeType id="Cyclin"/>
+      <MoleculeType id="Cyclin_Cdk1_MPF"/>
+      <MoleculeType id="Cyclin_Cdk1_preMPF"/>
+      <MoleculeType id="IE_phosphorylated"/>
+      <MoleculeType id="Wee1_phosphorylated"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="6.022e+20" name="IE_phosphorylated()">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="IE_phosphorylated"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="6.022e+20" name="APC_active()">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="APC_active"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="R1_Dephosphorylation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR1_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_RP1_M1" name="Cdc25_phosphorylated"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR1_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR1_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="R2_Phosphorylation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="Cdc25_phosphorylated"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="fRate1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="_reverse_R2_Phosphorylation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="Cdc25_phosphorylated"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="fRate1m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR3_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="R3_Dephosphorylation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="Cyclin_Cdk1_preMPF"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="Cyclin_Cdk1_MPF"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="k25" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR4_PP1_M1"/>
+          <Delete id="RR4_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="R4_Phosphorylation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR5_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP1_M1" name="Cyclin_Cdk1_MPF"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="Cyclin_Cdk1_preMPF"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Function" name="kwee" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR5_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR5_PP1_M1"/>
+          <Delete id="RR5_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="R5_Dephosphorylation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR6_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_RP1_M1" name="Wee1_phosphorylated"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Function" name="fRate4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR6_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR6_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="R6_Phosphorylation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="Wee1_phosphorylated"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Function" name="fRate5" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR7_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="_reverse_R6_Phosphorylation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR8_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_RP1_M1" name="Wee1_phosphorylated"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Function" name="fRate5m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR8_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR8_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="R7_Protein_Complex__Formation_by_binding" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR9_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_RP1_M1" name="Cyclin"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR9_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP1_M1" name="Cyclin_Cdk1_MPF"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Function" name="fRate6" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR9_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR9_PP1_M1"/>
+          <Delete id="RR9_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="R8_Synthesis" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR10_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_PP1_M1" name="Cyclin"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k1"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR10_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR11" name="R9_Dephosphorylation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR11_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_RP1_M1" name="IE_phosphorylated"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR11_RateLaw" type="Function" name="fRate8" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR11_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR11_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR12" name="R10_Phosphorylation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR12_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_PP1_M1" name="IE_phosphorylated"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR12_RateLaw" type="Function" name="fRate9" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR12_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR13" name="_reverse_R10_Phosphorylation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR13_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_RP1_M1" name="IE_phosphorylated"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR13_RateLaw" type="Function" name="fRate9m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR13_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR13_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR14" name="R11_Inactivation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR14_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_RP1_M1" name="APC_active"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR14_RateLaw" type="Function" name="fRate10" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR14_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR14_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR15" name="R12_Activation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR15_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR15_PP1_M1" name="APC_active"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR15_RateLaw" type="Function" name="fRate11" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR15_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR16" name="_reverse_R12_Activation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR16_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR16_RP1_M1" name="APC_active"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR16_RateLaw" type="Function" name="fRate11m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR16_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR16_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR17" name="R13_Degradation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR17_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR17_RP1_M1" name="Cyclin_Cdk1_MPF"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR17_RateLaw" type="Function" name="k2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR17_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR17_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR18" name="R14_Degradation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR18_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR18_RP1_M1" name="Cyclin"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR18_RateLaw" type="Function" name="k2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR18_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR18_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR19" name="R15_Degradation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR19_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR19_RP1_M1" name="Cyclin_Cdk1_preMPF"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR19_RateLaw" type="Function" name="k2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR19_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR19_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="Cdc25_phosphorylated" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="Cdc25_phosphorylated"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="Cyclin_Cdk1_MPF" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="Cyclin_Cdk1_MPF"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="Cyclin_Cdk1_preMPF" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="Cyclin_Cdk1_preMPF"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="Wee1_phosphorylated" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="Wee1_phosphorylated"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="Cyclin" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="Cyclin"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O6" name="IE_phosphorylated" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O6_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O6_P1_M1" name="IE_phosphorylated"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O7" name="APC_active" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O7_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O7_P1_M1" name="APC_active"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="k2">
+        <ListOfReferences>
+          <Reference name="APC_total" type="Constant"/>
+          <Reference name="v2" type="Constant"/>
+          <Reference name="v2_" type="Constant"/>
+          <Reference name="APC_active" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (APC_active*v2_)+(v2*((-APC_active)+APC_total)) </Expression>
+      </Function>
+      <Function id="k25">
+        <ListOfReferences>
+          <Reference name="Cdc25_total" type="Constant"/>
+          <Reference name="v25" type="Constant"/>
+          <Reference name="v25_" type="Constant"/>
+          <Reference name="Cdc25_phosphorylated" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (Cdc25_phosphorylated*v25_)+(v25*((-Cdc25_phosphorylated)+Cdc25_total)) </Expression>
+      </Function>
+      <Function id="kwee">
+        <ListOfReferences>
+          <Reference name="Wee1_total" type="Constant"/>
+          <Reference name="vwee" type="Constant"/>
+          <Reference name="vwee_" type="Constant"/>
+          <Reference name="Wee1_phosphorylated" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (Wee1_phosphorylated*vwee)+(vwee_*((-Wee1_phosphorylated)+Wee1_total)) </Expression>
+      </Function>
+      <Function id="Cyclin_total_ar">
+        <ListOfReferences>
+          <Reference name="Cyclin" type="Observable"/>
+          <Reference name="Cyclin_Cdk1_MPF" type="Observable"/>
+          <Reference name="Cyclin_Cdk1_preMPF" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (Cyclin+Cyclin_Cdk1_MPF)+Cyclin_Cdk1_preMPF </Expression>
+      </Function>
+      <Function id="Cdc25_ar">
+        <ListOfReferences>
+          <Reference name="Cdc25_total" type="Constant"/>
+          <Reference name="Cdc25_phosphorylated" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (-Cdc25_phosphorylated)+Cdc25_total </Expression>
+      </Function>
+      <Function id="IE_ar">
+        <ListOfReferences>
+          <Reference name="IE_total" type="Constant"/>
+          <Reference name="IE_phosphorylated" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (-IE_phosphorylated)+IE_total </Expression>
+      </Function>
+      <Function id="Cdk1_ar">
+        <ListOfReferences>
+          <Reference name="Cdk1_total" type="Constant"/>
+        </ListOfReferences>
+        <Expression> Cdk1_total </Expression>
+      </Function>
+      <Function id="Wee1_ar">
+        <ListOfReferences>
+          <Reference name="Wee1_total" type="Constant"/>
+          <Reference name="Wee1_phosphorylated" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (-Wee1_phosphorylated)+Wee1_total </Expression>
+      </Function>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="KKb" type="Constant"/>
+          <Reference name="kb" type="Constant"/>
+          <Reference name="ppase" type="Constant"/>
+          <Reference name="Cdc25_phosphorylated" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (kb*ppase)/(Cdc25_phosphorylated+KKb) </Expression>
+      </Function>
+      <Function id="fRate1">
+        <ListOfReferences>
+          <Reference name="Cdc25_total" type="Constant"/>
+          <Reference name="KKa" type="Constant"/>
+          <Reference name="ka" type="Constant"/>
+          <Reference name="Cdc25_phosphorylated" type="Observable"/>
+          <Reference name="Cyclin_Cdk1_MPF" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((Cdc25_total*Cyclin_Cdk1_MPF)*ka)/(((-Cdc25_phosphorylated)+Cdc25_total)+KKa) </Expression>
+      </Function>
+      <Function id="fRate1m">
+        <ListOfReferences>
+          <Reference name="Cdc25_total" type="Constant"/>
+          <Reference name="KKa" type="Constant"/>
+          <Reference name="ka" type="Constant"/>
+          <Reference name="Cdc25_phosphorylated" type="Observable"/>
+          <Reference name="Cyclin_Cdk1_MPF" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (Cyclin_Cdk1_MPF*ka)/(((-Cdc25_phosphorylated)+Cdc25_total)+KKa) </Expression>
+      </Function>
+      <Function id="fRate4">
+        <ListOfReferences>
+          <Reference name="KKf" type="Constant"/>
+          <Reference name="kf" type="Constant"/>
+          <Reference name="ppase" type="Constant"/>
+          <Reference name="Wee1_phosphorylated" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (kf*ppase)/(KKf+Wee1_phosphorylated) </Expression>
+      </Function>
+      <Function id="fRate5">
+        <ListOfReferences>
+          <Reference name="KKe" type="Constant"/>
+          <Reference name="Wee1_total" type="Constant"/>
+          <Reference name="ke" type="Constant"/>
+          <Reference name="Cyclin_Cdk1_MPF" type="Observable"/>
+          <Reference name="Wee1_phosphorylated" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((Cyclin_Cdk1_MPF*Wee1_total)*ke)/((KKe-Wee1_phosphorylated)+Wee1_total) </Expression>
+      </Function>
+      <Function id="fRate5m">
+        <ListOfReferences>
+          <Reference name="KKe" type="Constant"/>
+          <Reference name="Wee1_total" type="Constant"/>
+          <Reference name="ke" type="Constant"/>
+          <Reference name="Cyclin_Cdk1_MPF" type="Observable"/>
+          <Reference name="Wee1_phosphorylated" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (Cyclin_Cdk1_MPF*ke)/((KKe-Wee1_phosphorylated)+Wee1_total) </Expression>
+      </Function>
+      <Function id="fRate6">
+        <ListOfReferences>
+          <Reference name="k3" type="Constant"/>
+          <Reference name="Cdk1_ar" type="Function"/>
+        </ListOfReferences>
+        <Expression> Cdk1_ar*k3 </Expression>
+      </Function>
+      <Function id="fRate8">
+        <ListOfReferences>
+          <Reference name="KKh" type="Constant"/>
+          <Reference name="kh" type="Constant"/>
+          <Reference name="ppase" type="Constant"/>
+          <Reference name="IE_phosphorylated" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (kh*ppase)/(IE_phosphorylated+KKh) </Expression>
+      </Function>
+      <Function id="fRate9">
+        <ListOfReferences>
+          <Reference name="IE_total" type="Constant"/>
+          <Reference name="KKg" type="Constant"/>
+          <Reference name="kg" type="Constant"/>
+          <Reference name="Cyclin_Cdk1_MPF" type="Observable"/>
+          <Reference name="IE_phosphorylated" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((Cyclin_Cdk1_MPF*IE_total)*kg)/(((-IE_phosphorylated)+IE_total)+KKg) </Expression>
+      </Function>
+      <Function id="fRate9m">
+        <ListOfReferences>
+          <Reference name="IE_total" type="Constant"/>
+          <Reference name="KKg" type="Constant"/>
+          <Reference name="kg" type="Constant"/>
+          <Reference name="Cyclin_Cdk1_MPF" type="Observable"/>
+          <Reference name="IE_phosphorylated" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (Cyclin_Cdk1_MPF*kg)/(((-IE_phosphorylated)+IE_total)+KKg) </Expression>
+      </Function>
+      <Function id="fRate10">
+        <ListOfReferences>
+          <Reference name="KKd" type="Constant"/>
+          <Reference name="kd" type="Constant"/>
+          <Reference name="ppase" type="Constant"/>
+          <Reference name="APC_active" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (kd*ppase)/(APC_active+KKd) </Expression>
+      </Function>
+      <Function id="fRate11">
+        <ListOfReferences>
+          <Reference name="APC_total" type="Constant"/>
+          <Reference name="KKc" type="Constant"/>
+          <Reference name="kc" type="Constant"/>
+          <Reference name="APC_active" type="Observable"/>
+          <Reference name="IE_phosphorylated" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((APC_total*IE_phosphorylated)*kc)/(((-APC_active)+APC_total)+KKc) </Expression>
+      </Function>
+      <Function id="fRate11m">
+        <ListOfReferences>
+          <Reference name="APC_total" type="Constant"/>
+          <Reference name="KKc" type="Constant"/>
+          <Reference name="kc" type="Constant"/>
+          <Reference name="APC_active" type="Observable"/>
+          <Reference name="IE_phosphorylated" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (IE_phosphorylated*kc)/(((-APC_active)+APC_total)+KKc) </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

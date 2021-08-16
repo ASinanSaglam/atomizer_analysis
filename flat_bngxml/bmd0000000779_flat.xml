@@ -1,0 +1,988 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000779_flat">
+    <ListOfParameters>
+      <Parameter id="a" type="Constant" value="0.431" expr="0.431"/>
+      <Parameter id="b" type="Constant" value="1.02e-9" expr="1.02e-09"/>
+      <Parameter id="c" type="Constant" value="2.9077e-13" expr="2.9077e-13"/>
+      <Parameter id="K_T" type="Constant" value="0.9" expr="0.9"/>
+      <Parameter id="delta_T" type="Constant" value="1.8328" expr="1.8328"/>
+      <Parameter id="ef" type="Constant" value="0.111" expr="0.111"/>
+      <Parameter id="f" type="Constant" value="0.0125" expr="0.0125"/>
+      <Parameter id="p" type="Constant" value="2.794e-13" expr="2.794e-13"/>
+      <Parameter id="p_N" type="Constant" value="0.068" expr="0.068"/>
+      <Parameter id="g_N" type="Constant" value="250360" expr="250360.0"/>
+      <Parameter id="K_N" type="Constant" value="0.0675" expr="0.0675"/>
+      <Parameter id="delta_N" type="Constant" value="1.8328" expr="1.8328"/>
+      <Parameter id="m" type="Constant" value="0.009" expr="0.009"/>
+      <Parameter id="theta" type="Constant" value="0.0025036" expr="0.0025036"/>
+      <Parameter id="q" type="Constant" value="3.422e-10" expr="3.422e-10"/>
+      <Parameter id="r_1" type="Constant" value="2.9077e-11" expr="2.9077e-11"/>
+      <Parameter id="r_2" type="Constant" value="5.8467e-13" expr="5.8467e-13"/>
+      <Parameter id="p_I" type="Constant" value="2.971" expr="2.971"/>
+      <Parameter id="g_I" type="Constant" value="2503.6" expr="2503.6"/>
+      <Parameter id="u" type="Constant" value="4.417e-14" expr="4.417e-14"/>
+      <Parameter id="kappa" type="Constant" value="2503.6" expr="2503.6"/>
+      <Parameter id="j" type="Constant" value="0.01245" expr="0.01245"/>
+      <Parameter id="k" type="Constant" value="20190000" expr="20190000.0"/>
+      <Parameter id="K_L" type="Constant" value="0.0486" expr="0.0486"/>
+      <Parameter id="delta_L" type="Constant" value="1.8328" expr="1.8328"/>
+      <Parameter id="alphabeta" type="Constant" value="2.25e+9" expr="2250000000.0"/>
+      <Parameter id="beta" type="Constant" value="0.0063" expr="0.0063"/>
+      <Parameter id="K_C" type="Constant" value="0.034" expr="0.034"/>
+      <Parameter id="delta_C" type="Constant" value="1.8328" expr="1.8328"/>
+      <Parameter id="gamma" type="Constant" value="0.5199" expr="0.5199"/>
+      <Parameter id="mu_I" type="Constant" value="11.7427" expr="11.7427"/>
+      <Parameter id="omega" type="Constant" value="0.07874" expr="0.07874"/>
+      <Parameter id="phi" type="Constant" value="2.38405e-7" expr="2.38405e-07"/>
+      <Parameter id="zeta" type="Constant" value="2503.6" expr="2503.6"/>
+      <Parameter id="ModelValue_34_0" type="Constant" value="0" expr="0"/>
+      <Parameter id="ModelValue_35_0" type="Constant" value="0" expr="0"/>
+      <Parameter id="ModelValue_36_0" type="Constant" value="0" expr="0"/>
+      <Parameter id="d" type="Constant" value="0" expr="0"/>
+      <Parameter id="l" type="Constant" value="0" expr="0"/>
+      <Parameter id="s" type="Constant" value="0" expr="0"/>
+      <Parameter id="v_M" type="Constant" value="0" expr="0"/>
+      <Parameter id="v_I" type="Constant" value="0" expr="0"/>
+      <Parameter id="v_L" type="Constant" value="0" expr="0"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="C_Lymphocytes"/>
+      <MoleculeType id="I_IL_2"/>
+      <MoleculeType id="L_CD8_T_Cells"/>
+      <MoleculeType id="M_Chemotherapy_Drug"/>
+      <MoleculeType id="N_Natural_Killer_Cells"/>
+      <MoleculeType id="T_Tumour_Cells"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="6.022e+30" name="T_Tumour_Cells()">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="T_Tumour_Cells"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="1.5055e+32" name="N_Natural_Killer_Cells()">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="N_Natural_Killer_Cells"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="3.1723896e+29" name="L_CD8_T_Cells()">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="L_CD8_T_Cells"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S4"  concentration="1.35495e+33" name="C_Lymphocytes()">
+        <ListOfMolecules>
+          <Molecule id="S4_M1" name="C_Lymphocytes"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S5"  concentration="6.461606e+26" name="I_IL_2()">
+        <ListOfMolecules>
+          <Molecule id="S5_M1" name="I_IL_2"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="Logistic_Tumour_Growth" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="T_Tumour_Cells"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="_reverse_Logistic_Tumour_Growth" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="T_Tumour_Cells"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="fRate0m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR2_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="NK_Induced_Tumour_Death" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="T_Tumour_Cells"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="fRate1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR3_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="CD8_T_Cell_Induced_Tumour_Death" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="T_Tumour_Cells"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="D" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR4_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="Chemotherapy_Induced_Tumour_Death" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR5_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP1_M1" name="T_Tumour_Cells"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="K_T"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR5_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR5_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="_reverse_Chemotherapy_Induced_Tumour_Death" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="T_Tumour_Cells"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Function" name="fRate3m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR6_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="NK_Death_Tumour_Killing" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR7_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_RP1_M1" name="N_Natural_Killer_Cells"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Function" name="fRate4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR7_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR7_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="NK_Stimulation_IL_2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR8_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP1_M1" name="N_Natural_Killer_Cells"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Function" name="fRate5" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR8_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="NK_Death_Medicine" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR9_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_RP1_M1" name="N_Natural_Killer_Cells"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="K_N"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR9_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR9_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="_reverse_NK_Death_Medicine" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR10_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_PP1_M1" name="N_Natural_Killer_Cells"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Function" name="fRate6m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR10_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR11" name="CD8_T_Cell_Turnover" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR11_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_RP1_M1" name="L_CD8_T_Cells"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR11_RateLaw" type="Function" name="fRate7" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR11_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR11_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR12" name="CD8_T_Cell_Death_Tumour_Killing" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR12_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_RP1_M1" name="L_CD8_T_Cells"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR12_RateLaw" type="Function" name="fRate8" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR12_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR12_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR13" name="CD8_T_Cell_Stimulation_NK" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR13_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_PP1_M1" name="L_CD8_T_Cells"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR13_RateLaw" type="Function" name="fRate9" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR13_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR14" name="CD8_T_Cell_Activation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR14_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_PP1_M1" name="L_CD8_T_Cells"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR14_RateLaw" type="Function" name="fRate10" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR14_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR15" name="CD8_Breakdown_Stimulation_IL_2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR15_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR15_RP1_M1" name="L_CD8_T_Cells"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR15_RateLaw" type="Function" name="fRate11" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR15_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR15_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR16" name="CD8_T_Cell_Stimulation_Tumour_Debris" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR16_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR16_PP1_M1" name="L_CD8_T_Cells"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR16_RateLaw" type="Function" name="fRate12" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR16_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR17" name="CD8_T_Cell_Death_Medicine" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR17_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR17_RP1_M1" name="L_CD8_T_Cells"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR17_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="K_L"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR17_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR17_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR18" name="_reverse_CD8_T_Cell_Death_Medicine" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR18_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR18_PP1_M1" name="L_CD8_T_Cells"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR18_RateLaw" type="Function" name="fRate13m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR18_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR19" name="Lymphocyte_Synthesis_Turnover_Bone_Marrow" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR19_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR19_PP1_M1" name="C_Lymphocytes"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR19_RateLaw" type="Function" name="fRate14" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR19_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR20" name="_reverse_Lymphocyte_Synthesis_Turnover_Bone_Marrow" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR20_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR20_RP1_M1" name="C_Lymphocytes"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR20_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="beta"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR20_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR20_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR21" name="Lymphocyte_Death_Medicine" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR21_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR21_RP1_M1" name="C_Lymphocytes"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR21_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="K_C"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR21_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR21_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR22" name="_reverse_Lymphocyte_Death_Medicine" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR22_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR22_PP1_M1" name="C_Lymphocytes"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR22_RateLaw" type="Function" name="fRate15m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR22_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR23" name="Medicine_Excretion" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR23_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR23_RP1_M1" name="M_Chemotherapy_Drug"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR23_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="gamma"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR23_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR23_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR24" name="IL_2_Turnover" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR24_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR24_RP1_M1" name="I_IL_2"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR24_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="mu_I"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR24_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR24_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR25" name="IL_2_Production_Naive" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR25_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR25_PP1_M1" name="I_IL_2"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR25_RateLaw" type="Function" name="fRate18" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR25_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR26" name="IL_2_Production_Activated_CD8" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR26_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR26_PP1_M1" name="I_IL_2"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR26_RateLaw" type="Function" name="fRate19" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR26_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR27" name="Medicine_Injection" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR27_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR27_PP1_M1" name="M_Chemotherapy_Drug"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR27_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="v_M"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR27_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR28" name="NK_Production_and_Turnover" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR28_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR28_PP1_M1" name="N_Natural_Killer_Cells"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR28_RateLaw" type="Function" name="fRate21" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR28_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR29" name="_reverse_NK_Production_and_Turnover" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR29_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR29_RP1_M1" name="N_Natural_Killer_Cells"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR29_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="f"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR29_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR29_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR30" name="CD8_T_Cell_Stimulation_IL_2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR30_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR30_PP1_M1" name="L_CD8_T_Cells"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR30_RateLaw" type="Function" name="fRate22" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR30_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR31" name="IL_2_Injection" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR31_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR31_PP1_M1" name="I_IL_2"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR31_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="v_I"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR31_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR32" name="CD8_T_Cell_Activated_Injection" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR32_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR32_PP1_M1" name="L_CD8_T_Cells"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR32_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="v_L"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR32_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="T_Tumour_Cells" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="T_Tumour_Cells"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="N_Natural_Killer_Cells" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="N_Natural_Killer_Cells"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="L_CD8_T_Cells" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="L_CD8_T_Cells"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="C_Lymphocytes" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="C_Lymphocytes"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="M_Chemotherapy_Drug" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="M_Chemotherapy_Drug"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O6" name="I_IL_2" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O6_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O6_P1_M1" name="I_IL_2"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="D">
+        <ListOfReferences>
+          <Reference name="ModelValue_34_0" type="Constant"/>
+          <Reference name="ModelValue_35_0" type="Constant"/>
+          <Reference name="ModelValue_36_0" type="Constant"/>
+          <Reference name="L_CD8_T_Cells" type="Observable"/>
+          <Reference name="T_Tumour_Cells" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (ModelValue_34_0*((L_CD8_T_Cells/T_Tumour_Cells)^ModelValue_35_0))/(ModelValue_36_0+((L_CD8_T_Cells/T_Tumour_Cells)^ModelValue_35_0)) </Expression>
+      </Function>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="a" type="Constant"/>
+          <Reference name="T_Tumour_Cells" type="Observable"/>
+        </ListOfReferences>
+        <Expression> T_Tumour_Cells*a </Expression>
+      </Function>
+      <Function id="fRate0m">
+        <ListOfReferences>
+          <Reference name="a" type="Constant"/>
+          <Reference name="b" type="Constant"/>
+          <Reference name="T_Tumour_Cells" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (T_Tumour_Cells*a)*b </Expression>
+      </Function>
+      <Function id="fRate1">
+        <ListOfReferences>
+          <Reference name="c" type="Constant"/>
+          <Reference name="N_Natural_Killer_Cells" type="Observable"/>
+        </ListOfReferences>
+        <Expression> N_Natural_Killer_Cells*c </Expression>
+      </Function>
+      <Function id="fRate3m">
+        <ListOfReferences>
+          <Reference name="K_T" type="Constant"/>
+          <Reference name="delta_T" type="Constant"/>
+          <Reference name="M_Chemotherapy_Drug" type="Observable"/>
+          <Reference name="T_Tumour_Cells" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (K_T*T_Tumour_Cells)*exp(((-M_Chemotherapy_Drug)*delta_T)) </Expression>
+      </Function>
+      <Function id="fRate4">
+        <ListOfReferences>
+          <Reference name="p" type="Constant"/>
+          <Reference name="T_Tumour_Cells" type="Observable"/>
+        </ListOfReferences>
+        <Expression> T_Tumour_Cells*p </Expression>
+      </Function>
+      <Function id="fRate5">
+        <ListOfReferences>
+          <Reference name="g_N" type="Constant"/>
+          <Reference name="p_N" type="Constant"/>
+          <Reference name="I_IL_2" type="Observable"/>
+          <Reference name="N_Natural_Killer_Cells" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((I_IL_2*N_Natural_Killer_Cells)*p_N)/(I_IL_2+g_N) </Expression>
+      </Function>
+      <Function id="fRate6m">
+        <ListOfReferences>
+          <Reference name="K_N" type="Constant"/>
+          <Reference name="delta_N" type="Constant"/>
+          <Reference name="M_Chemotherapy_Drug" type="Observable"/>
+          <Reference name="N_Natural_Killer_Cells" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (K_N*N_Natural_Killer_Cells)*exp(((-M_Chemotherapy_Drug)*delta_N)) </Expression>
+      </Function>
+      <Function id="fRate7">
+        <ListOfReferences>
+          <Reference name="m" type="Constant"/>
+          <Reference name="phi" type="Constant"/>
+          <Reference name="I_IL_2" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (m*phi)/(I_IL_2+phi) </Expression>
+      </Function>
+      <Function id="fRate8">
+        <ListOfReferences>
+          <Reference name="q" type="Constant"/>
+          <Reference name="T_Tumour_Cells" type="Observable"/>
+        </ListOfReferences>
+        <Expression> T_Tumour_Cells*q </Expression>
+      </Function>
+      <Function id="fRate9">
+        <ListOfReferences>
+          <Reference name="r_1" type="Constant"/>
+          <Reference name="N_Natural_Killer_Cells" type="Observable"/>
+          <Reference name="T_Tumour_Cells" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (N_Natural_Killer_Cells*T_Tumour_Cells)*r_1 </Expression>
+      </Function>
+      <Function id="fRate10">
+        <ListOfReferences>
+          <Reference name="r_2" type="Constant"/>
+          <Reference name="C_Lymphocytes" type="Observable"/>
+          <Reference name="T_Tumour_Cells" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (C_Lymphocytes*T_Tumour_Cells)*r_2 </Expression>
+      </Function>
+      <Function id="fRate11">
+        <ListOfReferences>
+          <Reference name="kappa" type="Constant"/>
+          <Reference name="u" type="Constant"/>
+          <Reference name="C_Lymphocytes" type="Observable"/>
+          <Reference name="I_IL_2" type="Observable"/>
+          <Reference name="L_CD8_T_Cells" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((C_Lymphocytes*I_IL_2)*L_CD8_T_Cells)*u)/(I_IL_2+kappa) </Expression>
+      </Function>
+      <Function id="fRate12">
+        <ListOfReferences>
+          <Reference name="j" type="Constant"/>
+          <Reference name="k" type="Constant"/>
+          <Reference name="L_CD8_T_Cells" type="Observable"/>
+          <Reference name="T_Tumour_Cells" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((L_CD8_T_Cells*T_Tumour_Cells)*j)/(T_Tumour_Cells+k) </Expression>
+      </Function>
+      <Function id="fRate13m">
+        <ListOfReferences>
+          <Reference name="K_L" type="Constant"/>
+          <Reference name="delta_L" type="Constant"/>
+          <Reference name="L_CD8_T_Cells" type="Observable"/>
+          <Reference name="M_Chemotherapy_Drug" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (K_L*L_CD8_T_Cells)*exp(((-M_Chemotherapy_Drug)*delta_L)) </Expression>
+      </Function>
+      <Function id="fRate14">
+        <ListOfReferences>
+          <Reference name="alphabeta" type="Constant"/>
+          <Reference name="beta" type="Constant"/>
+        </ListOfReferences>
+        <Expression> alphabeta*beta </Expression>
+      </Function>
+      <Function id="fRate15m">
+        <ListOfReferences>
+          <Reference name="K_C" type="Constant"/>
+          <Reference name="delta_C" type="Constant"/>
+          <Reference name="C_Lymphocytes" type="Observable"/>
+          <Reference name="M_Chemotherapy_Drug" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (C_Lymphocytes*K_C)*exp(((-M_Chemotherapy_Drug)*delta_C)) </Expression>
+      </Function>
+      <Function id="fRate18">
+        <ListOfReferences>
+          <Reference name="phi" type="Constant"/>
+          <Reference name="C_Lymphocytes" type="Observable"/>
+        </ListOfReferences>
+        <Expression> C_Lymphocytes*phi </Expression>
+      </Function>
+      <Function id="fRate19">
+        <ListOfReferences>
+          <Reference name="omega" type="Constant"/>
+          <Reference name="zeta" type="Constant"/>
+          <Reference name="I_IL_2" type="Observable"/>
+          <Reference name="L_CD8_T_Cells" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((I_IL_2*L_CD8_T_Cells)*omega)/(I_IL_2+zeta) </Expression>
+      </Function>
+      <Function id="fRate21">
+        <ListOfReferences>
+          <Reference name="ef" type="Constant"/>
+          <Reference name="f" type="Constant"/>
+          <Reference name="C_Lymphocytes" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (C_Lymphocytes*ef)*f </Expression>
+      </Function>
+      <Function id="fRate22">
+        <ListOfReferences>
+          <Reference name="g_I" type="Constant"/>
+          <Reference name="p_I" type="Constant"/>
+          <Reference name="I_IL_2" type="Observable"/>
+          <Reference name="L_CD8_T_Cells" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((I_IL_2*L_CD8_T_Cells)*p_I)/(I_IL_2+g_I) </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

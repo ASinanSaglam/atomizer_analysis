@@ -1,12 +1,12 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000320', 'http://identifiers.org/biomodels.db/MODEL0910130001']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL0910130001', 'http://identifiers.org/biomodels.db/BIOMD0000000320']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/11587490']
 #@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0051583']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10116']
 #@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:14330']
 #@creatorEmail:'lukas@ebi.ac.uk'
 #@creatorName:'Endler Lukas'
-#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 9 molecules and 14 reactions. The translated model has 9 molecules and 14 rules'
+#@notes:'This is a plain translation of an SBML model created on 14/08/2021. The original model has 9 molecules and 14 reactions. The translated model has 9 molecules and 14 rules'
 ###
 begin model
 begin parameters
@@ -44,15 +44,15 @@ begin compartments
 	V2_M 3 3.2
 end compartments
 begin molecule types
-	A_M()
-	C1_M()
-	C_dopa()
-	A_dopa()
 	C2_M()
-	C_3_OMD()
 	A_B()
+	A_M()
 	C2_B()
+	C_3_OMD()
+	C1_M()
 	C1_B()
+	A_dopa()
+	C_dopa()
 end molecule types
 begin seed species
 	@gut:A_dopa()() (404.0) * (0.25) #A_dopa
@@ -71,9 +71,9 @@ begin observables
 	Species C2_B_V2_B @V2_B:C2_B() #C2_B
 end observables
 begin functions
-	CL_COMT() = CL_dopa0*f_COMT
 	f_rest() = -f_AADC - f_COMT + 1
 	CL_rest() = CL_dopa0*f_rest
+	CL_COMT() = CL_dopa0*f_COMT
 	CL_AADC0() = CL_dopa0*f_AADC
 	CL_AADC() = CL_AADC0/(C1_M_V1_M/ki + 1)
 	CL_dopa() = CL_AADC + CL_COMT + CL_rest

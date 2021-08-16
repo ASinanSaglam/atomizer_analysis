@@ -1,7 +1,7 @@
 ###
 #@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000161', 'http://identifiers.org/biomodels.db/MODEL1633592197']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/17098795']
-#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/10579714', 'http://identifiers.org/pubmed/10388786', 'http://identifiers.org/biomodels.db/MODEL9071122126', 'http://identifiers.org/biomodels.db/BIOMD0000000075']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/MODEL9071122126', 'http://identifiers.org/pubmed/10388786', 'http://identifiers.org/biomodels.db/BIOMD0000000075', 'http://identifiers.org/pubmed/10579714']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/131567']
 #@BQB_HAS_PART:['http://identifiers.org/go/GO:0007265']
 #@BQB_IS_PART_OF:['http://identifiers.org/go/GO:0007173']
@@ -9,7 +9,7 @@
 #@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
 #@creatorEmail:'hdharuri@cds.caltech.edu'
 #@creatorName:'Dharuri Harish'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 46 molecules and 43 reactions. The translated model has 23 molecules and 45 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 46 molecules and 43 reactions. The translated model has 23 molecules and 45 rules'
 ###
 begin model
 begin parameters
@@ -148,112 +148,112 @@ begin compartments
 	GM 2 0.048
 end compartments
 begin molecule types
-	Ca_RasGRP()
-	#^ bqbiol:isVersionOf uniprot:Q07889
-	Sos(grb2)
-	#^ bqbiol:is chebi:CHEBI:29108, kegg.compound:C00076
-	Ca(_er~_ER~0,buffer,capri,plce,ract,rasgrp,rinh)
-	EGF(egfr)
-	RasG(_depal~_DEPAL~0,_golgi~_GOLGI~0,_pal~_PAL~0,dp~DP~0,tp~TP~0)
-	PLC(_act~_ACT~0)
-	#^ bqbiol:isVersionOf uniprot:P62993
-	Grb2(sos)
-	#^ bqbiol:is chebi:CHEBI:16595, kegg.compound:C01245
-	IP3(dag,dag_dag_pm)
+	PLCe(ca)
+	buffer(ca)
+	#^ bqbiol:isVersionOf uniprot:P98077
+	Shc(_star~_STAR~0)
 	#^ bqbiol:is chebi:CHEBI:16749, kegg.compound:C01194
 	PI()
+	CAPRI(ca)
+	RasG(_depal~_DEPAL~0,_golgi~_GOLGI~0,_pal~_PAL~0,dp~DP~0,tp~TP~0)
+	EGF(egfr)
+	PLC(_act~_ACT~0)
+	Ract(ca)
+	Ca_RasGRP()
+	#^ bqbiol:isVersionOf uniprot:P00533
+	EGFR(egf)
+	#^ bqbiol:isVersionOf uniprot:Q07889
+	Sos(grb2)
+	#^ bqbiol:is chebi:CHEBI:16595, kegg.compound:C01245
+	IP3(dag,dag_dag_pm)
+	#^ bqbiol:hasPart chebi:CHEBI:29108, kegg.compound:C00076, chebi:CHEBI:29108, kegg.compound:C00076
+	CaCAPRI()
 	#^ bqbiol:hasPart chebi:CHEBI:29108, uniprot:P62070, kegg.compound:C00076
 	Ras_CaPLCe()
+	#^ bqbiol:isVersionOf uniprot:P62993
+	Grb2(sos)
+	#^ bqbiol:isVersionOf uniprot:O95267
+	RasGRP(ca,dag)
+	#^ bqbiol:is chebi:CHEBI:29108, kegg.compound:C00076
+	Ca(_er~_ER~0,buffer,capri,plce,ract,rasgrp,rinh)
 	DAG_DAG_PM(ip3)
 	#^ bqbiol:is chebi:CHEBI:17526, kegg.compound:C01277
 	PIP()
-	buffer(ca)
 	#^ bqbiol:is chebi:CHEBI:18035, kegg.compound:C00165, chebi:CHEBI:18035, kegg.compound:C00165
 	DAG(ip3,rasgrp)
-	#^ bqbiol:isVersionOf uniprot:P98077
-	Shc(_star~_STAR~0)
 	SGS()
-	CAPRI(ca)
-	Ract(ca)
-	#^ bqbiol:isVersionOf uniprot:O95267
-	RasGRP(ca,dag)
-	PLCe(ca)
-	#^ bqbiol:isVersionOf uniprot:P00533
-	EGFR(egf)
 	Rinh(ca)
-	#^ bqbiol:hasPart chebi:CHEBI:29108, kegg.compound:C00076, chebi:CHEBI:29108, kegg.compound:C00076
-	CaCAPRI()
 end molecule types
 begin seed species
-	@EC:EGF(egfr) 2.421662992e+24 # 4.02136mol/L * 6.022e23/mol *1.0L #EGF #EGF_EC
-	@cyt:CAPRI(ca) 1.769119072e+25 #original 30.1/ #CAPRI #CAPRI_cyt
-	@PM:PIP() 1.0322912400000001e+27 #original 2857.0/ #PIP #PIP_PM
-	@PM:PI() 5.161709124e+28 #original 142857.0/ #PI #PI_PM
-	@PM:Shc(_star~0) 6.720552000000001e+25 #original 186.0/ #Shc #Shc_PM
-	@erMembrane:Ca(_er~0,buffer,capri,plce,ract!259,rasgrp,rinh).Ract(ca!259) 6.217016448e+22 #original 2.264/ #RactCa #RactCa
-	@PM:EGFR(egf) 7.587719999999999e+24 #original 21.0/ #EGFR #EGFR_PM
-	@PM:PLC(_act~0) 3.6132000000000002e+25 #original 100.0/ #PLC #PLC_PM
-	@PM:IP3(dag,dag_dag_pm!257).DAG_DAG_PM(ip3!257) 3.8733504e+26 #original 1072.0/ #PIP2 #PIP2_PM
-	@erMembrane:Ract(ca) 2.4868065792e+23 #original 9.056/ #Ract #Ract
-	@erMembrane:Rinh(ca) 2.137099404e+23 #original 7.7825/ #Rinh #Rinh
-	@erMembrane:Ca(_er~0,buffer,capri,plce,ract,rasgrp,rinh!258).Rinh(ca!258) 9.714088200000001e+22 #original 3.5375/ #RinhCa #RinhCa
-	@GM:RasG(_depal~0,_golgi~_GOLGI,_pal~0,dp~DP,tp~0) 1.4452800000000002e+24 #original 50.0/ #RasGDP_Golgi #RasGDP_Golgi_GM
-	@PM:DAG_DAG_PM(ip3) 7.2264e+26 #original 2000.0/ #DAG_DAG_PM #DAG_PM
-	@GM:IP3(dag!264,dag_dag_pm).DAG(ip3!264,rasgrp) 7.226400000000001e+24 #original 250.0/ #PIP2_PIP2_GM_GM #PIP2_GM_GM
-	@er:Ca(_er~_ER,buffer,capri,plce,ract,rasgrp,rinh) 8.700585600000001e+26 #original 120400.0/ #Ca_ER #Ca_ER
-	@cyt:Sos(grb2) 4.7766214944e+25 #original 81.27/ #Sos #Sos_cyt
-	@cyt:Grb2(sos) 2.95442885024e+26 #original 502.67/ #Grb2 #Grb2_cyt
-	@cyt:PLCe(ca) 7.076476288e+24 #original 12.04/ #PLCe #PLCe_cyt
-	@cyt:buffer(ca) 7.076476288e+25 #original 120.4/ #buffer #buffer_cyt
-	@cyt:Sos(grb2!25).Grb2(sos!25) 5.8380929376e+25 #original 99.33/ #SosGrb2 #SosGrb2_cyt
-	@PM:RasG(_depal~0,_golgi~0,_pal~0,dp~DP,tp~0) 1.4452800000000001e+26 #original 400.0/ #RasGDP #RasGDP_PM
-	@cyt:RasGRP(ca,dag) 1.769119072e+25 #original 30.1/ #RasGRP #RasGRP_cyt
+	@EC:EGF(egfr)@EC 2.421662992e+24 # 4.02136mol/L * 6.022e23/mol *1.0L #EGF #EGF_EC
+	@cyt:CAPRI(ca)@cyt 1.769119072e+25 #original 30.1/ #CAPRI #CAPRI_cyt
+	@PM:PIP()@PM 1.0322912400000001e+27 #original 2857.0/ #PIP #PIP_PM
+	@PM:PI()@PM 5.161709124e+28 #original 142857.0/ #PI #PI_PM
+	@PM:Shc(_star~0)@PM 6.720552000000001e+25 #original 186.0/ #Shc #Shc_PM
+	@erMembrane:Ca(_er~0,buffer,capri,plce,ract!259,rasgrp,rinh)@erMembrane.Ract(ca!259)@erMembrane 6.217016448e+22 #original 2.264/ #RactCa #RactCa
+	@PM:EGFR(egf)@PM 7.587719999999999e+24 #original 21.0/ #EGFR #EGFR_PM
+	@PM:PLC(_act~0)@PM 3.6132000000000002e+25 #original 100.0/ #PLC #PLC_PM
+	@PM:IP3(dag,dag_dag_pm!257)@PM.DAG_DAG_PM(ip3!257)@PM 3.8733504e+26 #original 1072.0/ #PIP2 #PIP2_PM
+	@erMembrane:Ract(ca)@erMembrane 2.4868065792e+23 #original 9.056/ #Ract #Ract
+	@erMembrane:Rinh(ca)@erMembrane 2.137099404e+23 #original 7.7825/ #Rinh #Rinh
+	@erMembrane:Ca(_er~0,buffer,capri,plce,ract,rasgrp,rinh!258)@erMembrane.Rinh(ca!258)@erMembrane 9.714088200000001e+22 #original 3.5375/ #RinhCa #RinhCa
+	@GM:RasG(_depal~0,_golgi~_GOLGI,_pal~0,dp~DP,tp~0)@GM 1.4452800000000002e+24 #original 50.0/ #RasGDP_Golgi #RasGDP_Golgi_GM
+	@PM:DAG_DAG_PM(ip3)@PM 7.2264e+26 #original 2000.0/ #DAG_DAG_PM #DAG_PM
+	@GM:IP3(dag!264,dag_dag_pm)@GM.DAG(ip3!264,rasgrp)@GM 7.226400000000001e+24 #original 250.0/ #PIP2_PIP2_GM_GM #PIP2_GM_GM
+	@er:Ca(_er~_ER,buffer,capri,plce,ract,rasgrp,rinh)@er 8.700585600000001e+26 #original 120400.0/ #Ca_ER #Ca_ER
+	@cyt:Sos(grb2)@cyt 4.7766214944e+25 #original 81.27/ #Sos #Sos_cyt
+	@cyt:Grb2(sos)@cyt 2.95442885024e+26 #original 502.67/ #Grb2 #Grb2_cyt
+	@cyt:PLCe(ca)@cyt 7.076476288e+24 #original 12.04/ #PLCe #PLCe_cyt
+	@cyt:buffer(ca)@cyt 7.076476288e+25 #original 120.4/ #buffer #buffer_cyt
+	@cyt:Sos(grb2!25)@cyt.Grb2(sos!25)@cyt 5.8380929376e+25 #original 99.33/ #SosGrb2 #SosGrb2_cyt
+	@PM:RasG(_depal~0,_golgi~0,_pal~0,dp~DP,tp~0)@PM 1.4452800000000001e+26 #original 400.0/ #RasGDP #RasGDP_PM
+	@cyt:RasGRP(ca,dag)@cyt 1.769119072e+25 #original 30.1/ #RasGRP #RasGRP_cyt
 end seed species
 begin observables
-	Species RasGTP_Golgi_GM @GM:RasG(_depal~0,_golgi~_GOLGI,_pal~0,dp~0,tp~TP) #RasGTP_Golgi_GM
-	Species EGF_EC @EC:EGF(egfr) #EGF_EC
-	Species CAPRI_cyt @cyt:CAPRI(ca) #CAPRI_cyt
-	Species PIP_PM @PM:PIP() #PIP_PM
-	Species PI_PM @PM:PI() #PI_PM
-	Species Shc_PM @PM:Shc(_star~0) #Shc_PM
-	Species CaCAPRI_PM @PM:CaCAPRI() #CaCAPRI_PM_PM
-	Species RactCa_erMembrane @erMembrane:Ca(_er~0,buffer,capri,plce,ract!259,rasgrp,rinh).Ract(ca!259) #RactCa
-	Species Shc_star_PM @PM:Shc(_star~_STAR) #Shc_star_PM
-	Species EGFR_PM @PM:EGFR(egf) #EGFR_PM
-	Species PLC_act_PM @PM:PLC(_act~_ACT) #PLC_act_PM
-	Species RasGTP_pal_cyt @cyt:RasG(_depal~0,_golgi~0,_pal~_PAL,dp~0,tp~TP) #RasGTP_pal_cyt
-	Species PLC_PM @PM:PLC(_act~0) #PLC_PM
-	Species PIP2_PM @PM:IP3(dag,dag_dag_pm!257).DAG_DAG_PM(ip3!257) #PIP2_PM
-	Species Activated_EGFR_PM @PM:EGFR(egf!24).EGF(egfr!24) #Activated_EGFR_PM
-	Species Ca_cyt @cyt:Ca(_er~0,buffer,capri,plce,ract,rasgrp,rinh) #Ca
-	Species Ract_erMembrane @erMembrane:Ract(ca) #Ract
-	Species Rinh_erMembrane @erMembrane:Rinh(ca) #Rinh
-	Species RinhCa_erMembrane @erMembrane:Ca(_er~0,buffer,capri,plce,ract,rasgrp,rinh!258).Rinh(ca!258) #RinhCa
-	Species IP3_cyt @cyt:IP3(dag,dag_dag_pm) #IP3
-	Species RasGDP_Golgi_GM @GM:RasG(_depal~0,_golgi~_GOLGI,_pal~0,dp~DP,tp~0) #RasGDP_Golgi_GM
+	Species RasGTP_Golgi_GM @GM:RasG(_depal~0,_golgi~_GOLGI,_pal~0,dp~0,tp~TP)@GM #RasGTP_Golgi_GM
+	Species EGF_EC @EC:EGF(egfr)@EC #EGF_EC
+	Species CAPRI_cyt @cyt:CAPRI(ca)@cyt #CAPRI_cyt
+	Species PIP_PM @PM:PIP()@PM #PIP_PM
+	Species PI_PM @PM:PI()@PM #PI_PM
+	Species Shc_PM @PM:Shc(_star~0)@PM #Shc_PM
+	Species CaCAPRI_PM @PM:CaCAPRI()@PM #CaCAPRI_PM_PM
+	Species RactCa_erMembrane @erMembrane:Ca(_er~0,buffer,capri,plce,ract!259,rasgrp,rinh)@erMembrane.Ract(ca!259)@erMembrane #RactCa
+	Species Shc_star_PM @PM:Shc(_star~_STAR)@PM #Shc_star_PM
+	Species EGFR_PM @PM:EGFR(egf)@PM #EGFR_PM
+	Species PLC_act_PM @PM:PLC(_act~_ACT)@PM #PLC_act_PM
+	Species RasGTP_pal_cyt @cyt:RasG(_depal~0,_golgi~0,_pal~_PAL,dp~0,tp~TP)@cyt #RasGTP_pal_cyt
+	Species PLC_PM @PM:PLC(_act~0)@PM #PLC_PM
+	Species PIP2_PM @PM:IP3(dag,dag_dag_pm!257)@PM.DAG_DAG_PM(ip3!257)@PM #PIP2_PM
+	Species Activated_EGFR_PM @PM:EGFR(egf!24)@PM.EGF(egfr!24)@PM #Activated_EGFR_PM
+	Species Ca_cyt @cyt:Ca(_er~0,buffer,capri,plce,ract,rasgrp,rinh)@cyt #Ca
+	Species Ract_erMembrane @erMembrane:Ract(ca)@erMembrane #Ract
+	Species Rinh_erMembrane @erMembrane:Rinh(ca)@erMembrane #Rinh
+	Species RinhCa_erMembrane @erMembrane:Ca(_er~0,buffer,capri,plce,ract,rasgrp,rinh!258)@erMembrane.Rinh(ca!258)@erMembrane #RinhCa
+	Species IP3_cyt @cyt:IP3(dag,dag_dag_pm)@cyt #IP3
+	Species RasGDP_Golgi_GM @GM:RasG(_depal~0,_golgi~_GOLGI,_pal~0,dp~DP,tp~0)@GM #RasGDP_Golgi_GM
 	Species Ca_RasGRP_GM @GM:Ca_RasGRP() #Ca_RasGRP_GM_GM
-	Species DAG_GM @GM:DAG(ip3,rasgrp) #DAG_GM_GM
-	Species RasGRP_DAG_GM @GM:DAG(ip3,rasgrp!263).RasGRP(ca,dag!263) #RasGRP_DAG_GM
-	Species CaCAPRI_CaCAPRI_cyt_cyt @cyt:Ca(_er~0,buffer,capri!265,plce,ract,rasgrp,rinh).CAPRI(ca!265) #CaCAPRI_cyt
-	Species DAG_DAG_PM_PM @PM:DAG_DAG_PM(ip3) #DAG_PM
-	Species RasGTP_depal_cyt @cyt:RasG(_depal~_DEPAL,_golgi~0,_pal~0,dp~0,tp~TP) #RasGTP_depal_cyt
-	Species RasGDP_depal_cyt @cyt:RasG(_depal~_DEPAL,_golgi~0,_pal~0,dp~DP,tp~0) #RasGDP_depal_cyt
-	Species RasGDP_pal_cyt @cyt:RasG(_depal~0,_golgi~0,_pal~_PAL,dp~DP,tp~0) #RasGDP_pal_cyt
-	Species Ca_PLCe_cyt @cyt:Ca(_er~0,buffer,capri,plce!260,ract,rasgrp,rinh).PLCe(ca!260) #Ca_PLCe_cyt
-	Species Ras_CaPLCe_GM @GM:Ras_CaPLCe() #Ras_CaPLCe_GM
-	Species PIP2_PIP2_GM_GM_GM @GM:IP3(dag!264,dag_dag_pm).DAG(ip3!264,rasgrp) #PIP2_GM_GM
-	Species Ca_ER_er @er:Ca(_er~_ER,buffer,capri,plce,ract,rasgrp,rinh) #Ca_ER
-	Species Sos_cyt @cyt:Sos(grb2) #Sos_cyt
-	Species Grb2_cyt @cyt:Grb2(sos) #Grb2_cyt
-	Species PLCe_cyt @cyt:PLCe(ca) #PLCe_cyt
-	Species buffer_cyt @cyt:buffer(ca) #buffer_cyt
-	Species ca_buffer_cyt @cyt:Ca(_er~0,buffer!262,capri,plce,ract,rasgrp,rinh).buffer(ca!262) #ca_buffer_cyt
-	Species SosGrb2_cyt @cyt:Sos(grb2!25).Grb2(sos!25) #SosGrb2_cyt
-	Species SGS_PM @PM:SGS() #SGS_PM
-	Species RasGTP_PM @PM:RasG(_depal~0,_golgi~0,_pal~0,dp~0,tp~TP) #RasGTP_PM
-	Species RasGDP_PM @PM:RasG(_depal~0,_golgi~0,_pal~0,dp~DP,tp~0) #RasGDP_PM
-	Species RasGRP_cyt @cyt:RasGRP(ca,dag) #RasGRP_cyt
-	Species CaRasGRP1_cyt @cyt:Ca(_er~0,buffer,capri,plce,ract,rasgrp!261,rinh).RasGRP(ca!261,dag) #CaRasGRP1_cyt
+	Species DAG_GM @GM:DAG(ip3,rasgrp)@GM #DAG_GM_GM
+	Species RasGRP_DAG_GM @GM:DAG(ip3,rasgrp!263)@GM.RasGRP(ca,dag!263)@GM #RasGRP_DAG_GM
+	Species CaCAPRI_CaCAPRI_cyt_cyt @cyt:Ca(_er~0,buffer,capri!265,plce,ract,rasgrp,rinh)@cyt.CAPRI(ca!265)@cyt #CaCAPRI_cyt
+	Species DAG_DAG_PM_PM @PM:DAG_DAG_PM(ip3)@PM #DAG_PM
+	Species RasGTP_depal_cyt @cyt:RasG(_depal~_DEPAL,_golgi~0,_pal~0,dp~0,tp~TP)@cyt #RasGTP_depal_cyt
+	Species RasGDP_depal_cyt @cyt:RasG(_depal~_DEPAL,_golgi~0,_pal~0,dp~DP,tp~0)@cyt #RasGDP_depal_cyt
+	Species RasGDP_pal_cyt @cyt:RasG(_depal~0,_golgi~0,_pal~_PAL,dp~DP,tp~0)@cyt #RasGDP_pal_cyt
+	Species Ca_PLCe_cyt @cyt:Ca(_er~0,buffer,capri,plce!260,ract,rasgrp,rinh)@cyt.PLCe(ca!260)@cyt #Ca_PLCe_cyt
+	Species Ras_CaPLCe_GM @GM:Ras_CaPLCe()@GM #Ras_CaPLCe_GM
+	Species PIP2_PIP2_GM_GM_GM @GM:IP3(dag!264,dag_dag_pm)@GM.DAG(ip3!264,rasgrp)@GM #PIP2_GM_GM
+	Species Ca_ER_er @er:Ca(_er~_ER,buffer,capri,plce,ract,rasgrp,rinh)@er #Ca_ER
+	Species Sos_cyt @cyt:Sos(grb2)@cyt #Sos_cyt
+	Species Grb2_cyt @cyt:Grb2(sos)@cyt #Grb2_cyt
+	Species PLCe_cyt @cyt:PLCe(ca)@cyt #PLCe_cyt
+	Species buffer_cyt @cyt:buffer(ca)@cyt #buffer_cyt
+	Species ca_buffer_cyt @cyt:Ca(_er~0,buffer!262,capri,plce,ract,rasgrp,rinh)@cyt.buffer(ca!262)@cyt #ca_buffer_cyt
+	Species SosGrb2_cyt @cyt:Sos(grb2!25)@cyt.Grb2(sos!25)@cyt #SosGrb2_cyt
+	Species SGS_PM @PM:SGS()@PM #SGS_PM
+	Species RasGTP_PM @PM:RasG(_depal~0,_golgi~0,_pal~0,dp~0,tp~TP)@PM #RasGTP_PM
+	Species RasGDP_PM @PM:RasG(_depal~0,_golgi~0,_pal~0,dp~DP,tp~0)@PM #RasGDP_PM
+	Species RasGRP_cyt @cyt:RasGRP(ca,dag)@cyt #RasGRP_cyt
+	Species CaRasGRP1_cyt @cyt:Ca(_er~0,buffer,capri,plce,ract,rasgrp!261,rinh)@cyt.RasGRP(ca!261,dag)@cyt #CaRasGRP1_cyt
 end observables
 begin functions
 	Vmax_Sos_act_RasPM() = 0.02*SGS_PM

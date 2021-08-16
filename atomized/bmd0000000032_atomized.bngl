@@ -6,7 +6,7 @@
 #@BQB_HAS_PART:['http://identifiers.org/go/GO:0000165']
 #@creatorEmail:'Harish_Dharuri@kgi.edu'
 #@creatorName:'Dharuri Harish'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 37 molecules and 47 reactions. The translated model has 18 molecules and 48 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 37 molecules and 47 reactions. The translated model has 18 molecules and 48 rules'
 ###
 begin model
 begin parameters
@@ -64,97 +64,97 @@ begin compartments
 	compartment 3 1.0 #cell
 end compartments
 begin molecule types
-	#^ bqbiol:is uniprot:P06784
-	Ste7(fus3)
-	#^ bqbiol:is uniprot:P13574
-	Ste12(fus3)
-	#^ bqbiol:is uniprot:P08539
-	GaGTP(GaGDP~GaGDP~0,gbg)
-	#^ bqbiol:is uniprot:P32917
-	Ste5(ste11)
-	#^ bqbiol:hasPart uniprot:P18852, uniprot:P18851, uniprot:P08539, uniprot:P16892, uniprot:P06784, uniprot:Q03497, uniprot:P23561, uniprot:P32917
-	complexE()
+	#^ bqbiol:hasPart uniprot:P23561, uniprot:P18851, uniprot:P32917, uniprot:P06784, uniprot:P08539, uniprot:P16892, uniprot:P18852
+	complexD()
+	complex(f~F~0,g~G~0,h~H~0)
 	#^ bqbiol:is uniprot:P06842
 	Ste2(Ste2active~Ste2active~0)
-	#^ bqbiol:hasPart uniprot:P18851, uniprot:P18852
-	#^ bqbiol:is bind:50058
-	Gbg(complexL~complexL~0,far1,fus3,gagtp)
 	a_factor()
 	#^ bqbiol:is uniprot:P00546
 	Cdc28(far1)
-	complex(f~F~0,g~G~0,h~H~0)
+	#^ bqbiol:is uniprot:P21268
+	Far1(Far1ubiquitin~Far1ubiquitin~0,cdc28,gbg,pp~PP~0)
+	#^ bqbiol:is uniprot:P32917
+	Ste5(ste11)
+	p(Sst2~Sst2~0)
+	#^ bqbiol:is uniprot:P23561
+	Ste11(ste5)
 	#^ bqbiol:hasPart uniprot:P16892, uniprot:P23561, uniprot:P06784, uniprot:P32917
 	#^ bqbiol:is bind:133390
 	complexC()
-	#^ bqbiol:is uniprot:P23561
-	Ste11(ste5)
+	#^ bqbiol:hasPart uniprot:P18851, uniprot:P18852
+	#^ bqbiol:is bind:50058
+	Gbg(complexL~complexL~0,far1,fus3,gagtp)
+	#^ bqbiol:is uniprot:P06784
+	Ste7(fus3)
+	#^ bqbiol:hasPart uniprot:P18852, uniprot:P18851, uniprot:P08539, uniprot:P16892, uniprot:P06784, uniprot:Q03497, uniprot:P23561, uniprot:P32917
+	complexE()
 	#^ bqbiol:is uniprot:P16892
 	Fus3(gbg,pp~PP~0,ste12,ste7)
-	p(Sst2~Sst2~0)
-	#^ bqbiol:is uniprot:P21268
-	Far1(Far1ubiquitin~Far1ubiquitin~0,cdc28,gbg,pp~PP~0)
+	#^ bqbiol:is uniprot:P13574
+	Ste12(fus3)
 	#^ bqbiol:is uniprot:Q03497
 	Ste20()
+	#^ bqbiol:is uniprot:P08539
+	GaGTP(GaGDP~GaGDP~0,gbg)
 	#^ bqbiol:is uniprot:P12630
 	Bar1(Bar1active~Bar1active~0,ex~EX~0)
-	#^ bqbiol:hasPart uniprot:P23561, uniprot:P18851, uniprot:P32917, uniprot:P06784, uniprot:P08539, uniprot:P16892, uniprot:P18852
-	complexD()
 end molecule types
 begin seed species
-	@Extracellular:a_factor() 6.022000000000001e+16 # (100.0 * 1e-09)mol/L * 6.022e23/mol *1.0L #a_factor #alpha
-	@compartment:Ste2(Ste2active~0) 1.00366666668674e+18 #original 1666.6666667nanomole (default)/L  #Ste2 #Ste2
-	@compartment:Gbg(complexL~0,far1,fus3,gagtp!42).GaGTP(GaGDP~0,gbg!42) 1.00366666668674e+18 #original 1666.6666667nanomole (default)/L  #Gabg #Gabc
-	@compartment:complexC() 1.41953556333884e+17 #original 235.724935791903nanomole (default)/L  #complexC #complexC
-	@compartment:Ste5(ste11) 9.534738953812736e+16 #original 158.33176608789nanomole (default)/L  #Ste5 #Ste5
-	@compartment:Ste11(ste5) 9.534738953812736e+16 #original 158.33176608789nanomole (default)/L  #Ste11 #Ste11
-	@compartment:Ste5(ste11!43).Ste11(ste5!43) 6.3799054127988664e+16 #original 105.943298120207nanomole (default)/L  #complexA #complexA
-	@compartment:Ste7(fus3) 2.1919900327917596e+16 #original 36.3997016405141nanomole (default)/L  #Ste7 #Ste7
-	@compartment:Fus3(gbg,pp~0,ste12,ste7) 4.133499003279169e+17 #original 686.399701640513nanomole (default)/L  #Fus3 #Fus3
-	@compartment:Fus3(gbg,pp~0,ste12,ste7!44).Ste7(fus3!44) 4.6896543338198424e+16 #original 77.8753625675829nanomole (default)/L  #complexB #complexB
-	@compartment:Ste20() 6.022000000000001e+17 #original 1000.0nanomole (default)/L  #Ste20 #Ste20
-	@compartment:Ste12(fus3) 1.2044000000000002e+17 #original 200.0nanomole (default)/L  #Ste12 #Ste12
-	@compartment:Bar1(Bar1active~0,ex~0) 1.2044000000000002e+17 #original 200.0nanomole (default)/L  #Bar1 #Bar1
-	@compartment:Far1(Far1ubiquitin~0,cdc28,gbg,pp~0) 3.0110000000000006e+17 #original 500.0nanomole (default)/L  #Far1 #Far1
-	@compartment:Cdc28(far1) 1.8066000000000003e+17 #original 300.0nanomole (default)/L  #Cdc28 #Cdc28
+	@Extracellular:a_factor()@Extracellular 6.022000000000001e+16 # (100.0 * 1e-09)mol/L * 6.022e23/mol *1.0L #a_factor #alpha
+	@compartment:Ste2(Ste2active~0)@compartment 1.00366666668674e+18 #original 1666.6666667nanomole (default)/L  #Ste2 #Ste2
+	@compartment:Gbg(complexL~0,far1,fus3,gagtp!42)@compartment.GaGTP(GaGDP~0,gbg!42)@compartment 1.00366666668674e+18 #original 1666.6666667nanomole (default)/L  #Gabg #Gabc
+	@compartment:complexC()@compartment 1.41953556333884e+17 #original 235.724935791903nanomole (default)/L  #complexC #complexC
+	@compartment:Ste5(ste11)@compartment 9.534738953812736e+16 #original 158.33176608789nanomole (default)/L  #Ste5 #Ste5
+	@compartment:Ste11(ste5)@compartment 9.534738953812736e+16 #original 158.33176608789nanomole (default)/L  #Ste11 #Ste11
+	@compartment:Ste5(ste11!43)@compartment.Ste11(ste5!43)@compartment 6.3799054127988664e+16 #original 105.943298120207nanomole (default)/L  #complexA #complexA
+	@compartment:Ste7(fus3)@compartment 2.1919900327917596e+16 #original 36.3997016405141nanomole (default)/L  #Ste7 #Ste7
+	@compartment:Fus3(gbg,pp~0,ste12,ste7)@compartment 4.133499003279169e+17 #original 686.399701640513nanomole (default)/L  #Fus3 #Fus3
+	@compartment:Fus3(gbg,pp~0,ste12,ste7!44)@compartment.Ste7(fus3!44)@compartment 4.6896543338198424e+16 #original 77.8753625675829nanomole (default)/L  #complexB #complexB
+	@compartment:Ste20()@compartment 6.022000000000001e+17 #original 1000.0nanomole (default)/L  #Ste20 #Ste20
+	@compartment:Ste12(fus3)@compartment 1.2044000000000002e+17 #original 200.0nanomole (default)/L  #Ste12 #Ste12
+	@compartment:Bar1(Bar1active~0,ex~0)@compartment 1.2044000000000002e+17 #original 200.0nanomole (default)/L  #Bar1 #Bar1
+	@compartment:Far1(Far1ubiquitin~0,cdc28,gbg,pp~0)@compartment 3.0110000000000006e+17 #original 500.0nanomole (default)/L  #Far1 #Far1
+	@compartment:Cdc28(far1)@compartment 1.8066000000000003e+17 #original 300.0nanomole (default)/L  #Cdc28 #Cdc28
 end seed species
 begin observables
-	Species a_factor_Extracellular @Extracellular:a_factor() #α-factor
-	Species Ste2_compartment @compartment:Ste2(Ste2active~0) #Ste2
-	Species Ste2active_compartment @compartment:Ste2(Ste2active~Ste2active) #Ste2active
-	Species Gabg_compartment @compartment:Gbg(complexL~0,far1,fus3,gagtp!42).GaGTP(GaGDP~0,gbg!42) #Gαβγ
-	Species GaGTP_compartment @compartment:GaGTP(GaGDP~0,gbg) #GαGTP
-	Species Gbg_compartment @compartment:Gbg(complexL~0,far1,fus3,gagtp) #Gβγ
-	Species GaGDP_compartment @compartment:GaGTP(GaGDP~GaGDP,gbg) #GαGDP
-	Species complexC_compartment @compartment:complexC() #complexC
-	Species complexD_compartment @compartment:complexD() #complexD
-	Species Ste5_compartment @compartment:Ste5(ste11) #Ste5
-	Species Ste11_compartment @compartment:Ste11(ste5) #Ste11
-	Species complexA_compartment @compartment:Ste5(ste11!43).Ste11(ste5!43) #complexA
-	Species Ste7_compartment @compartment:Ste7(fus3) #Ste7
-	Species Fus3_compartment @compartment:Fus3(gbg,pp~0,ste12,ste7) #Fus3
-	Species complexB_compartment @compartment:Fus3(gbg,pp~0,ste12,ste7!44).Ste7(fus3!44) #complexB
-	Species Ste20_compartment @compartment:Ste20() #Ste20
-	Species complexE_compartment @compartment:complexE() #complexE
-	Species complexF_compartment @compartment:complex(f~F,g~0,h~0) #complexF
-	Species complexG_compartment @compartment:complex(f~0,g~G,h~0) #complexG
-	Species complexH_compartment @compartment:complex(f~0,g~0,h~H) #complexH
-	Species complexI_compartment @compartment:Gbg(complexL~complexL,far1,fus3!45,gagtp).Fus3(gbg!45,pp~PP,ste12,ste7) #complexI
-	Species complexL_compartment @compartment:Gbg(complexL~complexL,far1,fus3,gagtp) #complexL
-	Species Fus3PP_compartment @compartment:Fus3(gbg,pp~PP,ste12,ste7) #Fus3PP
-	Species complexK_compartment @compartment:Fus3(gbg!45,pp~0,ste12,ste7).Gbg(complexL~complexL,far1,fus3!45,gagtp) #complexK
-	Species Ste12_compartment @compartment:Ste12(fus3) #Ste12
-	Species Ste12active_compartment @compartment:Fus3(gbg,pp~PP,ste12!48,ste7).Ste12(fus3!48) #Ste12active
-	Species Bar1_compartment @compartment:Bar1(Bar1active~0,ex~0) #Bar1
-	Species Bar1active_compartment @compartment:Bar1(Bar1active~Bar1active,ex~0) #Bar1active
-	Species Bar1activeEx_Extracellular @Extracellular:Bar1(Bar1active~Bar1active,ex~EX) #Bar1activeEx
-	Species Far1_compartment @compartment:Far1(Far1ubiquitin~0,cdc28,gbg,pp~0) #Far1
-	Species Far1PP_compartment @compartment:Far1(Far1ubiquitin~0,cdc28,gbg,pp~PP) #Far1PP
-	Species Far1ubiquitin_compartment @compartment:Far1(Far1ubiquitin~Far1ubiquitin,cdc28,gbg,pp~0) #Far1ubiquitin
-	Species complexM_compartment @compartment:Far1(Far1ubiquitin~0,cdc28,gbg!46,pp~PP).Gbg(complexL~0,far1!46,fus3,gagtp) #complexM
-	Species complexN_compartment @compartment:Far1(Far1ubiquitin~0,cdc28!47,gbg,pp~PP).Cdc28(far1!47) #complexN
-	Species Cdc28_compartment @compartment:Cdc28(far1) #Cdc28
-	Species Sst2_compartment @compartment:p(Sst2~Sst2) #Sst2
-	Species p_compartment @compartment:p(Sst2~0) #p
+	Species a_factor_Extracellular @Extracellular:a_factor()@Extracellular #α-factor
+	Species Ste2_compartment @compartment:Ste2(Ste2active~0)@compartment #Ste2
+	Species Ste2active_compartment @compartment:Ste2(Ste2active~Ste2active)@compartment #Ste2active
+	Species Gabg_compartment @compartment:Gbg(complexL~0,far1,fus3,gagtp!42)@compartment.GaGTP(GaGDP~0,gbg!42)@compartment #Gαβγ
+	Species GaGTP_compartment @compartment:GaGTP(GaGDP~0,gbg)@compartment #GαGTP
+	Species Gbg_compartment @compartment:Gbg(complexL~0,far1,fus3,gagtp)@compartment #Gβγ
+	Species GaGDP_compartment @compartment:GaGTP(GaGDP~GaGDP,gbg)@compartment #GαGDP
+	Species complexC_compartment @compartment:complexC()@compartment #complexC
+	Species complexD_compartment @compartment:complexD()@compartment #complexD
+	Species Ste5_compartment @compartment:Ste5(ste11)@compartment #Ste5
+	Species Ste11_compartment @compartment:Ste11(ste5)@compartment #Ste11
+	Species complexA_compartment @compartment:Ste5(ste11!43)@compartment.Ste11(ste5!43)@compartment #complexA
+	Species Ste7_compartment @compartment:Ste7(fus3)@compartment #Ste7
+	Species Fus3_compartment @compartment:Fus3(gbg,pp~0,ste12,ste7)@compartment #Fus3
+	Species complexB_compartment @compartment:Fus3(gbg,pp~0,ste12,ste7!44)@compartment.Ste7(fus3!44)@compartment #complexB
+	Species Ste20_compartment @compartment:Ste20()@compartment #Ste20
+	Species complexE_compartment @compartment:complexE()@compartment #complexE
+	Species complexF_compartment @compartment:complex(f~F,g~0,h~0)@compartment #complexF
+	Species complexG_compartment @compartment:complex(f~0,g~G,h~0)@compartment #complexG
+	Species complexH_compartment @compartment:complex(f~0,g~0,h~H)@compartment #complexH
+	Species complexI_compartment @compartment:Gbg(complexL~complexL,far1,fus3!45,gagtp)@compartment.Fus3(gbg!45,pp~PP,ste12,ste7)@compartment #complexI
+	Species complexL_compartment @compartment:Gbg(complexL~complexL,far1,fus3,gagtp)@compartment #complexL
+	Species Fus3PP_compartment @compartment:Fus3(gbg,pp~PP,ste12,ste7)@compartment #Fus3PP
+	Species complexK_compartment @compartment:Fus3(gbg!45,pp~0,ste12,ste7)@compartment.Gbg(complexL~complexL,far1,fus3!45,gagtp)@compartment #complexK
+	Species Ste12_compartment @compartment:Ste12(fus3)@compartment #Ste12
+	Species Ste12active_compartment @compartment:Fus3(gbg,pp~PP,ste12!48,ste7)@compartment.Ste12(fus3!48)@compartment #Ste12active
+	Species Bar1_compartment @compartment:Bar1(Bar1active~0,ex~0)@compartment #Bar1
+	Species Bar1active_compartment @compartment:Bar1(Bar1active~Bar1active,ex~0)@compartment #Bar1active
+	Species Bar1activeEx_Extracellular @Extracellular:Bar1(Bar1active~Bar1active,ex~EX)@Extracellular #Bar1activeEx
+	Species Far1_compartment @compartment:Far1(Far1ubiquitin~0,cdc28,gbg,pp~0)@compartment #Far1
+	Species Far1PP_compartment @compartment:Far1(Far1ubiquitin~0,cdc28,gbg,pp~PP)@compartment #Far1PP
+	Species Far1ubiquitin_compartment @compartment:Far1(Far1ubiquitin~Far1ubiquitin,cdc28,gbg,pp~0)@compartment #Far1ubiquitin
+	Species complexM_compartment @compartment:Far1(Far1ubiquitin~0,cdc28,gbg!46,pp~PP)@compartment.Gbg(complexL~0,far1!46,fus3,gagtp)@compartment #complexM
+	Species complexN_compartment @compartment:Far1(Far1ubiquitin~0,cdc28!47,gbg,pp~PP)@compartment.Cdc28(far1!47)@compartment #complexN
+	Species Cdc28_compartment @compartment:Cdc28(far1)@compartment #Cdc28
+	Species Sst2_compartment @compartment:p(Sst2~Sst2)@compartment #Sst2
+	Species p_compartment @compartment:p(Sst2~0)@compartment #p
 end observables
 begin functions
 	fRate0() = 0.03*Bar1activeEx_Extracellular

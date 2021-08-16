@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000057_atomized">
+    <ListOfParameters>
+      <Parameter id="k1" type="Constant" value="0.64" expr="0.64"/>
+      <Parameter id="L1" type="Constant" value="0.12" expr="0.12"/>
+      <Parameter id="l2" type="Constant" value="1.7" expr="1.7"/>
+      <Parameter id="lminus2" type="Constant" value="0.8" expr="0.8"/>
+      <Parameter id="c" type="Constant" value="10" expr="10.0"/>
+      <Parameter id="L3" type="Constant" value="0.025" expr="0.025"/>
+      <Parameter id="k2" type="Constant" value="37.4" expr="37.4"/>
+      <Parameter id="l4" type="Constant" value="1.7" expr="1.7"/>
+      <Parameter id="kminus1" type="Constant" value="0.04" expr="0.04"/>
+      <Parameter id="kminus2" type="Constant" value="1.4" expr="1.4"/>
+      <Parameter id="kminus3" type="Constant" value="29.8" expr="29.8"/>
+      <Parameter id="lminus4" type="Constant" value="2.5" expr="2.5"/>
+      <Parameter id="L5" type="Constant" value="54.7" expr="54.7"/>
+      <Parameter id="k3" type="Constant" value="0.11" expr="0.11"/>
+      <Parameter id="k4" type="Constant" value="4" expr="4.0"/>
+      <Parameter id="l6" type="Constant" value="4707" expr="4707.0"/>
+      <Parameter id="kminus4" type="Constant" value="0.54" expr="0.54"/>
+      <Parameter id="lminus6" type="Constant" value="11.4" expr="11.4"/>
+      <Parameter id="IP3" type="Constant" value="10" expr="10.0"/>
+      <Parameter id="r1_IP3" type="Constant" value="10" expr="10.000000"/>
+      <Parameter id="r2_kminus1" type="Constant" value="0.04" expr="0.040000"/>
+      <Parameter id="r2_lminus2" type="Constant" value="0.8" expr="0.800000"/>
+      <Parameter id="r3_kminus3" type="Constant" value="29.8" expr="29.800000"/>
+      <Parameter id="r5_kminus1" type="Constant" value="0.04" expr="0.040000"/>
+      <Parameter id="r5_lminus2" type="Constant" value="0.8" expr="0.800000"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="InactivatedState1"/>
+      <MoleculeType id="InactivatedState2"/>
+      <MoleculeType id="Receptor">
+        <ListOfComponentTypes>
+          <ComponentType id="ActivatedState">
+            <ListOfAllowedStates>
+              <AllowedState id="ActivatedState"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="OpenState">
+            <ListOfAllowedStates>
+              <AllowedState id="OpenState"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="ShutState">
+            <ListOfAllowedStates>
+              <AllowedState id="ShutState"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="6.022e+17" name="Receptor(ActivatedState~0,OpenState~0,ShutState~0)">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="Receptor">
+            <ListOfComponents>
+              <Component id="S1_M1_C1" name="ActivatedState" state="0" numberOfBonds="0"/>
+              <Component id="S1_M1_C2" name="OpenState" state="0" numberOfBonds="0"/>
+              <Component id="S1_M1_C3" name="ShutState" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="v1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR1_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_RP1_M1" name="Receptor">
+                <ListOfComponents>
+                  <Component id="RR1_RP1_M1_C1" name="ActivatedState" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_RP1_M1_C2" name="OpenState" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_RP1_M1_C3" name="ShutState" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="Receptor">
+                <ListOfComponents>
+                  <Component id="RR1_PP1_M1_C1" name="ActivatedState" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_PP1_M1_C2" name="OpenState" state="OpenState" numberOfBonds="0"/>
+                  <Component id="RR1_PP1_M1_C3" name="ShutState" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR1_RP1_M1" targetID="RR1_PP1_M1"/>
+          <MapItem sourceID="RR1_RP1_M1_C1" targetID="RR1_PP1_M1_C1"/>
+          <MapItem sourceID="RR1_RP1_M1_C2" targetID="RR1_PP1_M1_C2"/>
+          <MapItem sourceID="RR1_RP1_M1_C3" targetID="RR1_PP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR1_RP1_M1_C2" finalState="OpenState"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="_reverse_v1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="Receptor">
+                <ListOfComponents>
+                  <Component id="RR2_RP1_M1_C1" name="ActivatedState" state="0" numberOfBonds="0"/>
+                  <Component id="RR2_RP1_M1_C2" name="OpenState" state="OpenState" numberOfBonds="0"/>
+                  <Component id="RR2_RP1_M1_C3" name="ShutState" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="Receptor">
+                <ListOfComponents>
+                  <Component id="RR2_PP1_M1_C1" name="ActivatedState" state="0" numberOfBonds="0"/>
+                  <Component id="RR2_PP1_M1_C2" name="OpenState" state="0" numberOfBonds="0"/>
+                  <Component id="RR2_PP1_M1_C3" name="ShutState" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="Phi_minus2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1" targetID="RR2_PP1_M1"/>
+          <MapItem sourceID="RR2_RP1_M1_C1" targetID="RR2_PP1_M1_C1"/>
+          <MapItem sourceID="RR2_RP1_M1_C2" targetID="RR2_PP1_M1_C2"/>
+          <MapItem sourceID="RR2_RP1_M1_C3" targetID="RR2_PP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR2_RP1_M1_C2" finalState="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="v2_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="Receptor">
+                <ListOfComponents>
+                  <Component id="RR3_PP1_M1_C1" name="ActivatedState" state="0" numberOfBonds="0"/>
+                  <Component id="RR3_PP1_M1_C2" name="OpenState" state="0" numberOfBonds="0"/>
+                  <Component id="RR3_PP1_M1_C3" name="ShutState" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="_rateLaw1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="v2_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="InactivatedState1"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="fRate1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR4_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="v3" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR5_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP1_M1" name="Receptor">
+                <ListOfComponents>
+                  <Component id="RR5_RP1_M1_C1" name="ActivatedState" state="0" numberOfBonds="0"/>
+                  <Component id="RR5_RP1_M1_C2" name="OpenState" state="OpenState" numberOfBonds="0"/>
+                  <Component id="RR5_RP1_M1_C3" name="ShutState" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="Receptor">
+                <ListOfComponents>
+                  <Component id="RR5_PP1_M1_C1" name="ActivatedState" state="0" numberOfBonds="0"/>
+                  <Component id="RR5_PP1_M1_C2" name="OpenState" state="0" numberOfBonds="0"/>
+                  <Component id="RR5_PP1_M1_C3" name="ShutState" state="ShutState" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Function" name="Phi3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR5_RP1_M1" targetID="RR5_PP1_M1"/>
+          <MapItem sourceID="RR5_RP1_M1_C1" targetID="RR5_PP1_M1_C1"/>
+          <MapItem sourceID="RR5_RP1_M1_C2" targetID="RR5_PP1_M1_C2"/>
+          <MapItem sourceID="RR5_RP1_M1_C3" targetID="RR5_PP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR5_RP1_M1_C2" finalState="0"/>
+          <StateChange site="RR5_RP1_M1_C3" finalState="ShutState"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="_reverse_v3" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR6_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_RP1_M1" name="Receptor">
+                <ListOfComponents>
+                  <Component id="RR6_RP1_M1_C1" name="ActivatedState" state="0" numberOfBonds="0"/>
+                  <Component id="RR6_RP1_M1_C2" name="OpenState" state="0" numberOfBonds="0"/>
+                  <Component id="RR6_RP1_M1_C3" name="ShutState" state="ShutState" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="Receptor">
+                <ListOfComponents>
+                  <Component id="RR6_PP1_M1_C1" name="ActivatedState" state="0" numberOfBonds="0"/>
+                  <Component id="RR6_PP1_M1_C2" name="OpenState" state="OpenState" numberOfBonds="0"/>
+                  <Component id="RR6_PP1_M1_C3" name="ShutState" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r3_kminus3"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR6_RP1_M1" targetID="RR6_PP1_M1"/>
+          <MapItem sourceID="RR6_RP1_M1_C1" targetID="RR6_PP1_M1_C1"/>
+          <MapItem sourceID="RR6_RP1_M1_C2" targetID="RR6_PP1_M1_C2"/>
+          <MapItem sourceID="RR6_RP1_M1_C3" targetID="RR6_PP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR6_RP1_M1_C2" finalState="OpenState"/>
+          <StateChange site="RR6_RP1_M1_C3" finalState="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="v4" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR7_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_RP1_M1" name="Receptor">
+                <ListOfComponents>
+                  <Component id="RR7_RP1_M1_C1" name="ActivatedState" state="0" numberOfBonds="0"/>
+                  <Component id="RR7_RP1_M1_C2" name="OpenState" state="OpenState" numberOfBonds="0"/>
+                  <Component id="RR7_RP1_M1_C3" name="ShutState" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="Receptor">
+                <ListOfComponents>
+                  <Component id="RR7_PP1_M1_C1" name="ActivatedState" state="ActivatedState" numberOfBonds="0"/>
+                  <Component id="RR7_PP1_M1_C2" name="OpenState" state="0" numberOfBonds="0"/>
+                  <Component id="RR7_PP1_M1_C3" name="ShutState" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Function" name="Phi4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR7_RP1_M1" targetID="RR7_PP1_M1"/>
+          <MapItem sourceID="RR7_RP1_M1_C1" targetID="RR7_PP1_M1_C1"/>
+          <MapItem sourceID="RR7_RP1_M1_C2" targetID="RR7_PP1_M1_C2"/>
+          <MapItem sourceID="RR7_RP1_M1_C3" targetID="RR7_PP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR7_RP1_M1_C1" finalState="ActivatedState"/>
+          <StateChange site="RR7_RP1_M1_C2" finalState="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="_reverse_v4" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR8_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_RP1_M1" name="Receptor">
+                <ListOfComponents>
+                  <Component id="RR8_RP1_M1_C1" name="ActivatedState" state="ActivatedState" numberOfBonds="0"/>
+                  <Component id="RR8_RP1_M1_C2" name="OpenState" state="0" numberOfBonds="0"/>
+                  <Component id="RR8_RP1_M1_C3" name="ShutState" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR8_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP1_M1" name="Receptor">
+                <ListOfComponents>
+                  <Component id="RR8_PP1_M1_C1" name="ActivatedState" state="0" numberOfBonds="0"/>
+                  <Component id="RR8_PP1_M1_C2" name="OpenState" state="OpenState" numberOfBonds="0"/>
+                  <Component id="RR8_PP1_M1_C3" name="ShutState" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Function" name="Phi_minus4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR8_RP1_M1" targetID="RR8_PP1_M1"/>
+          <MapItem sourceID="RR8_RP1_M1_C1" targetID="RR8_PP1_M1_C1"/>
+          <MapItem sourceID="RR8_RP1_M1_C2" targetID="RR8_PP1_M1_C2"/>
+          <MapItem sourceID="RR8_RP1_M1_C3" targetID="RR8_PP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR8_RP1_M1_C1" finalState="0"/>
+          <StateChange site="RR8_RP1_M1_C2" finalState="OpenState"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="v5_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR9_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP1_M1" name="Receptor">
+                <ListOfComponents>
+                  <Component id="RR9_PP1_M1_C1" name="ActivatedState" state="ActivatedState" numberOfBonds="0"/>
+                  <Component id="RR9_PP1_M1_C2" name="OpenState" state="0" numberOfBonds="0"/>
+                  <Component id="RR9_PP1_M1_C3" name="ShutState" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Function" name="_rateLaw2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR9_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="v5_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR10_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_PP1_M1" name="InactivatedState2"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Function" name="fRate4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR10_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="Receptor" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="Receptor">
+                <ListOfComponents>
+                  <Component id="O1_P1_M1_C1" name="ActivatedState" state="0" numberOfBonds="0"/>
+                  <Component id="O1_P1_M1_C2" name="OpenState" state="0" numberOfBonds="0"/>
+                  <Component id="O1_P1_M1_C3" name="ShutState" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="OpenState" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="Receptor">
+                <ListOfComponents>
+                  <Component id="O2_P1_M1_C1" name="ActivatedState" state="0" numberOfBonds="0"/>
+                  <Component id="O2_P1_M1_C2" name="OpenState" state="OpenState" numberOfBonds="0"/>
+                  <Component id="O2_P1_M1_C3" name="ShutState" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="InactivatedState1" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="InactivatedState1"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="ShutState" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="Receptor">
+                <ListOfComponents>
+                  <Component id="O4_P1_M1_C1" name="ActivatedState" state="0" numberOfBonds="0"/>
+                  <Component id="O4_P1_M1_C2" name="OpenState" state="0" numberOfBonds="0"/>
+                  <Component id="O4_P1_M1_C3" name="ShutState" state="ShutState" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="ActivatedState" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="Receptor">
+                <ListOfComponents>
+                  <Component id="O5_P1_M1_C1" name="ActivatedState" state="ActivatedState" numberOfBonds="0"/>
+                  <Component id="O5_P1_M1_C2" name="OpenState" state="0" numberOfBonds="0"/>
+                  <Component id="O5_P1_M1_C3" name="ShutState" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O6" name="InactivatedState2" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O6_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O6_P1_M1" name="InactivatedState2"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="Phi5">
+        <ListOfReferences>
+          <Reference name="L1" type="Constant"/>
+          <Reference name="c" type="Constant"/>
+          <Reference name="k1" type="Constant"/>
+          <Reference name="l2" type="Constant"/>
+        </ListOfReferences>
+        <Expression> (c*((L1*k1)+l2))/(L1+c) </Expression>
+      </Function>
+      <Function id="Phi_minus4">
+        <ListOfReferences>
+          <Reference name="L1" type="Constant"/>
+          <Reference name="c" type="Constant"/>
+          <Reference name="kminus4" type="Constant"/>
+          <Reference name="lminus6" type="Constant"/>
+        </ListOfReferences>
+        <Expression> (L1*(kminus4+lminus6))/(L1+c) </Expression>
+      </Function>
+      <Function id="Phi4">
+        <ListOfReferences>
+          <Reference name="L5" type="Constant"/>
+          <Reference name="c" type="Constant"/>
+          <Reference name="k4" type="Constant"/>
+          <Reference name="l6" type="Constant"/>
+        </ListOfReferences>
+        <Expression> (c*((L5*k4)+l6))/(L5+c) </Expression>
+      </Function>
+      <Function id="Phi3">
+        <ListOfReferences>
+          <Reference name="L5" type="Constant"/>
+          <Reference name="c" type="Constant"/>
+          <Reference name="k3" type="Constant"/>
+        </ListOfReferences>
+        <Expression> (L5*k3)/(L5+c) </Expression>
+      </Function>
+      <Function id="Phi_minus2">
+        <ListOfReferences>
+          <Reference name="L5" type="Constant"/>
+          <Reference name="c" type="Constant"/>
+          <Reference name="kminus2" type="Constant"/>
+          <Reference name="lminus4" type="Constant"/>
+        </ListOfReferences>
+        <Expression> ((c*lminus4)+kminus2)/(1+(c/L5)) </Expression>
+      </Function>
+      <Function id="Phi2">
+        <ListOfReferences>
+          <Reference name="L1" type="Constant"/>
+          <Reference name="L3" type="Constant"/>
+          <Reference name="c" type="Constant"/>
+          <Reference name="k2" type="Constant"/>
+          <Reference name="l4" type="Constant"/>
+        </ListOfReferences>
+        <Expression> ((L3*k2)+(c*l4))/(L3+(c*(1+(L3/L1)))) </Expression>
+      </Function>
+      <Function id="Phi1">
+        <ListOfReferences>
+          <Reference name="L1" type="Constant"/>
+          <Reference name="L3" type="Constant"/>
+          <Reference name="c" type="Constant"/>
+          <Reference name="k1" type="Constant"/>
+          <Reference name="l2" type="Constant"/>
+        </ListOfReferences>
+        <Expression> (c*((L1*k1)+l2))/(L1+(c*((L1/L3)+1))) </Expression>
+      </Function>
+      <Function id="open_probability">
+        <ListOfReferences>
+          <Reference name="ActivatedState" type="Observable"/>
+          <Reference name="OpenState" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 0.6561*((ActivatedState+(0.111111111111111*OpenState))^4) </Expression>
+      </Function>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="Phi2" type="Function"/>
+        </ListOfReferences>
+        <Expression> 10.0*Phi2 </Expression>
+      </Function>
+      <Function id="fRate1">
+        <ListOfReferences>
+          <Reference name="Phi1" type="Function"/>
+          <Reference name="InactivatedState1" type="Observable"/>
+          <Reference name="Receptor" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (-0.84*InactivatedState1)+(Phi1*Receptor) </Expression>
+      </Function>
+      <Function id="fRate4">
+        <ListOfReferences>
+          <Reference name="Phi5" type="Function"/>
+          <Reference name="ActivatedState" type="Observable"/>
+          <Reference name="InactivatedState2" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (ActivatedState*Phi5)-(0.84*InactivatedState2) </Expression>
+      </Function>
+      <Function id="_rateLaw1">
+        <ListOfReferences>
+          <Reference name="fRate1" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate1() </Expression>
+      </Function>
+      <Function id="_rateLaw2">
+        <ListOfReferences>
+          <Reference name="fRate4" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate4() </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

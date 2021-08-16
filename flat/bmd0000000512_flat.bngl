@@ -1,5 +1,5 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1402030000', 'http://identifiers.org/biomodels.db/BIOMD0000000512']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000512', 'http://identifiers.org/biomodels.db/MODEL1402030000']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/24429592']
 #@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
@@ -7,7 +7,7 @@
 #@BQB_HAS_VERSION:['http://identifiers.org/doid/DOID:8398']
 #@creatorEmail:'viji@ebi.ac.uk'
 #@creatorName:'Chelliah Vijayalakshmi'
-#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 39 molecules and 75 reactions. The translated model has 39 molecules and 76 rules'
+#@notes:'This is a plain translation of an SBML model created on 14/08/2021. The original model has 39 molecules and 75 reactions. The translated model has 39 molecules and 76 rules'
 ###
 begin model
 begin parameters
@@ -149,45 +149,45 @@ begin compartments
 	MEC 3 1.49999996210681e-05
 end compartments
 begin molecule types
-	NPPE_r()
-	NLPE_r()
-	O_p()
-	P_m()
 	L_r()
-	NAPE_r()
-	PFM_gut()
-	L_p()
-	FAAH_b()
-	P_p()
-	S_p()
-	FAAHinh_m()
-	A_p()
-	O_m()
-	FAAH_r()
-	FAAHinh_b()
-	NSPE_r()
-	NOPE_b()
-	L_m()
-	FAAHinh_r()
-	NPPE_b()
-	NLPE_b()
-	S_m()
 	PFM_p()
-	NOPE_r()
-	S_r()
-	A_m()
-	A_b()
-	FAAH_m()
-	A_r()
+	NLPE_r()
+	FAAH_b()
+	PFM_r()
+	FAAHinh_b()
+	P_b()
 	S_b()
+	S_r()
+	FAAH_r()
+	A_m()
+	O_b()
+	A_p()
+	NAPE_r()
+	L_p()
+	NPPE_r()
+	S_m()
+	S_p()
+	NLPE_b()
+	P_r()
+	A_b()
+	NSPE_r()
+	PFM_gut()
+	O_m()
+	L_m()
 	O_r()
+	FAAHinh_m()
+	NOPE_b()
+	NOPE_r()
+	FAAH_m()
 	NAPE_b()
+	O_p()
+	FAAHinh_r()
+	A_r()
 	NSPE_b()
 	L_b()
-	PFM_r()
-	O_b()
-	P_r()
-	P_b()
+	P_p()
+	P_m()
+	NPPE_b()
 end molecule types
 begin seed species
 	@BRAIN:A_b() 6.543082700881389e+23 # 0.7493309mol/L * 6.022e23/mol *1.45000004768372L #A_b #A_b
@@ -265,8 +265,8 @@ begin observables
 	Species PFM_r_Default @Default:PFM_r() #PFM_r
 end observables
 begin functions
-	slag2_r() = A_r_ROB/Ki_A + S_r_ROB/Ki_S + P_r_ROB/Ki_P + O_r_ROB/Ki_O + L_r_ROB/Ki_L
 	slag1_r() = NSPE_r_ROB/Km_NS_PE + NPPE_r_ROB/Km_NP_PE + NOPE_r_ROB/Km_NO_PE + NLPE_r_ROB/Km_NL_PE + NAPE_r_ROB/Km_NA_PE
+	slag2_r() = A_r_ROB/Ki_A + S_r_ROB/Ki_S + P_r_ROB/Ki_P + O_r_ROB/Ki_O + L_r_ROB/Ki_L
 	den_r() = slag1_r + slag2_r + 1.0
 	slag1_b() = NSPE_b_BRAIN/Km_NS_PE + NPPE_b_BRAIN/Km_NP_PE + NOPE_b_BRAIN/Km_NO_PE + NLPE_b_BRAIN/Km_NL_PE + NAPE_b_BRAIN/Km_NA_PE
 	slag2_b() = A_b_BRAIN/Ki_A + S_b_BRAIN/Ki_S + P_b_BRAIN/Ki_P + O_b_BRAIN/Ki_O + L_b_BRAIN/Ki_L

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000458_atomized">
+    <ListOfParameters>
+      <Parameter id="serA" type="Constant" value="6.9253e+20" expr="6.925300000000001e+20"/>
+      <Parameter id="serC" type="Constant" value="6.022e+19" expr="6.022000000000001e+19"/>
+      <Parameter id="serB" type="Constant" value="1.5055e+20" expr="1.5055e+20"/>
+      <Parameter id="r1_kcatA" type="Constant" value="0.55" expr="0.550000"/>
+      <Parameter id="r1_KAp3g" type="Constant" value="1.2" expr="1.200000"/>
+      <Parameter id="r1_KAphp" type="Constant" value="0.0032" expr="0.003200"/>
+      <Parameter id="r1_KiAser" type="Constant" value="0.0038" expr="0.003800"/>
+      <Parameter id="r2_kcatC" type="Constant" value="1.75" expr="1.750000"/>
+      <Parameter id="r2_KCphp" type="Constant" value="0.0015" expr="0.001500"/>
+      <Parameter id="r2_KCpser" type="Constant" value="0.0017" expr="0.001700"/>
+      <Parameter id="r3_kcatB" type="Constant" value="1.43" expr="1.430000"/>
+      <Parameter id="r3_KBpser" type="Constant" value="0.0015" expr="0.001500"/>
+      <Parameter id="r3_KBser" type="Constant" value="0.15" expr="0.150000"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="phosphohydroxypyruvate"/>
+      <MoleculeType id="phosphoserine"/>
+      <MoleculeType id="s3_phosphoglycerate"/>
+      <MoleculeType id="serine"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="1.4211920000000003e+21" name="$s3_phosphoglycerate()" Fixed="1">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="s3_phosphoglycerate"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="3.6132e+20" name="phosphohydroxypyruvate()">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="phosphohydroxypyruvate"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="5.4198e+19" name="phosphoserine()">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="phosphoserine"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S4"  concentration="2.9507800000000007e+21" name="$serine()" Fixed="1">
+        <ListOfMolecules>
+          <Molecule id="S4_M1" name="serine"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="PDH" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR1_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_RP1_M1" name="s3_phosphoglycerate"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="phosphohydroxypyruvate"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR1_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+          <Delete id="RR1_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="PSA" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="phosphohydroxypyruvate"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="phosphoserine"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="fRate1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+          <Delete id="RR2_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="PSP" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="phosphoserine"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="serine"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="fRate2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+          <Delete id="RR3_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="s3_phosphoglycerate" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="s3_phosphoglycerate"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="phosphohydroxypyruvate" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="phosphohydroxypyruvate"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="phosphoserine" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="phosphoserine"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="serine" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="serine"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="serA" type="Constant"/>
+          <Reference name="phosphohydroxypyruvate" type="Observable"/>
+          <Reference name="s3_phosphoglycerate" type="Observable"/>
+          <Reference name="serine" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (6.688e-6*serA)/((((((1.2*phosphohydroxypyruvate)*serine)+(0.00456*phosphohydroxypyruvate))+(1.216e-5*s3_phosphoglycerate))+((0.0032*serine)*(s3_phosphoglycerate+1.2)))+1.4592e-5) </Expression>
+      </Function>
+      <Function id="fRate1">
+        <ListOfReferences>
+          <Reference name="serC" type="Constant"/>
+          <Reference name="phosphohydroxypyruvate" type="Observable"/>
+          <Reference name="phosphoserine" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (0.002975*serC)/(((0.0017*phosphohydroxypyruvate)+(0.0015*phosphoserine))+2.55e-6) </Expression>
+      </Function>
+      <Function id="fRate2">
+        <ListOfReferences>
+          <Reference name="serB" type="Constant"/>
+          <Reference name="phosphoserine" type="Observable"/>
+          <Reference name="serine" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (0.2145*serB)/(((0.15*phosphoserine)+(0.0015*serine))+0.000225) </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

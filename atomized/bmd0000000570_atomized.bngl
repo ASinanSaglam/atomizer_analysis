@@ -5,7 +5,7 @@
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
 #@creatorEmail:'winter@kapora.de'
 #@creatorName:'Winter Felix'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 20 molecules and 18 reactions. The translated model has 15 molecules and 28 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 20 molecules and 18 reactions. The translated model has 15 molecules and 28 rules'
 ###
 begin model
 begin parameters
@@ -72,34 +72,34 @@ begin compartments
 	compartment_4 3 0.0237 #Venous balloon
 end compartments
 begin molecule types
-	#^ bqbiol:is chebi:CHEBI:5656
-	dHb()
-	#^ bqbiol:is chebi:CHEBI:15846
-	NADpl()
-	#^ bqbiol:is chebi:CHEBI:15361
-	PYR()
 	#^ bqbiol:is chebi:CHEBI:15422
 	ATP()
-	#^ bqbiol:is chebi:CHEBI:18021
-	PEP()
-	#^ bqbiol:is chebi:CHEBI:16761
-	ADP()
 	#^ bqbiol:is chebi:CHEBI:4167, chebi:CHEBI:4167, chebi:CHEBI:4167
 	GLC()
-	#^ bqbiol:is chebi:CHEBI:422, chebi:CHEBI:422, chebi:CHEBI:422
-	LAC()
-	#^ bqbiol:is chebi:CHEBI:17287
-	PCr()
-	#^ bqbiol:is chebi:CHEBI:29052
-	GAP()
+	#^ bqbiol:is chebi:CHEBI:15846
+	NADpl()
+	#^ bqbiol:is chebi:CHEBI:29101
+	Napl()
+	#^ bqbiol:is chebi:CHEBI:15361
+	PYR()
+	#^ bqbiol:is chebi:CHEBI:16761
+	ADP()
+	#^ bqbiol:is chebi:CHEBI:16919
+	Cr()
+	#^ bqbiol:is chebi:CHEBI:18021
+	PEP()
 	#^ bqbiol:is chebi:CHEBI:15379, chebi:CHEBI:15379, chebi:CHEBI:15379
 	O2()
 	#^ bqbiol:is chebi:CHEBI:16908
 	NADH()
-	#^ bqbiol:is chebi:CHEBI:16919
-	Cr()
-	#^ bqbiol:is chebi:CHEBI:29101
-	Napl()
+	#^ bqbiol:is chebi:CHEBI:5656
+	dHb()
+	#^ bqbiol:is chebi:CHEBI:29052
+	GAP()
+	#^ bqbiol:is chebi:CHEBI:17287
+	PCr()
+	#^ bqbiol:is chebi:CHEBI:422, chebi:CHEBI:422, chebi:CHEBI:422
+	LAC()
 	parameter_7
 end molecule types
 begin seed species
@@ -150,8 +150,8 @@ begin observables
 end observables
 begin functions
 	maximum() = ModelValue_35*ModelValue_50
-	slope_up() = ModelValue_51*time()/ModelValue_52
 	slope_down() = maximum*(t_end + t_on - time())/t_on
+	slope_up() = ModelValue_51*time()/ModelValue_52
 	parameter_37() = is_falling*slope_down + is_maximum*maximum + is_rising*slope_up + parameter_36
 	F_out() = parameter_36*(227.349430861571*parameter_37*(1/Compartment_7)^(-0.5)/Compartment_7 + 0.00056169/Compartment_7^2)/(1 + 227.349430861571*parameter_36*(1/Compartment_7)^(-0.5)/Compartment_7)
 	arRatecompartment_4() = -F_out + parameter_37

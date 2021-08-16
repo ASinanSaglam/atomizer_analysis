@@ -1,11 +1,11 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1503250002', 'http://identifiers.org/biomodels.db/BIOMD0000000589']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000589', 'http://identifiers.org/biomodels.db/MODEL1503250002']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/26797294']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/3193']
 #@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0009628', 'http://identifiers.org/go/GO:0033355']
 #@creatorEmail:'juty@ebi.ac.uk'
 #@creatorName:'Juty Nick'
-#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 13 molecules and 0 reactions. The translated model has 13 molecules and 13 rules'
+#@notes:'This is a plain translation of an SBML model created on 14/08/2021. The original model has 13 molecules and 0 reactions. The translated model has 13 molecules and 13 rules'
 ###
 begin model
 begin parameters
@@ -63,19 +63,19 @@ begin parameters
 	MDAR 0
 end parameters
 begin molecule types
-	NADPplus()
-	MDA()
-	DHA()
-	APXi()
-	GSSG()
-	O2neg()
 	H2O2()
-	NADPH()
+	GSSG()
+	MDA()
 	ASC()
-	CoI()
-	APX()
-	GSH()
 	CoII()
+	APXi()
+	GSH()
+	APX()
+	NADPH()
+	CoI()
+	DHA()
+	NADPplus()
+	O2neg()
 end molecule types
 begin seed species
 	NADPH() 6.624201968954203e+19 # (110.000032696018 * 1e-06)mol/L * 6.022e23/mol *1.0L #NADPH #NADPH
@@ -103,18 +103,18 @@ begin functions
 	F1() =  if((time()>=24*i&&time()<=b+i*incr+24*i),(ai*sin(c_0+2*3.1415926535*(-24*i+time())/(b+i*incr))+ai),(0))
 	c12() = 2*NADPplus*k12/(MDA*k13 + 2*NADPplus*k12 + k11)
 	F12() = F1*c12
+	vGR() = GR*GSSG*NADPH*kcatGR/(GSSG*KMNADPH + GSSG*NADPH + KMGSSG*NADPH)
 	kN() = F12*kN_cte
 	vMDAR() = MDA*MDAR*NADPH*kcatMDAR/(KMMDA*NADPH + KMNADPH2*MDA + MDA*NADPH)
-	vGR() = GR*GSSG*NADPH*kcatGR/(GSSG*KMNADPH + GSSG*NADPH + KMGSSG*NADPH)
 	arRateNADPplus() = -0.5*F12 + NADPH*kN + vGR + vMDAR
 	arRateNADPH() = 0.5*F12 - NADPH*kN - vGR - vMDAR
 	vDHAR() = DHA*DHAR*GSH*kcatDHAR/(DHA*GSH + DHA*KMGSH + GSH*KMDHA + K)
 	c13() = MDA*k13/(MDA*k13 + 2*NADPplus*k12 + k11)
 	F13() = F1*c13
 	arRateASC() = -ASC*CoI*k2APX - ASC*CoII*k3APX - 2*ASC*H2O2*k5 - ASC*O2neg*k6 + DHA*GSH*k3 + F13 + MDA^2*k1 + vDHAR + 2*vMDAR
-	vSOD() = O2neg*SOD*kSOD
 	c11() = k11/(MDA*k13 + 2*NADPplus*k12 + k11)
 	F11() = F1*c11
+	vSOD() = O2neg*SOD*kSOD
 	arRateO2neg() = -ASC*O2neg*k6 + F11 - GSH*O2neg*k4 - 2*O2neg^2*k2 - 2*vSOD
 	arRateMDA() = ASC*CoI*k2APX + ASC*CoII*k3APX + 2*ASC*H2O2*k5 + ASC*O2neg*k6 - F13 - 2*MDA^2*k1 - 2*vMDAR
 	arRateGSSG() = DHA*GSH*k3 + GSH*O2neg*k4 + vDHAR - vGR

@@ -1,12 +1,12 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000660', 'http://identifiers.org/biomodels.db/MODEL1607210001']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1607210001', 'http://identifiers.org/biomodels.db/BIOMD0000000660']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/28317845']
 #@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/28317845']
 #@BQB_HAS_PROPERTY:['http://identifiers.org/pw/PW:0001360']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
 #@creatorEmail:'stefan.heldt@bioch.ox.ac.uk'
 #@creatorName:'Heldt Frank Stefan'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 20 molecules and 35 reactions. The translated model has 10 molecules and 41 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 20 molecules and 35 reactions. The translated model has 10 molecules and 41 rules'
 ###
 begin model
 begin parameters
@@ -48,17 +48,14 @@ begin parameters
 	tPcna 3.011e+20 #original 0.5substance/volume
 end parameters
 begin molecule types
-	#^ bqbiol:isVersionOf urn:miriam:ncit:NCIT_C16507
-	Dam()
-	#^ bqbiol:isVersionOf uniprot:P04637
-	P53()
-	#^ bqbiol:isVersionOf chebi:CHEBI:16991
-	Dna()
-	#^ bqbiol:isVersionOf go:GO:0036387
-	Rc(apcna,p~P~0)
 	#^ bqbiol:isVersionOf chebi:CHEBI:33699
 	#^ bqbiol:encodes uniprot:P04637
 	MrnaP53()
+	#^ bqbiol:encodes uniprot:P24864, uniprot:P78396
+	#^ bqbiol:isVersionOf chebi:CHEBI:33699
+	MrnaCy()
+	#^ bqbiol:isVersionOf chebi:CHEBI:16991
+	Dna()
 	#^ bqbiol:isVersionOf uniprot:P24864, uniprot:P78396
 	Cy(p21)
 	#^ bqbiol:isVersionOf uniprot:P38936
@@ -68,9 +65,12 @@ begin molecule types
 	MrnaP21()
 	#^ bqbiol:isVersionOf uniprot:P12004
 	aPcna(p21,rc)
-	#^ bqbiol:encodes uniprot:P24864, uniprot:P78396
-	#^ bqbiol:isVersionOf chebi:CHEBI:33699
-	MrnaCy()
+	#^ bqbiol:isVersionOf go:GO:0036387
+	Rc(apcna,p~P~0)
+	#^ bqbiol:isVersionOf urn:miriam:ncit:NCIT_C16507
+	Dam()
+	#^ bqbiol:isVersionOf uniprot:P04637
+	P53()
 end molecule types
 begin seed species
 	MrnaP21() 6.022e+20 # (1.0 * 0.001)mol/L * 6.022e23/mol *1.0L #MrnaP21 #MrnaP21
@@ -87,16 +87,16 @@ begin observables
 	Species MrnaP53 MrnaP53() #MrnaP53
 	Species P21 P21(apcna,cy) #P21
 	Species Cy Cy(p21) #Cy
-	Species CyP21 P21(apcna,cy!290).Cy(p21!290) #CyP21
+	Species CyP21 P21(apcna,cy!377).Cy(p21!377) #CyP21
 	Species aPcna aPcna(p21,rc) #aPcna
 	Species Rc Rc(apcna,p~0) #Rc
 	Species pRc Rc(apcna,p~P) #pRc
-	Species aRc aPcna(p21,rc!292).Rc(apcna!292,p~P) #aRc
-	Species iRc P21(apcna!291,cy).aPcna(p21!291,rc!292).Rc(apcna!292,p~P) #iRc
+	Species aRc aPcna(p21,rc!379).Rc(apcna!379,p~P) #aRc
+	Species iRc P21(apcna!378,cy).aPcna(p21!378,rc!379).Rc(apcna!379,p~P) #iRc
 	Species Dna Dna() #Dna
 	Species Dam Dam() #Dam
 	Species P53 P53() #P53
-	Species iPcna aPcna(p21!291,rc).P21(apcna!291,cy) #iPcna
+	Species iPcna aPcna(p21!378,rc).P21(apcna!378,cy) #iPcna
 end observables
 begin functions
 	tPcna_ar() = aPcna + aRc + iPcna + iRc
@@ -128,35 +128,35 @@ begin reaction rules
 	Degradation_of_p21_reactants_0: 0  -> P21(apcna,cy) -1*(fRate8()) #Modifiers(Skp2, Cy, Cdt2, aRc)
 	Synthesis_of_cyclins: MrnaCy() -> MrnaCy() + Cy(p21) kSyCy
 	Degradation_of_cyclins_reactants_0: 0  -> Cy(p21) -1*(fRate10()) #Modifiers(Skp2, Cy)
-	Association_and_dissociation_of_CDK2_Cyclin_and_p21: Cy(p21) + P21(apcna,cy) <-> P21(apcna,cy!290).Cy(p21!290) kAsCyP21,kDsCyP21
-	Degradation_of_cyclin_in_CDK2_Cyclin_p21_complexes_reactants_0: 0  -> P21(apcna,cy!290).Cy(p21!290) -1*(fRate12()) #Modifiers(Skp2, Cy)
+	Association_and_dissociation_of_CDK2_Cyclin_and_p21: Cy(p21) + P21(apcna,cy) <-> P21(apcna,cy!377).Cy(p21!377) kAsCyP21,kDsCyP21
+	Degradation_of_cyclin_in_CDK2_Cyclin_p21_complexes_reactants_0: 0  -> P21(apcna,cy!377).Cy(p21!377) -1*(fRate12()) #Modifiers(Skp2, Cy)
 	Degradation_of_cyclin_in_CDK2_Cyclin_p21_complexes_products_0: 0  -> P21(apcna,cy) fRate12() #Modifiers(Skp2, Cy)
-	Degradation_of_p21_in_CDK2_Cyclin_p21_complexes_reactants_0: 0  -> P21(apcna,cy!290).Cy(p21!290) -1*(fRate13()) #Modifiers(Skp2, Cy, Cdt2, aRc)
+	Degradation_of_p21_in_CDK2_Cyclin_p21_complexes_reactants_0: 0  -> P21(apcna,cy!377).Cy(p21!377) -1*(fRate13()) #Modifiers(Skp2, Cy, Cdt2, aRc)
 	Degradation_of_p21_in_CDK2_Cyclin_p21_complexes_products_0: 0  -> Cy(p21) fRate13() #Modifiers(Skp2, Cy, Cdt2, aRc)
 	Import_of_active_PCNA: 0  -> aPcna(p21,rc) kImPc
 	Export_of_active_PCNA: aPcna(p21,rc) -> 0  kExPc
-	Export_of_inactive_PCNA: aPcna(p21!291,rc).P21(apcna!291,cy) -> P21(apcna,cy) kExPc
-	Association_and_dissociation_of_PCNA_and_p21: aPcna(p21,rc) + P21(apcna,cy) <-> aPcna(p21!291,rc).P21(apcna!291,cy) kAsPcP21,kDsPcP21
-	Degradation_of_p21_in_PCNA_p21_complexes_reactants_0: 0  -> aPcna(p21!291,rc).P21(apcna!291,cy) -1*(fRate18()) #Modifiers(Skp2, Cy, Cdt2, aRc)
+	Export_of_inactive_PCNA: aPcna(p21!378,rc).P21(apcna!378,cy) -> P21(apcna,cy) kExPc
+	Association_and_dissociation_of_PCNA_and_p21: aPcna(p21,rc) + P21(apcna,cy) <-> aPcna(p21!378,rc).P21(apcna!378,cy) kAsPcP21,kDsPcP21
+	Degradation_of_p21_in_PCNA_p21_complexes_reactants_0: 0  -> aPcna(p21!378,rc).P21(apcna!378,cy) -1*(fRate18()) #Modifiers(Skp2, Cy, Cdt2, aRc)
 	Degradation_of_p21_in_PCNA_p21_complexes_products_0: 0  -> aPcna(p21,rc) fRate18() #Modifiers(Skp2, Cy, Cdt2, aRc)
 	Phosphorylation_priming_of_replication_complexes: Rc(apcna,p~0) -> Rc(apcna,p~P) fRate19() #Modifiers(Cy)
 	Dephosphorylation_of_replication_complexes: Rc(apcna,p~P) -> Rc(apcna,p~0) kDpRc
-	Association_and_dissociation_of_active_PCNA_and_replication_complexes: aPcna(p21,rc) + Rc(apcna,p~P) <-> aPcna(p21,rc!292).Rc(apcna!292,p~P) kAsRcPc,kDsRcPc
-	Association_and_dissociation_of_inactive_PCNA_and_replication_complexes: aPcna(p21!291,rc).P21(apcna!291,cy) + Rc(apcna,p~P) <-> P21(apcna!291,cy).aPcna(p21!291,rc!292).Rc(apcna!292,p~P) kAsRcPc,kDsRcPc
-	Association_and_dissociation_of_p21_and_replication_complexes: aPcna(p21,rc!292).Rc(apcna!292,p~P) + P21(apcna,cy) <-> P21(apcna!291,cy).aPcna(p21!291,rc!292).Rc(apcna!292,p~P) kAsPcP21,kDsPcP21
-	Degradation_of_p21_in_inactive_replication_complexes_reactants_0: 0  -> P21(apcna!291,cy).aPcna(p21!291,rc!292).Rc(apcna!292,p~P) -1*(fRate24()) #Modifiers(Skp2, Cy, Cdt2, aRc)
-	Degradation_of_p21_in_inactive_replication_complexes_products_0: 0  -> aPcna(p21,rc!292).Rc(apcna!292,p~P) fRate24() #Modifiers(Skp2, Cy, Cdt2, aRc)
-	Synthesis_of_DNA: aPcna(p21,rc!292).Rc(apcna!292,p~P) -> aPcna(p21,rc!292).Rc(apcna!292,p~P) + Dna() kSyDna
+	Association_and_dissociation_of_active_PCNA_and_replication_complexes: aPcna(p21,rc) + Rc(apcna,p~P) <-> aPcna(p21,rc!379).Rc(apcna!379,p~P) kAsRcPc,kDsRcPc
+	Association_and_dissociation_of_inactive_PCNA_and_replication_complexes: aPcna(p21!378,rc).P21(apcna!378,cy) + Rc(apcna,p~P) <-> P21(apcna!378,cy).aPcna(p21!378,rc!379).Rc(apcna!379,p~P) kAsRcPc,kDsRcPc
+	Association_and_dissociation_of_p21_and_replication_complexes: aPcna(p21,rc!379).Rc(apcna!379,p~P) + P21(apcna,cy) <-> P21(apcna!378,cy).aPcna(p21!378,rc!379).Rc(apcna!379,p~P) kAsPcP21,kDsPcP21
+	Degradation_of_p21_in_inactive_replication_complexes_reactants_0: 0  -> P21(apcna!378,cy).aPcna(p21!378,rc!379).Rc(apcna!379,p~P) -1*(fRate24()) #Modifiers(Skp2, Cy, Cdt2, aRc)
+	Degradation_of_p21_in_inactive_replication_complexes_products_0: 0  -> aPcna(p21,rc!379).Rc(apcna!379,p~P) fRate24() #Modifiers(Skp2, Cy, Cdt2, aRc)
+	Synthesis_of_DNA: aPcna(p21,rc!379).Rc(apcna!379,p~P) -> aPcna(p21,rc!379).Rc(apcna!379,p~P) + Dna() kSyDna
 	Dissassembly_of_RC_reactants_0: 0  -> Rc(apcna,p~0) -1*(fRate26()) #Modifiers(Dna)
 	Dissassembly_of_pRC_reactants_0: 0  -> Rc(apcna,p~P) -1*(fRate27()) #Modifiers(Dna)
-	Dissassembly_of_aRC_reactants_0: 0  -> aPcna(p21,rc!292).Rc(apcna!292,p~P) -1*(fRate28()) #Modifiers(Dna)
+	Dissassembly_of_aRC_reactants_0: 0  -> aPcna(p21,rc!379).Rc(apcna!379,p~P) -1*(fRate28()) #Modifiers(Dna)
 	Dissassembly_of_aRC_products_0: 0  -> aPcna(p21,rc) fRate28() #Modifiers(Dna)
-	Dissassembly_of_iRC_reactants_0: 0  -> P21(apcna!291,cy).aPcna(p21!291,rc!292).Rc(apcna!292,p~P) -1*(fRate29()) #Modifiers(Dna)
-	Dissassembly_of_iRC_products_0: 0  -> aPcna(p21!291,rc).P21(apcna!291,cy) fRate29() #Modifiers(Dna)
+	Dissassembly_of_iRC_reactants_0: 0  -> P21(apcna!378,cy).aPcna(p21!378,rc!379).Rc(apcna!379,p~P) -1*(fRate29()) #Modifiers(Dna)
+	Dissassembly_of_iRC_products_0: 0  -> aPcna(p21!378,rc).P21(apcna!378,cy) fRate29() #Modifiers(Dna)
 	Synthesis_of_p53: MrnaP53() -> MrnaP53() + P53() kSyP53
 	Degradation_of_p53: P53() -> 0  fRate31() #Modifiers(Dam)
 	Induction_of_DNA_damage: 0  -> Dam() kGeDam
-	Induction_of_DNA_damage_by_replication: aPcna(p21,rc!292).Rc(apcna!292,p~P) -> aPcna(p21,rc!292).Rc(apcna!292,p~P) + Dam() kGeDamArc
+	Induction_of_DNA_damage_by_replication: aPcna(p21,rc!379).Rc(apcna!379,p~P) -> aPcna(p21,rc!379).Rc(apcna!379,p~P) + Dam() kGeDamArc
 	Repair_of_DNA_damage_reactants_0: 0  -> Dam() -1*(fRate34()) #Modifiers(P53)
 end reaction rules
 end model

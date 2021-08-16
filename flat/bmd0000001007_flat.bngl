@@ -2,11 +2,11 @@
 #@BQM_UNKNOWN:['http://identifiers.org/mamo/MAMO_0000046']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/17245126']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
-#@BQB_HAS_PROPERTY:['http://identifiers.org/pw/PW:0000718', 'http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/pw/PW:0001360']
-#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000001007', 'http://identifiers.org/biomodels.db/MODEL2105260001']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/pw/PW:0001360', 'http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/pw/PW:0000718']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL2105260001', 'http://identifiers.org/biomodels.db/BIOMD0000001007']
 #@creatorEmail:'ktiwari@ebi.ac.uk'
 #@creatorName:'Tiwari Krishna'
-#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 4 molecules and 6 reactions. The translated model has 3 molecules and 6 rules'
+#@notes:'This is a plain translation of an SBML model created on 14/08/2021. The original model has 4 molecules and 6 reactions. The translated model has 3 molecules and 6 rules'
 ###
 begin model
 begin parameters
@@ -39,9 +39,9 @@ begin compartments
 	nuc 3 1.0
 end compartments
 begin molecule types
-	MDM2cyt()
-	p53()
 	MDM2nuc()
+	p53()
+	MDM2cyt()
 end molecule types
 begin seed species
 	@nuc:p53() 1.120092e+23 # 0.186mol/L * 6.022e23/mol *1.0L #p53 #p53
@@ -54,13 +54,13 @@ begin observables
 	Species MDM2nuc_nuc @nuc:MDM2nuc() #MDM2nuc
 end observables
 begin functions
-	v() = Q
-	r() = J2/p53_nuc
-	q() = J1/p53_nuc
 	u() = MDM2nuc_nuc
+	r() = J2/p53_nuc
+	v() = Q
+	q() = J1/p53_nuc
 	G_u_v_q_r() = 2*r*u/(q*v + r*u - u + v + (-4*r*u*(-u + v) + (q*v + r*u - u + v)^2)^0.5)
-	xyz() =   if(( ( 0 )   >= ( Dam0-krepair*(-Tdam+time()) )   ),( ( 0 )   ),( ( Dam0-krepair*(-Tdam+time()) )   )) 
 	heav_x() =  if((x<0),(0),(if((x>0),(1),(0))))
+	xyz() =   if(( ( 0 )   >= ( Dam0-krepair*(-Tdam+time()) )   ),( ( 0 )   ),( ( Dam0-krepair*(-Tdam+time()) )   )) 
 	DNAdamage_ar() = heav_x*xyz
 	kd2_0() = kd2*(DNAdamage_ar + 1)
 	kd53_0() = G_u_v_q_r*kd53_ + kd53

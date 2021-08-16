@@ -2,11 +2,11 @@
 #@BQM_UNKNOWN:['http://identifiers.org/mamo/MAMO_0000046']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/17245126']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
-#@BQB_HAS_PROPERTY:['http://identifiers.org/pw/PW:0000718', 'http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/pw/PW:0001360']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/pw/PW:0001360', 'http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/pw/PW:0000718']
 #@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000001009', 'http://identifiers.org/biomodels.db/MODEL2106230001']
 #@creatorEmail:'tiwarik@babraham.ac.uk'
 #@creatorName:'Tiwari Krishna'
-#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 6 molecules and 8 reactions. The translated model has 4 molecules and 8 rules'
+#@notes:'This is a plain translation of an SBML model created on 14/08/2021. The original model has 6 molecules and 8 reactions. The translated model has 4 molecules and 8 rules'
 ###
 begin model
 begin parameters
@@ -41,10 +41,10 @@ begin compartments
 	nuc 3 1.0
 end compartments
 begin molecule types
-	MDM2nuc()
-	p53_act()
-	p53_inact()
 	MDM2cyt()
+	p53_inact()
+	p53_act()
+	MDM2nuc()
 end molecule types
 begin seed species
 	@cyt:MDM2cyt() 1.26462e+23 #original 0.21substance/volume #MDM2cyt #MDM2cyt
@@ -59,14 +59,14 @@ begin observables
 	Species p53_act_nuc @nuc:p53_act() #p53_act
 end observables
 begin functions
-	v() = Q
+	u() = MDM2nuc_nuc
 	p53_total_ar() = p53_act_nuc + p53_inact_nuc
 	r() = J2/p53_total_ar
+	v() = Q
 	q() = J1/p53_total_ar
-	u() = MDM2nuc_nuc
 	G_u_v_q_r() = 2*r*u/(q*v + r*u - u + v + (-4*r*u*(-u + v) + (q*v + r*u - u + v)^2)^0.5)
-	max() =   if(( ( 0 )   >= ( Dam0-krepair*(-Tdam+time()) )   ),( ( 0 )   ),( ( Dam0-krepair*(-Tdam+time()) )   )) 
 	heav_x() =  if((x<0),(0),(if((x>0),(1),(0))))
+	max() =   if(( ( 0 )   >= ( Dam0-krepair*(-Tdam+time()) )   ),( ( 0 )   ),( ( Dam0-krepair*(-Tdam+time()) )   )) 
 	DNAdamage_ar() = heav_x*max
 	kd2_0() = kd2*(DNAdamage_ar + 1)
 	kd53_0() = G_u_v_q_r*kd53_ + kd53

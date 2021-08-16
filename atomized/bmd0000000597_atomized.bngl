@@ -1,12 +1,12 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000597', 'http://identifiers.org/biomodels.db/MODEL1510190000']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1510190000', 'http://identifiers.org/biomodels.db/BIOMD0000000597']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/26468131']
 #@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/BIOMD0000000412']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/3702']
 #@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0042752']
 #@creatorEmail:'viji@ebi.ac.uk'
 #@creatorName:'Chelliah Vijayalakshmi'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 28 molecules and 56 reactions. The translated model has 24 molecules and 57 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 28 molecules and 56 reactions. The translated model has 24 molecules and 57 rules'
 ###
 begin model
 begin parameters
@@ -130,30 +130,30 @@ begin parameters
 	phaseStep1 0
 end parameters
 begin molecule types
-	cG(ce3,cztl)
-	cP7_m()
-	cP()
-	cNI()
-	cEC()
-	cE3_m()
-	cP9_m()
-	cNI_m()
-	cL()
-	cT_m()
 	cG_m()
-	cP9()
-	cLUX_m()
-	cE4()
-	cCOP1(c~C~0,n~N~0)
+	cP()
 	cE4_m()
+	cG(ce3,cztl)
 	cCOP1d()
-	cL_m()
-	cZTL(cg)
-	cLm()
-	cP7()
+	cL()
 	cT()
+	cE3_m()
+	cEC()
+	cT_m()
+	cL_m()
 	cE3(cg,n~N~0)
+	cNI()
 	cLUX()
+	cLUX_m()
+	cLm()
+	cP9_m()
+	cCOP1(c~C~0,n~N~0)
+	cE4()
+	cZTL(cg)
+	cNI_m()
+	cP9()
+	cP7_m()
+	cP7()
 end molecule types
 begin seed species
 	cCOP1(c~C,n~0) 196859180000000.03 # (0.3269 * 1e-09)mol/L * 6.022e23/mol *1.0L #cCOP1c #cCOP1c
@@ -165,7 +165,7 @@ begin seed species
 	cE4() 124655400000000.02 #original 0.207substance/volume #cE4 #cE4
 	cE4_m() 60942640000000.01 #original 0.1012substance/volume #cE4_m #cE4_m
 	cEC() 42695980000000.01 #original 0.0709substance/volume #cEC #cEC
-	cE3(cg!74,n~0).cG(ce3!74,cztl) 2469020000000.0005 #original 0.0041substance/volume #cEG #cEG
+	cE3(cg!175,n~0).cG(ce3!175,cztl) 2469020000000.0005 #original 0.0041substance/volume #cEG #cEG
 	cG(ce3,cztl) 11803120000000.002 #original 0.0196substance/volume #cG #cG
 	cG_m() 61243740000000.01 #original 0.1017substance/volume #cG_m #cG_m
 	cL() 304713200000000.0 #original 0.506substance/volume #cL #cL
@@ -182,7 +182,7 @@ begin seed species
 	cP9_m() 39624760000000.0 #original 0.0658substance/volume #cP9_m #cP9_m
 	cT() 26195700000000.0 #original 0.0435substance/volume #cT #cT
 	cT_m() 58834940000000.0 #original 0.0977substance/volume #cT_m #cT_m
-	cG(ce3,cztl!40).cZTL(cg!40) 45466100000000.0 #original 0.0755substance/volume #cZG #cZG
+	cG(ce3,cztl!141).cZTL(cg!141) 45466100000000.0 #original 0.0755substance/volume #cZG #cZG
 	cZTL(cg) 150851100000000.0 #original 0.2505substance/volume #cZTL #cZTL
 end seed species
 begin observables
@@ -195,7 +195,7 @@ begin observables
 	Species cE4 cE4() #cE4
 	Species cE4_m cE4_m() #cE4_m
 	Species cEC cEC() #cEC
-	Species cEG cE3(cg!74,n~0).cG(ce3!74,cztl) #cEG
+	Species cEG cE3(cg!175,n~0).cG(ce3!175,cztl) #cEG
 	Species cG cG(ce3,cztl) #cG
 	Species cG_m cG_m() #cG_m
 	Species cL cL() #cL
@@ -212,7 +212,7 @@ begin observables
 	Species cP9_m cP9_m() #cP9_m
 	Species cT cT() #cT
 	Species cT_m cT_m() #cT_m
-	Species cZG cG(ce3,cztl!40).cZTL(cg!40) #cZG
+	Species cZG cG(ce3,cztl!141).cZTL(cg!141) #cZG
 	Species cZTL cZTL(cg) #cZTL
 end observables
 begin functions
@@ -312,12 +312,12 @@ begin reaction rules
 	cG_m_degr: cG_m() -> 0  m18 #Modifiers(cG_m)
 	cG_trsl: 0  -> cG(ce3,cztl) fRate46() #Modifiers(cG_m, cG_m)
 	cG_degr_reactants_0: 0  -> cG(ce3,cztl) -1*(fRate47()) #Modifiers(cE3n, cE3n, cG)
-	cG_cZTL_assoc: cG(ce3,cztl) + cZTL(cg) <-> cG(ce3,cztl!40).cZTL(cg!40) fRate48(),fRate48m() #Modifiers(cG, cZG, cZTL)
+	cG_cZTL_assoc: cG(ce3,cztl) + cZTL(cg) <-> cG(ce3,cztl!141).cZTL(cg!141) fRate48(),fRate48m() #Modifiers(cG, cZG, cZTL)
 	cZTL_trsl: 0  -> cZTL(cg) p14
 	cZTL_degr: cZTL(cg) -> 0  m20 #Modifiers(cZTL)
-	cZG_degr: cG(ce3,cztl!40).cZTL(cg!40) -> 0  m21 #Modifiers(cZG)
-	cG_cE3_assoc: cE3(cg,n~0) + cG(ce3,cztl) -> cE3(cg!74,n~0).cG(ce3!74,cztl) p17 #Modifiers(cE3, cG)
-	cEG_degr_reactants_0: 0  -> cE3(cg!74,n~0).cG(ce3!74,cztl) -1*(fRate53()) #Modifiers(cCOP1c, cCOP1d, cCOP1n, cE3n, cG, cCOP1c, cCOP1d, cCOP1n, cE3n, cEG, cG)
+	cZG_degr: cG(ce3,cztl!141).cZTL(cg!141) -> 0  m21 #Modifiers(cZG)
+	cG_cE3_assoc: cE3(cg,n~0) + cG(ce3,cztl) -> cE3(cg!175,n~0).cG(ce3!175,cztl) p17 #Modifiers(cE3, cG)
+	cEG_degr_reactants_0: 0  -> cE3(cg!175,n~0).cG(ce3!175,cztl) -1*(fRate53()) #Modifiers(cCOP1c, cCOP1d, cCOP1n, cE3n, cG, cCOP1c, cCOP1d, cCOP1n, cE3n, cEG, cG)
 	cEC_form: 0  -> cEC() fRate54() #Modifiers(cCOP1d, cCOP1n, cE3n, cE4, cLUX, cCOP1d, cCOP1n, cE3n, cE4, cLUX)
 	cEC_degr_reactants_0: 0  -> cEC() -1*(fRate55()) #Modifiers(cCOP1d, cCOP1n, cE3n, cEG, cG, cCOP1d, cCOP1n, cE3n, cEC, cEG, cG)
 end reaction rules

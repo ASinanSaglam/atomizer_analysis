@@ -6,7 +6,7 @@
 #@BQB_IS_VERSION_OF:['http://identifiers.org/kegg.pathway/sce00010', 'http://identifiers.org/obo.go/GO:0006096']
 #@creatorEmail:'kieran.smallbone@manchester.ac.uk'
 #@creatorName:'Smallbone Kieran'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 6 molecules and 4 reactions. The translated model has 4 molecules and 8 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 6 molecules and 4 reactions. The translated model has 4 molecules and 8 rules'
 ###
 begin model
 begin parameters
@@ -32,14 +32,14 @@ begin parameters
 	r4_KATP 3.000000
 end parameters
 begin molecule types
-	#^ bqbiol:is obo.chebi:CHEBI:16761
-	ADP()
 	#^ bqbiol:is obo.chebi:CHEBI:15422
 	ATP(glucose)
-	#^ bqbiol:is obo.chebi:CHEBI:16905
-	fructose1_6_bisphosphate()
 	#^ bqbiol:is obo.chebi:CHEBI:17925
 	glucose(atp)
+	#^ bqbiol:is obo.chebi:CHEBI:16905
+	fructose1_6_bisphosphate()
+	#^ bqbiol:is obo.chebi:CHEBI:16761
+	ADP()
 end molecule types
 begin seed species
 	glucose(atp!458).ATP(glucose!458) 6.022000000000001e+19 # (0.1 * 0.001)mol/L * 6.022e23/mol *1.0L #hexosemonophosphate #HMP
@@ -55,8 +55,8 @@ begin observables
 	Species ADP ADP() #ADP
 end observables
 begin functions
-	lambda1() = hexosemonophosphate/KRHMP
 	lambda2() = ATP/KRATP
+	lambda1() = hexosemonophosphate/KRHMP
 	T() = c1*c2*gT*lambda1*lambda2 + c1*lambda1 + c2*lambda2 + 1
 	R() = gR*lambda1*lambda2 + lambda1 + lambda2 + 1
 	lambda3() = ATP/KiATP

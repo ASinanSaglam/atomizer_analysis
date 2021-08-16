@@ -1,12 +1,12 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL0911110000', 'http://identifiers.org/biomodels.db/BIOMD0000000238']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000238', 'http://identifiers.org/biomodels.db/MODEL0911110000']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/17009101']
 #@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9541']
 #@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0060086', 'http://identifiers.org/omim/605384']
 #@creatorEmail:'c.lloyd@auckland.ac.nz'
 #@creatorName:'Lloyd Catherine'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 0 molecules and 0 reactions. The translated model has 3 molecules and 3 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 0 molecules and 0 reactions. The translated model has 3 molecules and 3 rules'
 ###
 begin model
 begin parameters
@@ -60,21 +60,21 @@ begin observables
 	Species BR BR
 end observables
 begin functions
+	f_prime() = delta_high_dose/(exp(-alpha*(-t_prime - tdose1 + time())) + 1)
+	gNfTf3() =  if((X3>0),(Kf^Nf*X3^(Nf-1)*exp(-Kf*X3)/6),(0))
+	gNfTf2() =  if((X2>0),(Kf^Nf*X2^(Nf-1)*exp(-Kf*X2)/6),(0))
+	gNfTf1() =  if((X1>0),(Kf^Nf*X1^(Nf-1)*exp(-Kf*X1)/6),(0))
+	E_fast() = pEf2*(gNfTf1 + gNfTf2 + gNfTf3)
+	gNsTs3() =  if((X3>0),(Ks^Ns*X3^(Ns-1)*exp(-Ks*X3)/6),(0))
 	gNsTs1() =  if((X1>0),(Ks^Ns*X1^(Ns-1)*exp(-Ks*X1)/6),(0))
 	gNsTs2() =  if((X2>0),(Ks^Ns*X2^(Ns-1)*exp(-Ks*X2)/6),(0))
-	gNsTs3() =  if((X3>0),(Ks^Ns*X3^(Ns-1)*exp(-Ks*X3)/6),(0))
 	E_slow() = AMT_dose*pEs2*(gNsTs1 + gNsTs2 + gNsTs3)
-	f_prime() = delta_high_dose/(exp(-alpha*(-t_prime - tdose1 + time())) + 1)
-	gNfTf1() =  if((X1>0),(Kf^Nf*X1^(Nf-1)*exp(-Kf*X1)/6),(0))
-	gNfTf2() =  if((X2>0),(Kf^Nf*X2^(Nf-1)*exp(-Kf*X2)/6),(0))
-	gNfTf3() =  if((X3>0),(Kf^Nf*X3^(Nf-1)*exp(-Kf*X3)/6),(0))
-	E_fast() = pEf2*(gNfTf1 + gNfTf2 + gNfTf3)
 	arRateBR() = -BR*kR + f_prime*(1 - BR)*(E_fast + E_slow)
+	T_day() = T_b + delta_T/2
 	kb() = M_b/(-T_a + T_b)
+	M_day() = (-T_a + T_day)*(kb + kinc*(-T_b + T_day))
 	T_night() = T_b - delta_T/2
 	M_night_baseline() = (-T_a + T_night)*(kb + kinc*(-T_b + T_night))
-	T_day() = T_b + delta_T/2
-	M_day() = (-T_a + T_day)*(kb + kinc*(-T_b + T_day))
 	M_night() = M_day*f_prime + M_night_baseline*(1 - f_prime)
 	f2_drug() = 0
 	k() = f2_drug + kb + kinc*(T - T_b*(BR*pEtot + 1))

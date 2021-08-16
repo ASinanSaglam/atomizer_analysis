@@ -6,7 +6,7 @@
 #@BQB_HAS_PROPERTY:['http://identifiers.org/efo/0004228']
 #@creatorEmail:'viji@ebi.ac.uk'
 #@creatorName:'Chelliah Vijayalakshmi'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 7 molecules and 5 reactions. The translated model has 6 molecules and 6 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 7 molecules and 5 reactions. The translated model has 6 molecules and 6 rules'
 ###
 begin model
 begin parameters
@@ -21,17 +21,17 @@ begin parameters
 	Km_PhaseIIEnzSul_APAP 0.2 #units:millimolar
 end parameters
 begin molecule types
-	#^ bqbiol:is chebi:CHEBI:32635
-	APAPconj_Sul()
-	#^ bqbiol:is chebi:CHEBI:29132
-	NAPQI(gsh)
-	#^ bqbiol:is chebi:CHEBI:32636
-	APAPconj_Glu()
-	#^ bqbiol:is chebi:CHEBI:16856
-	GSH(napqi)
 	X1()
 	#^ bqbiol:is chebi:CHEBI:46195
 	APAP()
+	#^ bqbiol:is chebi:CHEBI:29132
+	NAPQI(gsh)
+	#^ bqbiol:is chebi:CHEBI:16856
+	GSH(napqi)
+	#^ bqbiol:is chebi:CHEBI:32636
+	APAPconj_Glu()
+	#^ bqbiol:is chebi:CHEBI:32635
+	APAPconj_Sul()
 end molecule types
 begin seed species
 	APAP() 6.022000000000001e+19 # (0.1 * 0.001)mol/L * 6.022e23/mol *1.0L #APAP #APAP
@@ -42,7 +42,7 @@ begin observables
 	Species APAP APAP() #APAP
 	Species NAPQI NAPQI(gsh) #NAPQI
 	Species GSH GSH(napqi) #GSH
-	Species NAPQIGSH NAPQI(gsh!217).GSH(napqi!217) #NAPQIGSH
+	Species NAPQIGSH NAPQI(gsh!315).GSH(napqi!315) #NAPQIGSH
 	Species APAPconj_Glu APAPconj_Glu() #APAPconj_Glu
 	Species APAPconj_Sul APAPconj_Sul() #APAPconj_Sul
 end observables
@@ -55,7 +55,7 @@ begin functions
 end functions
 begin reaction rules
 	J0: APAP() -> NAPQI(gsh) fRate0()
-	J1: GSH(napqi) + NAPQI(gsh) -> NAPQI(gsh!217).GSH(napqi!217) fRate1()
+	J1: GSH(napqi) + NAPQI(gsh) -> NAPQI(gsh!315).GSH(napqi!315) fRate1()
 	J2_reactants_0: 0  -> X1() -1*(fRate2())
 	J2_products_0: 0  -> GSH(napqi) fRate2()
 	J3: APAP() -> APAPconj_Glu() fRate3()

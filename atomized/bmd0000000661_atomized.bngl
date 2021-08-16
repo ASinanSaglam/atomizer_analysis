@@ -3,10 +3,10 @@
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/12208611']
 #@BQM_UNKNOWN:['http://identifiers.org/mamo/MAMO_0000046']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
-#@BQB_IS_VERSION_OF:['http://identifiers.org/pw/PW:0000106', 'http://identifiers.org/go/GO:1902044', 'http://identifiers.org/go/GO:0002418']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:1902044', 'http://identifiers.org/go/GO:0002418', 'http://identifiers.org/pw/PW:0000106']
 #@creatorEmail:'c.lloyd@auckland.ac.nz'
 #@creatorName:'Lloyd Catherine'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 7 molecules and 17 reactions. The translated model has 7 molecules and 17 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 7 molecules and 17 reactions. The translated model has 7 molecules and 17 rules'
 ###
 begin model
 begin parameters
@@ -32,37 +32,37 @@ begin molecule types
 	#^ bqbiol:isVersionOf uniprot:P25445
 	#^ bqbiol:occursIn ncit:C14070
 	FasR__RT__()
+	#^ bqbiol:isVersionOf uniprot:P25445
+	#^ bqbiol:occursIn ncit:C14070
+	FasR__Rm__()
 	#^ bqbiol:isVersionOf chebi:CHEBI:17089, uniprot:P48023
 	#^ bqbiol:occursIn ncit:C14070
 	mFasL__LT__()
 	#^ bqbiol:isVersionOf ncit:C104083
 	T_cells__T__()
-	#^ bqbiol:isVersionOf ncit:C12922
-	Tumourcells__m__()
 	#^ bqbiol:isVersionOf chebi:CHEBI:17089, uniprot:P48023
 	#^ bqbiol:occursIn ncit:C14070
 	mFasL__Lm__()
-	#^ bqbiol:isVersionOf uniprot:P25445
-	#^ bqbiol:occursIn ncit:C14070
-	FasR__Rm__()
 	#^ bqbiol:isVersionOf pr:PR:000000547
 	sFasL__SL__()
+	#^ bqbiol:isVersionOf ncit:C12922
+	Tumourcells__m__()
 end molecule types
 begin seed species
-	@compartment:T_cells__T__() 3.011000000000006e+26 # 500.000000000001mol/L * 6.022e23/mol *1.0L #T_cells__T__ #T
-	@T_Lymphocyte_cell:FasR__RT__() 6.022000000000061e+27 #original 10000.0000000001mol/L  #FasR__RT__ #RT
-	@compartment:Tumourcells__m__() 3.011000000000006e+26 #original 500.000000000001mol/L  #Tumourcells__m__ #m
-	@Tumour_cell:mFasL__Lm__() 6.0220000000000006e+26 #original 1000.0mol/L  #mFasL__Lm__ #Lm
-	@Tumour_cell:FasR__Rm__() 6.0220000000000006e+26 #original 1000.0mol/L  #FasR__Rm__ #Rm
+	@compartment:T_cells__T__()@compartment 3.011000000000006e+26 # 500.000000000001mol/L * 6.022e23/mol *1.0L #T_cells__T__ #T
+	@T_Lymphocyte_cell:FasR__RT__()@T_Lymphocyte_cell 6.022000000000061e+27 #original 10000.0000000001mol/L  #FasR__RT__ #RT
+	@compartment:Tumourcells__m__()@compartment 3.011000000000006e+26 #original 500.000000000001mol/L  #Tumourcells__m__ #m
+	@Tumour_cell:mFasL__Lm__()@Tumour_cell 6.0220000000000006e+26 #original 1000.0mol/L  #mFasL__Lm__ #Lm
+	@Tumour_cell:FasR__Rm__()@Tumour_cell 6.0220000000000006e+26 #original 1000.0mol/L  #FasR__Rm__ #Rm
 end seed species
 begin observables
-	Species T_cells__T___compartment @compartment:T_cells__T__() #T-cells (T)
-	Species mFasL__LT___compartment @compartment:mFasL__LT__() #mFasL (LT)
-	Species FasR__RT___T_Lymphocyte_cell @T_Lymphocyte_cell:FasR__RT__() #FasR (RT)
-	Species Tumourcells__m___compartment @compartment:Tumourcells__m__() #Tumour cells (m)
-	Species mFasL__Lm___Tumour_cell @Tumour_cell:mFasL__Lm__() #mFasL (Lm)
-	Species FasR__Rm___Tumour_cell @Tumour_cell:FasR__Rm__() #FasR (Rm)
-	Species sFasL__SL___compartment @compartment:sFasL__SL__() #sFasL (SL)
+	Species T_cells__T___compartment @compartment:T_cells__T__()@compartment #T-cells (T)
+	Species mFasL__LT___compartment @compartment:mFasL__LT__()@compartment #mFasL (LT)
+	Species FasR__RT___T_Lymphocyte_cell @T_Lymphocyte_cell:FasR__RT__()@T_Lymphocyte_cell #FasR (RT)
+	Species Tumourcells__m___compartment @compartment:Tumourcells__m__()@compartment #Tumour cells (m)
+	Species mFasL__Lm___Tumour_cell @Tumour_cell:mFasL__Lm__()@Tumour_cell #mFasL (Lm)
+	Species FasR__Rm___Tumour_cell @Tumour_cell:FasR__Rm__()@Tumour_cell #FasR (Rm)
+	Species sFasL__SL___compartment @compartment:sFasL__SL__()@compartment #sFasL (SL)
 end observables
 begin functions
 	fRate0() = FasR__RT___T_Lymphocyte_cell*Tumourcells__m___compartment*k1*mFasL__Lm___Tumour_cell

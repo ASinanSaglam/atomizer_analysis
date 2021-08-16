@@ -1,0 +1,1507 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000143_atomized">
+    <ListOfParameters>
+      <Parameter id="Knadph" type="Constant" value="60" expr="60.0"/>
+      <Parameter id="k1" type="Constant" value="50" expr="50.0"/>
+      <Parameter id="kminus1" type="Constant" value="58" expr="58.0"/>
+      <Parameter id="k2" type="Constant" value="10" expr="10.0"/>
+      <Parameter id="k3" type="Constant" value="0.004" expr="0.004"/>
+      <Parameter id="k4" type="Constant" value="20" expr="20.0"/>
+      <Parameter id="k5" type="Constant" value="10" expr="10.0"/>
+      <Parameter id="k6" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="k7" type="Constant" value="1e-6" expr="1e-06"/>
+      <Parameter id="k8" type="Constant" value="50" expr="50.0"/>
+      <Parameter id="k9" type="Constant" value="500" expr="500.0"/>
+      <Parameter id="k10" type="Constant" value="10" expr="10.0"/>
+      <Parameter id="k11" type="Constant" value="60" expr="60.0"/>
+      <Parameter id="k12" type="Constant" value="25" expr="25.0"/>
+      <Parameter id="k13" type="Constant" value="12.5" expr="12.5"/>
+      <Parameter id="kminus13" type="Constant" value="0.045" expr="0.045"/>
+      <Parameter id="k14" type="Constant" value="30" expr="30.0"/>
+      <Parameter id="k15" type="Constant" value="30" expr="30.0"/>
+      <Parameter id="k16" type="Constant" value="10" expr="10.0"/>
+      <Parameter id="k17" type="Constant" value="10" expr="10.0"/>
+      <Parameter id="k18" type="Constant" value="2" expr="2.0"/>
+      <Parameter id="V" type="Constant" value="288" expr="288.0"/>
+      <Parameter id="L" type="Constant" value="550" expr="550.0"/>
+      <Parameter id="Ko" type="Constant" value="1.5" expr="1.5"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="Ferricperoxidase">
+        <ListOfComponentTypes>
+          <ComponentType id="h2o2"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="H2O2">
+        <ListOfComponentTypes>
+          <ComponentType id="ferricperoxidase"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="Hydrogen"/>
+      <MoleculeType id="Melatonin"/>
+      <MoleculeType id="Melatoninfreeradical"/>
+      <MoleculeType id="NADP"/>
+      <MoleculeType id="NADPH"/>
+      <MoleculeType id="NADP_NADP_c">
+        <ListOfComponentTypes>
+          <ComponentType id="nadp_nadp_c"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="Oxygen"/>
+      <MoleculeType id="Superoxide"/>
+      <MoleculeType id="compoundII">
+        <ListOfComponentTypes>
+          <ComponentType id="i">
+            <ListOfAllowedStates>
+              <AllowedState id="I"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+      <compartment id="phagosome" spatialDimensions="3" size="1.0"/>
+      <compartment id="cytoplasm" spatialDimensions="3" size="10.0"/>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="1.8066e+20" name="@phagosome::Ferricperoxidase(h2o2)" compartment="phagosome">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="Ferricperoxidase" compartment="phagosome">
+            <ListOfComponents>
+              <Component id="S1_M1_C1" name="h2o2" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="1.8066e+20" name="@phagosome::Melatonin()" compartment="phagosome">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="Melatonin" compartment="phagosome"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="1.8066e+21" name="@cytoplasm::Melatonin()" compartment="cytoplasm">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="Melatonin" compartment="cytoplasm"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="R1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR1_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_RP1_M1" name="Ferricperoxidase" compartment="phagosome">
+                <ListOfComponents>
+                  <Component id="RR1_RP1_M1_C1" name="h2o2" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR1_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR1_RP2_M1" name="H2O2" compartment="phagosome">
+                <ListOfComponents>
+                  <Component id="RR1_RP2_M1_C1" name="ferricperoxidase" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="H2O2" compartment="phagosome">
+                <ListOfComponents>
+                  <Component id="RR1_PP1_M1_C1" name="ferricperoxidase" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR1_PP1_M2" name="Ferricperoxidase" compartment="phagosome">
+                <ListOfComponents>
+                  <Component id="RR1_PP1_M2_C1" name="h2o2" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR1_PP1_B1" site1="RR1_PP1_M1_C1" site2="RR1_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k1"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR1_RP1_M1" targetID="RR1_PP1_M2"/>
+          <MapItem sourceID="RR1_RP1_M1_C1" targetID="RR1_PP1_M2_C1"/>
+          <MapItem sourceID="RR1_RP2_M1" targetID="RR1_PP1_M1"/>
+          <MapItem sourceID="RR1_RP2_M1_C1" targetID="RR1_PP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR1_RP2_M1_C1" site2="RR1_RP1_M1_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="_reverse_R1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="H2O2" compartment="phagosome">
+                <ListOfComponents>
+                  <Component id="RR2_RP1_M1_C1" name="ferricperoxidase" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR2_RP1_M2" name="Ferricperoxidase" compartment="phagosome">
+                <ListOfComponents>
+                  <Component id="RR2_RP1_M2_C1" name="h2o2" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR2_RP1_B1" site1="RR2_RP1_M1_C1" site2="RR2_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="Ferricperoxidase" compartment="phagosome">
+                <ListOfComponents>
+                  <Component id="RR2_PP1_M1_C1" name="h2o2" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR2_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP2_M1" name="H2O2" compartment="phagosome">
+                <ListOfComponents>
+                  <Component id="RR2_PP2_M1_C1" name="ferricperoxidase" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kminus1"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1" targetID="RR2_PP2_M1"/>
+          <MapItem sourceID="RR2_RP1_M1_C1" targetID="RR2_PP2_M1_C1"/>
+          <MapItem sourceID="RR2_RP1_M2" targetID="RR2_PP1_M1"/>
+          <MapItem sourceID="RR2_RP1_M2_C1" targetID="RR2_PP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <DeleteBond site1="RR2_RP1_M1_C1" site2="RR2_RP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="R2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="Melatonin" compartment="phagosome"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR3_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP2_M1" name="H2O2" compartment="phagosome">
+                <ListOfComponents>
+                  <Component id="RR3_RP2_M1_C1" name="ferricperoxidase" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR3_RP2_M2" name="Ferricperoxidase" compartment="phagosome">
+                <ListOfComponents>
+                  <Component id="RR3_RP2_M2_C1" name="h2o2" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR3_RP2_B1" site1="RR3_RP2_M1_C1" site2="RR3_RP2_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="Melatoninfreeradical" compartment="phagosome"/>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR3_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP2_M1" name="compoundII" compartment="phagosome">
+                <ListOfComponents>
+                  <Component id="RR3_PP2_M1_C1" name="i" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k2"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1"/>
+          <MapItem sourceID="RR3_RP2_M1"/>
+          <MapItem sourceID="RR3_RP2_M1_C1"/>
+          <MapItem sourceID="RR3_RP2_M2"/>
+          <MapItem sourceID="RR3_RP2_M2_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+          <Add id="RR3_PP2_M1"/>
+          <Delete id="RR3_RP1" DeleteMolecules="0"/>
+          <Delete id="RR3_RP2" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="R3" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="Melatonin" compartment="phagosome"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR4_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP2_M1" name="compoundII" compartment="phagosome">
+                <ListOfComponents>
+                  <Component id="RR4_RP2_M1_C1" name="i" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="Melatoninfreeradical" compartment="phagosome"/>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR4_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP2_M1" name="Ferricperoxidase" compartment="phagosome">
+                <ListOfComponents>
+                  <Component id="RR4_PP2_M1_C1" name="h2o2" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k3"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1"/>
+          <MapItem sourceID="RR4_RP2_M1"/>
+          <MapItem sourceID="RR4_RP2_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR4_PP1_M1"/>
+          <Add id="RR4_PP2_M1"/>
+          <Delete id="RR4_RP1" DeleteMolecules="0"/>
+          <Delete id="RR4_RP2" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="R4" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR5_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP1_M1" name="Superoxide" compartment="phagosome"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR5_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP2_M1" name="Ferricperoxidase" compartment="phagosome">
+                <ListOfComponents>
+                  <Component id="RR5_RP2_M1_C1" name="h2o2" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="compoundII" compartment="phagosome">
+                <ListOfComponents>
+                  <Component id="RR5_PP1_M1_C1" name="i" state="I" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k4"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR5_RP1_M1"/>
+          <MapItem sourceID="RR5_RP2_M1"/>
+          <MapItem sourceID="RR5_RP2_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR5_PP1_M1"/>
+          <Delete id="RR5_RP1" DeleteMolecules="0"/>
+          <Delete id="RR5_RP2" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="R5_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="Superoxide" compartment="phagosome"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Function" name="_rateLaw1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR6_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="R5_reactants_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="Hydrogen" compartment="phagosome"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Function" name="_rateLaw2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR7_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="R5_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR8_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP1_M1" name="Oxygen" compartment="phagosome"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Function" name="fRate4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR8_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="R5_products_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR9_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP1_M1" name="H2O2" compartment="phagosome">
+                <ListOfComponents>
+                  <Component id="RR9_PP1_M1_C1" name="ferricperoxidase" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Function" name="fRate4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR9_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="R6" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR10_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_RP1_M1" name="Superoxide" compartment="phagosome"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR10_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR10_RP2_M1" name="compoundII" compartment="phagosome">
+                <ListOfComponents>
+                  <Component id="RR10_RP2_M1_C1" name="i" state="I" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR10_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_PP1_M1" name="Oxygen" compartment="phagosome"/>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR10_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR10_PP2_M1" name="H2O2" compartment="phagosome">
+                <ListOfComponents>
+                  <Component id="RR10_PP2_M1_C1" name="ferricperoxidase" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR10_PP2_M2" name="Ferricperoxidase" compartment="phagosome">
+                <ListOfComponents>
+                  <Component id="RR10_PP2_M2_C1" name="h2o2" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR10_PP2_B1" site1="RR10_PP2_M1_C1" site2="RR10_PP2_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k6"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR10_RP1_M1"/>
+          <MapItem sourceID="RR10_RP2_M1"/>
+          <MapItem sourceID="RR10_RP2_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR10_PP1_M1"/>
+          <Add id="RR10_PP2_M1"/>
+          <Add id="RR10_PP2_M2"/>
+          <AddBond site1="RR10_PP2_M1_C1" site2="RR10_PP2_M2_C1"/>
+          <Delete id="RR10_RP1" DeleteMolecules="0"/>
+          <Delete id="RR10_RP2" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR11" name="R7" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR11_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_RP1_M1" name="Oxygen" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR11_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR11_RP2_M1" name="NADPH" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR11_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_PP1_M1" name="H2O2" compartment="cytoplasm">
+                <ListOfComponents>
+                  <Component id="RR11_PP1_M1_C1" name="ferricperoxidase" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR11_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR11_PP2_M1" name="NADP" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR11_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k7"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR11_RP1_M1"/>
+          <MapItem sourceID="RR11_RP2_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR11_PP1_M1"/>
+          <Add id="RR11_PP2_M1"/>
+          <Delete id="RR11_RP1" DeleteMolecules="0"/>
+          <Delete id="RR11_RP2" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR12" name="R8" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR12_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_RP1_M1" name="Oxygen" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR12_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR12_RP2_M1" name="NADP_NADP_c" compartment="cytoplasm">
+                <ListOfComponents>
+                  <Component id="RR12_RP2_M1_C1" name="nadp_nadp_c" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR12_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_PP1_M1" name="Superoxide" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR12_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR12_PP2_M1" name="NADP" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR12_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k8"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR12_RP1_M1"/>
+          <MapItem sourceID="RR12_RP2_M1"/>
+          <MapItem sourceID="RR12_RP2_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR12_PP1_M1"/>
+          <Add id="RR12_PP2_M1"/>
+          <Delete id="RR12_RP1" DeleteMolecules="0"/>
+          <Delete id="RR12_RP2" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR13" name="R9_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR13_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_PP1_M1" name="Superoxide" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR13_RateLaw" type="Function" name="_rateLaw3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR13_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR14" name="R9_reactants_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR14_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_PP1_M1" name="Hydrogen" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR14_RateLaw" type="Function" name="_rateLaw4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR14_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR15" name="R9_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR15_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR15_PP1_M1" name="Oxygen" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR15_RateLaw" type="Function" name="fRate8" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR15_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR16" name="R9_products_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR16_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR16_PP1_M1" name="H2O2" compartment="cytoplasm">
+                <ListOfComponents>
+                  <Component id="RR16_PP1_M1_C1" name="ferricperoxidase" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR16_RateLaw" type="Function" name="fRate8" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR16_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR17" name="R10" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR17_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR17_RP1_M1" name="NADPH" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR17_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR17_RP2_M1" name="Melatoninfreeradical" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR17_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR17_PP1_M1" name="NADP_NADP_c" compartment="cytoplasm">
+                <ListOfComponents>
+                  <Component id="RR17_PP1_M1_C1" name="nadp_nadp_c" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR17_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR17_PP2_M1" name="Melatonin" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR17_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k10"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR17_RP1_M1"/>
+          <MapItem sourceID="RR17_RP2_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR17_PP1_M1"/>
+          <Add id="RR17_PP2_M1"/>
+          <Delete id="RR17_RP1" DeleteMolecules="0"/>
+          <Delete id="RR17_RP2" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR18" name="R11" symmetry_factor="0.5">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR18_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR18_RP1_M1" name="NADP_NADP_c" compartment="cytoplasm">
+                <ListOfComponents>
+                  <Component id="RR18_RP1_M1_C1" name="nadp_nadp_c" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR18_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR18_RP2_M1" name="NADP_NADP_c" compartment="cytoplasm">
+                <ListOfComponents>
+                  <Component id="RR18_RP2_M1_C1" name="nadp_nadp_c" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR18_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR18_PP1_M1" name="NADP_NADP_c" compartment="cytoplasm">
+                <ListOfComponents>
+                  <Component id="RR18_PP1_M1_C1" name="nadp_nadp_c" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR18_PP1_M2" name="NADP_NADP_c" compartment="cytoplasm">
+                <ListOfComponents>
+                  <Component id="RR18_PP1_M2_C1" name="nadp_nadp_c" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR18_PP1_B1" site1="RR18_PP1_M1_C1" site2="RR18_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR18_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k11"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR18_RP1_M1" targetID="RR18_PP1_M1"/>
+          <MapItem sourceID="RR18_RP1_M1_C1" targetID="RR18_PP1_M1_C1"/>
+          <MapItem sourceID="RR18_RP2_M1" targetID="RR18_PP1_M2"/>
+          <MapItem sourceID="RR18_RP2_M1_C1" targetID="RR18_PP1_M2_C1"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR18_RP1_M1_C1" site2="RR18_RP2_M1_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR19" name="R12" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR19_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR19_PP1_M1" name="NADPH" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR19_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k12"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR19_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR20" name="R13a" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR20_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR20_PP1_M1" name="Oxygen" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR20_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k13"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR20_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR21" name="R13b" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR21_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR21_RP1_M1" name="Oxygen" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR21_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kminus13"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR21_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR21_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR22" name="R14" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR22_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR22_RP1_M1" name="Oxygen" compartment="phagosome"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR22_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR22_PP1_M1" name="Oxygen" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR22_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k14"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR22_RP1_M1" targetID="RR22_PP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <ChangeCompartment id="RR22_RP1_M1" source="phagosome" destination="cytoplasm" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR23" name="_reverse_R14" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR23_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR23_RP1_M1" name="Oxygen" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR23_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR23_PP1_M1" name="Oxygen" compartment="phagosome"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR23_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k14"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR23_RP1_M1" targetID="RR23_PP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <ChangeCompartment id="RR23_RP1_M1" source="cytoplasm" destination="phagosome" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR24" name="R15" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR24_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR24_RP1_M1" name="H2O2" compartment="phagosome">
+                <ListOfComponents>
+                  <Component id="RR24_RP1_M1_C1" name="ferricperoxidase" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR24_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR24_PP1_M1" name="H2O2" compartment="cytoplasm">
+                <ListOfComponents>
+                  <Component id="RR24_PP1_M1_C1" name="ferricperoxidase" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR24_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k15"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR24_RP1_M1" targetID="RR24_PP1_M1"/>
+          <MapItem sourceID="RR24_RP1_M1_C1" targetID="RR24_PP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <ChangeCompartment id="RR24_RP1_M1" source="phagosome" destination="cytoplasm" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR25" name="_reverse_R15" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR25_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR25_RP1_M1" name="H2O2" compartment="cytoplasm">
+                <ListOfComponents>
+                  <Component id="RR25_RP1_M1_C1" name="ferricperoxidase" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR25_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR25_PP1_M1" name="H2O2" compartment="phagosome">
+                <ListOfComponents>
+                  <Component id="RR25_PP1_M1_C1" name="ferricperoxidase" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR25_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k15"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR25_RP1_M1" targetID="RR25_PP1_M1"/>
+          <MapItem sourceID="RR25_RP1_M1_C1" targetID="RR25_PP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <ChangeCompartment id="RR25_RP1_M1" source="cytoplasm" destination="phagosome" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR26" name="R16" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR26_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR26_RP1_M1" name="Melatonin" compartment="phagosome"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR26_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR26_PP1_M1" name="Melatonin" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR26_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k16"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR26_RP1_M1" targetID="RR26_PP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <ChangeCompartment id="RR26_RP1_M1" source="phagosome" destination="cytoplasm" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR27" name="_reverse_R16" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR27_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR27_RP1_M1" name="Melatonin" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR27_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR27_PP1_M1" name="Melatonin" compartment="phagosome"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR27_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k16"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR27_RP1_M1" targetID="RR27_PP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <ChangeCompartment id="RR27_RP1_M1" source="cytoplasm" destination="phagosome" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR28" name="R17" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR28_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR28_RP1_M1" name="Melatoninfreeradical" compartment="phagosome"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR28_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR28_PP1_M1" name="Melatoninfreeradical" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR28_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k17"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR28_RP1_M1" targetID="RR28_PP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <ChangeCompartment id="RR28_RP1_M1" source="phagosome" destination="cytoplasm" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR29" name="_reverse_R17" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR29_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR29_RP1_M1" name="Melatoninfreeradical" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR29_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR29_PP1_M1" name="Melatoninfreeradical" compartment="phagosome"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR29_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k17"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR29_RP1_M1" targetID="RR29_PP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <ChangeCompartment id="RR29_RP1_M1" source="cytoplasm" destination="phagosome" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR30" name="R18" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR30_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR30_RP1_M1" name="Superoxide" compartment="phagosome"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR30_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR30_PP1_M1" name="Superoxide" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR30_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k18"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR30_RP1_M1" targetID="RR30_PP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <ChangeCompartment id="RR30_RP1_M1" source="phagosome" destination="cytoplasm" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR31" name="_reverse_R18" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR31_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR31_RP1_M1" name="Superoxide" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR31_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR31_PP1_M1" name="Superoxide" compartment="phagosome"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR31_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k18"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR31_RP1_M1" targetID="RR31_PP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <ChangeCompartment id="RR31_RP1_M1" source="cytoplasm" destination="phagosome" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR32" name="R19_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR32_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR32_PP1_M1" name="Oxygen" compartment="phagosome"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR32_RateLaw" type="Function" name="_rateLaw5" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR32_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR33" name="R19_reactants_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR33_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR33_PP1_M1" name="NADPH" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR33_RateLaw" type="Function" name="_rateLaw6" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR33_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR34" name="R19_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR34_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR34_PP1_M1" name="Superoxide" compartment="phagosome"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR34_RateLaw" type="Function" name="_rateLaw7" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR34_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR35" name="R19_products_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR35_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR35_PP1_M1" name="NADP" compartment="cytoplasm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR35_RateLaw" type="Function" name="fRate19" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR35_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="H2O2_phagosome" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" compartment="phagosome" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="H2O2">
+                <ListOfComponents>
+                  <Component id="O1_P1_M1_C1" name="ferricperoxidase" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="Ferricperoxidase_phagosome" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" compartment="phagosome" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="Ferricperoxidase">
+                <ListOfComponents>
+                  <Component id="O2_P1_M1_C1" name="h2o2" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="compoundI_phagosome" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" compartment="phagosome" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="H2O2">
+                <ListOfComponents>
+                  <Component id="O3_P1_M1_C1" name="ferricperoxidase" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O3_P1_M2" name="Ferricperoxidase">
+                <ListOfComponents>
+                  <Component id="O3_P1_M2_C1" name="h2o2" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O3_P1_B1" site1="O3_P1_M1_C1" site2="O3_P1_M2_C1"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="Melatonin_phagosome" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" compartment="phagosome" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="Melatonin"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="compoundII_phagosome" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" compartment="phagosome" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="compoundII">
+                <ListOfComponents>
+                  <Component id="O5_P1_M1_C1" name="i" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O6" name="Melatoninfreeradical_phagosome" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O6_P1" compartment="phagosome" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O6_P1_M1" name="Melatoninfreeradical"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O7" name="Superoxide_phagosome" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O7_P1" compartment="phagosome" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O7_P1_M1" name="Superoxide"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O8" name="Hydrogen_phagosome" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O8_P1" compartment="phagosome" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O8_P1_M1" name="Hydrogen"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O9" name="Oxygen_phagosome" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O9_P1" compartment="phagosome" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O9_P1_M1" name="Oxygen"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O10" name="NADPH_cytoplasm" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O10_P1" compartment="cytoplasm" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O10_P1_M1" name="NADPH"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O11" name="Oxygen_cytoplasm" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O11_P1" compartment="cytoplasm" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O11_P1_M1" name="Oxygen"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O12" name="NADP_cytoplasm" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O12_P1" compartment="cytoplasm" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O12_P1_M1" name="NADP"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O13" name="H2O2_cytoplasm" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O13_P1" compartment="cytoplasm" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O13_P1_M1" name="H2O2">
+                <ListOfComponents>
+                  <Component id="O13_P1_M1_C1" name="ferricperoxidase" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O14" name="NADP_NADP_c_cytoplasm" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O14_P1" compartment="cytoplasm" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O14_P1_M1" name="NADP_NADP_c">
+                <ListOfComponents>
+                  <Component id="O14_P1_M1_C1" name="nadp_nadp_c" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O15" name="Superoxide_cytoplasm" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O15_P1" compartment="cytoplasm" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O15_P1_M1" name="Superoxide"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O16" name="Hydrogen_cytoplasm" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O16_P1" compartment="cytoplasm" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O16_P1_M1" name="Hydrogen"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O17" name="Melatoninfreeradical_cytoplasm" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O17_P1" compartment="cytoplasm" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O17_P1_M1" name="Melatoninfreeradical"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O18" name="Melatonin_cytoplasm" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O18_P1" compartment="cytoplasm" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O18_P1_M1" name="Melatonin"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O19" name="compoundIII_phagosome" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O19_P1" compartment="phagosome" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O19_P1_M1" name="compoundII">
+                <ListOfComponents>
+                  <Component id="O19_P1_M1_C1" name="i" state="I" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O20" name="NADP2_cytoplasm" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O20_P1" compartment="cytoplasm" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O20_P1_M1" name="NADP_NADP_c">
+                <ListOfComponents>
+                  <Component id="O20_P1_M1_C1" name="nadp_nadp_c" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O20_P1_M2" name="NADP_NADP_c">
+                <ListOfComponents>
+                  <Component id="O20_P1_M2_C1" name="nadp_nadp_c" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O20_P1_B1" site1="O20_P1_M1_C1" site2="O20_P1_M2_C1"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="fRate4">
+        <ListOfReferences>
+          <Reference name="k5" type="Constant"/>
+          <Reference name="Superoxide_phagosome" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (Superoxide_phagosome^2)*k5 </Expression>
+      </Function>
+      <Function id="fRate8">
+        <ListOfReferences>
+          <Reference name="k9" type="Constant"/>
+          <Reference name="Superoxide_cytoplasm" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (Superoxide_cytoplasm^2)*k9 </Expression>
+      </Function>
+      <Function id="fRate19">
+        <ListOfReferences>
+          <Reference name="Knadph" type="Constant"/>
+          <Reference name="Ko" type="Constant"/>
+          <Reference name="L" type="Constant"/>
+          <Reference name="V" type="Constant"/>
+          <Reference name="NADPH_cytoplasm" type="Observable"/>
+          <Reference name="Oxygen_phagosome" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((NADPH_cytoplasm*Oxygen_phagosome)*V)*(1+(NADPH_cytoplasm/Knadph)))/((Knadph*(Ko+Oxygen_phagosome))*(L+((1+(NADPH_cytoplasm/Knadph))^2))) </Expression>
+      </Function>
+      <Function id="_rateLaw1">
+        <ListOfReferences>
+          <Reference name="fRate4" type="Function"/>
+        </ListOfReferences>
+        <Expression> (-1*2.0)*fRate4() </Expression>
+      </Function>
+      <Function id="_rateLaw2">
+        <ListOfReferences>
+          <Reference name="fRate4" type="Function"/>
+        </ListOfReferences>
+        <Expression> (-1*2.0)*fRate4() </Expression>
+      </Function>
+      <Function id="_rateLaw3">
+        <ListOfReferences>
+          <Reference name="fRate8" type="Function"/>
+        </ListOfReferences>
+        <Expression> (-1*2.0)*fRate8() </Expression>
+      </Function>
+      <Function id="_rateLaw4">
+        <ListOfReferences>
+          <Reference name="fRate8" type="Function"/>
+        </ListOfReferences>
+        <Expression> (-1*2.0)*fRate8() </Expression>
+      </Function>
+      <Function id="_rateLaw5">
+        <ListOfReferences>
+          <Reference name="fRate19" type="Function"/>
+        </ListOfReferences>
+        <Expression> (-1*2.0)*fRate19() </Expression>
+      </Function>
+      <Function id="_rateLaw6">
+        <ListOfReferences>
+          <Reference name="fRate19" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate19() </Expression>
+      </Function>
+      <Function id="_rateLaw7">
+        <ListOfReferences>
+          <Reference name="fRate19" type="Function"/>
+        </ListOfReferences>
+        <Expression> 2.0*fRate19() </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

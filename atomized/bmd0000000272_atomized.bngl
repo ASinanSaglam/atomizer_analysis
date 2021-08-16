@@ -1,12 +1,12 @@
 ###
 #@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000272', 'http://identifiers.org/biomodels.db/MODEL1005260001']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/20488988']
-#@BQB_HAS_TAXON:['http://identifiers.org/obo.bto/BTO:0001035', 'http://identifiers.org/taxonomy/39107']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/39107', 'http://identifiers.org/obo.bto/BTO:0001035']
 #@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0004900']
-#@BQB_IS_PART_OF:['http://identifiers.org/kegg.pathway/ko04630', 'http://identifiers.org/kegg.pathway/ko04640']
+#@BQB_IS_PART_OF:['http://identifiers.org/kegg.pathway/ko04640', 'http://identifiers.org/kegg.pathway/ko04630']
 #@creatorEmail:'viji@ebi.ac.uk'
 #@creatorName:'Chelliah Vijayalakshmi'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 6 molecules and 8 reactions. The translated model has 5 molecules and 8 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 6 molecules and 8 reactions. The translated model has 5 molecules and 8 rules'
 ###
 begin model
 begin parameters
@@ -25,26 +25,26 @@ begin compartments
 	cell 3 1.0
 end compartments
 begin molecule types
-	#^ bqbiol:isVersionOf uniprot:P14753, kegg.orthology:K05079
-	EpoR(sav)
-	#^ bqbiol:isVersionOf uniprot:P22629
-	SAv(epor)
 	#^ bqbiol:hasPart uniprot:P14753, uniprot:P22629
 	SAv_EpoRi()
-	dSAve()
+	#^ bqbiol:isVersionOf uniprot:P22629
+	SAv(epor)
 	dSAvi()
+	#^ bqbiol:isVersionOf uniprot:P14753, kegg.orthology:K05079
+	EpoR(sav)
+	dSAve()
 end molecule types
 begin seed species
-	@cellsurface:EpoR(sav) 45767200000000.0 # (76.0 * 1e-12)mol/L * 6.022e23/mol *1.0L #EpoR #EpoR
-	@medium:SAv(epor) 601774244600000.0 #original 999.293picomole/L #SAv #SAv
+	@cellsurface:EpoR(sav)@cellsurface 45767200000000.0 # (76.0 * 1e-12)mol/L * 6.022e23/mol *1.0L #EpoR #EpoR
+	@medium:SAv(epor)@medium 601774244600000.0 #original 999.293picomole/L #SAv #SAv
 end seed species
 begin observables
-	Species EpoR_cellsurface @cellsurface:EpoR(sav) #EpoR
-	Species SAv_medium @medium:SAv(epor) #SAv
-	Species SAv_EpoR_cellsurface @cellsurface:SAv(epor!481).EpoR(sav!481) #SAv_EpoR
-	Species SAv_EpoRi_cell @cell:SAv_EpoRi() #SAv_EpoRi
-	Species dSAvi_cell @cell:dSAvi() #dSAvi
-	Species dSAve_medium @medium:dSAve() #dSAve
+	Species EpoR_cellsurface @cellsurface:EpoR(sav)@cellsurface #EpoR
+	Species SAv_medium @medium:SAv(epor)@medium #SAv
+	Species SAv_EpoR_cellsurface @cellsurface:SAv(epor!481)@cellsurface.EpoR(sav!481)@cellsurface #SAv_EpoR
+	Species SAv_EpoRi_cell @cell:SAv_EpoRi()@cell #SAv_EpoRi
+	Species dSAvi_cell @cell:dSAvi()@cell #dSAvi
+	Species dSAve_medium @medium:dSAve()@medium #dSAve
 end observables
 begin functions
 	SAv_cells() = SAv_EpoRi_cell + dSAvi_cell

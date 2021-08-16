@@ -1,11 +1,11 @@
 ###
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/30745900']
-#@BQB_HAS_PROPERTY:['http://identifiers.org/ncit/C53482', 'http://identifiers.org/pr/PR:000001543', 'http://identifiers.org/ncit/C94697', 'http://identifiers.org/ncit/C3224', 'http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/ncit/C94697', 'http://identifiers.org/ncit/C3224', 'http://identifiers.org/ncit/C53482', 'http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/pr/PR:000001543']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10090']
-#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1911180001', 'http://identifiers.org/biomodels.db/BIOMD0000000865']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000865', 'http://identifiers.org/biomodels.db/MODEL1911180001']
 #@creatorEmail:'johannes.p.meyer@gmail.com'
 #@creatorName:'Meyer Johannes'
-#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 4 molecules and 8 reactions. The translated model has 4 molecules and 8 rules'
+#@notes:'This is a plain translation of an SBML model created on 14/08/2021. The original model has 4 molecules and 8 reactions. The translated model has 4 molecules and 8 rules'
 ###
 begin model
 begin parameters
@@ -62,9 +62,9 @@ begin parameters
 end parameters
 begin molecule types
 	P()
-	B()
-	C()
 	I()
+	C()
+	B()
 end molecule types
 begin seed species
 	C() 6.022e+23 # 1.0mol/L * 6.022e23/mol *1.0L #C #C
@@ -79,9 +79,9 @@ begin observables
 	Species B B() #B
 end observables
 begin functions
-	nu_k() = K_p*kappa/((K_i_nu + kappa)*(K_p + kappa))
-	y_a_k() =  (lambda*c_T_a_k*nu_k + 1)/(lambda*c_T_a_k*nu_k + gamma_y + 1)
 	c_T_a_k() = 0.5*alpha + 0.5*kappa - 0.5*(-4*alpha + (alpha + kappa + 1)^2)^0.5 + 0.5
+	y_a_k() =  (lambda*c_T_a_k*nu_k + 1)/(lambda*c_T_a_k*nu_k + gamma_y + 1)
+	nu_k() = K_p*kappa/((K_i_nu + kappa)*(K_p + kappa))
 	mu_a_k() = (delta*y_a_k + 1)/(c_T_a_k*nu_k*theta + delta*y_a_k + gamma_p + 1)
 	phi_L_P() = H_p/(H_p + L*P)
 	U_a_k_P() = mu_a_k*phi_L_P

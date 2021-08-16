@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000551_flat">
+    <ListOfParameters>
+      <Parameter id="Sc" type="Constant" value="1.16" expr="1.16"/>
+      <Parameter id="Ki" type="Constant" value="0.0232" expr="0.0232"/>
+      <Parameter id="k1" type="Constant" value="1.13" expr="1.13"/>
+      <Parameter id="r" type="Constant" value="0.43" expr="0.43"/>
+      <Parameter id="deltap" type="Constant" value="0.55" expr="0.55"/>
+      <Parameter id="epsilon" type="Constant" value="0.0206" expr="0.0206"/>
+      <Parameter id="alpha" type="Constant" value="0.522" expr="0.522"/>
+      <Parameter id="aplasma" type="Constant" value="187" expr="187.0"/>
+      <Parameter id="bplasma" type="Constant" value="0.089" expr="0.089"/>
+      <Parameter id="tauplasma" type="Constant" value="1.66" expr="1.66"/>
+      <Parameter id="aCSF" type="Constant" value="4.92" expr="4.92"/>
+      <Parameter id="bCSF" type="Constant" value="0.259" expr="0.259"/>
+      <Parameter id="tauCSF" type="Constant" value="2.06" expr="2.06"/>
+      <Parameter id="J" type="Constant" value="0" expr="0"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="C"/>
+      <MoleculeType id="P"/>
+      <MoleculeType id="l"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+      <compartment id="CSF" spatialDimensions="3" size="1.0"/>
+      <compartment id="Plasma" spatialDimensions="3" size="1.0"/>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="6.022e+20" name="@CSF::C()" compartment="CSF">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="C" compartment="CSF"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="6.022e+20" name="@Plasma::P()" compartment="Plasma">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="P" compartment="Plasma"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="1.0" name="@CSF::l()" compartment="CSF">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="l" compartment="CSF"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="_R1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="C" compartment="CSF"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="arRateC" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="_R2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="P" compartment="Plasma"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="arRateP" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="_R3" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="l" compartment="CSF"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="arRatel" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="C_CSF" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" compartment="CSF" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="C"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="P_Plasma" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" compartment="Plasma" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="P"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="l" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="l"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="f_t">
+        <ListOfReferences>
+          <Reference name="aplasma" type="Constant"/>
+          <Reference name="bplasma" type="Constant"/>
+          <Reference name="tauplasma" type="Constant"/>
+        </ListOfReferences>
+        <Expression> if((time()&lt;tauplasma),(((aplasma*time())*exp(((-bplasma)*tauplasma)))/tauplasma),(aplasma*exp(((-bplasma)*time())))) </Expression>
+      </Function>
+      <Function id="arRatel">
+        <ListOfReferences>
+          <Reference name="alpha" type="Constant"/>
+          <Reference name="epsilon" type="Constant"/>
+          <Reference name="f_t" type="Function"/>
+          <Reference name="l" type="Observable"/>
+        </ListOfReferences>
+        <Expression> epsilon*((-l)+(1/((alpha*f_t)+1))) </Expression>
+      </Function>
+      <Function id="g_t">
+        <ListOfReferences>
+          <Reference name="aCSF" type="Constant"/>
+          <Reference name="bCSF" type="Constant"/>
+          <Reference name="tauCSF" type="Constant"/>
+        </ListOfReferences>
+        <Expression> if((time()&lt;tauCSF),(((aCSF*time())*exp(((-bCSF)*tauCSF)))/tauCSF),(aCSF*exp(((-bCSF)*time())))) </Expression>
+      </Function>
+      <Function id="arRateC">
+        <ListOfReferences>
+          <Reference name="J" type="Constant"/>
+          <Reference name="Ki" type="Constant"/>
+          <Reference name="Sc" type="Constant"/>
+          <Reference name="k1" type="Constant"/>
+          <Reference name="g_t" type="Function"/>
+          <Reference name="C_CSF" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((-C_CSF)*k1)+J)+(Sc/(1+(g_t/Ki))) </Expression>
+      </Function>
+      <Function id="arRateP">
+        <ListOfReferences>
+          <Reference name="J" type="Constant"/>
+          <Reference name="deltap" type="Constant"/>
+          <Reference name="k1" type="Constant"/>
+          <Reference name="r" type="Constant"/>
+          <Reference name="C_CSF" type="Observable"/>
+          <Reference name="P_Plasma" type="Observable"/>
+          <Reference name="l" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((C_CSF*k1)*r)-(J*r))-((P_Plasma*deltap)*l) </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

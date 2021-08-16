@@ -5,7 +5,7 @@
 #@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0009873', 'http://identifiers.org/obo.go/GO:0009734', 'http://identifiers.org/obo.go/GO:0009736']
 #@creatorEmail:'lukas@ebi.ac.uk'
 #@creatorName:'Endler Lukas'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 18 molecules and 22 reactions. The translated model has 10 molecules and 23 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 18 molecules and 22 reactions. The translated model has 10 molecules and 23 rules'
 ###
 begin model
 begin parameters
@@ -54,52 +54,52 @@ begin compartments
 	extra 3 1.0 #extracellular
 end compartments
 begin molecule types
-	#^ bqbiol:is obo.chebi:CHEBI:18153, kegg.compound:C06547
-	ET()
-	#^ bqbiol:isVersionOf uniprot:P49333, uniprot:Q0WPQ2
-	Re(m~M~0)
-	#^ bqbiol:hasProperty obo.go:GO:0010011
-	Ra(m~M~0)
 	X()
-	#^ bqbiol:isVersionOf obo.chebi:CHEBI:22676
-	Auxin()
-	#^ bqbiol:isVersionOf uniprot:Q05609
-	CTR1(m~M~0)
-	PLS(PLSp~PLSp~0,m~M~0)
+	#^ bqbiol:isVersionOf obo.chebi:CHEBI:23530
+	CK(Cytokinin_ext~Cytokinin_ext~0)
 	#^ bqbiol:is obo.chebi:CHEBI:18053
 	ACC()
 	#^ bqbiol:is obo.chebi:CHEBI:16411, kegg.compound:C00954
 	IAA()
-	#^ bqbiol:isVersionOf obo.chebi:CHEBI:23530
-	CK(Cytokinin_ext~Cytokinin_ext~0)
+	#^ bqbiol:isVersionOf uniprot:P49333, uniprot:Q0WPQ2
+	Re(m~M~0)
+	PLS(PLSp~PLSp~0,m~M~0)
+	#^ bqbiol:isVersionOf uniprot:Q05609
+	CTR1(m~M~0)
+	#^ bqbiol:hasProperty obo.go:GO:0010011
+	Ra(m~M~0)
+	#^ bqbiol:isVersionOf obo.chebi:CHEBI:22676
+	Auxin()
+	#^ bqbiol:is obo.chebi:CHEBI:18153, kegg.compound:C06547
+	ET()
 end molecule types
 begin seed species
-	@compartment_1:Auxin() 6.022e+16 # (0.1 * 1e-06)mol/L * 6.022e23/mol *1.0L #Auxin #Auxin
-	@compartment_1:X() 6.022e+16 #original 0.1umole/L #X #X
-	@compartment_1:PLS(PLSp~PLSp,m~0) 6.022e+16 #original 0.1umole/L #PLSp #PLSp
-	@compartment_1:Ra(m~M) 6.022e+17 #original 1.0umole/L #Ram #Ra_star
-	@compartment_1:CK(Cytokinin_ext~0) 6.022e+16 #original 0.1umole/L #CK #CK
-	@compartment_1:ET() 6.022e+16 #original 0.1umole/L #ET #ET
-	@compartment_1:PLS(PLSp~0,m~M) 6.022e+16 #original 0.1umole/L #PLSm #PLSm
-	@compartment_1:Re(m~M) 1.8066e+17 #original 0.3umole/L #Rem #Re_star
-	@compartment_1:CTR1(m~M) 1.8066e+17 #original 0.3umole/L #CTR1m #CTR1_star
+	@compartment_1:Auxin()@compartment_1 6.022e+16 # (0.1 * 1e-06)mol/L * 6.022e23/mol *1.0L #Auxin #Auxin
+	@compartment_1:X()@compartment_1 6.022e+16 #original 0.1umole/L #X #X
+	@compartment_1:PLS(PLSp~PLSp,m~0)@compartment_1 6.022e+16 #original 0.1umole/L #PLSp #PLSp
+	@compartment_1:Ra(m~M)@compartment_1 6.022e+17 #original 1.0umole/L #Ram #Ra_star
+	@compartment_1:CK(Cytokinin_ext~0)@compartment_1 6.022e+16 #original 0.1umole/L #CK #CK
+	@compartment_1:ET()@compartment_1 6.022e+16 #original 0.1umole/L #ET #ET
+	@compartment_1:PLS(PLSp~0,m~M)@compartment_1 6.022e+16 #original 0.1umole/L #PLSm #PLSm
+	@compartment_1:Re(m~M)@compartment_1 1.8066e+17 #original 0.3umole/L #Rem #Re_star
+	@compartment_1:CTR1(m~M)@compartment_1 1.8066e+17 #original 0.3umole/L #CTR1m #CTR1_star
 end seed species
 begin observables
-	Species Auxin_compartment_1 @compartment_1:Auxin() #Auxin
-	Species X_compartment_1 @compartment_1:X() #X
-	Species PLSp_compartment_1 @compartment_1:PLS(PLSp~PLSp,m~0) #PLSp
-	Species Ra_compartment_1 @compartment_1:Ra(m~0) #Ra
-	Species Ram_compartment_1 @compartment_1:Ra(m~M) #Ra*
-	Species CK_compartment_1 @compartment_1:CK(Cytokinin_ext~0) #CK
-	Species ET_compartment_1 @compartment_1:ET() #ET
-	Species PLSm_compartment_1 @compartment_1:PLS(PLSp~0,m~M) #PLSm
-	Species Re_compartment_1 @compartment_1:Re(m~0) #Re
-	Species Rem_compartment_1 @compartment_1:Re(m~M) #Re*
-	Species CTR1_compartment_1 @compartment_1:CTR1(m~0) #CTR1
-	Species CTR1m_compartment_1 @compartment_1:CTR1(m~M) #CTR1*
-	Species IAA_extra @extra:IAA() #IAA
-	Species ACC_extra @extra:ACC() #ACC
-	Species Cytokinin_ext_extra @extra:CK(Cytokinin_ext~Cytokinin_ext) #Cytokinin_ext
+	Species Auxin_compartment_1 @compartment_1:Auxin()@compartment_1 #Auxin
+	Species X_compartment_1 @compartment_1:X()@compartment_1 #X
+	Species PLSp_compartment_1 @compartment_1:PLS(PLSp~PLSp,m~0)@compartment_1 #PLSp
+	Species Ra_compartment_1 @compartment_1:Ra(m~0)@compartment_1 #Ra
+	Species Ram_compartment_1 @compartment_1:Ra(m~M)@compartment_1 #Ra*
+	Species CK_compartment_1 @compartment_1:CK(Cytokinin_ext~0)@compartment_1 #CK
+	Species ET_compartment_1 @compartment_1:ET()@compartment_1 #ET
+	Species PLSm_compartment_1 @compartment_1:PLS(PLSp~0,m~M)@compartment_1 #PLSm
+	Species Re_compartment_1 @compartment_1:Re(m~0)@compartment_1 #Re
+	Species Rem_compartment_1 @compartment_1:Re(m~M)@compartment_1 #Re*
+	Species CTR1_compartment_1 @compartment_1:CTR1(m~0)@compartment_1 #CTR1
+	Species CTR1m_compartment_1 @compartment_1:CTR1(m~M)@compartment_1 #CTR1*
+	Species IAA_extra @extra:IAA()@extra #IAA
+	Species ACC_extra @extra:ACC()@extra #ACC
+	Species Cytokinin_ext_extra @extra:CK(Cytokinin_ext~Cytokinin_ext)@extra #Cytokinin_ext
 end observables
 begin functions
 	CTR1_ar() = CTR1_total_compartment_1 - CTR1m_compartment_1

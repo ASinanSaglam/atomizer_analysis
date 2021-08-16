@@ -1,5 +1,5 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000594', 'http://identifiers.org/biomodels.db/MODEL1505190001']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1505190001', 'http://identifiers.org/biomodels.db/BIOMD0000000594']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/26264748']
 #@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:162']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
@@ -7,7 +7,7 @@
 #@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0007173']
 #@creatorEmail:'fabrizio.capuani@ifom.eu'
 #@creatorName:'Capuani Fabrizio'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 33 molecules and 120 reactions. The translated model has 7 molecules and 120 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 33 molecules and 120 reactions. The translated model has 7 molecules and 120 rules'
 ###
 begin model
 begin parameters
@@ -30,52 +30,52 @@ begin parameters
 	Ltot 0
 end parameters
 begin molecule types
-	EGFR_11UL()
-	EGFR_11CG()
-	EGFR_12UL()
-	EGFR(_00uu~_00UU~0,_01uu~_01UU~0,_02uu~_02UU~0,_10uu~_10UU~0,_11cc~_11CC~0,_11uu~_11UU~0,_12cc~_12CC~0,_12uu~_12UU~0,cbl,grb2)
+	#^ bqbiol:hasVersion uniprot:P22681
+	Cbl(egfr,grb2,grb2)
 	EGFR_12CG()
 	#^ bmbiol:is uniprot:P62993
 	Grb2(cbl,egfr)
-	#^ bqbiol:hasVersion uniprot:P22681
-	Cbl(egfr,grb2,grb2)
+	EGFR_11CG()
+	EGFR(_00uu~_00UU~0,_01uu~_01UU~0,_02uu~_02UU~0,_10uu~_10UU~0,_11cc~_11CC~0,_11uu~_11UU~0,_12cc~_12CC~0,_12uu~_12UU~0,cbl,grb2)
+	EGFR_11UL()
+	EGFR_12UL()
 end molecule types
 begin seed species
 	Cbl(egfr,grb2,grb2) 1.6920334542073352e+19 # 2.80975332814237e-05mol/L * 6.022e23/mol *1.0L #Cbl #Cbl
 	Grb2(cbl,egfr) 1.9905047123345414e+24 #original 3.30538809753328mol/L #Grb2 #Grb2
-	Cbl(egfr,grb2!151,grb2).Grb2(cbl!151,egfr) 8.799287665457942e+21 #original 0.0146119024667186mol/L #CG #CG
+	Cbl(egfr,grb2!251,grb2).Grb2(cbl!251,egfr) 8.799287665457942e+21 #original 0.0146119024667186mol/L #CG #CG
 	EGFR(_00uu~_00UU,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) 5.016326e+23 #original 0.833mol/L #EGFR_00UU #EGFR_00UU
 end seed species
 begin observables
 	Species Cbl Cbl(egfr,grb2,grb2) #Cbl
 	Species Grb2 Grb2(cbl,egfr) #Grb2
-	Species CG Cbl(egfr,grb2!151,grb2).Grb2(cbl!151,egfr) #CG
+	Species CG Cbl(egfr,grb2!251,grb2).Grb2(cbl!251,egfr) #CG
 	Species EGFR_00UU EGFR(_00uu~_00UU,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) #EGFR_00UU
 	Species EGFR_10UU EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~_10UU,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) #EGFR_10UU
-	Species EGFR_10CU EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~_10UU,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!152,grb2).Cbl(egfr!152,grb2,grb2) #EGFR_10CU
-	Species EGFR_10LU EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~_10UU,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) #EGFR_10LU
+	Species EGFR_10CU EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~_10UU,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!252,grb2).Cbl(egfr!252,grb2,grb2) #EGFR_10CU
+	Species EGFR_10LU EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~_10UU,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) #EGFR_10LU
 	Species EGFR_01UU EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) #EGFR_01UU
-	Species EGFR_01UG EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2!153).Grb2(cbl,egfr!153) #EGFR_01UG
-	Species EGFR_01UL EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) #EGFR_01UL
+	Species EGFR_01UG EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2!253).Grb2(cbl,egfr!253) #EGFR_01UG
+	Species EGFR_01UL EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) #EGFR_01UL
 	Species EGFR_11UU EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2) #EGFR_11UU
-	Species EGFR_11CU EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!152,grb2).Cbl(egfr!152,grb2,grb2) #EGFR_11CU
-	Species EGFR_11LU EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) #EGFR_11LU
-	Species EGFR_11UG EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2!153).Grb2(cbl,egfr!153) #EGFR_11UG
+	Species EGFR_11CU EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!252,grb2).Cbl(egfr!252,grb2,grb2) #EGFR_11CU
+	Species EGFR_11LU EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) #EGFR_11LU
+	Species EGFR_11UG EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2!253).Grb2(cbl,egfr!253) #EGFR_11UG
 	Species EGFR_11UL EGFR_11UL() #EGFR_11UL
 	Species EGFR_11CG EGFR_11CG() #EGFR_11CG
 	Species EGFR_11CC EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~_11CC,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) #EGFR_11CC
-	Species EGFR_11LG EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2!154).Grb2(cbl!151,egfr!153).Grb2(cbl!154,egfr) #EGFR_11LG
+	Species EGFR_11LG EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2!254).Grb2(cbl!251,egfr!253).Grb2(cbl!254,egfr) #EGFR_11LG
 	Species EGFR_02UU EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) #EGFR_02UU
-	Species EGFR_02UG EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2!153).Grb2(cbl,egfr!153) #EGFR_02UG
-	Species EGFR_02UL EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) #EGFR_02UL
+	Species EGFR_02UG EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2!253).Grb2(cbl,egfr!253) #EGFR_02UG
+	Species EGFR_02UL EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) #EGFR_02UL
 	Species EGFR_12UU EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2) #EGFR_12UU
-	Species EGFR_12CU EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!152,grb2).Cbl(egfr!152,grb2,grb2) #EGFR_12CU
-	Species EGFR_12LU EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) #EGFR_12LU
-	Species EGFR_12UG EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2!153).Grb2(cbl,egfr!153) #EGFR_12UG
+	Species EGFR_12CU EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!252,grb2).Cbl(egfr!252,grb2,grb2) #EGFR_12CU
+	Species EGFR_12LU EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) #EGFR_12LU
+	Species EGFR_12UG EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2!253).Grb2(cbl,egfr!253) #EGFR_12UG
 	Species EGFR_12UL EGFR_12UL() #EGFR_12UL
 	Species EGFR_12CG EGFR_12CG() #EGFR_12CG
 	Species EGFR_12CC EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~_12CC,_12uu~0,cbl,grb2) #EGFR_12CC
-	Species EGFR_12LG EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2!154).Grb2(cbl!151,egfr!153).Grb2(cbl!154,egfr) #EGFR_12LG
+	Species EGFR_12LG EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2!254).Grb2(cbl!251,egfr!253).Grb2(cbl!254,egfr) #EGFR_12LG
 end observables
 begin functions
 	kucgM() = kucg
@@ -118,121 +118,121 @@ begin reaction rules
 	r2: EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) -> EGFR(_00uu~_00UU,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) kptp68 #Modifiers(EGFR_01UU)
 	r3: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2) -> EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) kptp #Modifiers(EGFR_11UU)
 	r4: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~_10UU,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) kptp68 #Modifiers(EGFR_11UU)
-	r5: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!152,grb2).Cbl(egfr!152,grb2,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~_10UU,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!152,grb2).Cbl(egfr!152,grb2,grb2) kptp68 #Modifiers(EGFR_11CU)
-	r6: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~_10UU,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) kptp68 #Modifiers(EGFR_11LU)
-	r7: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2!153).Grb2(cbl,egfr!153) -> EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2!153).Grb2(cbl,egfr!153) kptp #Modifiers(EGFR_11UG)
-	r8: EGFR_11UL() -> EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) kptp #Modifiers(EGFR_11UL)
+	r5: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!252,grb2).Cbl(egfr!252,grb2,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~_10UU,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!252,grb2).Cbl(egfr!252,grb2,grb2) kptp68 #Modifiers(EGFR_11CU)
+	r6: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~_10UU,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) kptp68 #Modifiers(EGFR_11LU)
+	r7: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2!253).Grb2(cbl,egfr!253) -> EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2!253).Grb2(cbl,egfr!253) kptp #Modifiers(EGFR_11UG)
+	r8: EGFR_11UL() -> EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) kptp #Modifiers(EGFR_11UL)
 	r9: EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) -> EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) fRate8() #Modifiers(EGFR_02UU)
-	r10: EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2!153).Grb2(cbl,egfr!153) -> EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2!153).Grb2(cbl,egfr!153) kptp68 #Modifiers(EGFR_02UG)
-	r11: EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) -> EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) kptp68 #Modifiers(EGFR_02UL)
+	r10: EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2!253).Grb2(cbl,egfr!253) -> EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2!253).Grb2(cbl,egfr!253) kptp68 #Modifiers(EGFR_02UG)
+	r11: EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) -> EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) kptp68 #Modifiers(EGFR_02UL)
 	r12: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) kptp #Modifiers(EGFR_12UU)
 	r13: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2) fRate12() #Modifiers(EGFR_12UU)
-	r14: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!152,grb2).Cbl(egfr!152,grb2,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!152,grb2).Cbl(egfr!152,grb2,grb2) fRate13() #Modifiers(EGFR_12CU)
-	r15: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) fRate14() #Modifiers(EGFR_12LU)
-	r16: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2!153).Grb2(cbl,egfr!153) -> EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2!153).Grb2(cbl,egfr!153) kptp #Modifiers(EGFR_12UG)
-	r17: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2!153).Grb2(cbl,egfr!153) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2!153).Grb2(cbl,egfr!153) kptp68 #Modifiers(EGFR_12UG)
-	r18: EGFR_12UL() -> EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) kptp #Modifiers(EGFR_12UL)
+	r14: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!252,grb2).Cbl(egfr!252,grb2,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!252,grb2).Cbl(egfr!252,grb2,grb2) fRate13() #Modifiers(EGFR_12CU)
+	r15: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) fRate14() #Modifiers(EGFR_12LU)
+	r16: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2!253).Grb2(cbl,egfr!253) -> EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2!253).Grb2(cbl,egfr!253) kptp #Modifiers(EGFR_12UG)
+	r17: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2!253).Grb2(cbl,egfr!253) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2!253).Grb2(cbl,egfr!253) kptp68 #Modifiers(EGFR_12UG)
+	r18: EGFR_12UL() -> EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) kptp #Modifiers(EGFR_12UL)
 	r19: EGFR_12UL() -> EGFR_11UL() kptp68 #Modifiers(EGFR_12UL)
 	r20: EGFR_12CG() -> EGFR_11CG() kptp68 #Modifiers(EGFR_12CG)
 	r21: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~_12CC,_12uu~0,cbl,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~_11CC,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) kptp68 #Modifiers(EGFR_12CC)
-	r22: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2!154).Grb2(cbl!151,egfr!153).Grb2(cbl!154,egfr) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2!154).Grb2(cbl!151,egfr!153).Grb2(cbl!154,egfr) kptp68 #Modifiers(EGFR_12LG)
+	r22: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2!254).Grb2(cbl!251,egfr!253).Grb2(cbl!254,egfr) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2!254).Grb2(cbl!251,egfr!253).Grb2(cbl!254,egfr) kptp68 #Modifiers(EGFR_12LG)
 	r23: EGFR(_00uu~_00UU,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~_10UU,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) kkin #Modifiers(EGFR_00UU)
 	r24: EGFR(_00uu~_00UU,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) -> EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) fRate23() #Modifiers(EGFR_00UU)
 	r25: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~_10UU,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2) fRate24() #Modifiers(EGFR_10UU)
-	r26: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~_10UU,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!152,grb2).Cbl(egfr!152,grb2,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!152,grb2).Cbl(egfr!152,grb2,grb2) fRate25() #Modifiers(EGFR_10CU)
-	r27: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~_10UU,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) fRate26() #Modifiers(EGFR_10LU)
+	r26: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~_10UU,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!252,grb2).Cbl(egfr!252,grb2,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!252,grb2).Cbl(egfr!252,grb2,grb2) fRate25() #Modifiers(EGFR_10CU)
+	r27: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~_10UU,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) fRate26() #Modifiers(EGFR_10LU)
 	r28: EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2) kkin #Modifiers(EGFR_01UU)
 	r29: EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) kkin68 #Modifiers(EGFR_01UU)
-	r30: EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2!153).Grb2(cbl,egfr!153) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2!153).Grb2(cbl,egfr!153) kkin #Modifiers(EGFR_01UG)
-	r31: EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2!153).Grb2(cbl,egfr!153) -> EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2!153).Grb2(cbl,egfr!153) kkin68 #Modifiers(EGFR_01UG)
-	r32: EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) -> EGFR_11UL() kkin #Modifiers(EGFR_01UL)
-	r33: EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) -> EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) kkin68 #Modifiers(EGFR_01UL)
+	r30: EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2!253).Grb2(cbl,egfr!253) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2!253).Grb2(cbl,egfr!253) kkin #Modifiers(EGFR_01UG)
+	r31: EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2!253).Grb2(cbl,egfr!253) -> EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2!253).Grb2(cbl,egfr!253) kkin68 #Modifiers(EGFR_01UG)
+	r32: EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) -> EGFR_11UL() kkin #Modifiers(EGFR_01UL)
+	r33: EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) -> EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) kkin68 #Modifiers(EGFR_01UL)
 	r34: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2) kkin68 #Modifiers(EGFR_11UU)
-	r35: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!152,grb2).Cbl(egfr!152,grb2,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!152,grb2).Cbl(egfr!152,grb2,grb2) kkin68 #Modifiers(EGFR_11CU)
-	r36: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) kkin68 #Modifiers(EGFR_11LU)
-	r37: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2!153).Grb2(cbl,egfr!153) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2!153).Grb2(cbl,egfr!153) kkin68 #Modifiers(EGFR_11UG)
+	r35: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!252,grb2).Cbl(egfr!252,grb2,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!252,grb2).Cbl(egfr!252,grb2,grb2) kkin68 #Modifiers(EGFR_11CU)
+	r36: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) kkin68 #Modifiers(EGFR_11LU)
+	r37: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2!253).Grb2(cbl,egfr!253) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2!253).Grb2(cbl,egfr!253) kkin68 #Modifiers(EGFR_11UG)
 	r38: EGFR_11UL() -> EGFR_12UL() kkin68 #Modifiers(EGFR_11UL)
 	r39: EGFR_11CG() -> EGFR_12CG() kkin68 #Modifiers(EGFR_11CG)
 	r40: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~_11CC,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~_12CC,_12uu~0,cbl,grb2) kkin68 #Modifiers(EGFR_11CC)
-	r41: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2!154).Grb2(cbl!151,egfr!153).Grb2(cbl!154,egfr) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2!154).Grb2(cbl!151,egfr!153).Grb2(cbl!154,egfr) kkin68 #Modifiers(EGFR_11LG)
+	r41: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2!254).Grb2(cbl!251,egfr!253).Grb2(cbl!254,egfr) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2!254).Grb2(cbl!251,egfr!253).Grb2(cbl!254,egfr) kkin68 #Modifiers(EGFR_11LG)
 	r42: EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2) kkin #Modifiers(EGFR_02UU)
-	r43: EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2!153).Grb2(cbl,egfr!153) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2!153).Grb2(cbl,egfr!153) kkin #Modifiers(EGFR_02UG)
-	r44: EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) -> EGFR_12UL() kkin #Modifiers(EGFR_02UL)
-	r45: Cbl(egfr,grb2,grb2) + Grb2(cbl,egfr) -> Cbl(egfr,grb2!151,grb2).Grb2(cbl!151,egfr) kbcg #Modifiers(Cbl, Grb2)
-	r46: Cbl(egfr,grb2!151,grb2).Grb2(cbl!151,egfr) -> Cbl(egfr,grb2,grb2) + Grb2(cbl,egfr) kucg #Modifiers(CG)
-	r47: Cbl(egfr,grb2,grb2) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~_10UU,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~_10UU,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!152,grb2).Cbl(egfr!152,grb2,grb2) kb45 #Modifiers(Cbl, EGFR_10UU)
-	r48: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~_10UU,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!152,grb2).Cbl(egfr!152,grb2,grb2) -> Cbl(egfr,grb2,grb2) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~_10UU,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) ku45 #Modifiers(EGFR_10CU)
-	r49: Cbl(egfr,grb2!151,grb2).Grb2(cbl!151,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~_10UU,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~_10UU,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) kb45 #Modifiers(CG, EGFR_10UU)
-	r50: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~_10UU,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) -> Cbl(egfr,grb2!151,grb2).Grb2(cbl!151,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~_10UU,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) ku45 #Modifiers(EGFR_10LU)
-	r51: Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~_10UU,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!152,grb2).Cbl(egfr!152,grb2,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~_10UU,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) kbcg #Modifiers(Grb2, EGFR_10CU)
-	r52: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~_10UU,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) -> Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~_10UU,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!152,grb2).Cbl(egfr!152,grb2,grb2) kucg #Modifiers(EGFR_10LU)
-	r53: Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) -> EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2!153).Grb2(cbl,egfr!153) kb68 #Modifiers(Grb2, EGFR_01UU)
-	r54: EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2!153).Grb2(cbl,egfr!153) -> Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) ku68 #Modifiers(EGFR_01UG)
-	r55: Cbl(egfr,grb2!151,grb2).Grb2(cbl!151,egfr) + EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) -> EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) kb68 #Modifiers(CG, EGFR_01UU)
-	r56: EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) -> Cbl(egfr,grb2!151,grb2).Grb2(cbl!151,egfr) + EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) ku68 #Modifiers(EGFR_01UL)
-	r57: Cbl(egfr,grb2,grb2) + EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2!153).Grb2(cbl,egfr!153) -> EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) kbcg #Modifiers(Cbl, EGFR_01UG)
-	r58: EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) -> Cbl(egfr,grb2,grb2) + EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2!153).Grb2(cbl,egfr!153) kucg #Modifiers(EGFR_01UL)
-	r59: Cbl(egfr,grb2,grb2) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!152,grb2).Cbl(egfr!152,grb2,grb2) kb45 #Modifiers(Cbl, EGFR_11UU)
-	r60: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!152,grb2).Cbl(egfr!152,grb2,grb2) -> Cbl(egfr,grb2,grb2) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2) ku45 #Modifiers(EGFR_11CU)
-	r61: Cbl(egfr,grb2!151,grb2).Grb2(cbl!151,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) kb45 #Modifiers(CG, EGFR_11UU)
-	r62: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) -> Cbl(egfr,grb2!151,grb2).Grb2(cbl!151,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2) ku45 #Modifiers(EGFR_11LU)
-	r63: Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2!153).Grb2(cbl,egfr!153) kb68 #Modifiers(Grb2, EGFR_11UU)
-	r64: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2!153).Grb2(cbl,egfr!153) -> Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2) ku68 #Modifiers(EGFR_11UG)
-	r65: Cbl(egfr,grb2!151,grb2).Grb2(cbl!151,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2) -> EGFR_11UL() kb68 #Modifiers(CG, EGFR_11UU)
-	r66: EGFR_11UL() -> Cbl(egfr,grb2!151,grb2).Grb2(cbl!151,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2) ku68 #Modifiers(EGFR_11UL)
-	r67: Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!152,grb2).Cbl(egfr!152,grb2,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) kbcg #Modifiers(Grb2, EGFR_11CU)
-	r68: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) -> Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!152,grb2).Cbl(egfr!152,grb2,grb2) kucg #Modifiers(EGFR_11LU)
-	r69: Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!152,grb2).Cbl(egfr!152,grb2,grb2) -> EGFR_11CG() kb68 #Modifiers(Grb2, EGFR_11CU)
-	r70: EGFR_11CG() -> Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!152,grb2).Cbl(egfr!152,grb2,grb2) ku68 #Modifiers(EGFR_11CG)
-	r71: Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2!154).Grb2(cbl!151,egfr!153).Grb2(cbl!154,egfr) kb68 #Modifiers(Grb2, EGFR_11LU)
-	r72: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2!154).Grb2(cbl!151,egfr!153).Grb2(cbl!154,egfr) -> Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) ku68 #Modifiers(EGFR_11LG)
-	r73: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~_11CC,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) kb68P #Modifiers(EGFR_11LU)
-	r74: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~_11CC,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) ku68M #Modifiers(EGFR_11CC)
-	r75: Cbl(egfr,grb2,grb2) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2!153).Grb2(cbl,egfr!153) -> EGFR_11CG() kb45 #Modifiers(Cbl, EGFR_11UG)
-	r76: EGFR_11CG() -> Cbl(egfr,grb2,grb2) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2!153).Grb2(cbl,egfr!153) ku45 #Modifiers(EGFR_11CG)
-	r77: Cbl(egfr,grb2!151,grb2).Grb2(cbl!151,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2!153).Grb2(cbl,egfr!153) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2!154).Grb2(cbl!151,egfr!153).Grb2(cbl!154,egfr) kb45 #Modifiers(CG, EGFR_11UG)
-	r78: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2!154).Grb2(cbl!151,egfr!153).Grb2(cbl!154,egfr) -> Cbl(egfr,grb2!151,grb2).Grb2(cbl!151,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2!153).Grb2(cbl,egfr!153) ku45 #Modifiers(EGFR_11LG)
-	r79: Cbl(egfr,grb2,grb2) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2!153).Grb2(cbl,egfr!153) -> EGFR_11UL() kbcg #Modifiers(Cbl, EGFR_11UG)
-	r80: EGFR_11UL() -> Cbl(egfr,grb2,grb2) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2!153).Grb2(cbl,egfr!153) kucg #Modifiers(EGFR_11UL)
+	r43: EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2!253).Grb2(cbl,egfr!253) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2!253).Grb2(cbl,egfr!253) kkin #Modifiers(EGFR_02UG)
+	r44: EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) -> EGFR_12UL() kkin #Modifiers(EGFR_02UL)
+	r45: Cbl(egfr,grb2,grb2) + Grb2(cbl,egfr) -> Cbl(egfr,grb2!251,grb2).Grb2(cbl!251,egfr) kbcg #Modifiers(Cbl, Grb2)
+	r46: Cbl(egfr,grb2!251,grb2).Grb2(cbl!251,egfr) -> Cbl(egfr,grb2,grb2) + Grb2(cbl,egfr) kucg #Modifiers(CG)
+	r47: Cbl(egfr,grb2,grb2) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~_10UU,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~_10UU,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!252,grb2).Cbl(egfr!252,grb2,grb2) kb45 #Modifiers(Cbl, EGFR_10UU)
+	r48: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~_10UU,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!252,grb2).Cbl(egfr!252,grb2,grb2) -> Cbl(egfr,grb2,grb2) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~_10UU,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) ku45 #Modifiers(EGFR_10CU)
+	r49: Cbl(egfr,grb2!251,grb2).Grb2(cbl!251,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~_10UU,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~_10UU,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) kb45 #Modifiers(CG, EGFR_10UU)
+	r50: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~_10UU,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) -> Cbl(egfr,grb2!251,grb2).Grb2(cbl!251,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~_10UU,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) ku45 #Modifiers(EGFR_10LU)
+	r51: Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~_10UU,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!252,grb2).Cbl(egfr!252,grb2,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~_10UU,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) kbcg #Modifiers(Grb2, EGFR_10CU)
+	r52: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~_10UU,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) -> Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~_10UU,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!252,grb2).Cbl(egfr!252,grb2,grb2) kucg #Modifiers(EGFR_10LU)
+	r53: Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) -> EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2!253).Grb2(cbl,egfr!253) kb68 #Modifiers(Grb2, EGFR_01UU)
+	r54: EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2!253).Grb2(cbl,egfr!253) -> Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) ku68 #Modifiers(EGFR_01UG)
+	r55: Cbl(egfr,grb2!251,grb2).Grb2(cbl!251,egfr) + EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) -> EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) kb68 #Modifiers(CG, EGFR_01UU)
+	r56: EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) -> Cbl(egfr,grb2!251,grb2).Grb2(cbl!251,egfr) + EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) ku68 #Modifiers(EGFR_01UL)
+	r57: Cbl(egfr,grb2,grb2) + EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2!253).Grb2(cbl,egfr!253) -> EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) kbcg #Modifiers(Cbl, EGFR_01UG)
+	r58: EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) -> Cbl(egfr,grb2,grb2) + EGFR(_00uu~0,_01uu~_01UU,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2!253).Grb2(cbl,egfr!253) kucg #Modifiers(EGFR_01UL)
+	r59: Cbl(egfr,grb2,grb2) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!252,grb2).Cbl(egfr!252,grb2,grb2) kb45 #Modifiers(Cbl, EGFR_11UU)
+	r60: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!252,grb2).Cbl(egfr!252,grb2,grb2) -> Cbl(egfr,grb2,grb2) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2) ku45 #Modifiers(EGFR_11CU)
+	r61: Cbl(egfr,grb2!251,grb2).Grb2(cbl!251,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) kb45 #Modifiers(CG, EGFR_11UU)
+	r62: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) -> Cbl(egfr,grb2!251,grb2).Grb2(cbl!251,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2) ku45 #Modifiers(EGFR_11LU)
+	r63: Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2!253).Grb2(cbl,egfr!253) kb68 #Modifiers(Grb2, EGFR_11UU)
+	r64: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2!253).Grb2(cbl,egfr!253) -> Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2) ku68 #Modifiers(EGFR_11UG)
+	r65: Cbl(egfr,grb2!251,grb2).Grb2(cbl!251,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2) -> EGFR_11UL() kb68 #Modifiers(CG, EGFR_11UU)
+	r66: EGFR_11UL() -> Cbl(egfr,grb2!251,grb2).Grb2(cbl!251,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2) ku68 #Modifiers(EGFR_11UL)
+	r67: Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!252,grb2).Cbl(egfr!252,grb2,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) kbcg #Modifiers(Grb2, EGFR_11CU)
+	r68: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) -> Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!252,grb2).Cbl(egfr!252,grb2,grb2) kucg #Modifiers(EGFR_11LU)
+	r69: Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!252,grb2).Cbl(egfr!252,grb2,grb2) -> EGFR_11CG() kb68 #Modifiers(Grb2, EGFR_11CU)
+	r70: EGFR_11CG() -> Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!252,grb2).Cbl(egfr!252,grb2,grb2) ku68 #Modifiers(EGFR_11CG)
+	r71: Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2!254).Grb2(cbl!251,egfr!253).Grb2(cbl!254,egfr) kb68 #Modifiers(Grb2, EGFR_11LU)
+	r72: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2!254).Grb2(cbl!251,egfr!253).Grb2(cbl!254,egfr) -> Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) ku68 #Modifiers(EGFR_11LG)
+	r73: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~_11CC,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) kb68P #Modifiers(EGFR_11LU)
+	r74: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~_11CC,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) ku68M #Modifiers(EGFR_11CC)
+	r75: Cbl(egfr,grb2,grb2) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2!253).Grb2(cbl,egfr!253) -> EGFR_11CG() kb45 #Modifiers(Cbl, EGFR_11UG)
+	r76: EGFR_11CG() -> Cbl(egfr,grb2,grb2) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2!253).Grb2(cbl,egfr!253) ku45 #Modifiers(EGFR_11CG)
+	r77: Cbl(egfr,grb2!251,grb2).Grb2(cbl!251,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2!253).Grb2(cbl,egfr!253) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2!254).Grb2(cbl!251,egfr!253).Grb2(cbl!254,egfr) kb45 #Modifiers(CG, EGFR_11UG)
+	r78: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2!254).Grb2(cbl!251,egfr!253).Grb2(cbl!254,egfr) -> Cbl(egfr,grb2!251,grb2).Grb2(cbl!251,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2!253).Grb2(cbl,egfr!253) ku45 #Modifiers(EGFR_11LG)
+	r79: Cbl(egfr,grb2,grb2) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2!253).Grb2(cbl,egfr!253) -> EGFR_11UL() kbcg #Modifiers(Cbl, EGFR_11UG)
+	r80: EGFR_11UL() -> Cbl(egfr,grb2,grb2) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl,grb2!253).Grb2(cbl,egfr!253) kucg #Modifiers(EGFR_11UL)
 	r81: EGFR_11UL() -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~_11CC,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) kb45P #Modifiers(EGFR_11UL)
 	r82: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~_11CC,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) -> EGFR_11UL() ku45M #Modifiers(EGFR_11CC)
 	r83: EGFR_11CG() -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~_11CC,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) kbcgP #Modifiers(EGFR_11CG)
 	r84: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~_11CC,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) -> EGFR_11CG() kucgM #Modifiers(EGFR_11CC)
-	r85: Grb2(cbl,egfr) + EGFR_11CG() -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2!154).Grb2(cbl!151,egfr!153).Grb2(cbl!154,egfr) kbcg #Modifiers(Grb2, EGFR_11CG)
-	r86: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2!154).Grb2(cbl!151,egfr!153).Grb2(cbl!154,egfr) -> Grb2(cbl,egfr) + EGFR_11CG() kucg #Modifiers(EGFR_11LG)
-	r87: Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2!153).Grb2(cbl,egfr!153) fRate86() #Modifiers(Grb2, EGFR_02UU)
-	r88: EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2!153).Grb2(cbl,egfr!153) -> Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) ku68 #Modifiers(EGFR_02UG)
-	r89: Cbl(egfr,grb2!151,grb2).Grb2(cbl!151,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) fRate88() #Modifiers(CG, EGFR_02UU)
-	r90: EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) -> Cbl(egfr,grb2!151,grb2).Grb2(cbl!151,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) ku68 #Modifiers(EGFR_02UL)
-	r91: Cbl(egfr,grb2,grb2) + EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2!153).Grb2(cbl,egfr!153) -> EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) kbcg #Modifiers(Cbl, EGFR_02UG)
-	r92: EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) -> Cbl(egfr,grb2,grb2) + EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2!153).Grb2(cbl,egfr!153) kucg #Modifiers(EGFR_02UL)
-	r93: Cbl(egfr,grb2,grb2) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!152,grb2).Cbl(egfr!152,grb2,grb2) kb45 #Modifiers(Cbl, EGFR_12UU)
-	r94: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!152,grb2).Cbl(egfr!152,grb2,grb2) -> Cbl(egfr,grb2,grb2) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2) ku45 #Modifiers(EGFR_12CU)
-	r95: Cbl(egfr,grb2!151,grb2).Grb2(cbl!151,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) kb45 #Modifiers(CG, EGFR_12UU)
-	r96: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) -> Cbl(egfr,grb2!151,grb2).Grb2(cbl!151,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2) ku45 #Modifiers(EGFR_12LU)
-	r97: Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2!153).Grb2(cbl,egfr!153) fRate96() #Modifiers(Grb2, EGFR_12UU)
-	r98: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2!153).Grb2(cbl,egfr!153) -> Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2) ku68 #Modifiers(EGFR_12UG)
-	r99: Cbl(egfr,grb2!151,grb2).Grb2(cbl!151,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2) -> EGFR_12UL() fRate98() #Modifiers(CG, EGFR_12UU)
-	r100: EGFR_12UL() -> Cbl(egfr,grb2!151,grb2).Grb2(cbl!151,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2) ku68 #Modifiers(EGFR_12UL)
-	r101: Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!152,grb2).Cbl(egfr!152,grb2,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) kbcg #Modifiers(Grb2, EGFR_12CU)
-	r102: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) -> Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!152,grb2).Cbl(egfr!152,grb2,grb2) kucg #Modifiers(EGFR_12LU)
-	r103: Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!152,grb2).Cbl(egfr!152,grb2,grb2) -> EGFR_12CG() fRate102() #Modifiers(Grb2, EGFR_12CU)
-	r104: EGFR_12CG() -> Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!152,grb2).Cbl(egfr!152,grb2,grb2) ku68 #Modifiers(EGFR_12CG)
-	r105: Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2!154).Grb2(cbl!151,egfr!153).Grb2(cbl!154,egfr) fRate104() #Modifiers(Grb2, EGFR_12LU)
-	r106: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2!154).Grb2(cbl!151,egfr!153).Grb2(cbl!154,egfr) -> Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) ku68 #Modifiers(EGFR_12LG)
-	r107: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~_12CC,_12uu~0,cbl,grb2) fRate106() #Modifiers(EGFR_12LU)
-	r108: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~_12CC,_12uu~0,cbl,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2).Grb2(cbl!151,egfr!153) ku68M #Modifiers(EGFR_12CC)
-	r109: Cbl(egfr,grb2,grb2) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2!153).Grb2(cbl,egfr!153) -> EGFR_12CG() kb45 #Modifiers(Cbl, EGFR_12UG)
-	r110: EGFR_12CG() -> Cbl(egfr,grb2,grb2) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2!153).Grb2(cbl,egfr!153) ku45 #Modifiers(EGFR_12CG)
-	r111: Cbl(egfr,grb2!151,grb2).Grb2(cbl!151,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2!153).Grb2(cbl,egfr!153) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2!154).Grb2(cbl!151,egfr!153).Grb2(cbl!154,egfr) kb45 #Modifiers(CG, EGFR_12UG)
-	r112: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2!154).Grb2(cbl!151,egfr!153).Grb2(cbl!154,egfr) -> Cbl(egfr,grb2!151,grb2).Grb2(cbl!151,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2!153).Grb2(cbl,egfr!153) ku45 #Modifiers(EGFR_12LG)
-	r113: Cbl(egfr,grb2,grb2) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2!153).Grb2(cbl,egfr!153) -> EGFR_12UL() kbcg #Modifiers(Cbl, EGFR_12UG)
-	r114: EGFR_12UL() -> Cbl(egfr,grb2,grb2) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2!153).Grb2(cbl,egfr!153) kucg #Modifiers(EGFR_12UL)
+	r85: Grb2(cbl,egfr) + EGFR_11CG() -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2!254).Grb2(cbl!251,egfr!253).Grb2(cbl!254,egfr) kbcg #Modifiers(Grb2, EGFR_11CG)
+	r86: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~_11UU,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2!254).Grb2(cbl!251,egfr!253).Grb2(cbl!254,egfr) -> Grb2(cbl,egfr) + EGFR_11CG() kucg #Modifiers(EGFR_11LG)
+	r87: Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2!253).Grb2(cbl,egfr!253) fRate86() #Modifiers(Grb2, EGFR_02UU)
+	r88: EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2!253).Grb2(cbl,egfr!253) -> Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) ku68 #Modifiers(EGFR_02UG)
+	r89: Cbl(egfr,grb2!251,grb2).Grb2(cbl!251,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) fRate88() #Modifiers(CG, EGFR_02UU)
+	r90: EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) -> Cbl(egfr,grb2!251,grb2).Grb2(cbl!251,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2) ku68 #Modifiers(EGFR_02UL)
+	r91: Cbl(egfr,grb2,grb2) + EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2!253).Grb2(cbl,egfr!253) -> EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) kbcg #Modifiers(Cbl, EGFR_02UG)
+	r92: EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) -> Cbl(egfr,grb2,grb2) + EGFR(_00uu~0,_01uu~0,_02uu~_02UU,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~0,cbl,grb2!253).Grb2(cbl,egfr!253) kucg #Modifiers(EGFR_02UL)
+	r93: Cbl(egfr,grb2,grb2) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!252,grb2).Cbl(egfr!252,grb2,grb2) kb45 #Modifiers(Cbl, EGFR_12UU)
+	r94: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!252,grb2).Cbl(egfr!252,grb2,grb2) -> Cbl(egfr,grb2,grb2) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2) ku45 #Modifiers(EGFR_12CU)
+	r95: Cbl(egfr,grb2!251,grb2).Grb2(cbl!251,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) kb45 #Modifiers(CG, EGFR_12UU)
+	r96: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) -> Cbl(egfr,grb2!251,grb2).Grb2(cbl!251,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2) ku45 #Modifiers(EGFR_12LU)
+	r97: Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2!253).Grb2(cbl,egfr!253) fRate96() #Modifiers(Grb2, EGFR_12UU)
+	r98: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2!253).Grb2(cbl,egfr!253) -> Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2) ku68 #Modifiers(EGFR_12UG)
+	r99: Cbl(egfr,grb2!251,grb2).Grb2(cbl!251,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2) -> EGFR_12UL() fRate98() #Modifiers(CG, EGFR_12UU)
+	r100: EGFR_12UL() -> Cbl(egfr,grb2!251,grb2).Grb2(cbl!251,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2) ku68 #Modifiers(EGFR_12UL)
+	r101: Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!252,grb2).Cbl(egfr!252,grb2,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) kbcg #Modifiers(Grb2, EGFR_12CU)
+	r102: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) -> Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!252,grb2).Cbl(egfr!252,grb2,grb2) kucg #Modifiers(EGFR_12LU)
+	r103: Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!252,grb2).Cbl(egfr!252,grb2,grb2) -> EGFR_12CG() fRate102() #Modifiers(Grb2, EGFR_12CU)
+	r104: EGFR_12CG() -> Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!252,grb2).Cbl(egfr!252,grb2,grb2) ku68 #Modifiers(EGFR_12CG)
+	r105: Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2!254).Grb2(cbl!251,egfr!253).Grb2(cbl!254,egfr) fRate104() #Modifiers(Grb2, EGFR_12LU)
+	r106: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2!254).Grb2(cbl!251,egfr!253).Grb2(cbl!254,egfr) -> Grb2(cbl,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) ku68 #Modifiers(EGFR_12LG)
+	r107: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~_12CC,_12uu~0,cbl,grb2) fRate106() #Modifiers(EGFR_12LU)
+	r108: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~_12CC,_12uu~0,cbl,grb2) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2).Grb2(cbl!251,egfr!253) ku68M #Modifiers(EGFR_12CC)
+	r109: Cbl(egfr,grb2,grb2) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2!253).Grb2(cbl,egfr!253) -> EGFR_12CG() kb45 #Modifiers(Cbl, EGFR_12UG)
+	r110: EGFR_12CG() -> Cbl(egfr,grb2,grb2) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2!253).Grb2(cbl,egfr!253) ku45 #Modifiers(EGFR_12CG)
+	r111: Cbl(egfr,grb2!251,grb2).Grb2(cbl!251,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2!253).Grb2(cbl,egfr!253) -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2!254).Grb2(cbl!251,egfr!253).Grb2(cbl!254,egfr) kb45 #Modifiers(CG, EGFR_12UG)
+	r112: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2!254).Grb2(cbl!251,egfr!253).Grb2(cbl!254,egfr) -> Cbl(egfr,grb2!251,grb2).Grb2(cbl!251,egfr) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2!253).Grb2(cbl,egfr!253) ku45 #Modifiers(EGFR_12LG)
+	r113: Cbl(egfr,grb2,grb2) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2!253).Grb2(cbl,egfr!253) -> EGFR_12UL() kbcg #Modifiers(Cbl, EGFR_12UG)
+	r114: EGFR_12UL() -> Cbl(egfr,grb2,grb2) + EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl,grb2!253).Grb2(cbl,egfr!253) kucg #Modifiers(EGFR_12UL)
 	r115: EGFR_12UL() -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~_12CC,_12uu~0,cbl,grb2) kb45P #Modifiers(EGFR_12UL)
 	r116: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~_12CC,_12uu~0,cbl,grb2) -> EGFR_12UL() ku45M #Modifiers(EGFR_12CC)
 	r117: EGFR_12CG() -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~_12CC,_12uu~0,cbl,grb2) kbcgP #Modifiers(EGFR_12CG)
 	r118: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~_12CC,_12uu~0,cbl,grb2) -> EGFR_12CG() kucgM #Modifiers(EGFR_12CC)
-	r119: Grb2(cbl,egfr) + EGFR_12CG() -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2!154).Grb2(cbl!151,egfr!153).Grb2(cbl!154,egfr) kbcg #Modifiers(Grb2, EGFR_12CG)
-	r120: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!152,grb2!153).Cbl(egfr!152,grb2!151,grb2!154).Grb2(cbl!151,egfr!153).Grb2(cbl!154,egfr) -> Grb2(cbl,egfr) + EGFR_12CG() kucg #Modifiers(EGFR_12LG)
+	r119: Grb2(cbl,egfr) + EGFR_12CG() -> EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2!254).Grb2(cbl!251,egfr!253).Grb2(cbl!254,egfr) kbcg #Modifiers(Grb2, EGFR_12CG)
+	r120: EGFR(_00uu~0,_01uu~0,_02uu~0,_10uu~0,_11cc~0,_11uu~0,_12cc~0,_12uu~_12UU,cbl!252,grb2!253).Cbl(egfr!252,grb2!251,grb2!254).Grb2(cbl!251,egfr!253).Grb2(cbl!254,egfr) -> Grb2(cbl,egfr) + EGFR_12CG() kucg #Modifiers(EGFR_12LG)
 end reaction rules
 end model

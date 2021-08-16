@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000004_flat">
+    <ListOfParameters>
+      <Parameter id="VM1" type="Constant" value="3" expr="3.0"/>
+      <Parameter id="VM3" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="Kc" type="Constant" value="0.5" expr="0.5"/>
+      <Parameter id="r1_vi" type="Constant" value="0.025" expr="0.025000"/>
+      <Parameter id="r2_kd" type="Constant" value="0.01" expr="0.010000"/>
+      <Parameter id="r3_vd" type="Constant" value="0.25" expr="0.250000"/>
+      <Parameter id="r3_Kd" type="Constant" value="0.02" expr="0.020000"/>
+      <Parameter id="r4_K1" type="Constant" value="0.005" expr="0.005000"/>
+      <Parameter id="r5_V2" type="Constant" value="1.5" expr="1.500000"/>
+      <Parameter id="r5_K2" type="Constant" value="0.005" expr="0.005000"/>
+      <Parameter id="r6_K3" type="Constant" value="0.005" expr="0.005000"/>
+      <Parameter id="r7_K4" type="Constant" value="0.005" expr="0.005000"/>
+      <Parameter id="r7_V4" type="Constant" value="0.5" expr="0.500000"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="ActiveCDC_2Kinase"/>
+      <MoleculeType id="ActiveCyclinProtease"/>
+      <MoleculeType id="Cyclin"/>
+      <MoleculeType id="InactiveCDC_2Kinase"/>
+      <MoleculeType id="InactiveCyclinProtease"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="6.022e+21" name="Cyclin()">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="Cyclin"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="6.022e+21" name="ActiveCDC_2Kinase()">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="ActiveCDC_2Kinase"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="6.022e+21" name="ActiveCyclinProtease()">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="ActiveCyclinProtease"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S4"  concentration="5.96178e+23" name="InactiveCDC_2Kinase()">
+        <ListOfMolecules>
+          <Molecule id="S4_M1" name="InactiveCDC_2Kinase"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S5"  concentration="5.96178e+23" name="InactiveCyclinProtease()">
+        <ListOfMolecules>
+          <Molecule id="S5_M1" name="InactiveCyclinProtease"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="reaction1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="Cyclin"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r1_vi"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="reaction2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="Cyclin"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r2_kd"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR2_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="reaction3" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="Cyclin"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="fRate2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR3_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="reaction4" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="InactiveCDC_2Kinase"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="ActiveCDC_2Kinase"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="fRate3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR4_PP1_M1"/>
+          <Delete id="RR4_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="reaction5" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR5_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP1_M1" name="ActiveCDC_2Kinase"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="InactiveCDC_2Kinase"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Function" name="fRate4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR5_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR5_PP1_M1"/>
+          <Delete id="RR5_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="reaction6" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR6_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_RP1_M1" name="InactiveCyclinProtease"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="ActiveCyclinProtease"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Function" name="fRate5" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR6_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR6_PP1_M1"/>
+          <Delete id="RR6_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="reaction7" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR7_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_RP1_M1" name="ActiveCyclinProtease"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="InactiveCyclinProtease"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Function" name="fRate6" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR7_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR7_PP1_M1"/>
+          <Delete id="RR7_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="Cyclin" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="Cyclin"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="ActiveCDC_2Kinase" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="ActiveCDC_2Kinase"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="ActiveCyclinProtease" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="ActiveCyclinProtease"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="InactiveCDC_2Kinase" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="InactiveCDC_2Kinase"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="InactiveCyclinProtease" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="InactiveCyclinProtease"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="V3">
+        <ListOfReferences>
+          <Reference name="VM3" type="Constant"/>
+          <Reference name="ActiveCDC_2Kinase" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ActiveCDC_2Kinase*VM3 </Expression>
+      </Function>
+      <Function id="V1">
+        <ListOfReferences>
+          <Reference name="Kc" type="Constant"/>
+          <Reference name="VM1" type="Constant"/>
+          <Reference name="Cyclin" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (Cyclin*VM1)/(Cyclin+Kc) </Expression>
+      </Function>
+      <Function id="fRate2">
+        <ListOfReferences>
+          <Reference name="ActiveCyclinProtease" type="Observable"/>
+          <Reference name="Cyclin" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (0.25*ActiveCyclinProtease)/(Cyclin+0.02) </Expression>
+      </Function>
+      <Function id="fRate3">
+        <ListOfReferences>
+          <Reference name="V1" type="Function"/>
+          <Reference name="InactiveCDC_2Kinase" type="Observable"/>
+        </ListOfReferences>
+        <Expression> V1/(InactiveCDC_2Kinase+0.005) </Expression>
+      </Function>
+      <Function id="fRate4">
+        <ListOfReferences>
+          <Reference name="ActiveCDC_2Kinase" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 1.5/(ActiveCDC_2Kinase+0.005) </Expression>
+      </Function>
+      <Function id="fRate5">
+        <ListOfReferences>
+          <Reference name="V3" type="Function"/>
+          <Reference name="InactiveCyclinProtease" type="Observable"/>
+        </ListOfReferences>
+        <Expression> V3/(InactiveCyclinProtease+0.005) </Expression>
+      </Function>
+      <Function id="fRate6">
+        <ListOfReferences>
+          <Reference name="ActiveCyclinProtease" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 0.5/(ActiveCyclinProtease+0.005) </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

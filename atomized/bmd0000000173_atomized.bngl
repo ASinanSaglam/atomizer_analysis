@@ -1,11 +1,11 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL0451870146', 'http://identifiers.org/biomodels.db/BIOMD0000000173']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000173', 'http://identifiers.org/biomodels.db/MODEL0451870146']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/18443295']
 #@BQB_IS_VERSION_OF:['http://identifiers.org/kegg.pathway/hsa04350', 'http://identifiers.org/go/GO:0007179']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
 #@creatorEmail:'lukas@ebi.ac.uk'
 #@creatorName:'Endler Lukas'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 26 molecules and 26 reactions. The translated model has 9 molecules and 26 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 26 molecules and 26 reactions. The translated model has 9 molecules and 26 rules'
 ###
 begin model
 begin parameters
@@ -30,59 +30,59 @@ begin compartments
 	cytosol 3 2.27e-12 #Cyt
 end compartments
 begin molecule types
+	#^ bqbiol:hasVersion uniprot:P36897, uniprot:Q5T7S2, uniprot:Q8NER5, uniprot:P37173
+	R(tgfb_c)
+	pSmad2_pSmad2_n()
 	#^ bqbiol:isVersionOf uniprot:P35813, go:GO:0004721
 	PPase()
+	Smad2(_c~_C~0,_n~_N~0,gfp_smad2,p~P~0,smad2,smad4)
+	#^ bqbiol:hasVersion go:GO:0030291
+	SB_431542()
 	#^ bqbiol:hasVersion uniprot:P01137, uniprot:P61812, uniprot:P10600
 	TGFb_c(r)
 	Smad4(_c~_C~0,_n~_N~0,gfp_smad2,smad2)
+	GFP_Smad2(_c~_C~0,_n~_N~0,gfp_smad2,p~P~0,smad2,smad4)
 	#^ bqbiol:hasVersion uniprot:P36897, uniprot:Q5T7S2, uniprot:Q8NER5, uniprot:P37173
 	R_inact()
-	#^ bqbiol:hasVersion uniprot:P36897, uniprot:Q5T7S2, uniprot:Q8NER5, uniprot:P37173
-	R(tgfb_c)
-	Smad2(_c~_C~0,_n~_N~0,gfp_smad2,p~P~0,smad2,smad4)
-	pSmad2_pSmad2_n()
-	#^ bqbiol:hasVersion go:GO:0030291
-	SB_431542()
-	GFP_Smad2(_c~_C~0,_n~_N~0,gfp_smad2,p~P~0,smad2,smad4)
 end molecule types
 begin seed species
-	@nucleus:$PPase() 602.2000000000002 # (1.0 * 1e-09)mol/L * 6.022e23/mol *1e-12L #PPase #PPase
-	@nucleus:Smad2(_c~0,_n~_N,gfp_smad2,p~0,smad2,smad4) 17171.596515956957 #original 28.514773357617/L #Smad2_n #S2_n
-	@nucleus:GFP_Smad2(_c~0,_n~_N,gfp_smad2,p~0,smad2,smad4) 17171.596515956957 #original 28.514773357617/L #GFP_Smad2_n #G_n
-	@nucleus:Smad4(_c~0,_n~_N,gfp_smad2,smad2) 30580.281447734003 #original 50.78093897/L #Smad4_n #S4_n
-	@cytosol:Smad4(_c~_C,_n~0,gfp_smad2,smad2) 69417.36888748559 #original 50.78103407/L #Smad4_c #S4_c
-	@cytosol:Smad2(_c~_C,_n~0,gfp_smad2,p~0,smad2,smad4) 82826.05382155174 #original 60.5899176013587/L #Smad2_c #S2_c
-	@cytosol:GFP_Smad2(_c~_C,_n~0,gfp_smad2,p~0,smad2,smad4) 82826.05382155174 #original 60.5899176013587/L #GFP_Smad2_c #G_c
-	@cytosol:$TGFb_c(r) 90.22158004756285 #original 0.0659999824780232/L #TGFb_c #TGFb_c
-	@cytosol:R(tgfb_c) 1366.9940000000001 #original 1.0/L #R #R
+	@nucleus:$PPase()@nucleus 602.2000000000002 # (1.0 * 1e-09)mol/L * 6.022e23/mol *1e-12L #PPase #PPase
+	@nucleus:Smad2(_c~0,_n~_N,gfp_smad2,p~0,smad2,smad4)@nucleus 17171.596515956957 #original 28.514773357617/L #Smad2_n #S2_n
+	@nucleus:GFP_Smad2(_c~0,_n~_N,gfp_smad2,p~0,smad2,smad4)@nucleus 17171.596515956957 #original 28.514773357617/L #GFP_Smad2_n #G_n
+	@nucleus:Smad4(_c~0,_n~_N,gfp_smad2,smad2)@nucleus 30580.281447734003 #original 50.78093897/L #Smad4_n #S4_n
+	@cytosol:Smad4(_c~_C,_n~0,gfp_smad2,smad2)@cytosol 69417.36888748559 #original 50.78103407/L #Smad4_c #S4_c
+	@cytosol:Smad2(_c~_C,_n~0,gfp_smad2,p~0,smad2,smad4)@cytosol 82826.05382155174 #original 60.5899176013587/L #Smad2_c #S2_c
+	@cytosol:GFP_Smad2(_c~_C,_n~0,gfp_smad2,p~0,smad2,smad4)@cytosol 82826.05382155174 #original 60.5899176013587/L #GFP_Smad2_c #G_c
+	@cytosol:$TGFb_c(r)@cytosol 90.22158004756285 #original 0.0659999824780232/L #TGFb_c #TGFb_c
+	@cytosol:R(tgfb_c)@cytosol 1366.9940000000001 #original 1.0/L #R #R
 end seed species
 begin observables
-	Species PPase_nucleus @nucleus:PPase() #PPase
-	Species Smad2_n_nucleus @nucleus:Smad2(_c~0,_n~_N,gfp_smad2,p~0,smad2,smad4) #Smad2_n
-	Species pSmad2_n_nucleus @nucleus:Smad2(_c~0,_n~_N,gfp_smad2,p~P,smad2,smad4) #pSmad2_n
-	Species GFP_Smad2_n_nucleus @nucleus:GFP_Smad2(_c~0,_n~_N,gfp_smad2,p~0,smad2,smad4) #GFP-Smad2_n
-	Species pGFP_Smad2_n_nucleus @nucleus:GFP_Smad2(_c~0,_n~_N,gfp_smad2,p~P,smad2,smad4) #pGFP-Smad2_n
+	Species PPase_nucleus @nucleus:PPase()@nucleus #PPase
+	Species Smad2_n_nucleus @nucleus:Smad2(_c~0,_n~_N,gfp_smad2,p~0,smad2,smad4)@nucleus #Smad2_n
+	Species pSmad2_n_nucleus @nucleus:Smad2(_c~0,_n~_N,gfp_smad2,p~P,smad2,smad4)@nucleus #pSmad2_n
+	Species GFP_Smad2_n_nucleus @nucleus:GFP_Smad2(_c~0,_n~_N,gfp_smad2,p~0,smad2,smad4)@nucleus #GFP-Smad2_n
+	Species pGFP_Smad2_n_nucleus @nucleus:GFP_Smad2(_c~0,_n~_N,gfp_smad2,p~P,smad2,smad4)@nucleus #pGFP-Smad2_n
 	Species pSmad2_pSmad2_n_nucleus @nucleus:pSmad2_pSmad2_n() #pSmad2/pSmad2_n
-	Species pSmad2_Smad4_n_nucleus @nucleus:Smad2(_c~0,_n~0,gfp_smad2,p~P,smad2,smad4!277).Smad4(_c~0,_n~_N,gfp_smad2,smad2!277) #pSmad2/Smad4_n
-	Species Smad4_n_nucleus @nucleus:Smad4(_c~0,_n~_N,gfp_smad2,smad2) #Smad4_n
-	Species pGFP_Smad2_pSmad2_n_nucleus @nucleus:GFP_Smad2(_c~0,_n~_N,gfp_smad2,p~P,smad2!299,smad4).Smad2(_c~0,_n~_N,gfp_smad2!299,p~P,smad2,smad4) #pGFP-Smad2/pSmad2_n
-	Species pGFP_Smad2_Smad4_n_nucleus @nucleus:GFP_Smad2(_c~0,_n~_N,gfp_smad2,p~P,smad2,smad4!298).Smad4(_c~0,_n~_N,gfp_smad2!298,smad2) #pGFP-Smad2/Smad4_n
-	Species pGFP_Smad2_pGFP_Smad2_n_nucleus @nucleus:GFP_Smad2(_c~0,_n~_N,gfp_smad2!300,p~P,smad2,smad4).GFP_Smad2(_c~0,_n~_N,gfp_smad2!300,p~P,smad2,smad4) #pGFP-Smad2/pGFP_Smad2_n
-	Species pSmad2_pSmad2_c_cytosol @cytosol:Smad2(_c~0,_n~0,gfp_smad2,p~P,smad2!297,smad4).Smad2(_c~0,_n~0,gfp_smad2,p~P,smad2!297,smad4) #pSmad2/pSmad2_c
-	Species pSmad2_Smad4_c_cytosol @cytosol:Smad2(_c~0,_n~0,gfp_smad2,p~P,smad2,smad4!277).Smad4(_c~_C,_n~0,gfp_smad2,smad2!277) #pSmad2/Smad4_c
-	Species Smad4_c_cytosol @cytosol:Smad4(_c~_C,_n~0,gfp_smad2,smad2) #Smad4_c
-	Species Smad2_c_cytosol @cytosol:Smad2(_c~_C,_n~0,gfp_smad2,p~0,smad2,smad4) #Smad2_c
-	Species pSmad2_c_cytosol @cytosol:Smad2(_c~_C,_n~0,gfp_smad2,p~P,smad2,smad4) #pSmad2_c
-	Species GFP_Smad2_c_cytosol @cytosol:GFP_Smad2(_c~_C,_n~0,gfp_smad2,p~0,smad2,smad4) #GFP-Smad2_c
-	Species pGFP_Smad2_c_cytosol @cytosol:GFP_Smad2(_c~_C,_n~0,gfp_smad2,p~P,smad2,smad4) #pGFP-Smad2_c
-	Species pGFP_Smad2_pSmad2_c_cytosol @cytosol:GFP_Smad2(_c~_C,_n~0,gfp_smad2,p~P,smad2!299,smad4).Smad2(_c~_C,_n~0,gfp_smad2!299,p~P,smad2,smad4) #pGFP-Smad2/pSmad2_c
-	Species pGFP_Smad2_Smad4_c_cytosol @cytosol:GFP_Smad2(_c~_C,_n~0,gfp_smad2,p~P,smad2,smad4!298).Smad4(_c~_C,_n~0,gfp_smad2!298,smad2) #pGFP-Smad2/Smad4_c
-	Species pGFP_Smad2_pGFP_Smad2_c_cytosol @cytosol:GFP_Smad2(_c~_C,_n~0,gfp_smad2!300,p~P,smad2,smad4).GFP_Smad2(_c~_C,_n~0,gfp_smad2!300,p~P,smad2,smad4) #pGFP-Smad2/pGFP-Smad2_c
-	Species TGFb_c_cytosol @cytosol:TGFb_c(r) #TGFb_c
-	Species R_act_cytosol @cytosol:TGFb_c(r!296).R(tgfb_c!296) #R_act
-	Species R_cytosol @cytosol:R(tgfb_c) #R
-	Species R_inact_cytosol @cytosol:R_inact() #R_inact
-	Species SB_431542_cytosol @cytosol:SB_431542() #SB-431542
+	Species pSmad2_Smad4_n_nucleus @nucleus:Smad2(_c~0,_n~0,gfp_smad2,p~P,smad2,smad4!277)@nucleus.Smad4(_c~0,_n~_N,gfp_smad2,smad2!277)@nucleus #pSmad2/Smad4_n
+	Species Smad4_n_nucleus @nucleus:Smad4(_c~0,_n~_N,gfp_smad2,smad2)@nucleus #Smad4_n
+	Species pGFP_Smad2_pSmad2_n_nucleus @nucleus:GFP_Smad2(_c~0,_n~_N,gfp_smad2,p~P,smad2!299,smad4)@nucleus.Smad2(_c~0,_n~_N,gfp_smad2!299,p~P,smad2,smad4)@nucleus #pGFP-Smad2/pSmad2_n
+	Species pGFP_Smad2_Smad4_n_nucleus @nucleus:GFP_Smad2(_c~0,_n~_N,gfp_smad2,p~P,smad2,smad4!298)@nucleus.Smad4(_c~0,_n~_N,gfp_smad2!298,smad2)@nucleus #pGFP-Smad2/Smad4_n
+	Species pGFP_Smad2_pGFP_Smad2_n_nucleus @nucleus:GFP_Smad2(_c~0,_n~_N,gfp_smad2!300,p~P,smad2,smad4)@nucleus.GFP_Smad2(_c~0,_n~_N,gfp_smad2!300,p~P,smad2,smad4)@nucleus #pGFP-Smad2/pGFP_Smad2_n
+	Species pSmad2_pSmad2_c_cytosol @cytosol:Smad2(_c~0,_n~0,gfp_smad2,p~P,smad2!297,smad4)@cytosol.Smad2(_c~0,_n~0,gfp_smad2,p~P,smad2!297,smad4)@cytosol #pSmad2/pSmad2_c
+	Species pSmad2_Smad4_c_cytosol @cytosol:Smad2(_c~0,_n~0,gfp_smad2,p~P,smad2,smad4!277)@cytosol.Smad4(_c~_C,_n~0,gfp_smad2,smad2!277)@cytosol #pSmad2/Smad4_c
+	Species Smad4_c_cytosol @cytosol:Smad4(_c~_C,_n~0,gfp_smad2,smad2)@cytosol #Smad4_c
+	Species Smad2_c_cytosol @cytosol:Smad2(_c~_C,_n~0,gfp_smad2,p~0,smad2,smad4)@cytosol #Smad2_c
+	Species pSmad2_c_cytosol @cytosol:Smad2(_c~_C,_n~0,gfp_smad2,p~P,smad2,smad4)@cytosol #pSmad2_c
+	Species GFP_Smad2_c_cytosol @cytosol:GFP_Smad2(_c~_C,_n~0,gfp_smad2,p~0,smad2,smad4)@cytosol #GFP-Smad2_c
+	Species pGFP_Smad2_c_cytosol @cytosol:GFP_Smad2(_c~_C,_n~0,gfp_smad2,p~P,smad2,smad4)@cytosol #pGFP-Smad2_c
+	Species pGFP_Smad2_pSmad2_c_cytosol @cytosol:GFP_Smad2(_c~_C,_n~0,gfp_smad2,p~P,smad2!299,smad4)@cytosol.Smad2(_c~_C,_n~0,gfp_smad2!299,p~P,smad2,smad4)@cytosol #pGFP-Smad2/pSmad2_c
+	Species pGFP_Smad2_Smad4_c_cytosol @cytosol:GFP_Smad2(_c~_C,_n~0,gfp_smad2,p~P,smad2,smad4!298)@cytosol.Smad4(_c~_C,_n~0,gfp_smad2!298,smad2)@cytosol #pGFP-Smad2/Smad4_c
+	Species pGFP_Smad2_pGFP_Smad2_c_cytosol @cytosol:GFP_Smad2(_c~_C,_n~0,gfp_smad2!300,p~P,smad2,smad4)@cytosol.GFP_Smad2(_c~_C,_n~0,gfp_smad2!300,p~P,smad2,smad4)@cytosol #pGFP-Smad2/pGFP-Smad2_c
+	Species TGFb_c_cytosol @cytosol:TGFb_c(r)@cytosol #TGFb_c
+	Species R_act_cytosol @cytosol:TGFb_c(r!296)@cytosol.R(tgfb_c!296)@cytosol #R_act
+	Species R_cytosol @cytosol:R(tgfb_c)@cytosol #R
+	Species R_inact_cytosol @cytosol:R_inact()@cytosol #R_inact
+	Species SB_431542_cytosol @cytosol:SB_431542()@cytosol #SB-431542
 end observables
 begin functions
 	SB_431542_ar() =  if((time()>t_SB),(SB_add),(SB_0))

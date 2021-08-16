@@ -1,14 +1,14 @@
 ###
 #@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000356', 'http://identifiers.org/biomodels.db/MODEL1108190000']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/21572040']
-#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/19225456', 'http://identifiers.org/biomodels.db/BIOMD0000000137', 'http://identifiers.org/biomodels.db/BIOMD0000000343', 'http://identifiers.org/biomodels.db/BIOMD0000000379']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/19225456', 'http://identifiers.org/biomodels.db/BIOMD0000000379', 'http://identifiers.org/biomodels.db/BIOMD0000000137', 'http://identifiers.org/biomodels.db/BIOMD0000000343']
 #@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000443']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
 #@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0061178']
 #@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:9351']
 #@creatorEmail:'ajmera@ebi.ac.uk'
 #@creatorName:'Ajmera Ishan'
-#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 32 molecules and 64 reactions. The translated model has 44 molecules and 80 rules'
+#@notes:'This is a plain translation of an SBML model created on 14/08/2021. The original model has 32 molecules and 64 reactions. The translated model has 44 molecules and 80 rules'
 ###
 begin model
 begin parameters
@@ -93,38 +93,38 @@ begin parameters
 	D 78000.0
 end parameters
 begin molecule types
-	r1x2()
-	rend()
-	GLUT4_M()
-	iend()
-	PI3K_()
-	X_P()
-	PDK1_()
-	r1x22d()
-	r1x22()
-	IRS()
+	r11x22()
+	r11x2()
 	PKC_P()
-	iendIR()
-	r1()
+	rend()
+	mTOR_()
+	PKB_P()
 	IRSiP()
 	GLUT4_C()
-	X()
-	r0()
+	PDK1_()
+	iendIR()
 	PI3K()
-	rPbasal()
+	X()
+	r1x22()
+	GLUT4_M()
+	PDK1()
 	r2()
-	r11x2()
+	rPbasal()
 	rendP()
 	r22()
-	PKB_P()
-	PDK1()
-	mTOR_()
-	r11x22()
-	mTOR()
+	X_P()
 	r12()
-	PKB()
-	r11()
+	r1()
+	IRS()
 	PKC()
+	r11()
+	r1x22d()
+	PI3K_()
+	r0()
+	r1x2()
+	iend()
+	PKB()
+	mTOR()
 	G_p
 	G_t
 	I_l
@@ -231,14 +231,14 @@ begin observables
 	Species Y Y
 end observables
 begin functions
-	Ra() = Q_gut*f*k_abs/BW
 	E() = 0
+	Ra() = Q_gut*f*k_abs/BW
 	EGP() = -G_p*k_p2 - I_d*k_p3 - I_po*k_p4 + k_p1
 	arRateG_p() = -E + EGP - G_p*k_1 + G_t*k_2 + Ra - U_ii
 	S_po() = K*(-E + EGP - G_p*k_1 + G_t*k_2 + Ra - U_ii)/V_G + S_b + Y
-	aa() = 5/(2*D*(1 - b))
-	Q_sto() = Q_sto1 + Q_sto2
 	cc() = 5/(2*D*d)
+	Q_sto() = Q_sto1 + Q_sto2
+	aa() = 5/(2*D*(1 - b))
 	k_empt() = k_min + (k_max/2 - k_min/2)*(tanh(aa*(-D*b + Q_sto)) - tanh(cc*(-D*d + Q_sto)) + 2)
 	S() = I_po*gamma
 	HE() = -S*m_5 + m_6

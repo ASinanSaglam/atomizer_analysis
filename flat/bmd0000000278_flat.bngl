@@ -6,7 +6,7 @@
 #@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:14080']
 #@creatorEmail:'viji@ebi.ac.uk'
 #@creatorName:'Chelliah Vijayalakshmi'
-#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 3 molecules and 0 reactions. The translated model has 3 molecules and 3 rules'
+#@notes:'This is a plain translation of an SBML model created on 14/08/2021. The original model has 3 molecules and 0 reactions. The translated model has 3 molecules and 3 rules'
 ###
 begin model
 begin parameters
@@ -35,9 +35,9 @@ begin parameters
 	I_P 0
 end parameters
 begin molecule types
+	Responding_Osteoblasts()
 	Active_Osteoblasts()
 	Active_Osteoclasts()
-	Responding_Osteoblasts()
 end molecule types
 begin seed species
 	Responding_Osteoblasts() 4.6574148000000003e+20 # 0.0007734mol/L * 6.022e23/mol *1.0L #Responding_Osteoblasts #R
@@ -50,12 +50,12 @@ begin observables
 	Species Active_Osteoclasts Active_Osteoclasts() #Active_Osteoclasts
 end observables
 begin functions
-	P_O() = S_P/k_P
-	P_S() = k6/k5
 	Pbar() = I_P/k_P
+	P_S() = k6/k5
+	P_O() = S_P/k_P
 	Phi_P() = (P_O + Pbar)/(P_S + Pbar)
-	Phi_L() = Active_Osteoblasts*K_L_P*Phi_P*k3*(I_L/r_L + 1)/(k4*(K*k3/k4 + k1*(I_O + K_O_P*Responding_Osteoblasts/Phi_P)/(k2*kO) + 1))
 	Phi_C() = (Active_Osteoclasts + C_s*f0)/(Active_Osteoclasts + C_s)
+	Phi_L() = Active_Osteoblasts*K_L_P*Phi_P*k3*(I_L/r_L + 1)/(k4*(K*k3/k4 + k1*(I_O + K_O_P*Responding_Osteoblasts/Phi_P)/(k2*kO) + 1))
 	arRateC() = -Active_Osteoclasts*D_A*Phi_C + D_C*Phi_L
 	D_B() = d_B*f0
 	arRateB() = -Active_Osteoblasts*k_B + D_B*Responding_Osteoblasts/Phi_C

@@ -1,12 +1,12 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000320', 'http://identifiers.org/biomodels.db/MODEL0910130001']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL0910130001', 'http://identifiers.org/biomodels.db/BIOMD0000000320']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/11587490']
 #@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0051583']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10116']
 #@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:14330']
 #@creatorEmail:'lukas@ebi.ac.uk'
 #@creatorName:'Endler Lukas'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 9 molecules and 14 reactions. The translated model has 4 molecules and 14 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 9 molecules and 14 reactions. The translated model has 4 molecules and 14 rules'
 ###
 begin model
 begin parameters
@@ -44,38 +44,38 @@ begin compartments
 	V2_M 3 3.2
 end compartments
 begin molecule types
-	#^ bqbiol:is chebi:CHEBI:15765, kegg.compound:C00355, pubchem.compound:6047
-	A_dopa(C_dopa~C_dopa~0)
+	#^ bqbiol:is kegg.drug:D03082, pubchem.compound:2327
+	A_B(C1_B~C1_B~0,C2_B~C2_B~0)
 	#^ bqbiol:isVersionOf chebi:CHEBI:25212
 	#^ bqbiol:is pubchem.compound:188973
 	A_M(C1_M~C1_M~0,C2_M~C2_M~0)
-	#^ bqbiol:is kegg.drug:D03082, pubchem.compound:2327
-	A_B(C1_B~C1_B~0,C2_B~C2_B~0)
+	#^ bqbiol:is chebi:CHEBI:15765, kegg.compound:C00355, pubchem.compound:6047
+	A_dopa(C_dopa~C_dopa~0)
 	#^ bqbiol:is pubchem.compound:9307
 	#^ bqbiol:isVersionOf chebi:CHEBI:25212
 	C_3_OMD()
 end molecule types
 begin seed species
-	@gut:A_dopa(C_dopa~0) (404.0) * (0.25) #A_dopa
-	@gut:A_B(C1_B~0,C2_B~0) (0) * (1 -(0.07)) #A_B
-	@gut:A_M(C1_M~0,C2_M~0) (0) * (0.07) #A_M
+	@gut:A_dopa(C_dopa~0)@gut (404.0) * (0.25) #A_dopa
+	@gut:A_B(C1_B~0,C2_B~0)@gut (0) * (1 -(0.07)) #A_B
+	@gut:A_M(C1_M~0,C2_M~0)@gut (0) * (0.07) #A_M
 end seed species
 begin observables
-	Species A_dopa_gut @gut:A_dopa(C_dopa~0) #A_dopa
-	Species A_B_gut @gut:A_B(C1_B~0,C2_B~0) #A_B
-	Species A_M_gut @gut:A_M(C1_M~0,C2_M~0) #A_M
-	Species C_dopa_Vdopa @Vdopa:A_dopa(C_dopa~C_dopa) #C_dopa
-	Species C_3_OMD_V_3_OMD @V_3_OMD:C_3_OMD() #C_3-OMD
-	Species C1_M_V1_M @V1_M:A_M(C1_M~C1_M,C2_M~0) #C1_M
-	Species C2_M_V2_M @V2_M:A_M(C1_M~0,C2_M~C2_M) #C2_M
-	Species C1_B_V1_B @V1_B:A_B(C1_B~C1_B,C2_B~0) #C1_B
-	Species C2_B_V2_B @V2_B:A_B(C1_B~0,C2_B~C2_B) #C2_B
+	Species A_dopa_gut @gut:A_dopa(C_dopa~0)@gut #A_dopa
+	Species A_B_gut @gut:A_B(C1_B~0,C2_B~0)@gut #A_B
+	Species A_M_gut @gut:A_M(C1_M~0,C2_M~0)@gut #A_M
+	Species C_dopa_Vdopa @Vdopa:A_dopa(C_dopa~C_dopa)@Vdopa #C_dopa
+	Species C_3_OMD_V_3_OMD @V_3_OMD:C_3_OMD()@V_3_OMD #C_3-OMD
+	Species C1_M_V1_M @V1_M:A_M(C1_M~C1_M,C2_M~0)@V1_M #C1_M
+	Species C2_M_V2_M @V2_M:A_M(C1_M~0,C2_M~C2_M)@V2_M #C2_M
+	Species C1_B_V1_B @V1_B:A_B(C1_B~C1_B,C2_B~0)@V1_B #C1_B
+	Species C2_B_V2_B @V2_B:A_B(C1_B~0,C2_B~C2_B)@V2_B #C2_B
 end observables
 begin functions
-	f_rest() = -f_AADC - f_COMT + 1
-	CL_rest() = CL_dopa0*f_rest
 	CL_AADC0() = CL_dopa0*f_AADC
 	CL_AADC() = CL_AADC0/(C1_M_V1_M/ki + 1)
+	f_rest() = -f_AADC - f_COMT + 1
+	CL_rest() = CL_dopa0*f_rest
 	CL_COMT() = CL_dopa0*f_COMT
 	CL_dopa() = CL_AADC + CL_COMT + CL_rest
 	CL_H() = CL_dopa*f_H

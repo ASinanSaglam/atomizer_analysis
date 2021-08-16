@@ -1,0 +1,933 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000563_atomized">
+    <ListOfParameters>
+      <Parameter id="r1_k1" type="Constant" value="0.1" expr="0.100000"/>
+      <Parameter id="r1_k2" type="Constant" value="0.1" expr="0.100000"/>
+      <Parameter id="r2_k1" type="Constant" value="0.1" expr="0.100000"/>
+      <Parameter id="r2_k2" type="Constant" value="0.1" expr="0.100000"/>
+      <Parameter id="r3_k1" type="Constant" value="0.1" expr="0.100000"/>
+      <Parameter id="r4_k1" type="Constant" value="0.1" expr="0.100000"/>
+      <Parameter id="r5_k1" type="Constant" value="0.1" expr="0.100000"/>
+      <Parameter id="r6_k1" type="Constant" value="0.1" expr="0.100000"/>
+      <Parameter id="r7_k1" type="Constant" value="0.1" expr="0.100000"/>
+      <Parameter id="r8_k1" type="Constant" value="0.1" expr="0.100000"/>
+      <Parameter id="r9_k1" type="Constant" value="0.1" expr="0.100000"/>
+      <Parameter id="r10_k1" type="Constant" value="0.1" expr="0.100000"/>
+      <Parameter id="r11_Km" type="Constant" value="0.1" expr="0.100000"/>
+      <Parameter id="r11_V" type="Constant" value="0.1" expr="0.100000"/>
+      <Parameter id="r11_Ki" type="Constant" value="0.1" expr="0.100000"/>
+      <Parameter id="r12_k1" type="Constant" value="0.1" expr="0.100000"/>
+      <Parameter id="r13_k1" type="Constant" value="0.1" expr="0.100000"/>
+      <Parameter id="r14_k1" type="Constant" value="0.1" expr="0.100000"/>
+      <Parameter id="r15_k1" type="Constant" value="0.1" expr="0.100000"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="Callose"/>
+      <MoleculeType id="E">
+        <ListOfComponentTypes>
+          <ComponentType id="_int">
+            <ListOfAllowedStates>
+              <AllowedState id="_INT"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="r"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="PAMP">
+        <ListOfComponentTypes>
+          <ComponentType id="prr"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="PRR">
+        <ListOfComponentTypes>
+          <ComponentType id="pamp"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="Path"/>
+      <MoleculeType id="Path_bulk"/>
+      <MoleculeType id="R">
+        <ListOfComponentTypes>
+          <ComponentType id="e"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+      <compartment id="Cell" spatialDimensions="3" size="1.0"/>
+      <compartment id="Apoplast" spatialDimensions="3" size="1.0"/>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="6.022e+23" name="@Cell::R(e)" compartment="Cell">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="R" compartment="Cell">
+            <ListOfComponents>
+              <Component id="S1_M1_C1" name="e" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="6.022e+23" name="@Apoplast::PRR(pamp)" compartment="Apoplast">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="PRR" compartment="Apoplast">
+            <ListOfComponents>
+              <Component id="S2_M1_C1" name="pamp" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="PAMP_recognition" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR1_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_RP1_M1" name="PRR" compartment="Apoplast">
+                <ListOfComponents>
+                  <Component id="RR1_RP1_M1_C1" name="pamp" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR1_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR1_RP2_M1" name="PAMP" compartment="Cell">
+                <ListOfComponents>
+                  <Component id="RR1_RP2_M1_C1" name="prr" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="PRR" compartment="Apoplast">
+                <ListOfComponents>
+                  <Component id="RR1_PP1_M1_C1" name="pamp" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR1_PP1_M2" name="PAMP" compartment="Apoplast">
+                <ListOfComponents>
+                  <Component id="RR1_PP1_M2_C1" name="prr" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR1_PP1_B1" site1="RR1_PP1_M1_C1" site2="RR1_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r1_k1"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR1_RP1_M1" targetID="RR1_PP1_M1"/>
+          <MapItem sourceID="RR1_RP1_M1_C1" targetID="RR1_PP1_M1_C1"/>
+          <MapItem sourceID="RR1_RP2_M1" targetID="RR1_PP1_M2"/>
+          <MapItem sourceID="RR1_RP2_M1_C1" targetID="RR1_PP1_M2_C1"/>
+        </Map>
+        <ListOfOperations>
+          <ChangeCompartment id="RR1_RP2_M1" source="Cell" destination="Apoplast" flipOrientation="0" moveConnected="0"/>
+          <AddBond site1="RR1_RP1_M1_C1" site2="RR1_RP2_M1_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="_reverse_PAMP_recognition" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="PRR" compartment="Apoplast">
+                <ListOfComponents>
+                  <Component id="RR2_RP1_M1_C1" name="pamp" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR2_RP1_M2" name="PAMP" compartment="Apoplast">
+                <ListOfComponents>
+                  <Component id="RR2_RP1_M2_C1" name="prr" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR2_RP1_B1" site1="RR2_RP1_M1_C1" site2="RR2_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="PRR" compartment="Apoplast">
+                <ListOfComponents>
+                  <Component id="RR2_PP1_M1_C1" name="pamp" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR2_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP2_M1" name="PAMP" compartment="Cell">
+                <ListOfComponents>
+                  <Component id="RR2_PP2_M1_C1" name="prr" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r1_k2"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1" targetID="RR2_PP1_M1"/>
+          <MapItem sourceID="RR2_RP1_M1_C1" targetID="RR2_PP1_M1_C1"/>
+          <MapItem sourceID="RR2_RP1_M2" targetID="RR2_PP2_M1"/>
+          <MapItem sourceID="RR2_RP1_M2_C1" targetID="RR2_PP2_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <ChangeCompartment id="RR2_RP1_M2" source="Apoplast" destination="Cell" flipOrientation="0" moveConnected="0"/>
+          <DeleteBond site1="RR2_RP1_M1_C1" site2="RR2_RP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="Effector_recognition" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="R" compartment="Cell">
+                <ListOfComponents>
+                  <Component id="RR3_RP1_M1_C1" name="e" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR3_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP2_M1" name="E" compartment="Cell">
+                <ListOfComponents>
+                  <Component id="RR3_RP2_M1_C1" name="_int" state="_INT" numberOfBonds="0"/>
+                  <Component id="RR3_RP2_M1_C2" name="r" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="E" compartment="Cell">
+                <ListOfComponents>
+                  <Component id="RR3_PP1_M1_C1" name="_int" state="_INT" numberOfBonds="0"/>
+                  <Component id="RR3_PP1_M1_C2" name="r" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR3_PP1_M2" name="R" compartment="Cell">
+                <ListOfComponents>
+                  <Component id="RR3_PP1_M2_C1" name="e" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR3_PP1_B1" site1="RR3_PP1_M1_C2" site2="RR3_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r2_k1"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1" targetID="RR3_PP1_M2"/>
+          <MapItem sourceID="RR3_RP1_M1_C1" targetID="RR3_PP1_M2_C1"/>
+          <MapItem sourceID="RR3_RP2_M1" targetID="RR3_PP1_M1"/>
+          <MapItem sourceID="RR3_RP2_M1_C1" targetID="RR3_PP1_M1_C1"/>
+          <MapItem sourceID="RR3_RP2_M1_C2" targetID="RR3_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR3_RP2_M1_C2" site2="RR3_RP1_M1_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="_reverse_Effector_recognition" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="E" compartment="Cell">
+                <ListOfComponents>
+                  <Component id="RR4_RP1_M1_C1" name="_int" state="_INT" numberOfBonds="0"/>
+                  <Component id="RR4_RP1_M1_C2" name="r" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR4_RP1_M2" name="R" compartment="Cell">
+                <ListOfComponents>
+                  <Component id="RR4_RP1_M2_C1" name="e" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR4_RP1_B1" site1="RR4_RP1_M1_C2" site2="RR4_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="R" compartment="Cell">
+                <ListOfComponents>
+                  <Component id="RR4_PP1_M1_C1" name="e" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR4_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP2_M1" name="E" compartment="Cell">
+                <ListOfComponents>
+                  <Component id="RR4_PP2_M1_C1" name="_int" state="_INT" numberOfBonds="0"/>
+                  <Component id="RR4_PP2_M1_C2" name="r" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r2_k2"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1" targetID="RR4_PP2_M1"/>
+          <MapItem sourceID="RR4_RP1_M1_C1" targetID="RR4_PP2_M1_C1"/>
+          <MapItem sourceID="RR4_RP1_M1_C2" targetID="RR4_PP2_M1_C2"/>
+          <MapItem sourceID="RR4_RP1_M2" targetID="RR4_PP1_M1"/>
+          <MapItem sourceID="RR4_RP1_M2_C1" targetID="RR4_PP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <DeleteBond site1="RR4_RP1_M1_C2" site2="RR4_RP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="Effector_removal" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR5_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP1_M1" name="E" compartment="Apoplast">
+                <ListOfComponents>
+                  <Component id="RR5_RP1_M1_C1" name="_int" state="0" numberOfBonds="0"/>
+                  <Component id="RR5_RP1_M1_C2" name="r" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r3_k1"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR5_RP1_M1"/>
+          <MapItem sourceID="RR5_RP1_M1_C1"/>
+          <MapItem sourceID="RR5_RP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR5_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="PAMP_removal" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR6_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_RP1_M1" name="PAMP" compartment="Cell">
+                <ListOfComponents>
+                  <Component id="RR6_RP1_M1_C1" name="prr" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r4_k1"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR6_RP1_M1"/>
+          <MapItem sourceID="RR6_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR6_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="Pathogen_arrival" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR7_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_RP1_M1" name="Path_bulk" compartment="Apoplast"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="Path_bulk" compartment="Apoplast"/>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR7_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP2_M1" name="Path" compartment="Apoplast"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r5_k1"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR7_RP1_M1" targetID="RR7_PP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR7_PP2_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="Pathogen_removal" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR8_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_RP1_M1" name="Path" compartment="Apoplast"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r6_k1"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR8_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR8_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="PAMP_production" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR9_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_RP1_M1" name="Path" compartment="Apoplast"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR9_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP1_M1" name="PAMP" compartment="Cell">
+                <ListOfComponents>
+                  <Component id="RR9_PP1_M1_C1" name="prr" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR9_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP2_M1" name="Path" compartment="Apoplast"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r7_k1"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR9_RP1_M1" targetID="RR9_PP2_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR9_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="Effector_production" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR10_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_RP1_M1" name="Path" compartment="Apoplast"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR10_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_PP1_M1" name="E" compartment="Apoplast">
+                <ListOfComponents>
+                  <Component id="RR10_PP1_M1_C1" name="_int" state="0" numberOfBonds="0"/>
+                  <Component id="RR10_PP1_M1_C2" name="r" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR10_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR10_PP2_M1" name="Path" compartment="Apoplast"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r8_k1"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR10_RP1_M1" targetID="RR10_PP2_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR10_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR11" name="E_int_removal" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR11_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_RP1_M1" name="E" compartment="Cell">
+                <ListOfComponents>
+                  <Component id="RR11_RP1_M1_C1" name="_int" state="_INT" numberOfBonds="0"/>
+                  <Component id="RR11_RP1_M1_C2" name="r" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR11_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r9_k1"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR11_RP1_M1"/>
+          <MapItem sourceID="RR11_RP1_M1_C1"/>
+          <MapItem sourceID="RR11_RP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR11_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR12" name="ETI" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR12_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_RP1_M1" name="Path" compartment="Apoplast"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR12_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR12_RP2_M1" name="E" compartment="Cell">
+                <ListOfComponents>
+                  <Component id="RR12_RP2_M1_C1" name="_int" state="_INT" numberOfBonds="0"/>
+                  <Component id="RR12_RP2_M1_C2" name="r" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR12_RP2_M2" name="R" compartment="Cell">
+                <ListOfComponents>
+                  <Component id="RR12_RP2_M2_C1" name="e" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR12_RP2_B1" site1="RR12_RP2_M1_C2" site2="RR12_RP2_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR12_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_PP1_M1" name="E" compartment="Cell">
+                <ListOfComponents>
+                  <Component id="RR12_PP1_M1_C1" name="_int" state="_INT" numberOfBonds="0"/>
+                  <Component id="RR12_PP1_M1_C2" name="r" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR12_PP1_M2" name="R" compartment="Cell">
+                <ListOfComponents>
+                  <Component id="RR12_PP1_M2_C1" name="e" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR12_PP1_B1" site1="RR12_PP1_M1_C2" site2="RR12_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR12_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r10_k1"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR12_RP1_M1"/>
+          <MapItem sourceID="RR12_RP2_M1" targetID="RR12_PP1_M1"/>
+          <MapItem sourceID="RR12_RP2_M1_C1" targetID="RR12_PP1_M1_C1"/>
+          <MapItem sourceID="RR12_RP2_M1_C2" targetID="RR12_PP1_M1_C2"/>
+          <MapItem sourceID="RR12_RP2_M2" targetID="RR12_PP1_M2"/>
+          <MapItem sourceID="RR12_RP2_M2_C1" targetID="RR12_PP1_M2_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR12_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR13" name="Effector_translocation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR13_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_RP1_M1" name="E" compartment="Apoplast">
+                <ListOfComponents>
+                  <Component id="RR13_RP1_M1_C1" name="_int" state="0" numberOfBonds="0"/>
+                  <Component id="RR13_RP1_M1_C2" name="r" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR13_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_PP1_M1" name="E" compartment="Cell">
+                <ListOfComponents>
+                  <Component id="RR13_PP1_M1_C1" name="_int" state="_INT" numberOfBonds="0"/>
+                  <Component id="RR13_PP1_M1_C2" name="r" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR13_RateLaw" type="Function" name="fRate10" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR13_RP1_M1" targetID="RR13_PP1_M1"/>
+          <MapItem sourceID="RR13_RP1_M1_C1" targetID="RR13_PP1_M1_C1"/>
+          <MapItem sourceID="RR13_RP1_M1_C2" targetID="RR13_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR13_RP1_M1_C1" finalState="_INT"/>
+          <ChangeCompartment id="RR13_RP1_M1" source="Apoplast" destination="Cell" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR14" name="Callose_production" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR14_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_RP1_M1" name="PRR" compartment="Apoplast">
+                <ListOfComponents>
+                  <Component id="RR14_RP1_M1_C1" name="pamp" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR14_RP1_M2" name="PAMP" compartment="Apoplast">
+                <ListOfComponents>
+                  <Component id="RR14_RP1_M2_C1" name="prr" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR14_RP1_B1" site1="RR14_RP1_M1_C1" site2="RR14_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR14_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_PP1_M1" name="PRR" compartment="Apoplast">
+                <ListOfComponents>
+                  <Component id="RR14_PP1_M1_C1" name="pamp" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR14_PP1_M2" name="PAMP" compartment="Apoplast">
+                <ListOfComponents>
+                  <Component id="RR14_PP1_M2_C1" name="prr" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR14_PP1_B1" site1="RR14_PP1_M1_C1" site2="RR14_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+          <ProductPattern id="RR14_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR14_PP2_M1" name="Callose" compartment="Cell"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR14_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r12_k1"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR14_RP1_M1" targetID="RR14_PP1_M1"/>
+          <MapItem sourceID="RR14_RP1_M1_C1" targetID="RR14_PP1_M1_C1"/>
+          <MapItem sourceID="RR14_RP1_M2" targetID="RR14_PP1_M2"/>
+          <MapItem sourceID="RR14_RP1_M2_C1" targetID="RR14_PP1_M2_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR14_PP2_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR15" name="Callose_removal" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR15_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR15_RP1_M1" name="Callose" compartment="Cell"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR15_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r13_k1"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR15_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR15_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR16" name="PTI" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR16_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR16_RP1_M1" name="Path" compartment="Apoplast"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR16_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR16_RP2_M1" name="Callose" compartment="Cell"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR16_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR16_PP1_M1" name="Callose" compartment="Cell"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR16_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r14_k1"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR16_RP1_M1"/>
+          <MapItem sourceID="RR16_RP2_M1" targetID="RR16_PP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR16_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR17" name="Callose_suppression" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR17_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR17_RP1_M1" name="Callose" compartment="Cell"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR17_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR17_RP2_M1" name="E" compartment="Cell">
+                <ListOfComponents>
+                  <Component id="RR17_RP2_M1_C1" name="_int" state="_INT" numberOfBonds="0"/>
+                  <Component id="RR17_RP2_M1_C2" name="r" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR17_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR17_PP1_M1" name="E" compartment="Cell">
+                <ListOfComponents>
+                  <Component id="RR17_PP1_M1_C1" name="_int" state="_INT" numberOfBonds="0"/>
+                  <Component id="RR17_PP1_M1_C2" name="r" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR17_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r15_k1"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR17_RP1_M1"/>
+          <MapItem sourceID="RR17_RP2_M1" targetID="RR17_PP1_M1"/>
+          <MapItem sourceID="RR17_RP2_M1_C1" targetID="RR17_PP1_M1_C1"/>
+          <MapItem sourceID="RR17_RP2_M1_C2" targetID="RR17_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR17_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="PAMP_Cell" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" compartment="Cell" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="PAMP">
+                <ListOfComponents>
+                  <Component id="O1_P1_M1_C1" name="prr" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="R_Cell" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" compartment="Cell" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="R">
+                <ListOfComponents>
+                  <Component id="O2_P1_M1_C1" name="e" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="Rm_Cell" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" compartment="Cell" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="E">
+                <ListOfComponents>
+                  <Component id="O3_P1_M1_C1" name="_int" state="_INT" numberOfBonds="0"/>
+                  <Component id="O3_P1_M1_C2" name="r" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O3_P1_M2" name="R">
+                <ListOfComponents>
+                  <Component id="O3_P1_M2_C1" name="e" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O3_P1_B1" site1="O3_P1_M1_C2" site2="O3_P1_M2_C1"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="E_int_Cell" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" compartment="Cell" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="E">
+                <ListOfComponents>
+                  <Component id="O4_P1_M1_C1" name="_int" state="_INT" numberOfBonds="0"/>
+                  <Component id="O4_P1_M1_C2" name="r" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="Callose_Cell" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" compartment="Cell" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="Callose"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O6" name="Path_Apoplast" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O6_P1" compartment="Apoplast" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O6_P1_M1" name="Path"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O7" name="Path_bulk_Apoplast" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O7_P1" compartment="Apoplast" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O7_P1_M1" name="Path_bulk"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O8" name="PRRm_Apoplast" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O8_P1" compartment="Apoplast" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O8_P1_M1" name="PRR">
+                <ListOfComponents>
+                  <Component id="O8_P1_M1_C1" name="pamp" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O8_P1_M2" name="PAMP">
+                <ListOfComponents>
+                  <Component id="O8_P1_M2_C1" name="prr" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O8_P1_B1" site1="O8_P1_M1_C1" site2="O8_P1_M2_C1"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O9" name="PRR_Apoplast" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O9_P1" compartment="Apoplast" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O9_P1_M1" name="PRR">
+                <ListOfComponents>
+                  <Component id="O9_P1_M1_C1" name="pamp" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O10" name="E_Apoplast" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O10_P1" compartment="Apoplast" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O10_P1_M1" name="E">
+                <ListOfComponents>
+                  <Component id="O10_P1_M1_C1" name="_int" state="0" numberOfBonds="0"/>
+                  <Component id="O10_P1_M1_C2" name="r" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="fRate10">
+        <ListOfReferences>
+          <Reference name="Callose_Cell" type="Observable"/>
+          <Reference name="E_Apoplast" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 0.01/(((0.1*Callose_Cell)+(0.1*E_Apoplast))+0.01) </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

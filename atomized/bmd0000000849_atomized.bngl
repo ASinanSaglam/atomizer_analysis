@@ -1,12 +1,12 @@
 ###
-#@BQM_HAS_INSTANCE:['http://identifiers.org/taxonomy/9913', 'http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/biomodels.db/MODEL1710230000']
+#@BQM_HAS_INSTANCE:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/biomodels.db/MODEL1710230000', 'http://identifiers.org/taxonomy/9913']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/pubmed/28987591']
 #@BQB_HAS_PROPERTY:['http://identifiers.org/biomodels.db/MODEL1710230000']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9913']
-#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000849', 'http://identifiers.org/biomodels.db/MODEL1710230000']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1710230000', 'http://identifiers.org/biomodels.db/BIOMD0000000849']
 #@creatorEmail:'msharifshohan@ebi.ac.uk'
 #@creatorName:'Sharif Shohan Mohammad Umer'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 23 molecules and 23 reactions. The translated model has 13 molecules and 36 rules'
+#@notes:'This is an atomized translation of an SBML model created on 14/08/2021. The original model has 23 molecules and 23 reactions. The translated model has 13 molecules and 36 rules'
 ###
 begin model
 begin parameters
@@ -90,54 +90,54 @@ begin compartments
 	c2 3 22.8 #extracell
 end compartments
 begin molecule types
-	met_act(snk_metact~snk_metact~0)
-	K_ICF()
-	Gluc(_b~_B~0,_prod~_PROD~0,_stor~_STOR~0)
-	src_Kgit()
-	src_Glucb()
 	ins_b(snk_ins~snk_ins~0)
-	src_metact()
-	Gluc_use()
-	src_ins()
-	src_Gprod()
-	K_urin()
+	src_Glucb()
+	K_ICF()
 	K_ECF(K_git~K_git~0,K_milk~K_milk~0,K_sal~K_sal~0,snk_Kecf~snk_Kecf~0)
+	Gluc_use()
+	met_act(snk_metact~snk_metact~0)
+	src_Kgit()
+	Gluc(_b~_B~0,_prod~_PROD~0,_stor~_STOR~0)
+	src_metact()
 	K_tiss()
+	src_ins()
+	K_urin()
+	src_Gprod()
 end molecule types
 begin seed species
-	@c2:K_ECF(K_git~0,K_milk~0,K_sal~0,snk_Kecf~0) 2.404656667171962e+24 # 0.175136827769812mol/L * 6.022e23/mol *22.8L #K_ECF #K_ECF
-	@c1:K_ICF() 5.511771065706881e+24 #original 0.897325991903361substance/volume #K_ICF #K_ICF
-	@default:K_tiss() 1509.6 #K_tiss #K_tiss
-	@default:K_ECF(K_git~0,K_milk~0,K_sal~K_sal,snk_Kecf~0) 4.53818901679345 #K_sal #K_sal
-	@default:met_act(snk_metact~0) 6.24885128313371 #met_act #met_act
-	@default:K_ECF(K_git~K_git,K_milk~0,K_sal~0,snk_Kecf~0) 43.1365559451142 #K_git #K_git
-	@c2:Gluc(_b~_B,_prod~0,_stor~0) 7.504444974869257e+24 #original 0.546566462071036substance/volume #Gluc_b #Gluc_b
-	@c2:ins_b(snk_ins~0) 3.000492426485245e+26 #original 21.8532954203392substance/volume #ins_b #ins_b
-	@default:Gluc(_b~0,_prod~0,_stor~_STOR) 3647.74674176755 #Gluc_stor #Gluc_stor
-	@default:Gluc(_b~0,_prod~_PROD,_stor~0) 34.0337183015116 #Gluc_prod #Gluc_prod
+	@c2:K_ECF(K_git~0,K_milk~0,K_sal~0,snk_Kecf~0)@c2 2.404656667171962e+24 # 0.175136827769812mol/L * 6.022e23/mol *22.8L #K_ECF #K_ECF
+	@c1:K_ICF()@c1 5.511771065706881e+24 #original 0.897325991903361substance/volume #K_ICF #K_ICF
+	@default:K_tiss()@default 1509.6 #K_tiss #K_tiss
+	@default:K_ECF(K_git~0,K_milk~0,K_sal~K_sal,snk_Kecf~0)@default 4.53818901679345 #K_sal #K_sal
+	@default:met_act(snk_metact~0)@default 6.24885128313371 #met_act #met_act
+	@default:K_ECF(K_git~K_git,K_milk~0,K_sal~0,snk_Kecf~0)@default 43.1365559451142 #K_git #K_git
+	@c2:Gluc(_b~_B,_prod~0,_stor~0)@c2 7.504444974869257e+24 #original 0.546566462071036substance/volume #Gluc_b #Gluc_b
+	@c2:ins_b(snk_ins~0)@c2 3.000492426485245e+26 #original 21.8532954203392substance/volume #ins_b #ins_b
+	@default:Gluc(_b~0,_prod~0,_stor~_STOR)@default 3647.74674176755 #Gluc_stor #Gluc_stor
+	@default:Gluc(_b~0,_prod~_PROD,_stor~0)@default 34.0337183015116 #Gluc_prod #Gluc_prod
 end seed species
 begin observables
-	Species K_ECF_c2 @c2:K_ECF(K_git~0,K_milk~0,K_sal~0,snk_Kecf~0) #K_ECF
-	Species K_ICF_c1 @c1:K_ICF() #K_ICF
-	Species K_urin_default @default:K_urin() #K_urin
-	Species K_tiss_default @default:K_tiss() #K_tiss
-	Species K_sal_default @default:K_ECF(K_git~0,K_milk~0,K_sal~K_sal,snk_Kecf~0) #K_sal
-	Species met_act_default @default:met_act(snk_metact~0) #met_act
-	Species K_milk_default @default:K_ECF(K_git~0,K_milk~K_milk,K_sal~0,snk_Kecf~0) #K_milk
-	Species K_git_default @default:K_ECF(K_git~K_git,K_milk~0,K_sal~0,snk_Kecf~0) #K_git
-	Species Gluc_b_c2 @c2:Gluc(_b~_B,_prod~0,_stor~0) #Gluc_b
-	Species ins_b_c2 @c2:ins_b(snk_ins~0) #ins_b
-	Species Gluc_stor_default @default:Gluc(_b~0,_prod~0,_stor~_STOR) #Gluc_stor
-	Species Gluc_prod_default @default:Gluc(_b~0,_prod~_PROD,_stor~0) #Gluc_prod
-	Species src_metact_default @default:src_metact() #src_metact
-	Species snk_metact_default @default:met_act(snk_metact~snk_metact) #snk_metact
-	Species src_Kgit_default @default:src_Kgit() #src_Kgit
-	Species src_Glucb_c2 @c2:src_Glucb() #src_Glucb
-	Species src_Gprod_default @default:src_Gprod() #src_Gprod
-	Species snk_Kecf_default @default:K_ECF(K_git~0,K_milk~0,K_sal~0,snk_Kecf~snk_Kecf) #snk_Kecf
-	Species Gluc_use_default @default:Gluc_use() #Gluc_use
-	Species src_ins_c2 @c2:src_ins() #src_ins
-	Species snk_ins_c2 @c2:ins_b(snk_ins~snk_ins) #snk_ins
+	Species K_ECF_c2 @c2:K_ECF(K_git~0,K_milk~0,K_sal~0,snk_Kecf~0)@c2 #K_ECF
+	Species K_ICF_c1 @c1:K_ICF()@c1 #K_ICF
+	Species K_urin_default @default:K_urin()@default #K_urin
+	Species K_tiss_default @default:K_tiss()@default #K_tiss
+	Species K_sal_default @default:K_ECF(K_git~0,K_milk~0,K_sal~K_sal,snk_Kecf~0)@default #K_sal
+	Species met_act_default @default:met_act(snk_metact~0)@default #met_act
+	Species K_milk_default @default:K_ECF(K_git~0,K_milk~K_milk,K_sal~0,snk_Kecf~0)@default #K_milk
+	Species K_git_default @default:K_ECF(K_git~K_git,K_milk~0,K_sal~0,snk_Kecf~0)@default #K_git
+	Species Gluc_b_c2 @c2:Gluc(_b~_B,_prod~0,_stor~0)@c2 #Gluc_b
+	Species ins_b_c2 @c2:ins_b(snk_ins~0)@c2 #ins_b
+	Species Gluc_stor_default @default:Gluc(_b~0,_prod~0,_stor~_STOR)@default #Gluc_stor
+	Species Gluc_prod_default @default:Gluc(_b~0,_prod~_PROD,_stor~0)@default #Gluc_prod
+	Species src_metact_default @default:src_metact()@default #src_metact
+	Species snk_metact_default @default:met_act(snk_metact~snk_metact)@default #snk_metact
+	Species src_Kgit_default @default:src_Kgit()@default #src_Kgit
+	Species src_Glucb_c2 @c2:src_Glucb()@c2 #src_Glucb
+	Species src_Gprod_default @default:src_Gprod()@default #src_Gprod
+	Species snk_Kecf_default @default:K_ECF(K_git~0,K_milk~0,K_sal~0,snk_Kecf~snk_Kecf)@default #snk_Kecf
+	Species Gluc_use_default @default:Gluc_use()@default #Gluc_use
+	Species src_ins_c2 @c2:src_ins()@c2 #src_ins
+	Species snk_ins_c2 @c2:ins_b(snk_ins~snk_ins)@c2 #snk_ins
 end observables
 begin functions
 	dmi() = 487.5*p54*(1 - sin(0.261799387791667*time()))

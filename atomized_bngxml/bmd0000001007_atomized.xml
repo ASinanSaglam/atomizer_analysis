@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000001007_atomized">
+    <ListOfParameters>
+      <Parameter id="ks53" type="Constant" value="0.6" expr="0.6"/>
+      <Parameter id="Js53" type="Constant" value="0.45" expr="0.45"/>
+      <Parameter id="kd53" type="Constant" value="0.27" expr="0.27"/>
+      <Parameter id="n" type="Constant" value="4" expr="4.0"/>
+      <Parameter id="kin" type="Constant" value="0.41" expr="0.41"/>
+      <Parameter id="kout" type="Constant" value="0.05" expr="0.05"/>
+      <Parameter id="kd2" type="Constant" value="0.05" expr="0.05"/>
+      <Parameter id="ks2" type="Constant" value="0.15" expr="0.15"/>
+      <Parameter id="Js2" type="Constant" value="0.92" expr="0.92"/>
+      <Parameter id="m" type="Constant" value="4" expr="4.0"/>
+      <Parameter id="Q" type="Constant" value="0.83" expr="0.83"/>
+      <Parameter id="J1" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="J2" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="krepair" type="Constant" value="0.08" expr="0.08"/>
+      <Parameter id="ks53_" type="Constant" value="2.56" expr="2.56"/>
+      <Parameter id="kd53_" type="Constant" value="8.25" expr="8.25"/>
+      <Parameter id="ks2_" type="Constant" value="4.23" expr="4.23"/>
+      <Parameter id="kd2_" type="Constant" value="0.79" expr="0.79"/>
+      <Parameter id="dd" type="Constant" value="2" expr="2.0"/>
+      <Parameter id="Tdam" type="Constant" value="50" expr="50.0"/>
+      <Parameter id="Dam0" type="Constant" value="2" expr="2.0"/>
+      <Parameter id="ModelValue_27" type="Constant" value="50" expr="50.0"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="MDM2">
+        <ListOfComponentTypes>
+          <ComponentType id="cyt">
+            <ListOfAllowedStates>
+              <AllowedState id="CYT"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="nuc">
+            <ListOfAllowedStates>
+              <AllowedState id="NUC"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="p53"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+      <compartment id="cyt" spatialDimensions="3" size="1.0"/>
+      <compartment id="nuc" spatialDimensions="3" size="1.0"/>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="1.120092e+23" name="@nuc::p53()" compartment="nuc">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="p53" compartment="nuc"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="9.51476e+22" name="@cyt::MDM2(cyt~CYT,nuc~0)" compartment="cyt">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="MDM2" compartment="cyt">
+            <ListOfComponents>
+              <Component id="S2_M1_C1" name="cyt" state="CYT" numberOfBonds="0"/>
+              <Component id="S2_M1_C2" name="nuc" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="3.896234000000012e+23" name="@nuc::MDM2(cyt~0,nuc~NUC)" compartment="nuc">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="MDM2" compartment="nuc">
+            <ListOfComponents>
+              <Component id="S3_M1_C1" name="cyt" state="0" numberOfBonds="0"/>
+              <Component id="S3_M1_C2" name="nuc" state="NUC" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="p53_production" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="p53" compartment="nuc"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="p53_degradation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="p53" compartment="nuc"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="kd53_0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR2_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="MDM2cyt_production" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="MDM2" compartment="cyt">
+                <ListOfComponents>
+                  <Component id="RR3_PP1_M1_C1" name="cyt" state="CYT" numberOfBonds="0"/>
+                  <Component id="RR3_PP1_M1_C2" name="nuc" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="fRate2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="MDM2cyt_translocation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="MDM2" compartment="cyt">
+                <ListOfComponents>
+                  <Component id="RR4_RP1_M1_C1" name="cyt" state="CYT" numberOfBonds="0"/>
+                  <Component id="RR4_RP1_M1_C2" name="nuc" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="MDM2" compartment="nuc">
+                <ListOfComponents>
+                  <Component id="RR4_PP1_M1_C1" name="cyt" state="0" numberOfBonds="0"/>
+                  <Component id="RR4_PP1_M1_C2" name="nuc" state="NUC" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kin"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1" targetID="RR4_PP1_M1"/>
+          <MapItem sourceID="RR4_RP1_M1_C1" targetID="RR4_PP1_M1_C1"/>
+          <MapItem sourceID="RR4_RP1_M1_C2" targetID="RR4_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR4_RP1_M1_C1" finalState="0"/>
+          <StateChange site="RR4_RP1_M1_C2" finalState="NUC"/>
+          <ChangeCompartment id="RR4_RP1_M1" source="cyt" destination="nuc" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="_reverse_MDM2cyt_translocation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR5_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP1_M1" name="MDM2" compartment="nuc">
+                <ListOfComponents>
+                  <Component id="RR5_RP1_M1_C1" name="cyt" state="0" numberOfBonds="0"/>
+                  <Component id="RR5_RP1_M1_C2" name="nuc" state="NUC" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="MDM2" compartment="cyt">
+                <ListOfComponents>
+                  <Component id="RR5_PP1_M1_C1" name="cyt" state="CYT" numberOfBonds="0"/>
+                  <Component id="RR5_PP1_M1_C2" name="nuc" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kout"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR5_RP1_M1" targetID="RR5_PP1_M1"/>
+          <MapItem sourceID="RR5_RP1_M1_C1" targetID="RR5_PP1_M1_C1"/>
+          <MapItem sourceID="RR5_RP1_M1_C2" targetID="RR5_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR5_RP1_M1_C1" finalState="CYT"/>
+          <StateChange site="RR5_RP1_M1_C2" finalState="0"/>
+          <ChangeCompartment id="RR5_RP1_M1" source="nuc" destination="cyt" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="MDM2cyt_degradation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR6_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_RP1_M1" name="MDM2" compartment="cyt">
+                <ListOfComponents>
+                  <Component id="RR6_RP1_M1_C1" name="cyt" state="CYT" numberOfBonds="0"/>
+                  <Component id="RR6_RP1_M1_C2" name="nuc" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kd2_"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR6_RP1_M1"/>
+          <MapItem sourceID="RR6_RP1_M1_C1"/>
+          <MapItem sourceID="RR6_RP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR6_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="MDM2nuc_degradation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR7_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_RP1_M1" name="MDM2" compartment="nuc">
+                <ListOfComponents>
+                  <Component id="RR7_RP1_M1_C1" name="cyt" state="0" numberOfBonds="0"/>
+                  <Component id="RR7_RP1_M1_C2" name="nuc" state="NUC" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Function" name="kd2_0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR7_RP1_M1"/>
+          <MapItem sourceID="RR7_RP1_M1_C1"/>
+          <MapItem sourceID="RR7_RP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR7_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="p53_nuc" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" compartment="nuc" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="p53"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="MDM2cyt_cyt" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" compartment="cyt" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="MDM2">
+                <ListOfComponents>
+                  <Component id="O2_P1_M1_C1" name="cyt" state="CYT" numberOfBonds="0"/>
+                  <Component id="O2_P1_M1_C2" name="nuc" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="MDM2nuc_nuc" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" compartment="nuc" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="MDM2">
+                <ListOfComponents>
+                  <Component id="O3_P1_M1_C1" name="cyt" state="0" numberOfBonds="0"/>
+                  <Component id="O3_P1_M1_C2" name="nuc" state="NUC" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="q">
+        <ListOfReferences>
+          <Reference name="J1" type="Constant"/>
+          <Reference name="p53_nuc" type="Observable"/>
+        </ListOfReferences>
+        <Expression> J1/p53_nuc </Expression>
+      </Function>
+      <Function id="v">
+        <ListOfReferences>
+          <Reference name="Q" type="Constant"/>
+        </ListOfReferences>
+        <Expression> Q </Expression>
+      </Function>
+      <Function id="r">
+        <ListOfReferences>
+          <Reference name="J2" type="Constant"/>
+          <Reference name="p53_nuc" type="Observable"/>
+        </ListOfReferences>
+        <Expression> J2/p53_nuc </Expression>
+      </Function>
+      <Function id="u">
+        <ListOfReferences>
+          <Reference name="MDM2nuc_nuc" type="Observable"/>
+        </ListOfReferences>
+        <Expression> MDM2nuc_nuc </Expression>
+      </Function>
+      <Function id="G_u_v_q_r">
+        <ListOfReferences>
+          <Reference name="q" type="Function"/>
+          <Reference name="r" type="Function"/>
+          <Reference name="u" type="Function"/>
+          <Reference name="v" type="Function"/>
+        </ListOfReferences>
+        <Expression> ((2*r)*u)/(((((q*v)+(r*u))-u)+v)+(((((-4*r)*u)*((-u)+v))+(((((q*v)+(r*u))-u)+v)^2))^0.5)) </Expression>
+      </Function>
+      <Function id="x">
+        <ListOfReferences>
+          <Reference name="ModelValue_27" type="Constant"/>
+        </ListOfReferences>
+        <Expression> (-ModelValue_27)+time() </Expression>
+      </Function>
+      <Function id="heav_x">
+        <ListOfReferences>
+          <Reference name="x" type="Function"/>
+        </ListOfReferences>
+        <Expression> if((x&lt;0),0,if((x&gt;0),1,0)) </Expression>
+      </Function>
+      <Function id="xyz">
+        <ListOfReferences>
+          <Reference name="Dam0" type="Constant"/>
+          <Reference name="Tdam" type="Constant"/>
+          <Reference name="krepair" type="Constant"/>
+        </ListOfReferences>
+        <Expression> if((0&gt;=(Dam0-(krepair*((-Tdam)+time())))),0,(Dam0-(krepair*((-Tdam)+time())))) </Expression>
+      </Function>
+      <Function id="DNAdamage_ar">
+        <ListOfReferences>
+          <Reference name="heav_x" type="Function"/>
+          <Reference name="xyz" type="Function"/>
+        </ListOfReferences>
+        <Expression> heav_x*xyz </Expression>
+      </Function>
+      <Function id="kd2_0">
+        <ListOfReferences>
+          <Reference name="kd2" type="Constant"/>
+          <Reference name="DNAdamage_ar" type="Function"/>
+        </ListOfReferences>
+        <Expression> kd2*(DNAdamage_ar+1) </Expression>
+      </Function>
+      <Function id="kd53_0">
+        <ListOfReferences>
+          <Reference name="kd53" type="Constant"/>
+          <Reference name="kd53_" type="Constant"/>
+          <Reference name="G_u_v_q_r" type="Function"/>
+        </ListOfReferences>
+        <Expression> (G_u_v_q_r*kd53_)+kd53 </Expression>
+      </Function>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="Js53" type="Constant"/>
+          <Reference name="ks53" type="Constant"/>
+          <Reference name="ks53_" type="Constant"/>
+          <Reference name="n" type="Constant"/>
+          <Reference name="MDM2cyt_cyt" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((MDM2cyt_cyt^n)*ks53_)+(ks53*((Js53^n)+(MDM2cyt_cyt^n))))/((Js53^n)+(MDM2cyt_cyt^n)) </Expression>
+      </Function>
+      <Function id="fRate2">
+        <ListOfReferences>
+          <Reference name="Js2" type="Constant"/>
+          <Reference name="ks2" type="Constant"/>
+          <Reference name="ks2_" type="Constant"/>
+          <Reference name="m" type="Constant"/>
+          <Reference name="p53_nuc" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((ks2*((Js2^m)+(p53_nuc^m)))+(ks2_*(p53_nuc^m)))/((Js2^m)+(p53_nuc^m)) </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

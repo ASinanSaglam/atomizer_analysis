@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000945_atomized">
+    <ListOfParameters>
+      <Parameter id="k_0_m" type="Constant" value="0.0289" expr="0.0289"/>
+      <Parameter id="k_i" type="Constant" value="0.000309" expr="0.000309"/>
+      <Parameter id="k_e" type="Constant" value="1.014" expr="1.014"/>
+      <Parameter id="k_o_c" type="Constant" value="0.026553" expr="0.026553"/>
+      <Parameter id="k_c_c" type="Constant" value="0.18637" expr="0.18637"/>
+      <Parameter id="k_d" type="Constant" value="4.4489" expr="4.4489"/>
+      <Parameter id="k_c_m" type="Constant" value="0.000106" expr="0.000106"/>
+      <Parameter id="k_b" type="Constant" value="0.00085341" expr="0.00085341"/>
+      <Parameter id="B_T" type="Constant" value="28.9" expr="28.9"/>
+      <Parameter id="V_m" type="Constant" value="2e+12" expr="2000000000000.0"/>
+      <Parameter id="V_c" type="Constant" value="829" expr="829.0"/>
+      <Parameter id="V_n" type="Constant" value="326" expr="326.0"/>
+      <Parameter id="D" type="Constant" value="10" expr="10.0"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="H_c"/>
+      <MoleculeType id="H_m"/>
+      <MoleculeType id="L_m">
+        <ListOfComponentTypes>
+          <ComponentType id="L_c">
+            <ListOfAllowedStates>
+              <AllowedState id="L_c"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="L_n">
+            <ListOfAllowedStates>
+              <AllowedState id="L_n"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="10.0" name="L_m(L_c~0,L_n~0)">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="L_m">
+            <ListOfComponents>
+              <Component id="S1_M1_C1" name="L_c" state="0" numberOfBonds="0"/>
+              <Component id="S1_M1_C2" name="L_n" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="_R1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="L_m">
+                <ListOfComponents>
+                  <Component id="RR1_PP1_M1_C1" name="L_c" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_PP1_M1_C2" name="L_n" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="arRateL_m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="_R2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="H_m"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="arRateH_m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="_R3" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="L_m">
+                <ListOfComponents>
+                  <Component id="RR3_PP1_M1_C1" name="L_c" state="L_c" numberOfBonds="0"/>
+                  <Component id="RR3_PP1_M1_C2" name="L_n" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="arRateL_c" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="_R4" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="H_c"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="arRateH_c" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR4_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="_R5" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="L_m">
+                <ListOfComponents>
+                  <Component id="RR5_PP1_M1_C1" name="L_c" state="0" numberOfBonds="0"/>
+                  <Component id="RR5_PP1_M1_C2" name="L_n" state="L_n" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Function" name="arRateL_n" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR5_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="L_m" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="L_m">
+                <ListOfComponents>
+                  <Component id="O1_P1_M1_C1" name="L_c" state="0" numberOfBonds="0"/>
+                  <Component id="O1_P1_M1_C2" name="L_n" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="H_m" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="H_m"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="L_c" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="L_m">
+                <ListOfComponents>
+                  <Component id="O3_P1_M1_C1" name="L_c" state="L_c" numberOfBonds="0"/>
+                  <Component id="O3_P1_M1_C2" name="L_n" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="H_c" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="H_c"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="L_n" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="L_m">
+                <ListOfComponents>
+                  <Component id="O5_P1_M1_C1" name="L_c" state="0" numberOfBonds="0"/>
+                  <Component id="O5_P1_M1_C2" name="L_n" state="L_n" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="v_1">
+        <ListOfReferences>
+          <Reference name="V_c" type="Constant"/>
+          <Reference name="V_m" type="Constant"/>
+        </ListOfReferences>
+        <Expression> (2.5e-9*V_m)/V_c </Expression>
+      </Function>
+      <Function id="v_2">
+        <ListOfReferences>
+          <Reference name="V_c" type="Constant"/>
+          <Reference name="V_n" type="Constant"/>
+        </ListOfReferences>
+        <Expression> V_n/V_c </Expression>
+      </Function>
+      <Function id="arRateL_c">
+        <ListOfReferences>
+          <Reference name="B_T" type="Constant"/>
+          <Reference name="k_b" type="Constant"/>
+          <Reference name="k_c_c" type="Constant"/>
+          <Reference name="k_d" type="Constant"/>
+          <Reference name="k_e" type="Constant"/>
+          <Reference name="k_i" type="Constant"/>
+          <Reference name="k_o_c" type="Constant"/>
+          <Reference name="v_1" type="Function"/>
+          <Reference name="v_2" type="Function"/>
+          <Reference name="H_c" type="Observable"/>
+          <Reference name="L_c" type="Observable"/>
+          <Reference name="L_m" type="Observable"/>
+          <Reference name="L_n" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((((H_c*k_c_c)-((L_c*k_b)*(B_T-L_n)))-(L_c*(k_e+k_o_c)))+((L_m*k_i)*v_1))+((L_n*k_d)*v_2) </Expression>
+      </Function>
+      <Function id="arRateL_n">
+        <ListOfReferences>
+          <Reference name="B_T" type="Constant"/>
+          <Reference name="k_b" type="Constant"/>
+          <Reference name="k_d" type="Constant"/>
+          <Reference name="v_2" type="Function"/>
+          <Reference name="L_c" type="Observable"/>
+          <Reference name="L_n" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((L_c*k_b)*v_2)*(B_T-L_n))-(L_n*k_d) </Expression>
+      </Function>
+      <Function id="arRateL_m">
+        <ListOfReferences>
+          <Reference name="k_0_m" type="Constant"/>
+          <Reference name="k_c_m" type="Constant"/>
+          <Reference name="k_e" type="Constant"/>
+          <Reference name="k_i" type="Constant"/>
+          <Reference name="v_1" type="Function"/>
+          <Reference name="H_m" type="Observable"/>
+          <Reference name="L_c" type="Observable"/>
+          <Reference name="L_m" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((H_m*k_c_m)+((L_c*k_e)*v_1))+(L_m*((-k_0_m)-k_i)) </Expression>
+      </Function>
+      <Function id="arRateH_c">
+        <ListOfReferences>
+          <Reference name="k_c_c" type="Constant"/>
+          <Reference name="k_o_c" type="Constant"/>
+          <Reference name="H_c" type="Observable"/>
+          <Reference name="L_c" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((-H_c)*k_c_c)+(L_c*k_o_c) </Expression>
+      </Function>
+      <Function id="arRateH_m">
+        <ListOfReferences>
+          <Reference name="k_0_m" type="Constant"/>
+          <Reference name="k_c_m" type="Constant"/>
+          <Reference name="H_m" type="Observable"/>
+          <Reference name="L_m" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((-H_m)*k_c_m)+(L_m*k_0_m) </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

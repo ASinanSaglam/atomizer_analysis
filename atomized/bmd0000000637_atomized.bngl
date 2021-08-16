@@ -1,11 +1,11 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000637', 'http://identifiers.org/biomodels.db/MODEL1610220000']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1610220000', 'http://identifiers.org/biomodels.db/BIOMD0000000637']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/28034910']
-#@BQB_HAS_PROPERTY:['http://identifiers.org/go/GO:0000772', 'http://identifiers.org/mamo/MAMO_0000003', 'http://identifiers.org/go/GO:0001664']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/go/GO:0001664', 'http://identifiers.org/mamo/MAMO_0000003', 'http://identifiers.org/go/GO:0000772']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/4932']
 #@creatorEmail:'abush84@gmail.com'
 #@creatorName:'Bush Alan'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 12 molecules and 22 reactions. The translated model has 4 molecules and 22 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 12 molecules and 22 reactions. The translated model has 4 molecules and 22 rules'
 ###
 begin model
 begin parameters
@@ -30,32 +30,32 @@ begin parameters
 	L 0
 end parameters
 begin molecule types
-	#^ bqbiol:isVersionOf uniprot:P18852, uniprot:P18851
-	Gbg(gt)
-	#^ bqbiol:isVersionOf uniprot:P0CI39
-	R(gt,l~L~0)
-	#^ bqbiol:hasPart chebi:CHEBI:15996, uniprot:P18852, uniprot:P18851
-	Gt(Gd~Gd~0,gbg,r)
 	#^ bqbiol:hasPart uniprot:P0CI39, uniprot:P01149, uniprot:P18851, uniprot:P18852
 	LRG()
+	#^ bqbiol:isVersionOf uniprot:P18852, uniprot:P18851
+	Gbg(gt)
+	#^ bqbiol:hasPart chebi:CHEBI:15996, uniprot:P18852, uniprot:P18851
+	Gt(Gd~Gd~0,gbg,r)
+	#^ bqbiol:isVersionOf uniprot:P0CI39
+	R(gt,l~L~0)
 end molecule types
 begin seed species
 	R(gt,l~0) (3308.0) / PM #R
-	Gt(Gd~0,gbg!269,r).Gbg(gt!269) (2042.0) / PM #G
+	Gt(Gd~0,gbg!356,r).Gbg(gt!356) (2042.0) / PM #G
 end seed species
 begin observables
 	Species R R(gt,l~0) #R
 	Species LR R(gt,l~L) #LR
-	Species G Gt(Gd~0,gbg!269,r).Gbg(gt!269) #G
+	Species G Gt(Gd~0,gbg!356,r).Gbg(gt!356) #G
 	Species Gt Gt(Gd~0,gbg,r) #Gt
 	Species Gd Gt(Gd~Gd,gbg,r) #Gd
-	Species RG Gt(Gd~0,gbg!269,r!270).R(gt!270,l~0).Gbg(gt!269) #RG
+	Species RG Gt(Gd~0,gbg!356,r!357).R(gt!357,l~0).Gbg(gt!356) #RG
 	Species Gbg Gbg(gt) #Gbg
 	Species LRG LRG() #LRG
-	Species LRGt Gt(Gd~0,gbg,r!270).R(gt!270,l~L) #LRGt
-	Species RGd Gt(Gd~Gd,gbg,r!270).R(gt!270,l~0) #RGd
-	Species RGt Gt(Gd~0,gbg,r!270).R(gt!270,l~0) #RGt
-	Species LRGd Gt(Gd~Gd,gbg,r!270).R(gt!270,l~L) #LRGd
+	Species LRGt Gt(Gd~0,gbg,r!357).R(gt!357,l~L) #LRGt
+	Species RGd Gt(Gd~Gd,gbg,r!357).R(gt!357,l~0) #RGd
+	Species RGt Gt(Gd~0,gbg,r!357).R(gt!357,l~0) #RGt
+	Species LRGd Gt(Gd~Gd,gbg,r!357).R(gt!357,l~L) #LRGd
 end observables
 begin functions
 	k_Af_Gd() = 0.2158
@@ -93,27 +93,27 @@ begin functions
 	k_off_L_RG() = k_off_L_R
 end functions
 begin reaction rules
-	binding_R_G: R(gt,l~0) + Gt(Gd~0,gbg!269,r).Gbg(gt!269) <-> Gt(Gd~0,gbg!269,r!270).R(gt!270,l~0).Gbg(gt!269) k_on_R_G,k_off_R_G
+	binding_R_G: R(gt,l~0) + Gt(Gd~0,gbg!356,r).Gbg(gt!356) <-> Gt(Gd~0,gbg!356,r!357).R(gt!357,l~0).Gbg(gt!356) k_on_R_G,k_off_R_G
 	binding_L_R: R(gt,l~0) <-> R(gt,l~L) k_on_L_R,k_off_L_R
-	binding_R_Gt: R(gt,l~0) + Gt(Gd~0,gbg,r) <-> Gt(Gd~0,gbg,r!270).R(gt!270,l~0) k_on_R_Gt,k_off_R_Gt
-	binding_R_Gd: R(gt,l~0) + Gt(Gd~Gd,gbg,r) <-> Gt(Gd~Gd,gbg,r!270).R(gt!270,l~0) k_on_R_Gd,k_off_R_Gd
-	binding_LR_G: R(gt,l~L) + Gt(Gd~0,gbg!269,r).Gbg(gt!269) <-> LRG() k_on_LR_G,k_off_LR_G
-	binding_LR_Gt: R(gt,l~L) + Gt(Gd~0,gbg,r) <-> Gt(Gd~0,gbg,r!270).R(gt!270,l~L) k_on_LR_Gt,k_off_LR_Gt
-	binding_LR_Gd: R(gt,l~L) + Gt(Gd~Gd,gbg,r) <-> Gt(Gd~Gd,gbg,r!270).R(gt!270,l~L) k_on_LR_Gd,k_off_LR_Gd
-	binding_L_RG: Gt(Gd~0,gbg!269,r!270).R(gt!270,l~0).Gbg(gt!269) <-> LRG() k_on_L_RG,k_off_L_RG
-	binding_L_RGt: Gt(Gd~0,gbg,r!270).R(gt!270,l~0) <-> Gt(Gd~0,gbg,r!270).R(gt!270,l~L) k_on_L_RGt,k_off_L_RGt
-	exchange_G: Gt(Gd~0,gbg!269,r).Gbg(gt!269) -> Gt(Gd~0,gbg,r) + Gbg(gt) k_Ef_G
+	binding_R_Gt: R(gt,l~0) + Gt(Gd~0,gbg,r) <-> Gt(Gd~0,gbg,r!357).R(gt!357,l~0) k_on_R_Gt,k_off_R_Gt
+	binding_R_Gd: R(gt,l~0) + Gt(Gd~Gd,gbg,r) <-> Gt(Gd~Gd,gbg,r!357).R(gt!357,l~0) k_on_R_Gd,k_off_R_Gd
+	binding_LR_G: R(gt,l~L) + Gt(Gd~0,gbg!356,r).Gbg(gt!356) <-> LRG() k_on_LR_G,k_off_LR_G
+	binding_LR_Gt: R(gt,l~L) + Gt(Gd~0,gbg,r) <-> Gt(Gd~0,gbg,r!357).R(gt!357,l~L) k_on_LR_Gt,k_off_LR_Gt
+	binding_LR_Gd: R(gt,l~L) + Gt(Gd~Gd,gbg,r) <-> Gt(Gd~Gd,gbg,r!357).R(gt!357,l~L) k_on_LR_Gd,k_off_LR_Gd
+	binding_L_RG: Gt(Gd~0,gbg!356,r!357).R(gt!357,l~0).Gbg(gt!356) <-> LRG() k_on_L_RG,k_off_L_RG
+	binding_L_RGt: Gt(Gd~0,gbg,r!357).R(gt!357,l~0) <-> Gt(Gd~0,gbg,r!357).R(gt!357,l~L) k_on_L_RGt,k_off_L_RGt
+	exchange_G: Gt(Gd~0,gbg!356,r).Gbg(gt!356) -> Gt(Gd~0,gbg,r) + Gbg(gt) k_Ef_G
 	hydrolysis_Gt: Gt(Gd~0,gbg,r) -> Gt(Gd~Gd,gbg,r) k_Hf_Gt
-	association_Gd: Gt(Gd~Gd,gbg,r) + Gbg(gt) <-> Gt(Gd~0,gbg!269,r).Gbg(gt!269) k_Af_Gd,k_Ar_Gd
-	exchange_RG: Gt(Gd~0,gbg!269,r!270).R(gt!270,l~0).Gbg(gt!269) -> Gt(Gd~0,gbg,r!270).R(gt!270,l~0) + Gbg(gt) k_Ef_RG
-	exchange_LRG: LRG() -> Gt(Gd~0,gbg,r!270).R(gt!270,l~L) + Gbg(gt) k_Ef_LRG
-	hydrolysis_RGt: Gt(Gd~0,gbg,r!270).R(gt!270,l~0) -> Gt(Gd~Gd,gbg,r!270).R(gt!270,l~0) k_Hf_RGt
-	hydrolysis_LRGt: Gt(Gd~0,gbg,r!270).R(gt!270,l~L) -> Gt(Gd~Gd,gbg,r!270).R(gt!270,l~L) k_Hf_LRGt
-	association_RGd: Gt(Gd~Gd,gbg,r!270).R(gt!270,l~0) + Gbg(gt) <-> Gt(Gd~0,gbg!269,r!270).R(gt!270,l~0).Gbg(gt!269) k_Af_RGd,k_Ar_RGd
-	association_LRGd: Gt(Gd~Gd,gbg,r!270).R(gt!270,l~L) + Gbg(gt) <-> LRG() k_Af_LRGd,k_Ar_LRGd
-	binding_L_RGd: Gt(Gd~Gd,gbg,r!270).R(gt!270,l~0) <-> Gt(Gd~Gd,gbg,r!270).R(gt!270,l~L) k_on_L_RGd,k_off_L_RGd
+	association_Gd: Gt(Gd~Gd,gbg,r) + Gbg(gt) <-> Gt(Gd~0,gbg!356,r).Gbg(gt!356) k_Af_Gd,k_Ar_Gd
+	exchange_RG: Gt(Gd~0,gbg!356,r!357).R(gt!357,l~0).Gbg(gt!356) -> Gt(Gd~0,gbg,r!357).R(gt!357,l~0) + Gbg(gt) k_Ef_RG
+	exchange_LRG: LRG() -> Gt(Gd~0,gbg,r!357).R(gt!357,l~L) + Gbg(gt) k_Ef_LRG
+	hydrolysis_RGt: Gt(Gd~0,gbg,r!357).R(gt!357,l~0) -> Gt(Gd~Gd,gbg,r!357).R(gt!357,l~0) k_Hf_RGt
+	hydrolysis_LRGt: Gt(Gd~0,gbg,r!357).R(gt!357,l~L) -> Gt(Gd~Gd,gbg,r!357).R(gt!357,l~L) k_Hf_LRGt
+	association_RGd: Gt(Gd~Gd,gbg,r!357).R(gt!357,l~0) + Gbg(gt) <-> Gt(Gd~0,gbg!356,r!357).R(gt!357,l~0).Gbg(gt!356) k_Af_RGd,k_Ar_RGd
+	association_LRGd: Gt(Gd~Gd,gbg,r!357).R(gt!357,l~L) + Gbg(gt) <-> LRG() k_Af_LRGd,k_Ar_LRGd
+	binding_L_RGd: Gt(Gd~Gd,gbg,r!357).R(gt!357,l~0) <-> Gt(Gd~Gd,gbg,r!357).R(gt!357,l~L) k_on_L_RGd,k_off_L_RGd
 	exchange_Gd: Gt(Gd~Gd,gbg,r) -> Gt(Gd~0,gbg,r) k_Ef_Gd
-	exchange_RGd: Gt(Gd~Gd,gbg,r!270).R(gt!270,l~0) -> Gt(Gd~0,gbg,r!270).R(gt!270,l~0) k_Ef_RGd
-	exchange_LRGd: Gt(Gd~Gd,gbg,r!270).R(gt!270,l~L) -> Gt(Gd~0,gbg,r!270).R(gt!270,l~L) k_Ef_LRGd
+	exchange_RGd: Gt(Gd~Gd,gbg,r!357).R(gt!357,l~0) -> Gt(Gd~0,gbg,r!357).R(gt!357,l~0) k_Ef_RGd
+	exchange_LRGd: Gt(Gd~Gd,gbg,r!357).R(gt!357,l~L) -> Gt(Gd~0,gbg,r!357).R(gt!357,l~L) k_Ef_LRGd
 end reaction rules
 end model

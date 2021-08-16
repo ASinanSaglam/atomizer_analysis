@@ -7,7 +7,7 @@
 #@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/27065985']
 #@creatorEmail:'chenry@mcs.anl.gov'
 #@creatorName:'Henry Christopher'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 17 molecules and 10 reactions. The translated model has 16 molecules and 10 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 17 molecules and 10 reactions. The translated model has 16 molecules and 10 rules'
 ###
 begin model
 begin parameters
@@ -26,19 +26,23 @@ begin parameters
 	r10_V 0.000000
 end parameters
 begin molecule types
-	#^ bqbiol:isVersionOf chebi:CHEBI:17836, kegg.compound:C00568
-	p_ABA(h2_hmpt)
+	#^ bqbiol:isVersionOf kegg.compound:C00002, chebi:CHEBI:15422
+	ATP()
+	#^ bqbiol:isVersionOf chebi:CHEBI:57451, kegg.compound:C00415
+	DHF()
+	#^ bqbiol:isVersionOf kegg.compound:C01300, chebi:CHEBI:38797
+	H2_HMPt(p_aba)
 	#^ bqbiol:isVersionOf kegg.compound:C01300, chebi:CHEBI:38797
 	#^ bqbiol:hasProperty go:GO:0016310
 	H2_HMPterinPP()
-	#^ bqbiol:isVersionOf kegg.compound:C00002, chebi:CHEBI:15422
-	ATP()
-	#^ bqbiol:isVersionOf chebi:CHEBI:17822, kegg.compound:C00065
-	L_serine()
-	#^ bqbiol:isVersionOf chebi:CHEBI:38793, kegg.compound:C00921
-	H2_Pteroate()
+	#^ bqbiol:isVersionOf chebi:CHEBI:16027, kegg.compound:C00020
+	AMP()
+	#^ bqbiol:isVersionOf chebi:CHEBI:26020
+	Phosphate()
 	#^ bqbiol:isVersionOf kegg.compound:C00008, chebi:CHEBI:16761
 	ADP()
+	#^ bqbiol:isVersionOf chebi:CHEBI:17822, kegg.compound:C00065
+	L_serine()
 	#^ bqbiol:isVersionOf kegg.compound:C00037, chebi:CHEBI:15428
 	Glycine()
 	#^ bqbiol:isVersionOf kegg.compound:C00005, chebi:CHEBI:16474
@@ -47,18 +51,14 @@ begin molecule types
 	THF()
 	#^ bqbiol:isVersionOf kegg.compound:C00025, chebi:CHEBI:29987
 	L_Glutamate()
-	#^ bqbiol:isVersionOf chebi:CHEBI:26020
-	Phosphate()
-	#^ bqbiol:isVersionOf chebi:CHEBI:16027, kegg.compound:C00020
-	AMP()
-	#^ bqbiol:isVersionOf kegg.compound:C00013
-	PPi()
 	#^ bqbiol:isVersionOf kegg.compound:C00006, chebi:CHEBI:25523
 	NADP()
-	#^ bqbiol:isVersionOf chebi:CHEBI:57451, kegg.compound:C00415
-	DHF()
-	#^ bqbiol:isVersionOf kegg.compound:C01300, chebi:CHEBI:38797
-	H2_HMPt(p_aba)
+	#^ bqbiol:isVersionOf chebi:CHEBI:38793, kegg.compound:C00921
+	H2_Pteroate()
+	#^ bqbiol:isVersionOf chebi:CHEBI:17836, kegg.compound:C00568
+	p_ABA(h2_hmpt)
+	#^ bqbiol:isVersionOf kegg.compound:C00013
+	PPi()
 end molecule types
 begin seed species
 	H2_HMPt(p_aba) 1996293000000000.2 # (3.315e-06 * 0.001)mol/L * 6.022e23/mol *1.0L #H2_HMPt #H2_HMPt
@@ -77,7 +77,7 @@ begin seed species
 	$NADP() 566068000000000.1 #original 9.4e-07substance/volume  #NADP #NADP
 	$NADPH() 566068000000000.1 #original 9.4e-07substance/volume  #NADPH #NADPH
 	THF() 1.017718e+17 #original 0.000169substance/volume  #THF #THF
-	p_ABA(h2_hmpt!273).H2_HMPt(p_aba!273) 5.100634e+16 #original 8.47e-05substance/volume  #CH2_THF #CH2_THF
+	p_ABA(h2_hmpt!360).H2_HMPt(p_aba!360) 5.100634e+16 #original 8.47e-05substance/volume  #CH2_THF #CH2_THF
 end seed species
 begin observables
 	Species H2_HMPt H2_HMPt(p_aba) #H2-HMPt
@@ -96,7 +96,7 @@ begin observables
 	Species NADP NADP() #NADP
 	Species NADPH NADPH() #NADPH
 	Species THF THF() #THF
-	Species CH2_THF p_ABA(h2_hmpt!273).H2_HMPt(p_aba!273) #CH2-THF
+	Species CH2_THF p_ABA(h2_hmpt!360).H2_HMPt(p_aba!360) #CH2-THF
 end observables
 begin functions
 	fRate8() = 1.243e-7/(THF + 0.0001571)
@@ -106,12 +106,12 @@ begin reaction rules
 	FolK: ATP() + H2_HMPt(p_aba) -> AMP() + H2_HMPterinPP() r1_k1
 	FolP: p_ABA(h2_hmpt) + H2_HMPterinPP() -> PPi() + H2_Pteroate() r2_k1
 	FolC: L_Glutamate() + ATP() + H2_Pteroate() -> DHF() + ADP() + Phosphate() r3_k1
-	GlyA: THF() + L_serine() <-> p_ABA(h2_hmpt!273).H2_HMPt(p_aba!273) + Glycine() r4_k1,r4_k2
+	GlyA: THF() + L_serine() <-> p_ABA(h2_hmpt!360).H2_HMPt(p_aba!360) + Glycine() r4_k1,r4_k2
 	FolA: DHF() + NADPH() -> NADP() + THF() r5_k1
-	PanB: p_ABA(h2_hmpt!273).H2_HMPt(p_aba!273) -> H2_HMPt(p_aba) + p_ABA(h2_hmpt) r6_k1
+	PanB: p_ABA(h2_hmpt!360).H2_HMPt(p_aba!360) -> H2_HMPt(p_aba) + p_ABA(h2_hmpt) r6_k1
 	p_ABA_production: 0  -> p_ABA(h2_hmpt) r7_v
 	H2_HMPt_production: 0  -> H2_HMPt(p_aba) r8_v
 	THF_drain: THF() -> 0  fRate8()
-	CH2_THF_drain: p_ABA(h2_hmpt!273).H2_HMPt(p_aba!273) -> 0  fRate9()
+	CH2_THF_drain: p_ABA(h2_hmpt!360).H2_HMPt(p_aba!360) -> 0  fRate9()
 end reaction rules
 end model

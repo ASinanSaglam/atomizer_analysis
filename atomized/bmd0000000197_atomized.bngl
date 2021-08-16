@@ -5,7 +5,7 @@
 #@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0060341']
 #@creatorEmail:'bartholo@uni-freiburg.de'
 #@creatorName:'Bartholomé Kilian'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 7 molecules and 10 reactions. The translated model has 3 molecules and 10 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 7 molecules and 10 reactions. The translated model has 3 molecules and 10 rules'
 ###
 begin model
 begin parameters
@@ -31,19 +31,19 @@ end compartments
 begin molecule types
 	#^ bqbiol:is kegg.compound:C11363, chebi:CHEBI:63836
 	intracellularBSP(bound~BOUND~0,free~FREE~0)
-	basolateral(boundbsp~BOUNDBSP~0,freebsp~FREEBSP~0)
 	#^ bqbiol:is kegg.compound:C11363, chebi:CHEBI:63836
 	apicalBSP()
+	basolateral(boundbsp~BOUNDBSP~0,freebsp~FREEBSP~0)
 end molecule types
 begin seed species
-	@basolat:basolateral(boundbsp~0,freebsp~FREEBSP) 88.0 #freebasolateralBSP #x1
+	@basolat:basolateral(boundbsp~0,freebsp~FREEBSP)@basolat 88.0 #freebasolateralBSP #x1
 end seed species
 begin observables
-	Species freebasolateralBSP_basolat @basolat:basolateral(boundbsp~0,freebsp~FREEBSP) #free basolateral BSP
-	Species basolateralboundBSP_basolat @basolat:basolateral(boundbsp~BOUNDBSP,freebsp~0) #basolateral bound BSP
-	Species freeintracellularBSP_cell @cell:intracellularBSP(bound~0,free~FREE) #free intracellular BSP
-	Species boundintracellularBSP_cell @cell:intracellularBSP(bound~BOUND,free~0) #bound intracellular BSP
-	Species apicalBSP_apical @apical:apicalBSP() #apical BSP
+	Species freebasolateralBSP_basolat @basolat:basolateral(boundbsp~0,freebsp~FREEBSP)@basolat #free basolateral BSP
+	Species basolateralboundBSP_basolat @basolat:basolateral(boundbsp~BOUNDBSP,freebsp~0)@basolat #basolateral bound BSP
+	Species freeintracellularBSP_cell @cell:intracellularBSP(bound~0,free~FREE)@cell #free intracellular BSP
+	Species boundintracellularBSP_cell @cell:intracellularBSP(bound~BOUND,free~0)@cell #bound intracellular BSP
+	Species apicalBSP_apical @apical:apicalBSP()@apical #apical BSP
 	Species intracellularBSP_cell @cell:intracellularBSP(bound~0,free~0) #intracellular BSP
 end observables
 begin functions

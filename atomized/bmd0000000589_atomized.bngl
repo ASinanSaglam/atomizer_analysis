@@ -5,7 +5,7 @@
 #@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0009628', 'http://identifiers.org/go/GO:0033355']
 #@creatorEmail:'juty@ebi.ac.uk'
 #@creatorName:'Juty Nick'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 13 molecules and 0 reactions. The translated model has 13 molecules and 13 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 13 molecules and 0 reactions. The translated model has 13 molecules and 13 rules'
 ###
 begin model
 begin parameters
@@ -63,19 +63,19 @@ begin parameters
 	MDAR 0
 end parameters
 begin molecule types
-	H2O2()
-	MDA()
 	APXi()
-	GSSG()
-	NADPplus()
-	NADPH()
-	DHA()
-	ASC()
-	GSH()
-	CoI()
 	APX()
+	GSH()
+	DHA()
+	MDA()
+	NADPH()
+	CoI()
 	O2neg()
 	CoII()
+	NADPplus()
+	GSSG()
+	ASC()
+	H2O2()
 end molecule types
 begin seed species
 	NADPH() 6.624201968954203e+19 # (110.000032696018 * 1e-06)mol/L * 6.022e23/mol *1.0L #NADPH #NADPH
@@ -108,9 +108,9 @@ begin functions
 	vGR() = GR*GSSG*NADPH*kcatGR/(GSSG*KMNADPH + GSSG*NADPH + KMGSSG*NADPH)
 	arRateNADPplus() = -0.5*F12 + NADPH*kN + vGR + vMDAR
 	arRateNADPH() = 0.5*F12 - NADPH*kN - vGR - vMDAR
+	vDHAR() = DHA*DHAR*GSH*kcatDHAR/(DHA*GSH + DHA*KMGSH + GSH*KMDHA + K)
 	c13() = MDA*k13/(MDA*k13 + 2*NADPplus*k12 + k11)
 	F13() = F1*c13
-	vDHAR() = DHA*DHAR*GSH*kcatDHAR/(DHA*GSH + DHA*KMGSH + GSH*KMDHA + K)
 	arRateASC() = -ASC*CoI*k2APX - ASC*CoII*k3APX - 2*ASC*H2O2*k5 - ASC*O2neg*k6 + DHA*GSH*k3 + F13 + MDA^2*k1 + vDHAR + 2*vMDAR
 	c11() = k11/(MDA*k13 + 2*NADPplus*k12 + k11)
 	F11() = F1*c11

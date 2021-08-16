@@ -1,0 +1,706 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000197_atomized">
+    <ListOfParameters>
+      <Parameter id="p1" type="Constant" value="0.0025" expr="0.0025"/>
+      <Parameter id="p2" type="Constant" value="0.0784" expr="0.0784"/>
+      <Parameter id="p3" type="Constant" value="0.0013" expr="0.0013"/>
+      <Parameter id="p4" type="Constant" value="0.0827" expr="0.0827"/>
+      <Parameter id="p5" type="Constant" value="0.0091" expr="0.0091"/>
+      <Parameter id="p6" type="Constant" value="6.4e-5" expr="6.4e-05"/>
+      <Parameter id="p7" type="Constant" value="0.0397" expr="0.0397"/>
+      <Parameter id="p8" type="Constant" value="1000" expr="1000.0"/>
+      <Parameter id="p9" type="Constant" value="0.0098" expr="0.0098"/>
+      <Parameter id="p10" type="Constant" value="1.6" expr="1.6"/>
+      <Parameter id="p11" type="Constant" value="1000" expr="1000.0"/>
+      <Parameter id="p12" type="Constant" value="0.0003" expr="0.0003"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="apicalBSP"/>
+      <MoleculeType id="basolateral">
+        <ListOfComponentTypes>
+          <ComponentType id="boundbsp">
+            <ListOfAllowedStates>
+              <AllowedState id="BOUNDBSP"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="freebsp">
+            <ListOfAllowedStates>
+              <AllowedState id="FREEBSP"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="intracellularBSP">
+        <ListOfComponentTypes>
+          <ComponentType id="bound">
+            <ListOfAllowedStates>
+              <AllowedState id="BOUND"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="free">
+            <ListOfAllowedStates>
+              <AllowedState id="FREE"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+      <compartment id="basolat" spatialDimensions="3" size="1.0"/>
+      <compartment id="cell" spatialDimensions="3" size="1.0"/>
+      <compartment id="apical" spatialDimensions="3" size="1.5"/>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="88.0" name="@basolat::basolateral(boundbsp~0,freebsp~FREEBSP)" compartment="basolat">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="basolateral" compartment="basolat">
+            <ListOfComponents>
+              <Component id="S1_M1_C1" name="boundbsp" state="0" numberOfBonds="0"/>
+              <Component id="S1_M1_C2" name="freebsp" state="FREEBSP" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="OATP1B3" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR1_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_RP1_M1" name="basolateral" compartment="basolat">
+                <ListOfComponents>
+                  <Component id="RR1_RP1_M1_C1" name="boundbsp" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_RP1_M1_C2" name="freebsp" state="FREEBSP" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="intracellularBSP" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR1_PP1_M1_C1" name="bound" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_PP1_M1_C2" name="free" state="FREE" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="p1"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR1_RP1_M1"/>
+          <MapItem sourceID="RR1_RP1_M1_C1"/>
+          <MapItem sourceID="RR1_RP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+          <Delete id="RR1_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="ABCC2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="intracellularBSP" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR2_RP1_M1_C1" name="bound" state="0" numberOfBonds="0"/>
+                  <Component id="RR2_RP1_M1_C2" name="free" state="FREE" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="apicalBSP" compartment="apical"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="p2"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1"/>
+          <MapItem sourceID="RR2_RP1_M1_C1"/>
+          <MapItem sourceID="RR2_RP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+          <Delete id="RR2_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="endo_in_bl" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="basolateral" compartment="basolat">
+                <ListOfComponents>
+                  <Component id="RR3_RP1_M1_C1" name="boundbsp" state="0" numberOfBonds="0"/>
+                  <Component id="RR3_RP1_M1_C2" name="freebsp" state="FREEBSP" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="intracellularBSP" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR3_PP1_M1_C1" name="bound" state="0" numberOfBonds="0"/>
+                  <Component id="RR3_PP1_M1_C2" name="free" state="FREE" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="p3"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1"/>
+          <MapItem sourceID="RR3_RP1_M1_C1"/>
+          <MapItem sourceID="RR3_RP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+          <Delete id="RR3_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="endo_ex_bl" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="intracellularBSP" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR4_RP1_M1_C1" name="bound" state="0" numberOfBonds="0"/>
+                  <Component id="RR4_RP1_M1_C2" name="free" state="FREE" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="basolateral" compartment="basolat">
+                <ListOfComponents>
+                  <Component id="RR4_PP1_M1_C1" name="boundbsp" state="0" numberOfBonds="0"/>
+                  <Component id="RR4_PP1_M1_C2" name="freebsp" state="FREEBSP" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="p4"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1"/>
+          <MapItem sourceID="RR4_RP1_M1_C1"/>
+          <MapItem sourceID="RR4_RP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR4_PP1_M1"/>
+          <Delete id="RR4_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="endo_ex_ap" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR5_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP1_M1" name="intracellularBSP" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR5_RP1_M1_C1" name="bound" state="0" numberOfBonds="0"/>
+                  <Component id="RR5_RP1_M1_C2" name="free" state="FREE" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="apicalBSP" compartment="apical"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="p5"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR5_RP1_M1"/>
+          <MapItem sourceID="RR5_RP1_M1_C1"/>
+          <MapItem sourceID="RR5_RP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR5_PP1_M1"/>
+          <Delete id="RR5_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="bl_BSP_binding" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR6_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_RP1_M1" name="basolateral" compartment="basolat">
+                <ListOfComponents>
+                  <Component id="RR6_RP1_M1_C1" name="boundbsp" state="0" numberOfBonds="0"/>
+                  <Component id="RR6_RP1_M1_C2" name="freebsp" state="FREEBSP" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="basolateral" compartment="basolat">
+                <ListOfComponents>
+                  <Component id="RR6_PP1_M1_C1" name="boundbsp" state="BOUNDBSP" numberOfBonds="0"/>
+                  <Component id="RR6_PP1_M1_C2" name="freebsp" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Function" name="fRate5" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR6_RP1_M1" targetID="RR6_PP1_M1"/>
+          <MapItem sourceID="RR6_RP1_M1_C1" targetID="RR6_PP1_M1_C1"/>
+          <MapItem sourceID="RR6_RP1_M1_C2" targetID="RR6_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR6_RP1_M1_C1" finalState="BOUNDBSP"/>
+          <StateChange site="RR6_RP1_M1_C2" finalState="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="_reverse_bl_BSP_binding" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR7_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_RP1_M1" name="basolateral" compartment="basolat">
+                <ListOfComponents>
+                  <Component id="RR7_RP1_M1_C1" name="boundbsp" state="BOUNDBSP" numberOfBonds="0"/>
+                  <Component id="RR7_RP1_M1_C2" name="freebsp" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="basolateral" compartment="basolat">
+                <ListOfComponents>
+                  <Component id="RR7_PP1_M1_C1" name="boundbsp" state="0" numberOfBonds="0"/>
+                  <Component id="RR7_PP1_M1_C2" name="freebsp" state="FREEBSP" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Function" name="fRate5m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR7_RP1_M1" targetID="RR7_PP1_M1"/>
+          <MapItem sourceID="RR7_RP1_M1_C1" targetID="RR7_PP1_M1_C1"/>
+          <MapItem sourceID="RR7_RP1_M1_C2" targetID="RR7_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR7_RP1_M1_C1" finalState="0"/>
+          <StateChange site="RR7_RP1_M1_C2" finalState="FREEBSP"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="bl_BSP_dissoc" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR8_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_RP1_M1" name="basolateral" compartment="basolat">
+                <ListOfComponents>
+                  <Component id="RR8_RP1_M1_C1" name="boundbsp" state="BOUNDBSP" numberOfBonds="0"/>
+                  <Component id="RR8_RP1_M1_C2" name="freebsp" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR8_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP1_M1" name="basolateral" compartment="basolat">
+                <ListOfComponents>
+                  <Component id="RR8_PP1_M1_C1" name="boundbsp" state="0" numberOfBonds="0"/>
+                  <Component id="RR8_PP1_M1_C2" name="freebsp" state="FREEBSP" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="p7"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR8_RP1_M1" targetID="RR8_PP1_M1"/>
+          <MapItem sourceID="RR8_RP1_M1_C1" targetID="RR8_PP1_M1_C1"/>
+          <MapItem sourceID="RR8_RP1_M1_C2" targetID="RR8_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR8_RP1_M1_C1" finalState="0"/>
+          <StateChange site="RR8_RP1_M1_C2" finalState="FREEBSP"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="cellular_BSP_binding" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR9_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_RP1_M1" name="intracellularBSP" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR9_RP1_M1_C1" name="bound" state="0" numberOfBonds="0"/>
+                  <Component id="RR9_RP1_M1_C2" name="free" state="FREE" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR9_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP1_M1" name="intracellularBSP" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR9_PP1_M1_C1" name="bound" state="BOUND" numberOfBonds="0"/>
+                  <Component id="RR9_PP1_M1_C2" name="free" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Function" name="fRate7" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR9_RP1_M1" targetID="RR9_PP1_M1"/>
+          <MapItem sourceID="RR9_RP1_M1_C1" targetID="RR9_PP1_M1_C1"/>
+          <MapItem sourceID="RR9_RP1_M1_C2" targetID="RR9_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR9_RP1_M1_C1" finalState="BOUND"/>
+          <StateChange site="RR9_RP1_M1_C2" finalState="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="_reverse_cellular_BSP_binding" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR10_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_RP1_M1" name="intracellularBSP" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR10_RP1_M1_C1" name="bound" state="BOUND" numberOfBonds="0"/>
+                  <Component id="RR10_RP1_M1_C2" name="free" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR10_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_PP1_M1" name="intracellularBSP" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR10_PP1_M1_C1" name="bound" state="0" numberOfBonds="0"/>
+                  <Component id="RR10_PP1_M1_C2" name="free" state="FREE" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Function" name="fRate7m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR10_RP1_M1" targetID="RR10_PP1_M1"/>
+          <MapItem sourceID="RR10_RP1_M1_C1" targetID="RR10_PP1_M1_C1"/>
+          <MapItem sourceID="RR10_RP1_M1_C2" targetID="RR10_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR10_RP1_M1_C1" finalState="0"/>
+          <StateChange site="RR10_RP1_M1_C2" finalState="FREE"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR11" name="cellular_BSP_dissoc" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR11_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_RP1_M1" name="intracellularBSP" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR11_RP1_M1_C1" name="bound" state="BOUND" numberOfBonds="0"/>
+                  <Component id="RR11_RP1_M1_C2" name="free" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR11_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_PP1_M1" name="intracellularBSP" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR11_PP1_M1_C1" name="bound" state="0" numberOfBonds="0"/>
+                  <Component id="RR11_PP1_M1_C2" name="free" state="FREE" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR11_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="p10"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR11_RP1_M1" targetID="RR11_PP1_M1"/>
+          <MapItem sourceID="RR11_RP1_M1_C1" targetID="RR11_PP1_M1_C1"/>
+          <MapItem sourceID="RR11_RP1_M1_C2" targetID="RR11_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR11_RP1_M1_C1" finalState="0"/>
+          <StateChange site="RR11_RP1_M1_C2" finalState="FREE"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR12" name="paracell_transp" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR12_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_RP1_M1" name="basolateral" compartment="basolat">
+                <ListOfComponents>
+                  <Component id="RR12_RP1_M1_C1" name="boundbsp" state="0" numberOfBonds="0"/>
+                  <Component id="RR12_RP1_M1_C2" name="freebsp" state="FREEBSP" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR12_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_PP1_M1" name="apicalBSP" compartment="apical"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR12_RateLaw" type="Function" name="fRate9" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR12_RP1_M1"/>
+          <MapItem sourceID="RR12_RP1_M1_C1"/>
+          <MapItem sourceID="RR12_RP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR12_PP1_M1"/>
+          <Delete id="RR12_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR13" name="_reverse_paracell_transp" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR13_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_RP1_M1" name="apicalBSP" compartment="apical"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR13_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_PP1_M1" name="basolateral" compartment="basolat">
+                <ListOfComponents>
+                  <Component id="RR13_PP1_M1_C1" name="boundbsp" state="0" numberOfBonds="0"/>
+                  <Component id="RR13_PP1_M1_C2" name="freebsp" state="FREEBSP" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR13_RateLaw" type="Function" name="fRate9m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR13_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR13_PP1_M1"/>
+          <Delete id="RR13_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="freebasolateralBSP_basolat" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" compartment="basolat" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="basolateral">
+                <ListOfComponents>
+                  <Component id="O1_P1_M1_C1" name="boundbsp" state="0" numberOfBonds="0"/>
+                  <Component id="O1_P1_M1_C2" name="freebsp" state="FREEBSP" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="basolateralboundBSP_basolat" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" compartment="basolat" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="basolateral">
+                <ListOfComponents>
+                  <Component id="O2_P1_M1_C1" name="boundbsp" state="BOUNDBSP" numberOfBonds="0"/>
+                  <Component id="O2_P1_M1_C2" name="freebsp" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="freeintracellularBSP_cell" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" compartment="cell" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="intracellularBSP">
+                <ListOfComponents>
+                  <Component id="O3_P1_M1_C1" name="bound" state="0" numberOfBonds="0"/>
+                  <Component id="O3_P1_M1_C2" name="free" state="FREE" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="boundintracellularBSP_cell" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" compartment="cell" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="intracellularBSP">
+                <ListOfComponents>
+                  <Component id="O4_P1_M1_C1" name="bound" state="BOUND" numberOfBonds="0"/>
+                  <Component id="O4_P1_M1_C2" name="free" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="apicalBSP_apical" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" compartment="apical" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="apicalBSP"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O6" name="intracellularBSP_cell" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O6_P1" compartment="cell" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O6_P1_M1" name="intracellularBSP">
+                <ListOfComponents>
+                  <Component id="O6_P1_M1_C1" name="bound" state="0" numberOfBonds="0"/>
+                  <Component id="O6_P1_M1_C2" name="free" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="intracellularBSP_ar">
+        <ListOfReferences>
+          <Reference name="boundintracellularBSP_cell" type="Observable"/>
+          <Reference name="freeintracellularBSP_cell" type="Observable"/>
+        </ListOfReferences>
+        <Expression> boundintracellularBSP_cell+freeintracellularBSP_cell </Expression>
+      </Function>
+      <Function id="totalBSP_ar">
+        <ListOfReferences>
+          <Reference name="apicalBSP_apical" type="Observable"/>
+          <Reference name="basolateralboundBSP_basolat" type="Observable"/>
+          <Reference name="boundintracellularBSP_cell" type="Observable"/>
+          <Reference name="freebasolateralBSP_basolat" type="Observable"/>
+          <Reference name="freeintracellularBSP_cell" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((apicalBSP_apical+basolateralboundBSP_basolat)+boundintracellularBSP_cell)+freebasolateralBSP_basolat)+freeintracellularBSP_cell </Expression>
+      </Function>
+      <Function id="fRate5">
+        <ListOfReferences>
+          <Reference name="p6" type="Constant"/>
+          <Reference name="p8" type="Constant"/>
+        </ListOfReferences>
+        <Expression> p6*p8 </Expression>
+      </Function>
+      <Function id="fRate5m">
+        <ListOfReferences>
+          <Reference name="p6" type="Constant"/>
+          <Reference name="freebasolateralBSP_basolat" type="Observable"/>
+        </ListOfReferences>
+        <Expression> freebasolateralBSP_basolat*p6 </Expression>
+      </Function>
+      <Function id="fRate7">
+        <ListOfReferences>
+          <Reference name="p11" type="Constant"/>
+          <Reference name="p9" type="Constant"/>
+        </ListOfReferences>
+        <Expression> p11*p9 </Expression>
+      </Function>
+      <Function id="fRate7m">
+        <ListOfReferences>
+          <Reference name="p9" type="Constant"/>
+          <Reference name="freeintracellularBSP_cell" type="Observable"/>
+        </ListOfReferences>
+        <Expression> freeintracellularBSP_cell*p9 </Expression>
+      </Function>
+      <Function id="fRate9">
+        <ListOfReferences>
+          <Reference name="p12" type="Constant"/>
+        </ListOfReferences>
+        <Expression> 0.666666666666667*p12 </Expression>
+      </Function>
+      <Function id="fRate9m">
+        <ListOfReferences>
+          <Reference name="p12" type="Constant"/>
+        </ListOfReferences>
+        <Expression> 0.444444444444444*p12 </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

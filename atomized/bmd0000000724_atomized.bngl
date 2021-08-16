@@ -1,13 +1,13 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000724', 'http://identifiers.org/biomodels.db/MODEL1812040008']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1812040008', 'http://identifiers.org/biomodels.db/BIOMD0000000724']
 #@BQB_OCCURS_IN:['http://identifiers.org/bto/0000782']
-#@BQB_HAS_PROPERTY:['http://identifiers.org/go/GO:0002418', 'http://identifiers.org/go/GO:0002840', 'http://identifiers.org/go/GO:0050852']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/go/GO:0050852', 'http://identifiers.org/go/GO:0002418', 'http://identifiers.org/go/GO:0002840']
 #@BQB_IS_PROPERTY_OF:['http://identifiers.org/mamo/MAMO:0000046']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
 #@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/30356330']
 #@creatorEmail:'sheriff@ebi.ac.uk'
 #@creatorName:'Sheriff Rahuman'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 39 molecules and 28 reactions. The translated model has 13 molecules and 29 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 39 molecules and 28 reactions. The translated model has 13 molecules and 29 rules'
 ###
 begin model
 begin parameters
@@ -52,30 +52,30 @@ begin parameters
 	LCKinactive 3.011e+16 #original 50.0substance/L
 end parameters
 begin molecule types
-	#^ bqbiol:isVersionOf uniprot:Q13094
-	SLP76i()
 	LAT(LATt~LATt~0,a~A~0,gads,i~I~0)
+	CD28(a~A~0,i~I~0,pi3k)
 	#^ bqbiol:isVersionOf uniprot:Q13094
 	SLP76()
-	#^ bqbiol:isVersionOf uniprot:P43403
-	ZAP70(a2~A2~0,cd3)
+	#^ bqbiol:isVersionOf uniprot:Q13094
+	SLP76i()
 	#^ bqbiol:isVersionOf uniprot:Q9NZQ7
 	#^ bqbiol:hasProperty pato:0002355
 	PD1(p1~P1~0,p2~P2~0,shp2)
-	CD28(a~A~0,i~I~0,pi3k)
-	#^ bqbiol:isVersionOf uniprot:Q06124
-	SHP2(pd1)
-	#^ bqbiol:hasVersion uniprot:P62993, uniprot:Q13588
-	GADS(lat)
+	#^ bqbiol:isVersionOf uniprot:Q13094
+	SLP76a()
+	#^ bqbiol:hasVersion uniprot:P27986, uniprot:P42336
+	PI3K(cd28)
 	LCK(LCKactive~LCKactive~0,LCKpi~LCKpi~0,LCKt~LCKt~0,i~I~0,iy~IY~0,y~Y~0,ya~YA~0)
 	CD3(CD3t~CD3t~0,a~A~0,i~I~0,zap70)
 	#^ bqbiol:isVersionOf uniprot:P43403
 	#^ bqbiol:hasProperty pato:0002220
 	ZAP70a1()
-	#^ bqbiol:isVersionOf uniprot:Q13094
-	SLP76a()
-	#^ bqbiol:hasVersion uniprot:P27986, uniprot:P42336
-	PI3K(cd28)
+	#^ bqbiol:hasVersion uniprot:P62993, uniprot:Q13588
+	GADS(lat)
+	#^ bqbiol:isVersionOf uniprot:P43403
+	ZAP70(a2~A2~0,cd3)
+	#^ bqbiol:isVersionOf uniprot:Q06124
+	SHP2(pd1)
 end molecule types
 begin seed species
 	LCK(LCKactive~0,LCKpi~0,LCKt~0,i~I,iy~0,y~0,ya~0) 1.5055000000000002e+16 # (25.0 * 1e-09)mol/L * 6.022e23/mol *1.0L #LCKi #LCKi
@@ -107,17 +107,17 @@ begin observables
 	Species PD1 PD1(p1~0,p2~0,shp2) #PD1
 	Species PD1p1 PD1(p1~P1,p2~0,shp2) #PD1p1
 	Species PD1p2 PD1(p1~0,p2~P2,shp2) #PD1p2
-	Species CP1 PD1(p1~P1,p2~0,shp2!4).SHP2(pd1!4) #CP1
+	Species CP1 PD1(p1~P1,p2~0,shp2!809).SHP2(pd1!809) #CP1
 	Species SHP2 SHP2(pd1) #SHP2
-	Species CP2 PD1(p1~0,p2~P2,shp2!4).SHP2(pd1!4) #CP2
+	Species CP2 PD1(p1~0,p2~P2,shp2!809).SHP2(pd1!809) #CP2
 	Species CD28a CD28(a~A,i~0,pi3k) #CD28a
 	Species CD28i CD28(a~0,i~I,pi3k) #CD28i
 	Species PI3K PI3K(cd28) #PI3K
-	Species PI3Kb CD28(a~A,i~0,pi3k!5).PI3K(cd28!5) #PI3Kb
+	Species PI3Kb CD28(a~A,i~0,pi3k!810).PI3K(cd28!810) #PI3Kb
 	Species CD3a CD3(CD3t~0,a~A,i~I,zap70) #CD3a
 	Species CD3i CD3(CD3t~0,a~0,i~I,zap70) #CD3i
 	Species ZAP70a1 ZAP70a1() #ZAP70a1
-	Species ZAP70i CD3(CD3t~0,a~A,i~I,zap70!7).ZAP70(a2~0,cd3!7) #ZAP70i
+	Species ZAP70i CD3(CD3t~0,a~A,i~I,zap70!812).ZAP70(a2~0,cd3!812) #ZAP70i
 	Species ZAP70 ZAP70(a2~0,cd3) #ZAP70
 	Species ZAP70a2 ZAP70(a2~A2,cd3) #ZAP70a2
 	Species LATa LAT(LATt~0,a~A,gads,i~I) #LATa
@@ -128,7 +128,7 @@ begin observables
 	Species SLP76i SLP76i() #SLP76i
 	Species CD3t CD3(CD3t~CD3t,a~0,i~0,zap70) #CD3t
 	Species SLP76a SLP76a() #SLP76a
-	Species GADSa LAT(LATt~0,a~A,gads!6,i~I).GADS(lat!6) #GADSa
+	Species GADSa LAT(LATt~0,a~A,gads!811,i~I).GADS(lat!811) #GADSa
 end observables
 begin functions
 	CPactive_ar() = CP1 + CP2
@@ -189,22 +189,22 @@ begin reaction rules
 	PD1_P_PD1p1_act_reactants_0: 0  -> PD1(p1~0,p2~0,shp2) -1*(fRate9()) #Modifiers(LCKactive, PD1p1, PD1p2, LCKt)
 	PD1_P_PD1p1_act_products_0: 0  -> PD1(p1~P1,p2~0,shp2) fRate9() #Modifiers(LCKactive, PD1p1, PD1p2, LCKt)
 	PD1p1_P_PD1p2_act: PD1(p1~P1,p2~0,shp2) -> PD1(p1~0,p2~P2,shp2) fRate10() #Modifiers(LCKactive)
-	PD1p1_Bd_SHP2: PD1(p1~P1,p2~0,shp2) + SHP2(pd1) <-> PD1(p1~P1,p2~0,shp2!4).SHP2(pd1!4) Ka_shp,Kd1_shp
-	PD1p2_Bd_SHP2: PD1(p1~0,p2~P2,shp2) + SHP2(pd1) <-> PD1(p1~0,p2~P2,shp2!4).SHP2(pd1!4) Ka_shp,Kd1_shp
-	CP2_Diss_SHP2_PD1p1: PD1(p1~0,p2~P2,shp2!4).SHP2(pd1!4) -> SHP2(pd1) + PD1(p1~P1,p2~0,shp2) Kd2_shp
-	CP2_DP_CP1: PD1(p1~0,p2~P2,shp2!4).SHP2(pd1!4) -> PD1(p1~P1,p2~0,shp2!4).SHP2(pd1!4) Kdp_cp2
-	CP1_Diss_PD1_SHP2: PD1(p1~P1,p2~0,shp2!4).SHP2(pd1!4) -> SHP2(pd1) + PD1(p1~0,p2~0,shp2) Kd2_shp
+	PD1p1_Bd_SHP2: PD1(p1~P1,p2~0,shp2) + SHP2(pd1) <-> PD1(p1~P1,p2~0,shp2!809).SHP2(pd1!809) Ka_shp,Kd1_shp
+	PD1p2_Bd_SHP2: PD1(p1~0,p2~P2,shp2) + SHP2(pd1) <-> PD1(p1~0,p2~P2,shp2!809).SHP2(pd1!809) Ka_shp,Kd1_shp
+	CP2_Diss_SHP2_PD1p1: PD1(p1~0,p2~P2,shp2!809).SHP2(pd1!809) -> SHP2(pd1) + PD1(p1~P1,p2~0,shp2) Kd2_shp
+	CP2_DP_CP1: PD1(p1~0,p2~P2,shp2!809).SHP2(pd1!809) -> PD1(p1~P1,p2~0,shp2!809).SHP2(pd1!809) Kdp_cp2
+	CP1_Diss_PD1_SHP2: PD1(p1~P1,p2~0,shp2!809).SHP2(pd1!809) -> SHP2(pd1) + PD1(p1~0,p2~0,shp2) Kd2_shp
 	CD28i_P_CD28a: CD28(a~0,i~I,pi3k) -> CD28(a~A,i~0,pi3k) fRate16() #Modifiers(LCKactive)
 	CD28a_DP_CD28i: CD28(a~A,i~0,pi3k) -> CD28(a~0,i~I,pi3k) fRate17() #Modifiers(CPactive)
-	CD28a_Bd_PI3K: CD28(a~A,i~0,pi3k) + PI3K(cd28) <-> CD28(a~A,i~0,pi3k!5).PI3K(cd28!5) Ka_pi3k,Kd_pi3k
+	CD28a_Bd_PI3K: CD28(a~A,i~0,pi3k) + PI3K(cd28) <-> CD28(a~A,i~0,pi3k!810).PI3K(cd28!810) Ka_pi3k,Kd_pi3k
 	CD3i_P_CD3a: CD3(CD3t~0,a~0,i~I,zap70) -> CD3(CD3t~0,a~A,i~I,zap70) fRate19() #Modifiers(LCKactive)
 	CD3a_DP_CD3i: CD3(CD3t~0,a~A,i~I,zap70) -> CD3(CD3t~0,a~0,i~I,zap70) fRate20() #Modifiers(CPactive)
-	CD3a_Bd_ZAP70: CD3(CD3t~0,a~A,i~I,zap70) + ZAP70(a2~0,cd3) <-> CD3(CD3t~0,a~A,i~I,zap70!7).ZAP70(a2~0,cd3!7) Ka_zap,Kd_zap
-	ZAP70i_P_ZAP70a1: CD3(CD3t~0,a~A,i~I,zap70!7).ZAP70(a2~0,cd3!7) -> ZAP70a1() fRate22() #Modifiers(LCKactive)
+	CD3a_Bd_ZAP70: CD3(CD3t~0,a~A,i~I,zap70) + ZAP70(a2~0,cd3) <-> CD3(CD3t~0,a~A,i~I,zap70!812).ZAP70(a2~0,cd3!812) Ka_zap,Kd_zap
+	ZAP70i_P_ZAP70a1: CD3(CD3t~0,a~A,i~I,zap70!812).ZAP70(a2~0,cd3!812) -> ZAP70a1() fRate22() #Modifiers(LCKactive)
 	ZAP70a1_P_ZAP70a2: ZAP70a1() -> ZAP70(a2~A2,cd3) fRate23() #Modifiers(LCKactive)
 	LATi_P_LATa: LAT(LATt~0,a~0,gads,i~I) -> LAT(LATt~0,a~A,gads,i~I) fRate24() #Modifiers(ZAP70a2)
-	LATa_Bd_GADS: LAT(LATt~0,a~A,gads,i~I) + GADS(lat) <-> LAT(LATt~0,a~A,gads!6,i~I).GADS(lat!6) Ka_gads,Kd_gads
-	GADSa_Bd_SLP76: LAT(LATt~0,a~A,gads!6,i~I).GADS(lat!6) + SLP76() <-> SLP76i() Ka_slp,Kd_slp
+	LATa_Bd_GADS: LAT(LATt~0,a~A,gads,i~I) + GADS(lat) <-> LAT(LATt~0,a~A,gads!811,i~I).GADS(lat!811) Ka_gads,Kd_gads
+	GADSa_Bd_SLP76: LAT(LATt~0,a~A,gads!811,i~I).GADS(lat!811) + SLP76() <-> SLP76i() Ka_slp,Kd_slp
 	SLP76i_P_SLC76a: SLP76i() -> SLP76a() fRate27() #Modifiers(ZAP70a2)
 end reaction rules
 end model

@@ -1,11 +1,11 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL4779732381', 'http://identifiers.org/biomodels.db/BIOMD0000000198']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000198', 'http://identifiers.org/biomodels.db/MODEL4779732381']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/8573563']
-#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0007263', 'http://identifiers.org/go/GO:0031282']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0031282', 'http://identifiers.org/go/GO:0007263']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9913']
 #@creatorEmail:'lukas@ebi.ac.uk'
 #@creatorName:'Endler Lukas'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 12 molecules and 7 reactions. The translated model has 5 molecules and 7 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 12 molecules and 7 reactions. The translated model has 5 molecules and 7 rules'
 ###
 begin model
 begin parameters
@@ -26,35 +26,35 @@ begin parameters
 	e6c_NO 0.064 #units:peruMpercm
 end parameters
 begin molecule types
-	#^ bqbiol:hasVersion uniprot:P19687, uniprot:P16068
-	sGCfast(no,no__5coord~NO__5COORD~0)
+	#^ bqbiol:hasPart chebi:CHEBI:16480, uniprot:P19687, uniprot:P16068
+	NO_sGCfast_6coord()
 	#^ bqbiol:hasPart uniprot:P19687, uniprot:P16068
-	sGCslow(NO_sGC_5coord_tot~NO_sGC_5coord_tot~0,no,no__5coord~NO__5COORD~0,sGC_inact_tot~sGC_inact_tot~0)
+	sGCslow(no,no__5coord~NO__5COORD~0)
 	#^ bqbiol:is chebi:CHEBI:16480, kegg.compound:C00533
 	NO(no_sgcslow_6coord,sgcfast,sgcslow)
 	#^ bqbiol:hasPart chebi:CHEBI:16480, uniprot:P19687, uniprot:P16068
-	NO_sGCfast_6coord()
-	#^ bqbiol:hasPart chebi:CHEBI:16480, uniprot:P19687, uniprot:P16068
 	NO_sGCslow_6coord(no)
+	#^ bqbiol:hasVersion uniprot:P19687, uniprot:P16068
+	sGCfast(NO_sGC_5coord_tot~NO_sGC_5coord_tot~0,no,no__5coord~NO__5COORD~0,sGC_inact_tot~sGC_inact_tot~0)
 end molecule types
 begin seed species
 	NO(no_sgcslow_6coord,sgcfast,sgcslow) 3.011e+17 # (0.5 * 1e-06)mol/L * 6.022e23/mol *1.0L #NO #NO
-	sGCfast(no,no__5coord~0) 6.74464e+16 #original 0.112micromole/L #sGCfast #sGCfast
-	sGCslow(NO_sGC_5coord_tot~0,no,no__5coord~0,sGC_inact_tot~0) 1.734336e+17 #original 0.288micromole/L #sGCslow #sGCslow
+	sGCfast(NO_sGC_5coord_tot~0,no,no__5coord~0,sGC_inact_tot~0) 6.74464e+16 #original 0.112micromole/L #sGCfast #sGCfast
+	sGCslow(no,no__5coord~0) 1.734336e+17 #original 0.288micromole/L #sGCslow #sGCslow
 end seed species
 begin observables
 	Species NO NO(no_sgcslow_6coord,sgcfast,sgcslow) #NO
-	Species sGCfast sGCfast(no,no__5coord~0) #sGCfast
-	Species NO_sGCfast NO(no_sgcslow_6coord,sgcfast!339,sgcslow).sGCfast(no!339,no__5coord~0) #NO_sGCfast
+	Species sGCfast sGCfast(NO_sGC_5coord_tot~0,no,no__5coord~0,sGC_inact_tot~0) #sGCfast
+	Species NO_sGCfast sGCfast(NO_sGC_5coord_tot~0,no!339,no__5coord~0,sGC_inact_tot~0).NO(no_sgcslow_6coord,sgcfast!339,sgcslow) #NO_sGCfast
 	Species NO_sGCfast_6coord NO_sGCfast_6coord() #NO_sGCfast_6coord
-	Species NO_sGCfast_5coord sGCfast(no,no__5coord~NO__5COORD) #NO_sGCfast_5coord
-	Species sGCslow sGCslow(NO_sGC_5coord_tot~0,no,no__5coord~0,sGC_inact_tot~0) #sGCslow
-	Species NO_sGCslow sGCslow(NO_sGC_5coord_tot~0,no!340,no__5coord~0,sGC_inact_tot~0).NO(no_sgcslow_6coord,sgcfast,sgcslow!340) #NO_sGCslow
+	Species NO_sGCfast_5coord sGCfast(NO_sGC_5coord_tot~0,no,no__5coord~NO__5COORD,sGC_inact_tot~0) #NO_sGCfast_5coord
+	Species sGCslow sGCslow(no,no__5coord~0) #sGCslow
+	Species NO_sGCslow NO(no_sgcslow_6coord,sgcfast,sgcslow!340).sGCslow(no!340,no__5coord~0) #NO_sGCslow
 	Species NO_sGCslow_6coord NO_sGCslow_6coord(no) #NO_sGCslow_6coord
 	Species NO_sGCslow_6coord_NO_int NO(no_sgcslow_6coord!341,sgcfast,sgcslow).NO_sGCslow_6coord(no!341) #NO_sGCslow_6coord_NO_int
-	Species NO_sGCslow_5coord sGCslow(NO_sGC_5coord_tot~0,no,no__5coord~NO__5COORD,sGC_inact_tot~0) #NO_sGCslow_5coord
-	Species NO_sGC_5coord_tot sGCslow(NO_sGC_5coord_tot~NO_sGC_5coord_tot,no,no__5coord~0,sGC_inact_tot~0) #NO_sGC_5coord_tot
-	Species sGC_inact_tot sGCslow(NO_sGC_5coord_tot~0,no,no__5coord~0,sGC_inact_tot~sGC_inact_tot) #sGC_inact_tot
+	Species NO_sGCslow_5coord sGCslow(no,no__5coord~NO__5COORD) #NO_sGCslow_5coord
+	Species NO_sGC_5coord_tot sGCfast(NO_sGC_5coord_tot~NO_sGC_5coord_tot,no,no__5coord~0,sGC_inact_tot~0) #NO_sGC_5coord_tot
+	Species sGC_inact_tot sGCfast(NO_sGC_5coord_tot~0,no,no__5coord~0,sGC_inact_tot~sGC_inact_tot) #sGC_inact_tot
 end observables
 begin functions
 	ext() = e5c*(NO_sGCfast + NO_sGCslow + sGCfast + sGCslow) + e5c_NO*(NO_sGCfast_5coord + NO_sGCslow_5coord) + e6c_NO*(NO_sGCfast_6coord + NO_sGCslow_6coord + NO_sGCslow_6coord_NO_int)
@@ -62,12 +62,12 @@ begin functions
 	NO_sGC_5coord_tot_ar() = NO_sGCfast_5coord + NO_sGCslow_5coord
 end functions
 begin reaction rules
-	r1fast: NO(no_sgcslow_6coord,sgcfast,sgcslow) + sGCfast(no,no__5coord~0) <-> NO(no_sgcslow_6coord,sgcfast!339,sgcslow).sGCfast(no!339,no__5coord~0) k1,k2
-	r2fast: NO(no_sgcslow_6coord,sgcfast!339,sgcslow).sGCfast(no!339,no__5coord~0) -> NO_sGCfast_6coord() k3
-	r3fast: NO_sGCfast_6coord() <-> sGCfast(no,no__5coord~NO__5COORD) k4,k5
-	r1slow: NO(no_sgcslow_6coord,sgcfast,sgcslow) + sGCslow(NO_sGC_5coord_tot~0,no,no__5coord~0,sGC_inact_tot~0) <-> sGCslow(NO_sGC_5coord_tot~0,no!340,no__5coord~0,sGC_inact_tot~0).NO(no_sgcslow_6coord,sgcfast,sgcslow!340) k6,k7
-	r2slow: sGCslow(NO_sGC_5coord_tot~0,no!340,no__5coord~0,sGC_inact_tot~0).NO(no_sgcslow_6coord,sgcfast,sgcslow!340) -> NO_sGCslow_6coord(no) k8
+	r1fast: NO(no_sgcslow_6coord,sgcfast,sgcslow) + sGCfast(NO_sGC_5coord_tot~0,no,no__5coord~0,sGC_inact_tot~0) <-> sGCfast(NO_sGC_5coord_tot~0,no!339,no__5coord~0,sGC_inact_tot~0).NO(no_sgcslow_6coord,sgcfast!339,sgcslow) k1,k2
+	r2fast: sGCfast(NO_sGC_5coord_tot~0,no!339,no__5coord~0,sGC_inact_tot~0).NO(no_sgcslow_6coord,sgcfast!339,sgcslow) -> NO_sGCfast_6coord() k3
+	r3fast: NO_sGCfast_6coord() <-> sGCfast(NO_sGC_5coord_tot~0,no,no__5coord~NO__5COORD,sGC_inact_tot~0) k4,k5
+	r1slow: NO(no_sgcslow_6coord,sgcfast,sgcslow) + sGCslow(no,no__5coord~0) <-> NO(no_sgcslow_6coord,sgcfast,sgcslow!340).sGCslow(no!340,no__5coord~0) k6,k7
+	r2slow: NO(no_sgcslow_6coord,sgcfast,sgcslow!340).sGCslow(no!340,no__5coord~0) -> NO_sGCslow_6coord(no) k8
 	r3slow: NO(no_sgcslow_6coord,sgcfast,sgcslow) + NO_sGCslow_6coord(no) <-> NO(no_sgcslow_6coord!341,sgcfast,sgcslow).NO_sGCslow_6coord(no!341) k9,k10
-	r4slow: NO(no_sgcslow_6coord!341,sgcfast,sgcslow).NO_sGCslow_6coord(no!341) <-> sGCslow(NO_sGC_5coord_tot~0,no,no__5coord~NO__5COORD,sGC_inact_tot~0) k11,k12
+	r4slow: NO(no_sgcslow_6coord!341,sgcfast,sgcslow).NO_sGCslow_6coord(no!341) <-> sGCslow(no,no__5coord~NO__5COORD) k11,k12
 end reaction rules
 end model

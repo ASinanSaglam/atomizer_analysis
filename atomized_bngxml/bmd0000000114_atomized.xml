@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000114_atomized">
+    <ListOfParameters>
+      <Parameter id="k" type="Constant" value="0.01" expr="0.01"/>
+      <Parameter id="alpha" type="Constant" value="5" expr="5.0"/>
+      <Parameter id="n" type="Constant" value="4" expr="4.0"/>
+      <Parameter id="a" type="Constant" value="3" expr="3.0"/>
+      <Parameter id="k1" type="Constant" value="2" expr="2.0"/>
+      <Parameter id="beta" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="gamma" type="Constant" value="1" expr="1.0"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="Ca">
+        <ListOfComponentTypes>
+          <ComponentType id="_cyt">
+            <ListOfAllowedStates>
+              <AllowedState id="_CYT"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+      <compartment id="cytoplasm" spatialDimensions="3" size="1.0"/>
+      <compartment id="ER" spatialDimensions="3" size="1.0"/>
+      <compartment id="extracellular" spatialDimensions="3" size="1.0"/>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="6.022e+23" name="@ER::Ca(_cyt~0)" compartment="ER">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="Ca" compartment="ER">
+            <ListOfComponents>
+              <Component id="S1_M1_C1" name="_cyt" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="6.022e+23" name="@cytoplasm::Ca(_cyt~_CYT)" compartment="cytoplasm">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="Ca" compartment="cytoplasm">
+            <ListOfComponents>
+              <Component id="S2_M1_C1" name="_cyt" state="_CYT" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="reaction_0000001" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="Ca" compartment="cytoplasm">
+                <ListOfComponents>
+                  <Component id="RR1_PP1_M1_C1" name="_cyt" state="_CYT" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="gamma"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="reaction_0000002" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="Ca" compartment="ER">
+                <ListOfComponents>
+                  <Component id="RR2_RP1_M1_C1" name="_cyt" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="Ca" compartment="cytoplasm">
+                <ListOfComponents>
+                  <Component id="RR2_PP1_M1_C1" name="_cyt" state="_CYT" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="fRate1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1" targetID="RR2_PP1_M1"/>
+          <MapItem sourceID="RR2_RP1_M1_C1" targetID="RR2_PP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR2_RP1_M1_C1" finalState="_CYT"/>
+          <ChangeCompartment id="RR2_RP1_M1" source="ER" destination="cytoplasm" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="_reverse_reaction_0000002" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="Ca" compartment="cytoplasm">
+                <ListOfComponents>
+                  <Component id="RR3_RP1_M1_C1" name="_cyt" state="_CYT" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="Ca" compartment="ER">
+                <ListOfComponents>
+                  <Component id="RR3_PP1_M1_C1" name="_cyt" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="fRate1m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1" targetID="RR3_PP1_M1"/>
+          <MapItem sourceID="RR3_RP1_M1_C1" targetID="RR3_PP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR3_RP1_M1_C1" finalState="0"/>
+          <ChangeCompartment id="RR3_RP1_M1" source="cytoplasm" destination="ER" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="reaction_0000003" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="Ca" compartment="cytoplasm">
+                <ListOfComponents>
+                  <Component id="RR4_RP1_M1_C1" name="_cyt" state="_CYT" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="beta"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1"/>
+          <MapItem sourceID="RR4_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR4_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="reaction_0000004" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR5_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP1_M1" name="Ca" compartment="ER">
+                <ListOfComponents>
+                  <Component id="RR5_RP1_M1_C1" name="_cyt" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="Ca" compartment="cytoplasm">
+                <ListOfComponents>
+                  <Component id="RR5_PP1_M1_C1" name="_cyt" state="_CYT" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Function" name="fRate3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR5_RP1_M1" targetID="RR5_PP1_M1"/>
+          <MapItem sourceID="RR5_RP1_M1_C1" targetID="RR5_PP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR5_RP1_M1_C1" finalState="_CYT"/>
+          <ChangeCompartment id="RR5_RP1_M1" source="ER" destination="cytoplasm" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="Ca_ER" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" compartment="ER" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="Ca">
+                <ListOfComponents>
+                  <Component id="O1_P1_M1_C1" name="_cyt" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="Ca_Cyt_cytoplasm" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" compartment="cytoplasm" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="Ca">
+                <ListOfComponents>
+                  <Component id="O2_P1_M1_C1" name="_cyt" state="_CYT" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="fy">
+        <ListOfReferences>
+          <Reference name="a" type="Constant"/>
+          <Reference name="n" type="Constant"/>
+          <Reference name="Ca_Cyt_cytoplasm" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (Ca_Cyt_cytoplasm^n)/((Ca_Cyt_cytoplasm^n)+(a^n)) </Expression>
+      </Function>
+      <Function id="fRate1">
+        <ListOfReferences>
+          <Reference name="k" type="Constant"/>
+        </ListOfReferences>
+        <Expression> 1.0*k </Expression>
+      </Function>
+      <Function id="fRate1m">
+        <ListOfReferences>
+          <Reference name="k1" type="Constant"/>
+        </ListOfReferences>
+        <Expression> 1.0*k1 </Expression>
+      </Function>
+      <Function id="fRate3">
+        <ListOfReferences>
+          <Reference name="alpha" type="Constant"/>
+          <Reference name="fy" type="Function"/>
+        </ListOfReferences>
+        <Expression> alpha*fy </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

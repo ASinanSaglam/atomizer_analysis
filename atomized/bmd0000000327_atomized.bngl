@@ -1,11 +1,11 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1104180000', 'http://identifiers.org/biomodels.db/BIOMD0000000327']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000327', 'http://identifiers.org/biomodels.db/MODEL1104180000']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/15257112']
-#@BQB_HAS_TAXON:['http://identifiers.org/bto/BTO:0002362', 'http://identifiers.org/taxonomy/9606']
+#@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606', 'http://identifiers.org/bto/BTO:0002362']
 #@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0030157']
 #@creatorEmail:'lukas@ebi.ac.uk'
 #@creatorName:'Endler Lukas'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 8 molecules and 11 reactions. The translated model has 3 molecules and 24 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 8 molecules and 11 reactions. The translated model has 3 molecules and 24 rules'
 ###
 begin model
 begin parameters
@@ -45,12 +45,12 @@ begin compartments
 	lumen 3 0.1
 end compartments
 begin molecule types
+	#^ bqbiol:is chebi:CHEBI:29101, chebi:CHEBI:29101
+	Napl()
 	#^ bqbiol:is chebi:CHEBI:17996, chebi:CHEBI:17996, chebi:CHEBI:17996
 	CL_()
 	#^ bqbiol:is chebi:CHEBI:17544, chebi:CHEBI:17544, chebi:CHEBI:17544
 	HCO3_()
-	#^ bqbiol:is chebi:CHEBI:29101, chebi:CHEBI:29101
-	Napl()
 end molecule types
 begin seed species
 	@plasma:$HCO3_() 1.32484e+22 # (22.0 * 0.001)mol/L * 6.022e23/mol *1.0L #HCO3_ #bb
@@ -72,14 +72,14 @@ begin observables
 	Species CL__lumen @lumen:CL_() #CL-
 end observables
 begin functions
-	kbcf() = zoo*HCO3__lumen^2*g_bi*gcftr*ln(1)
-	knbc() = gnbc
-	ec() = r*temp*ln(1)/f
-	ena() = r*temp*ln(1)/f
-	eb() = r*temp*ln(1)/f
 	enbc() = r*temp*ln(1)/f
+	eb() = r*temp*ln(1)/f
+	ec() = r*temp*ln(1)/f
+	kbcf() = zoo*HCO3__lumen^2*g_bi*gcftr*ln(1)
+	ena() = r*temp*ln(1)/f
 	CL__ar() = 160 - HCO3__lumen
 	kccf() = zoo*CL__ar^2*g_cl*gcftr*ln(1)
+	knbc() = gnbc
 	v() = (eb*kbcf + ec*kccf + ek*gk + ena*gnaleak + enbc*knbc)/(gk + kbcf + kccf + knbc)
 	jccftr() = kccf*(-ec + v)
 	jbcftr() = kbcf*(-eb + v)

@@ -6,7 +6,7 @@
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10117']
 #@creatorEmail:'viji@ebi.ac.uk'
 #@creatorName:'Chelliah Vijayalakshmi'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 4 molecules and 6 reactions. The translated model has 3 molecules and 7 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 4 molecules and 6 reactions. The translated model has 3 molecules and 7 rules'
 ###
 begin model
 begin parameters
@@ -36,15 +36,15 @@ begin molecule types
 	IP3()
 end molecule types
 begin seed species
-	@cytosol:CaI(CaS~0) 6.022000000000001e+22 # 0.1mol/L * 6.022e23/mol *1.0L #CaI #CaI
-	@cytosol:IP3() 3.0110000000000005e+22 #original 0.05mol/L  #IP3 #IP3
-	@ER_store:CaI(CaS~CaS) 6.6242e+26 #original 1100.0mol/L  #CaS #CaS
+	@cytosol:CaI(CaS~0)@cytosol 6.022000000000001e+22 # 0.1mol/L * 6.022e23/mol *1.0L #CaI #CaI
+	@cytosol:IP3()@cytosol 3.0110000000000005e+22 #original 0.05mol/L  #IP3 #IP3
+	@ER_store:CaI(CaS~CaS)@ER_store 6.6242e+26 #original 1100.0mol/L  #CaS #CaS
 end seed species
 begin observables
-	Species CaI_cytosol @cytosol:CaI(CaS~0) #CaI
-	Species IP3_cytosol @cytosol:IP3() #IP3
-	Species CaS_ER_store @ER_store:CaI(CaS~CaS) #CaS
-	Species g_cytosol @cytosol:g() #g
+	Species CaI_cytosol @cytosol:CaI(CaS~0)@cytosol #CaI
+	Species IP3_cytosol @cytosol:IP3()@cytosol #IP3
+	Species CaS_ER_store @ER_store:CaI(CaS~CaS)@ER_store #CaS
+	Species g_cytosol @cytosol:g()@cytosol #g
 end observables
 begin functions
 	fRate0() = CaS_ER_store*(1 - g_cytosol)*(0.0625*A*IP3_cytosol^4/(0.5*IP3_cytosol + k1)^4 + L)

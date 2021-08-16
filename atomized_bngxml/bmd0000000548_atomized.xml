@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000548_atomized">
+    <ListOfParameters>
+      <Parameter id="m" type="Constant" value="25" expr="25.0"/>
+      <Parameter id="gamma" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="nu" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="sigma" type="Constant" value="1" expr="1.0"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="C"/>
+      <MoleculeType id="F"/>
+      <MoleculeType id="P"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="8.1297e+22" name="F()">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="F"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="1.0839600000000003e+22" name="C()">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="C"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="_R1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="F"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="arRateF" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="_R2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="P"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="arRateP" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="_R3" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="C"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="arRateC" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="F" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="F"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="P" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="P"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="C" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="C"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="arRateC">
+        <ListOfReferences>
+          <Reference name="gamma" type="Constant"/>
+          <Reference name="nu" type="Constant"/>
+          <Reference name="C" type="Observable"/>
+          <Reference name="F" type="Observable"/>
+          <Reference name="P" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((-C)*nu)+((F*P)*gamma) </Expression>
+      </Function>
+      <Function id="arRateP">
+        <ListOfReferences>
+          <Reference name="gamma" type="Constant"/>
+          <Reference name="nu" type="Constant"/>
+          <Reference name="sigma" type="Constant"/>
+          <Reference name="C" type="Observable"/>
+          <Reference name="F" type="Observable"/>
+          <Reference name="P" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((C*nu)-((F*P)*gamma))-P)+sigma </Expression>
+      </Function>
+      <Function id="arRateF">
+        <ListOfReferences>
+          <Reference name="gamma" type="Constant"/>
+          <Reference name="m" type="Constant"/>
+          <Reference name="F" type="Observable"/>
+          <Reference name="P" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((-F)*P)*gamma)+(m/(P+1)) </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

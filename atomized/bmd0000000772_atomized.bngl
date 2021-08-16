@@ -1,11 +1,11 @@
 ###
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/31137188']
 #@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/11309314']
-#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000089', 'http://identifiers.org/ncit/C62713']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/ncit/C62713', 'http://identifiers.org/mamo/MAMO_0000089']
 #@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1908010001', 'http://identifiers.org/biomodels.db/BIOMD0000000772']
 #@creatorEmail:'johannes.p.meyer@gmail.com'
 #@creatorName:'Meyer Johannes'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 4 molecules and 7 reactions. The translated model has 3 molecules and 8 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 4 molecules and 7 reactions. The translated model has 3 molecules and 8 rules'
 ###
 begin model
 begin parameters
@@ -22,10 +22,10 @@ end parameters
 begin molecule types
 	#^ bqbiol:isVersionOf cl:CL:0000910
 	z()
-	#^ bqbiol:isVersionOf cl:CL:0000000
-	x(y)
 	#^ bqbiol:isVersionOf bto:BTO:0000152
 	y(x)
+	#^ bqbiol:isVersionOf cl:CL:0000000
+	x(y)
 end molecule types
 begin seed species
 	x(y) 1.2044000000000002e+23 # (200.0 * 0.001)mol/L * 6.022e23/mol *1.0L #x #x
@@ -34,7 +34,7 @@ begin seed species
 end seed species
 begin observables
 	Species x x(y) #x
-	Species I y(x!38).x(y!38) #I
+	Species I y(x!841).x(y!841) #I
 	Species y y(x) #y
 	Species z z() #z
 end observables
@@ -46,8 +46,8 @@ begin functions
 end functions
 begin reaction rules
 	Uninfected_Cells_Proliferation_products_0: 0  -> x(y) fRate0() #Modifiers(x, y)
-	Uninfected_Cells_Infection: x(y) + y(x) -> y(x!38).x(y!38) b
-	Length_of_Eclipse_Phase_reactants_0: 0  -> y(x!38).x(y!38) -1*(fRate2()) #Modifiers(x, y)
+	Uninfected_Cells_Infection: x(y) + y(x) -> y(x!841).x(y!841) b
+	Length_of_Eclipse_Phase_reactants_0: 0  -> y(x!841).x(y!841) -1*(fRate2()) #Modifiers(x, y)
 	Length_of_Eclipse_Phase_products_0: 0  -> y(x) fRate2() #Modifiers(x, y)
 	Cytotoxicity: y(x) -> 0  a
 	Immune_Kill: y(x) -> 0  fRate4() #Modifiers(z)

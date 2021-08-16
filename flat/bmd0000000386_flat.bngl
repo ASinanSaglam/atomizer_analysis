@@ -1,10 +1,10 @@
 ###
-#@BQM_IS:['http://identifiers.org/obo.go/GO:0019253', 'http://identifiers.org/biomodels.db/BIOMD0000000386', 'http://identifiers.org/biomodels.db/MODEL1109270002']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000386', 'http://identifiers.org/obo.go/GO:0019253', 'http://identifiers.org/biomodels.db/MODEL1109270002']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/22001849']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/33090']
 #@creatorEmail:'viji@ebi.ac.uk'
 #@creatorName:'Chelliah Vijayalakshmi'
-#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 6 molecules and 4 reactions. The translated model has 6 molecules and 10 rules'
+#@notes:'This is a plain translation of an SBML model created on 14/08/2021. The original model has 6 molecules and 4 reactions. The translated model has 6 molecules and 10 rules'
 ###
 begin model
 begin parameters
@@ -22,10 +22,10 @@ end parameters
 begin molecule types
 	RuBP()
 	O2()
-	NADPH()
-	NADP()
 	CO2()
+	NADPH()
 	PGA()
+	NADP()
 end molecule types
 begin seed species
 	$RuBP() 1.2044e+21 # (2.0 * 0.001)mol/L * 6.022e23/mol *1.0L #RuBP #RuBP
@@ -44,9 +44,9 @@ begin observables
 	Species NADP NADP() #NADP
 end observables
 begin functions
-	Vj() = J*(CO2/2 - Gamma + sqrt((CO2 + 2*Gamma + (J - 4*Rd)/(4*gm))^2 + (J*(-CO2 + Gamma) + 4*Rd*(CO2 + 2*Gamma))/gm)/2 - (J - 4*Rd)/(8*gm))/(2*CO2 + 4*Gamma + 2*sqrt((CO2 + 2*Gamma + (J - 4*Rd)/(4*gm))^2 + (J*(-CO2 + Gamma) + 4*Rd*(CO2 + 2*Gamma))/gm) - (J - 4*Rd)/(2*gm))
 	Vp() = 3*TPU*(CO2 - (-Rd + 3*TPU)/gm)/(CO2 - Gamma - (-Rd + 3*TPU)/gm)
 	Vc() = Vcmax*(CO2/2 - Kc*(1 + O2/Ko)/2 + sqrt((CO2 + Kc*(1 + O2/Ko) + (-Rd + Vcmax)/gm)^2 + (4*Rd*(CO2 + Kc*(1 + O2/Ko)) + 4*Vcmax*(-CO2 + Gamma))/gm)/2 - (-Rd + Vcmax)/(2*gm))/(CO2/2 + Kc*(1 + O2/Ko)/2 + sqrt((CO2 + Kc*(1 + O2/Ko) + (-Rd + Vcmax)/gm)^2 + (4*Rd*(CO2 + Kc*(1 + O2/Ko)) + 4*Vcmax*(-CO2 + Gamma))/gm)/2 - (-Rd + Vcmax)/(2*gm))
+	Vj() = J*(CO2/2 - Gamma + sqrt((CO2 + 2*Gamma + (J - 4*Rd)/(4*gm))^2 + (J*(-CO2 + Gamma) + 4*Rd*(CO2 + 2*Gamma))/gm)/2 - (J - 4*Rd)/(8*gm))/(2*CO2 + 4*Gamma + 2*sqrt((CO2 + 2*Gamma + (J - 4*Rd)/(4*gm))^2 + (J*(-CO2 + Gamma) + 4*Rd*(CO2 + 2*Gamma))/gm) - (J - 4*Rd)/(2*gm))
 	v_c() = -abs(-Vp - abs(Vc - Vj)/2 + abs(Vc + Vj)/2)/2 + abs(Vp - abs(Vc - Vj)/2 + abs(Vc + Vj)/2)/2
 	phi() = 0.21*Kc*O2*gm/(Ko*(CO2*gm + Rd - v_c))
 	NADP_ar() = -NADPH + Nt

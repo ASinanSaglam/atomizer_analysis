@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000167_flat">
+    <ListOfParameters>
+      <Parameter id="statPhosphatase_nuc" type="Constant" value="3.011e+16" expr="3.011e+16"/>
+      <Parameter id="statPhosphatase" type="Constant" value="3.011e+16" expr="3.011e+16"/>
+      <Parameter id="r1_Kf_PstatDimerisation" type="Constant" value="0.6" expr="0.600000"/>
+      <Parameter id="r1_Kr_PstatDimerisation" type="Constant" value="0.03" expr="0.030000"/>
+      <Parameter id="r2_Kcat_dephos" type="Constant" value="1" expr="1.000000"/>
+      <Parameter id="r2_Km_dephos" type="Constant" value="2" expr="2.000000"/>
+      <Parameter id="r3_Kcat_phos" type="Constant" value="1" expr="1.000000"/>
+      <Parameter id="r3_Km_phos" type="Constant" value="4" expr="4.000000"/>
+      <Parameter id="r4_Kf_PstatDimerisation" type="Constant" value="0.6" expr="0.600000"/>
+      <Parameter id="r4_Kr_PstatDimerisation" type="Constant" value="0.03" expr="0.030000"/>
+      <Parameter id="r5_PstatDimer_impMax" type="Constant" value="0.045" expr="0.045000"/>
+      <Parameter id="r5_Kpsd_imp" type="Constant" value="0.3" expr="0.300000"/>
+      <Parameter id="r6_stat_expMax" type="Constant" value="-0.06" expr="-0.060000"/>
+      <Parameter id="r6_Ks_exp" type="Constant" value="0.6" expr="0.600000"/>
+      <Parameter id="r7_stat_impMax" type="Constant" value="0.003" expr="0.003000"/>
+      <Parameter id="r7_Ks_imp" type="Constant" value="3" expr="3.000000"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="Pstat"/>
+      <MoleculeType id="PstatDimer"/>
+      <MoleculeType id="species_test"/>
+      <MoleculeType id="stat"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+      <compartment id="nuc" spatialDimensions="3" size="1.0"/>
+      <compartment id="sol" spatialDimensions="3" size="14.625"/>
+      <compartment id="nm" spatialDimensions="2" size="1.0"/>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="8.807175e+18" name="@sol::stat()" compartment="sol">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="stat" compartment="sol"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="PstatDimerisation" symmetry_factor="0.5">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR1_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_RP1_M1" name="Pstat" compartment="sol"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR1_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR1_RP2_M1" name="Pstat" compartment="sol"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="PstatDimer" compartment="sol"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r1_Kf_PstatDimerisation"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR1_RP1_M1"/>
+          <MapItem sourceID="RR1_RP2_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+          <Delete id="RR1_RP1" DeleteMolecules="0"/>
+          <Delete id="RR1_RP2" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="_reverse_PstatDimerisation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="PstatDimer" compartment="sol"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="Pstat" compartment="sol"/>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR2_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP2_M1" name="Pstat" compartment="sol"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r1_Kr_PstatDimerisation"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+          <Add id="RR2_PP2_M1"/>
+          <Delete id="RR2_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="statDephosphorylation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="Pstat" compartment="nuc"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="stat" compartment="nuc"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="fRate1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+          <Delete id="RR3_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="statPhosphorylation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="stat" compartment="sol"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="Pstat" compartment="sol"/>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR4_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP2_M1" name="species_test" compartment="sol"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="fRate2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR4_PP1_M1"/>
+          <Add id="RR4_PP2_M1"/>
+          <Delete id="RR4_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="PstatDimerisationNuc" symmetry_factor="0.5">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR5_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP1_M1" name="Pstat" compartment="nuc"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR5_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP2_M1" name="Pstat" compartment="nuc"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="PstatDimer" compartment="nuc"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r4_Kf_PstatDimerisation"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR5_RP1_M1"/>
+          <MapItem sourceID="RR5_RP2_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR5_PP1_M1"/>
+          <Delete id="RR5_RP1" DeleteMolecules="0"/>
+          <Delete id="RR5_RP2" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="_reverse_PstatDimerisationNuc" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR6_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_RP1_M1" name="PstatDimer" compartment="nuc"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="Pstat" compartment="nuc"/>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR6_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP2_M1" name="Pstat" compartment="nuc"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r4_Kr_PstatDimerisation"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR6_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR6_PP1_M1"/>
+          <Add id="RR6_PP2_M1"/>
+          <Delete id="RR6_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="PstatDimer__import" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR7_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_RP1_M1" name="PstatDimer" compartment="sol"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="PstatDimer" compartment="nuc"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Function" name="fRate4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR7_RP1_M1" targetID="RR7_PP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <ChangeCompartment id="RR7_RP1_M1" source="sol" destination="nuc" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="stat_export_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR8_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP1_M1" name="stat" compartment="sol"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Function" name="_rateLaw1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR8_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="stat_export_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR9_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP1_M1" name="stat" compartment="nuc"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Function" name="fRate5" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR9_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="stat_import" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR10_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_RP1_M1" name="stat" compartment="sol"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR10_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_PP1_M1" name="stat" compartment="nuc"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Function" name="fRate6" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR10_RP1_M1" targetID="RR10_PP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <ChangeCompartment id="RR10_RP1_M1" source="sol" destination="nuc" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="stat_sol" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" compartment="sol" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="stat"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="Pstat_sol" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" compartment="sol" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="Pstat"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="PstatDimer_sol" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" compartment="sol" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="PstatDimer"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="PstatDimer_nuc" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" compartment="nuc" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="PstatDimer"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="stat_nuc" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" compartment="nuc" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="stat"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O6" name="Pstat_nuc" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O6_P1" compartment="nuc" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O6_P1_M1" name="Pstat"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O7" name="species_test_sol" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O7_P1" compartment="sol" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O7_P1_M1" name="species_test"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="statKinase_ar">
+        <ListOfReferences>
+        </ListOfReferences>
+        <Expression> if(((time()&gt;500)and(time()&lt;2502.54614894971)),(0.01*sin(((0.001571*time())-0.7855))),0) </Expression>
+      </Function>
+      <Function id="fRate1">
+        <ListOfReferences>
+          <Reference name="statPhosphatase_nuc" type="Constant"/>
+          <Reference name="Pstat_nuc" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (1.0*statPhosphatase_nuc)/(Pstat_nuc+2.0) </Expression>
+      </Function>
+      <Function id="fRate2">
+        <ListOfReferences>
+          <Reference name="statKinase_ar" type="Function"/>
+          <Reference name="stat_nuc" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (1.0*statKinase_ar)/(stat_nuc+4.0) </Expression>
+      </Function>
+      <Function id="fRate4">
+        <ListOfReferences>
+          <Reference name="PstatDimer_nuc" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 0.045/(PstatDimer_nuc+0.3) </Expression>
+      </Function>
+      <Function id="fRate5">
+        <ListOfReferences>
+          <Reference name="stat_nuc" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (-0.06*stat_nuc)/(stat_nuc+0.6) </Expression>
+      </Function>
+      <Function id="fRate6">
+        <ListOfReferences>
+          <Reference name="stat_nuc" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 0.003/(stat_nuc+3.0) </Expression>
+      </Function>
+      <Function id="_rateLaw1">
+        <ListOfReferences>
+          <Reference name="fRate5" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate5() </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000941_flat">
+    <ListOfParameters>
+      <Parameter id="GF" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="Kda" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="Kdb" type="Constant" value="0.005" expr="0.005"/>
+      <Parameter id="Kdd" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="Kde" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="Kgf" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="K1cdc20" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="K2cdc20" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="K1e2f" type="Constant" value="0.01" expr="0.01"/>
+      <Parameter id="K2e2f" type="Constant" value="0.01" expr="0.01"/>
+      <Parameter id="Vda" type="Constant" value="0.245" expr="0.245"/>
+      <Parameter id="Vdb" type="Constant" value="0.28" expr="0.28"/>
+      <Parameter id="Vdd" type="Constant" value="0.245" expr="0.245"/>
+      <Parameter id="Vde" type="Constant" value="0.35" expr="0.35"/>
+      <Parameter id="vsa" type="Constant" value="0.175" expr="0.175"/>
+      <Parameter id="vsb" type="Constant" value="0.21" expr="0.21"/>
+      <Parameter id="vsd" type="Constant" value="0.175" expr="0.175"/>
+      <Parameter id="vse" type="Constant" value="0.21" expr="0.21"/>
+      <Parameter id="V1cdc20" type="Constant" value="0.21" expr="0.21"/>
+      <Parameter id="V2cdc20" type="Constant" value="0.35" expr="0.35"/>
+      <Parameter id="V1e2f" type="Constant" value="0.805" expr="0.805"/>
+      <Parameter id="V2e2f" type="Constant" value="0.7" expr="0.7"/>
+      <Parameter id="E2F_total" type="Constant" value="1.8066e+21" expr="1.8066e+21"/>
+      <Parameter id="Cdc20_total" type="Constant" value="3.011e+21" expr="3.011e+21"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="Cdc20active"/>
+      <MoleculeType id="cyclinACdk2"/>
+      <MoleculeType id="cyclinBCdk1"/>
+      <MoleculeType id="cyclinDCdk4_6"/>
+      <MoleculeType id="cyclinECdk2"/>
+      <MoleculeType id="transcriptionfactorE2Factive"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="4.338851e+20" name="cyclinDCdk4_6()">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="cyclinDCdk4_6"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="1.4967681000000004e+21" name="transcriptionfactorE2Factive()">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="transcriptionfactorE2Factive"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="1.2044e+21" name="cyclinECdk2()">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="cyclinECdk2"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S4"  concentration="1.5657200000000003e+21" name="cyclinACdk2()">
+        <ListOfMolecules>
+          <Molecule id="S4_M1" name="cyclinACdk2"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S5"  concentration="6.022e+20" name="cyclinBCdk1()">
+        <ListOfMolecules>
+          <Molecule id="S5_M1" name="cyclinBCdk1"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S6"  concentration="3.011e+20" name="Cdc20active()">
+        <ListOfMolecules>
+          <Molecule id="S6_M1" name="Cdc20active"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="R1_Synthesis_of_cyclin_D_Cdk4_6" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="cyclinDCdk4_6"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="R2_Degradation_of_cyclin_D_Cdk4_6" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="cyclinDCdk4_6"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="fRate1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR2_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="R3_E2F_activation_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="transcriptionfactorE2Factive"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="fRate2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="R4_E2F_inactivation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="transcriptionfactorE2Factive"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="fRate3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR4_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="R5_Synthesis_of_cyclin_E_Cdk2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="cyclinECdk2"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Function" name="fRate4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR5_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="R6_Degradation_of_cyclin_E_Cdk2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR6_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_RP1_M1" name="cyclinECdk2"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Function" name="fRate5" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR6_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR6_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="R7_Synthesis_of_cyclin_A_Cdk2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="cyclinACdk2"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Function" name="fRate6" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR7_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="R8_Degradation_of_cyclin_A_Cdk2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR8_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_RP1_M1" name="cyclinACdk2"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Function" name="fRate7" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR8_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR8_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="R9_Synthesis_of_cyclin_B_Cdk1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR9_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP1_M1" name="cyclinBCdk1"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Function" name="fRate8" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR9_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="R10_Degradation_of_cyclin_B_Cdk1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR10_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_RP1_M1" name="cyclinBCdk1"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Function" name="fRate9" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR10_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR10_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR11" name="R11_Phosphorylation_and_activation_of_Cdc20" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR11_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_PP1_M1" name="Cdc20active"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR11_RateLaw" type="Function" name="fRate10" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR11_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR12" name="_reverse_R11_Phosphorylation_and_activation_of_Cdc20" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR12_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_RP1_M1" name="Cdc20active"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR12_RateLaw" type="Function" name="fRate10m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR12_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR12_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR13" name="R12_Dephosphorylation_and_inactivation_of_Cdc20" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR13_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_RP1_M1" name="Cdc20active"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR13_RateLaw" type="Function" name="fRate11" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR13_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR13_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="cyclinDCdk4_6" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="cyclinDCdk4_6"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="transcriptionfactorE2Factive" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="transcriptionfactorE2Factive"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="cyclinECdk2" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="cyclinECdk2"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="cyclinACdk2" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="cyclinACdk2"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="cyclinBCdk1" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="cyclinBCdk1"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O6" name="Cdc20active" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O6_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O6_P1_M1" name="Cdc20active"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="GF" type="Constant"/>
+          <Reference name="Kgf" type="Constant"/>
+          <Reference name="vsd" type="Constant"/>
+        </ListOfReferences>
+        <Expression> (GF*vsd)/(GF+Kgf) </Expression>
+      </Function>
+      <Function id="fRate1">
+        <ListOfReferences>
+          <Reference name="Kdd" type="Constant"/>
+          <Reference name="Vdd" type="Constant"/>
+          <Reference name="cyclinDCdk4_6" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Vdd/(Kdd+cyclinDCdk4_6) </Expression>
+      </Function>
+      <Function id="fRate2">
+        <ListOfReferences>
+          <Reference name="E2F_total" type="Constant"/>
+          <Reference name="K1e2f" type="Constant"/>
+          <Reference name="V1e2f" type="Constant"/>
+          <Reference name="cyclinDCdk4_6" type="Observable"/>
+          <Reference name="cyclinECdk2" type="Observable"/>
+          <Reference name="transcriptionfactorE2Factive" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((V1e2f*(E2F_total-transcriptionfactorE2Factive))*(cyclinDCdk4_6+cyclinECdk2))/((E2F_total+K1e2f)-transcriptionfactorE2Factive) </Expression>
+      </Function>
+      <Function id="fRate3">
+        <ListOfReferences>
+          <Reference name="K2e2f" type="Constant"/>
+          <Reference name="V2e2f" type="Constant"/>
+          <Reference name="cyclinACdk2" type="Observable"/>
+          <Reference name="transcriptionfactorE2Factive" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (V2e2f*cyclinACdk2)/(K2e2f+transcriptionfactorE2Factive) </Expression>
+      </Function>
+      <Function id="fRate4">
+        <ListOfReferences>
+          <Reference name="vse" type="Constant"/>
+          <Reference name="transcriptionfactorE2Factive" type="Observable"/>
+        </ListOfReferences>
+        <Expression> transcriptionfactorE2Factive*vse </Expression>
+      </Function>
+      <Function id="fRate5">
+        <ListOfReferences>
+          <Reference name="Kde" type="Constant"/>
+          <Reference name="Vde" type="Constant"/>
+          <Reference name="cyclinACdk2" type="Observable"/>
+          <Reference name="cyclinECdk2" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (Vde*cyclinACdk2)/(Kde+cyclinECdk2) </Expression>
+      </Function>
+      <Function id="fRate6">
+        <ListOfReferences>
+          <Reference name="vsa" type="Constant"/>
+          <Reference name="transcriptionfactorE2Factive" type="Observable"/>
+        </ListOfReferences>
+        <Expression> transcriptionfactorE2Factive*vsa </Expression>
+      </Function>
+      <Function id="fRate7">
+        <ListOfReferences>
+          <Reference name="Kda" type="Constant"/>
+          <Reference name="Vda" type="Constant"/>
+          <Reference name="Cdc20active" type="Observable"/>
+          <Reference name="cyclinACdk2" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (Cdc20active*Vda)/(Kda+cyclinACdk2) </Expression>
+      </Function>
+      <Function id="fRate8">
+        <ListOfReferences>
+          <Reference name="vsb" type="Constant"/>
+          <Reference name="cyclinACdk2" type="Observable"/>
+        </ListOfReferences>
+        <Expression> cyclinACdk2*vsb </Expression>
+      </Function>
+      <Function id="fRate9">
+        <ListOfReferences>
+          <Reference name="Kdb" type="Constant"/>
+          <Reference name="Vdb" type="Constant"/>
+          <Reference name="Cdc20active" type="Observable"/>
+          <Reference name="cyclinBCdk1" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (Cdc20active*Vdb)/(Kdb+cyclinBCdk1) </Expression>
+      </Function>
+      <Function id="fRate10">
+        <ListOfReferences>
+          <Reference name="Cdc20_total" type="Constant"/>
+          <Reference name="K1cdc20" type="Constant"/>
+          <Reference name="V1cdc20" type="Constant"/>
+          <Reference name="Cdc20active" type="Observable"/>
+          <Reference name="cyclinBCdk1" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((Cdc20_total*V1cdc20)*cyclinBCdk1)/((Cdc20_total-Cdc20active)+K1cdc20) </Expression>
+      </Function>
+      <Function id="fRate10m">
+        <ListOfReferences>
+          <Reference name="Cdc20_total" type="Constant"/>
+          <Reference name="K1cdc20" type="Constant"/>
+          <Reference name="V1cdc20" type="Constant"/>
+          <Reference name="Cdc20active" type="Observable"/>
+          <Reference name="cyclinBCdk1" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (V1cdc20*cyclinBCdk1)/((Cdc20_total-Cdc20active)+K1cdc20) </Expression>
+      </Function>
+      <Function id="fRate11">
+        <ListOfReferences>
+          <Reference name="K2cdc20" type="Constant"/>
+          <Reference name="V2cdc20" type="Constant"/>
+          <Reference name="Cdc20active" type="Observable"/>
+        </ListOfReferences>
+        <Expression> V2cdc20/(Cdc20active+K2cdc20) </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

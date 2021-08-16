@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000812_atomized">
+    <ListOfParameters>
+      <Parameter id="k" type="Constant" value="0.035" expr="0.035"/>
+      <Parameter id="k_1" type="Constant" value="0.0001" expr="0.0001"/>
+      <Parameter id="k_2" type="Constant" value="0.0001" expr="0.0001"/>
+      <Parameter id="k_3" type="Constant" value="0.0001" expr="0.0001"/>
+      <Parameter id="k_4" type="Constant" value="3" expr="3.0"/>
+      <Parameter id="k_5" type="Constant" value="0.003" expr="0.003"/>
+      <Parameter id="k_6" type="Constant" value="0.63" expr="0.63"/>
+      <Parameter id="k_p" type="Constant" value="0.097" expr="0.097"/>
+      <Parameter id="k_m" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="k_m_1" type="Constant" value="2.2" expr="2.2"/>
+      <Parameter id="k_m_2" type="Constant" value="80" expr="80.0"/>
+      <Parameter id="E_init" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="ModelValue_11" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="E_CTL" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="T_Cancer_Cell_Total" type="Constant" value="6.022e+23" expr="6.022e+23"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="P_Perforin"/>
+      <MoleculeType id="T_ast"/>
+      <MoleculeType id="X_Complex">
+        <ListOfComponentTypes>
+          <ComponentType id="C_Cancer_Uncomplexed">
+            <ListOfAllowedStates>
+              <AllowedState id="C_Cancer_Uncomplexed"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="1.89693e+23" name="P_Perforin()">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="P_Perforin"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="6.022e+23" name="X_Complex(C_Cancer_Uncomplexed~C_Cancer_Uncomplexed)">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="X_Complex">
+            <ListOfComponents>
+              <Component id="S2_M1_C1" name="C_Cancer_Uncomplexed" state="C_Cancer_Uncomplexed" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="6.022e+23" name="T_ast()">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="T_ast"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="X_Complex_Formation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR1_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_RP1_M1" name="X_Complex">
+                <ListOfComponents>
+                  <Component id="RR1_RP1_M1_C1" name="C_Cancer_Uncomplexed" state="C_Cancer_Uncomplexed" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="X_Complex">
+                <ListOfComponents>
+                  <Component id="RR1_PP1_M1_C1" name="C_Cancer_Uncomplexed" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR1_RP1_M1" targetID="RR1_PP1_M1"/>
+          <MapItem sourceID="RR1_RP1_M1_C1" targetID="RR1_PP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR1_RP1_M1_C1" finalState="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="X_Complex_Dissociation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="X_Complex">
+                <ListOfComponents>
+                  <Component id="RR2_RP1_M1_C1" name="C_Cancer_Uncomplexed" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="X_Complex">
+                <ListOfComponents>
+                  <Component id="RR2_PP1_M1_C1" name="C_Cancer_Uncomplexed" state="C_Cancer_Uncomplexed" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k_2"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1" targetID="RR2_PP1_M1"/>
+          <MapItem sourceID="RR2_RP1_M1_C1" targetID="RR2_PP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR2_RP1_M1_C1" finalState="C_Cancer_Uncomplexed"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="X_Complex_Apoptosis" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="X_Complex">
+                <ListOfComponents>
+                  <Component id="RR3_RP1_M1_C1" name="C_Cancer_Uncomplexed" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k_3"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1"/>
+          <MapItem sourceID="RR3_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR3_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="P_Production" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="P_Perforin"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="fRate3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR4_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="P_Apoptosis_Perforin" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR5_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP1_M1" name="P_Perforin"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR5_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP2_M1" name="X_Complex">
+                <ListOfComponents>
+                  <Component id="RR5_RP2_M1_C1" name="C_Cancer_Uncomplexed" state="C_Cancer_Uncomplexed" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k_4"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR5_RP1_M1"/>
+          <MapItem sourceID="RR5_RP2_M1"/>
+          <MapItem sourceID="RR5_RP2_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR5_RP1" DeleteMolecules="0"/>
+          <Delete id="RR5_RP2" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="C_Growth" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="X_Complex">
+                <ListOfComponents>
+                  <Component id="RR6_PP1_M1_C1" name="C_Cancer_Uncomplexed" state="C_Cancer_Uncomplexed" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Function" name="fRate5" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR6_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="C_Carrying_Capacity_Limit" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR7_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_RP1_M1" name="X_Complex">
+                <ListOfComponents>
+                  <Component id="RR7_RP1_M1_C1" name="C_Cancer_Uncomplexed" state="C_Cancer_Uncomplexed" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Function" name="fRate6" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR7_RP1_M1"/>
+          <MapItem sourceID="RR7_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR7_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="T_Growth" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR8_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP1_M1" name="T_ast"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Function" name="fRate7" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR8_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="T_Carrying_Capacity_Limit" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR9_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_RP1_M1" name="T_ast"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Function" name="fRate8" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR9_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR9_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="X_Complex" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="X_Complex">
+                <ListOfComponents>
+                  <Component id="O1_P1_M1_C1" name="C_Cancer_Uncomplexed" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="P_Perforin" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="P_Perforin"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="C_Cancer_Uncomplexed" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="X_Complex">
+                <ListOfComponents>
+                  <Component id="O3_P1_M1_C1" name="C_Cancer_Uncomplexed" state="C_Cancer_Uncomplexed" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="T_ast" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="T_ast"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="T_Cancer_Cell_Total_ar">
+        <ListOfReferences>
+          <Reference name="C_Cancer_Uncomplexed" type="Observable"/>
+          <Reference name="X_Complex" type="Observable"/>
+        </ListOfReferences>
+        <Expression> C_Cancer_Uncomplexed+X_Complex </Expression>
+      </Function>
+      <Function id="Perc_Lysis">
+        <ListOfReferences>
+          <Reference name="T_Cancer_Cell_Total_ar" type="Function"/>
+          <Reference name="T_ast" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((-100*T_Cancer_Cell_Total_ar)+(100*T_ast))/T_ast </Expression>
+      </Function>
+      <Function id="X_1000">
+        <ListOfReferences>
+          <Reference name="X_Complex" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 1000*X_Complex </Expression>
+      </Function>
+      <Function id="P_10">
+        <ListOfReferences>
+          <Reference name="P_Perforin" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 10*P_Perforin </Expression>
+      </Function>
+      <Function id="E_CTL_ar">
+        <ListOfReferences>
+          <Reference name="ModelValue_11" type="Constant"/>
+          <Reference name="X_Complex" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ModelValue_11-X_Complex </Expression>
+      </Function>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="k_1" type="Constant"/>
+          <Reference name="E_CTL_ar" type="Function"/>
+        </ListOfReferences>
+        <Expression> E_CTL_ar*k_1 </Expression>
+      </Function>
+      <Function id="fRate3">
+        <ListOfReferences>
+          <Reference name="k_m_1" type="Constant"/>
+          <Reference name="k_m_2" type="Constant"/>
+          <Reference name="k_p" type="Constant"/>
+          <Reference name="E_CTL_ar" type="Function"/>
+          <Reference name="C_Cancer_Uncomplexed" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (E_CTL_ar*k_p)/((C_Cancer_Uncomplexed*k_m_2)*(E_CTL_ar+k_m_1)) </Expression>
+      </Function>
+      <Function id="fRate5">
+        <ListOfReferences>
+          <Reference name="k" type="Constant"/>
+          <Reference name="C_Cancer_Uncomplexed" type="Observable"/>
+        </ListOfReferences>
+        <Expression> C_Cancer_Uncomplexed*k </Expression>
+      </Function>
+      <Function id="fRate6">
+        <ListOfReferences>
+          <Reference name="k_5" type="Constant"/>
+          <Reference name="C_Cancer_Uncomplexed" type="Observable"/>
+        </ListOfReferences>
+        <Expression> C_Cancer_Uncomplexed*k_5 </Expression>
+      </Function>
+      <Function id="fRate7">
+        <ListOfReferences>
+          <Reference name="k" type="Constant"/>
+          <Reference name="T_ast" type="Observable"/>
+        </ListOfReferences>
+        <Expression> T_ast*k </Expression>
+      </Function>
+      <Function id="fRate8">
+        <ListOfReferences>
+          <Reference name="k_5" type="Constant"/>
+          <Reference name="T_ast" type="Observable"/>
+        </ListOfReferences>
+        <Expression> T_ast*k_5 </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

@@ -2,11 +2,11 @@
 #@BQB_IS:['http://identifiers.org/biomodels.db/MODEL1006230004']
 #@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0000075']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/4932']
-#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/10637314', 'http://identifiers.org/pubmed/9552349', 'http://identifiers.org/pubmed/10098216']
+#@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/10098216', 'http://identifiers.org/pubmed/9552349', 'http://identifiers.org/pubmed/10637314']
 #@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1006230004', 'http://identifiers.org/biomodels.db/BIOMD0000000675']
 #@creatorEmail:'mroberts@ebi.ac.uk'
 #@creatorName:'Roberts Matthew Grant'
-#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 21 molecules and 0 reactions. The translated model has 13 molecules and 13 rules'
+#@notes:'This is a plain translation of an SBML model created on 14/08/2021. The original model has 21 molecules and 0 reactions. The translated model has 13 molecules and 13 rules'
 ###
 begin model
 begin parameters
@@ -94,15 +94,15 @@ begin parameters
 	Cln3_max 1.2044e+22 #original 0.02mol/L
 end parameters
 begin molecule types
-	Sic1_T()
-	Cdc20_T()
-	Clb2_Sic1()
-	Clb5_Sic1()
-	Clb2_T()
-	Hct1()
 	Cdc20()
-	Clb5_T()
+	Hct1()
+	Cdc20_T()
+	Clb5_Sic1()
 	Cln2()
+	Clb2_Sic1()
+	Clb2_T()
+	Clb5_T()
+	Sic1_T()
 	mass
 	ORI
 	BUD
@@ -139,13 +139,13 @@ begin observables
 	Species SPN SPN
 end observables
 begin functions
-	Clb5_ar() = -Clb5_Sic1 + Clb5_T
 	Vd_b5() = Cdc20*kd_b5_ + kd_b5
-	Sic1_ar() = -Clb2_Sic1 - Clb5_Sic1 + Sic1_T
+	Cln3_ar() = Cln3_max*Dn3*mass/(Dn3*mass + Jn3)
+	Clb5_ar() = -Clb5_Sic1 + Clb5_T
 	Bck2_ar() = Bck2_0*mass
 	Clb2_ar() = -Clb2_Sic1 + Clb2_T
-	Cln3_ar() = Cln3_max*Dn3*mass/(Dn3*mass + Jn3)
 	Vd2_c1() = kd2_c1*(Bck2_ar*epsilonc1_k2 + Clb2_ar*epsilonc1_b2 + Clb5_ar*epsilonc1_b5 + Cln2 + Cln3_ar*epsilonc1_n3)
+	Sic1_ar() = -Clb2_Sic1 - Clb5_Sic1 + Sic1_T
 	arRateClb5_Sic1() = -Clb5_Sic1*(Vd2_c1/(Jd2_c1 + Sic1_T) + Vd_b5 + kd1_c1 + kdi_b5) + Clb5_ar*Sic1_ar*kas_b5
 	Vd_b2() = Cdc20*kd_b2__ + Hct1*kd_b2_ + kd_b2*(-Hct1 + Hct1_T)
 	arRateClb2_Sic1() = -Clb2_Sic1*(Vd2_c1/(Jd2_c1 + Sic1_T) + Vd_b2 + kd1_c1 + kdi_b2) + Clb2_ar*Sic1_ar*kas_b2

@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000100_flat">
+    <ListOfParameters>
+      <Parameter id="v0" type="Constant" value="2" expr="2.0"/>
+      <Parameter id="v1" type="Constant" value="2" expr="2.0"/>
+      <Parameter id="beta" type="Constant" value="0.5" expr="0.5"/>
+      <Parameter id="Vm2" type="Constant" value="6" expr="6.0"/>
+      <Parameter id="K2" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="Vm3" type="Constant" value="20" expr="20.0"/>
+      <Parameter id="m" type="Constant" value="2" expr="2.0"/>
+      <Parameter id="Ka" type="Constant" value="0.2" expr="0.2"/>
+      <Parameter id="Ky" type="Constant" value="0.2" expr="0.2"/>
+      <Parameter id="Kz" type="Constant" value="0.5" expr="0.5"/>
+      <Parameter id="Kf" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="K" type="Constant" value="10" expr="10.0"/>
+      <Parameter id="V4" type="Constant" value="2" expr="2.0"/>
+      <Parameter id="Vm5" type="Constant" value="30" expr="30.0"/>
+      <Parameter id="n" type="Constant" value="4" expr="4.0"/>
+      <Parameter id="K5" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="Kd" type="Constant" value="0.4" expr="0.4"/>
+      <Parameter id="epsilon" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="Vpm1" type="Constant" value="1.5" expr="1.5"/>
+      <Parameter id="gamma" type="Constant" value="9" expr="9.0"/>
+      <Parameter id="Ka5" type="Constant" value="0.5" expr="0.5"/>
+      <Parameter id="K1" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="Ka6" type="Constant" value="0.5" expr="0.5"/>
+      <Parameter id="Vpm2" type="Constant" value="0.6" expr="0.6"/>
+      <Parameter id="alpha" type="Constant" value="9" expr="9.0"/>
+      <Parameter id="G" type="Constant" value="10000" expr="10000.0"/>
+      <Parameter id="Ka1" type="Constant" value="10000" expr="10000.0"/>
+      <Parameter id="Kp2" type="Constant" value="0.2" expr="0.2"/>
+      <Parameter id="Ka2" type="Constant" value="10000" expr="10000.0"/>
+      <Parameter id="p" type="Constant" value="2" expr="2.0"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="CytosolicCalcium"/>
+      <MoleculeType id="ExtracellularCalcium"/>
+      <MoleculeType id="GlycogenPhosphorylase"/>
+      <MoleculeType id="IP3"/>
+      <MoleculeType id="IntravesicularCalcium"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+      <compartment id="extracellular" spatialDimensions="3" size="1.0"/>
+      <compartment id="cytosol" spatialDimensions="3" size="1.0"/>
+      <compartment id="intravesicular" spatialDimensions="3" size="1.0"/>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="6.022e+20" name="@extracellular::ExtracellularCalcium()" compartment="extracellular">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="ExtracellularCalcium" compartment="extracellular"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="2.7099e+17" name="@cytosol::IP3()" compartment="cytosol">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="IP3" compartment="cytosol"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="2.16792e+17" name="@intravesicular::IntravesicularCalcium()" compartment="intravesicular">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="IntravesicularCalcium" compartment="intravesicular"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S4"  concentration="6.022e+17" name="@cytosol::GlycogenPhosphorylase()" compartment="cytosol">
+        <ListOfMolecules>
+          <Molecule id="S4_M1" name="GlycogenPhosphorylase" compartment="cytosol"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="vin_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="ExtracellularCalcium" compartment="extracellular"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="_rateLaw1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="vin_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="CytosolicCalcium" compartment="cytosol"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="R2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="CytosolicCalcium" compartment="cytosol"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="IntravesicularCalcium" compartment="intravesicular"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="fRate1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+          <Delete id="RR3_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="R3" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="IntravesicularCalcium" compartment="intravesicular"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="CytosolicCalcium" compartment="cytosol"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="fRate2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR4_PP1_M1"/>
+          <Delete id="RR4_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="Rkf" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR5_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP1_M1" name="IntravesicularCalcium" compartment="intravesicular"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="CytosolicCalcium" compartment="cytosol"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="Kf"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR5_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR5_PP1_M1"/>
+          <Delete id="RR5_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="Rkz" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR6_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_RP1_M1" name="CytosolicCalcium" compartment="cytosol"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="ExtracellularCalcium" compartment="extracellular"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="K"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR6_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR6_PP1_M1"/>
+          <Delete id="RR6_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="R4" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="IP3" compartment="cytosol"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Function" name="fRate5" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR7_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="R5_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR8_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP1_M1" name="IP3" compartment="cytosol"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Function" name="_rateLaw2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR8_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="R6" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR9_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_RP1_M1" name="IP3" compartment="cytosol"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="epsilon"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR9_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR9_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="R7_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR10_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_PP1_M1" name="GlycogenPhosphorylase" compartment="cytosol"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Function" name="fRate8" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR10_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR11" name="R8_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR11_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_PP1_M1" name="GlycogenPhosphorylase" compartment="cytosol"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR11_RateLaw" type="Function" name="_rateLaw3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR11_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="ExtracellularCalcium_extracellular" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" compartment="extracellular" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="ExtracellularCalcium"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="CytosolicCalcium_cytosol" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" compartment="cytosol" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="CytosolicCalcium"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="IP3_cytosol" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" compartment="cytosol" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="IP3"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="IntravesicularCalcium_intravesicular" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" compartment="intravesicular" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="IntravesicularCalcium"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="GlycogenPhosphorylase_cytosol" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" compartment="cytosol" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="GlycogenPhosphorylase"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="beta" type="Constant"/>
+          <Reference name="v0" type="Constant"/>
+          <Reference name="v1" type="Constant"/>
+        </ListOfReferences>
+        <Expression> (beta*v1)+v0 </Expression>
+      </Function>
+      <Function id="fRate1">
+        <ListOfReferences>
+          <Reference name="K2" type="Constant"/>
+          <Reference name="Vm2" type="Constant"/>
+          <Reference name="CytosolicCalcium_cytosol" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (CytosolicCalcium_cytosol*Vm2)/((CytosolicCalcium_cytosol^2)+(K2^2)) </Expression>
+      </Function>
+      <Function id="fRate2">
+        <ListOfReferences>
+          <Reference name="Ka" type="Constant"/>
+          <Reference name="Ky" type="Constant"/>
+          <Reference name="Kz" type="Constant"/>
+          <Reference name="Vm3" type="Constant"/>
+          <Reference name="m" type="Constant"/>
+          <Reference name="CytosolicCalcium_cytosol" type="Observable"/>
+          <Reference name="IP3_cytosol" type="Observable"/>
+          <Reference name="IntravesicularCalcium_intravesicular" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((((CytosolicCalcium_cytosol^m)*(IP3_cytosol^4))*IntravesicularCalcium_intravesicular)*Vm3)/((((((((((CytosolicCalcium_cytosol^m)*(IP3_cytosol^4))*(IntravesicularCalcium_intravesicular^2))+(((CytosolicCalcium_cytosol^m)*(IP3_cytosol^4))*(Ky^2)))+(((CytosolicCalcium_cytosol^m)*(IntravesicularCalcium_intravesicular^2))*(Ka^4)))+(((CytosolicCalcium_cytosol^m)*(Ka^4))*(Ky^2)))+(((IP3_cytosol^4)*(IntravesicularCalcium_intravesicular^2))*(Kz^m)))+(((IP3_cytosol^4)*(Ky^2))*(Kz^m)))+(((IntravesicularCalcium_intravesicular^2)*(Ka^4))*(Kz^m)))+(((Ka^4)*(Ky^2))*(Kz^m))) </Expression>
+      </Function>
+      <Function id="fRate5">
+        <ListOfReferences>
+          <Reference name="V4" type="Constant"/>
+          <Reference name="beta" type="Constant"/>
+        </ListOfReferences>
+        <Expression> V4*beta </Expression>
+      </Function>
+      <Function id="fRate6">
+        <ListOfReferences>
+          <Reference name="K5" type="Constant"/>
+          <Reference name="Kd" type="Constant"/>
+          <Reference name="Vm5" type="Constant"/>
+          <Reference name="n" type="Constant"/>
+          <Reference name="p" type="Constant"/>
+          <Reference name="CytosolicCalcium_cytosol" type="Observable"/>
+          <Reference name="IP3_cytosol" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((CytosolicCalcium_cytosol^n)*(IP3_cytosol^p))*Vm5)/(((CytosolicCalcium_cytosol^n)+(Kd^n))*((IP3_cytosol^p)+(K5^p))) </Expression>
+      </Function>
+      <Function id="fRate8">
+        <ListOfReferences>
+          <Reference name="K1" type="Constant"/>
+          <Reference name="Ka5" type="Constant"/>
+          <Reference name="Ka6" type="Constant"/>
+          <Reference name="Vpm1" type="Constant"/>
+          <Reference name="gamma" type="Constant"/>
+          <Reference name="CytosolicCalcium_cytosol" type="Observable"/>
+          <Reference name="GlycogenPhosphorylase_cytosol" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((Vpm1*(1-GlycogenPhosphorylase_cytosol))*((((CytosolicCalcium_cytosol^4)*gamma)/((CytosolicCalcium_cytosol^4)+(Ka5^4)))+1))/(((-GlycogenPhosphorylase_cytosol)+(K1/(((CytosolicCalcium_cytosol^4)/(Ka6^4))+1)))+1) </Expression>
+      </Function>
+      <Function id="fRate9">
+        <ListOfReferences>
+          <Reference name="G" type="Constant"/>
+          <Reference name="Ka1" type="Constant"/>
+          <Reference name="Ka2" type="Constant"/>
+          <Reference name="Kp2" type="Constant"/>
+          <Reference name="Vpm2" type="Constant"/>
+          <Reference name="alpha" type="Constant"/>
+          <Reference name="GlycogenPhosphorylase_cytosol" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((GlycogenPhosphorylase_cytosol*Vpm2)*(((G*alpha)/(G+Ka1))+1))/(GlycogenPhosphorylase_cytosol+(Kp2/((G/Ka2)+1))) </Expression>
+      </Function>
+      <Function id="_rateLaw1">
+        <ListOfReferences>
+          <Reference name="fRate0" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate0() </Expression>
+      </Function>
+      <Function id="_rateLaw2">
+        <ListOfReferences>
+          <Reference name="fRate6" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate6() </Expression>
+      </Function>
+      <Function id="_rateLaw3">
+        <ListOfReferences>
+          <Reference name="fRate9" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate9() </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

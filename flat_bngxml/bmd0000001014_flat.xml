@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000001014_flat">
+    <ListOfParameters>
+      <Parameter id="rho_C" type="Constant" value="0.9" expr="0.9"/>
+      <Parameter id="g_T" type="Constant" value="1e+10" expr="10000000000.0"/>
+      <Parameter id="alpha_1" type="Constant" value="0.02" expr="0.02"/>
+      <Parameter id="g_C" type="Constant" value="2e+9" expr="2000000000.0"/>
+      <Parameter id="tao_C" type="Constant" value="7" expr="7.0"/>
+      <Parameter id="rho_T" type="Constant" value="0.02" expr="0.02"/>
+      <Parameter id="alpha_2" type="Constant" value="2.5e-10" expr="2.5e-10"/>
+      <Parameter id="rho_C_bar" type="Constant" value="0.9" expr="0.9"/>
+      <Parameter id="g_B" type="Constant" value="1e+10" expr="10000000000.0"/>
+      <Parameter id="k" type="Constant" value="0.2" expr="0.2"/>
+      <Parameter id="alpha_B" type="Constant" value="4.5e-11" expr="4.5e-11"/>
+      <Parameter id="tao_B" type="Constant" value="60" expr="60.0"/>
+      <Parameter id="CAR_T_cells_total_On_tumour" type="Constant" value="1.2044e+32" expr="1.2044e+32"/>
+      <Parameter id="CAR_T_cells_total" type="Constant" value="1.2044e+32" expr="1.2044e+32"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="B_cells"/>
+      <MoleculeType id="CAR_T_cells_off_tumour"/>
+      <MoleculeType id="CAR_T_cells_on_tumour"/>
+      <MoleculeType id="Tumour_cells"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+      <compartment id="On_tumour" spatialDimensions="3" size="1.0"/>
+      <compartment id="Off_tumour" spatialDimensions="3" size="1.0"/>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="2.0173700000000002e+34" name="@On_tumour::Tumour_cells()" compartment="On_tumour">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="Tumour_cells" compartment="On_tumour"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="1.2044e+32" name="@Off_tumour::CAR_T_cells_off_tumour()" compartment="Off_tumour">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="CAR_T_cells_off_tumour" compartment="Off_tumour"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="1.5055e+34" name="@Off_tumour::B_cells()" compartment="Off_tumour">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="B_cells" compartment="Off_tumour"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="CAR_T_cell_proliferation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="CAR_T_cells_on_tumour" compartment="On_tumour"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="CAR_T_cell_depletion_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="CAR_T_cells_on_tumour" compartment="On_tumour"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="_rateLaw1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="tumour_growth" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="Tumour_cells" compartment="On_tumour"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="fRate2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="tumour_death" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="Tumour_cells" compartment="On_tumour"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="fRate3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR4_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="B_cell_induced_CAR_T_cell_proliferation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="CAR_T_cells_off_tumour" compartment="Off_tumour"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Function" name="fRate4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR5_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="CAR_T_cell_off_tumour_depletion_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="CAR_T_cells_off_tumour" compartment="Off_tumour"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Function" name="_rateLaw2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR6_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="CAR_T_cell_induced_B_cell_death_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="B_cells" compartment="Off_tumour"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Function" name="_rateLaw3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR7_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="CAR_T_cells_on_tumour_On_tumour" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" compartment="On_tumour" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="CAR_T_cells_on_tumour"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="Tumour_cells_On_tumour" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" compartment="On_tumour" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="Tumour_cells"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="CAR_T_cells_off_tumour_Off_tumour" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" compartment="Off_tumour" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="CAR_T_cells_off_tumour"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="B_cells_Off_tumour" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" compartment="Off_tumour" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="B_cells"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="CAR_T_cells_total_ar">
+        <ListOfReferences>
+          <Reference name="CAR_T_cells_off_tumour_Off_tumour" type="Observable"/>
+          <Reference name="CAR_T_cells_on_tumour_On_tumour" type="Observable"/>
+        </ListOfReferences>
+        <Expression> CAR_T_cells_off_tumour_Off_tumour+CAR_T_cells_on_tumour_On_tumour </Expression>
+      </Function>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="g_T" type="Constant"/>
+          <Reference name="k" type="Constant"/>
+          <Reference name="rho_C" type="Constant"/>
+          <Reference name="CAR_T_cells_off_tumour_Off_tumour" type="Observable"/>
+          <Reference name="CAR_T_cells_on_tumour_On_tumour" type="Observable"/>
+          <Reference name="Tumour_cells_On_tumour" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((CAR_T_cells_off_tumour_Off_tumour*k)*(Tumour_cells_On_tumour+g_T))+((CAR_T_cells_on_tumour_On_tumour*Tumour_cells_On_tumour)*rho_C))/(Tumour_cells_On_tumour+g_T) </Expression>
+      </Function>
+      <Function id="fRate1">
+        <ListOfReferences>
+          <Reference name="alpha_1" type="Constant"/>
+          <Reference name="g_C" type="Constant"/>
+          <Reference name="tao_C" type="Constant"/>
+          <Reference name="CAR_T_cells_on_tumour_On_tumour" type="Observable"/>
+          <Reference name="Tumour_cells_On_tumour" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((((1.0*CAR_T_cells_on_tumour_On_tumour)*Tumour_cells_On_tumour)*alpha_1)/(CAR_T_cells_on_tumour_On_tumour+g_C))+((1.0*CAR_T_cells_on_tumour_On_tumour)/tao_C) </Expression>
+      </Function>
+      <Function id="fRate2">
+        <ListOfReferences>
+          <Reference name="rho_T" type="Constant"/>
+          <Reference name="Tumour_cells_On_tumour" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Tumour_cells_On_tumour*rho_T </Expression>
+      </Function>
+      <Function id="fRate3">
+        <ListOfReferences>
+          <Reference name="alpha_2" type="Constant"/>
+          <Reference name="CAR_T_cells_on_tumour_On_tumour" type="Observable"/>
+        </ListOfReferences>
+        <Expression> CAR_T_cells_on_tumour_On_tumour*alpha_2 </Expression>
+      </Function>
+      <Function id="fRate4">
+        <ListOfReferences>
+          <Reference name="g_B" type="Constant"/>
+          <Reference name="rho_C_bar" type="Constant"/>
+          <Reference name="B_cells_Off_tumour" type="Observable"/>
+          <Reference name="CAR_T_cells_off_tumour_Off_tumour" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((B_cells_Off_tumour*CAR_T_cells_off_tumour_Off_tumour)*rho_C_bar)/(B_cells_Off_tumour+g_B) </Expression>
+      </Function>
+      <Function id="fRate5">
+        <ListOfReferences>
+          <Reference name="k" type="Constant"/>
+          <Reference name="tao_C" type="Constant"/>
+          <Reference name="CAR_T_cells_off_tumour_Off_tumour" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((1.0*CAR_T_cells_off_tumour_Off_tumour)*k)+((1.0*CAR_T_cells_off_tumour_Off_tumour)/tao_C) </Expression>
+      </Function>
+      <Function id="fRate6">
+        <ListOfReferences>
+          <Reference name="alpha_B" type="Constant"/>
+          <Reference name="tao_B" type="Constant"/>
+          <Reference name="B_cells_Off_tumour" type="Observable"/>
+          <Reference name="CAR_T_cells_off_tumour_Off_tumour" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((1.0*B_cells_Off_tumour)*CAR_T_cells_off_tumour_Off_tumour)*alpha_B)+((1.0*B_cells_Off_tumour)/tao_B) </Expression>
+      </Function>
+      <Function id="_rateLaw1">
+        <ListOfReferences>
+          <Reference name="fRate1" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate1() </Expression>
+      </Function>
+      <Function id="_rateLaw2">
+        <ListOfReferences>
+          <Reference name="fRate5" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate5() </Expression>
+      </Function>
+      <Function id="_rateLaw3">
+        <ListOfReferences>
+          <Reference name="fRate6" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate6() </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

@@ -1,12 +1,12 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1410300001', 'http://identifiers.org/biomodels.db/BIOMD0000000557']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000557', 'http://identifiers.org/biomodels.db/MODEL1410300001']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/23847209']
 #@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0070372']
 #@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000567']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
 #@creatorEmail:'viji@ebi.ac.uk'
 #@creatorName:'Chelliah Vijayalakshmi'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 25 molecules and 22 reactions. The translated model has 4 molecules and 24 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 25 molecules and 22 reactions. The translated model has 4 molecules and 24 rules'
 ###
 begin model
 begin parameters
@@ -67,12 +67,12 @@ begin compartments
 	nucleus 3 0.22
 end compartments
 begin molecule types
+	DUSP(c~C~0,erk,n~N~0)
 	#^ bqbiol:isVersionOf uniprot:Q13115
 	duspn()
+	ERK(ERK_ppMEKc~ERK_ppMEKc~0,c~C~0,dusp,n~N~0,p~P~0,p2~P~0,styxn)
 	#^ bqbiol:isVersionOf uniprot:Q8WUJ0
 	STYXn(erk)
-	ERK(ERK_ppMEKc~ERK_ppMEKc~0,c~C~0,dusp,n~N~0,p~P~0,p2~P~0,styxn)
-	DUSP(c~C~0,erk,n~N~0)
 end molecule types
 begin seed species
 	@cytosol:ERK(ERK_ppMEKc~0,c~C,dusp,n~0,p~0,p2~0,styxn) 3.2407393e+26 # 572.5mol/L * 6.022e23/mol *0.94L #ERKc #ERKc
@@ -89,17 +89,17 @@ begin observables
 	Species ERK_ppMEKc_cytosol @cytosol:ERK(ERK_ppMEKc~ERK_ppMEKc,c~C,dusp,n~0,p~P,p2~0,styxn) #ERK_ppMEKc
 	Species pERK_ppMEKc_cytosol @cytosol:ERK(ERK_ppMEKc~ERK_ppMEKc,c~C,dusp,n~0,p~P,p2~P,styxn) #pERK_ppMEKc
 	Species DUSPc_cytosol @cytosol:DUSP(c~C,erk,n~0) #DUSPc
-	Species pERK_DUSPc_cytosol @cytosol:ERK(ERK_ppMEKc~0,c~0,dusp!1,n~0,p~P,p2~0,styxn).DUSP(c~C,erk!1,n~0) #pERK_DUSPc
-	Species ppERK_DUSPc_cytosol @cytosol:ERK(ERK_ppMEKc~0,c~0,dusp!1,n~0,p~P,p2~P,styxn).DUSP(c~C,erk!1,n~0) #ppERK_DUSPc
+	Species pERK_DUSPc_cytosol @cytosol:ERK(ERK_ppMEKc~0,c~0,dusp!102,n~0,p~P,p2~0,styxn).DUSP(c~C,erk!102,n~0) #pERK_DUSPc
+	Species ppERK_DUSPc_cytosol @cytosol:ERK(ERK_ppMEKc~0,c~0,dusp!102,n~0,p~P,p2~P,styxn).DUSP(c~C,erk!102,n~0) #ppERK_DUSPc
 	Species ERKn_nucleus @nucleus:ERK(ERK_ppMEKc~0,c~0,dusp,n~N,p~0,p2~0,styxn) #ERKn
 	Species pERKn_nucleus @nucleus:ERK(ERK_ppMEKc~0,c~0,dusp,n~N,p~P,p2~0,styxn) #pERKn
 	Species ppERKn_nucleus @nucleus:ERK(ERK_ppMEKc~0,c~0,dusp,n~N,p~P,p2~P,styxn) #ppERKn
-	Species pERK_DUSPn_nucleus @nucleus:ERK(ERK_ppMEKc~0,c~0,dusp!1,n~0,p~P,p2~0,styxn).DUSP(c~0,erk!1,n~N) #pERK_DUSPn
-	Species ppERK_DUSPn_nucleus @nucleus:ERK(ERK_ppMEKc~0,c~0,dusp!1,n~0,p~P,p2~P,styxn).DUSP(c~0,erk!1,n~N) #ppERK_DUSPn
+	Species pERK_DUSPn_nucleus @nucleus:ERK(ERK_ppMEKc~0,c~0,dusp!102,n~0,p~P,p2~0,styxn).DUSP(c~0,erk!102,n~N) #pERK_DUSPn
+	Species ppERK_DUSPn_nucleus @nucleus:ERK(ERK_ppMEKc~0,c~0,dusp!102,n~0,p~P,p2~P,styxn).DUSP(c~0,erk!102,n~N) #ppERK_DUSPn
 	Species STYXn_nucleus @nucleus:STYXn(erk) #STYXn
-	Species ERK_STYXn_nucleus @nucleus:ERK(ERK_ppMEKc~0,c~0,dusp,n~0,p~0,p2~0,styxn!0).STYXn(erk!0) #ERK_STYXn
-	Species pERK_STYXn_nucleus @nucleus:ERK(ERK_ppMEKc~0,c~0,dusp,n~0,p~P,p2~0,styxn!0).STYXn(erk!0) #pERK_STYXn
-	Species ppERK_STYXn_nucleus @nucleus:ERK(ERK_ppMEKc~0,c~0,dusp,n~0,p~P,p2~P,styxn!0).STYXn(erk!0) #ppERK_STYXn
+	Species ERK_STYXn_nucleus @nucleus:ERK(ERK_ppMEKc~0,c~0,dusp,n~0,p~0,p2~0,styxn!101).STYXn(erk!101) #ERK_STYXn
+	Species pERK_STYXn_nucleus @nucleus:ERK(ERK_ppMEKc~0,c~0,dusp,n~0,p~P,p2~0,styxn!101).STYXn(erk!101) #pERK_STYXn
+	Species ppERK_STYXn_nucleus @nucleus:ERK(ERK_ppMEKc~0,c~0,dusp,n~0,p~P,p2~P,styxn!101).STYXn(erk!101) #ppERK_STYXn
 	Species duspn_nucleus @nucleus:duspn() #duspn
 	Species DUSPn_nucleus @nucleus:DUSP(c~0,erk,n~N) #DUSPn
 end observables
@@ -140,20 +140,20 @@ begin reaction rules
 	reaction_5: ERK(ERK_ppMEKc~0,c~C,dusp,n~0,p~0,p2~0,styxn)@cytosol <-> ERK(ERK_ppMEKc~0,c~0,dusp,n~N,p~0,p2~0,styxn)@nucleus fRate4(),fRate4m() #Modifiers(ERKc, ERKn)
 	reaction_6: ERK(ERK_ppMEKc~0,c~C,dusp,n~0,p~P,p2~0,styxn)@cytosol <-> ERK(ERK_ppMEKc~0,c~0,dusp,n~N,p~P,p2~0,styxn)@nucleus fRate5(),fRate5m() #Modifiers(pERKc, pERKn)
 	reaction_7: ERK(ERK_ppMEKc~0,c~C,dusp,n~0,p~P,p2~P,styxn)@cytosol <-> ERK(ERK_ppMEKc~0,c~0,dusp,n~N,p~P,p2~P,styxn)@nucleus fRate6(),fRate6m() #Modifiers(ppERKc, ppERKn)
-	reaction_8: ERK(ERK_ppMEKc~0,c~C,dusp,n~0,p~P,p2~P,styxn)@cytosol + DUSP(c~C,erk,n~0)@cytosol <-> ERK(ERK_ppMEKc~0,c~0,dusp!1,n~0,p~P,p2~P,styxn)@cytosol.DUSP(c~C,erk!1,n~0)@cytosol fRate7(),kd2_ppERKc #Modifiers(ppERKc, DUSPc, ppERK_DUSPc)
-	reaction_9: ERK(ERK_ppMEKc~0,c~0,dusp!1,n~0,p~P,p2~P,styxn)@cytosol.DUSP(c~C,erk!1,n~0)@cytosol -> ERK(ERK_ppMEKc~0,c~C,dusp,n~0,p~P,p2~0,styxn)@cytosol + DUSP(c~C,erk,n~0)@cytosol kd3_ppERKc #Modifiers(ppERK_DUSPc)
-	reaction_10: ERK(ERK_ppMEKc~0,c~C,dusp,n~0,p~P,p2~0,styxn)@cytosol + DUSP(c~C,erk,n~0)@cytosol <-> ERK(ERK_ppMEKc~0,c~0,dusp!1,n~0,p~P,p2~0,styxn)@cytosol.DUSP(c~C,erk!1,n~0)@cytosol fRate9(),kd2_pERKc #Modifiers(pERKc, DUSPc, pERK_DUSPc)
-	reaction_11: ERK(ERK_ppMEKc~0,c~0,dusp!1,n~0,p~P,p2~0,styxn)@cytosol.DUSP(c~C,erk!1,n~0)@cytosol -> ERK(ERK_ppMEKc~0,c~C,dusp,n~0,p~0,p2~0,styxn)@cytosol + DUSP(c~C,erk,n~0)@cytosol kd3_pERKc #Modifiers(pERK_DUSPc)
-	reaction_12: ERK(ERK_ppMEKc~0,c~0,dusp,n~N,p~P,p2~P,styxn)@nucleus + DUSP(c~0,erk,n~N)@nucleus <-> ERK(ERK_ppMEKc~0,c~0,dusp!1,n~0,p~P,p2~P,styxn)@nucleus.DUSP(c~0,erk!1,n~N)@nucleus fRate11(),kd2_ppERKn #Modifiers(ppERKn, DUSPn, ppERK_DUSPn)
-	reaction_13: ERK(ERK_ppMEKc~0,c~0,dusp!1,n~0,p~P,p2~P,styxn)@nucleus.DUSP(c~0,erk!1,n~N)@nucleus -> ERK(ERK_ppMEKc~0,c~0,dusp,n~N,p~P,p2~0,styxn)@nucleus + DUSP(c~0,erk,n~N)@nucleus kd3_ppERKn #Modifiers(ppERK_DUSPn)
-	reaction_14: ERK(ERK_ppMEKc~0,c~0,dusp,n~N,p~P,p2~0,styxn)@nucleus + DUSP(c~0,erk,n~N)@nucleus <-> ERK(ERK_ppMEKc~0,c~0,dusp!1,n~0,p~P,p2~0,styxn)@nucleus.DUSP(c~0,erk!1,n~N)@nucleus fRate13(),kd2_pERKn #Modifiers(pERKn, DUSPn, pERK_DUSPn)
-	reaction_15: ERK(ERK_ppMEKc~0,c~0,dusp!1,n~0,p~P,p2~0,styxn)@nucleus.DUSP(c~0,erk!1,n~N)@nucleus -> ERK(ERK_ppMEKc~0,c~0,dusp,n~N,p~0,p2~0,styxn)@nucleus + DUSP(c~0,erk,n~N)@nucleus kd3_pERKn #Modifiers(pERK_DUSPn)
+	reaction_8: ERK(ERK_ppMEKc~0,c~C,dusp,n~0,p~P,p2~P,styxn)@cytosol + DUSP(c~C,erk,n~0)@cytosol <-> ERK(ERK_ppMEKc~0,c~0,dusp!102,n~0,p~P,p2~P,styxn)@cytosol.DUSP(c~C,erk!102,n~0)@cytosol fRate7(),kd2_ppERKc #Modifiers(ppERKc, DUSPc, ppERK_DUSPc)
+	reaction_9: ERK(ERK_ppMEKc~0,c~0,dusp!102,n~0,p~P,p2~P,styxn)@cytosol.DUSP(c~C,erk!102,n~0)@cytosol -> ERK(ERK_ppMEKc~0,c~C,dusp,n~0,p~P,p2~0,styxn)@cytosol + DUSP(c~C,erk,n~0)@cytosol kd3_ppERKc #Modifiers(ppERK_DUSPc)
+	reaction_10: ERK(ERK_ppMEKc~0,c~C,dusp,n~0,p~P,p2~0,styxn)@cytosol + DUSP(c~C,erk,n~0)@cytosol <-> ERK(ERK_ppMEKc~0,c~0,dusp!102,n~0,p~P,p2~0,styxn)@cytosol.DUSP(c~C,erk!102,n~0)@cytosol fRate9(),kd2_pERKc #Modifiers(pERKc, DUSPc, pERK_DUSPc)
+	reaction_11: ERK(ERK_ppMEKc~0,c~0,dusp!102,n~0,p~P,p2~0,styxn)@cytosol.DUSP(c~C,erk!102,n~0)@cytosol -> ERK(ERK_ppMEKc~0,c~C,dusp,n~0,p~0,p2~0,styxn)@cytosol + DUSP(c~C,erk,n~0)@cytosol kd3_pERKc #Modifiers(pERK_DUSPc)
+	reaction_12: ERK(ERK_ppMEKc~0,c~0,dusp,n~N,p~P,p2~P,styxn)@nucleus + DUSP(c~0,erk,n~N)@nucleus <-> ERK(ERK_ppMEKc~0,c~0,dusp!102,n~0,p~P,p2~P,styxn)@nucleus.DUSP(c~0,erk!102,n~N)@nucleus fRate11(),kd2_ppERKn #Modifiers(ppERKn, DUSPn, ppERK_DUSPn)
+	reaction_13: ERK(ERK_ppMEKc~0,c~0,dusp!102,n~0,p~P,p2~P,styxn)@nucleus.DUSP(c~0,erk!102,n~N)@nucleus -> ERK(ERK_ppMEKc~0,c~0,dusp,n~N,p~P,p2~0,styxn)@nucleus + DUSP(c~0,erk,n~N)@nucleus kd3_ppERKn #Modifiers(ppERK_DUSPn)
+	reaction_14: ERK(ERK_ppMEKc~0,c~0,dusp,n~N,p~P,p2~0,styxn)@nucleus + DUSP(c~0,erk,n~N)@nucleus <-> ERK(ERK_ppMEKc~0,c~0,dusp!102,n~0,p~P,p2~0,styxn)@nucleus.DUSP(c~0,erk!102,n~N)@nucleus fRate13(),kd2_pERKn #Modifiers(pERKn, DUSPn, pERK_DUSPn)
+	reaction_15: ERK(ERK_ppMEKc~0,c~0,dusp!102,n~0,p~P,p2~0,styxn)@nucleus.DUSP(c~0,erk!102,n~N)@nucleus -> ERK(ERK_ppMEKc~0,c~0,dusp,n~N,p~0,p2~0,styxn)@nucleus + DUSP(c~0,erk,n~N)@nucleus kd3_pERKn #Modifiers(pERK_DUSPn)
 	reaction_16: 0  -> duspn()@nucleus fRate15() #Modifiers(ppERKn, ppERKn)
 	reaction_17: duspn()@nucleus -> 0  fRate16() #Modifiers(duspn)
 	reaction_18: 0  -> DUSP(c~0,erk,n~N)@nucleus fRate17() #Modifiers(duspn, duspn)
 	reaction_19: DUSP(c~0,erk,n~N)@nucleus -> 0  fRate18() #Modifiers(DUSPn)
-	reaction_20: ERK(ERK_ppMEKc~0,c~0,dusp,n~N,p~0,p2~0,styxn)@nucleus + STYXn(erk)@nucleus <-> ERK(ERK_ppMEKc~0,c~0,dusp,n~0,p~0,p2~0,styxn!0)@nucleus.STYXn(erk!0)@nucleus fRate19(),k2_ES #Modifiers(ERKn, STYXn, ERK_STYXn)
-	reaction_21: ERK(ERK_ppMEKc~0,c~0,dusp,n~N,p~P,p2~0,styxn)@nucleus + STYXn(erk)@nucleus <-> ERK(ERK_ppMEKc~0,c~0,dusp,n~0,p~P,p2~0,styxn!0)@nucleus.STYXn(erk!0)@nucleus fRate20(),k2_pES #Modifiers(pERKn, STYXn, pERK_STYXn)
-	reaction_22: ERK(ERK_ppMEKc~0,c~0,dusp,n~N,p~P,p2~P,styxn)@nucleus + STYXn(erk)@nucleus <-> ERK(ERK_ppMEKc~0,c~0,dusp,n~0,p~P,p2~P,styxn!0)@nucleus.STYXn(erk!0)@nucleus fRate21(),k2_ppES #Modifiers(ppERKn, STYXn, ppERK_STYXn)
+	reaction_20: ERK(ERK_ppMEKc~0,c~0,dusp,n~N,p~0,p2~0,styxn)@nucleus + STYXn(erk)@nucleus <-> ERK(ERK_ppMEKc~0,c~0,dusp,n~0,p~0,p2~0,styxn!101)@nucleus.STYXn(erk!101)@nucleus fRate19(),k2_ES #Modifiers(ERKn, STYXn, ERK_STYXn)
+	reaction_21: ERK(ERK_ppMEKc~0,c~0,dusp,n~N,p~P,p2~0,styxn)@nucleus + STYXn(erk)@nucleus <-> ERK(ERK_ppMEKc~0,c~0,dusp,n~0,p~P,p2~0,styxn!101)@nucleus.STYXn(erk!101)@nucleus fRate20(),k2_pES #Modifiers(pERKn, STYXn, pERK_STYXn)
+	reaction_22: ERK(ERK_ppMEKc~0,c~0,dusp,n~N,p~P,p2~P,styxn)@nucleus + STYXn(erk)@nucleus <-> ERK(ERK_ppMEKc~0,c~0,dusp,n~0,p~P,p2~P,styxn!101)@nucleus.STYXn(erk!101)@nucleus fRate21(),k2_ppES #Modifiers(ppERKn, STYXn, ppERK_STYXn)
 end reaction rules
 end model

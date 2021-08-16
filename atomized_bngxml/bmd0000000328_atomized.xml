@@ -1,0 +1,1915 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000328_atomized">
+    <ListOfParameters>
+      <Parameter id="CYP3A4_ASLpOH_Km1" type="Constant" value="1400" expr="1400.0"/>
+      <Parameter id="CYP3A4_ASLoOH_Km1" type="Constant" value="3900" expr="3900.0"/>
+      <Parameter id="CYP3A4_ASpOH_Km1" type="Constant" value="25600" expr="25600.0"/>
+      <Parameter id="CYP3A4_ASoOH_Km1" type="Constant" value="29700" expr="29700.0"/>
+      <Parameter id="Import_ASLpOH_k" type="Constant" value="0.033729" expr="0.033729"/>
+      <Parameter id="Import_ASLoOH_k" type="Constant" value="0.026122" expr="0.026122"/>
+      <Parameter id="Import_ASL_k" type="Constant" value="0.2754" expr="0.2754"/>
+      <Parameter id="fu_ASL" type="Constant" value="0.22" expr="0.22"/>
+      <Parameter id="fu_AS" type="Constant" value="0.22" expr="0.22"/>
+      <Parameter id="Import_ASpOH_k" type="Constant" value="0.0039614" expr="0.0039614"/>
+      <Parameter id="Export_ASLpOH_k" type="Constant" value="0.0011319" expr="0.0011319"/>
+      <Parameter id="Export_ASLoOH_k" type="Constant" value="0.0026674" expr="0.0026674"/>
+      <Parameter id="k_CR_ASL_c" type="Constant" value="3.55e-5" expr="3.55e-05"/>
+      <Parameter id="k_CR_ASL_m" type="Constant" value="0.005" expr="0.005"/>
+      <Parameter id="k_PON_OH_c" type="Constant" value="0.0039829" expr="0.0039829"/>
+      <Parameter id="Export_ASoOH_k" type="Constant" value="0.0015983" expr="0.0015983"/>
+      <Parameter id="Prot_k1" type="Constant" value="8.52" expr="8.52"/>
+      <Parameter id="CYP3A4_ASoOH_Vmax" type="Constant" value="47.4985" expr="47.4985"/>
+      <Parameter id="CYP3A4_ASLpOH_Vmax" type="Constant" value="17.4446" expr="17.4446"/>
+      <Parameter id="CYP3A4_ASLoOH_Vmax" type="Constant" value="39.1342" expr="39.1342"/>
+      <Parameter id="UGT1A3_AS_Vmax" type="Constant" value="13.5862" expr="13.5862"/>
+      <Parameter id="UGT1A3_AS_Km1" type="Constant" value="12000" expr="12000.0"/>
+      <Parameter id="UGT1A3_AS_KI1" type="Constant" value="75000" expr="75000.0"/>
+      <Parameter id="k_PON_ASL_c" type="Constant" value="0.0043734" expr="0.0043734"/>
+      <Parameter id="Export_AS_k" type="Constant" value="0.002166" expr="0.002166"/>
+      <Parameter id="Export_ASL_k" type="Constant" value="0.021822" expr="0.021822"/>
+      <Parameter id="Import_AS_k" type="Constant" value="0.020335" expr="0.020335"/>
+      <Parameter id="Import_ASoOH_k" type="Constant" value="0.00038875" expr="0.00038875"/>
+      <Parameter id="Export_ASpOH_k" type="Constant" value="0.00079526" expr="0.00079526"/>
+      <Parameter id="CYP3A4_ASpOH_Vmax" type="Constant" value="15.7336" expr="15.7336"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="ASL">
+        <ListOfComponentTypes>
+          <ComponentType id="_m">
+            <ListOfAllowedStates>
+              <AllowedState id="_M"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="ooh">
+            <ListOfAllowedStates>
+              <AllowedState id="OOH"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="poh">
+            <ListOfAllowedStates>
+              <AllowedState id="POH"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="ASL_b"/>
+      <MoleculeType id="ASLoOH_b"/>
+      <MoleculeType id="ASLpOH_b"/>
+      <MoleculeType id="AS_b"/>
+      <MoleculeType id="AS_m">
+        <ListOfComponentTypes>
+          <ComponentType id="AS_c">
+            <ListOfAllowedStates>
+              <AllowedState id="AS_c"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="l">
+            <ListOfAllowedStates>
+              <AllowedState id="L"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="ooh">
+            <ListOfAllowedStates>
+              <AllowedState id="OOH"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="poh">
+            <ListOfAllowedStates>
+              <AllowedState id="POH"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="ASoOH"/>
+      <MoleculeType id="ASoOH_b"/>
+      <MoleculeType id="ASpOH"/>
+      <MoleculeType id="ASpOH_b"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+      <compartment id="compartment" spatialDimensions="3" size="1.0"/>
+      <compartment id="medium" spatialDimensions="3" size="2.0"/>
+      <compartment id="cell" spatialDimensions="3" size="0.0142"/>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="1.059528746e+16" name="@medium::AS_m(AS_c~0,l~0,ooh~0,poh~0)" compartment="medium">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="AS_m" compartment="medium">
+            <ListOfComponents>
+              <Component id="S1_M1_C1" name="AS_c" state="0" numberOfBonds="0"/>
+              <Component id="S1_M1_C2" name="l" state="0" numberOfBonds="0"/>
+              <Component id="S1_M1_C3" name="ooh" state="0" numberOfBonds="0"/>
+              <Component id="S1_M1_C4" name="poh" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="36806464000000.0" name="@medium::ASL(_m~_M,ooh~0,poh~0)" compartment="medium">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="ASL" compartment="medium">
+            <ListOfComponents>
+              <Component id="S2_M1_C1" name="_m" state="_M" numberOfBonds="0"/>
+              <Component id="S2_M1_C2" name="ooh" state="0" numberOfBonds="0"/>
+              <Component id="S2_M1_C3" name="poh" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="Import_AS" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR1_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_RP1_M1" name="AS_m" compartment="medium">
+                <ListOfComponents>
+                  <Component id="RR1_RP1_M1_C1" name="AS_c" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_RP1_M1_C2" name="l" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_RP1_M1_C3" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_RP1_M1_C4" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="AS_m" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR1_PP1_M1_C1" name="AS_c" state="AS_c" numberOfBonds="0"/>
+                  <Component id="RR1_PP1_M1_C2" name="l" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_PP1_M1_C3" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_PP1_M1_C4" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="Import_AS_k"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR1_RP1_M1" targetID="RR1_PP1_M1"/>
+          <MapItem sourceID="RR1_RP1_M1_C1" targetID="RR1_PP1_M1_C1"/>
+          <MapItem sourceID="RR1_RP1_M1_C2" targetID="RR1_PP1_M1_C2"/>
+          <MapItem sourceID="RR1_RP1_M1_C3" targetID="RR1_PP1_M1_C3"/>
+          <MapItem sourceID="RR1_RP1_M1_C4" targetID="RR1_PP1_M1_C4"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR1_RP1_M1_C1" finalState="AS_c"/>
+          <ChangeCompartment id="RR1_RP1_M1" source="medium" destination="cell" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="Import_ASL" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="ASL" compartment="medium">
+                <ListOfComponents>
+                  <Component id="RR2_RP1_M1_C1" name="_m" state="_M" numberOfBonds="0"/>
+                  <Component id="RR2_RP1_M1_C2" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="RR2_RP1_M1_C3" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="AS_m" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR2_PP1_M1_C1" name="AS_c" state="AS_c" numberOfBonds="0"/>
+                  <Component id="RR2_PP1_M1_C2" name="l" state="L" numberOfBonds="0"/>
+                  <Component id="RR2_PP1_M1_C3" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="RR2_PP1_M1_C4" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="Import_ASL_k"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1"/>
+          <MapItem sourceID="RR2_RP1_M1_C1"/>
+          <MapItem sourceID="RR2_RP1_M1_C2"/>
+          <MapItem sourceID="RR2_RP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+          <Delete id="RR2_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="CYP3A4_ASpOH" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="AS_m" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR3_RP1_M1_C1" name="AS_c" state="AS_c" numberOfBonds="0"/>
+                  <Component id="RR3_RP1_M1_C2" name="l" state="0" numberOfBonds="0"/>
+                  <Component id="RR3_RP1_M1_C3" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="RR3_RP1_M1_C4" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="AS_m" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR3_PP1_M1_C1" name="AS_c" state="AS_c" numberOfBonds="0"/>
+                  <Component id="RR3_PP1_M1_C2" name="l" state="0" numberOfBonds="0"/>
+                  <Component id="RR3_PP1_M1_C3" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="RR3_PP1_M1_C4" name="poh" state="POH" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="fRate2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1" targetID="RR3_PP1_M1"/>
+          <MapItem sourceID="RR3_RP1_M1_C1" targetID="RR3_PP1_M1_C1"/>
+          <MapItem sourceID="RR3_RP1_M1_C2" targetID="RR3_PP1_M1_C2"/>
+          <MapItem sourceID="RR3_RP1_M1_C3" targetID="RR3_PP1_M1_C3"/>
+          <MapItem sourceID="RR3_RP1_M1_C4" targetID="RR3_PP1_M1_C4"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR3_RP1_M1_C4" finalState="POH"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="CYP3A4_ASoOH" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="AS_m" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR4_RP1_M1_C1" name="AS_c" state="AS_c" numberOfBonds="0"/>
+                  <Component id="RR4_RP1_M1_C2" name="l" state="0" numberOfBonds="0"/>
+                  <Component id="RR4_RP1_M1_C3" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="RR4_RP1_M1_C4" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="AS_m" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR4_PP1_M1_C1" name="AS_c" state="AS_c" numberOfBonds="0"/>
+                  <Component id="RR4_PP1_M1_C2" name="l" state="0" numberOfBonds="0"/>
+                  <Component id="RR4_PP1_M1_C3" name="ooh" state="OOH" numberOfBonds="0"/>
+                  <Component id="RR4_PP1_M1_C4" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="fRate3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1" targetID="RR4_PP1_M1"/>
+          <MapItem sourceID="RR4_RP1_M1_C1" targetID="RR4_PP1_M1_C1"/>
+          <MapItem sourceID="RR4_RP1_M1_C2" targetID="RR4_PP1_M1_C2"/>
+          <MapItem sourceID="RR4_RP1_M1_C3" targetID="RR4_PP1_M1_C3"/>
+          <MapItem sourceID="RR4_RP1_M1_C4" targetID="RR4_PP1_M1_C4"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR4_RP1_M1_C3" finalState="OOH"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="CYP3A4_ASLpOH" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR5_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP1_M1" name="AS_m" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR5_RP1_M1_C1" name="AS_c" state="AS_c" numberOfBonds="0"/>
+                  <Component id="RR5_RP1_M1_C2" name="l" state="L" numberOfBonds="0"/>
+                  <Component id="RR5_RP1_M1_C3" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="RR5_RP1_M1_C4" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="AS_m" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR5_PP1_M1_C1" name="AS_c" state="AS_c" numberOfBonds="0"/>
+                  <Component id="RR5_PP1_M1_C2" name="l" state="L" numberOfBonds="0"/>
+                  <Component id="RR5_PP1_M1_C3" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="RR5_PP1_M1_C4" name="poh" state="POH" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Function" name="fRate4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR5_RP1_M1" targetID="RR5_PP1_M1"/>
+          <MapItem sourceID="RR5_RP1_M1_C1" targetID="RR5_PP1_M1_C1"/>
+          <MapItem sourceID="RR5_RP1_M1_C2" targetID="RR5_PP1_M1_C2"/>
+          <MapItem sourceID="RR5_RP1_M1_C3" targetID="RR5_PP1_M1_C3"/>
+          <MapItem sourceID="RR5_RP1_M1_C4" targetID="RR5_PP1_M1_C4"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR5_RP1_M1_C4" finalState="POH"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="CYP3A4_ASLoOH" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR6_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_RP1_M1" name="AS_m" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR6_RP1_M1_C1" name="AS_c" state="AS_c" numberOfBonds="0"/>
+                  <Component id="RR6_RP1_M1_C2" name="l" state="L" numberOfBonds="0"/>
+                  <Component id="RR6_RP1_M1_C3" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="RR6_RP1_M1_C4" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="AS_m" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR6_PP1_M1_C1" name="AS_c" state="AS_c" numberOfBonds="0"/>
+                  <Component id="RR6_PP1_M1_C2" name="l" state="L" numberOfBonds="0"/>
+                  <Component id="RR6_PP1_M1_C3" name="ooh" state="OOH" numberOfBonds="0"/>
+                  <Component id="RR6_PP1_M1_C4" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Function" name="fRate5" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR6_RP1_M1" targetID="RR6_PP1_M1"/>
+          <MapItem sourceID="RR6_RP1_M1_C1" targetID="RR6_PP1_M1_C1"/>
+          <MapItem sourceID="RR6_RP1_M1_C2" targetID="RR6_PP1_M1_C2"/>
+          <MapItem sourceID="RR6_RP1_M1_C3" targetID="RR6_PP1_M1_C3"/>
+          <MapItem sourceID="RR6_RP1_M1_C4" targetID="RR6_PP1_M1_C4"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR6_RP1_M1_C3" finalState="OOH"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="Export_ASoOH" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR7_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_RP1_M1" name="AS_m" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR7_RP1_M1_C1" name="AS_c" state="AS_c" numberOfBonds="0"/>
+                  <Component id="RR7_RP1_M1_C2" name="l" state="0" numberOfBonds="0"/>
+                  <Component id="RR7_RP1_M1_C3" name="ooh" state="OOH" numberOfBonds="0"/>
+                  <Component id="RR7_RP1_M1_C4" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="AS_m" compartment="medium">
+                <ListOfComponents>
+                  <Component id="RR7_PP1_M1_C1" name="AS_c" state="0" numberOfBonds="0"/>
+                  <Component id="RR7_PP1_M1_C2" name="l" state="0" numberOfBonds="0"/>
+                  <Component id="RR7_PP1_M1_C3" name="ooh" state="OOH" numberOfBonds="0"/>
+                  <Component id="RR7_PP1_M1_C4" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="Export_ASoOH_k"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR7_RP1_M1" targetID="RR7_PP1_M1"/>
+          <MapItem sourceID="RR7_RP1_M1_C1" targetID="RR7_PP1_M1_C1"/>
+          <MapItem sourceID="RR7_RP1_M1_C2" targetID="RR7_PP1_M1_C2"/>
+          <MapItem sourceID="RR7_RP1_M1_C3" targetID="RR7_PP1_M1_C3"/>
+          <MapItem sourceID="RR7_RP1_M1_C4" targetID="RR7_PP1_M1_C4"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR7_RP1_M1_C1" finalState="0"/>
+          <ChangeCompartment id="RR7_RP1_M1" source="cell" destination="medium" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="UGT1A3_AS" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR8_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_RP1_M1" name="AS_m" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR8_RP1_M1_C1" name="AS_c" state="AS_c" numberOfBonds="0"/>
+                  <Component id="RR8_RP1_M1_C2" name="l" state="0" numberOfBonds="0"/>
+                  <Component id="RR8_RP1_M1_C3" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="RR8_RP1_M1_C4" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR8_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP1_M1" name="AS_m" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR8_PP1_M1_C1" name="AS_c" state="AS_c" numberOfBonds="0"/>
+                  <Component id="RR8_PP1_M1_C2" name="l" state="L" numberOfBonds="0"/>
+                  <Component id="RR8_PP1_M1_C3" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="RR8_PP1_M1_C4" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Function" name="fRate7" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR8_RP1_M1" targetID="RR8_PP1_M1"/>
+          <MapItem sourceID="RR8_RP1_M1_C1" targetID="RR8_PP1_M1_C1"/>
+          <MapItem sourceID="RR8_RP1_M1_C2" targetID="RR8_PP1_M1_C2"/>
+          <MapItem sourceID="RR8_RP1_M1_C3" targetID="RR8_PP1_M1_C3"/>
+          <MapItem sourceID="RR8_RP1_M1_C4" targetID="RR8_PP1_M1_C4"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR8_RP1_M1_C2" finalState="L"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="R_ASASL_c_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR9_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP1_M1" name="AS_m" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR9_PP1_M1_C1" name="AS_c" state="AS_c" numberOfBonds="0"/>
+                  <Component id="RR9_PP1_M1_C2" name="l" state="L" numberOfBonds="0"/>
+                  <Component id="RR9_PP1_M1_C3" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="RR9_PP1_M1_C4" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Function" name="_rateLaw1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR9_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="R_ASASL_c_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR10_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_PP1_M1" name="AS_m" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR10_PP1_M1_C1" name="AS_c" state="AS_c" numberOfBonds="0"/>
+                  <Component id="RR10_PP1_M1_C2" name="l" state="0" numberOfBonds="0"/>
+                  <Component id="RR10_PP1_M1_C3" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="RR10_PP1_M1_C4" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Function" name="fRate8" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR10_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR11" name="CR_oOH_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR11_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_PP1_M1" name="AS_m" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR11_PP1_M1_C1" name="AS_c" state="AS_c" numberOfBonds="0"/>
+                  <Component id="RR11_PP1_M1_C2" name="l" state="L" numberOfBonds="0"/>
+                  <Component id="RR11_PP1_M1_C3" name="ooh" state="OOH" numberOfBonds="0"/>
+                  <Component id="RR11_PP1_M1_C4" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR11_RateLaw" type="Function" name="_rateLaw2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR11_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR12" name="CR_oOH_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR12_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_PP1_M1" name="AS_m" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR12_PP1_M1_C1" name="AS_c" state="AS_c" numberOfBonds="0"/>
+                  <Component id="RR12_PP1_M1_C2" name="l" state="0" numberOfBonds="0"/>
+                  <Component id="RR12_PP1_M1_C3" name="ooh" state="OOH" numberOfBonds="0"/>
+                  <Component id="RR12_PP1_M1_C4" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR12_RateLaw" type="Function" name="fRate9" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR12_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR13" name="CR_pOH_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR13_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_PP1_M1" name="AS_m" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR13_PP1_M1_C1" name="AS_c" state="AS_c" numberOfBonds="0"/>
+                  <Component id="RR13_PP1_M1_C2" name="l" state="L" numberOfBonds="0"/>
+                  <Component id="RR13_PP1_M1_C3" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="RR13_PP1_M1_C4" name="poh" state="POH" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR13_RateLaw" type="Function" name="_rateLaw3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR13_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR14" name="CR_pOH_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR14_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_PP1_M1" name="AS_m" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR14_PP1_M1_C1" name="AS_c" state="AS_c" numberOfBonds="0"/>
+                  <Component id="RR14_PP1_M1_C2" name="l" state="0" numberOfBonds="0"/>
+                  <Component id="RR14_PP1_M1_C3" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="RR14_PP1_M1_C4" name="poh" state="POH" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR14_RateLaw" type="Function" name="fRate10" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR14_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR15" name="Export_AS" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR15_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR15_RP1_M1" name="AS_m" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR15_RP1_M1_C1" name="AS_c" state="AS_c" numberOfBonds="0"/>
+                  <Component id="RR15_RP1_M1_C2" name="l" state="0" numberOfBonds="0"/>
+                  <Component id="RR15_RP1_M1_C3" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="RR15_RP1_M1_C4" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR15_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR15_PP1_M1" name="AS_m" compartment="medium">
+                <ListOfComponents>
+                  <Component id="RR15_PP1_M1_C1" name="AS_c" state="0" numberOfBonds="0"/>
+                  <Component id="RR15_PP1_M1_C2" name="l" state="0" numberOfBonds="0"/>
+                  <Component id="RR15_PP1_M1_C3" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="RR15_PP1_M1_C4" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR15_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="Export_AS_k"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR15_RP1_M1" targetID="RR15_PP1_M1"/>
+          <MapItem sourceID="RR15_RP1_M1_C1" targetID="RR15_PP1_M1_C1"/>
+          <MapItem sourceID="RR15_RP1_M1_C2" targetID="RR15_PP1_M1_C2"/>
+          <MapItem sourceID="RR15_RP1_M1_C3" targetID="RR15_PP1_M1_C3"/>
+          <MapItem sourceID="RR15_RP1_M1_C4" targetID="RR15_PP1_M1_C4"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR15_RP1_M1_C1" finalState="0"/>
+          <ChangeCompartment id="RR15_RP1_M1" source="cell" destination="medium" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR16" name="Export_ASL" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR16_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR16_RP1_M1" name="AS_m" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR16_RP1_M1_C1" name="AS_c" state="AS_c" numberOfBonds="0"/>
+                  <Component id="RR16_RP1_M1_C2" name="l" state="L" numberOfBonds="0"/>
+                  <Component id="RR16_RP1_M1_C3" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="RR16_RP1_M1_C4" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR16_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR16_PP1_M1" name="ASL" compartment="medium">
+                <ListOfComponents>
+                  <Component id="RR16_PP1_M1_C1" name="_m" state="_M" numberOfBonds="0"/>
+                  <Component id="RR16_PP1_M1_C2" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="RR16_PP1_M1_C3" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR16_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="Export_ASL_k"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR16_RP1_M1"/>
+          <MapItem sourceID="RR16_RP1_M1_C1"/>
+          <MapItem sourceID="RR16_RP1_M1_C2"/>
+          <MapItem sourceID="RR16_RP1_M1_C3"/>
+          <MapItem sourceID="RR16_RP1_M1_C4"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR16_PP1_M1"/>
+          <Delete id="RR16_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR17" name="Import_ASLpOH" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR17_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR17_RP1_M1" name="AS_m" compartment="medium">
+                <ListOfComponents>
+                  <Component id="RR17_RP1_M1_C1" name="AS_c" state="0" numberOfBonds="0"/>
+                  <Component id="RR17_RP1_M1_C2" name="l" state="L" numberOfBonds="0"/>
+                  <Component id="RR17_RP1_M1_C3" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="RR17_RP1_M1_C4" name="poh" state="POH" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR17_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR17_PP1_M1" name="AS_m" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR17_PP1_M1_C1" name="AS_c" state="AS_c" numberOfBonds="0"/>
+                  <Component id="RR17_PP1_M1_C2" name="l" state="L" numberOfBonds="0"/>
+                  <Component id="RR17_PP1_M1_C3" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="RR17_PP1_M1_C4" name="poh" state="POH" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR17_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="Import_ASLpOH_k"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR17_RP1_M1" targetID="RR17_PP1_M1"/>
+          <MapItem sourceID="RR17_RP1_M1_C1" targetID="RR17_PP1_M1_C1"/>
+          <MapItem sourceID="RR17_RP1_M1_C2" targetID="RR17_PP1_M1_C2"/>
+          <MapItem sourceID="RR17_RP1_M1_C3" targetID="RR17_PP1_M1_C3"/>
+          <MapItem sourceID="RR17_RP1_M1_C4" targetID="RR17_PP1_M1_C4"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR17_RP1_M1_C1" finalState="AS_c"/>
+          <ChangeCompartment id="RR17_RP1_M1" source="medium" destination="cell" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR18" name="Import_ASLoOH" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR18_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR18_RP1_M1" name="AS_m" compartment="medium">
+                <ListOfComponents>
+                  <Component id="RR18_RP1_M1_C1" name="AS_c" state="0" numberOfBonds="0"/>
+                  <Component id="RR18_RP1_M1_C2" name="l" state="L" numberOfBonds="0"/>
+                  <Component id="RR18_RP1_M1_C3" name="ooh" state="OOH" numberOfBonds="0"/>
+                  <Component id="RR18_RP1_M1_C4" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR18_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR18_PP1_M1" name="AS_m" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR18_PP1_M1_C1" name="AS_c" state="AS_c" numberOfBonds="0"/>
+                  <Component id="RR18_PP1_M1_C2" name="l" state="L" numberOfBonds="0"/>
+                  <Component id="RR18_PP1_M1_C3" name="ooh" state="OOH" numberOfBonds="0"/>
+                  <Component id="RR18_PP1_M1_C4" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR18_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="Import_ASLoOH_k"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR18_RP1_M1" targetID="RR18_PP1_M1"/>
+          <MapItem sourceID="RR18_RP1_M1_C1" targetID="RR18_PP1_M1_C1"/>
+          <MapItem sourceID="RR18_RP1_M1_C2" targetID="RR18_PP1_M1_C2"/>
+          <MapItem sourceID="RR18_RP1_M1_C3" targetID="RR18_PP1_M1_C3"/>
+          <MapItem sourceID="RR18_RP1_M1_C4" targetID="RR18_PP1_M1_C4"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR18_RP1_M1_C1" finalState="AS_c"/>
+          <ChangeCompartment id="RR18_RP1_M1" source="medium" destination="cell" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR19" name="ASpOH_Prot_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR19_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR19_PP1_M1" name="AS_m" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR19_PP1_M1_C1" name="AS_c" state="AS_c" numberOfBonds="0"/>
+                  <Component id="RR19_PP1_M1_C2" name="l" state="0" numberOfBonds="0"/>
+                  <Component id="RR19_PP1_M1_C3" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="RR19_PP1_M1_C4" name="poh" state="POH" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR19_RateLaw" type="Function" name="_rateLaw4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR19_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR20" name="ASpOH_Prot_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR20_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR20_PP1_M1" name="ASpOH_b" compartment="cell"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR20_RateLaw" type="Function" name="fRate15" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR20_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR21" name="ASoOH_Prot_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR21_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR21_PP1_M1" name="AS_m" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR21_PP1_M1_C1" name="AS_c" state="AS_c" numberOfBonds="0"/>
+                  <Component id="RR21_PP1_M1_C2" name="l" state="0" numberOfBonds="0"/>
+                  <Component id="RR21_PP1_M1_C3" name="ooh" state="OOH" numberOfBonds="0"/>
+                  <Component id="RR21_PP1_M1_C4" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR21_RateLaw" type="Function" name="_rateLaw5" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR21_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR22" name="ASoOH_Prot_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR22_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR22_PP1_M1" name="ASoOH_b" compartment="cell"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR22_RateLaw" type="Function" name="fRate16" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR22_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR23" name="ASLpOH_Prot_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR23_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR23_PP1_M1" name="AS_m" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR23_PP1_M1_C1" name="AS_c" state="AS_c" numberOfBonds="0"/>
+                  <Component id="RR23_PP1_M1_C2" name="l" state="L" numberOfBonds="0"/>
+                  <Component id="RR23_PP1_M1_C3" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="RR23_PP1_M1_C4" name="poh" state="POH" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR23_RateLaw" type="Function" name="_rateLaw6" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR23_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR24" name="ASLpOH_Prot_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR24_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR24_PP1_M1" name="ASLpOH_b" compartment="cell"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR24_RateLaw" type="Function" name="fRate17" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR24_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR25" name="ASLoOH_Prot_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR25_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR25_PP1_M1" name="AS_m" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR25_PP1_M1_C1" name="AS_c" state="AS_c" numberOfBonds="0"/>
+                  <Component id="RR25_PP1_M1_C2" name="l" state="L" numberOfBonds="0"/>
+                  <Component id="RR25_PP1_M1_C3" name="ooh" state="OOH" numberOfBonds="0"/>
+                  <Component id="RR25_PP1_M1_C4" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR25_RateLaw" type="Function" name="_rateLaw7" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR25_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR26" name="ASLoOH_Prot_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR26_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR26_PP1_M1" name="ASLoOH_b" compartment="cell"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR26_RateLaw" type="Function" name="fRate18" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR26_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR27" name="AS_Prot_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR27_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR27_PP1_M1" name="AS_m" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR27_PP1_M1_C1" name="AS_c" state="AS_c" numberOfBonds="0"/>
+                  <Component id="RR27_PP1_M1_C2" name="l" state="0" numberOfBonds="0"/>
+                  <Component id="RR27_PP1_M1_C3" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="RR27_PP1_M1_C4" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR27_RateLaw" type="Function" name="_rateLaw8" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR27_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR28" name="AS_Prot_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR28_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR28_PP1_M1" name="AS_b" compartment="cell"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR28_RateLaw" type="Function" name="fRate19" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR28_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR29" name="ASL_Prot_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR29_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR29_PP1_M1" name="AS_m" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR29_PP1_M1_C1" name="AS_c" state="AS_c" numberOfBonds="0"/>
+                  <Component id="RR29_PP1_M1_C2" name="l" state="L" numberOfBonds="0"/>
+                  <Component id="RR29_PP1_M1_C3" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="RR29_PP1_M1_C4" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR29_RateLaw" type="Function" name="_rateLaw9" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR29_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR30" name="ASL_Prot_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR30_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR30_PP1_M1" name="ASL_b" compartment="cell"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR30_RateLaw" type="Function" name="fRate20" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR30_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR31" name="Import_ASpOH" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR31_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR31_RP1_M1" name="AS_m" compartment="medium">
+                <ListOfComponents>
+                  <Component id="RR31_RP1_M1_C1" name="AS_c" state="0" numberOfBonds="0"/>
+                  <Component id="RR31_RP1_M1_C2" name="l" state="0" numberOfBonds="0"/>
+                  <Component id="RR31_RP1_M1_C3" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="RR31_RP1_M1_C4" name="poh" state="POH" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR31_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR31_PP1_M1" name="AS_m" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR31_PP1_M1_C1" name="AS_c" state="AS_c" numberOfBonds="0"/>
+                  <Component id="RR31_PP1_M1_C2" name="l" state="0" numberOfBonds="0"/>
+                  <Component id="RR31_PP1_M1_C3" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="RR31_PP1_M1_C4" name="poh" state="POH" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR31_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="Import_ASpOH_k"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR31_RP1_M1" targetID="RR31_PP1_M1"/>
+          <MapItem sourceID="RR31_RP1_M1_C1" targetID="RR31_PP1_M1_C1"/>
+          <MapItem sourceID="RR31_RP1_M1_C2" targetID="RR31_PP1_M1_C2"/>
+          <MapItem sourceID="RR31_RP1_M1_C3" targetID="RR31_PP1_M1_C3"/>
+          <MapItem sourceID="RR31_RP1_M1_C4" targetID="RR31_PP1_M1_C4"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR31_RP1_M1_C1" finalState="AS_c"/>
+          <ChangeCompartment id="RR31_RP1_M1" source="medium" destination="cell" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR32" name="R_ASASL_m" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR32_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR32_RP1_M1" name="ASL" compartment="medium">
+                <ListOfComponents>
+                  <Component id="RR32_RP1_M1_C1" name="_m" state="_M" numberOfBonds="0"/>
+                  <Component id="RR32_RP1_M1_C2" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="RR32_RP1_M1_C3" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR32_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR32_PP1_M1" name="AS_m" compartment="medium">
+                <ListOfComponents>
+                  <Component id="RR32_PP1_M1_C1" name="AS_c" state="0" numberOfBonds="0"/>
+                  <Component id="RR32_PP1_M1_C2" name="l" state="0" numberOfBonds="0"/>
+                  <Component id="RR32_PP1_M1_C3" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="RR32_PP1_M1_C4" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR32_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k_CR_ASL_m"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR32_RP1_M1"/>
+          <MapItem sourceID="RR32_RP1_M1_C1"/>
+          <MapItem sourceID="RR32_RP1_M1_C2"/>
+          <MapItem sourceID="RR32_RP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR32_PP1_M1"/>
+          <Delete id="RR32_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR33" name="R_pOH_m" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR33_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR33_RP1_M1" name="AS_m" compartment="medium">
+                <ListOfComponents>
+                  <Component id="RR33_RP1_M1_C1" name="AS_c" state="0" numberOfBonds="0"/>
+                  <Component id="RR33_RP1_M1_C2" name="l" state="L" numberOfBonds="0"/>
+                  <Component id="RR33_RP1_M1_C3" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="RR33_RP1_M1_C4" name="poh" state="POH" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR33_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR33_PP1_M1" name="AS_m" compartment="medium">
+                <ListOfComponents>
+                  <Component id="RR33_PP1_M1_C1" name="AS_c" state="0" numberOfBonds="0"/>
+                  <Component id="RR33_PP1_M1_C2" name="l" state="0" numberOfBonds="0"/>
+                  <Component id="RR33_PP1_M1_C3" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="RR33_PP1_M1_C4" name="poh" state="POH" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR33_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k_CR_ASL_m"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR33_RP1_M1" targetID="RR33_PP1_M1"/>
+          <MapItem sourceID="RR33_RP1_M1_C1" targetID="RR33_PP1_M1_C1"/>
+          <MapItem sourceID="RR33_RP1_M1_C2" targetID="RR33_PP1_M1_C2"/>
+          <MapItem sourceID="RR33_RP1_M1_C3" targetID="RR33_PP1_M1_C3"/>
+          <MapItem sourceID="RR33_RP1_M1_C4" targetID="RR33_PP1_M1_C4"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR33_RP1_M1_C2" finalState="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR34" name="R_oOH_m" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR34_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR34_RP1_M1" name="AS_m" compartment="medium">
+                <ListOfComponents>
+                  <Component id="RR34_RP1_M1_C1" name="AS_c" state="0" numberOfBonds="0"/>
+                  <Component id="RR34_RP1_M1_C2" name="l" state="L" numberOfBonds="0"/>
+                  <Component id="RR34_RP1_M1_C3" name="ooh" state="OOH" numberOfBonds="0"/>
+                  <Component id="RR34_RP1_M1_C4" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR34_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR34_PP1_M1" name="AS_m" compartment="medium">
+                <ListOfComponents>
+                  <Component id="RR34_PP1_M1_C1" name="AS_c" state="0" numberOfBonds="0"/>
+                  <Component id="RR34_PP1_M1_C2" name="l" state="0" numberOfBonds="0"/>
+                  <Component id="RR34_PP1_M1_C3" name="ooh" state="OOH" numberOfBonds="0"/>
+                  <Component id="RR34_PP1_M1_C4" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR34_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k_CR_ASL_m"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR34_RP1_M1" targetID="RR34_PP1_M1"/>
+          <MapItem sourceID="RR34_RP1_M1_C1" targetID="RR34_PP1_M1_C1"/>
+          <MapItem sourceID="RR34_RP1_M1_C2" targetID="RR34_PP1_M1_C2"/>
+          <MapItem sourceID="RR34_RP1_M1_C3" targetID="RR34_PP1_M1_C3"/>
+          <MapItem sourceID="RR34_RP1_M1_C4" targetID="RR34_PP1_M1_C4"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR34_RP1_M1_C2" finalState="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR35" name="Export_ASLpOH" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR35_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR35_RP1_M1" name="AS_m" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR35_RP1_M1_C1" name="AS_c" state="AS_c" numberOfBonds="0"/>
+                  <Component id="RR35_RP1_M1_C2" name="l" state="L" numberOfBonds="0"/>
+                  <Component id="RR35_RP1_M1_C3" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="RR35_RP1_M1_C4" name="poh" state="POH" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR35_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR35_PP1_M1" name="AS_m" compartment="medium">
+                <ListOfComponents>
+                  <Component id="RR35_PP1_M1_C1" name="AS_c" state="0" numberOfBonds="0"/>
+                  <Component id="RR35_PP1_M1_C2" name="l" state="L" numberOfBonds="0"/>
+                  <Component id="RR35_PP1_M1_C3" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="RR35_PP1_M1_C4" name="poh" state="POH" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR35_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="Export_ASLpOH_k"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR35_RP1_M1" targetID="RR35_PP1_M1"/>
+          <MapItem sourceID="RR35_RP1_M1_C1" targetID="RR35_PP1_M1_C1"/>
+          <MapItem sourceID="RR35_RP1_M1_C2" targetID="RR35_PP1_M1_C2"/>
+          <MapItem sourceID="RR35_RP1_M1_C3" targetID="RR35_PP1_M1_C3"/>
+          <MapItem sourceID="RR35_RP1_M1_C4" targetID="RR35_PP1_M1_C4"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR35_RP1_M1_C1" finalState="0"/>
+          <ChangeCompartment id="RR35_RP1_M1" source="cell" destination="medium" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR36" name="Export_ASLoOH" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR36_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR36_RP1_M1" name="AS_m" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR36_RP1_M1_C1" name="AS_c" state="AS_c" numberOfBonds="0"/>
+                  <Component id="RR36_RP1_M1_C2" name="l" state="L" numberOfBonds="0"/>
+                  <Component id="RR36_RP1_M1_C3" name="ooh" state="OOH" numberOfBonds="0"/>
+                  <Component id="RR36_RP1_M1_C4" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR36_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR36_PP1_M1" name="AS_m" compartment="medium">
+                <ListOfComponents>
+                  <Component id="RR36_PP1_M1_C1" name="AS_c" state="0" numberOfBonds="0"/>
+                  <Component id="RR36_PP1_M1_C2" name="l" state="L" numberOfBonds="0"/>
+                  <Component id="RR36_PP1_M1_C3" name="ooh" state="OOH" numberOfBonds="0"/>
+                  <Component id="RR36_PP1_M1_C4" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR36_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="Export_ASLoOH_k"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR36_RP1_M1" targetID="RR36_PP1_M1"/>
+          <MapItem sourceID="RR36_RP1_M1_C1" targetID="RR36_PP1_M1_C1"/>
+          <MapItem sourceID="RR36_RP1_M1_C2" targetID="RR36_PP1_M1_C2"/>
+          <MapItem sourceID="RR36_RP1_M1_C3" targetID="RR36_PP1_M1_C3"/>
+          <MapItem sourceID="RR36_RP1_M1_C4" targetID="RR36_PP1_M1_C4"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR36_RP1_M1_C1" finalState="0"/>
+          <ChangeCompartment id="RR36_RP1_M1" source="cell" destination="medium" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR37" name="Export_ASpOH" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR37_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR37_RP1_M1" name="AS_m" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR37_RP1_M1_C1" name="AS_c" state="AS_c" numberOfBonds="0"/>
+                  <Component id="RR37_RP1_M1_C2" name="l" state="0" numberOfBonds="0"/>
+                  <Component id="RR37_RP1_M1_C3" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="RR37_RP1_M1_C4" name="poh" state="POH" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR37_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR37_PP1_M1" name="AS_m" compartment="medium">
+                <ListOfComponents>
+                  <Component id="RR37_PP1_M1_C1" name="AS_c" state="0" numberOfBonds="0"/>
+                  <Component id="RR37_PP1_M1_C2" name="l" state="0" numberOfBonds="0"/>
+                  <Component id="RR37_PP1_M1_C3" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="RR37_PP1_M1_C4" name="poh" state="POH" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR37_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="Export_ASpOH_k"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR37_RP1_M1" targetID="RR37_PP1_M1"/>
+          <MapItem sourceID="RR37_RP1_M1_C1" targetID="RR37_PP1_M1_C1"/>
+          <MapItem sourceID="RR37_RP1_M1_C2" targetID="RR37_PP1_M1_C2"/>
+          <MapItem sourceID="RR37_RP1_M1_C3" targetID="RR37_PP1_M1_C3"/>
+          <MapItem sourceID="RR37_RP1_M1_C4" targetID="RR37_PP1_M1_C4"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR37_RP1_M1_C1" finalState="0"/>
+          <ChangeCompartment id="RR37_RP1_M1" source="cell" destination="medium" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR38" name="Import_ASoOH" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR38_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR38_RP1_M1" name="AS_m" compartment="medium">
+                <ListOfComponents>
+                  <Component id="RR38_RP1_M1_C1" name="AS_c" state="0" numberOfBonds="0"/>
+                  <Component id="RR38_RP1_M1_C2" name="l" state="0" numberOfBonds="0"/>
+                  <Component id="RR38_RP1_M1_C3" name="ooh" state="OOH" numberOfBonds="0"/>
+                  <Component id="RR38_RP1_M1_C4" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR38_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR38_PP1_M1" name="AS_m" compartment="cell">
+                <ListOfComponents>
+                  <Component id="RR38_PP1_M1_C1" name="AS_c" state="AS_c" numberOfBonds="0"/>
+                  <Component id="RR38_PP1_M1_C2" name="l" state="0" numberOfBonds="0"/>
+                  <Component id="RR38_PP1_M1_C3" name="ooh" state="OOH" numberOfBonds="0"/>
+                  <Component id="RR38_PP1_M1_C4" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR38_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="Import_ASoOH_k"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR38_RP1_M1" targetID="RR38_PP1_M1"/>
+          <MapItem sourceID="RR38_RP1_M1_C1" targetID="RR38_PP1_M1_C1"/>
+          <MapItem sourceID="RR38_RP1_M1_C2" targetID="RR38_PP1_M1_C2"/>
+          <MapItem sourceID="RR38_RP1_M1_C3" targetID="RR38_PP1_M1_C3"/>
+          <MapItem sourceID="RR38_RP1_M1_C4" targetID="RR38_PP1_M1_C4"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR38_RP1_M1_C1" finalState="AS_c"/>
+          <ChangeCompartment id="RR38_RP1_M1" source="medium" destination="cell" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="AS_m_medium" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" compartment="medium" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="AS_m">
+                <ListOfComponents>
+                  <Component id="O1_P1_M1_C1" name="AS_c" state="0" numberOfBonds="0"/>
+                  <Component id="O1_P1_M1_C2" name="l" state="0" numberOfBonds="0"/>
+                  <Component id="O1_P1_M1_C3" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="O1_P1_M1_C4" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="ASL_m_medium" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" compartment="medium" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="ASL">
+                <ListOfComponents>
+                  <Component id="O2_P1_M1_C1" name="_m" state="_M" numberOfBonds="0"/>
+                  <Component id="O2_P1_M1_C2" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="O2_P1_M1_C3" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="ASoOH_m_medium" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" compartment="medium" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="AS_m">
+                <ListOfComponents>
+                  <Component id="O3_P1_M1_C1" name="AS_c" state="0" numberOfBonds="0"/>
+                  <Component id="O3_P1_M1_C2" name="l" state="0" numberOfBonds="0"/>
+                  <Component id="O3_P1_M1_C3" name="ooh" state="OOH" numberOfBonds="0"/>
+                  <Component id="O3_P1_M1_C4" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="ASLpOH_m_medium" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" compartment="medium" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="AS_m">
+                <ListOfComponents>
+                  <Component id="O4_P1_M1_C1" name="AS_c" state="0" numberOfBonds="0"/>
+                  <Component id="O4_P1_M1_C2" name="l" state="L" numberOfBonds="0"/>
+                  <Component id="O4_P1_M1_C3" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="O4_P1_M1_C4" name="poh" state="POH" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="ASpOH_m_medium" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" compartment="medium" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="AS_m">
+                <ListOfComponents>
+                  <Component id="O5_P1_M1_C1" name="AS_c" state="0" numberOfBonds="0"/>
+                  <Component id="O5_P1_M1_C2" name="l" state="0" numberOfBonds="0"/>
+                  <Component id="O5_P1_M1_C3" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="O5_P1_M1_C4" name="poh" state="POH" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O6" name="ASLoOH_m_medium" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O6_P1" compartment="medium" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O6_P1_M1" name="AS_m">
+                <ListOfComponents>
+                  <Component id="O6_P1_M1_C1" name="AS_c" state="0" numberOfBonds="0"/>
+                  <Component id="O6_P1_M1_C2" name="l" state="L" numberOfBonds="0"/>
+                  <Component id="O6_P1_M1_C3" name="ooh" state="OOH" numberOfBonds="0"/>
+                  <Component id="O6_P1_M1_C4" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O7" name="AS_c_cell" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O7_P1" compartment="cell" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O7_P1_M1" name="AS_m">
+                <ListOfComponents>
+                  <Component id="O7_P1_M1_C1" name="AS_c" state="AS_c" numberOfBonds="0"/>
+                  <Component id="O7_P1_M1_C2" name="l" state="0" numberOfBonds="0"/>
+                  <Component id="O7_P1_M1_C3" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="O7_P1_M1_C4" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O8" name="ASL_c_cell" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O8_P1" compartment="cell" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O8_P1_M1" name="AS_m">
+                <ListOfComponents>
+                  <Component id="O8_P1_M1_C1" name="AS_c" state="AS_c" numberOfBonds="0"/>
+                  <Component id="O8_P1_M1_C2" name="l" state="L" numberOfBonds="0"/>
+                  <Component id="O8_P1_M1_C3" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="O8_P1_M1_C4" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O9" name="ASpOH_c_cell" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O9_P1" compartment="cell" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O9_P1_M1" name="AS_m">
+                <ListOfComponents>
+                  <Component id="O9_P1_M1_C1" name="AS_c" state="AS_c" numberOfBonds="0"/>
+                  <Component id="O9_P1_M1_C2" name="l" state="0" numberOfBonds="0"/>
+                  <Component id="O9_P1_M1_C3" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="O9_P1_M1_C4" name="poh" state="POH" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O10" name="ASoOH_c_cell" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O10_P1" compartment="cell" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O10_P1_M1" name="AS_m">
+                <ListOfComponents>
+                  <Component id="O10_P1_M1_C1" name="AS_c" state="AS_c" numberOfBonds="0"/>
+                  <Component id="O10_P1_M1_C2" name="l" state="0" numberOfBonds="0"/>
+                  <Component id="O10_P1_M1_C3" name="ooh" state="OOH" numberOfBonds="0"/>
+                  <Component id="O10_P1_M1_C4" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O11" name="ASLpOH_c_cell" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O11_P1" compartment="cell" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O11_P1_M1" name="AS_m">
+                <ListOfComponents>
+                  <Component id="O11_P1_M1_C1" name="AS_c" state="AS_c" numberOfBonds="0"/>
+                  <Component id="O11_P1_M1_C2" name="l" state="L" numberOfBonds="0"/>
+                  <Component id="O11_P1_M1_C3" name="ooh" state="0" numberOfBonds="0"/>
+                  <Component id="O11_P1_M1_C4" name="poh" state="POH" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O12" name="ASLoOH_c_cell" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O12_P1" compartment="cell" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O12_P1_M1" name="AS_m">
+                <ListOfComponents>
+                  <Component id="O12_P1_M1_C1" name="AS_c" state="AS_c" numberOfBonds="0"/>
+                  <Component id="O12_P1_M1_C2" name="l" state="L" numberOfBonds="0"/>
+                  <Component id="O12_P1_M1_C3" name="ooh" state="OOH" numberOfBonds="0"/>
+                  <Component id="O12_P1_M1_C4" name="poh" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O13" name="ASpOH_b_cell" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O13_P1" compartment="cell" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O13_P1_M1" name="ASpOH_b"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O14" name="ASoOH_b_cell" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O14_P1" compartment="cell" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O14_P1_M1" name="ASoOH_b"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O15" name="ASLpOH_b_cell" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O15_P1" compartment="cell" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O15_P1_M1" name="ASLpOH_b"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O16" name="ASLoOH_b_cell" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O16_P1" compartment="cell" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O16_P1_M1" name="ASLoOH_b"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O17" name="AS_b_cell" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O17_P1" compartment="cell" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O17_P1_M1" name="AS_b"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O18" name="ASL_b_cell" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O18_P1" compartment="cell" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O18_P1_M1" name="ASL_b"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="fRate2">
+        <ListOfReferences>
+          <Reference name="CYP3A4_ASLoOH_Km1" type="Constant"/>
+          <Reference name="CYP3A4_ASLpOH_Km1" type="Constant"/>
+          <Reference name="CYP3A4_ASoOH_Km1" type="Constant"/>
+          <Reference name="CYP3A4_ASpOH_Km1" type="Constant"/>
+          <Reference name="CYP3A4_ASpOH_Vmax" type="Constant"/>
+          <Reference name="ASL_c_cell" type="Observable"/>
+          <Reference name="AS_c_cell" type="Observable"/>
+        </ListOfReferences>
+        <Expression> CYP3A4_ASpOH_Vmax/((((((ASL_c_cell*CYP3A4_ASpOH_Km1)/CYP3A4_ASLpOH_Km1)+((ASL_c_cell*CYP3A4_ASpOH_Km1)/CYP3A4_ASLoOH_Km1))+AS_c_cell)+((AS_c_cell*CYP3A4_ASpOH_Km1)/CYP3A4_ASoOH_Km1))+CYP3A4_ASpOH_Km1) </Expression>
+      </Function>
+      <Function id="fRate3">
+        <ListOfReferences>
+          <Reference name="CYP3A4_ASLoOH_Km1" type="Constant"/>
+          <Reference name="CYP3A4_ASLpOH_Km1" type="Constant"/>
+          <Reference name="CYP3A4_ASoOH_Km1" type="Constant"/>
+          <Reference name="CYP3A4_ASoOH_Vmax" type="Constant"/>
+          <Reference name="CYP3A4_ASpOH_Km1" type="Constant"/>
+          <Reference name="ASL_c_cell" type="Observable"/>
+          <Reference name="AS_c_cell" type="Observable"/>
+        </ListOfReferences>
+        <Expression> CYP3A4_ASoOH_Vmax/((((((ASL_c_cell*CYP3A4_ASoOH_Km1)/CYP3A4_ASLpOH_Km1)+((ASL_c_cell*CYP3A4_ASoOH_Km1)/CYP3A4_ASLoOH_Km1))+((AS_c_cell*CYP3A4_ASoOH_Km1)/CYP3A4_ASpOH_Km1))+AS_c_cell)+CYP3A4_ASoOH_Km1) </Expression>
+      </Function>
+      <Function id="fRate4">
+        <ListOfReferences>
+          <Reference name="CYP3A4_ASLoOH_Km1" type="Constant"/>
+          <Reference name="CYP3A4_ASLpOH_Km1" type="Constant"/>
+          <Reference name="CYP3A4_ASLpOH_Vmax" type="Constant"/>
+          <Reference name="CYP3A4_ASoOH_Km1" type="Constant"/>
+          <Reference name="CYP3A4_ASpOH_Km1" type="Constant"/>
+          <Reference name="ASL_c_cell" type="Observable"/>
+          <Reference name="AS_c_cell" type="Observable"/>
+        </ListOfReferences>
+        <Expression> CYP3A4_ASLpOH_Vmax/((((ASL_c_cell+((ASL_c_cell*CYP3A4_ASLpOH_Km1)/CYP3A4_ASLoOH_Km1))+((AS_c_cell*CYP3A4_ASLpOH_Km1)/CYP3A4_ASpOH_Km1))+((AS_c_cell*CYP3A4_ASLpOH_Km1)/CYP3A4_ASoOH_Km1))+CYP3A4_ASLpOH_Km1) </Expression>
+      </Function>
+      <Function id="fRate5">
+        <ListOfReferences>
+          <Reference name="CYP3A4_ASLoOH_Km1" type="Constant"/>
+          <Reference name="CYP3A4_ASLoOH_Vmax" type="Constant"/>
+          <Reference name="CYP3A4_ASLpOH_Km1" type="Constant"/>
+          <Reference name="CYP3A4_ASoOH_Km1" type="Constant"/>
+          <Reference name="CYP3A4_ASpOH_Km1" type="Constant"/>
+          <Reference name="ASL_c_cell" type="Observable"/>
+          <Reference name="AS_c_cell" type="Observable"/>
+        </ListOfReferences>
+        <Expression> CYP3A4_ASLoOH_Vmax/((((((ASL_c_cell*CYP3A4_ASLoOH_Km1)/CYP3A4_ASLpOH_Km1)+ASL_c_cell)+((AS_c_cell*CYP3A4_ASLoOH_Km1)/CYP3A4_ASpOH_Km1))+((AS_c_cell*CYP3A4_ASLoOH_Km1)/CYP3A4_ASoOH_Km1))+CYP3A4_ASLoOH_Km1) </Expression>
+      </Function>
+      <Function id="fRate7">
+        <ListOfReferences>
+          <Reference name="UGT1A3_AS_KI1" type="Constant"/>
+          <Reference name="UGT1A3_AS_Km1" type="Constant"/>
+          <Reference name="UGT1A3_AS_Vmax" type="Constant"/>
+          <Reference name="AS_c_cell" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (UGT1A3_AS_KI1*UGT1A3_AS_Vmax)/((AS_c_cell^2)+(UGT1A3_AS_KI1*(AS_c_cell+UGT1A3_AS_Km1))) </Expression>
+      </Function>
+      <Function id="fRate8">
+        <ListOfReferences>
+          <Reference name="k_CR_ASL_c" type="Constant"/>
+          <Reference name="k_PON_ASL_c" type="Constant"/>
+          <Reference name="ASL_c_cell" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ASL_c_cell*(k_CR_ASL_c+k_PON_ASL_c) </Expression>
+      </Function>
+      <Function id="fRate9">
+        <ListOfReferences>
+          <Reference name="k_CR_ASL_c" type="Constant"/>
+          <Reference name="k_PON_OH_c" type="Constant"/>
+          <Reference name="ASLoOH_c_cell" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ASLoOH_c_cell*(k_CR_ASL_c+k_PON_OH_c) </Expression>
+      </Function>
+      <Function id="fRate10">
+        <ListOfReferences>
+          <Reference name="k_CR_ASL_c" type="Constant"/>
+          <Reference name="k_PON_OH_c" type="Constant"/>
+          <Reference name="ASLpOH_c_cell" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ASLpOH_c_cell*(k_CR_ASL_c+k_PON_OH_c) </Expression>
+      </Function>
+      <Function id="fRate15">
+        <ListOfReferences>
+          <Reference name="Prot_k1" type="Constant"/>
+          <Reference name="fu_AS" type="Constant"/>
+          <Reference name="ASpOH_b_cell" type="Observable"/>
+          <Reference name="ASpOH_c_cell" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Prot_k1*((-ASpOH_b_cell)+((ASpOH_c_cell*(1-fu_AS))/fu_AS)) </Expression>
+      </Function>
+      <Function id="fRate16">
+        <ListOfReferences>
+          <Reference name="Prot_k1" type="Constant"/>
+          <Reference name="fu_AS" type="Constant"/>
+          <Reference name="ASoOH_b_cell" type="Observable"/>
+          <Reference name="ASoOH_c_cell" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Prot_k1*((-ASoOH_b_cell)+((ASoOH_c_cell*(1-fu_AS))/fu_AS)) </Expression>
+      </Function>
+      <Function id="fRate17">
+        <ListOfReferences>
+          <Reference name="Prot_k1" type="Constant"/>
+          <Reference name="fu_ASL" type="Constant"/>
+          <Reference name="ASLpOH_b_cell" type="Observable"/>
+          <Reference name="ASLpOH_c_cell" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Prot_k1*((-ASLpOH_b_cell)+((ASLpOH_c_cell*(1-fu_ASL))/fu_ASL)) </Expression>
+      </Function>
+      <Function id="fRate18">
+        <ListOfReferences>
+          <Reference name="Prot_k1" type="Constant"/>
+          <Reference name="fu_ASL" type="Constant"/>
+          <Reference name="ASLoOH_b_cell" type="Observable"/>
+          <Reference name="ASLoOH_c_cell" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Prot_k1*((-ASLoOH_b_cell)+((ASLoOH_c_cell*(1-fu_ASL))/fu_ASL)) </Expression>
+      </Function>
+      <Function id="fRate19">
+        <ListOfReferences>
+          <Reference name="Prot_k1" type="Constant"/>
+          <Reference name="fu_AS" type="Constant"/>
+          <Reference name="AS_b_cell" type="Observable"/>
+          <Reference name="AS_c_cell" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Prot_k1*((-AS_b_cell)+((AS_c_cell*(1-fu_AS))/fu_AS)) </Expression>
+      </Function>
+      <Function id="fRate20">
+        <ListOfReferences>
+          <Reference name="Prot_k1" type="Constant"/>
+          <Reference name="fu_ASL" type="Constant"/>
+          <Reference name="ASL_b_cell" type="Observable"/>
+          <Reference name="ASL_c_cell" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Prot_k1*((-ASL_b_cell)+((ASL_c_cell*(1-fu_ASL))/fu_ASL)) </Expression>
+      </Function>
+      <Function id="_rateLaw1">
+        <ListOfReferences>
+          <Reference name="fRate8" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate8() </Expression>
+      </Function>
+      <Function id="_rateLaw2">
+        <ListOfReferences>
+          <Reference name="fRate9" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate9() </Expression>
+      </Function>
+      <Function id="_rateLaw3">
+        <ListOfReferences>
+          <Reference name="fRate10" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate10() </Expression>
+      </Function>
+      <Function id="_rateLaw4">
+        <ListOfReferences>
+          <Reference name="fRate15" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate15() </Expression>
+      </Function>
+      <Function id="_rateLaw5">
+        <ListOfReferences>
+          <Reference name="fRate16" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate16() </Expression>
+      </Function>
+      <Function id="_rateLaw6">
+        <ListOfReferences>
+          <Reference name="fRate17" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate17() </Expression>
+      </Function>
+      <Function id="_rateLaw7">
+        <ListOfReferences>
+          <Reference name="fRate18" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate18() </Expression>
+      </Function>
+      <Function id="_rateLaw8">
+        <ListOfReferences>
+          <Reference name="fRate19" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate19() </Expression>
+      </Function>
+      <Function id="_rateLaw9">
+        <ListOfReferences>
+          <Reference name="fRate20" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate20() </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

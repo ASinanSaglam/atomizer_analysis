@@ -5,7 +5,7 @@
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/4932']
 #@creatorEmail:'viji@ebi.ac.uk'
 #@creatorName:'Chelliah Vijayalakshmi'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 15 molecules and 16 reactions. The translated model has 7 molecules and 19 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 15 molecules and 16 reactions. The translated model has 7 molecules and 19 rules'
 ###
 begin model
 begin parameters
@@ -96,16 +96,16 @@ begin molecule types
 	Sho1(pbs2)
 	#^ bqbiol:encodes sgd:S000003664
 	Pbs2(p~P~0,sho1)
-	#^ bqbiol:isVersionOf uniprot:P32485
-	#^ bqbiol:isEncodedBy sgd:S000004103
-	Hog1(p~P~0,p2~P~0)
 	#^ bqbiol:isVersionOf chebi:CHEBI:36080
 	Protein()
-	#^ bqbiol:isVersionOf chebi:CHEBI:33699
-	RNA()
 	#^ bqbiol:isVersionOf uniprot:P23900
 	#^ bqbiol:isEncodedBy sgd:S000003966
 	Fps1(p~P~0)
+	#^ bqbiol:isVersionOf chebi:CHEBI:33699
+	RNA()
+	#^ bqbiol:isVersionOf uniprot:P32485
+	#^ bqbiol:isEncodedBy sgd:S000004103
+	Hog1(p~P~0,p2~P~0)
 end molecule types
 begin seed species
 	@compartment_1:Glyin(Glyex~0) (180000.0) * compartment_1 #species_1
@@ -140,9 +140,9 @@ end observables
 begin functions
 	parameter_16() = 19.8775701034055*6^(2/3)
 	parameter_21() =  if(( 50.0 >parameter_15),(parameter_9* ln( 50.0 /parameter_15)),(0))
-	parameter_45() = 0.0338983050847458*Glyin_compartment_1 + 0.0338983050847458*parameter_20*parameter_46
 	parameter_49() =  if((time()>parameter_48),(parameter_11+1000000*parameter_23*parameter_4*(2-2*exp((parameter_48-time())/parameter_6))-parameter_50),(parameter_11-parameter_50))
 	parameter_44() = 2.0e-5*Glyex_compartment_2 + parameter_49
+	parameter_45() = 0.0338983050847458*Glyin_compartment_1 + 0.0338983050847458*parameter_20*parameter_46
 	arRatecompartment_1() = -parameter_16*parameter_7*(parameter_1*parameter_2*parameter_5*(parameter_44 - parameter_45) + parameter_21)
 	parameter_69() =  if((parameter_70==1),(if((time()>parameter_68),(parameter_67),(1))),(1))
 	Hog1PPActive_ar() = Hog1PP_compartment_1*parameter_69

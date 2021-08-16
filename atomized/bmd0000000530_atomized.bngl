@@ -1,11 +1,11 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000530', 'http://identifiers.org/biomodels.db/MODEL1402210000']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1402210000', 'http://identifiers.org/biomodels.db/BIOMD0000000530']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/24875477']
 #@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0010468']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
 #@creatorEmail:'winter@kapora.de'
 #@creatorName:'Winter Felix'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 10 molecules and 17 reactions. The translated model has 4 molecules and 17 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 10 molecules and 17 reactions. The translated model has 4 molecules and 17 rules'
 ###
 begin model
 begin parameters
@@ -31,10 +31,10 @@ begin parameters
 	r17_k1 1.000000
 end parameters
 begin molecule types
-	#^ bqbiol:is mirbase:MI0003575, biomodels.sbo:SBO:0000316
-	miRNA_1(mrna)
 	#^ bqbiol:isEncodedBy ensembl:ENSG00000151468
 	protein()
+	#^ bqbiol:is mirbase:MI0003575, biomodels.sbo:SBO:0000316
+	miRNA_1(mrna)
 	#^ bqbiol:is mirbase:MI0000476, biomodels.sbo:SBO:0000316
 	miRNA_2(mrna)
 	#^ bqbiol:is ensembl:ENSG00000151468, chebi:CHEBI:33699
@@ -48,9 +48,9 @@ begin observables
 	Species mRNA mRNA(mirna_1,mirna_2) #mRNA
 	Species miRNA_1 miRNA_1(mrna) #miRNA_1
 	Species miRNA_2 miRNA_2(mrna) #miRNA_2
-	Species duplex_1 mRNA(mirna_1!978,mirna_2).miRNA_1(mrna!978) #duplex_1
-	Species duplex_2 mRNA(mirna_1,mirna_2!979).miRNA_2(mrna!979) #duplex_2
-	Species triplex mRNA(mirna_1!978,mirna_2!979).miRNA_1(mrna!978).miRNA_2(mrna!979) #triplex
+	Species duplex_1 mRNA(mirna_1!69,mirna_2).miRNA_1(mrna!69) #duplex_1
+	Species duplex_2 mRNA(mirna_1,mirna_2!70).miRNA_2(mrna!70) #duplex_2
+	Species triplex mRNA(mirna_1!69,mirna_2!70).miRNA_1(mrna!69).miRNA_2(mrna!70) #triplex
 	Species protein protein() #protein
 end observables
 begin functions
@@ -60,21 +60,21 @@ begin functions
 	fRate15() = 1.0*mRNA
 end functions
 begin reaction rules
-	reaction_1: mRNA(mirna_1,mirna_2) + miRNA_1(mrna) -> mRNA(mirna_1!978,mirna_2).miRNA_1(mrna!978) r1_k1 #Modifiers(species_1, species_2)
-	reaction_2: mRNA(mirna_1,mirna_2) + miRNA_2(mrna) -> mRNA(mirna_1,mirna_2!979).miRNA_2(mrna!979) r2_k1 #Modifiers(species_1, species_3)
-	reaction_3: mRNA(mirna_1,mirna_2) + miRNA_1(mrna) + miRNA_2(mrna) -> mRNA(mirna_1!978,mirna_2!979).miRNA_1(mrna!978).miRNA_2(mrna!979) r3_k1 #Modifiers(species_1, species_2, species_3)
+	reaction_1: mRNA(mirna_1,mirna_2) + miRNA_1(mrna) -> mRNA(mirna_1!69,mirna_2).miRNA_1(mrna!69) r1_k1 #Modifiers(species_1, species_2)
+	reaction_2: mRNA(mirna_1,mirna_2) + miRNA_2(mrna) -> mRNA(mirna_1,mirna_2!70).miRNA_2(mrna!70) r2_k1 #Modifiers(species_1, species_3)
+	reaction_3: mRNA(mirna_1,mirna_2) + miRNA_1(mrna) + miRNA_2(mrna) -> mRNA(mirna_1!69,mirna_2!70).miRNA_1(mrna!69).miRNA_2(mrna!70) r3_k1 #Modifiers(species_1, species_2, species_3)
 	reaction_4: 0  -> mRNA(mirna_1,mirna_2) fRate3() #Modifiers(species_7, species_7)
 	reaction_5: 0  -> miRNA_1(mrna) fRate4() #Modifiers(species_8, species_8)
 	reaction_6: 0  -> miRNA_2(mrna) fRate5() #Modifiers(species_9, species_9)
 	reaction_7: mRNA(mirna_1,mirna_2) -> 0  r7_k1 #Modifiers(species_1)
 	reaction_8: miRNA_1(mrna) -> 0  r8_k1 #Modifiers(species_2)
 	reaction_9: miRNA_2(mrna) -> 0  r9_k1 #Modifiers(species_3)
-	reaction_10: mRNA(mirna_1!978,mirna_2).miRNA_1(mrna!978) -> miRNA_1(mrna) + mRNA(mirna_1,mirna_2) r10_k1 #Modifiers(species_4)
-	reaction_11: mRNA(mirna_1,mirna_2!979).miRNA_2(mrna!979) -> miRNA_2(mrna) + mRNA(mirna_1,mirna_2) r11_k1 #Modifiers(species_5)
-	reaction_12: mRNA(mirna_1!978,mirna_2!979).miRNA_1(mrna!978).miRNA_2(mrna!979) -> miRNA_1(mrna) + miRNA_2(mrna) + mRNA(mirna_1,mirna_2) r12_k1 #Modifiers(species_6)
-	reaction_13: mRNA(mirna_1!978,mirna_2).miRNA_1(mrna!978) -> 0  r13_k1 #Modifiers(species_4)
-	reaction_14: mRNA(mirna_1,mirna_2!979).miRNA_2(mrna!979) -> 0  r14_k1 #Modifiers(species_5)
-	reaction_15: mRNA(mirna_1!978,mirna_2!979).miRNA_1(mrna!978).miRNA_2(mrna!979) -> 0  r15_k1 #Modifiers(species_6)
+	reaction_10: mRNA(mirna_1!69,mirna_2).miRNA_1(mrna!69) -> miRNA_1(mrna) + mRNA(mirna_1,mirna_2) r10_k1 #Modifiers(species_4)
+	reaction_11: mRNA(mirna_1,mirna_2!70).miRNA_2(mrna!70) -> miRNA_2(mrna) + mRNA(mirna_1,mirna_2) r11_k1 #Modifiers(species_5)
+	reaction_12: mRNA(mirna_1!69,mirna_2!70).miRNA_1(mrna!69).miRNA_2(mrna!70) -> miRNA_1(mrna) + miRNA_2(mrna) + mRNA(mirna_1,mirna_2) r12_k1 #Modifiers(species_6)
+	reaction_13: mRNA(mirna_1!69,mirna_2).miRNA_1(mrna!69) -> 0  r13_k1 #Modifiers(species_4)
+	reaction_14: mRNA(mirna_1,mirna_2!70).miRNA_2(mrna!70) -> 0  r14_k1 #Modifiers(species_5)
+	reaction_15: mRNA(mirna_1!69,mirna_2!70).miRNA_1(mrna!69).miRNA_2(mrna!70) -> 0  r15_k1 #Modifiers(species_6)
 	reaction_16: 0  -> protein() fRate15() #Modifiers(species_1, species_1)
 	reaction_17: protein() -> 0  r17_k1 #Modifiers(species_10)
 end reaction rules

@@ -1,16 +1,16 @@
 ###
 #@BQM_IS:['http://identifiers.org/biomodels.db/MODEL7817907010', 'http://identifiers.org/biomodels.db/BIOMD0000000693']
-#@BQM_HAS_INSTANCE:['http://identifiers.org/go/GO:0022832', 'http://identifiers.org/taxonomy/9606', 'http://identifiers.org/doid/DOID:332', 'http://identifiers.org/go/GO:0042493', 'http://identifiers.org/bto/BTO:0001103', 'http://identifiers.org/biomodels.db/MODEL7817907010', 'http://identifiers.org/go/GO:0001508', 'http://identifiers.org/modeldb/105528', 'http://identifiers.org/kegg.drug/D00775']
+#@BQM_HAS_INSTANCE:['http://identifiers.org/bto/BTO:0001103', 'http://identifiers.org/taxonomy/9606', 'http://identifiers.org/biomodels.db/MODEL7817907010', 'http://identifiers.org/go/GO:0022832', 'http://identifiers.org/modeldb/105528', 'http://identifiers.org/go/GO:0001508', 'http://identifiers.org/go/GO:0042493', 'http://identifiers.org/kegg.drug/D00775', 'http://identifiers.org/doid/DOID:332']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/18068197']
 #@BQB_HAS_PART:['http://identifiers.org/kegg.drug/D00775']
 #@BQB_IS:['http://identifiers.org/modeldb/105528']
-#@BQB_IS_VERSION_OF:['http://identifiers.org/doid/DOID:332', 'http://identifiers.org/go/GO:0022832', 'http://identifiers.org/go/GO:0042493']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0022832', 'http://identifiers.org/go/GO:0042493', 'http://identifiers.org/doid/DOID:332']
 #@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0001103']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
 #@BQB_IS_DESCRIBED_BY:['http://identifiers.org/go/GO:0001508', 'http://identifiers.org/pubmed/18068197']
 #@creatorEmail:'mroberts@ebi.ac.uk'
 #@creatorName:'Roberts Matthew Grant'
-#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 27 molecules and 0 reactions. The translated model has 9 molecules and 9 rules'
+#@notes:'This is a plain translation of an SBML model created on 14/08/2021. The original model has 27 molecules and 0 reactions. The translated model has 9 molecules and 9 rules'
 ###
 begin model
 begin parameters
@@ -72,15 +72,15 @@ begin parameters
 	jer 0 #original 0.039925substance/volume
 end parameters
 begin molecule types
-	c()
-	n()
-	Vm()
-	Vt()
-	d()
-	h()
-	o()
 	cer()
+	d()
+	o()
+	Vt()
+	Vm()
+	n()
+	h()
 	m()
+	c()
 end molecule types
 begin seed species
 	h() 6.022e+20 # (1.0 * 0.001)mol/L * 6.022e23/mol *1.0L #h #h
@@ -101,36 +101,36 @@ begin observables
 	Species cer cer() #cer
 end observables
 begin functions
-	IT_ar() = (Vm - Vt)/Rs
-	w_ar() = c^5/(c^5 + kd^5)
-	IKCa_ar() = gKca*o*w_ar*(-EK + Vm)
 	Stimulus_ar() =  if((time()>=Stimulus_Start&&-Stimulus_Period*min(rint(((-Stimulus_Start+time())/Stimulus_Period)-0.5),rint(((-Stimulus_Start+time())/Stimulus_Period)+0.5))-Stimulus_Start+time()<Stimulus_Duration),(Stimulus_Magnitude),(0))
-	INa_ar() = gNa_max*h*m^3*(-ENa + Vm)
 	gca() = -Vm*gcabar/(exp(0.117*Vm) - 1)
 	ICa_ar() = d^2*gca
 	IL_ar() = gL_max*(-EL + Vm)
+	w_ar() = c^5/(c^5 + kd^5)
+	IKCa_ar() = gKca*o*w_ar*(-EK + Vm)
+	IT_ar() = (Vm - Vt)/Rs
 	IK_ar() = gk_max*n^4*(-EK + Vm)
+	INa_ar() = gNa_max*h*m^3*(-ENa + Vm)
 	arRateVm() = (-ICa_ar - IKCa_ar - IK_ar - IL_ar - INa_ar - IT_ar + Stimulus_ar)/Cm
-	jleak_ar() = pleak*(-c + cer)
-	jserca_ar() = c*kserca
-	jer_ar() = jleak_ar - jserca_ar
 	jmem_ar() = -ICa_ar*alpha - c*kpmca
+	jserca_ar() = c*kserca
+	jleak_ar() = pleak*(-c + cer)
+	jer_ar() = jleak_ar - jserca_ar
 	arRatec() = fcyt*(jer_ar + jmem_ar)
-	beta() = bbar/(c/(k2*exp(-0.0748769545457734*Vm*d2)) + 1)
 	alp() = abar/(1 + k1*exp(-0.0748769545457734*Vm*d1)/c)
+	beta() = bbar/(c/(k2*exp(-0.0748769545457734*Vm*d2)) + 1)
 	tau() = 1/(alp + beta)
 	ooinf() = alp*tau
 	arRateo() = (-o + ooinf)/tau
-	taud() = 80*cosh(-0.031*Vm - 1.1501)
 	dinf() = 1/(exp(-0.0884955752212389*Vm - 2.17699115044248) + 1)
+	taud() = 80*cosh(-0.031*Vm - 1.1501)
 	alphad() = dinf/taud
 	betad() = (1 - dinf)/taud
 	arRated() = alphad*(1 - d) - betad*d
 	beta_n_ar() = beta_n_max*exp((En - Vm)/v_beta_n)
 	alpha_n_ar() = alpha_n_max*(-En + Vm)/(1 - exp((En - Vm)/v_alpha_n))
 	arRaten() = alpha_n_ar*(1 - n) - beta_n_ar*n
-	beta_h_ar() = beta_h_max/(exp((Eh - Vm)/v_beta_h) + 1)
 	alpha_h_ar() = alpha_h_max*exp((Eh - Vm)/v_alpha_m)
+	beta_h_ar() = beta_h_max/(exp((Eh - Vm)/v_beta_h) + 1)
 	arRateh() = alpha_h_ar*(1 - h) - beta_h_ar*h
 	alpha_m_ar() = alpha_m_max*(-Em + Vm)/(1 - exp((Em - Vm)/v_alpha_m))
 	beta_m_ar() = beta_m_max*exp((Em - Vm)/v_beta_m)

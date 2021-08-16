@@ -1,13 +1,13 @@
 ###
 #@BQM_IS:['http://identifiers.org/biomodels.db/MODEL6615234250', 'http://identifiers.org/biomodels.db/BIOMD0000000011']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/10823939']
-#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/6501300', 'http://identifiers.org/biomodels.db/BIOMD0000000009', 'http://identifiers.org/pubmed/6947258']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/6947258', 'http://identifiers.org/pubmed/6501300', 'http://identifiers.org/biomodels.db/BIOMD0000000009']
 #@BQB_IS_HOMOLOG_TO:['http://identifiers.org/reactome/REACT_634']
 #@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0000165']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/8355']
 #@creatorEmail:'bshapiro@jpl.nasa.gov'
 #@creatorName:'Shapiro Bruce'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 22 molecules and 30 reactions. The translated model has 7 molecules and 30 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 22 molecules and 30 reactions. The translated model has 7 molecules and 30 rules'
 ###
 begin model
 begin parameters
@@ -43,17 +43,17 @@ begin parameters
 	r30_k10 0.100000
 end parameters
 begin molecule types
-	#^ bqbiol:isVersionOf interpro:IPR003577
-	RAFK(raf)
-	#^ bqbiol:isVersionOf uniprot:Q05116
-	MEK(_p~_P~0,mapk,mekphosphatase,p~P~0,raf)
 	#^ bqbiol:isVersionOf uniprot:P09560
 	RAF(_p~_P~0,mek,rafk,rafphosphatase)
+	#^ bqbiol:isVersionOf interpro:IPR003577
+	RAFK(raf)
 	RAFphosphatase(raf)
+	MEKphosphatase(mek)
+	#^ bqbiol:isVersionOf uniprot:Q05116
+	MEK(_p~_P~0,mapk,mekphosphatase,p~P~0,raf)
+	MAPKPase(hosphat~HOSPHAT~0,mapk)
 	#^ bqbiol:isVersionOf uniprot:P26696
 	MAPK(_p~_P~0,mapkpase,mek,p~P~0)
-	MEKphosphatase(mek)
-	MAPKPase(hosphat~HOSPHAT~0,mapk)
 end molecule types
 begin seed species
 	MAPK(_p~0,mapkpase,mek,p~0) 0.4 #MAPK #MAPK

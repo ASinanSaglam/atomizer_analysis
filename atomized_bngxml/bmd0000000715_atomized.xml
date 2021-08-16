@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000715_atomized">
+    <ListOfParameters>
+      <Parameter id="A" type="Constant" value="0.8" expr="0.8"/>
+      <Parameter id="beta" type="Constant" value="0.8" expr="0.8"/>
+      <Parameter id="alpha" type="Constant" value="0.08" expr="0.08"/>
+      <Parameter id="rho" type="Constant" value="0.09" expr="0.09"/>
+      <Parameter id="mu1" type="Constant" value="0.99" expr="0.99"/>
+      <Parameter id="mu2" type="Constant" value="0.4" expr="0.4"/>
+      <Parameter id="mu3" type="Constant" value="0.8" expr="0.8"/>
+      <Parameter id="alpha1" type="Constant" value="0.6" expr="0.6"/>
+      <Parameter id="alpha2" type="Constant" value="0.02" expr="0.02"/>
+      <Parameter id="tau" type="Constant" value="0.6" expr="0.6"/>
+      <Parameter id="gamma" type="Constant" value="0.7" expr="0.7"/>
+      <Parameter id="Totalpopulation__N__" type="Constant" value="5.4198e+21" expr="5.419800000000001e+21"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="ExposedIndividuals__E__">
+        <ListOfComponentTypes>
+          <ComponentType id="InfectedIndividuals__I__">
+            <ListOfAllowedStates>
+              <AllowedState id="InfectedIndividuals__I__"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="SusceptibleIndividuals__S__">
+            <ListOfAllowedStates>
+              <AllowedState id="SusceptibleIndividuals__S__"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="Message__M__"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="2.1077000000000001e+21" name="ExposedIndividuals__E__(InfectedIndividuals__I__~0,SusceptibleIndividuals__S__~SusceptibleIndividuals__S__)">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="ExposedIndividuals__E__">
+            <ListOfComponents>
+              <Component id="S1_M1_C1" name="InfectedIndividuals__I__" state="0" numberOfBonds="0"/>
+              <Component id="S1_M1_C2" name="SusceptibleIndividuals__S__" state="SusceptibleIndividuals__S__" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="1.5055e+21" name="ExposedIndividuals__E__(InfectedIndividuals__I__~0,SusceptibleIndividuals__S__~0)">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="ExposedIndividuals__E__">
+            <ListOfComponents>
+              <Component id="S2_M1_C1" name="InfectedIndividuals__I__" state="0" numberOfBonds="0"/>
+              <Component id="S2_M1_C2" name="SusceptibleIndividuals__S__" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="1.8066e+21" name="ExposedIndividuals__E__(InfectedIndividuals__I__~InfectedIndividuals__I__,SusceptibleIndividuals__S__~0)">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="ExposedIndividuals__E__">
+            <ListOfComponents>
+              <Component id="S3_M1_C1" name="InfectedIndividuals__I__" state="InfectedIndividuals__I__" numberOfBonds="0"/>
+              <Component id="S3_M1_C2" name="SusceptibleIndividuals__S__" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S4"  concentration="3.6132e+21" name="Message__M__()">
+        <ListOfMolecules>
+          <Molecule id="S4_M1" name="Message__M__"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="reaction_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="ExposedIndividuals__E__">
+                <ListOfComponents>
+                  <Component id="RR1_PP1_M1_C1" name="InfectedIndividuals__I__" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_PP1_M1_C2" name="SusceptibleIndividuals__S__" state="SusceptibleIndividuals__S__" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="A"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="reaction_2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="ExposedIndividuals__E__">
+                <ListOfComponents>
+                  <Component id="RR2_RP1_M1_C1" name="InfectedIndividuals__I__" state="InfectedIndividuals__I__" numberOfBonds="0"/>
+                  <Component id="RR2_RP1_M1_C2" name="SusceptibleIndividuals__S__" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="ExposedIndividuals__E__">
+                <ListOfComponents>
+                  <Component id="RR2_PP1_M1_C1" name="InfectedIndividuals__I__" state="0" numberOfBonds="0"/>
+                  <Component id="RR2_PP1_M1_C2" name="SusceptibleIndividuals__S__" state="SusceptibleIndividuals__S__" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="gamma"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1" targetID="RR2_PP1_M1"/>
+          <MapItem sourceID="RR2_RP1_M1_C1" targetID="RR2_PP1_M1_C1"/>
+          <MapItem sourceID="RR2_RP1_M1_C2" targetID="RR2_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR2_RP1_M1_C1" finalState="0"/>
+          <StateChange site="RR2_RP1_M1_C2" finalState="SusceptibleIndividuals__S__"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="reaction_3" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="ExposedIndividuals__E__">
+                <ListOfComponents>
+                  <Component id="RR3_RP1_M1_C1" name="InfectedIndividuals__I__" state="0" numberOfBonds="0"/>
+                  <Component id="RR3_RP1_M1_C2" name="SusceptibleIndividuals__S__" state="SusceptibleIndividuals__S__" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="ExposedIndividuals__E__">
+                <ListOfComponents>
+                  <Component id="RR3_PP1_M1_C1" name="InfectedIndividuals__I__" state="0" numberOfBonds="0"/>
+                  <Component id="RR3_PP1_M1_C2" name="SusceptibleIndividuals__S__" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="fRate2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1" targetID="RR3_PP1_M1"/>
+          <MapItem sourceID="RR3_RP1_M1_C1" targetID="RR3_PP1_M1_C1"/>
+          <MapItem sourceID="RR3_RP1_M1_C2" targetID="RR3_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR3_RP1_M1_C2" finalState="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="reaction_4" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="ExposedIndividuals__E__">
+                <ListOfComponents>
+                  <Component id="RR4_RP1_M1_C1" name="InfectedIndividuals__I__" state="0" numberOfBonds="0"/>
+                  <Component id="RR4_RP1_M1_C2" name="SusceptibleIndividuals__S__" state="SusceptibleIndividuals__S__" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="alpha1"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1"/>
+          <MapItem sourceID="RR4_RP1_M1_C1"/>
+          <MapItem sourceID="RR4_RP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR4_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="reaction_5" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR5_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP1_M1" name="ExposedIndividuals__E__">
+                <ListOfComponents>
+                  <Component id="RR5_RP1_M1_C1" name="InfectedIndividuals__I__" state="0" numberOfBonds="0"/>
+                  <Component id="RR5_RP1_M1_C2" name="SusceptibleIndividuals__S__" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="ExposedIndividuals__E__">
+                <ListOfComponents>
+                  <Component id="RR5_PP1_M1_C1" name="InfectedIndividuals__I__" state="InfectedIndividuals__I__" numberOfBonds="0"/>
+                  <Component id="RR5_PP1_M1_C2" name="SusceptibleIndividuals__S__" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="rho"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR5_RP1_M1" targetID="RR5_PP1_M1"/>
+          <MapItem sourceID="RR5_RP1_M1_C1" targetID="RR5_PP1_M1_C1"/>
+          <MapItem sourceID="RR5_RP1_M1_C2" targetID="RR5_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR5_RP1_M1_C1" finalState="InfectedIndividuals__I__"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="reaction_6" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR6_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_RP1_M1" name="ExposedIndividuals__E__">
+                <ListOfComponents>
+                  <Component id="RR6_RP1_M1_C1" name="InfectedIndividuals__I__" state="0" numberOfBonds="0"/>
+                  <Component id="RR6_RP1_M1_C2" name="SusceptibleIndividuals__S__" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="alpha1"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR6_RP1_M1"/>
+          <MapItem sourceID="RR6_RP1_M1_C1"/>
+          <MapItem sourceID="RR6_RP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR6_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="reaction_7_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="ExposedIndividuals__E__">
+                <ListOfComponents>
+                  <Component id="RR7_PP1_M1_C1" name="InfectedIndividuals__I__" state="InfectedIndividuals__I__" numberOfBonds="0"/>
+                  <Component id="RR7_PP1_M1_C2" name="SusceptibleIndividuals__S__" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Function" name="_rateLaw1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR7_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="reaction_8" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR8_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP1_M1" name="Message__M__"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Function" name="fRate7" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR8_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="reaction_9" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR9_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP1_M1" name="Message__M__"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Function" name="fRate8" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR9_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="reaction_10" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR10_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_PP1_M1" name="Message__M__"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Function" name="fRate9" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR10_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR11" name="reaction_11" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR11_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_RP1_M1" name="Message__M__"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR11_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="tau"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR11_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR11_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="SusceptibleIndividuals__S__" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="ExposedIndividuals__E__">
+                <ListOfComponents>
+                  <Component id="O1_P1_M1_C1" name="InfectedIndividuals__I__" state="0" numberOfBonds="0"/>
+                  <Component id="O1_P1_M1_C2" name="SusceptibleIndividuals__S__" state="SusceptibleIndividuals__S__" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="ExposedIndividuals__E__" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="ExposedIndividuals__E__">
+                <ListOfComponents>
+                  <Component id="O2_P1_M1_C1" name="InfectedIndividuals__I__" state="0" numberOfBonds="0"/>
+                  <Component id="O2_P1_M1_C2" name="SusceptibleIndividuals__S__" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="InfectedIndividuals__I__" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="ExposedIndividuals__E__">
+                <ListOfComponents>
+                  <Component id="O3_P1_M1_C1" name="InfectedIndividuals__I__" state="InfectedIndividuals__I__" numberOfBonds="0"/>
+                  <Component id="O3_P1_M1_C2" name="SusceptibleIndividuals__S__" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="Message__M__" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="Message__M__"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="Totalpopulation__N___ar">
+        <ListOfReferences>
+          <Reference name="ExposedIndividuals__E__" type="Observable"/>
+          <Reference name="InfectedIndividuals__I__" type="Observable"/>
+          <Reference name="SusceptibleIndividuals__S__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (ExposedIndividuals__E__+InfectedIndividuals__I__)+SusceptibleIndividuals__S__ </Expression>
+      </Function>
+      <Function id="fRate2">
+        <ListOfReferences>
+          <Reference name="alpha" type="Constant"/>
+          <Reference name="beta" type="Constant"/>
+          <Reference name="InfectedIndividuals__I__" type="Observable"/>
+          <Reference name="Message__M__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (InfectedIndividuals__I__*beta)*exp(((-Message__M__)*alpha)) </Expression>
+      </Function>
+      <Function id="fRate6">
+        <ListOfReferences>
+          <Reference name="alpha1" type="Constant"/>
+          <Reference name="alpha2" type="Constant"/>
+          <Reference name="InfectedIndividuals__I__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> InfectedIndividuals__I__*(alpha1+alpha2) </Expression>
+      </Function>
+      <Function id="fRate7">
+        <ListOfReferences>
+          <Reference name="mu1" type="Constant"/>
+          <Reference name="SusceptibleIndividuals__S__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> SusceptibleIndividuals__S__*mu1 </Expression>
+      </Function>
+      <Function id="fRate8">
+        <ListOfReferences>
+          <Reference name="mu2" type="Constant"/>
+          <Reference name="ExposedIndividuals__E__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ExposedIndividuals__E__*mu2 </Expression>
+      </Function>
+      <Function id="fRate9">
+        <ListOfReferences>
+          <Reference name="mu3" type="Constant"/>
+          <Reference name="InfectedIndividuals__I__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> InfectedIndividuals__I__*mu3 </Expression>
+      </Function>
+      <Function id="_rateLaw1">
+        <ListOfReferences>
+          <Reference name="fRate6" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate6() </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

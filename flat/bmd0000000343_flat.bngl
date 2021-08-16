@@ -8,7 +8,7 @@
 #@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:9351']
 #@creatorEmail:'ajmera@ebi.ac.uk'
 #@creatorName:'Ajmera Ishan'
-#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 26 molecules and 0 reactions. The translated model has 9 molecules and 9 rules'
+#@notes:'This is a plain translation of an SBML model created on 14/08/2021. The original model has 26 molecules and 0 reactions. The translated model has 9 molecules and 9 rules'
 ###
 begin model
 begin parameters
@@ -35,14 +35,14 @@ begin parameters
 	measIRp 6.022e+23 #original 1.0mol/L
 end parameters
 begin molecule types
-	IRS()
 	IRip()
-	X()
-	IR()
 	Xp()
-	IRSip()
+	X()
 	IRins()
+	IRSip()
+	IR()
 	IRi()
+	IRS()
 	IRp()
 end molecule types
 begin seed species
@@ -62,21 +62,21 @@ begin observables
 	Species Xp Xp() #Xp
 end observables
 begin functions
-	v1r_ar() = IRi*k1r
-	V1a_ar() = IR*ins*k1a + IR*k1abasic
 	V1b_ar() = IRins*k1b
+	V1a_ar() = IR*ins*k1a + IR*k1abasic
 	V1g_ar() = IRp*k1g
+	v1r_ar() = IRi*k1r
 	arRateIR() = -V1a_ar + V1b_ar + V1g_ar + v1r_ar
 	V1d_ar() = IRp*k1d
 	V1c_ar() = IRins*k1c
 	arRateIRp() = V1c_ar - V1d_ar - V1g_ar
 	arRateIRins() = V1a_ar - V1b_ar - V1c_ar
-	V3_ar() = IRSip*X*k3
 	Vm3_ar() = Xp*km3
+	V3_ar() = IRSip*X*k3
 	arRateXp() = V3_ar - Vm3_ar
 	arRateX() = -V3_ar + Vm3_ar
-	Vm2_ar() = IRSip*km2
 	V2_ar() = IRS*k21*(IRip*k22 + IRp)
+	Vm2_ar() = IRSip*km2
 	arRateIRSip() = V2_ar - Vm2_ar
 	arRateIRS() = -V2_ar + Vm2_ar
 	V1e_ar() = IRip*(Xp*k1f/(Xp + 1) + k1e)

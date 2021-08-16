@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000642_flat">
+    <ListOfParameters>
+      <Parameter id="alpha1" type="Constant" value="0.7" expr="0.7"/>
+      <Parameter id="alpha2" type="Constant" value="0.98" expr="0.98"/>
+      <Parameter id="beta1" type="Constant" value="0.3" expr="0.3"/>
+      <Parameter id="beta2" type="Constant" value="0.4" expr="0.4"/>
+      <Parameter id="delta1" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="gamma2" type="Constant" value="0.9" expr="0.9"/>
+      <Parameter id="s" type="Constant" value="0.4" expr="0.4"/>
+      <Parameter id="rho" type="Constant" value="0.2" expr="0.2"/>
+      <Parameter id="omega" type="Constant" value="0.3" expr="0.3"/>
+      <Parameter id="mu" type="Constant" value="0.29" expr="0.29"/>
+      <Parameter id="alpha3" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="gamma3" type="Constant" value="0.085" expr="0.085"/>
+      <Parameter id="sigma1" type="Constant" value="1.2" expr="1.2"/>
+      <Parameter id="sigma2" type="Constant" value="0.94" expr="0.94"/>
+      <Parameter id="sigma3" type="Constant" value="0.3" expr="0.3"/>
+      <Parameter id="v" type="Constant" value="0.4" expr="0.4"/>
+      <Parameter id="theta" type="Constant" value="0.8" expr="0.8"/>
+      <Parameter id="pi" type="Constant" value="0" expr="0"/>
+      <Parameter id="estrogen" type="Constant" value="3.011e+23" expr="3.010999999999994e+23"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="Immunecells"/>
+      <MoleculeType id="Tumourcells"/>
+      <MoleculeType id="normalcells"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="6.021999999999988e+23" name="normalcells()">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="normalcells"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="6.021999999999989e+18" name="Tumourcells()">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="Tumourcells"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="8.30620689759e+23" name="Immunecells()">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="Immunecells"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="_R1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="normalcells"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="arRateH" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="_R2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="Tumourcells"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="arRateT" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="_R3" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="Immunecells"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="arRateI" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="normalcells" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="normalcells"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="Tumourcells" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="Tumourcells"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="Immunecells" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="Immunecells"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="arRateI">
+        <ListOfReferences>
+          <Reference name="estrogen" type="Constant"/>
+          <Reference name="gamma3" type="Constant"/>
+          <Reference name="mu" type="Constant"/>
+          <Reference name="omega" type="Constant"/>
+          <Reference name="rho" type="Constant"/>
+          <Reference name="s" type="Constant"/>
+          <Reference name="sigma3" type="Constant"/>
+          <Reference name="v" type="Constant"/>
+          <Reference name="Immunecells" type="Observable"/>
+          <Reference name="Tumourcells" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((((((-Immunecells)*Tumourcells)*gamma3)+(((Immunecells*Tumourcells)*rho)/(Tumourcells+omega)))-(((Immunecells*estrogen)*sigma3)/(estrogen+v)))-(Immunecells*mu))+s </Expression>
+      </Function>
+      <Function id="arRateT">
+        <ListOfReferences>
+          <Reference name="alpha3" type="Constant"/>
+          <Reference name="beta2" type="Constant"/>
+          <Reference name="estrogen" type="Constant"/>
+          <Reference name="gamma2" type="Constant"/>
+          <Reference name="sigma2" type="Constant"/>
+          <Reference name="Immunecells" type="Observable"/>
+          <Reference name="Tumourcells" type="Observable"/>
+          <Reference name="normalcells" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((((-Immunecells)*Tumourcells)*gamma2)+(Tumourcells*(((-Tumourcells)*beta2)+alpha3)))+((estrogen*normalcells)*sigma2) </Expression>
+      </Function>
+      <Function id="arRateH">
+        <ListOfReferences>
+          <Reference name="alpha1" type="Constant"/>
+          <Reference name="beta1" type="Constant"/>
+          <Reference name="delta1" type="Constant"/>
+          <Reference name="estrogen" type="Constant"/>
+          <Reference name="sigma1" type="Constant"/>
+          <Reference name="Tumourcells" type="Observable"/>
+          <Reference name="normalcells" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((-estrogen)*normalcells)*sigma1)+(normalcells*((((-Tumourcells)*delta1)+alpha1)-(beta1*normalcells))) </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

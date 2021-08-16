@@ -1,11 +1,11 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1202090000', 'http://identifiers.org/biomodels.db/BIOMD0000000410']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000410', 'http://identifiers.org/biomodels.db/MODEL1202090000']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/22284904']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10090', 'http://identifiers.org/obo.bto/BTO:0000575']
 #@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0007179']
 #@creatorEmail:'viji@ebi.ac.uk'
 #@creatorName:'Chelliah Vijayalakshmi'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 53 molecules and 91 reactions. The translated model has 15 molecules and 101 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 53 molecules and 91 reactions. The translated model has 15 molecules and 101 rules'
 ###
 begin model
 begin parameters
@@ -158,84 +158,84 @@ begin compartments
 	_3 3 1.0 #nucleus
 end compartments
 begin molecule types
+	Smad3(_c~_C~0,_n~_N~0,p~P~0,sara,ski_c,smad4,snon)
+	Smad2(_c~_C~0,_n~_N~0,p~P~0,sara,ski_c,smad4,snon)
 	#^ bqbiol:isVersionOf cco:CCO:U0000003
 	geneProduct()
-	Smad7(_c~_C~0,_n~_N~0,smurf1,smurf2,tgf_rii)
+	Smurf1(_c~_C~0,_n~_N~0,smad7)
+	Arkadia(_c~_C~0,_n~_N~0)
+	Smurf2(_c~_C~0,_n~_N~0,smad7)
+	SnoN(_c~_C~0,_n~_N~0,smad2,smad3,smad4)
+	Smad4(_c~_C~0,_n~_N~0,ski_c,ski_c,smad2,smad2,smad3,smad3,snon,snon)
 	#^ bqbiol:isVersionOf uniprot:Q62312
 	TGF_RII(smad7,tgf_ri,tgf_rii)
 	inactivePromoters()
 	#^ bqbiol:isVersionOf uniprot:Q60698
 	Ski_c(Ski_n~Ski_n~0,smad2,smad3,smad4)
-	Smurf2(_c~_C~0,_n~_N~0,smad7)
-	#^ bqbiol:isHomologTo uniprot:A9XB08
-	SARA(smad2,smad3)
+	Smad7(_c~_C~0,_n~_N~0,smurf1,smurf2,tgf_rii)
 	freePromoters()
 	#^ bqbiol:isVersionOf uniprot:Q64729
 	TGF_RI(tgf_rii)
-	Smad3(_c~_C~0,_n~_N~0,p~P~0,sara,ski_c,smad4,snon)
-	Smad2(_c~_C~0,_n~_N~0,p~P~0,sara,ski_c,smad4,snon)
-	Smurf1(_c~_C~0,_n~_N~0,smad7)
-	Arkadia(_c~_C~0,_n~_N~0)
-	SnoN(_c~_C~0,_n~_N~0,smad2,smad3,smad4)
-	Smad4(_c~_C~0,_n~_N~0,ski_c,ski_c,smad2,smad2,smad3,smad3,snon,snon)
+	#^ bqbiol:isHomologTo uniprot:A9XB08
+	SARA(smad2,smad3)
 end molecule types
 begin seed species
-	@_3:freePromoters() 6.0219997100068264e+16 # (0.0999999951844375 * 1e-06)mol/L * 6.022e23/mol *1.0L #freePromoters #species_28
+	@_3:freePromoters()@_3 6.0219997100068264e+16 # (0.0999999951844375 * 1e-06)mol/L * 6.022e23/mol *1.0L #freePromoters #species_28
 end seed species
 begin observables
-	Species TGF_RII__1 @_1:TGF_RII(smad7,tgf_ri,tgf_rii) #TGF_RII
-	Species TGFbeta_TGF_RII__1 @_1:TGF_RII(smad7,tgf_ri,tgf_rii!706).TGF_RII(smad7,tgf_ri,tgf_rii!706) #TGFbeta_TGF_RII
-	Species TGF_RI__1 @_1:TGF_RI(tgf_rii) #TGF_RI
-	Species Rec_active__1 @_1:TGF_RII(smad7,tgf_ri!719,tgf_rii!706).TGF_RII(smad7,tgf_ri!718,tgf_rii!706).TGF_RI(tgf_rii!718).TGF_RI(tgf_rii!719) #Rec_active
-	Species Smad2_c__1 @_1:Smad2(_c~_C,_n~0,p~0,sara,ski_c,smad4,snon) #Smad2_c
-	Species SARA__1 @_1:SARA(smad2,smad3) #SARA
-	Species Smad2_SARA__1 @_1:Smad2(_c~0,_n~0,p~0,sara!702,ski_c,smad4,snon).SARA(smad2!702,smad3) #Smad2_SARA
-	Species pSmad2_c__1 @_1:Smad2(_c~_C,_n~0,p~P,sara,ski_c,smad4,snon) #pSmad2_c
-	Species Smad4_c__1 @_1:Smad4(_c~_C,_n~0,ski_c,ski_c,smad2,smad2,smad3,smad3,snon,snon) #Smad4_c
-	Species pSmad2_Smad4_c__1 @_1:Smad4(_c~_C,_n~0,ski_c,ski_c,smad2!277,smad2!715,smad3,smad3,snon,snon).Smad2(_c~_C,_n~0,p~P,sara,ski_c,smad4!277,snon).Smad2(_c~_C,_n~0,p~P,sara,ski_c,smad4!715,snon) #pSmad2_Smad4_c
-	Species Smad7_c__1 @_1:Smad7(_c~_C,_n~0,smurf1,smurf2,tgf_rii) #Smad7_c
-	Species Smad7_Smurf2_c__1 @_1:Smad7(_c~0,_n~0,smurf1,smurf2!709,tgf_rii).Smurf2(_c~_C,_n~0,smad7!709) #Smad7_Smurf2_c
-	Species Rec_Smad7__1 @_1:Smad7(_c~_C,_n~0,smurf1,smurf2,tgf_rii!720).TGF_RII(smad7,tgf_ri!719,tgf_rii!706).TGF_RII(smad7!720,tgf_ri!718,tgf_rii!706).TGF_RI(tgf_rii!718).TGF_RI(tgf_rii!719) #Rec_Smad7
-	Species Smurf2_c__1 @_1:Smurf2(_c~_C,_n~0,smad7) #Smurf2_c
-	Species SnoN_c__1 @_1:SnoN(_c~_C,_n~0,smad2,smad3,smad4) #SnoN_c
-	Species Smad3_c__1 @_1:Smad3(_c~_C,_n~0,p~0,sara,ski_c,smad4,snon) #Smad3_c
-	Species pSmad3_c__1 @_1:Smad3(_c~_C,_n~0,p~P,sara,ski_c,smad4,snon) #pSmad3_c
-	Species Smad3_SARA__1 @_1:Smad3(_c~0,_n~0,p~0,sara!703,ski_c,smad4,snon).SARA(smad2,smad3!703) #Smad3_SARA
-	Species pSmad3_Smad4_c__1 @_1:Smad4(_c~_C,_n~0,ski_c,ski_c,smad2,smad2,smad3!713,smad3!714,snon,snon).Smad3(_c~_C,_n~0,p~P,sara,ski_c,smad4!713,snon).Smad3(_c~_C,_n~0,p~P,sara,ski_c,smad4!714,snon) #pSmad3_Smad4_c
-	Species Ski_c__1 @_1:Ski_c(Ski_n~0,smad2,smad3,smad4) #Ski_c
-	Species Smad3_Ski_c__1 @_1:Smad3(_c~0,_n~0,p~0,sara,ski_c!704,smad4,snon).Ski_c(Ski_n~0,smad2,smad3!704,smad4) #Smad3_Ski_c
-	Species Smurf1_c__1 @_1:Smurf1(_c~_C,_n~0,smad7) #Smurf1_c
-	Species Smad7_Smurf1_c__1 @_1:Smad7(_c~0,_n~0,smurf1!710,smurf2,tgf_rii).Smurf1(_c~_C,_n~0,smad7!710) #Smad7_Smurf1_c
-	Species pSmad2_Smad4_Ski_n__1 @_1:Smad4(_c~0,_n~_N,ski_c!707,ski_c!716,smad2!277,smad2,smad3,smad3,snon,snon).Smad2(_c~0,_n~0,p~P,sara,ski_c!705,smad4!277,snon).Ski_c(Ski_n~Ski_n,smad2!705,smad3,smad4!707).Ski_c(Ski_n~Ski_n,smad2,smad3,smad4!716) #pSmad2_Smad4_Ski_n
-	Species Smad2_Ski_c__1 @_1:Smad2(_c~0,_n~0,p~0,sara,ski_c!705,smad4,snon).Ski_c(Ski_n~0,smad2!705,smad3,smad4) #Smad2_Ski_c
-	Species pSmad2_SnoN_n__1 @_1:Smad2(_c~0,_n~0,p~P,sara,ski_c,smad4,snon!711).SnoN(_c~0,_n~_N,smad2!711,smad3,smad4) #pSmad2_SnoN_n
-	Species pSmad3_SnoN_n__1 @_1:Smad3(_c~0,_n~0,p~P,sara,ski_c,smad4,snon!712).SnoN(_c~0,_n~_N,smad2,smad3!712,smad4) #pSmad3_SnoN_n
-	Species Arkadia_c__1 @_1:Arkadia(_c~_C,_n~0) #Arkadia_c
-	Species Smad4_n__3 @_3:Smad4(_c~0,_n~_N,ski_c,ski_c,smad2,smad2,smad3,smad3,snon,snon) #Smad4_n
-	Species pSmad2_Smad4_n__3 @_3:Smad4(_c~0,_n~_N,ski_c,ski_c,smad2!277,smad2,smad3,smad3,snon,snon).Smad2(_c~0,_n~0,p~P,sara,ski_c,smad4!277,snon) #pSmad2_Smad4_n
-	Species SnoN_n__3 @_3:SnoN(_c~0,_n~_N,smad2,smad3,smad4) #SnoN_n
-	Species pSmad2_Smad4_SnoN_n__3 @_3:Smad4(_c~0,_n~_N,ski_c,ski_c,smad2!277,smad2,smad3,smad3,snon!708,snon!717).Smad2(_c~0,_n~0,p~P,sara,ski_c,smad4!277,snon!711).SnoN(_c~0,_n~_N,smad2!711,smad3,smad4!708).SnoN(_c~0,_n~_N,smad2,smad3,smad4!717) #pSmad2_Smad4_SnoN_n
-	Species Smurf2_n__3 @_3:Smurf2(_c~0,_n~_N,smad7) #Smurf2_n
-	Species pSmad2_n__3 @_3:Smad2(_c~0,_n~_N,p~P,sara,ski_c,smad4,snon) #pSmad2_n
-	Species Smad2_n__3 @_3:Smad2(_c~0,_n~_N,p~0,sara,ski_c,smad4,snon) #Smad2_n
-	Species Smad7_n__3 @_3:Smad7(_c~0,_n~_N,smurf1,smurf2,tgf_rii) #Smad7_n
-	Species Smad7_Smurf2_n__3 @_3:Smad7(_c~0,_n~0,smurf1,smurf2!709,tgf_rii).Smurf2(_c~0,_n~_N,smad7!709) #Smad7_Smurf2_n
-	Species Smad4_SnoN_n__3 @_3:Smad4(_c~0,_n~0,ski_c,ski_c,smad2,smad2,smad3,smad3,snon!708,snon).SnoN(_c~0,_n~_N,smad2,smad3,smad4!708) #Smad4_SnoN_n
-	Species Smad3_n__3 @_3:Smad3(_c~0,_n~_N,p~0,sara,ski_c,smad4,snon) #Smad3_n
-	Species pSmad3_Smad4_n__3 @_3:Smad4(_c~0,_n~_N,ski_c,ski_c,smad2,smad2,smad3!713,smad3,snon,snon).Smad3(_c~0,_n~0,p~P,sara,ski_c,smad4!713,snon) #pSmad3_Smad4_n
-	Species Smad4_Smad2_n__3 @_3:Smad4(_c~0,_n~_N,ski_c,ski_c,smad2!277,smad2!715,smad3,smad3,snon,snon).Smad2(_c~0,_n~_N,p~0,sara,ski_c,smad4!277,snon).Smad2(_c~0,_n~_N,p~0,sara,ski_c,smad4!715,snon) #Smad4_Smad2_n
-	Species pSmad3_n__3 @_3:Smad3(_c~0,_n~_N,p~P,sara,ski_c,smad4,snon) #pSmad3_n
-	Species pSmad3_Smad4_SnoN_n__3 @_3:Smad4(_c~0,_n~_N,ski_c,ski_c,smad2,smad2,smad3!713,smad3,snon!708,snon!717).Smad3(_c~0,_n~0,p~P,sara,ski_c,smad4!713,snon!712).SnoN(_c~0,_n~_N,smad2,smad3!712,smad4!708).SnoN(_c~0,_n~_N,smad2,smad3,smad4!717) #pSmad3_Smad4_SnoN_n
-	Species Ski_n__3 @_3:Ski_c(Ski_n~Ski_n,smad2,smad3,smad4) #Ski_n
-	Species Smad4_Ski_n__3 @_3:Smad4(_c~0,_n~0,ski_c!707,ski_c,smad2,smad2,smad3,smad3,snon,snon).Ski_c(Ski_n~Ski_n,smad2,smad3,smad4!707) #Smad4_Ski_n
-	Species Smurf1_n__3 @_3:Smurf1(_c~0,_n~_N,smad7) #Smurf1_n
-	Species Smad7_Smurf1_n__3 @_3:Smad7(_c~0,_n~0,smurf1!710,smurf2,tgf_rii).Smurf1(_c~0,_n~_N,smad7!710) #Smad7_Smurf1_n
-	Species pSmad3_Smad4_Ski_n__3 @_3:Smad4(_c~0,_n~_N,ski_c!707,ski_c!716,smad2,smad2,smad3!713,smad3,snon,snon).Smad3(_c~0,_n~0,p~P,sara,ski_c!704,smad4!713,snon).Ski_c(Ski_n~Ski_n,smad2,smad3!704,smad4!707).Ski_c(Ski_n~Ski_n,smad2,smad3,smad4!716) #pSmad3_Smad4_Ski_n
-	Species Smad4_Smad3_n__3 @_3:Smad4(_c~0,_n~_N,ski_c,ski_c,smad2,smad2,smad3!713,smad3!714,snon,snon).Smad3(_c~0,_n~_N,p~0,sara,ski_c,smad4!713,snon).Smad3(_c~0,_n~_N,p~0,sara,ski_c,smad4!714,snon) #Smad4_Smad3_n
-	Species freePromoters__3 @_3:freePromoters() #freePromoters
-	Species inactivePromoters__3 @_3:inactivePromoters() #inactivePromoters
-	Species geneProduct__3 @_3:geneProduct() #geneProduct
-	Species Arkadia_n__3 @_3:Arkadia(_c~0,_n~_N) #Arkadia_n
+	Species TGF_RII__1 @_1:TGF_RII(smad7,tgf_ri,tgf_rii)@_1 #TGF_RII
+	Species TGFbeta_TGF_RII__1 @_1:TGF_RII(smad7,tgf_ri,tgf_rii!706)@_1.TGF_RII(smad7,tgf_ri,tgf_rii!706)@_1 #TGFbeta_TGF_RII
+	Species TGF_RI__1 @_1:TGF_RI(tgf_rii)@_1 #TGF_RI
+	Species Rec_active__1 @_1:TGF_RII(smad7,tgf_ri!719,tgf_rii!706)@_1.TGF_RII(smad7,tgf_ri!718,tgf_rii!706)@_1.TGF_RI(tgf_rii!718)@_1.TGF_RI(tgf_rii!719)@_1 #Rec_active
+	Species Smad2_c__1 @_1:Smad2(_c~_C,_n~0,p~0,sara,ski_c,smad4,snon)@_1 #Smad2_c
+	Species SARA__1 @_1:SARA(smad2,smad3)@_1 #SARA
+	Species Smad2_SARA__1 @_1:Smad2(_c~0,_n~0,p~0,sara!702,ski_c,smad4,snon)@_1.SARA(smad2!702,smad3)@_1 #Smad2_SARA
+	Species pSmad2_c__1 @_1:Smad2(_c~_C,_n~0,p~P,sara,ski_c,smad4,snon)@_1 #pSmad2_c
+	Species Smad4_c__1 @_1:Smad4(_c~_C,_n~0,ski_c,ski_c,smad2,smad2,smad3,smad3,snon,snon)@_1 #Smad4_c
+	Species pSmad2_Smad4_c__1 @_1:Smad4(_c~_C,_n~0,ski_c,ski_c,smad2!277,smad2!715,smad3,smad3,snon,snon)@_1.Smad2(_c~_C,_n~0,p~P,sara,ski_c,smad4!277,snon)@_1.Smad2(_c~_C,_n~0,p~P,sara,ski_c,smad4!715,snon)@_1 #pSmad2_Smad4_c
+	Species Smad7_c__1 @_1:Smad7(_c~_C,_n~0,smurf1,smurf2,tgf_rii)@_1 #Smad7_c
+	Species Smad7_Smurf2_c__1 @_1:Smad7(_c~0,_n~0,smurf1,smurf2!709,tgf_rii)@_1.Smurf2(_c~_C,_n~0,smad7!709)@_1 #Smad7_Smurf2_c
+	Species Rec_Smad7__1 @_1:Smad7(_c~_C,_n~0,smurf1,smurf2,tgf_rii!720)@_1.TGF_RII(smad7,tgf_ri!719,tgf_rii!706)@_1.TGF_RII(smad7!720,tgf_ri!718,tgf_rii!706)@_1.TGF_RI(tgf_rii!718)@_1.TGF_RI(tgf_rii!719)@_1 #Rec_Smad7
+	Species Smurf2_c__1 @_1:Smurf2(_c~_C,_n~0,smad7)@_1 #Smurf2_c
+	Species SnoN_c__1 @_1:SnoN(_c~_C,_n~0,smad2,smad3,smad4)@_1 #SnoN_c
+	Species Smad3_c__1 @_1:Smad3(_c~_C,_n~0,p~0,sara,ski_c,smad4,snon)@_1 #Smad3_c
+	Species pSmad3_c__1 @_1:Smad3(_c~_C,_n~0,p~P,sara,ski_c,smad4,snon)@_1 #pSmad3_c
+	Species Smad3_SARA__1 @_1:Smad3(_c~0,_n~0,p~0,sara!703,ski_c,smad4,snon)@_1.SARA(smad2,smad3!703)@_1 #Smad3_SARA
+	Species pSmad3_Smad4_c__1 @_1:Smad4(_c~_C,_n~0,ski_c,ski_c,smad2,smad2,smad3!713,smad3!714,snon,snon)@_1.Smad3(_c~_C,_n~0,p~P,sara,ski_c,smad4!713,snon)@_1.Smad3(_c~_C,_n~0,p~P,sara,ski_c,smad4!714,snon)@_1 #pSmad3_Smad4_c
+	Species Ski_c__1 @_1:Ski_c(Ski_n~0,smad2,smad3,smad4)@_1 #Ski_c
+	Species Smad3_Ski_c__1 @_1:Smad3(_c~0,_n~0,p~0,sara,ski_c!704,smad4,snon)@_1.Ski_c(Ski_n~0,smad2,smad3!704,smad4)@_1 #Smad3_Ski_c
+	Species Smurf1_c__1 @_1:Smurf1(_c~_C,_n~0,smad7)@_1 #Smurf1_c
+	Species Smad7_Smurf1_c__1 @_1:Smad7(_c~0,_n~0,smurf1!710,smurf2,tgf_rii)@_1.Smurf1(_c~_C,_n~0,smad7!710)@_1 #Smad7_Smurf1_c
+	Species pSmad2_Smad4_Ski_n__1 @_1:Smad4(_c~0,_n~_N,ski_c!707,ski_c!716,smad2!277,smad2,smad3,smad3,snon,snon)@_1.Smad2(_c~0,_n~0,p~P,sara,ski_c!705,smad4!277,snon)@_1.Ski_c(Ski_n~Ski_n,smad2!705,smad3,smad4!707)@_1.Ski_c(Ski_n~Ski_n,smad2,smad3,smad4!716)@_1 #pSmad2_Smad4_Ski_n
+	Species Smad2_Ski_c__1 @_1:Smad2(_c~0,_n~0,p~0,sara,ski_c!705,smad4,snon)@_1.Ski_c(Ski_n~0,smad2!705,smad3,smad4)@_1 #Smad2_Ski_c
+	Species pSmad2_SnoN_n__1 @_1:Smad2(_c~0,_n~0,p~P,sara,ski_c,smad4,snon!711)@_1.SnoN(_c~0,_n~_N,smad2!711,smad3,smad4)@_1 #pSmad2_SnoN_n
+	Species pSmad3_SnoN_n__1 @_1:Smad3(_c~0,_n~0,p~P,sara,ski_c,smad4,snon!712)@_1.SnoN(_c~0,_n~_N,smad2,smad3!712,smad4)@_1 #pSmad3_SnoN_n
+	Species Arkadia_c__1 @_1:Arkadia(_c~_C,_n~0)@_1 #Arkadia_c
+	Species Smad4_n__3 @_3:Smad4(_c~0,_n~_N,ski_c,ski_c,smad2,smad2,smad3,smad3,snon,snon)@_3 #Smad4_n
+	Species pSmad2_Smad4_n__3 @_3:Smad4(_c~0,_n~_N,ski_c,ski_c,smad2!277,smad2,smad3,smad3,snon,snon)@_3.Smad2(_c~0,_n~0,p~P,sara,ski_c,smad4!277,snon)@_3 #pSmad2_Smad4_n
+	Species SnoN_n__3 @_3:SnoN(_c~0,_n~_N,smad2,smad3,smad4)@_3 #SnoN_n
+	Species pSmad2_Smad4_SnoN_n__3 @_3:Smad4(_c~0,_n~_N,ski_c,ski_c,smad2!277,smad2,smad3,smad3,snon,snon)@_3.Smad2(_c~0,_n~0,p~P,sara,ski_c,smad4!277,snon!711)@_3.SnoN(_c~0,_n~_N,smad2!711,smad3,smad4)@_3.SnoN(_c~0,_n~_N,smad2,smad3,smad4)@_3 #pSmad2_Smad4_SnoN_n
+	Species Smurf2_n__3 @_3:Smurf2(_c~0,_n~_N,smad7)@_3 #Smurf2_n
+	Species pSmad2_n__3 @_3:Smad2(_c~0,_n~_N,p~P,sara,ski_c,smad4,snon)@_3 #pSmad2_n
+	Species Smad2_n__3 @_3:Smad2(_c~0,_n~_N,p~0,sara,ski_c,smad4,snon)@_3 #Smad2_n
+	Species Smad7_n__3 @_3:Smad7(_c~0,_n~_N,smurf1,smurf2,tgf_rii)@_3 #Smad7_n
+	Species Smad7_Smurf2_n__3 @_3:Smad7(_c~0,_n~0,smurf1,smurf2!709,tgf_rii)@_3.Smurf2(_c~0,_n~_N,smad7!709)@_3 #Smad7_Smurf2_n
+	Species Smad4_SnoN_n__3 @_3:Smad4(_c~0,_n~0,ski_c,ski_c,smad2,smad2,smad3,smad3,snon!708,snon)@_3.SnoN(_c~0,_n~_N,smad2,smad3,smad4!708)@_3 #Smad4_SnoN_n
+	Species Smad3_n__3 @_3:Smad3(_c~0,_n~_N,p~0,sara,ski_c,smad4,snon)@_3 #Smad3_n
+	Species pSmad3_Smad4_n__3 @_3:Smad4(_c~0,_n~_N,ski_c,ski_c,smad2,smad2,smad3!713,smad3,snon,snon)@_3.Smad3(_c~0,_n~0,p~P,sara,ski_c,smad4!713,snon)@_3 #pSmad3_Smad4_n
+	Species Smad4_Smad2_n__3 @_3:Smad4(_c~0,_n~_N,ski_c,ski_c,smad2!277,smad2!715,smad3,smad3,snon,snon)@_3.Smad2(_c~0,_n~_N,p~0,sara,ski_c,smad4!277,snon)@_3.Smad2(_c~0,_n~_N,p~0,sara,ski_c,smad4!715,snon)@_3 #Smad4_Smad2_n
+	Species pSmad3_n__3 @_3:Smad3(_c~0,_n~_N,p~P,sara,ski_c,smad4,snon)@_3 #pSmad3_n
+	Species pSmad3_Smad4_SnoN_n__3 @_3:Smad4(_c~0,_n~_N,ski_c,ski_c,smad2,smad2,smad3!713,smad3,snon,snon)@_3.Smad3(_c~0,_n~0,p~P,sara,ski_c,smad4!713,snon!712)@_3.SnoN(_c~0,_n~_N,smad2,smad3!712,smad4)@_3.SnoN(_c~0,_n~_N,smad2,smad3,smad4)@_3 #pSmad3_Smad4_SnoN_n
+	Species Ski_n__3 @_3:Ski_c(Ski_n~Ski_n,smad2,smad3,smad4)@_3 #Ski_n
+	Species Smad4_Ski_n__3 @_3:Smad4(_c~0,_n~0,ski_c!707,ski_c,smad2,smad2,smad3,smad3,snon,snon)@_3.Ski_c(Ski_n~Ski_n,smad2,smad3,smad4!707)@_3 #Smad4_Ski_n
+	Species Smurf1_n__3 @_3:Smurf1(_c~0,_n~_N,smad7)@_3 #Smurf1_n
+	Species Smad7_Smurf1_n__3 @_3:Smad7(_c~0,_n~0,smurf1!710,smurf2,tgf_rii)@_3.Smurf1(_c~0,_n~_N,smad7!710)@_3 #Smad7_Smurf1_n
+	Species pSmad3_Smad4_Ski_n__3 @_3:Smad4(_c~0,_n~_N,ski_c!707,ski_c!716,smad2,smad2,smad3!713,smad3,snon,snon)@_3.Smad3(_c~0,_n~0,p~P,sara,ski_c!704,smad4!713,snon)@_3.Ski_c(Ski_n~Ski_n,smad2,smad3!704,smad4!707)@_3.Ski_c(Ski_n~Ski_n,smad2,smad3,smad4!716)@_3 #pSmad3_Smad4_Ski_n
+	Species Smad4_Smad3_n__3 @_3:Smad4(_c~0,_n~_N,ski_c,ski_c,smad2,smad2,smad3!713,smad3!714,snon,snon)@_3.Smad3(_c~0,_n~_N,p~0,sara,ski_c,smad4!713,snon)@_3.Smad3(_c~0,_n~_N,p~0,sara,ski_c,smad4!714,snon)@_3 #Smad4_Smad3_n
+	Species freePromoters__3 @_3:freePromoters()@_3 #freePromoters
+	Species inactivePromoters__3 @_3:inactivePromoters()@_3 #inactivePromoters
+	Species geneProduct__3 @_3:geneProduct()@_3 #geneProduct
+	Species Arkadia_n__3 @_3:Arkadia(_c~0,_n~_N)@_3 #Arkadia_n
 end observables
 begin functions
 	parameter_10() = Smad4_Ski_n__3 + Smad4_Smad2_n__3 + Smad4_Smad3_n__3 + Smad4_SnoN_n__3 + Smad4_n__3 + pSmad2_Smad4_Ski_n__1 + pSmad2_Smad4_SnoN_n__3 + pSmad2_Smad4_n__3 + 2*pSmad3_Smad4_Ski_n__3 + pSmad3_Smad4_SnoN_n__3 + 2*pSmad3_Smad4_n__3
@@ -276,7 +276,7 @@ end functions
 begin reaction rules
 	_29: Smad4(_c~0,_n~_N,ski_c,ski_c,smad2,smad2,smad3!713,smad3!714,snon,snon)@_3.Smad3(_c~0,_n~_N,p~0,sara,ski_c,smad4!713,snon)@_3.Smad3(_c~0,_n~_N,p~0,sara,ski_c,smad4!714,snon)@_3 -> Smad4(_c~0,_n~_N,ski_c,ski_c,smad2,smad2,smad3,smad3,snon,snon)@_3 + Smad3(_c~0,_n~_N,p~0,sara,ski_c,smad4,snon)@_3 + Smad3(_c~0,_n~_N,p~0,sara,ski_c,smad4,snon)@_3 r1_k1
 	_31: Smad4(_c~0,_n~_N,ski_c,ski_c,smad2!277,smad2,smad3,smad3,snon,snon)@_3.Smad2(_c~0,_n~0,p~P,sara,ski_c,smad4!277,snon)@_3 -> Smad4(_c~0,_n~_N,ski_c,ski_c,smad2!277,smad2!715,smad3,smad3,snon,snon)@_3.Smad2(_c~0,_n~_N,p~0,sara,ski_c,smad4!277,snon)@_3.Smad2(_c~0,_n~_N,p~0,sara,ski_c,smad4!715,snon)@_3 fRate1()
-	_33: Smad4(_c~0,_n~_N,ski_c,ski_c,smad2!277,smad2,smad3,smad3,snon,snon)@_3.Smad2(_c~0,_n~0,p~P,sara,ski_c,smad4!277,snon)@_3 + SnoN(_c~0,_n~_N,smad2,smad3,smad4)@_3 + SnoN(_c~0,_n~_N,smad2,smad3,smad4)@_3 <-> Smad4(_c~0,_n~_N,ski_c,ski_c,smad2!277,smad2,smad3,smad3,snon!708,snon!717)@_3.Smad2(_c~0,_n~0,p~P,sara,ski_c,smad4!277,snon!711)@_3.SnoN(_c~0,_n~_N,smad2!711,smad3,smad4!708)@_3.SnoN(_c~0,_n~_N,smad2,smad3,smad4!717)@_3 r3_k1,r3_k2
+	_33: Smad4(_c~0,_n~_N,ski_c,ski_c,smad2!277,smad2,smad3,smad3,snon,snon)@_3.Smad2(_c~0,_n~0,p~P,sara,ski_c,smad4!277,snon)@_3 + SnoN(_c~0,_n~_N,smad2,smad3,smad4)@_3 + SnoN(_c~0,_n~_N,smad2,smad3,smad4)@_3 <-> Smad4(_c~0,_n~_N,ski_c,ski_c,smad2!277,smad2,smad3,smad3,snon,snon)@_3.Smad2(_c~0,_n~0,p~P,sara,ski_c,smad4!277,snon!711)@_3.SnoN(_c~0,_n~_N,smad2!711,smad3,smad4)@_3.SnoN(_c~0,_n~_N,smad2,smad3,smad4)@_3 r3_k1,r3_k2
 	_35_reactants_0: 0  -> Smurf2(_c~0,_n~_N,smad7)@_3 -1*3.0*(fRate3())
 	_35_reactants_1: 0  -> Smad2(_c~0,_n~0,p~P,sara,ski_c,smad4,snon!711)@_1.SnoN(_c~0,_n~_N,smad2!711,smad3,smad4)@_1 -1*(fRate3())
 	_35_products_0: 0  -> Smad2(_c~0,_n~_N,p~P,sara,ski_c,smad4,snon)@_3 3.0*fRate3()
@@ -332,7 +332,7 @@ begin reaction rules
 	reaction_33: Smad3(_c~_C,_n~0,p~P,sara,ski_c,smad4,snon)@_1 -> Smad3(_c~0,_n~_N,p~P,sara,ski_c,smad4,snon)@_3 r54_k1
 	reaction_34: Smad4(_c~_C,_n~0,ski_c,ski_c,smad2,smad2,smad3,smad3,snon,snon)@_1 + Smad3(_c~_C,_n~0,p~P,sara,ski_c,smad4,snon)@_1 + Smad3(_c~_C,_n~0,p~P,sara,ski_c,smad4,snon)@_1 -> Smad4(_c~_C,_n~0,ski_c,ski_c,smad2,smad2,smad3!713,smad3!714,snon,snon)@_1.Smad3(_c~_C,_n~0,p~P,sara,ski_c,smad4!713,snon)@_1.Smad3(_c~_C,_n~0,p~P,sara,ski_c,smad4!714,snon)@_1 r55_k1
 	reaction_35: Smad4(_c~0,_n~_N,ski_c,ski_c,smad2,smad2,smad3,smad3,snon,snon)@_3 + Smad3(_c~0,_n~_N,p~P,sara,ski_c,smad4,snon)@_3 + Smad3(_c~0,_n~_N,p~P,sara,ski_c,smad4,snon)@_3 -> Smad4(_c~0,_n~_N,ski_c,ski_c,smad2,smad2,smad3!713,smad3,snon,snon)@_3.Smad3(_c~0,_n~0,p~P,sara,ski_c,smad4!713,snon)@_3 r56_k1
-	reaction_36: Smad4(_c~0,_n~_N,ski_c,ski_c,smad2,smad2,smad3!713,smad3,snon,snon)@_3.Smad3(_c~0,_n~0,p~P,sara,ski_c,smad4!713,snon)@_3 + SnoN(_c~0,_n~_N,smad2,smad3,smad4)@_3 + SnoN(_c~0,_n~_N,smad2,smad3,smad4)@_3 <-> Smad4(_c~0,_n~_N,ski_c,ski_c,smad2,smad2,smad3!713,smad3,snon!708,snon!717)@_3.Smad3(_c~0,_n~0,p~P,sara,ski_c,smad4!713,snon!712)@_3.SnoN(_c~0,_n~_N,smad2,smad3!712,smad4!708)@_3.SnoN(_c~0,_n~_N,smad2,smad3,smad4!717)@_3 r57_k1,r57_k2
+	reaction_36: Smad4(_c~0,_n~_N,ski_c,ski_c,smad2,smad2,smad3!713,smad3,snon,snon)@_3.Smad3(_c~0,_n~0,p~P,sara,ski_c,smad4!713,snon)@_3 + SnoN(_c~0,_n~_N,smad2,smad3,smad4)@_3 + SnoN(_c~0,_n~_N,smad2,smad3,smad4)@_3 <-> Smad4(_c~0,_n~_N,ski_c,ski_c,smad2,smad2,smad3!713,smad3,snon,snon)@_3.Smad3(_c~0,_n~0,p~P,sara,ski_c,smad4!713,snon!712)@_3.SnoN(_c~0,_n~_N,smad2,smad3!712,smad4)@_3.SnoN(_c~0,_n~_N,smad2,smad3,smad4)@_3 r57_k1,r57_k2
 	reaction_37: Smad4(_c~_C,_n~0,ski_c,ski_c,smad2,smad2,smad3!713,smad3!714,snon,snon)@_1.Smad3(_c~_C,_n~0,p~P,sara,ski_c,smad4!713,snon)@_1.Smad3(_c~_C,_n~0,p~P,sara,ski_c,smad4!714,snon)@_1 -> Smad4(_c~0,_n~_N,ski_c,ski_c,smad2,smad2,smad3!713,smad3,snon,snon)@_3.Smad3(_c~0,_n~0,p~P,sara,ski_c,smad4!713,snon)@_3 r58_k1
 	reaction_38: Smad3(_c~0,_n~0,p~P,sara,ski_c,smad4,snon!712)@_1.SnoN(_c~0,_n~_N,smad2,smad3!712,smad4)@_1 -> Smad3(_c~0,_n~_N,p~P,sara,ski_c,smad4,snon)@_3 r59_k1
 	reaction_39_reactants_0: 0  -> Smad7(_c~_C,_n~0,smurf1,smurf2,tgf_rii)@_1 -1*(fRate59()) #Modifiers(species_15)
@@ -351,8 +351,8 @@ begin reaction rules
 	reaction_52: Smurf1(_c~0,_n~_N,smad7)@_3 <-> Smurf1(_c~_C,_n~0,smad7)@_1 r73_k1,r73_k2
 	reaction_53: Smad4(_c~0,_n~_N,ski_c,ski_c,smad2,smad2,smad3!713,smad3,snon,snon)@_3.Smad3(_c~0,_n~0,p~P,sara,ski_c,smad4!713,snon)@_3 + freePromoters()@_3 <-> geneProduct()@_3 r74_k1,r74_k2
 	reaction_54: Smad4(_c~0,_n~_N,ski_c,ski_c,smad2!277,smad2,smad3,smad3,snon,snon)@_3.Smad2(_c~0,_n~0,p~P,sara,ski_c,smad4!277,snon)@_3 + freePromoters()@_3 <-> geneProduct()@_3 r75_k1,r75_k2
-	reaction_55: Smad4(_c~0,_n~_N,ski_c,ski_c,smad2,smad2,smad3!713,smad3,snon!708,snon!717)@_3.Smad3(_c~0,_n~0,p~P,sara,ski_c,smad4!713,snon!712)@_3.SnoN(_c~0,_n~_N,smad2,smad3!712,smad4!708)@_3.SnoN(_c~0,_n~_N,smad2,smad3,smad4!717)@_3 + freePromoters()@_3 <-> inactivePromoters()@_3 r76_k1,r76_k2
-	reaction_56: Smad4(_c~0,_n~_N,ski_c,ski_c,smad2!277,smad2,smad3,smad3,snon!708,snon!717)@_3.Smad2(_c~0,_n~0,p~P,sara,ski_c,smad4!277,snon!711)@_3.SnoN(_c~0,_n~_N,smad2!711,smad3,smad4!708)@_3.SnoN(_c~0,_n~_N,smad2,smad3,smad4!717)@_3 + freePromoters()@_3 <-> inactivePromoters()@_3 r77_k1,r77_k2
+	reaction_55: Smad4(_c~0,_n~_N,ski_c,ski_c,smad2,smad2,smad3!713,smad3,snon,snon)@_3.Smad3(_c~0,_n~0,p~P,sara,ski_c,smad4!713,snon!712)@_3.SnoN(_c~0,_n~_N,smad2,smad3!712,smad4)@_3.SnoN(_c~0,_n~_N,smad2,smad3,smad4)@_3 + freePromoters()@_3 <-> inactivePromoters()@_3 r76_k1,r76_k2
+	reaction_56: Smad4(_c~0,_n~_N,ski_c,ski_c,smad2!277,smad2,smad3,smad3,snon,snon)@_3.Smad2(_c~0,_n~0,p~P,sara,ski_c,smad4!277,snon!711)@_3.SnoN(_c~0,_n~_N,smad2!711,smad3,smad4)@_3.SnoN(_c~0,_n~_N,smad2,smad3,smad4)@_3 + freePromoters()@_3 <-> inactivePromoters()@_3 r77_k1,r77_k2
 	reaction_57: Smad4(_c~0,_n~_N,ski_c!707,ski_c!716,smad2,smad2,smad3!713,smad3,snon,snon)@_3.Smad3(_c~0,_n~0,p~P,sara,ski_c!704,smad4!713,snon)@_3.Ski_c(Ski_n~Ski_n,smad2,smad3!704,smad4!707)@_3.Ski_c(Ski_n~Ski_n,smad2,smad3,smad4!716)@_3 + freePromoters()@_3 <-> inactivePromoters()@_3 r78_k1,r78_k2
 	reaction_58: Smad4(_c~0,_n~_N,ski_c,ski_c,smad2!277,smad2,smad3,smad3,snon,snon)@_3.Smad2(_c~0,_n~0,p~P,sara,ski_c,smad4!277,snon)@_3 + Ski_c(Ski_n~Ski_n,smad2,smad3,smad4)@_3 + Ski_c(Ski_n~Ski_n,smad2,smad3,smad4)@_3 <-> Smad4(_c~0,_n~_N,ski_c!707,ski_c!716,smad2!277,smad2,smad3,smad3,snon,snon)@_1.Smad2(_c~0,_n~0,p~P,sara,ski_c!705,smad4!277,snon)@_1.Ski_c(Ski_n~Ski_n,smad2!705,smad3,smad4!707)@_1.Ski_c(Ski_n~Ski_n,smad2,smad3,smad4!716)@_1 r79_k1,r79_k2
 	reaction_59: Smad4(_c~0,_n~_N,ski_c!707,ski_c!716,smad2!277,smad2,smad3,smad3,snon,snon)@_1.Smad2(_c~0,_n~0,p~P,sara,ski_c!705,smad4!277,snon)@_1.Ski_c(Ski_n~Ski_n,smad2!705,smad3,smad4!707)@_1.Ski_c(Ski_n~Ski_n,smad2,smad3,smad4!716)@_1 + freePromoters()@_3 <-> inactivePromoters()@_3 r80_k1,r80_k2

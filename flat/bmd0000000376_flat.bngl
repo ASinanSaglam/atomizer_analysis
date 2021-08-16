@@ -1,12 +1,12 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL7889980156', 'http://identifiers.org/biomodels.db/BIOMD0000000376', 'http://identifiers.org/biomodels.db/BIOMD0000000373']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000373', 'http://identifiers.org/biomodels.db/MODEL7889980156', 'http://identifiers.org/biomodels.db/BIOMD0000000376']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/17172305']
 #@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000783']
-#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0006096', 'http://identifiers.org/go/GO:0061469', 'http://identifiers.org/go/GO:0044342']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0044342', 'http://identifiers.org/go/GO:0006096', 'http://identifiers.org/go/GO:0061469']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
 #@creatorEmail:'ajmera@ebi.ac.uk'
 #@creatorName:'Ajmera Ishan'
-#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 11 molecules and 0 reactions. The translated model has 11 molecules and 11 rules'
+#@notes:'This is a plain translation of an SBML model created on 14/08/2021. The original model has 11 molecules and 0 reactions. The translated model has 11 molecules and 11 rules'
 ###
 begin model
 begin parameters
@@ -80,17 +80,17 @@ begin parameters
 	topa1 0
 end parameters
 begin molecule types
-	Vm()
-	G6P()
-	FBP()
-	Caer()
-	delta_psi()
-	c()
-	adp()
 	ADPm()
-	NADHm()
+	G6P()
 	Cam()
+	c()
+	NADHm()
+	delta_psi()
+	Caer()
+	FBP()
+	adp()
 	n()
+	Vm()
 end molecule types
 begin seed species
 	G6P() 301.0 #G6P #G6P
@@ -118,34 +118,34 @@ begin observables
 end observables
 begin functions
 	JHres() = NADHm*p8/((NADHm + p9)*(exp((delta_psi - p10)/p11) + 1))
-	JHleak() = delta_psi*p17 + p18
 	Juni() = c^2*(delta_psi*p21 - p22)
-	JNaCa() = Cam*p23*exp(delta_psi*p24)/c
 	ATPm() = -ADPm + Amtot
-	JF1F0() = p13*p16/((ATPm + p13)*(exp((-delta_psi + p14)/p15) + 1))
-	JHatp() = 3*JF1F0
 	RATm() = ATPm/ADPm
 	JANT() = RATm*p19*exp(0.5*FRT*delta_psi)/(RATm + p20)
+	JHleak() = delta_psi*p17 + p18
+	JNaCa() = Cam*p23*exp(delta_psi*p24)/c
+	JF1F0() = p13*p16/((ATPm + p13)*(exp((-delta_psi + p14)/p15) + 1))
+	JHatp() = 3*JF1F0
 	arRatedelta_psi() = (-JANT - JHatp - JHleak + JHres - JNaCa - 2*Juni)/Cmito
-	delta() = 0.0733082706766917
-	Jmito() = JNaCa - Juni
 	m_infinity() = 1/(exp(-Vm/12 - 5/3) + 1)
 	Ica() = gCa*m_infinity*(-VCa + Vm)
 	Jmem() = -Ica*alpha - kPMCA*(-Cbas + c)
-	Jleak() = pleak*(Caer - c)
 	JSERCA() = c*kSERCA
+	Jleak() = pleak*(Caer - c)
 	Jer() = -JSERCA + Jleak
+	delta() = 0.0733082706766917
+	Jmito() = JNaCa - Juni
 	arRatec() = fcyt*(Jer + Jmem + Jmito*delta)
 	Ik() = gK*n*(-VK + Vm)
-	Ikca() = c^2*gkCa*(-VK + Vm)/(c^2 + kd^2)
 	mgadp() = 0.165*adp
+	topo() = 0.00307958477508651*mgadp^2 + 0.00941176470588235*mgadp + 0.08
 	adp3m() = 0.135*adp
 	atp() = -adp + atot
 	atp4m() = 0.05*atp
 	bottomo() = (mgadp/17 + 1)^2*(adp3m/26 + atp4m + 1)
-	topo() = 0.00307958477508651*mgadp^2 + 0.00941176470588235*mgadp + 0.08
 	katpo() = topo/bottomo
 	Ikatp() = gkATP_*katpo*(-VK + Vm)
+	Ikca() = c^2*gkCa*(-VK + Vm)/(c^2 + kd^2)
 	arRateVm() = (-Ica - Ik - Ikatp - Ikca)/cm
 	Jhyd() = atp*(c*khyd + khydbas)
 	arRateadp() = -JANT*delta + Jhyd
@@ -160,34 +160,34 @@ begin functions
 	arRateFBP() = -0.5*JGPDH + JPFK_ms
 	JGK_ms() = JGK*kappa
 	arRateG6P() = JGK_ms - JPFK_ms
-	F6P() = 0.3*G6P
-	weight15() = AMP*F6P^2*FBP/(f13*f23*k1*k2*k3)
 	weight14() = AMP*FBP*atp^2/(f41*f42*k1*k2*k4)
+	F6P() = 0.3*G6P
 	weight12() = AMP*F6P^2*atp^2/(f13*f41*f43*k1*k3*k4)
 	weight11() = AMP*F6P^2/(f13*k1*k3)
+	weight10() = AMP*atp^2/(f41*k1*k4)
+	weight7() = F6P^2*FBP/(f23*k2*k3)
 	weight6() = FBP*atp^2/(f42*k2*k4)
+	weight5() = FBP/k2
 	weight3() = F6P^2/k3
 	weight2() = atp^2/k4
 	bottom2() = bottom1 + weight2
 	bottom3() = bottom2 + weight3
 	weight4() = F6P^2*atp^2/(f43*k3*k4)
 	bottom4() = bottom3 + weight4
-	weight5() = FBP/k2
 	bottom5() = bottom4 + weight5
 	bottom6() = bottom5 + weight6
-	weight7() = F6P^2*FBP/(f23*k2*k3)
 	bottom7() = bottom6 + weight7
 	weight8() = F6P^2*FBP*atp^2/(f23*f42*f43*k2*k3*k4)
 	bottom8() = bottom7 + weight8
 	weight9() = AMP/k1
 	bottom9() = bottom8 + weight9
-	weight10() = AMP*atp^2/(f41*k1*k4)
 	bottom10() = bottom9 + weight10
 	bottom11() = bottom10 + weight11
 	bottom12() = bottom11 + weight12
 	weight13() = AMP*FBP/(k1*k2)
 	bottom13() = bottom12 + weight13
 	bottom14() = bottom13 + weight14
+	weight15() = AMP*F6P^2*FBP/(f13*f23*k1*k2*k3)
 	bottom15() = bottom14 + weight15
 	weight16() = AMP*F6P^2*FBP*atp^2/(f13*f23*f41*f42*f43*k1*k2*k3*k4)
 	bottom16() = bottom15 + weight16

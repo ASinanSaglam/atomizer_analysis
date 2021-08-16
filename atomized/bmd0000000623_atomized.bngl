@@ -8,7 +8,7 @@
 #@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:162']
 #@creatorEmail:'tvarusai@ebi.ac.uk'
 #@creatorName:'Varusai Thawfeek'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 31 molecules and 31 reactions. The translated model has 14 molecules and 32 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 31 molecules and 31 reactions. The translated model has 14 molecules and 32 rules'
 ###
 begin model
 begin parameters
@@ -72,33 +72,33 @@ begin parameters
 	r31_km 62464.600000
 end parameters
 begin molecule types
-	#^ bqbiol:isVersionOf interpro:IPR020849
-	RasActive(in~IN~0)
+	EGFReceptor(degraded~DEGRADED~0,egf,free~FREE~0)
 	#^ bqbiol:isVersionOf uniprot:Q9Z1I1
 	SosActive(in~IN~0)
-	#^ bqbiol:isVersionOf uniprot:Q63787
-	PI3KActive(in~IN~0)
-	#^ bqbiol:isVersionOf uniprot:F1M9C3
-	bRafActive(in~IN~0)
-	#^ bqbiol:isVersionOf uniprot:Q9QYV3
-	C3GActive(in~IN~0)
-	#^ bqbiol:isVersionOf uniprot:Q9QX70
-	proEGFReceptor()
-	#^ bqbiol:isVersionOf uniprot:P07522
-	EGF(egfreceptor)
-	#^ bqbiol:isVersionOf uniprot:P47196, uniprot:P47197, uniprot:Q63484
-	AktActive(in~IN~0)
-	#^ bqbiol:isVersionOf uniprot:P36506, uniprot:Q01986
-	MekActive(in~IN~0)
+	#^ bqbiol:isVersionOf interpro:IPR020849
+	RasActive(in~IN~0)
 	#^ bqbiol:isVersionOf uniprot:Q9Z1I2, uniprot:Q63531
 	P90RskActive(in~IN~0)
 	#^ bqbiol:isVersionOf uniprot:P63086, uniprot:P21708
 	ErkActive(in~IN~0)
-	EGFReceptor(degraded~DEGRADED~0,egf,free~FREE~0)
 	#^ bqbiol:isVersionOf uniprot:Q62636
 	Rap1Active(in~IN~0)
+	#^ bqbiol:isVersionOf uniprot:F1M9C3
+	bRafActive(in~IN~0)
+	#^ bqbiol:isVersionOf uniprot:P07522
+	EGF(egfreceptor)
+	#^ bqbiol:isVersionOf uniprot:Q9QX70
+	proEGFReceptor()
+	#^ bqbiol:isVersionOf uniprot:Q9QYV3
+	C3GActive(in~IN~0)
+	#^ bqbiol:isVersionOf uniprot:P47196, uniprot:P47197, uniprot:Q63484
+	AktActive(in~IN~0)
+	#^ bqbiol:isVersionOf uniprot:Q63787
+	PI3KActive(in~IN~0)
 	#^ bqbiol:isVersionOf uniprot:P11345
 	Raf1Active(in~IN~0)
+	#^ bqbiol:isVersionOf uniprot:P36506, uniprot:Q01986
+	MekActive(in~IN~0)
 end molecule types
 begin seed species
 	EGFReceptor(degraded~0,egf,free~FREE) 4.8176e+25 # (80000.0 * 0.001)mol/L * 6.022e23/mol *1.0L #freeEGFReceptor #species_1
@@ -117,7 +117,7 @@ begin seed species
 	$proEGFReceptor() 6.022e+20 #original 1.0substance/volume  #proEGFReceptor #species_30
 end seed species
 begin observables
-	Species boundEGFReceptor EGFReceptor(degraded~0,egf!216,free~FREE).EGF(egfreceptor!216) #boundEGFReceptor
+	Species boundEGFReceptor EGFReceptor(degraded~0,egf!314,free~FREE).EGF(egfreceptor!314) #boundEGFReceptor
 	Species freeEGFReceptor EGFReceptor(degraded~0,egf,free~FREE) #freeEGFReceptor
 	Species SosActive SosActive(in~0) #SosActive
 	Species SosInactive SosActive(in~IN) #SosInactive
@@ -171,7 +171,7 @@ begin functions
 	fRate30() = 0.884096*RasActive/(bRafInactive + 62464.6)
 end functions
 begin reaction rules
-	reaction_0: EGF(egfreceptor) + EGFReceptor(degraded~0,egf,free~FREE) <-> EGFReceptor(degraded~0,egf!216,free~FREE).EGF(egfreceptor!216) r1_k1,r1_k2
+	reaction_0: EGF(egfreceptor) + EGFReceptor(degraded~0,egf,free~FREE) <-> EGFReceptor(degraded~0,egf!314,free~FREE).EGF(egfreceptor!314) r1_k1,r1_k2
 	reaction_1: SosActive(in~IN) -> SosActive(in~0) fRate1() #Modifiers(species_0)
 	reaction_2: SosActive(in~0) -> SosActive(in~IN) r3_k1
 	reaction_3: RasActive(in~IN) -> RasActive(in~0) fRate3() #Modifiers(species_2)
@@ -191,7 +191,7 @@ begin reaction rules
 	reaction_17: AktActive(in~IN) -> AktActive(in~0) fRate17() #Modifiers(species_14)
 	reaction_18: AktActive(in~0) -> AktActive(in~IN) r19_k1
 	reaction_19: Raf1Active(in~0) -> Raf1Active(in~IN) fRate19() #Modifiers(species_16)
-	reaction_20: EGFReceptor(degraded~0,egf!216,free~FREE).EGF(egfreceptor!216) -> EGFReceptor(degraded~DEGRADED,egf,free~0) r21_k1
+	reaction_20: EGFReceptor(degraded~0,egf!314,free~FREE).EGF(egfreceptor!314) -> EGFReceptor(degraded~DEGRADED,egf,free~0) r21_k1
 	reaction_21: C3GActive(in~IN) -> C3GActive(in~0) fRate21() #Modifiers(species_0)
 	reaction_22: C3GActive(in~0) -> C3GActive(in~IN) r23_k1
 	reaction_23: Rap1Active(in~IN) -> Rap1Active(in~0) fRate23() #Modifiers(species_19)

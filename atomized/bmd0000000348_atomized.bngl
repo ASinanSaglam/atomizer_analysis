@@ -1,14 +1,14 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1108090000', 'http://identifiers.org/biomodels.db/BIOMD0000000348']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000348', 'http://identifiers.org/biomodels.db/MODEL1108090000']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/20497556']
-#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/9575814', 'http://identifiers.org/pubmed/9575813']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/9575813', 'http://identifiers.org/pubmed/9575814']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
 #@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000783']
-#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0061178', 'http://identifiers.org/go/GO:0044342']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0044342', 'http://identifiers.org/go/GO:0061178']
 #@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:9351']
 #@creatorEmail:'ajmera@ebi.ac.uk'
 #@creatorName:'Ajmera Ishan'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 7 molecules and 0 reactions. The translated model has 7 molecules and 7 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 7 molecules and 0 reactions. The translated model has 7 molecules and 7 rules'
 ###
 begin model
 begin parameters
@@ -83,13 +83,13 @@ begin parameters
 	ZCa 2.0
 end parameters
 begin molecule types
+	ATP()
 	Cam()
-	Vm()
-	G3P()
-	NADHm()
 	NADHc()
 	PYR()
-	ATP()
+	G3P()
+	NADHm()
+	Vm()
 end molecule types
 begin seed species
 	G3P()() (30.0) #G3P
@@ -110,32 +110,32 @@ begin observables
 	Species Cam Cam() #Cam
 end observables
 begin functions
+	ADP() = -ATP + Ao
+	Cac() = CaR + kACa*(ATP/ADP)^hCa/(KAD^hCa + (ATP/ADP)^hCa)
+	DelJNCa() = Cac/KCaj + Cac*Nam^3/(KCaj*KNaj^3) + Cam/KCaj + Cam*Ni^3/(KCaj*KNaj^3) + 1 + Nam^3/KNaj^3 + Ni^3/KNaj^3
+	JNCa() = Vmnc*(-exp(-0.5*Cac*Nam^3*Vm/(KCaj*KNaj^3*Tv)) + exp(0.5*Cam*Ni^3*Vm/(KCaj*KNaj^3*Tv)))/DelJNCa
 	Jhl() = (Plb + Plr)*exp(Vm*klp)
-	FTe() = (Vm*kat + 1)/(Vm*kbt + 1)
 	FDe() = NADHm/(KmNh + NADHm)
+	FTe() = (Vm*kat + 1)/(Vm*kbt + 1)
 	Jhres() = FDe*FTe*Vme
 	ACa() = 1 - 1/exp(Cam/KpCam)
-	ADP() = -ATP + Ao
 	MgADP() = 0.055*ADP
 	AD() = MgADP^2/(Kmadp^2 + MgADP^2)
 	AT() = Vm^hp/(Kmph^hp + Vm^hp)
 	Jph() = ACa*AD*AT*Vmph
-	Cac() = CaR + kACa*(ATP/ADP)^hCa/(KAD^hCa + (ATP/ADP)^hCa)
-	DelJNCa() = Cac/KCaj + Cac*Nam^3/(KCaj*KNaj^3) + Cam/KCaj + Cam*Ni^3/(KCaj*KNaj^3) + 1 + Nam^3/KNaj^3 + Ni^3/KNaj^3
-	JNCa() = Vmnc*(-exp(-0.5*Cac*Nam^3*Vm/(KCaj*KNaj^3*Tv)) + exp(0.5*Cam*Ni^3*Vm/(KCaj*KNaj^3*Tv)))/DelJNCa
 	Juni() = PCa*Vm*ZCa*(-Cac*ai + Cam*am*exp(-Vm*ZCa/Tv))/(Tv*(exp(-Vm*ZCa/Tv) - 1))
 	arRateVm() = F*(-JNCa - Jhl + Jhres - Jph - 2*Juni)/Cmit
 	NADm() = -NADHm + Ntm
 	NADc() = -NADHc + Ntc
 	FNADc() = NADHc/(NADc*(KTNc + NADHc/NADc))
 	Jtnadh() = FNADc*NADm*Tnadh/(NADHm*(KTNm + NADm/NADHm))
+	Jgpd() = G3P*NADc*Vmgpd/(NADHc*(G3P + Kmg3p)*(KgNc + NADc/NADHc))
 	FLNADc() = NADHc/(NADc*(Klnc + NADHc/NADc))
 	JLDH() = FLNADc*PYR*Vmldh/(KmLD + PYR)
-	Jgpd() = G3P*NADc*Vmgpd/(NADHc*(G3P + Kmg3p)*(KgNc + NADc/NADHc))
 	arRateNADHc() = -NADHc*knadhc + (-JLDH + Jgpd - Jtnadh)/Vi
-	FPYR() = PYR/(Kmpyr + PYR)
-	FPNAD() = NADm/(NADHm*(KPNm + NADm/NADHm))
 	FPCa() = 1/(u2*(u1/(Cam/KCam + 1)^2 + 1) + 1)
+	FPNAD() = NADm/(NADHm*(KPNm + NADm/NADHm))
+	FPYR() = PYR/(Kmpyr + PYR)
 	JPYR() = FPCa*FPNAD*FPYR*Vmpdh
 	arRateNADHm() = -NADHm*knadhm + (4.6*JPYR - 0.1*Jhres + Jtnadh)/Vmmit
 	JGlu() = ATP*Glu^hgl*Vmglu/((ATP + KmATP)*(Glu^hgl + Kmgl^hgl))

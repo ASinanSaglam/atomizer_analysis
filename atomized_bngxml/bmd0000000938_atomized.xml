@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000938_atomized">
+    <ListOfParameters>
+      <Parameter id="V_scdk" type="Constant" value="0.06" expr="0.06"/>
+      <Parameter id="k_d1cdk" type="Constant" value="0.01" expr="0.01"/>
+      <Parameter id="k_dcdk" type="Constant" value="0.35" expr="0.35"/>
+      <Parameter id="K_dcdk" type="Constant" value="0.01" expr="0.01"/>
+      <Parameter id="K_dsec" type="Constant" value="0.001" expr="0.001"/>
+      <Parameter id="k_2APC" type="Constant" value="0.3" expr="0.3"/>
+      <Parameter id="K_2APC" type="Constant" value="0.01" expr="0.01"/>
+      <Parameter id="V_1APC" type="Constant" value="0.15" expr="0.15"/>
+      <Parameter id="K_1APC" type="Constant" value="0.01" expr="0.01"/>
+      <Parameter id="V_ssec" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="k_d1sec" type="Constant" value="0.01" expr="0.01"/>
+      <Parameter id="k_dsec" type="Constant" value="0.4" expr="0.4"/>
+      <Parameter id="Anaphase_promoting_complex" type="Constant" value="6.022e+20" expr="6.022e+20"/>
+      <Parameter id="Anaphase_promoting_complex_total" type="Constant" value="6.022e+20" expr="6.022e+20"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="Anaphase_promoting_complex_Phosphorylated"/>
+      <MoleculeType id="Cdk"/>
+      <MoleculeType id="Securin"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="1.8066e+20" name="Cdk()">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="Cdk"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="2.1077e+20" name="Securin()">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="Securin"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="Synthesis_Cdk" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="Cdk"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="V_scdk"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="Degradation_Cdk" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="Cdk"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k_d1cdk"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR2_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="Degradation_Cdk_mediated_by_APC_P" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="Cdk"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="fRate2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR3_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="Phosphorylation_of_APC" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="Anaphase_promoting_complex_Phosphorylated"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="fRate3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR4_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="Dephosphorylation_of_APC" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR5_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP1_M1" name="Anaphase_promoting_complex_Phosphorylated"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Function" name="fRate4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR5_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR5_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="Synthesis_of_Securin" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="Securin"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="V_ssec"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR6_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="Degradation_of_Sec" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR7_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_RP1_M1" name="Securin"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k_d1sec"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR7_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR7_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="Degradation_of_Sec_mediated_by_APC_P" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR8_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_RP1_M1" name="Securin"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Function" name="fRate7" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR8_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR8_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="Cdk" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="Cdk"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="Anaphase_promoting_complex_Phosphorylated" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="Anaphase_promoting_complex_Phosphorylated"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="Securin" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="Securin"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="Anaphase_promoting_complex_ar">
+        <ListOfReferences>
+          <Reference name="Anaphase_promoting_complex_total" type="Constant"/>
+          <Reference name="Anaphase_promoting_complex_Phosphorylated" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (-Anaphase_promoting_complex_Phosphorylated)+Anaphase_promoting_complex_total </Expression>
+      </Function>
+      <Function id="fRate2">
+        <ListOfReferences>
+          <Reference name="K_dcdk" type="Constant"/>
+          <Reference name="K_dsec" type="Constant"/>
+          <Reference name="k_dcdk" type="Constant"/>
+          <Reference name="Anaphase_promoting_complex_Phosphorylated" type="Observable"/>
+          <Reference name="Cdk" type="Observable"/>
+          <Reference name="Securin" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((Anaphase_promoting_complex_Phosphorylated*K_dsec)*k_dcdk)/((K_dcdk*Securin)+(K_dsec*(Cdk+K_dcdk))) </Expression>
+      </Function>
+      <Function id="fRate3">
+        <ListOfReferences>
+          <Reference name="K_2APC" type="Constant"/>
+          <Reference name="k_2APC" type="Constant"/>
+          <Reference name="Anaphase_promoting_complex_ar" type="Function"/>
+          <Reference name="Cdk" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((Anaphase_promoting_complex_ar*Cdk)*k_2APC)/(Anaphase_promoting_complex_ar+K_2APC) </Expression>
+      </Function>
+      <Function id="fRate4">
+        <ListOfReferences>
+          <Reference name="K_1APC" type="Constant"/>
+          <Reference name="V_1APC" type="Constant"/>
+          <Reference name="Anaphase_promoting_complex_Phosphorylated" type="Observable"/>
+        </ListOfReferences>
+        <Expression> V_1APC/(Anaphase_promoting_complex_Phosphorylated+K_1APC) </Expression>
+      </Function>
+      <Function id="fRate7">
+        <ListOfReferences>
+          <Reference name="K_dcdk" type="Constant"/>
+          <Reference name="K_dsec" type="Constant"/>
+          <Reference name="k_dsec" type="Constant"/>
+          <Reference name="Anaphase_promoting_complex_Phosphorylated" type="Observable"/>
+          <Reference name="Cdk" type="Observable"/>
+          <Reference name="Securin" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((Anaphase_promoting_complex_Phosphorylated*K_dcdk)*k_dsec)/((Cdk*K_dsec)+(K_dcdk*(K_dsec+Securin))) </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

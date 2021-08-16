@@ -4,7 +4,7 @@
 #@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1909090001', 'http://identifiers.org/biomodels.db/BIOMD0000000808']
 #@creatorEmail:'johannes.p.meyer@gmail.com'
 #@creatorName:'Meyer Johannes'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 6 molecules and 15 reactions. The translated model has 6 molecules and 15 rules'
+#@notes:'This is an atomized translation of an SBML model created on 14/08/2021. The original model has 6 molecules and 15 reactions. The translated model has 6 molecules and 15 rules'
 ###
 begin model
 begin parameters
@@ -44,16 +44,16 @@ end parameters
 begin molecule types
 	#^ bqbiol:is cl:CL:0001063
 	T()
-	#^ bqbiol:isVersionOf go:GO:0042612
-	M1()
-	#^ bqbiol:isVersionOf go:GO:0042613
-	M2()
-	#^ bqbiol:is cl:CL:0000910
-	C()
-	#^ bqbiol:isVersionOf ncit:C20455
-	F_beta()
 	#^ bqbiol:is uniprot:Q14609
 	F_gamma()
+	#^ bqbiol:is cl:CL:0000910
+	C()
+	#^ bqbiol:isVersionOf go:GO:0042613
+	M2()
+	#^ bqbiol:isVersionOf go:GO:0042612
+	M1()
+	#^ bqbiol:isVersionOf ncit:C20455
+	F_beta()
 end molecule types
 begin seed species
 	T() 6.022e+30 # (10000000000.0 * 0.001)mol/L * 6.022e23/mol *1.0L #T #T
@@ -68,10 +68,10 @@ begin observables
 	Species M2 M2() #M2
 end observables
 begin functions
-	S_5() =  if(((0)&&(ModelValue_30)&&time()>5760&&time()<6120),(ModelValue_28/ModelValue_30),(0))
-	S_3() =  if(((0)&&(ModelValue_30)&&time()>2880&&time()<3240),(ModelValue_28/ModelValue_30),(0))
 	S_4() =  if(((0)&&(ModelValue_30)&&time()>4320&&time()<4680),(ModelValue_28/ModelValue_30),(0))
 	S_1() =  if(((0)&&(ModelValue_30)&&time()<360),(S_dose/ModelValue_30),(0))
+	S_3() =  if(((0)&&(ModelValue_30)&&time()>2880&&time()<3240),(ModelValue_28/ModelValue_30),(0))
+	S_5() =  if(((0)&&(ModelValue_30)&&time()>5760&&time()<6120),(ModelValue_28/ModelValue_30),(0))
 	S_2() =  if(((0)&&(ModelValue_30)&&time()>1440&&time()<1800),(ModelValue_28/ModelValue_30),(0))
 	S() = S_1 + S_2 + S_3 + S_4 + S_5
 	C_e7() = C/10000000

@@ -1,0 +1,1040 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000545_atomized">
+    <ListOfParameters>
+      <Parameter id="ks1" type="Constant" value="0.23" expr="0.23"/>
+      <Parameter id="ks2" type="Constant" value="4.0526" expr="4.0526"/>
+      <Parameter id="kdr1" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="kdr2" type="Constant" value="0.2118" expr="0.2118"/>
+      <Parameter id="k1" type="Constant" value="0.0043" expr="0.0043"/>
+      <Parameter id="k2" type="Constant" value="161.62" expr="161.62"/>
+      <Parameter id="ka1" type="Constant" value="0.0372" expr="0.0372"/>
+      <Parameter id="ka2" type="Constant" value="0.0611" expr="0.0611"/>
+      <Parameter id="ka3" type="Constant" value="4.7207" expr="4.7207"/>
+      <Parameter id="kd1" type="Constant" value="94.3524" expr="94.3524"/>
+      <Parameter id="kd2" type="Constant" value="50.6973" expr="50.6973"/>
+      <Parameter id="kd3" type="Constant" value="0.5508" expr="0.5508"/>
+      <Parameter id="ks3" type="Constant" value="0.4397" expr="0.4397"/>
+      <Parameter id="kdr3" type="Constant" value="1.246" expr="1.246"/>
+      <Parameter id="UV" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="ka4" type="Constant" value="10.1285" expr="10.1285"/>
+      <Parameter id="kd4" type="Constant" value="1.1999" expr="1.1999"/>
+      <Parameter id="n1" type="Constant" value="3" expr="3.0"/>
+      <Parameter id="n2" type="Constant" value="2" expr="2.0"/>
+      <Parameter id="n3" type="Constant" value="3.5" expr="3.5"/>
+      <Parameter id="kdr3a" type="Constant" value="0.9735" expr="0.9735"/>
+      <Parameter id="kdr3b" type="Constant" value="0.406" expr="0.406"/>
+      <Parameter id="ksr" type="Constant" value="0.7537" expr="0.7537"/>
+      <Parameter id="COP1" type="Constant" value="4.2" expr="4.2"/>
+      <Parameter id="FHY3" type="Constant" value="5" expr="5.0"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="CD">
+        <ListOfComponentTypes>
+          <ComponentType id="dwd"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="CDCS"/>
+      <MoleculeType id="CS">
+        <ListOfComponentTypes>
+          <ComponentType id="UCS">
+            <ListOfAllowedStates>
+              <AllowedState id="UCS"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="DWD">
+        <ListOfComponentTypes>
+          <ComponentType id="cd"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="HY5"/>
+      <MoleculeType id="RUP">
+        <ListOfComponentTypes>
+          <ComponentType id="uvr8m"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="UVR8M">
+        <ListOfComponentTypes>
+          <ComponentType id="rup"/>
+          <ComponentType id="uvr8m"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="0.2" name="CS(UCS~0)">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="CS">
+            <ListOfComponents>
+              <Component id="S1_M1_C1" name="UCS" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="10.0" name="CD(dwd)">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="CD">
+            <ListOfComponents>
+              <Component id="S2_M1_C1" name="dwd" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="2.0" name="CDCS()">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="CDCS"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S4"  concentration="20.0" name="UVR8M(rup,uvr8m!1).UVR8M(rup,uvr8m!1)">
+        <ListOfMolecules>
+          <Molecule id="S4_M1" name="UVR8M">
+            <ListOfComponents>
+              <Component id="S4_M1_C1" name="rup" numberOfBonds="0"/>
+              <Component id="S4_M1_C2" name="uvr8m" numberOfBonds="1"/>
+            </ListOfComponents>
+          </Molecule>
+          <Molecule id="S4_M2" name="UVR8M">
+            <ListOfComponents>
+              <Component id="S4_M2_C1" name="rup" numberOfBonds="0"/>
+              <Component id="S4_M2_C2" name="uvr8m" numberOfBonds="1"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+        <ListOfBonds>
+          <Bond id="S4_B1" site1="S4_M1_C2" site2="S4_M2_C2"/>
+        </ListOfBonds>
+      </Species>
+      <Species id="S5"  concentration="0.25" name="HY5()">
+        <ListOfMolecules>
+          <Molecule id="S5_M1" name="HY5"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S6"  concentration="20.0" name="DWD(cd)">
+        <ListOfMolecules>
+          <Molecule id="S6_M1" name="DWD">
+            <ListOfComponents>
+              <Component id="S6_M1_C1" name="cd" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="r1_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="CS">
+                <ListOfComponents>
+                  <Component id="RR1_PP1_M1_C1" name="UCS" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="r2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="RUP">
+                <ListOfComponents>
+                  <Component id="RR2_PP1_M1_C1" name="uvr8m" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="fRate1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="_reverse_r2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="RUP">
+                <ListOfComponents>
+                  <Component id="RR3_RP1_M1_C1" name="uvr8m" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kdr2"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1"/>
+          <MapItem sourceID="RR3_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR3_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="r3" symmetry_factor="0.5">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="UVR8M">
+                <ListOfComponents>
+                  <Component id="RR4_RP1_M1_C1" name="rup" numberOfBonds="0"/>
+                  <Component id="RR4_RP1_M1_C2" name="uvr8m" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR4_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP2_M1" name="UVR8M">
+                <ListOfComponents>
+                  <Component id="RR4_RP2_M1_C1" name="rup" numberOfBonds="0"/>
+                  <Component id="RR4_RP2_M1_C2" name="uvr8m" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="UVR8M">
+                <ListOfComponents>
+                  <Component id="RR4_PP1_M1_C1" name="rup" numberOfBonds="0"/>
+                  <Component id="RR4_PP1_M1_C2" name="uvr8m" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR4_PP1_M2" name="UVR8M">
+                <ListOfComponents>
+                  <Component id="RR4_PP1_M2_C1" name="rup" numberOfBonds="0"/>
+                  <Component id="RR4_PP1_M2_C2" name="uvr8m" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR4_PP1_B1" site1="RR4_PP1_M1_C2" site2="RR4_PP1_M2_C2"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k1"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1" targetID="RR4_PP1_M1"/>
+          <MapItem sourceID="RR4_RP1_M1_C1" targetID="RR4_PP1_M1_C1"/>
+          <MapItem sourceID="RR4_RP1_M1_C2" targetID="RR4_PP1_M1_C2"/>
+          <MapItem sourceID="RR4_RP2_M1" targetID="RR4_PP1_M2"/>
+          <MapItem sourceID="RR4_RP2_M1_C1" targetID="RR4_PP1_M2_C1"/>
+          <MapItem sourceID="RR4_RP2_M1_C2" targetID="RR4_PP1_M2_C2"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR4_RP1_M1_C2" site2="RR4_RP2_M1_C2"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="r4_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="CS">
+                <ListOfComponents>
+                  <Component id="RR5_PP1_M1_C1" name="UCS" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Function" name="_rateLaw1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR5_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="r4_reactants_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="UVR8M">
+                <ListOfComponents>
+                  <Component id="RR6_PP1_M1_C1" name="rup" numberOfBonds="0"/>
+                  <Component id="RR6_PP1_M1_C2" name="uvr8m" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Function" name="_rateLaw2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR6_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="r4_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="CS">
+                <ListOfComponents>
+                  <Component id="RR7_PP1_M1_C1" name="UCS" state="UCS" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Function" name="fRate3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR7_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="r5" symmetry_factor="0.5">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR8_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_RP1_M1" name="CS">
+                <ListOfComponents>
+                  <Component id="RR8_RP1_M1_C1" name="UCS" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR8_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR8_RP2_M1" name="CS">
+                <ListOfComponents>
+                  <Component id="RR8_RP2_M1_C1" name="UCS" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR8_RP3">
+            <ListOfMolecules>
+              <Molecule id="RR8_RP3_M1" name="CD">
+                <ListOfComponents>
+                  <Component id="RR8_RP3_M1_C1" name="dwd" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR8_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP1_M1" name="CDCS"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="ka2"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR8_RP1_M1"/>
+          <MapItem sourceID="RR8_RP1_M1_C1"/>
+          <MapItem sourceID="RR8_RP2_M1"/>
+          <MapItem sourceID="RR8_RP2_M1_C1"/>
+          <MapItem sourceID="RR8_RP3_M1"/>
+          <MapItem sourceID="RR8_RP3_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR8_PP1_M1"/>
+          <Delete id="RR8_RP1" DeleteMolecules="0"/>
+          <Delete id="RR8_RP2" DeleteMolecules="0"/>
+          <Delete id="RR8_RP3" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="_reverse_r5" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR9_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_RP1_M1" name="CDCS"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR9_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP1_M1" name="CS">
+                <ListOfComponents>
+                  <Component id="RR9_PP1_M1_C1" name="UCS" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR9_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP2_M1" name="CS">
+                <ListOfComponents>
+                  <Component id="RR9_PP2_M1_C1" name="UCS" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR9_PP3">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP3_M1" name="CD">
+                <ListOfComponents>
+                  <Component id="RR9_PP3_M1_C1" name="dwd" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kd2"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR9_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR9_PP1_M1"/>
+          <Add id="RR9_PP2_M1"/>
+          <Add id="RR9_PP3_M1"/>
+          <Delete id="RR9_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="r6" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR10_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_RP1_M1" name="UVR8M">
+                <ListOfComponents>
+                  <Component id="RR10_RP1_M1_C1" name="rup" numberOfBonds="0"/>
+                  <Component id="RR10_RP1_M1_C2" name="uvr8m" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR10_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR10_RP2_M1" name="RUP">
+                <ListOfComponents>
+                  <Component id="RR10_RP2_M1_C1" name="uvr8m" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR10_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_PP1_M1" name="UVR8M">
+                <ListOfComponents>
+                  <Component id="RR10_PP1_M1_C1" name="rup" numberOfBonds="1"/>
+                  <Component id="RR10_PP1_M1_C2" name="uvr8m" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR10_PP1_M2" name="RUP">
+                <ListOfComponents>
+                  <Component id="RR10_PP1_M2_C1" name="uvr8m" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR10_PP1_B1" site1="RR10_PP1_M1_C1" site2="RR10_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="ka3"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR10_RP1_M1" targetID="RR10_PP1_M1"/>
+          <MapItem sourceID="RR10_RP1_M1_C1" targetID="RR10_PP1_M1_C1"/>
+          <MapItem sourceID="RR10_RP1_M1_C2" targetID="RR10_PP1_M1_C2"/>
+          <MapItem sourceID="RR10_RP2_M1" targetID="RR10_PP1_M2"/>
+          <MapItem sourceID="RR10_RP2_M1_C1" targetID="RR10_PP1_M2_C1"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR10_RP1_M1_C1" site2="RR10_RP2_M1_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR11" name="r7" symmetry_factor="0.5">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR11_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_RP1_M1" name="UVR8M">
+                <ListOfComponents>
+                  <Component id="RR11_RP1_M1_C1" name="rup" numberOfBonds="1"/>
+                  <Component id="RR11_RP1_M1_C2" name="uvr8m" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR11_RP1_M2" name="RUP">
+                <ListOfComponents>
+                  <Component id="RR11_RP1_M2_C1" name="uvr8m" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR11_RP1_B1" site1="RR11_RP1_M1_C1" site2="RR11_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+          <ReactantPattern id="RR11_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR11_RP2_M1" name="UVR8M">
+                <ListOfComponents>
+                  <Component id="RR11_RP2_M1_C1" name="rup" numberOfBonds="1"/>
+                  <Component id="RR11_RP2_M1_C2" name="uvr8m" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR11_RP2_M2" name="RUP">
+                <ListOfComponents>
+                  <Component id="RR11_RP2_M2_C1" name="uvr8m" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR11_RP2_B1" site1="RR11_RP2_M1_C1" site2="RR11_RP2_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR11_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_PP1_M1" name="UVR8M">
+                <ListOfComponents>
+                  <Component id="RR11_PP1_M1_C1" name="rup" numberOfBonds="0"/>
+                  <Component id="RR11_PP1_M1_C2" name="uvr8m" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR11_PP1_M2" name="UVR8M">
+                <ListOfComponents>
+                  <Component id="RR11_PP1_M2_C1" name="rup" numberOfBonds="0"/>
+                  <Component id="RR11_PP1_M2_C2" name="uvr8m" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR11_PP1_B1" site1="RR11_PP1_M1_C2" site2="RR11_PP1_M2_C2"/>
+            </ListOfBonds>
+          </ProductPattern>
+          <ProductPattern id="RR11_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR11_PP2_M1" name="RUP">
+                <ListOfComponents>
+                  <Component id="RR11_PP2_M1_C1" name="uvr8m" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR11_PP3">
+            <ListOfMolecules>
+              <Molecule id="RR11_PP3_M1" name="RUP">
+                <ListOfComponents>
+                  <Component id="RR11_PP3_M1_C1" name="uvr8m" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR11_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kd3"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR11_RP1_M1" targetID="RR11_PP1_M1"/>
+          <MapItem sourceID="RR11_RP1_M1_C1" targetID="RR11_PP1_M1_C1"/>
+          <MapItem sourceID="RR11_RP1_M1_C2" targetID="RR11_PP1_M1_C2"/>
+          <MapItem sourceID="RR11_RP1_M2" targetID="RR11_PP2_M1"/>
+          <MapItem sourceID="RR11_RP1_M2_C1" targetID="RR11_PP2_M1_C1"/>
+          <MapItem sourceID="RR11_RP2_M1" targetID="RR11_PP1_M2"/>
+          <MapItem sourceID="RR11_RP2_M1_C1" targetID="RR11_PP1_M2_C1"/>
+          <MapItem sourceID="RR11_RP2_M1_C2" targetID="RR11_PP1_M2_C2"/>
+          <MapItem sourceID="RR11_RP2_M2" targetID="RR11_PP3_M1"/>
+          <MapItem sourceID="RR11_RP2_M2_C1" targetID="RR11_PP3_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <DeleteBond site1="RR11_RP1_M1_C1" site2="RR11_RP1_M2_C1"/>
+          <DeleteBond site1="RR11_RP2_M1_C1" site2="RR11_RP2_M2_C1"/>
+          <AddBond site1="RR11_RP1_M1_C2" site2="RR11_RP2_M1_C2"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR12" name="r8" symmetry_factor="0.5">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR12_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_RP1_M1" name="UVR8M">
+                <ListOfComponents>
+                  <Component id="RR12_RP1_M1_C1" name="rup" numberOfBonds="0"/>
+                  <Component id="RR12_RP1_M1_C2" name="uvr8m" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR12_RP1_M2" name="UVR8M">
+                <ListOfComponents>
+                  <Component id="RR12_RP1_M2_C1" name="rup" numberOfBonds="0"/>
+                  <Component id="RR12_RP1_M2_C2" name="uvr8m" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR12_RP1_B1" site1="RR12_RP1_M1_C2" site2="RR12_RP1_M2_C2"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR12_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_PP1_M1" name="UVR8M">
+                <ListOfComponents>
+                  <Component id="RR12_PP1_M1_C1" name="rup" numberOfBonds="0"/>
+                  <Component id="RR12_PP1_M1_C2" name="uvr8m" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR12_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR12_PP2_M1" name="UVR8M">
+                <ListOfComponents>
+                  <Component id="RR12_PP2_M1_C1" name="rup" numberOfBonds="0"/>
+                  <Component id="RR12_PP2_M1_C2" name="uvr8m" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR12_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k2"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR12_RP1_M1" targetID="RR12_PP1_M1"/>
+          <MapItem sourceID="RR12_RP1_M1_C1" targetID="RR12_PP1_M1_C1"/>
+          <MapItem sourceID="RR12_RP1_M1_C2" targetID="RR12_PP1_M1_C2"/>
+          <MapItem sourceID="RR12_RP1_M2" targetID="RR12_PP2_M1"/>
+          <MapItem sourceID="RR12_RP1_M2_C1" targetID="RR12_PP2_M1_C1"/>
+          <MapItem sourceID="RR12_RP1_M2_C2" targetID="RR12_PP2_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <DeleteBond site1="RR12_RP1_M1_C2" site2="RR12_RP1_M2_C2"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR13" name="r9_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR13_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_PP1_M1" name="HY5"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR13_RateLaw" type="Function" name="fRate8" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR13_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR14" name="r10" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR14_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_RP1_M1" name="CD">
+                <ListOfComponents>
+                  <Component id="RR14_RP1_M1_C1" name="dwd" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR14_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR14_RP2_M1" name="DWD">
+                <ListOfComponents>
+                  <Component id="RR14_RP2_M1_C1" name="cd" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR14_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_PP1_M1" name="DWD">
+                <ListOfComponents>
+                  <Component id="RR14_PP1_M1_C1" name="cd" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR14_PP1_M2" name="CD">
+                <ListOfComponents>
+                  <Component id="RR14_PP1_M2_C1" name="dwd" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR14_PP1_B1" site1="RR14_PP1_M1_C1" site2="RR14_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR14_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="ka4"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR14_RP1_M1" targetID="RR14_PP1_M2"/>
+          <MapItem sourceID="RR14_RP1_M1_C1" targetID="RR14_PP1_M2_C1"/>
+          <MapItem sourceID="RR14_RP2_M1" targetID="RR14_PP1_M1"/>
+          <MapItem sourceID="RR14_RP2_M1_C1" targetID="RR14_PP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR14_RP2_M1_C1" site2="RR14_RP1_M1_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR15" name="_reverse_r10" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR15_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR15_RP1_M1" name="DWD">
+                <ListOfComponents>
+                  <Component id="RR15_RP1_M1_C1" name="cd" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR15_RP1_M2" name="CD">
+                <ListOfComponents>
+                  <Component id="RR15_RP1_M2_C1" name="dwd" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR15_RP1_B1" site1="RR15_RP1_M1_C1" site2="RR15_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR15_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR15_PP1_M1" name="CD">
+                <ListOfComponents>
+                  <Component id="RR15_PP1_M1_C1" name="dwd" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR15_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR15_PP2_M1" name="DWD">
+                <ListOfComponents>
+                  <Component id="RR15_PP2_M1_C1" name="cd" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR15_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kd4"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR15_RP1_M1" targetID="RR15_PP2_M1"/>
+          <MapItem sourceID="RR15_RP1_M1_C1" targetID="RR15_PP2_M1_C1"/>
+          <MapItem sourceID="RR15_RP1_M2" targetID="RR15_PP1_M1"/>
+          <MapItem sourceID="RR15_RP1_M2_C1" targetID="RR15_PP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <DeleteBond site1="RR15_RP1_M1_C1" site2="RR15_RP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="CS" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="CS">
+                <ListOfComponents>
+                  <Component id="O1_P1_M1_C1" name="UCS" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="CD" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="CD">
+                <ListOfComponents>
+                  <Component id="O2_P1_M1_C1" name="dwd" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="CDCS" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="CDCS"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="UVR8M" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="UVR8M">
+                <ListOfComponents>
+                  <Component id="O4_P1_M1_C1" name="rup" numberOfBonds="0"/>
+                  <Component id="O4_P1_M1_C2" name="uvr8m" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="UCS" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="CS">
+                <ListOfComponents>
+                  <Component id="O5_P1_M1_C1" name="UCS" state="UCS" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O6" name="UVR8D" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O6_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O6_P1_M1" name="UVR8M">
+                <ListOfComponents>
+                  <Component id="O6_P1_M1_C1" name="rup" numberOfBonds="0"/>
+                  <Component id="O6_P1_M1_C2" name="uvr8m" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O6_P1_M2" name="UVR8M">
+                <ListOfComponents>
+                  <Component id="O6_P1_M2_C1" name="rup" numberOfBonds="0"/>
+                  <Component id="O6_P1_M2_C2" name="uvr8m" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O6_P1_B1" site1="O6_P1_M1_C2" site2="O6_P1_M2_C2"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O7" name="RUP" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O7_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O7_P1_M1" name="RUP">
+                <ListOfComponents>
+                  <Component id="O7_P1_M1_C1" name="uvr8m" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O8" name="UR" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O8_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O8_P1_M1" name="UVR8M">
+                <ListOfComponents>
+                  <Component id="O8_P1_M1_C1" name="rup" numberOfBonds="1"/>
+                  <Component id="O8_P1_M1_C2" name="uvr8m" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O8_P1_M2" name="RUP">
+                <ListOfComponents>
+                  <Component id="O8_P1_M2_C1" name="uvr8m" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O8_P1_B1" site1="O8_P1_M1_C1" site2="O8_P1_M2_C1"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O9" name="HY5" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O9_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O9_P1_M1" name="HY5"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O10" name="DWD" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O10_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O10_P1_M1" name="DWD">
+                <ListOfComponents>
+                  <Component id="O10_P1_M1_C1" name="cd" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O11" name="CDW" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O11_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O11_P1_M1" name="DWD">
+                <ListOfComponents>
+                  <Component id="O11_P1_M1_C1" name="cd" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O11_P1_M2" name="CD">
+                <ListOfComponents>
+                  <Component id="O11_P1_M2_C1" name="dwd" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O11_P1_B1" site1="O11_P1_M1_C1" site2="O11_P1_M2_C1"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="COP1_Total">
+        <ListOfReferences>
+          <Reference name="CDCS" type="Observable"/>
+          <Reference name="CS" type="Observable"/>
+          <Reference name="UCS" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((2*CDCS)+CS)+(2*UCS) </Expression>
+      </Function>
+      <Function id="UM_Total">
+        <ListOfReferences>
+          <Reference name="UCS" type="Observable"/>
+          <Reference name="UR" type="Observable"/>
+          <Reference name="UVR8M" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((2*UCS)+UR)+UVR8M </Expression>
+      </Function>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="FHY3" type="Constant"/>
+          <Reference name="UV" type="Constant"/>
+          <Reference name="kdr1" type="Constant"/>
+          <Reference name="ks1" type="Constant"/>
+          <Reference name="n1" type="Constant"/>
+          <Reference name="n3" type="Constant"/>
+          <Reference name="CS" type="Observable"/>
+          <Reference name="HY5" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((-CS)*kdr1)*((UV*n1)+1))+(ks1*(((UV*n3)*(FHY3+HY5))+1)) </Expression>
+      </Function>
+      <Function id="fRate1">
+        <ListOfReferences>
+          <Reference name="UV" type="Constant"/>
+          <Reference name="ks2" type="Constant"/>
+          <Reference name="UCS" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ks2*((UCS*UV)+1) </Expression>
+      </Function>
+      <Function id="fRate3">
+        <ListOfReferences>
+          <Reference name="ka1" type="Constant"/>
+          <Reference name="kd1" type="Constant"/>
+          <Reference name="CS" type="Observable"/>
+          <Reference name="UCS" type="Observable"/>
+          <Reference name="UVR8M" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((CS^2)*(UVR8M^2))*ka1)-(UCS*kd1) </Expression>
+      </Function>
+      <Function id="fRate8">
+        <ListOfReferences>
+          <Reference name="UV" type="Constant"/>
+          <Reference name="kdr3" type="Constant"/>
+          <Reference name="kdr3a" type="Constant"/>
+          <Reference name="kdr3b" type="Constant"/>
+          <Reference name="ks3" type="Constant"/>
+          <Reference name="ksr" type="Constant"/>
+          <Reference name="n2" type="Constant"/>
+          <Reference name="CDCS" type="Observable"/>
+          <Reference name="CDW" type="Observable"/>
+          <Reference name="HY5" type="Observable"/>
+          <Reference name="UCS" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((-HY5)*kdr3)*(((CDCS/(CDCS+kdr3a))+(CDW/(CDW+kdr3b)))-(UCS/(UCS+ksr))))+(ks3*((UV*n2)+1)) </Expression>
+      </Function>
+      <Function id="_rateLaw1">
+        <ListOfReferences>
+          <Reference name="fRate3" type="Function"/>
+        </ListOfReferences>
+        <Expression> (-1*2.0)*fRate3() </Expression>
+      </Function>
+      <Function id="_rateLaw2">
+        <ListOfReferences>
+          <Reference name="fRate3" type="Function"/>
+        </ListOfReferences>
+        <Expression> (-1*2.0)*fRate3() </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

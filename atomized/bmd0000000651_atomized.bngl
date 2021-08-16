@@ -1,12 +1,12 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000651', 'http://identifiers.org/biomodels.db/MODEL1708250003']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1708250003', 'http://identifiers.org/biomodels.db/BIOMD0000000651']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/26481970']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
-#@BQB_HAS_PROPERTY:['http://identifiers.org/ncit/C16212', 'http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/ncit/C16212']
 #@BQB_HAS_PART:['http://identifiers.org/pw/PW:0000180', 'http://identifiers.org/pw/PW:0000102']
 #@creatorEmail:'efairbanks@ebi.ac.uk'
 #@creatorName:'Fairbanks Emma Louise'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 29 molecules and 16 reactions. The translated model has 11 molecules and 18 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 29 molecules and 16 reactions. The translated model has 11 molecules and 18 rules'
 ###
 begin model
 begin parameters
@@ -46,27 +46,27 @@ begin parameters
 	k16r 0.001
 end parameters
 begin molecule types
-	#^ bqbiol:isVersionOf uniprot:P35568
-	IRS(a~A~0,i~I~0)
-	#^ bqbiol:isVersionOf uniprot:P27361
-	ERK(a~A~0)
-	#^ bqbiol:isVersionOf urn:miriam:uniprot:C17270
-	PI3K(a~A~0)
-	RasG(dp~DP~0,tp~TP~0)
-	#^ bqbiol:isVersionOf uniprot:Q08345
-	RTK(a~A~0,i~I~0)
-	#^ bqbiol:isVersionOf uniprot:P23443
-	S6K(a~A~0)
-	#^ bqbiol:isVersionOf uniprot:Q12778
-	FOXO(i~I~0)
-	#^ bqbiol:isVersionOf uniprot:Q02750
-	MEK(a~A~0,i~I~0,mek)
-	#^ bqbiol:isVersionOf uniprot:P42345
-	mTORC1(a~A~0)
 	#^ bqbiol:isVersionOf uniprot:P31749
 	Akt(a~A~0,akt,i~I~0)
+	#^ bqbiol:isVersionOf uniprot:P23443
+	S6K(a~A~0)
+	#^ bqbiol:isVersionOf urn:miriam:uniprot:C17270
+	PI3K(a~A~0)
 	#^ bqbiol:isVersionOf uniprot:P04049
 	Raf(a~A~0,i~I~0)
+	RasG(dp~DP~0,tp~TP~0)
+	#^ bqbiol:isVersionOf uniprot:P42345
+	mTORC1(a~A~0)
+	#^ bqbiol:isVersionOf uniprot:Q08345
+	RTK(a~A~0,i~I~0)
+	#^ bqbiol:isVersionOf uniprot:P27361
+	ERK(a~A~0)
+	#^ bqbiol:isVersionOf uniprot:Q02750
+	MEK(a~A~0,i~I~0,mek)
+	#^ bqbiol:isVersionOf uniprot:P35568
+	IRS(a~A~0,i~I~0)
+	#^ bqbiol:isVersionOf uniprot:Q12778
+	FOXO(i~I~0)
 end molecule types
 begin seed species
 	IRS(a~0,i~0) 6.022000000000001e+22 # (100.0 * 0.001)mol/L * 6.022e23/mol *1.0L #IRS #IRS
@@ -108,9 +108,9 @@ begin observables
 	Species ERK ERK(a~0) #ERK
 	Species aERK ERK(a~A) #aERK
 	Species AktI Akt(a~0,akt,i~I) #AktI
-	Species iAkt Akt(a~0,akt!284,i~0).Akt(a~0,akt!284,i~I) #iAkt
+	Species iAkt Akt(a~0,akt!371,i~0).Akt(a~0,akt!371,i~I) #iAkt
 	Species MEKI MEK(a~0,i~I,mek) #MEKI
-	Species iMEK MEK(a~0,i~0,mek!285).MEK(a~0,i~I,mek!285) #iMEK
+	Species iMEK MEK(a~0,i~0,mek!372).MEK(a~0,i~I,mek!372) #iMEK
 end observables
 begin functions
 	fRate1() = 1.0*PI3K*(aIRS*k2f + aRTK*k2fa) - 1.0*aPI3K*k2r
@@ -155,7 +155,7 @@ begin reaction rules
 	Raf_inhibition: Raf(a~0,i~0) <-> Raf(a~0,i~I) fRate11(),fRate11m() #Modifiers(aERK)
 	RTK_inhibition: RTK(a~0,i~0) <-> RTK(a~0,i~I) fRate12(),fRate12m() #Modifiers(aERK)
 	FOXO_inhibition: FOXO(i~0) <-> FOXO(i~I) fRate13(),fRate13m() #Modifiers(aAkt)
-	Akt_inhibition: Akt(a~0,akt,i~0) + Akt(a~0,akt,i~I) <-> Akt(a~0,akt!284,i~0).Akt(a~0,akt!284,i~I) k15f,k15r
-	MEK_inhibition: MEK(a~0,i~0,mek) + MEK(a~0,i~I,mek) <-> MEK(a~0,i~0,mek!285).MEK(a~0,i~I,mek!285) k16f,k16r
+	Akt_inhibition: Akt(a~0,akt,i~0) + Akt(a~0,akt,i~I) <-> Akt(a~0,akt!371,i~0).Akt(a~0,akt!371,i~I) k15f,k15r
+	MEK_inhibition: MEK(a~0,i~0,mek) + MEK(a~0,i~I,mek) <-> MEK(a~0,i~0,mek!372).MEK(a~0,i~I,mek!372) k16f,k16r
 end reaction rules
 end model

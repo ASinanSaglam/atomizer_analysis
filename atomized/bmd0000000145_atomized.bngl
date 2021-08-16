@@ -3,11 +3,11 @@
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/17188305']
 #@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/1647879']
 #@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
-#@BQB_HAS_PART:['http://identifiers.org/kegg.pathway/hsa04020', 'http://identifiers.org/go/GO:0051482']
+#@BQB_HAS_PART:['http://identifiers.org/go/GO:0051482', 'http://identifiers.org/kegg.pathway/hsa04020']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/131567']
 #@creatorEmail:'hdharuri@cds.caltech.edu'
 #@creatorName:'Dharuri Harish'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 7 molecules and 11 reactions. The translated model has 4 molecules and 12 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 7 molecules and 11 reactions. The translated model has 4 molecules and 12 rules'
 ###
 begin model
 begin parameters
@@ -56,18 +56,18 @@ begin molecule types
 	Galpha_GTP()
 end molecule types
 begin seed species
-	@Cytosol:Galpha_GTP() 602200000000000.1 # (1.0 * 1e-09)mol/L * 6.022e23/mol *1.0L #Galpha_GTP #Galpha_GTP
-	@Cytosol:APLC() 5419800000000001.0 #original 9.0nano mole/L #APLC #APLC
-	@Cytosol:IP3() 602200000000000.1 #original 1.0nano mole/L #IP3 #IP3
-	@ER:Calcium() 6.022000000000001e+17 #original 1000.0nano mole/L #Calcium #Ca_ER
-	@Cytosol:Calcium() 1.2044000000000002e+17 #original 200.0nano mole/L #Calcium #Ca_Cyt
+	@Cytosol:Galpha_GTP()@Cytosol 602200000000000.1 # (1.0 * 1e-09)mol/L * 6.022e23/mol *1.0L #Galpha_GTP #Galpha_GTP
+	@Cytosol:APLC()@Cytosol 5419800000000001.0 #original 9.0nano mole/L #APLC #APLC
+	@Cytosol:IP3()@Cytosol 602200000000000.1 #original 1.0nano mole/L #IP3 #IP3
+	@ER:Calcium()@Cytosol 6.022000000000001e+17 #original 1000.0nano mole/L #Calcium #Ca_ER
+	@Cytosol:Calcium()@Cytosol 1.2044000000000002e+17 #original 200.0nano mole/L #Calcium #Ca_Cyt
 end seed species
 begin observables
-	Species Galpha_GTP_Cytosol @Cytosol:Galpha_GTP() #Galpha_GTP
-	Species APLC_Cytosol @Cytosol:APLC() #APLC
-	Species IP3_Cytosol @Cytosol:IP3() #IP3
-	Species Calcium_ER @ER:Calcium() #Calcium
-	Species Calcium_Cytosol @Cytosol:Calcium() #Calcium
+	Species Galpha_GTP_Cytosol @Cytosol:Galpha_GTP()@Cytosol #Galpha_GTP
+	Species APLC_Cytosol @Cytosol:APLC()@Cytosol #APLC
+	Species IP3_Cytosol @Cytosol:IP3()@Cytosol #IP3
+	Species Calcium_ER @ER:Calcium()@Cytosol #Calcium
+	Species Calcium_Cytosol @Cytosol:Calcium()@Cytosol #Calcium
 end observables
 begin functions
 	Diacylglycerol_ar() = IP3_Cytosol

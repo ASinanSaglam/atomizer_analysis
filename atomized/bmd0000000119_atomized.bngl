@@ -1,11 +1,11 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1580005336', 'http://identifiers.org/biomodels.db/BIOMD0000000119']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000119', 'http://identifiers.org/biomodels.db/MODEL1580005336']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/16807352']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10114']
-#@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0019227', 'http://identifiers.org/obo.go/GO:0005249', 'http://identifiers.org/obo.go/GO:0005248']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0019227', 'http://identifiers.org/obo.go/GO:0005248', 'http://identifiers.org/obo.go/GO:0005249']
 #@creatorEmail:'enuo@caltech.edu'
 #@creatorName:'He Enuo'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 1 molecules and 1 reactions. The translated model has 9 molecules and 9 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 1 molecules and 1 reactions. The translated model has 9 molecules and 9 rules'
 ###
 begin model
 begin parameters
@@ -94,18 +94,18 @@ begin observables
 	Species V V
 end observables
 begin functions
-	IAHP() = gKAHP*qqs*(V - VK)
 	Iz() = gZ*zzs*(V - VK)
+	IKdr() = gKdr*nns^pns*(V - VK)
+	IAHP() = gKAHP*qqs*(V - VK)
+	Ainfs() = 1/(exp((-V + thetaa)/sigmaa) + 1)
+	IA() = Ainfs^3*bbs*gA*(V - VK)
+	Pinfs() = 1/(exp((-V + thetap)/sigmap) + 1)
+	INaP() = Pinfs*gNaP*(V - VNa)
+	Minfs() = 1/(exp((-V + thetam)/sigmam) + 1)
+	INa() = Minfs^pms*gNa*hhs*(V - VNa)
 	ICa() = gCa*rrs^2*(V - VCa)
 	mKCa() = 1/(1 + Ca^(-pwrc)*ac^pwrc)
 	IKC() = ccs*gKCa*mKCa*(V - VK)
-	IKdr() = gKdr*nns^pns*(V - VK)
-	Minfs() = 1/(exp((-V + thetam)/sigmam) + 1)
-	INa() = Minfs^pms*gNa*hhs*(V - VNa)
-	Pinfs() = 1/(exp((-V + thetap)/sigmap) + 1)
-	INaP() = Pinfs*gNaP*(V - VNa)
-	Ainfs() = 1/(exp((-V + thetaa)/sigmaa) + 1)
-	IA() = Ainfs^3*bbs*gA*(V - VK)
 	arRateV() = (-IA - IAHP - ICa - IKC - IKdr - INa - INaP + Iapp - Iz - gL*(V - VL))/Cm
 	arRateqqs() = (-qqs + 1/(1 + Ca^(-pwrq)*aq^pwrq))/tauq
 	arRateccs() = (-ccs + 1/(exp((-V + thetac)/sigmac) + 1))/tauKc

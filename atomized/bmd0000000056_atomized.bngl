@@ -1,5 +1,5 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL6624073334', 'http://identifiers.org/biomodels.db/BIOMD0000000056']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000056', 'http://identifiers.org/biomodels.db/MODEL6624073334']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/15169868']
 #@BQB_IS:['http://identifiers.org/kegg.pathway/sce04111']
 #@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0000278']
@@ -7,7 +7,7 @@
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/4932']
 #@creatorEmail:'hdharuri@cds.caltech.edu'
 #@creatorName:'Dharuri Harish'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 54 molecules and 94 reactions. The translated model has 24 molecules and 96 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 54 molecules and 94 reactions. The translated model has 24 molecules and 96 rules'
 ###
 begin model
 begin parameters
@@ -164,52 +164,52 @@ begin parameters
 	r55_k 1.000000
 end parameters
 begin molecule types
-	#^ bqbiol:is uniprot:P38698
-	PPX()
-	#^ bqbiol:hasPart uniprot:P09119, uniprot:P24868, uniprot:P24869
-	F2P()
-	#^ bqbiol:hasPart uniprot:P24868, uniprot:P24869, uniprot:P38634
-	C2P()
-	#^ bqbiol:is uniprot:P40316
-	PDS1(esp1)
-	#^ bqbiol:hasPart uniprot:P24869, uniprot:P24868
-	CLB2(cdc6,sic1)
-	#^ bqbiol:is uniprot:P08153
-	SWI5(p~P~0)
-	#^ bqbiol:isVersionOf cco:CCO:C0000485
-	BUD()
-	#^ bqbiol:isVersionOf obo.fma:FMA:86557
-	MASS()
-	#^ bqbiol:is uniprot:P47035
-	NET1(cdc14,p~P~0)
-	#^ bqbiol:hasPart uniprot:P32943, uniprot:P30283
-	CLB5(cdc6,sic1)
-	#^ bqbiol:is uniprot:P26309
-	CDC20(i~I~0)
-	#^ bqbiol:is uniprot:P53197
-	CDH1(i~I~0)
-	#^ bqbiol:is obo.go:GO:0005680
-	IE(p~P~0)
-	#^ bqbiol:is uniprot:Q03018
-	ESP1(pds1)
-	#^ bqbiol:hasPart uniprot:P09119, uniprot:P30283, uniprot:P32943
-	F5P()
-	#^ bqbiol:hasPart uniprot:P38634, uniprot:P32943, uniprot:P30283
-	C5P()
-	#^ bqbiol:hasPart uniprot:P20438, uniprot:P20437
-	CLN2()
-	#^ bqbiol:is uniprot:Q00684
-	CDC14(net1)
 	#^ bqbiol:is uniprot:P09119
 	CDC6(clb2,clb5,p~P~0)
+	TEM1G(dp~DP~0,tp~TP~0)
+	#^ bqbiol:hasPart uniprot:P38634, uniprot:P32943, uniprot:P30283
+	C5P()
+	#^ bqbiol:hasPart uniprot:P32943, uniprot:P30283
+	CLB5(cdc6,sic1)
+	#^ bqbiol:isVersionOf obo.fma:FMA:86557
+	MASS()
+	#^ bqbiol:is uniprot:P38698
+	PPX()
+	#^ bqbiol:hasPart uniprot:P09119, uniprot:P30283, uniprot:P32943
+	F5P()
+	#^ bqbiol:is obo.go:GO:0005680
+	IE(p~P~0)
 	ORI()
+	#^ bqbiol:is uniprot:Q00684
+	CDC14(net1)
+	#^ bqbiol:hasPart uniprot:P09119, uniprot:P24868, uniprot:P24869
+	F2P()
+	#^ bqbiol:is uniprot:P08153
+	SWI5(p~P~0)
 	#^ bqbiol:is uniprot:P27636
 	CDC15(i~I~0)
+	#^ bqbiol:hasPart uniprot:P24869, uniprot:P24868
+	CLB2(cdc6,sic1)
+	#^ bqbiol:is uniprot:Q03018
+	ESP1(pds1)
+	#^ bqbiol:hasPart uniprot:P20438, uniprot:P20437
+	CLN2()
+	#^ bqbiol:is uniprot:P53197
+	CDH1(i~I~0)
 	#^ bqbiol:isVersionOf cco:CCO:P0000392
 	SPN()
-	TEM1G(dp~DP~0,tp~TP~0)
+	#^ bqbiol:hasPart uniprot:P24868, uniprot:P24869, uniprot:P38634
+	C2P()
+	#^ bqbiol:isVersionOf cco:CCO:C0000485
+	BUD()
+	#^ bqbiol:is uniprot:P47035
+	NET1(cdc14,p~P~0)
 	#^ bqbiol:is uniprot:P38634
 	SIC1(clb2,clb5,p~P~0)
+	#^ bqbiol:is uniprot:P26309
+	CDC20(i~I~0)
+	#^ bqbiol:is uniprot:P40316
+	PDS1(esp1)
 end molecule types
 begin seed species
 	BUD() 0.008473 #BUD #BUD
@@ -292,8 +292,8 @@ begin observables
 	Species TEM1GTP TEM1G(dp~0,tp~TP) #TEM1GTP
 end observables
 begin functions
-	SIC1T_ar() = C2 + C2P + C5 + C5P + SIC1 + SIC1P
 	CDC6T_ar() = CDC6 + CDC6P + F2 + F2P + F5 + F5P
+	SIC1T_ar() = C2 + C2P + C5 + C5P + SIC1 + SIC1P
 	CKIT_ar() = CDC6T_ar + SIC1T_ar
 	CLN3_ar() = C0*Dn3*MASS/(Dn3*MASS + Jn3)
 	BCK2_ar() = MASS*b0
@@ -302,8 +302,8 @@ begin functions
 	mu() = ln(2)/mdt
 	D() = -32 + 1.026/mu
 	F() = exp(-D*mu)
-	Vasbf() = kasbf*(CLB5*esbfb5 + CLN2*esbfn2 + esbfn3*(BCK2_ar + CLN3_ar))
 	Visbf() = CLB2*kisbf_p_p + kisbf_p
+	Vasbf() = kasbf*(CLB5*esbfb5 + CLN2*esbfn2 + esbfn3*(BCK2_ar + CLN3_ar))
 	SBF_ar() = 2*Jisbf*Vasbf/(Jasbf*Visbf - Jisbf*Vasbf*(-4*Vasbf + 4*Visbf)/2 + Jisbf*Vasbf - Vasbf + Visbf + (Jasbf*Visbf + Jisbf*Vasbf - Vasbf + Visbf)^2/2)
 	Vkpf6() = Vd2f6/(CDC6 + CDC6P + F2 + F2P + F5 + F5P + Jd2f6) + kd1f6
 	Vkpc1() = Vd2c1/(C2 + C2P + C5 + C5P + Jd2c1 + SIC1 + SIC1P) + kd1c1

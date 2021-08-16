@@ -1,0 +1,689 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000949_flat">
+    <ListOfParameters>
+      <Parameter id="Baseline_dummy_variable" type="Constant" value="0" expr="0"/>
+      <Parameter id="_InitialConc1" type="Constant" value="600" expr="if((0==0),600,500)"/>
+      <Parameter id="_InitialConc2" type="Constant" value="20" expr="if((0==0),20,10)"/>
+      <Parameter id="_InitialConc3" type="Constant" value="3" expr="if((0==0),3,30)"/>
+      <Parameter id="_InitialConc4" type="Constant" value="2400" expr="if((0==0),2400,4000)"/>
+      <Parameter id="_InitialConc5" type="Constant" value="30" expr="if((0==0),30,100)"/>
+      <Parameter id="_InitialConc6" type="Constant" value="5" expr="if((0==0),5,50)"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="Exposed"/>
+      <MoleculeType id="Infected"/>
+      <MoleculeType id="Recovered"/>
+      <MoleculeType id="Susceptible"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+      <compartment id="Human" spatialDimensions="3" size="1.0"/>
+      <compartment id="Mosquito" spatialDimensions="3" size="1.0"/>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="_InitialConc1" name="@Human::Susceptible()" compartment="Human">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="Susceptible" compartment="Human"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="_InitialConc2" name="@Human::Exposed()" compartment="Human">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="Exposed" compartment="Human"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="_InitialConc3" name="@Human::Infected()" compartment="Human">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="Infected" compartment="Human"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S4"  concentration="_InitialConc4" name="@Mosquito::Susceptible()" compartment="Mosquito">
+        <ListOfMolecules>
+          <Molecule id="S4_M1" name="Susceptible" compartment="Mosquito"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S5"  concentration="_InitialConc5" name="@Mosquito::Exposed()" compartment="Mosquito">
+        <ListOfMolecules>
+          <Molecule id="S5_M1" name="Exposed" compartment="Mosquito"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S6"  concentration="_InitialConc6" name="@Mosquito::Infected()" compartment="Mosquito">
+        <ListOfMolecules>
+          <Molecule id="S6_M1" name="Infected" compartment="Mosquito"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="Human_Immigration" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="Susceptible" compartment="Human"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="Capital_lambda_h" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="Human_Birth" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="Susceptible" compartment="Human"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="fRate1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="Human_Loss_of_Immunity" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="Recovered" compartment="Human"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="Susceptible" compartment="Human"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="rho_h" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+          <Delete id="RR3_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="Human_Infection" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="Susceptible" compartment="Human"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="Exposed" compartment="Human"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="lambda_h" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR4_PP1_M1"/>
+          <Delete id="RR4_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="Human_Susceptible_natural_death" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR5_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP1_M1" name="Susceptible" compartment="Human"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Function" name="f_h" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR5_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR5_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="Human_disease_progression" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR6_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_RP1_M1" name="Exposed" compartment="Human"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="Infected" compartment="Human"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Function" name="v_h" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR6_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR6_PP1_M1"/>
+          <Delete id="RR6_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="Human_Exposed_natural_death" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR7_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_RP1_M1" name="Exposed" compartment="Human"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Function" name="f_h" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR7_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR7_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="Human_Recovery" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR8_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_RP1_M1" name="Infected" compartment="Human"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR8_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP1_M1" name="Recovered" compartment="Human"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Function" name="gamma_h" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR8_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR8_PP1_M1"/>
+          <Delete id="RR8_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="Human_disease_induced_death" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR9_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_RP1_M1" name="Infected" compartment="Human"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Function" name="delta_h" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR9_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR9_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="Human_Infectious_natural_death" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR10_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_RP1_M1" name="Infected" compartment="Human"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Function" name="f_h" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR10_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR10_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR11" name="Human_Recovered_natural_death" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR11_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_RP1_M1" name="Recovered" compartment="Human"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR11_RateLaw" type="Function" name="f_h" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR11_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR11_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR12" name="Mosquito_birth" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR12_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_PP1_M1" name="Susceptible" compartment="Mosquito"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR12_RateLaw" type="Function" name="fRate11" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR12_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR13" name="Mosquito_infection" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR13_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_RP1_M1" name="Susceptible" compartment="Mosquito"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR13_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_PP1_M1" name="Exposed" compartment="Mosquito"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR13_RateLaw" type="Function" name="lambda_v" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR13_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR13_PP1_M1"/>
+          <Delete id="RR13_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR14" name="Mosquito_Susceptible_death" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR14_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_RP1_M1" name="Susceptible" compartment="Mosquito"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR14_RateLaw" type="Function" name="f_v" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR14_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR14_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR15" name="Mosquito_disease_progression" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR15_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR15_RP1_M1" name="Exposed" compartment="Mosquito"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR15_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR15_PP1_M1" name="Infected" compartment="Mosquito"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR15_RateLaw" type="Function" name="v_v" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR15_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR15_PP1_M1"/>
+          <Delete id="RR15_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR16" name="Mosquito_Exposed_death" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR16_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR16_RP1_M1" name="Exposed" compartment="Mosquito"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR16_RateLaw" type="Function" name="f_v" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR16_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR16_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR17" name="Mosquito_Infected_death" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR17_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR17_RP1_M1" name="Infected" compartment="Mosquito"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR17_RateLaw" type="Function" name="f_v" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR17_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR17_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="Susceptible_Human" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" compartment="Human" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="Susceptible"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="Exposed_Human" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" compartment="Human" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="Exposed"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="Infected_Human" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" compartment="Human" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="Infected"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="Recovered_Human" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" compartment="Human" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="Recovered"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="Susceptible_Mosquito" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" compartment="Mosquito" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="Susceptible"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O6" name="Exposed_Mosquito" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O6_P1" compartment="Mosquito" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O6_P1_M1" name="Exposed"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O7" name="Infected_Mosquito" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O7_P1" compartment="Mosquito" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O7_P1_M1" name="Infected"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="N_v">
+        <ListOfReferences>
+          <Reference name="Exposed_Mosquito" type="Observable"/>
+          <Reference name="Infected_Mosquito" type="Observable"/>
+          <Reference name="Susceptible_Mosquito" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (Exposed_Mosquito+Infected_Mosquito)+Susceptible_Mosquito </Expression>
+      </Function>
+      <Function id="sigma_h">
+        <ListOfReferences>
+          <Reference name="Baseline_dummy_variable" type="Constant"/>
+        </ListOfReferences>
+        <Expression> if((Baseline_dummy_variable==0),4.3,19) </Expression>
+      </Function>
+      <Function id="N_h">
+        <ListOfReferences>
+          <Reference name="Exposed_Mosquito" type="Observable"/>
+          <Reference name="Infected_Mosquito" type="Observable"/>
+          <Reference name="Recovered_Human" type="Observable"/>
+          <Reference name="Susceptible_Mosquito" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((Exposed_Mosquito+Infected_Mosquito)+Recovered_Human)+Susceptible_Mosquito </Expression>
+      </Function>
+      <Function id="sigma_v">
+        <ListOfReferences>
+          <Reference name="Baseline_dummy_variable" type="Constant"/>
+        </ListOfReferences>
+        <Expression> if((Baseline_dummy_variable==0),0.33,0.5) </Expression>
+      </Function>
+      <Function id="Beta_vh">
+        <ListOfReferences>
+          <Reference name="Baseline_dummy_variable" type="Constant"/>
+        </ListOfReferences>
+        <Expression> if((Baseline_dummy_variable==0),0.24,0.48) </Expression>
+      </Function>
+      <Function id="Beta_tilde_vh">
+        <ListOfReferences>
+          <Reference name="Baseline_dummy_variable" type="Constant"/>
+        </ListOfReferences>
+        <Expression> if((Baseline_dummy_variable==0),0.024,0.048) </Expression>
+      </Function>
+      <Function id="lambda_v">
+        <ListOfReferences>
+          <Reference name="Beta_tilde_vh" type="Function"/>
+          <Reference name="Beta_vh" type="Function"/>
+          <Reference name="N_h" type="Function"/>
+          <Reference name="N_v" type="Function"/>
+          <Reference name="sigma_h" type="Function"/>
+          <Reference name="sigma_v" type="Function"/>
+          <Reference name="Infected_Mosquito" type="Observable"/>
+          <Reference name="Recovered_Human" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((N_h*sigma_h)*sigma_v)*(((Beta_tilde_vh*Recovered_Human)/N_h)+((Beta_vh*Infected_Mosquito)/N_h)))/((N_h*sigma_h)+(N_v*sigma_v)) </Expression>
+      </Function>
+      <Function id="Beta_hv">
+        <ListOfReferences>
+          <Reference name="Baseline_dummy_variable" type="Constant"/>
+        </ListOfReferences>
+        <Expression> if((Baseline_dummy_variable==0),0.022,0.022) </Expression>
+      </Function>
+      <Function id="lambda_h">
+        <ListOfReferences>
+          <Reference name="Beta_hv" type="Function"/>
+          <Reference name="N_h" type="Function"/>
+          <Reference name="N_v" type="Function"/>
+          <Reference name="sigma_h" type="Function"/>
+          <Reference name="sigma_v" type="Function"/>
+          <Reference name="Infected_Mosquito" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((Beta_hv*Infected_Mosquito)*sigma_h)*sigma_v)/((N_h*sigma_h)+(N_v*sigma_v)) </Expression>
+      </Function>
+      <Function id="u_1v">
+        <ListOfReferences>
+          <Reference name="Baseline_dummy_variable" type="Constant"/>
+        </ListOfReferences>
+        <Expression> if((Baseline_dummy_variable==0),0.033,0.033) </Expression>
+      </Function>
+      <Function id="u_2v">
+        <ListOfReferences>
+          <Reference name="Baseline_dummy_variable" type="Constant"/>
+        </ListOfReferences>
+        <Expression> if((Baseline_dummy_variable==0),4.0e-5,2.0e-5) </Expression>
+      </Function>
+      <Function id="f_v">
+        <ListOfReferences>
+          <Reference name="N_v" type="Function"/>
+          <Reference name="u_1v" type="Function"/>
+          <Reference name="u_2v" type="Function"/>
+        </ListOfReferences>
+        <Expression> (N_v*u_2v)+u_1v </Expression>
+      </Function>
+      <Function id="u_1h">
+        <ListOfReferences>
+          <Reference name="Baseline_dummy_variable" type="Constant"/>
+        </ListOfReferences>
+        <Expression> if((Baseline_dummy_variable==0),8.8e-6,1.6e-5) </Expression>
+      </Function>
+      <Function id="u_2h">
+        <ListOfReferences>
+          <Reference name="Baseline_dummy_variable" type="Constant"/>
+        </ListOfReferences>
+        <Expression> if((Baseline_dummy_variable==0),2.0e-7,3.0e-7) </Expression>
+      </Function>
+      <Function id="f_h">
+        <ListOfReferences>
+          <Reference name="N_h" type="Function"/>
+          <Reference name="u_1h" type="Function"/>
+          <Reference name="u_2h" type="Function"/>
+        </ListOfReferences>
+        <Expression> (N_h*u_2h)+u_1h </Expression>
+      </Function>
+      <Function id="rho_h">
+        <ListOfReferences>
+          <Reference name="Baseline_dummy_variable" type="Constant"/>
+        </ListOfReferences>
+        <Expression> if((Baseline_dummy_variable==0),0.0027,0.00055) </Expression>
+      </Function>
+      <Function id="delta_h">
+        <ListOfReferences>
+          <Reference name="Baseline_dummy_variable" type="Constant"/>
+        </ListOfReferences>
+        <Expression> if((Baseline_dummy_variable==0),1.8e-5,9.0e-5) </Expression>
+      </Function>
+      <Function id="gamma_h">
+        <ListOfReferences>
+          <Reference name="Baseline_dummy_variable" type="Constant"/>
+        </ListOfReferences>
+        <Expression> if((Baseline_dummy_variable==0),0.0035,0.0035) </Expression>
+      </Function>
+      <Function id="v_v">
+        <ListOfReferences>
+          <Reference name="Baseline_dummy_variable" type="Constant"/>
+        </ListOfReferences>
+        <Expression> if((Baseline_dummy_variable==0),0.083,0.091) </Expression>
+      </Function>
+      <Function id="v_h">
+        <ListOfReferences>
+          <Reference name="Baseline_dummy_variable" type="Constant"/>
+        </ListOfReferences>
+        <Expression> if((Baseline_dummy_variable==0),0.1,0.1) </Expression>
+      </Function>
+      <Function id="Psi_v">
+        <ListOfReferences>
+          <Reference name="Baseline_dummy_variable" type="Constant"/>
+        </ListOfReferences>
+        <Expression> if((Baseline_dummy_variable==0),0.13,0.13) </Expression>
+      </Function>
+      <Function id="Psi_h">
+        <ListOfReferences>
+          <Reference name="Baseline_dummy_variable" type="Constant"/>
+        </ListOfReferences>
+        <Expression> if((Baseline_dummy_variable==0),5.5e-5,0.00011) </Expression>
+      </Function>
+      <Function id="Capital_lambda_h">
+        <ListOfReferences>
+          <Reference name="Baseline_dummy_variable" type="Constant"/>
+        </ListOfReferences>
+        <Expression> if((Baseline_dummy_variable==0),0.041,0.033) </Expression>
+      </Function>
+      <Function id="fRate1">
+        <ListOfReferences>
+          <Reference name="N_h" type="Function"/>
+          <Reference name="Psi_h" type="Function"/>
+        </ListOfReferences>
+        <Expression> N_h*Psi_h </Expression>
+      </Function>
+      <Function id="fRate11">
+        <ListOfReferences>
+          <Reference name="N_v" type="Function"/>
+          <Reference name="Psi_v" type="Function"/>
+        </ListOfReferences>
+        <Expression> N_v*Psi_v </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

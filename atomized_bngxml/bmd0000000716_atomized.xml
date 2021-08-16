@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000716_atomized">
+    <ListOfParameters>
+      <Parameter id="H_b" type="Constant" value="180000" expr="180000.0"/>
+      <Parameter id="H_bh" type="Constant" value="120000" expr="120000.0"/>
+      <Parameter id="H_v" type="Constant" value="850" expr="850.0"/>
+      <Parameter id="gamma_b" type="Constant" value="0.003" expr="0.003"/>
+      <Parameter id="ModelValue_1" type="Constant" value="171977" expr="171977.0"/>
+      <Parameter id="p" type="Constant" value="0" expr="0"/>
+      <Parameter id="phi" type="Constant" value="0" expr="0"/>
+      <Parameter id="c" type="Constant" value="0" expr="0"/>
+      <Parameter id="q" type="Constant" value="0" expr="0"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="InfectedHuman__I_a__">
+        <ListOfComponentTypes>
+          <ComponentType id="Susceptiblehuman__S_h__">
+            <ListOfAllowedStates>
+              <AllowedState id="Susceptiblehuman__S_h__"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="Infectedbird__I_b__">
+        <ListOfComponentTypes>
+          <ComponentType id="Susceptiblebird__S_b__">
+            <ListOfAllowedStates>
+              <AllowedState id="Susceptiblebird__S_b__"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+      <compartment id="compartment" spatialDimensions="3" size="1.0"/>
+      <compartment id="Human_Population" spatialDimensions="3" size="1.0"/>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="1.4751250320000002e+26" name="@compartment::Infectedbird__I_b__(Susceptiblebird__S_b__~Susceptiblebird__S_b__)" compartment="compartment">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="Infectedbird__I_b__" compartment="compartment">
+            <ListOfComponents>
+              <Component id="S1_M1_C1" name="Susceptiblebird__S_b__" state="Susceptiblebird__S_b__" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="2.1971267e+25" name="@compartment::Infectedbird__I_b__(Susceptiblebird__S_b__~0)" compartment="compartment">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="Infectedbird__I_b__" compartment="compartment">
+            <ListOfComponents>
+              <Component id="S2_M1_C1" name="Susceptiblebird__S_b__" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="1.0356454940000001e+26" name="@Human_Population::InfectedHuman__I_a__(Susceptiblehuman__S_h__~Susceptiblehuman__S_h__)" compartment="Human_Population">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="InfectedHuman__I_a__" compartment="Human_Population">
+            <ListOfComponents>
+              <Component id="S3_M1_C1" name="Susceptiblehuman__S_h__" state="Susceptiblehuman__S_h__" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="reaction_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="Infectedbird__I_b__" compartment="compartment">
+                <ListOfComponents>
+                  <Component id="RR1_PP1_M1_C1" name="Susceptiblebird__S_b__" state="Susceptiblebird__S_b__" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="LAMBDA_b" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="reaction_2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="Infectedbird__I_b__" compartment="compartment">
+                <ListOfComponents>
+                  <Component id="RR2_RP1_M1_C1" name="Susceptiblebird__S_b__" state="Susceptiblebird__S_b__" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="mu_b" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1"/>
+          <MapItem sourceID="RR2_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR2_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="reaction_3" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="Infectedbird__I_b__" compartment="compartment">
+                <ListOfComponents>
+                  <Component id="RR3_RP1_M1_C1" name="Susceptiblebird__S_b__" state="Susceptiblebird__S_b__" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="Infectedbird__I_b__" compartment="compartment">
+                <ListOfComponents>
+                  <Component id="RR3_PP1_M1_C1" name="Susceptiblebird__S_b__" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="fRate2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1" targetID="RR3_PP1_M1"/>
+          <MapItem sourceID="RR3_RP1_M1_C1" targetID="RR3_PP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR3_RP1_M1_C1" finalState="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="reaction_4" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="Infectedbird__I_b__" compartment="compartment">
+                <ListOfComponents>
+                  <Component id="RR4_RP1_M1_C1" name="Susceptiblebird__S_b__" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="delta_b" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1"/>
+          <MapItem sourceID="RR4_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR4_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="reaction_5" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR5_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP1_M1" name="Infectedbird__I_b__" compartment="compartment">
+                <ListOfComponents>
+                  <Component id="RR5_RP1_M1_C1" name="Susceptiblebird__S_b__" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Function" name="mu_b" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR5_RP1_M1"/>
+          <MapItem sourceID="RR5_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR5_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="reaction_6" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="InfectedHuman__I_a__" compartment="Human_Population">
+                <ListOfComponents>
+                  <Component id="RR6_PP1_M1_C1" name="Susceptiblehuman__S_h__" state="Susceptiblehuman__S_h__" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Function" name="LAMBDA_h" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR6_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="reaction_7" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR7_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_RP1_M1" name="InfectedHuman__I_a__" compartment="Human_Population">
+                <ListOfComponents>
+                  <Component id="RR7_RP1_M1_C1" name="Susceptiblehuman__S_h__" state="Susceptiblehuman__S_h__" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Function" name="mu_h" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR7_RP1_M1"/>
+          <MapItem sourceID="RR7_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR7_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="reaction_8" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR8_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_RP1_M1" name="InfectedHuman__I_a__" compartment="Human_Population">
+                <ListOfComponents>
+                  <Component id="RR8_RP1_M1_C1" name="Susceptiblehuman__S_h__" state="Susceptiblehuman__S_h__" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR8_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP1_M1" name="InfectedHuman__I_a__" compartment="Human_Population">
+                <ListOfComponents>
+                  <Component id="RR8_PP1_M1_C1" name="Susceptiblehuman__S_h__" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Function" name="fRate7" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR8_RP1_M1" targetID="RR8_PP1_M1"/>
+          <MapItem sourceID="RR8_RP1_M1_C1" targetID="RR8_PP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR8_RP1_M1_C1" finalState="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="reaction_9" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR9_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_RP1_M1" name="InfectedHuman__I_a__" compartment="Human_Population">
+                <ListOfComponents>
+                  <Component id="RR9_RP1_M1_C1" name="Susceptiblehuman__S_h__" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Function" name="d" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR9_RP1_M1"/>
+          <MapItem sourceID="RR9_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR9_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="reaction_10" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR10_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_RP1_M1" name="InfectedHuman__I_a__" compartment="Human_Population">
+                <ListOfComponents>
+                  <Component id="RR10_RP1_M1_C1" name="Susceptiblehuman__S_h__" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Function" name="mu_h" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR10_RP1_M1"/>
+          <MapItem sourceID="RR10_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR10_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="Susceptiblebird__S_b___compartment" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" compartment="compartment" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="Infectedbird__I_b__">
+                <ListOfComponents>
+                  <Component id="O1_P1_M1_C1" name="Susceptiblebird__S_b__" state="Susceptiblebird__S_b__" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="Infectedbird__I_b___compartment" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" compartment="compartment" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="Infectedbird__I_b__">
+                <ListOfComponents>
+                  <Component id="O2_P1_M1_C1" name="Susceptiblebird__S_b__" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="Susceptiblehuman__S_h___Human_Population" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" compartment="Human_Population" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="InfectedHuman__I_a__">
+                <ListOfComponents>
+                  <Component id="O3_P1_M1_C1" name="Susceptiblehuman__S_h__" state="Susceptiblehuman__S_h__" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="InfectedHuman__I_a___Human_Population" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" compartment="Human_Population" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="InfectedHuman__I_a__">
+                <ListOfComponents>
+                  <Component id="O4_P1_M1_C1" name="Susceptiblehuman__S_h__" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="delta_b">
+        <ListOfReferences>
+        </ListOfReferences>
+        <Expression> 22841/6587955 </Expression>
+      </Function>
+      <Function id="d">
+        <ListOfReferences>
+        </ListOfReferences>
+        <Expression> 6.0882800608828e-11 </Expression>
+      </Function>
+      <Function id="beta_v">
+        <ListOfReferences>
+        </ListOfReferences>
+        <Expression> 9137/5270364 </Expression>
+      </Function>
+      <Function id="beta_b">
+        <ListOfReferences>
+        </ListOfReferences>
+        <Expression> 9137/2635182 </Expression>
+      </Function>
+      <Function id="beta_bh">
+        <ListOfReferences>
+        </ListOfReferences>
+        <Expression> 1.62354134956875e-10 </Expression>
+      </Function>
+      <Function id="mu_h">
+        <ListOfReferences>
+        </ListOfReferences>
+        <Expression> 3.95914165808853e-5 </Expression>
+      </Function>
+      <Function id="mu_b">
+        <ListOfReferences>
+        </ListOfReferences>
+        <Expression> 1/730 </Expression>
+      </Function>
+      <Function id="LAMBDA_h">
+        <ListOfReferences>
+          <Reference name="ModelValue_1" type="Constant"/>
+        </ListOfReferences>
+        <Expression> 6.49315068493151e-5*ModelValue_1 </Expression>
+      </Function>
+      <Function id="LAMBDA_b">
+        <ListOfReferences>
+        </ListOfReferences>
+        <Expression> 412/73 </Expression>
+      </Function>
+      <Function id="Nh">
+        <ListOfReferences>
+          <Reference name="InfectedHuman__I_a___Human_Population" type="Observable"/>
+          <Reference name="Susceptiblehuman__S_h___Human_Population" type="Observable"/>
+        </ListOfReferences>
+        <Expression> InfectedHuman__I_a___Human_Population+Susceptiblehuman__S_h___Human_Population </Expression>
+      </Function>
+      <Function id="Nb">
+        <ListOfReferences>
+          <Reference name="Infectedbird__I_b___compartment" type="Observable"/>
+          <Reference name="Susceptiblebird__S_b___compartment" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Infectedbird__I_b___compartment+Susceptiblebird__S_b___compartment </Expression>
+      </Function>
+      <Function id="fRate2">
+        <ListOfReferences>
+          <Reference name="beta_b" type="Function"/>
+          <Reference name="Infectedbird__I_b___compartment" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Infectedbird__I_b___compartment*beta_b </Expression>
+      </Function>
+      <Function id="fRate7">
+        <ListOfReferences>
+          <Reference name="beta_bh" type="Function"/>
+          <Reference name="Infectedbird__I_b___compartment" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Infectedbird__I_b___compartment*beta_bh </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

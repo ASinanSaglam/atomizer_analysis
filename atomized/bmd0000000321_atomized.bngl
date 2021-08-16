@@ -6,7 +6,7 @@
 #@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:14330']
 #@creatorEmail:'lukas@ebi.ac.uk'
 #@creatorName:'Endler Lukas'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 3 molecules and 6 reactions. The translated model has 2 molecules and 6 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 3 molecules and 6 reactions. The translated model has 2 molecules and 6 rules'
 ###
 begin model
 begin parameters
@@ -36,17 +36,17 @@ begin molecule types
 	C_3_OMD()
 end molecule types
 begin seed species
-	@gut:A_dopa(C_dopa~0) (404.0) * (0.25) #A_dopa
+	@gut:A_dopa(C_dopa~0)@gut (404.0) * (0.25) #A_dopa
 end seed species
 begin observables
-	Species A_dopa_gut @gut:A_dopa(C_dopa~0) #A_dopa
-	Species C_dopa_Vdopa @Vdopa:A_dopa(C_dopa~C_dopa) #C_dopa
-	Species C_3_OMD_V_3_OMD @V_3_OMD:C_3_OMD() #C_3-OMD
+	Species A_dopa_gut @gut:A_dopa(C_dopa~0)@gut #A_dopa
+	Species C_dopa_Vdopa @Vdopa:A_dopa(C_dopa~C_dopa)@Vdopa #C_dopa
+	Species C_3_OMD_V_3_OMD @V_3_OMD:C_3_OMD()@V_3_OMD #C_3-OMD
 end observables
 begin functions
+	CL_AADC() = CL_dopa0*f_AADC
 	f_rest() = -f_AADC - f_COMT + 1
 	CL_rest() = CL_dopa0*f_rest
-	CL_AADC() = CL_dopa0*f_AADC
 	CL_COMT() = CL_dopa0*f_COMT
 	CL_dopa() = CL_AADC + CL_COMT + CL_rest
 	CL_H() = CL_dopa*f_H

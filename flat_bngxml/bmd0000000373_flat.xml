@@ -1,0 +1,921 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000373_flat">
+    <ListOfParameters>
+      <Parameter id="Cm" type="Constant" value="5300" expr="5300.0"/>
+      <Parameter id="gK" type="Constant" value="2700" expr="2700.0"/>
+      <Parameter id="gKCa" type="Constant" value="600" expr="600.0"/>
+      <Parameter id="kd" type="Constant" value="0.5" expr="0.5"/>
+      <Parameter id="gCa" type="Constant" value="1000" expr="1000.0"/>
+      <Parameter id="VCa" type="Constant" value="25" expr="25.0"/>
+      <Parameter id="taun" type="Constant" value="20" expr="20.0"/>
+      <Parameter id="fcyt" type="Constant" value="0.01" expr="0.01"/>
+      <Parameter id="fer" type="Constant" value="0.01" expr="0.01"/>
+      <Parameter id="sigmaV" type="Constant" value="31" expr="31.0"/>
+      <Parameter id="pleak" type="Constant" value="0.0002" expr="0.0002"/>
+      <Parameter id="Kserca" type="Constant" value="0.4" expr="0.4"/>
+      <Parameter id="lambdaer" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="epser" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="alpha" type="Constant" value="4.5e-6" expr="4.5e-06"/>
+      <Parameter id="kpmca" type="Constant" value="0.2" expr="0.2"/>
+      <Parameter id="Rgk" type="Constant" value="0.2" expr="0.2"/>
+      <Parameter id="atot" type="Constant" value="3000" expr="3000.0"/>
+      <Parameter id="pfkbas" type="Constant" value="0.06" expr="0.06"/>
+      <Parameter id="lambda" type="Constant" value="0.005" expr="0.005"/>
+      <Parameter id="bottom1" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="k1" type="Constant" value="30" expr="30.0"/>
+      <Parameter id="k2" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="k3" type="Constant" value="50000" expr="50000.0"/>
+      <Parameter id="k4" type="Constant" value="1000" expr="1000.0"/>
+      <Parameter id="cat" type="Constant" value="2" expr="2.0"/>
+      <Parameter id="famp" type="Constant" value="0.02" expr="0.02"/>
+      <Parameter id="fatp" type="Constant" value="20" expr="20.0"/>
+      <Parameter id="ffbp" type="Constant" value="0.2" expr="0.2"/>
+      <Parameter id="fbt" type="Constant" value="20" expr="20.0"/>
+      <Parameter id="fmt" type="Constant" value="20" expr="20.0"/>
+      <Parameter id="VK" type="Constant" value="-75" expr="-75.0"/>
+      <Parameter id="gkatpbar" type="Constant" value="25000" expr="25000.0"/>
+      <Parameter id="kdd" type="Constant" value="17" expr="17.0"/>
+      <Parameter id="ktd" type="Constant" value="26" expr="26.0"/>
+      <Parameter id="ktt" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="taua" type="Constant" value="300000" expr="300000.0"/>
+      <Parameter id="r1" type="Constant" value="0.35" expr="0.35"/>
+      <Parameter id="r" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="vg" type="Constant" value="2.2" expr="2.2"/>
+      <Parameter id="kg" type="Constant" value="10" expr="10.0"/>
+      <Parameter id="topa1" type="Constant" value="0" expr="0"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="V"/>
+      <MoleculeType id="adp"/>
+      <MoleculeType id="c"/>
+      <MoleculeType id="cer"/>
+      <MoleculeType id="fbp"/>
+      <MoleculeType id="g6p"/>
+      <MoleculeType id="n"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="0.025" name="n()">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="n"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="0.25" name="c()">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="c"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="185.0" name="cer()">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="cer"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S4"  concentration="200.0" name="g6p()">
+        <ListOfMolecules>
+          <Molecule id="S4_M1" name="g6p"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S5"  concentration="40.0" name="fbp()">
+        <ListOfMolecules>
+          <Molecule id="S5_M1" name="fbp"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S6"  concentration="780.0" name="adp()">
+        <ListOfMolecules>
+          <Molecule id="S6_M1" name="adp"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="_R1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="V"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="arRateV" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="_R2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="n"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="arRaten" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="_R3" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="c"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="arRatec" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="_R4" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="cer"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="arRatecer" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR4_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="_R5" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="g6p"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Function" name="arRateg6p" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR5_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="_R6" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="fbp"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Function" name="arRatefbp" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR6_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="_R7" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="adp"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Function" name="arRateadp" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR7_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="V" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="V"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="n" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="n"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="c" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="c"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="cer" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="cer"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="g6p" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="g6p"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O6" name="fbp" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O6_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O6_P1_M1" name="fbp"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O7" name="adp" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O7_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O7_P1_M1" name="adp"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="mgadp">
+        <ListOfReferences>
+          <Reference name="adp" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 0.165*adp </Expression>
+      </Function>
+      <Function id="topo">
+        <ListOfReferences>
+          <Reference name="kdd" type="Constant"/>
+          <Reference name="mgadp" type="Function"/>
+        </ListOfReferences>
+        <Expression> (0.08+((0.16*mgadp)/kdd))+((0.89*(mgadp^2))/(kdd^2)) </Expression>
+      </Function>
+      <Function id="rad">
+        <ListOfReferences>
+          <Reference name="atot" type="Constant"/>
+          <Reference name="adp" type="Observable"/>
+        </ListOfReferences>
+        <Expression> sqrt(abs(((-4*(adp^2))+((adp-atot)^2)))) </Expression>
+      </Function>
+      <Function id="atp">
+        <ListOfReferences>
+          <Reference name="atot" type="Constant"/>
+          <Reference name="rad" type="Function"/>
+          <Reference name="adp" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((-0.5*adp)+(0.5*atot))+(0.5*rad) </Expression>
+      </Function>
+      <Function id="atp4m">
+        <ListOfReferences>
+          <Reference name="atp" type="Function"/>
+        </ListOfReferences>
+        <Expression> 0.05*atp </Expression>
+      </Function>
+      <Function id="adp3m">
+        <ListOfReferences>
+          <Reference name="adp" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 0.135*adp </Expression>
+      </Function>
+      <Function id="bottomo">
+        <ListOfReferences>
+          <Reference name="kdd" type="Constant"/>
+          <Reference name="ktd" type="Constant"/>
+          <Reference name="ktt" type="Constant"/>
+          <Reference name="adp3m" type="Function"/>
+          <Reference name="atp4m" type="Function"/>
+          <Reference name="mgadp" type="Function"/>
+        </ListOfReferences>
+        <Expression> ((1+(mgadp/kdd))^2)*(((adp3m/ktd)+(atp4m/ktt))+1) </Expression>
+      </Function>
+      <Function id="katpo">
+        <ListOfReferences>
+          <Reference name="bottomo" type="Function"/>
+          <Reference name="topo" type="Function"/>
+        </ListOfReferences>
+        <Expression> topo/bottomo </Expression>
+      </Function>
+      <Function id="IKATP">
+        <ListOfReferences>
+          <Reference name="VK" type="Constant"/>
+          <Reference name="gkatpbar" type="Constant"/>
+          <Reference name="katpo" type="Function"/>
+          <Reference name="V" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (gkatpbar*katpo)*(V-VK) </Expression>
+      </Function>
+      <Function id="IK">
+        <ListOfReferences>
+          <Reference name="VK" type="Constant"/>
+          <Reference name="gK" type="Constant"/>
+          <Reference name="V" type="Observable"/>
+          <Reference name="n" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (gK*n)*(V-VK) </Expression>
+      </Function>
+      <Function id="IKCa">
+        <ListOfReferences>
+          <Reference name="VK" type="Constant"/>
+          <Reference name="gKCa" type="Constant"/>
+          <Reference name="kd" type="Constant"/>
+          <Reference name="V" type="Observable"/>
+          <Reference name="c" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (gKCa*(V-VK))/(1+((kd^2)/(c^2))) </Expression>
+      </Function>
+      <Function id="minf">
+        <ListOfReferences>
+          <Reference name="V" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 1/(exp((((-V)/12)-(5/3)))+1) </Expression>
+      </Function>
+      <Function id="ICa">
+        <ListOfReferences>
+          <Reference name="VCa" type="Constant"/>
+          <Reference name="gCa" type="Constant"/>
+          <Reference name="minf" type="Function"/>
+          <Reference name="V" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (gCa*minf)*(V-VCa) </Expression>
+      </Function>
+      <Function id="arRateV">
+        <ListOfReferences>
+          <Reference name="Cm" type="Constant"/>
+          <Reference name="ICa" type="Function"/>
+          <Reference name="IK" type="Function"/>
+          <Reference name="IKATP" type="Function"/>
+          <Reference name="IKCa" type="Function"/>
+        </ListOfReferences>
+        <Expression> ((((-ICa)-IK)-IKATP)-IKCa)/Cm </Expression>
+      </Function>
+      <Function id="amp">
+        <ListOfReferences>
+          <Reference name="atp" type="Function"/>
+          <Reference name="adp" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (adp^2)/atp </Expression>
+      </Function>
+      <Function id="f6p">
+        <ListOfReferences>
+          <Reference name="g6p" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 0.3*g6p </Expression>
+      </Function>
+      <Function id="weight15">
+        <ListOfReferences>
+          <Reference name="famp" type="Constant"/>
+          <Reference name="ffbp" type="Constant"/>
+          <Reference name="k1" type="Constant"/>
+          <Reference name="k2" type="Constant"/>
+          <Reference name="k3" type="Constant"/>
+          <Reference name="amp" type="Function"/>
+          <Reference name="f6p" type="Function"/>
+          <Reference name="fbp" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((amp*(f6p^2))*fbp)/((((famp*ffbp)*k1)*k2)*k3) </Expression>
+      </Function>
+      <Function id="topb">
+        <ListOfReferences>
+          <Reference name="weight15" type="Function"/>
+        </ListOfReferences>
+        <Expression> weight15 </Expression>
+      </Function>
+      <Function id="weight12">
+        <ListOfReferences>
+          <Reference name="famp" type="Constant"/>
+          <Reference name="fatp" type="Constant"/>
+          <Reference name="fmt" type="Constant"/>
+          <Reference name="k1" type="Constant"/>
+          <Reference name="k3" type="Constant"/>
+          <Reference name="k4" type="Constant"/>
+          <Reference name="amp" type="Function"/>
+          <Reference name="atp" type="Function"/>
+          <Reference name="f6p" type="Function"/>
+        </ListOfReferences>
+        <Expression> ((amp*(atp^2))*(f6p^2))/(((((famp*fatp)*fmt)*k1)*k3)*k4) </Expression>
+      </Function>
+      <Function id="weight7">
+        <ListOfReferences>
+          <Reference name="ffbp" type="Constant"/>
+          <Reference name="k2" type="Constant"/>
+          <Reference name="k3" type="Constant"/>
+          <Reference name="f6p" type="Function"/>
+          <Reference name="fbp" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((f6p^2)*fbp)/((ffbp*k2)*k3) </Expression>
+      </Function>
+      <Function id="weight4">
+        <ListOfReferences>
+          <Reference name="fatp" type="Constant"/>
+          <Reference name="k3" type="Constant"/>
+          <Reference name="k4" type="Constant"/>
+          <Reference name="atp" type="Function"/>
+          <Reference name="f6p" type="Function"/>
+        </ListOfReferences>
+        <Expression> ((atp^2)*(f6p^2))/((fatp*k3)*k4) </Expression>
+      </Function>
+      <Function id="topa2">
+        <ListOfReferences>
+          <Reference name="topa1" type="Constant"/>
+        </ListOfReferences>
+        <Expression> topa1 </Expression>
+      </Function>
+      <Function id="weight3">
+        <ListOfReferences>
+          <Reference name="k3" type="Constant"/>
+          <Reference name="f6p" type="Function"/>
+        </ListOfReferences>
+        <Expression> (f6p^2)/k3 </Expression>
+      </Function>
+      <Function id="topa3">
+        <ListOfReferences>
+          <Reference name="topa2" type="Function"/>
+          <Reference name="weight3" type="Function"/>
+        </ListOfReferences>
+        <Expression> topa2+weight3 </Expression>
+      </Function>
+      <Function id="topa4">
+        <ListOfReferences>
+          <Reference name="topa3" type="Function"/>
+          <Reference name="weight4" type="Function"/>
+        </ListOfReferences>
+        <Expression> topa3+weight4 </Expression>
+      </Function>
+      <Function id="topa5">
+        <ListOfReferences>
+          <Reference name="topa4" type="Function"/>
+        </ListOfReferences>
+        <Expression> topa4 </Expression>
+      </Function>
+      <Function id="topa6">
+        <ListOfReferences>
+          <Reference name="topa5" type="Function"/>
+        </ListOfReferences>
+        <Expression> topa5 </Expression>
+      </Function>
+      <Function id="topa7">
+        <ListOfReferences>
+          <Reference name="topa6" type="Function"/>
+          <Reference name="weight7" type="Function"/>
+        </ListOfReferences>
+        <Expression> topa6+weight7 </Expression>
+      </Function>
+      <Function id="weight8">
+        <ListOfReferences>
+          <Reference name="fatp" type="Constant"/>
+          <Reference name="fbt" type="Constant"/>
+          <Reference name="ffbp" type="Constant"/>
+          <Reference name="k2" type="Constant"/>
+          <Reference name="k3" type="Constant"/>
+          <Reference name="k4" type="Constant"/>
+          <Reference name="atp" type="Function"/>
+          <Reference name="f6p" type="Function"/>
+          <Reference name="fbp" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((atp^2)*(f6p^2))*fbp)/(((((fatp*fbt)*ffbp)*k2)*k3)*k4) </Expression>
+      </Function>
+      <Function id="topa8">
+        <ListOfReferences>
+          <Reference name="topa7" type="Function"/>
+          <Reference name="weight8" type="Function"/>
+        </ListOfReferences>
+        <Expression> topa7+weight8 </Expression>
+      </Function>
+      <Function id="topa9">
+        <ListOfReferences>
+          <Reference name="topa8" type="Function"/>
+        </ListOfReferences>
+        <Expression> topa8 </Expression>
+      </Function>
+      <Function id="topa10">
+        <ListOfReferences>
+          <Reference name="topa9" type="Function"/>
+        </ListOfReferences>
+        <Expression> topa9 </Expression>
+      </Function>
+      <Function id="weight11">
+        <ListOfReferences>
+          <Reference name="famp" type="Constant"/>
+          <Reference name="k1" type="Constant"/>
+          <Reference name="k3" type="Constant"/>
+          <Reference name="amp" type="Function"/>
+          <Reference name="f6p" type="Function"/>
+        </ListOfReferences>
+        <Expression> (amp*(f6p^2))/((famp*k1)*k3) </Expression>
+      </Function>
+      <Function id="topa11">
+        <ListOfReferences>
+          <Reference name="topa10" type="Function"/>
+          <Reference name="weight11" type="Function"/>
+        </ListOfReferences>
+        <Expression> topa10+weight11 </Expression>
+      </Function>
+      <Function id="topa12">
+        <ListOfReferences>
+          <Reference name="topa11" type="Function"/>
+          <Reference name="weight12" type="Function"/>
+        </ListOfReferences>
+        <Expression> topa11+weight12 </Expression>
+      </Function>
+      <Function id="topa13">
+        <ListOfReferences>
+          <Reference name="topa12" type="Function"/>
+        </ListOfReferences>
+        <Expression> topa12 </Expression>
+      </Function>
+      <Function id="topa14">
+        <ListOfReferences>
+          <Reference name="topa13" type="Function"/>
+        </ListOfReferences>
+        <Expression> topa13 </Expression>
+      </Function>
+      <Function id="topa15">
+        <ListOfReferences>
+          <Reference name="topa14" type="Function"/>
+        </ListOfReferences>
+        <Expression> topa14 </Expression>
+      </Function>
+      <Function id="weight16">
+        <ListOfReferences>
+          <Reference name="famp" type="Constant"/>
+          <Reference name="fatp" type="Constant"/>
+          <Reference name="fbt" type="Constant"/>
+          <Reference name="ffbp" type="Constant"/>
+          <Reference name="fmt" type="Constant"/>
+          <Reference name="k1" type="Constant"/>
+          <Reference name="k2" type="Constant"/>
+          <Reference name="k3" type="Constant"/>
+          <Reference name="k4" type="Constant"/>
+          <Reference name="amp" type="Function"/>
+          <Reference name="atp" type="Function"/>
+          <Reference name="f6p" type="Function"/>
+          <Reference name="fbp" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((amp*(atp^2))*(f6p^2))*fbp)/((((((((famp*fatp)*fbt)*ffbp)*fmt)*k1)*k2)*k3)*k4) </Expression>
+      </Function>
+      <Function id="topa16">
+        <ListOfReferences>
+          <Reference name="topa15" type="Function"/>
+          <Reference name="weight16" type="Function"/>
+        </ListOfReferences>
+        <Expression> topa15+weight16 </Expression>
+      </Function>
+      <Function id="weight14">
+        <ListOfReferences>
+          <Reference name="fbt" type="Constant"/>
+          <Reference name="fmt" type="Constant"/>
+          <Reference name="k1" type="Constant"/>
+          <Reference name="k2" type="Constant"/>
+          <Reference name="k4" type="Constant"/>
+          <Reference name="amp" type="Function"/>
+          <Reference name="atp" type="Function"/>
+          <Reference name="fbp" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((amp*(atp^2))*fbp)/((((fbt*fmt)*k1)*k2)*k4) </Expression>
+      </Function>
+      <Function id="weight10">
+        <ListOfReferences>
+          <Reference name="fmt" type="Constant"/>
+          <Reference name="k1" type="Constant"/>
+          <Reference name="k4" type="Constant"/>
+          <Reference name="amp" type="Function"/>
+          <Reference name="atp" type="Function"/>
+        </ListOfReferences>
+        <Expression> (amp*(atp^2))/((fmt*k1)*k4) </Expression>
+      </Function>
+      <Function id="weight6">
+        <ListOfReferences>
+          <Reference name="fbt" type="Constant"/>
+          <Reference name="k2" type="Constant"/>
+          <Reference name="k4" type="Constant"/>
+          <Reference name="atp" type="Function"/>
+          <Reference name="fbp" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((atp^2)*fbp)/((fbt*k2)*k4) </Expression>
+      </Function>
+      <Function id="weight5">
+        <ListOfReferences>
+          <Reference name="k2" type="Constant"/>
+          <Reference name="fbp" type="Observable"/>
+        </ListOfReferences>
+        <Expression> fbp/k2 </Expression>
+      </Function>
+      <Function id="weight2">
+        <ListOfReferences>
+          <Reference name="k4" type="Constant"/>
+          <Reference name="atp" type="Function"/>
+        </ListOfReferences>
+        <Expression> (atp^2)/k4 </Expression>
+      </Function>
+      <Function id="bottom2">
+        <ListOfReferences>
+          <Reference name="bottom1" type="Constant"/>
+          <Reference name="weight2" type="Function"/>
+        </ListOfReferences>
+        <Expression> bottom1+weight2 </Expression>
+      </Function>
+      <Function id="bottom3">
+        <ListOfReferences>
+          <Reference name="bottom2" type="Function"/>
+          <Reference name="weight3" type="Function"/>
+        </ListOfReferences>
+        <Expression> bottom2+weight3 </Expression>
+      </Function>
+      <Function id="bottom4">
+        <ListOfReferences>
+          <Reference name="bottom3" type="Function"/>
+          <Reference name="weight4" type="Function"/>
+        </ListOfReferences>
+        <Expression> bottom3+weight4 </Expression>
+      </Function>
+      <Function id="bottom5">
+        <ListOfReferences>
+          <Reference name="bottom4" type="Function"/>
+          <Reference name="weight5" type="Function"/>
+        </ListOfReferences>
+        <Expression> bottom4+weight5 </Expression>
+      </Function>
+      <Function id="bottom6">
+        <ListOfReferences>
+          <Reference name="bottom5" type="Function"/>
+          <Reference name="weight6" type="Function"/>
+        </ListOfReferences>
+        <Expression> bottom5+weight6 </Expression>
+      </Function>
+      <Function id="bottom7">
+        <ListOfReferences>
+          <Reference name="bottom6" type="Function"/>
+          <Reference name="weight7" type="Function"/>
+        </ListOfReferences>
+        <Expression> bottom6+weight7 </Expression>
+      </Function>
+      <Function id="bottom8">
+        <ListOfReferences>
+          <Reference name="bottom7" type="Function"/>
+          <Reference name="weight8" type="Function"/>
+        </ListOfReferences>
+        <Expression> bottom7+weight8 </Expression>
+      </Function>
+      <Function id="weight9">
+        <ListOfReferences>
+          <Reference name="k1" type="Constant"/>
+          <Reference name="amp" type="Function"/>
+        </ListOfReferences>
+        <Expression> amp/k1 </Expression>
+      </Function>
+      <Function id="bottom9">
+        <ListOfReferences>
+          <Reference name="bottom8" type="Function"/>
+          <Reference name="weight9" type="Function"/>
+        </ListOfReferences>
+        <Expression> bottom8+weight9 </Expression>
+      </Function>
+      <Function id="bottom10">
+        <ListOfReferences>
+          <Reference name="bottom9" type="Function"/>
+          <Reference name="weight10" type="Function"/>
+        </ListOfReferences>
+        <Expression> bottom9+weight10 </Expression>
+      </Function>
+      <Function id="bottom11">
+        <ListOfReferences>
+          <Reference name="bottom10" type="Function"/>
+          <Reference name="weight11" type="Function"/>
+        </ListOfReferences>
+        <Expression> bottom10+weight11 </Expression>
+      </Function>
+      <Function id="bottom12">
+        <ListOfReferences>
+          <Reference name="bottom11" type="Function"/>
+          <Reference name="weight12" type="Function"/>
+        </ListOfReferences>
+        <Expression> bottom11+weight12 </Expression>
+      </Function>
+      <Function id="weight13">
+        <ListOfReferences>
+          <Reference name="k1" type="Constant"/>
+          <Reference name="k2" type="Constant"/>
+          <Reference name="amp" type="Function"/>
+          <Reference name="fbp" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (amp*fbp)/(k1*k2) </Expression>
+      </Function>
+      <Function id="bottom13">
+        <ListOfReferences>
+          <Reference name="bottom12" type="Function"/>
+          <Reference name="weight13" type="Function"/>
+        </ListOfReferences>
+        <Expression> bottom12+weight13 </Expression>
+      </Function>
+      <Function id="bottom14">
+        <ListOfReferences>
+          <Reference name="bottom13" type="Function"/>
+          <Reference name="weight14" type="Function"/>
+        </ListOfReferences>
+        <Expression> bottom13+weight14 </Expression>
+      </Function>
+      <Function id="bottom15">
+        <ListOfReferences>
+          <Reference name="bottom14" type="Function"/>
+          <Reference name="weight15" type="Function"/>
+        </ListOfReferences>
+        <Expression> bottom14+weight15 </Expression>
+      </Function>
+      <Function id="bottom16">
+        <ListOfReferences>
+          <Reference name="bottom15" type="Function"/>
+          <Reference name="weight16" type="Function"/>
+        </ListOfReferences>
+        <Expression> bottom15+weight16 </Expression>
+      </Function>
+      <Function id="pfk">
+        <ListOfReferences>
+          <Reference name="cat" type="Constant"/>
+          <Reference name="pfkbas" type="Constant"/>
+          <Reference name="bottom16" type="Function"/>
+          <Reference name="topa16" type="Function"/>
+          <Reference name="topb" type="Function"/>
+        </ListOfReferences>
+        <Expression> (((cat*pfkbas)*topa16)+(cat*topb))/bottom16 </Expression>
+      </Function>
+      <Function id="rgpdh">
+        <ListOfReferences>
+          <Reference name="fbp" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 0.2*sqrt(abs(fbp)) </Expression>
+      </Function>
+      <Function id="y">
+        <ListOfReferences>
+          <Reference name="kg" type="Constant"/>
+          <Reference name="vg" type="Constant"/>
+          <Reference name="rgpdh" type="Function"/>
+        </ListOfReferences>
+        <Expression> (rgpdh*vg)/(kg+rgpdh) </Expression>
+      </Function>
+      <Function id="fback">
+        <ListOfReferences>
+          <Reference name="r" type="Constant"/>
+          <Reference name="y" type="Function"/>
+        </ListOfReferences>
+        <Expression> r+y </Expression>
+      </Function>
+      <Function id="arRateadp">
+        <ListOfReferences>
+          <Reference name="r1" type="Constant"/>
+          <Reference name="taua" type="Constant"/>
+          <Reference name="atp" type="Function"/>
+          <Reference name="fback" type="Function"/>
+          <Reference name="adp" type="Observable"/>
+          <Reference name="c" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((-adp)*exp((fback*(((-c)/r1)+1))))+atp)/taua </Expression>
+      </Function>
+      <Function id="Jserca">
+        <ListOfReferences>
+          <Reference name="Kserca" type="Constant"/>
+          <Reference name="c" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Kserca*c </Expression>
+      </Function>
+      <Function id="Jleak">
+        <ListOfReferences>
+          <Reference name="pleak" type="Constant"/>
+          <Reference name="c" type="Observable"/>
+          <Reference name="cer" type="Observable"/>
+        </ListOfReferences>
+        <Expression> pleak*((-c)+cer) </Expression>
+      </Function>
+      <Function id="Jer">
+        <ListOfReferences>
+          <Reference name="epser" type="Constant"/>
+          <Reference name="lambdaer" type="Constant"/>
+          <Reference name="Jleak" type="Function"/>
+          <Reference name="Jserca" type="Function"/>
+        </ListOfReferences>
+        <Expression> (epser*(Jleak-Jserca))/lambdaer </Expression>
+      </Function>
+      <Function id="Jmem">
+        <ListOfReferences>
+          <Reference name="alpha" type="Constant"/>
+          <Reference name="kpmca" type="Constant"/>
+          <Reference name="ICa" type="Function"/>
+          <Reference name="c" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((-ICa)*alpha)-(c*kpmca) </Expression>
+      </Function>
+      <Function id="arRatec">
+        <ListOfReferences>
+          <Reference name="fcyt" type="Constant"/>
+          <Reference name="Jer" type="Function"/>
+          <Reference name="Jmem" type="Function"/>
+        </ListOfReferences>
+        <Expression> fcyt*(Jer+Jmem) </Expression>
+      </Function>
+      <Function id="arRatecer">
+        <ListOfReferences>
+          <Reference name="fer" type="Constant"/>
+          <Reference name="sigmaV" type="Constant"/>
+          <Reference name="Jer" type="Function"/>
+        </ListOfReferences>
+        <Expression> ((-Jer)*fer)*sigmaV </Expression>
+      </Function>
+      <Function id="ninf">
+        <ListOfReferences>
+          <Reference name="V" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 1/(exp((((-V)/5)-(16/5)))+1) </Expression>
+      </Function>
+      <Function id="arRaten">
+        <ListOfReferences>
+          <Reference name="taun" type="Constant"/>
+          <Reference name="ninf" type="Function"/>
+          <Reference name="n" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((-n)+ninf)/taun </Expression>
+      </Function>
+      <Function id="ratio">
+        <ListOfReferences>
+          <Reference name="atp" type="Function"/>
+          <Reference name="adp" type="Observable"/>
+        </ListOfReferences>
+        <Expression> atp/adp </Expression>
+      </Function>
+      <Function id="arRatefbp">
+        <ListOfReferences>
+          <Reference name="lambda" type="Constant"/>
+          <Reference name="pfk" type="Function"/>
+          <Reference name="rgpdh" type="Function"/>
+        </ListOfReferences>
+        <Expression> lambda*(pfk-(0.5*rgpdh)) </Expression>
+      </Function>
+      <Function id="arRateg6p">
+        <ListOfReferences>
+          <Reference name="Rgk" type="Constant"/>
+          <Reference name="lambda" type="Constant"/>
+          <Reference name="pfk" type="Function"/>
+        </ListOfReferences>
+        <Expression> lambda*(Rgk-pfk) </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

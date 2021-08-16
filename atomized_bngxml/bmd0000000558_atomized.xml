@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000558_atomized">
+    <ListOfParameters>
+      <Parameter id="k1" type="Constant" value="17280" expr="17280.0"/>
+      <Parameter id="k2" type="Constant" value="17280" expr="17280.0"/>
+      <Parameter id="k3" type="Constant" value="0.168" expr="0.168"/>
+      <Parameter id="k4" type="Constant" value="0.168" expr="0.168"/>
+      <Parameter id="dalphasyn" type="Constant" value="15" expr="15.0"/>
+      <Parameter id="kalphasyn" type="Constant" value="8.5" expr="8.5"/>
+      <Parameter id="S2_4" type="Constant" value="1" expr="1.0"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="ROS"/>
+      <MoleculeType id="alpha_syn"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="6.022e+17" name="ROS()">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="ROS"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="6.022e+17" name="alpha_syn()">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="alpha_syn"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="ROS_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="ROS"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="ROS_2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="ROS"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="fRate1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR2_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="aSyn_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="alpha_syn"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="fRate2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="aSyn_2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="alpha_syn"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="fRate3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR4_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="ROS" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="ROS"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="alpha_syn" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="alpha_syn"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="S1">
+        <ListOfReferences>
+        </ListOfReferences>
+        <Expression> if(((time()&gt;10)and(time()&lt;150)),2.6,0) </Expression>
+      </Function>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="dalphasyn" type="Constant"/>
+          <Reference name="k1" type="Constant"/>
+          <Reference name="kalphasyn" type="Constant"/>
+          <Reference name="S1" type="Function"/>
+          <Reference name="alpha_syn" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (k1*(((alpha_syn^4)*dalphasyn)+((S1+1)*((alpha_syn^4)+(kalphasyn^4)))))/((alpha_syn^4)+(kalphasyn^4)) </Expression>
+      </Function>
+      <Function id="fRate1">
+        <ListOfReferences>
+          <Reference name="S2_4" type="Constant"/>
+          <Reference name="k2" type="Constant"/>
+        </ListOfReferences>
+        <Expression> S2_4*k2 </Expression>
+      </Function>
+      <Function id="fRate2">
+        <ListOfReferences>
+          <Reference name="S2_4" type="Constant"/>
+          <Reference name="k3" type="Constant"/>
+          <Reference name="ROS" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (ROS*S2_4)*k3 </Expression>
+      </Function>
+      <Function id="fRate3">
+        <ListOfReferences>
+          <Reference name="S2_4" type="Constant"/>
+          <Reference name="k4" type="Constant"/>
+        </ListOfReferences>
+        <Expression> S2_4*k4 </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

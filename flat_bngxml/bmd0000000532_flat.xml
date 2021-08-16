@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000532_flat">
+    <ListOfParameters>
+      <Parameter id="xm" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="vm" type="Constant" value="0.25" expr="0.25"/>
+      <Parameter id="lambda" type="Constant" value="3" expr="3.0"/>
+      <Parameter id="kx" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="mx" type="Constant" value="5" expr="5.0"/>
+      <Parameter id="ax" type="Constant" value="2" expr="2.0"/>
+      <Parameter id="kv" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="mv" type="Constant" value="4" expr="4.0"/>
+      <Parameter id="av" type="Constant" value="2" expr="2.0"/>
+      <Parameter id="klambda" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="mlambda" type="Constant" value="2" expr="2.0"/>
+      <Parameter id="alambda" type="Constant" value="2" expr="2.0"/>
+      <Parameter id="C" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="X" type="Constant" value="0" expr="0"/>
+      <Parameter id="Xm" type="Constant" value="0.97265495" expr="1.0*exp((-0.04*ln(2)))"/>
+      <Parameter id="Vm" type="Constant" value="0.23940082" expr="0.25*exp((-0.0625*ln(2)))"/>
+      <Parameter id="Lambda" type="Constant" value="0" expr="0"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+    </ListOfReactionRules>
+    <ListOfObservables>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="Lambda_ar">
+        <ListOfReferences>
+          <Reference name="C" type="Constant"/>
+          <Reference name="alambda" type="Constant"/>
+          <Reference name="klambda" type="Constant"/>
+          <Reference name="lambda" type="Constant"/>
+          <Reference name="mlambda" type="Constant"/>
+        </ListOfReferences>
+        <Expression> lambda*((klambda*(1-exp((((-(C/mlambda))^alambda)*ln(2)))))+1) </Expression>
+      </Function>
+      <Function id="Xm_ar">
+        <ListOfReferences>
+          <Reference name="C" type="Constant"/>
+          <Reference name="ax" type="Constant"/>
+          <Reference name="kx" type="Constant"/>
+          <Reference name="mx" type="Constant"/>
+          <Reference name="xm" type="Constant"/>
+        </ListOfReferences>
+        <Expression> xm*(((-kx)*(1-exp((((-(C/mx))^ax)*ln(2)))))+1) </Expression>
+      </Function>
+      <Function id="Vm_ar">
+        <ListOfReferences>
+          <Reference name="C" type="Constant"/>
+          <Reference name="av" type="Constant"/>
+          <Reference name="kv" type="Constant"/>
+          <Reference name="mv" type="Constant"/>
+          <Reference name="vm" type="Constant"/>
+        </ListOfReferences>
+        <Expression> vm*(((-kv)*(1-exp((((-(C/mv))^av)*ln(2)))))+1) </Expression>
+      </Function>
+      <Function id="X_ar">
+        <ListOfReferences>
+          <Reference name="Lambda_ar" type="Function"/>
+          <Reference name="Vm_ar" type="Function"/>
+          <Reference name="Xm_ar" type="Function"/>
+        </ListOfReferences>
+        <Expression> Xm_ar/(exp(((((4*Vm_ar)*(Lambda_ar-time()))/Xm_ar)+2))+1) </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

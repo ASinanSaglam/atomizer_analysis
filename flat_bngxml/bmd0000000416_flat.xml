@@ -1,0 +1,1376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000416_flat">
+    <ListOfParameters>
+      <Parameter id="eps" type="Constant" value="0.01" expr="0.01"/>
+      <Parameter id="lambda1" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="lambda3" type="Constant" value="0.02" expr="0.02"/>
+      <Parameter id="alphaAux" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="alphaTIR1" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="alphaARF" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="phiIAAp" type="Constant" value="100" expr="100.0"/>
+      <Parameter id="phiARp" type="Constant" value="2" expr="2.0"/>
+      <Parameter id="phiPINp" type="Constant" value="100" expr="100.0"/>
+      <Parameter id="deltaIAAp" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="deltaARp" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="deltaPINp" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="muAux" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="muIAAs" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="etaAuxTIR1" type="Constant" value="10" expr="10.0"/>
+      <Parameter id="etaARFIAA" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="la" type="Constant" value="0.5" expr="0.5"/>
+      <Parameter id="ld" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="pa" type="Constant" value="10" expr="10.0"/>
+      <Parameter id="pd" type="Constant" value="10" expr="10.0"/>
+      <Parameter id="ka" type="Constant" value="100" expr="100.0"/>
+      <Parameter id="kd" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="qa" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="qd" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="thetaARF" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="thetaARF2" type="Constant" value="0.01" expr="0.01"/>
+      <Parameter id="thARFIAA" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="thetaIAAp" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="thetaARp" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="psiARFIAA" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="psiARF" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="alphaCk" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="alphaARRB" type="Constant" value="2" expr="2.0"/>
+      <Parameter id="alphaAHK" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="alphaPH" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="phiCRp" type="Constant" value="2" expr="2.0"/>
+      <Parameter id="phiARRAp" type="Constant" value="100" expr="100.0"/>
+      <Parameter id="deltaCRp" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="deltaARRAp" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="muCk" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="etaAHKph" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="etaCkPh" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="ra" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="rd" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="ua" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="ud" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="sa" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="sd" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="thARRAph" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="thARRBph" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="_rateLaw1" type="Constant" value="1" expr="1.00000000000000"/>
+      <Parameter id="_rateLaw2" type="Constant" value="1" expr="1.00000000000000"/>
+      <Parameter id="_rateLaw3" type="Constant" value="1" expr="1.00000000000000"/>
+      <Parameter id="_rateLaw4" type="Constant" value="1" expr="1.00000000000000"/>
+      <Parameter id="_rateLaw5" type="Constant" value="1" expr="1.00000000000000"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="AHKph"/>
+      <MoleculeType id="ARF2"/>
+      <MoleculeType id="ARFIAA"/>
+      <MoleculeType id="ARRAm"/>
+      <MoleculeType id="ARRAp"/>
+      <MoleculeType id="ARRAph"/>
+      <MoleculeType id="ARRBph"/>
+      <MoleculeType id="ARm"/>
+      <MoleculeType id="ARp"/>
+      <MoleculeType id="Aux"/>
+      <MoleculeType id="AuxTIAA"/>
+      <MoleculeType id="AuxTIR1"/>
+      <MoleculeType id="CRm"/>
+      <MoleculeType id="CRp"/>
+      <MoleculeType id="Ck"/>
+      <MoleculeType id="IAAm"/>
+      <MoleculeType id="IAAp"/>
+      <MoleculeType id="IAAs"/>
+      <MoleculeType id="PINm"/>
+      <MoleculeType id="PINp"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="6.022e+23" name="Aux()">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="Aux"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="6.022e+23" name="AHKph()">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="AHKph"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="6.022e+23" name="Ck()">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="Ck"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="r1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="IAAm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="_reverse_r1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="IAAm"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="_rateLaw1"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR2_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="r2_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="IAAp"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="fRate1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="r3_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="AuxTIR1"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="fRate2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR4_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="r4_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="AuxTIAA"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Function" name="fRate3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR5_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="r5" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="IAAs"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Function" name="fRate4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR6_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="_reverse_r5" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR7_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_RP1_M1" name="IAAs"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Function" name="fRate4m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR7_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR7_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="r6" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR8_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP1_M1" name="ARFIAA"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Function" name="fRate5" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR8_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="_reverse_r6" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR9_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_RP1_M1" name="ARFIAA"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="pd"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR9_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR9_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="r7" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR10_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_PP1_M1" name="ARF2"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Function" name="fRate6" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR10_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR11" name="_reverse_r7" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR11_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_RP1_M1" name="ARF2"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR11_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="qd"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR11_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR11_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR12" name="r8_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR12_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_PP1_M1" name="Aux"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR12_RateLaw" type="Function" name="fRate7" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR12_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR13" name="r9" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR13_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_PP1_M1" name="PINm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR13_RateLaw" type="Function" name="fRate8" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR13_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR14" name="_reverse_r9" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR14_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_RP1_M1" name="PINm"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR14_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="_rateLaw2"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR14_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR14_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR15" name="r10" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR15_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR15_PP1_M1" name="PINp"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR15_RateLaw" type="Function" name="fRate9" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR15_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR16" name="_reverse_r10" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR16_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR16_RP1_M1" name="PINp"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR16_RateLaw" type="Function" name="fRate9m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR16_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR16_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR17" name="r11" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR17_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR17_PP1_M1" name="ARm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR17_RateLaw" type="Function" name="fRate10" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR17_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR18" name="_reverse_r11" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR18_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR18_RP1_M1" name="ARm"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR18_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="_rateLaw3"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR18_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR18_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR19" name="r12" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR19_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR19_PP1_M1" name="ARp"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR19_RateLaw" type="Function" name="fRate11" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR19_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR20" name="_reverse_r12" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR20_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR20_RP1_M1" name="ARp"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR20_RateLaw" type="Function" name="fRate11m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR20_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR20_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR21" name="r13" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR21_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR21_PP1_M1" name="CRm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR21_RateLaw" type="Function" name="fRate12" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR21_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR22" name="_reverse_r13" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR22_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR22_RP1_M1" name="CRm"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR22_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="_rateLaw4"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR22_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR22_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR23" name="r14" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR23_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR23_PP1_M1" name="CRp"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR23_RateLaw" type="Function" name="fRate13" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR23_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR24" name="_reverse_r14" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR24_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR24_RP1_M1" name="CRp"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR24_RateLaw" type="Function" name="fRate13m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR24_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR24_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR25" name="r15" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR25_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR25_PP1_M1" name="AHKph"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR25_RateLaw" type="Function" name="fRate14" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR25_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR26" name="_reverse_r15" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR26_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR26_RP1_M1" name="AHKph"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR26_RateLaw" type="Function" name="fRate14m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR26_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR26_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR27" name="r16_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR27_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR27_PP1_M1" name="Ck"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR27_RateLaw" type="Function" name="fRate15" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR27_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR28" name="r17" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR28_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR28_PP1_M1" name="ARRBph"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR28_RateLaw" type="Function" name="fRate16" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR28_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR29" name="_reverse_r17" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR29_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR29_RP1_M1" name="ARRBph"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR29_RateLaw" type="Function" name="fRate16m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR29_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR29_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR30" name="r18" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR30_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR30_PP1_M1" name="ARRAph"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR30_RateLaw" type="Function" name="fRate17" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR30_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR31" name="_reverse_r18" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR31_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR31_RP1_M1" name="ARRAph"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR31_RateLaw" type="Function" name="fRate17m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR31_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR31_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR32" name="r19" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR32_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR32_PP1_M1" name="ARRAm"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR32_RateLaw" type="Function" name="fRate18" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR32_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR33" name="_reverse_r19" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR33_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR33_RP1_M1" name="ARRAm"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR33_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="_rateLaw5"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR33_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR33_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR34" name="r20_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR34_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR34_PP1_M1" name="ARRAp"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR34_RateLaw" type="Function" name="fRate19" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR34_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="IAAm" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="IAAm"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="IAAp" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="IAAp"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="AuxTIR1" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="AuxTIR1"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="AuxTIAA" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="AuxTIAA"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="IAAs" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="IAAs"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O6" name="ARFIAA" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O6_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O6_P1_M1" name="ARFIAA"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O7" name="ARF2" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O7_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O7_P1_M1" name="ARF2"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O8" name="Aux" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O8_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O8_P1_M1" name="Aux"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O9" name="PINm" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O9_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O9_P1_M1" name="PINm"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O10" name="PINp" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O10_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O10_P1_M1" name="PINp"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O11" name="ARm" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O11_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O11_P1_M1" name="ARm"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O12" name="ARp" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O12_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O12_P1_M1" name="ARp"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O13" name="CRm" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O13_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O13_P1_M1" name="CRm"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O14" name="CRp" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O14_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O14_P1_M1" name="CRp"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O15" name="AHKph" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O15_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O15_P1_M1" name="AHKph"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O16" name="Ck" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O16_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O16_P1_M1" name="Ck"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O17" name="ARRBph" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O17_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O17_P1_M1" name="ARRBph"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O18" name="ARRAph" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O18_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O18_P1_M1" name="ARRAph"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O19" name="ARRAm" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O19_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O19_P1_M1" name="ARRAm"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O20" name="ARRAp" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O20_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O20_P1_M1" name="ARRAp"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="ARF_ar">
+        <ListOfReferences>
+          <Reference name="alphaARF" type="Constant"/>
+          <Reference name="ARF2" type="Observable"/>
+          <Reference name="ARFIAA" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((-2*ARF2)-ARFIAA)+alphaARF </Expression>
+      </Function>
+      <Function id="F5b_ar">
+        <ListOfReferences>
+          <Reference name="psiARF" type="Constant"/>
+          <Reference name="psiARFIAA" type="Constant"/>
+          <Reference name="thARFIAA" type="Constant"/>
+          <Reference name="thetaARF" type="Constant"/>
+          <Reference name="thetaARF2" type="Constant"/>
+          <Reference name="ARF_ar" type="Function"/>
+          <Reference name="ARF2" type="Observable"/>
+          <Reference name="ARFIAA" type="Observable"/>
+          <Reference name="IAAp" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((ARF2/thetaARF2)+((ARF_ar^2)/psiARF))/((((((ARF2/thetaARF2)+(ARFIAA/thARFIAA))+((ARF_ar^2)/psiARF))+((ARF_ar*IAAp)/psiARFIAA))+(ARF_ar/thetaARF))+1) </Expression>
+      </Function>
+      <Function id="F5a_ar">
+        <ListOfReferences>
+          <Reference name="psiARF" type="Constant"/>
+          <Reference name="psiARFIAA" type="Constant"/>
+          <Reference name="thARFIAA" type="Constant"/>
+          <Reference name="thetaARF" type="Constant"/>
+          <Reference name="thetaARF2" type="Constant"/>
+          <Reference name="ARF_ar" type="Function"/>
+          <Reference name="ARF2" type="Observable"/>
+          <Reference name="ARFIAA" type="Observable"/>
+          <Reference name="IAAp" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ARF_ar/(thetaARF*((((((ARF2/thetaARF2)+(ARFIAA/thARFIAA))+((ARF_ar^2)/psiARF))+((ARF_ar*IAAp)/psiARFIAA))+(ARF_ar/thetaARF))+1)) </Expression>
+      </Function>
+      <Function id="F3_ar">
+        <ListOfReferences>
+          <Reference name="psiARF" type="Constant"/>
+          <Reference name="psiARFIAA" type="Constant"/>
+          <Reference name="thARFIAA" type="Constant"/>
+          <Reference name="thARRBph" type="Constant"/>
+          <Reference name="thetaARF" type="Constant"/>
+          <Reference name="thetaARF2" type="Constant"/>
+          <Reference name="ARF_ar" type="Function"/>
+          <Reference name="ARF2" type="Observable"/>
+          <Reference name="ARFIAA" type="Observable"/>
+          <Reference name="ARRBph" type="Observable"/>
+          <Reference name="IAAp" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ARRBph/(thARRBph*(((((((ARF2/thetaARF2)+(ARFIAA/thARFIAA))+((ARF_ar^2)/psiARF))+((ARF_ar*IAAp)/psiARFIAA))+(ARF_ar/thetaARF))+(ARRBph/thARRBph))+1)) </Expression>
+      </Function>
+      <Function id="F2_ar">
+        <ListOfReferences>
+          <Reference name="psiARF" type="Constant"/>
+          <Reference name="psiARFIAA" type="Constant"/>
+          <Reference name="thARFIAA" type="Constant"/>
+          <Reference name="thARRBph" type="Constant"/>
+          <Reference name="thetaARF" type="Constant"/>
+          <Reference name="thetaARF2" type="Constant"/>
+          <Reference name="ARF_ar" type="Function"/>
+          <Reference name="ARF2" type="Observable"/>
+          <Reference name="ARFIAA" type="Observable"/>
+          <Reference name="ARRBph" type="Observable"/>
+          <Reference name="IAAp" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((ARF2/thetaARF2)+((ARF_ar^2)/psiARF))/(((((((ARF2/thetaARF2)+(ARFIAA/thARFIAA))+((ARF_ar^2)/psiARF))+((ARF_ar*IAAp)/psiARFIAA))+(ARF_ar/thetaARF))+(ARRBph/thARRBph))+1) </Expression>
+      </Function>
+      <Function id="F1_ar">
+        <ListOfReferences>
+          <Reference name="psiARF" type="Constant"/>
+          <Reference name="psiARFIAA" type="Constant"/>
+          <Reference name="thARFIAA" type="Constant"/>
+          <Reference name="thARRBph" type="Constant"/>
+          <Reference name="thetaARF" type="Constant"/>
+          <Reference name="thetaARF2" type="Constant"/>
+          <Reference name="ARF_ar" type="Function"/>
+          <Reference name="ARF2" type="Observable"/>
+          <Reference name="ARFIAA" type="Observable"/>
+          <Reference name="ARRBph" type="Observable"/>
+          <Reference name="IAAp" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ARF_ar/(thetaARF*(((((((ARF2/thetaARF2)+(ARFIAA/thARFIAA))+((ARF_ar^2)/psiARF))+((ARF_ar*IAAp)/psiARFIAA))+(ARF_ar/thetaARF))+(ARRBph/thARRBph))+1)) </Expression>
+      </Function>
+      <Function id="CkAHKph_ar">
+        <ListOfReferences>
+          <Reference name="alphaPH" type="Constant"/>
+          <Reference name="AHKph" type="Observable"/>
+          <Reference name="ARRAph" type="Observable"/>
+          <Reference name="ARRBph" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((-AHKph)-ARRAph)-ARRBph)+alphaPH </Expression>
+      </Function>
+      <Function id="CkAHK_ar">
+        <ListOfReferences>
+          <Reference name="alphaAHK" type="Constant"/>
+          <Reference name="etaAHKph" type="Constant"/>
+          <Reference name="CkAHKph_ar" type="Function"/>
+          <Reference name="AHKph" type="Observable"/>
+        </ListOfReferences>
+        <Expression> alphaAHK-(etaAHKph*(AHKph+CkAHKph_ar)) </Expression>
+      </Function>
+      <Function id="F6_ar">
+        <ListOfReferences>
+          <Reference name="thetaARp" type="Constant"/>
+          <Reference name="ARp" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ARp/(thetaARp*((ARp/thetaARp)+1)) </Expression>
+      </Function>
+      <Function id="F4_ar">
+        <ListOfReferences>
+          <Reference name="thARRAph" type="Constant"/>
+          <Reference name="thARRBph" type="Constant"/>
+          <Reference name="ARRAph" type="Observable"/>
+          <Reference name="ARRBph" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ARRBph/(thARRBph*(((ARRAph/thARRAph)+(ARRBph/thARRBph))+1)) </Expression>
+      </Function>
+      <Function id="ARRBp_ar">
+        <ListOfReferences>
+          <Reference name="alphaARRB" type="Constant"/>
+          <Reference name="etaAHKph" type="Constant"/>
+          <Reference name="ARRBph" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((-ARRBph)*etaAHKph)+alphaARRB </Expression>
+      </Function>
+      <Function id="TIR1_ar">
+        <ListOfReferences>
+          <Reference name="alphaTIR1" type="Constant"/>
+          <Reference name="AuxTIAA" type="Observable"/>
+          <Reference name="AuxTIR1" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((-AuxTIAA)-AuxTIR1)+alphaTIR1 </Expression>
+      </Function>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="lambda1" type="Constant"/>
+          <Reference name="lambda3" type="Constant"/>
+          <Reference name="phiIAAp" type="Constant"/>
+          <Reference name="F1_ar" type="Function"/>
+          <Reference name="F2_ar" type="Function"/>
+          <Reference name="F3_ar" type="Function"/>
+        </ListOfReferences>
+        <Expression> phiIAAp*(((F1_ar*lambda1)+F2_ar)+(F3_ar*lambda3)) </Expression>
+      </Function>
+      <Function id="fRate1">
+        <ListOfReferences>
+          <Reference name="deltaIAAp" type="Constant"/>
+          <Reference name="eps" type="Constant"/>
+          <Reference name="etaARFIAA" type="Constant"/>
+          <Reference name="la" type="Constant"/>
+          <Reference name="ld" type="Constant"/>
+          <Reference name="pa" type="Constant"/>
+          <Reference name="pd" type="Constant"/>
+          <Reference name="ARF_ar" type="Function"/>
+          <Reference name="ARFIAA" type="Observable"/>
+          <Reference name="AuxTIAA" type="Observable"/>
+          <Reference name="AuxTIR1" type="Observable"/>
+          <Reference name="IAAm" type="Observable"/>
+          <Reference name="IAAp" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (etaARFIAA*((ARFIAA*pd)-((ARF_ar*IAAp)*pa)))+((((AuxTIAA*ld)-((AuxTIR1*IAAp)*la))+(IAAm*deltaIAAp))/eps) </Expression>
+      </Function>
+      <Function id="fRate2">
+        <ListOfReferences>
+          <Reference name="eps" type="Constant"/>
+          <Reference name="ka" type="Constant"/>
+          <Reference name="kd" type="Constant"/>
+          <Reference name="la" type="Constant"/>
+          <Reference name="ld" type="Constant"/>
+          <Reference name="TIR1_ar" type="Function"/>
+          <Reference name="Aux" type="Observable"/>
+          <Reference name="AuxTIAA" type="Observable"/>
+          <Reference name="AuxTIR1" type="Observable"/>
+          <Reference name="IAAp" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((((Aux*TIR1_ar)*ka)+(AuxTIAA*(ld+1)))-((AuxTIR1*IAAp)*la))-(AuxTIR1*kd))/eps </Expression>
+      </Function>
+      <Function id="fRate3">
+        <ListOfReferences>
+          <Reference name="eps" type="Constant"/>
+          <Reference name="la" type="Constant"/>
+          <Reference name="ld" type="Constant"/>
+          <Reference name="AuxTIAA" type="Observable"/>
+          <Reference name="AuxTIR1" type="Observable"/>
+          <Reference name="IAAp" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((-AuxTIAA)*(ld+1))+((AuxTIR1*IAAp)*la))/eps </Expression>
+      </Function>
+      <Function id="fRate4">
+        <ListOfReferences>
+          <Reference name="eps" type="Constant"/>
+          <Reference name="AuxTIAA" type="Observable"/>
+        </ListOfReferences>
+        <Expression> AuxTIAA/eps </Expression>
+      </Function>
+      <Function id="fRate4m">
+        <ListOfReferences>
+          <Reference name="eps" type="Constant"/>
+          <Reference name="muIAAs" type="Constant"/>
+        </ListOfReferences>
+        <Expression> muIAAs/eps </Expression>
+      </Function>
+      <Function id="fRate5">
+        <ListOfReferences>
+          <Reference name="pa" type="Constant"/>
+          <Reference name="ARF_ar" type="Function"/>
+          <Reference name="IAAp" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (ARF_ar*IAAp)*pa </Expression>
+      </Function>
+      <Function id="fRate6">
+        <ListOfReferences>
+          <Reference name="qa" type="Constant"/>
+          <Reference name="ARF_ar" type="Function"/>
+        </ListOfReferences>
+        <Expression> (ARF_ar^2)*qa </Expression>
+      </Function>
+      <Function id="fRate7">
+        <ListOfReferences>
+          <Reference name="alphaAux" type="Constant"/>
+          <Reference name="eps" type="Constant"/>
+          <Reference name="etaAuxTIR1" type="Constant"/>
+          <Reference name="ka" type="Constant"/>
+          <Reference name="kd" type="Constant"/>
+          <Reference name="muAux" type="Constant"/>
+          <Reference name="TIR1_ar" type="Function"/>
+          <Reference name="Aux" type="Observable"/>
+          <Reference name="AuxTIR1" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (muAux*((-Aux)+alphaAux))-((etaAuxTIR1*(((Aux*TIR1_ar)*ka)-(AuxTIR1*kd)))/eps) </Expression>
+      </Function>
+      <Function id="fRate8">
+        <ListOfReferences>
+          <Reference name="lambda1" type="Constant"/>
+          <Reference name="phiPINp" type="Constant"/>
+          <Reference name="F5a_ar" type="Function"/>
+          <Reference name="F5b_ar" type="Function"/>
+        </ListOfReferences>
+        <Expression> phiPINp*((F5a_ar*lambda1)+F5b_ar) </Expression>
+      </Function>
+      <Function id="fRate9">
+        <ListOfReferences>
+          <Reference name="deltaPINp" type="Constant"/>
+          <Reference name="eps" type="Constant"/>
+          <Reference name="PINm" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (PINm*deltaPINp)/eps </Expression>
+      </Function>
+      <Function id="fRate9m">
+        <ListOfReferences>
+          <Reference name="eps" type="Constant"/>
+        </ListOfReferences>
+        <Expression> 1/eps </Expression>
+      </Function>
+      <Function id="fRate10">
+        <ListOfReferences>
+          <Reference name="lambda1" type="Constant"/>
+          <Reference name="phiARp" type="Constant"/>
+          <Reference name="F5a_ar" type="Function"/>
+          <Reference name="F5b_ar" type="Function"/>
+        </ListOfReferences>
+        <Expression> phiARp*((F5a_ar*lambda1)+F5b_ar) </Expression>
+      </Function>
+      <Function id="fRate11">
+        <ListOfReferences>
+          <Reference name="deltaARp" type="Constant"/>
+          <Reference name="eps" type="Constant"/>
+          <Reference name="ARm" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (ARm*deltaARp)/eps </Expression>
+      </Function>
+      <Function id="fRate11m">
+        <ListOfReferences>
+          <Reference name="eps" type="Constant"/>
+        </ListOfReferences>
+        <Expression> 1/eps </Expression>
+      </Function>
+      <Function id="fRate12">
+        <ListOfReferences>
+          <Reference name="phiCRp" type="Constant"/>
+          <Reference name="F4_ar" type="Function"/>
+        </ListOfReferences>
+        <Expression> F4_ar*phiCRp </Expression>
+      </Function>
+      <Function id="fRate13">
+        <ListOfReferences>
+          <Reference name="deltaCRp" type="Constant"/>
+          <Reference name="eps" type="Constant"/>
+          <Reference name="CRm" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (CRm*deltaCRp)/eps </Expression>
+      </Function>
+      <Function id="fRate13m">
+        <ListOfReferences>
+          <Reference name="eps" type="Constant"/>
+        </ListOfReferences>
+        <Expression> 1/eps </Expression>
+      </Function>
+      <Function id="fRate14">
+        <ListOfReferences>
+          <Reference name="eps" type="Constant"/>
+          <Reference name="rd" type="Constant"/>
+          <Reference name="CkAHKph_ar" type="Function"/>
+        </ListOfReferences>
+        <Expression> (CkAHKph_ar*rd)/eps </Expression>
+      </Function>
+      <Function id="fRate14m">
+        <ListOfReferences>
+          <Reference name="eps" type="Constant"/>
+          <Reference name="ra" type="Constant"/>
+          <Reference name="Ck" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (Ck*ra)/eps </Expression>
+      </Function>
+      <Function id="fRate15">
+        <ListOfReferences>
+          <Reference name="alphaCk" type="Constant"/>
+          <Reference name="eps" type="Constant"/>
+          <Reference name="etaCkPh" type="Constant"/>
+          <Reference name="muCk" type="Constant"/>
+          <Reference name="ra" type="Constant"/>
+          <Reference name="rd" type="Constant"/>
+          <Reference name="CkAHKph_ar" type="Function"/>
+          <Reference name="AHKph" type="Observable"/>
+          <Reference name="Ck" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (muCk*((-Ck)+alphaCk))-((etaCkPh*(((AHKph*Ck)*ra)-(CkAHKph_ar*rd)))/eps) </Expression>
+      </Function>
+      <Function id="fRate16">
+        <ListOfReferences>
+          <Reference name="eps" type="Constant"/>
+          <Reference name="ua" type="Constant"/>
+          <Reference name="ARRBp_ar" type="Function"/>
+          <Reference name="CkAHKph_ar" type="Function"/>
+        </ListOfReferences>
+        <Expression> ((ARRBp_ar*CkAHKph_ar)*ua)/eps </Expression>
+      </Function>
+      <Function id="fRate16m">
+        <ListOfReferences>
+          <Reference name="eps" type="Constant"/>
+          <Reference name="ud" type="Constant"/>
+          <Reference name="CkAHK_ar" type="Function"/>
+        </ListOfReferences>
+        <Expression> (CkAHK_ar*ud)/eps </Expression>
+      </Function>
+      <Function id="fRate17">
+        <ListOfReferences>
+          <Reference name="eps" type="Constant"/>
+          <Reference name="sa" type="Constant"/>
+          <Reference name="CkAHKph_ar" type="Function"/>
+          <Reference name="ARRAp" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((ARRAp*CkAHKph_ar)*sa)/eps </Expression>
+      </Function>
+      <Function id="fRate17m">
+        <ListOfReferences>
+          <Reference name="eps" type="Constant"/>
+          <Reference name="sd" type="Constant"/>
+          <Reference name="CkAHK_ar" type="Function"/>
+        </ListOfReferences>
+        <Expression> (CkAHK_ar*sd)/eps </Expression>
+      </Function>
+      <Function id="fRate18">
+        <ListOfReferences>
+          <Reference name="phiARRAp" type="Constant"/>
+          <Reference name="F6_ar" type="Function"/>
+        </ListOfReferences>
+        <Expression> F6_ar*phiARRAp </Expression>
+      </Function>
+      <Function id="fRate19">
+        <ListOfReferences>
+          <Reference name="deltaARRAp" type="Constant"/>
+          <Reference name="eps" type="Constant"/>
+          <Reference name="etaAHKph" type="Constant"/>
+          <Reference name="sa" type="Constant"/>
+          <Reference name="sd" type="Constant"/>
+          <Reference name="CkAHK_ar" type="Function"/>
+          <Reference name="CkAHKph_ar" type="Function"/>
+          <Reference name="ARRAm" type="Observable"/>
+          <Reference name="ARRAp" type="Observable"/>
+          <Reference name="ARRAph" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((ARRAm*deltaARRAp)-ARRAp)+(etaAHKph*((((-ARRAp)*CkAHKph_ar)*sa)+((ARRAph*CkAHK_ar)*sd))))/eps </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

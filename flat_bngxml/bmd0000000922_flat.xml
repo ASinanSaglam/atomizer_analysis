@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000922_flat">
+    <ListOfParameters>
+      <Parameter id="Ar" type="Constant" value="20" expr="20.0"/>
+      <Parameter id="ep" type="Constant" value="30" expr="30.0"/>
+      <Parameter id="Te" type="Constant" value="0.361" expr="0.361"/>
+      <Parameter id="Me" type="Constant" value="0.05" expr="0.05"/>
+      <Parameter id="K0" type="Constant" value="0.0002" expr="0.0002"/>
+      <Parameter id="Tl" type="Constant" value="0.134" expr="0.134"/>
+      <Parameter id="Tp" type="Constant" value="0.342" expr="0.342"/>
+      <Parameter id="Mp" type="Constant" value="0.0025" expr="0.0025"/>
+      <Parameter id="Ml" type="Constant" value="0.0501" expr="0.0501"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="PopulationofEggs"/>
+      <MoleculeType id="PopulationofLarvae"/>
+      <MoleculeType id="PopulationofPupae"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="6.022e+24" name="PopulationofEggs()">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="PopulationofEggs"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="3.011e+24" name="PopulationofLarvae()">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="PopulationofLarvae"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="1.8066e+24" name="PopulationofPupae()">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="PopulationofPupae"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="reaction_for_E_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="PopulationofEggs"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="reaction_for_L_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="PopulationofLarvae"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="fRate1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="reaction_for_P_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="PopulationofPupae"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="fRate2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="PopulationofEggs" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="PopulationofEggs"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="PopulationofLarvae" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="PopulationofLarvae"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="PopulationofPupae" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="PopulationofPupae"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="Ar" type="Constant"/>
+          <Reference name="Me" type="Constant"/>
+          <Reference name="Te" type="Constant"/>
+          <Reference name="ep" type="Constant"/>
+          <Reference name="PopulationofEggs" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((1.0*Ar)*ep)-((1.0*PopulationofEggs)*(Me+Te)) </Expression>
+      </Function>
+      <Function id="fRate1">
+        <ListOfReferences>
+          <Reference name="K0" type="Constant"/>
+          <Reference name="Ml" type="Constant"/>
+          <Reference name="Te" type="Constant"/>
+          <Reference name="Tl" type="Constant"/>
+          <Reference name="PopulationofEggs" type="Observable"/>
+          <Reference name="PopulationofLarvae" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((-1.0*K0)*(PopulationofLarvae^2))+((1.0*PopulationofEggs)*Te))-((1.0*PopulationofLarvae)*(Ml+Tl)) </Expression>
+      </Function>
+      <Function id="fRate2">
+        <ListOfReferences>
+          <Reference name="Mp" type="Constant"/>
+          <Reference name="Tl" type="Constant"/>
+          <Reference name="Tp" type="Constant"/>
+          <Reference name="PopulationofLarvae" type="Observable"/>
+          <Reference name="PopulationofPupae" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((1.0*PopulationofLarvae)*Tl)-((1.0*PopulationofPupae)*(Mp+Tp)) </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

@@ -1,11 +1,11 @@
 ###
-#@BQM_IS_INSTANCE_OF:['http://identifiers.org/bto/BTO:0000671', 'http://identifiers.org/go/GO:0038166', 'http://identifiers.org/go/GO:0007178', 'http://identifiers.org/taxonomy/9606', 'http://identifiers.org/biomodels.db/MODEL1012080000']
-#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/go/GO:0038166', 'http://identifiers.org/pubmed/22735336', 'http://identifiers.org/go/GO:0007178']
+#@BQM_IS_INSTANCE_OF:['http://identifiers.org/taxonomy/9606', 'http://identifiers.org/go/GO:0038166', 'http://identifiers.org/biomodels.db/MODEL1012080000', 'http://identifiers.org/go/GO:0007178', 'http://identifiers.org/bto/BTO:0000671']
+#@BQM_IS_DESCRIBED_BY:['http://identifiers.org/go/GO:0038166', 'http://identifiers.org/go/GO:0007178', 'http://identifiers.org/pubmed/22735336']
 #@BQB_IS:['http://identifiers.org/biomodels.db/MODEL1012080000']
 #@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000671']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
-#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000842', 'http://identifiers.org/biomodels.db/MODEL1012080000']
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 21 molecules and 26 reactions. The translated model has 8 molecules and 26 rules'
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1012080000', 'http://identifiers.org/biomodels.db/BIOMD0000000842']
+#@notes:'This is an atomized translation of an SBML model created on 14/08/2021. The original model has 21 molecules and 26 reactions. The translated model has 8 molecules and 26 rules'
 ###
 begin model
 begin parameters
@@ -49,20 +49,20 @@ begin parameters
 	pERK 1.8066e+22 #original 0.03mol/L
 end parameters
 begin molecule types
-	#^ bqbiol:hasPart uniprot:P01019, uniprot:P30556
-	HR(_p1~_P1~0,_p2~_P2~0,b_arrestin1,b_arrestin2)
 	#^ bqbiol:isVersionOf uniprot:P27361
 	ERK(b_p~B_P~0,gp_p~GP_P~0)
+	#^ bqbiol:isVersionOf chebi:CHEBI:17962
+	DAG()
+	#^ bqbiol:is chebi:CHEBI:83417
+	PIP2()
 	#^ bqbiol:isVersionOf uniprot:P63092
 	Gp(_a~_A~0)
 	#^ bqbiol:isVersionOf uniprot:P17252
 	PKC(_a~_A~0)
+	#^ bqbiol:hasPart uniprot:P01019, uniprot:P30556
+	HR(_p1~_P1~0,_p2~_P2~0,b_arrestin1,b_arrestin2)
 	#^ bqbiol:is uniprot:P49407
 	b_arrestin1(hr)
-	#^ bqbiol:is chebi:CHEBI:83417
-	PIP2()
-	#^ bqbiol:isVersionOf chebi:CHEBI:17962
-	DAG()
 	#^ bqbiol:hasVersion uniprot:P32121
 	b_arrestin2(hr)
 end molecule types
@@ -93,11 +93,11 @@ begin observables
 	Species b_arrestin2 b_arrestin2(hr) #b-arrestin2
 	Species Gp_a Gp(_a~_A) #Gp_a
 	Species HR_P1 HR(_p1~_P1,_p2~0,b_arrestin1,b_arrestin2) #HR-P1
-	Species HR_P1_b_arrestin1 HR(_p1~_P1,_p2~0,b_arrestin1!64,b_arrestin2).b_arrestin1(hr!64) #HR-P1-b-arrestin1
-	Species HR_P1_b_arrestin2 HR(_p1~_P1,_p2~0,b_arrestin1,b_arrestin2!63).b_arrestin2(hr!63) #HR-P1-b-arrestin2
+	Species HR_P1_b_arrestin1 HR(_p1~_P1,_p2~0,b_arrestin1!867,b_arrestin2).b_arrestin1(hr!867) #HR-P1-b-arrestin1
+	Species HR_P1_b_arrestin2 HR(_p1~_P1,_p2~0,b_arrestin1,b_arrestin2!866).b_arrestin2(hr!866) #HR-P1-b-arrestin2
 	Species HR_P2 HR(_p1~0,_p2~_P2,b_arrestin1,b_arrestin2) #HR-P2
-	Species HR_b_arrestin2 HR(_p1~0,_p2~0,b_arrestin1,b_arrestin2!63).b_arrestin2(hr!63) #HR_b-arrestin2
-	Species HR_P2_b_arrestin2 HR(_p1~0,_p2~_P2,b_arrestin1,b_arrestin2!63).b_arrestin2(hr!63) #HR-P2-b-arrestin2
+	Species HR_b_arrestin2 HR(_p1~0,_p2~0,b_arrestin1,b_arrestin2!866).b_arrestin2(hr!866) #HR_b-arrestin2
+	Species HR_P2_b_arrestin2 HR(_p1~0,_p2~_P2,b_arrestin1,b_arrestin2!866).b_arrestin2(hr!866) #HR-P2-b-arrestin2
 end observables
 begin functions
 	pERK_ar() = Gp_pERK + b_pERK
@@ -116,20 +116,20 @@ begin reaction rules
 	R_9: PKC(_a~_A) -> PKC(_a~0) k8 #Modifiers(PKC_a)
 	R_10: ERK(b_p~0,gp_p~GP_P) -> ERK(b_p~0,gp_p~0) k9 #Modifiers(GpERK)
 	R_11: HR(_p1~0,_p2~0,b_arrestin1,b_arrestin2) -> HR(_p1~_P1,_p2~0,b_arrestin1,b_arrestin2) fRate10() #Modifiers(GRK2_3)
-	R_12: b_arrestin1(hr) + HR(_p1~_P1,_p2~0,b_arrestin1,b_arrestin2) -> HR(_p1~_P1,_p2~0,b_arrestin1!64,b_arrestin2).b_arrestin1(hr!64) k11 #Modifiers(barr1, HRP1)
-	R_13: HR(_p1~_P1,_p2~0,b_arrestin1!64,b_arrestin2).b_arrestin1(hr!64) -> b_arrestin1(hr) + HR(_p1~_P1,_p2~0,b_arrestin1,b_arrestin2) k13 #Modifiers(Hbarr1RP1)
-	R_14: b_arrestin2(hr) + HR(_p1~_P1,_p2~0,b_arrestin1,b_arrestin2) -> HR(_p1~_P1,_p2~0,b_arrestin1,b_arrestin2!63).b_arrestin2(hr!63) k12 #Modifiers(barr2, HRP1)
-	R_15: HR(_p1~_P1,_p2~0,b_arrestin1,b_arrestin2!63).b_arrestin2(hr!63) -> b_arrestin2(hr) + HR(_p1~_P1,_p2~0,b_arrestin1,b_arrestin2) k14 #Modifiers(Hbarr2RP1)
-	R_16: HR(_p1~_P1,_p2~0,b_arrestin1!64,b_arrestin2).b_arrestin1(hr!64) -> b_arrestin1(hr) + HR(_p1~0,_p2~0,b_arrestin1,b_arrestin2) k15 #Modifiers(Hbarr1RP1)
-	R_17: HR(_p1~_P1,_p2~0,b_arrestin1,b_arrestin2!63).b_arrestin2(hr!63) -> b_arrestin2(hr) + HR(_p1~0,_p2~0,b_arrestin1,b_arrestin2) k16 #Modifiers(Hbarr2RP1)
+	R_12: b_arrestin1(hr) + HR(_p1~_P1,_p2~0,b_arrestin1,b_arrestin2) -> HR(_p1~_P1,_p2~0,b_arrestin1!867,b_arrestin2).b_arrestin1(hr!867) k11 #Modifiers(barr1, HRP1)
+	R_13: HR(_p1~_P1,_p2~0,b_arrestin1!867,b_arrestin2).b_arrestin1(hr!867) -> b_arrestin1(hr) + HR(_p1~_P1,_p2~0,b_arrestin1,b_arrestin2) k13 #Modifiers(Hbarr1RP1)
+	R_14: b_arrestin2(hr) + HR(_p1~_P1,_p2~0,b_arrestin1,b_arrestin2) -> HR(_p1~_P1,_p2~0,b_arrestin1,b_arrestin2!866).b_arrestin2(hr!866) k12 #Modifiers(barr2, HRP1)
+	R_15: HR(_p1~_P1,_p2~0,b_arrestin1,b_arrestin2!866).b_arrestin2(hr!866) -> b_arrestin2(hr) + HR(_p1~_P1,_p2~0,b_arrestin1,b_arrestin2) k14 #Modifiers(Hbarr2RP1)
+	R_16: HR(_p1~_P1,_p2~0,b_arrestin1!867,b_arrestin2).b_arrestin1(hr!867) -> b_arrestin1(hr) + HR(_p1~0,_p2~0,b_arrestin1,b_arrestin2) k15 #Modifiers(Hbarr1RP1)
+	R_17: HR(_p1~_P1,_p2~0,b_arrestin1,b_arrestin2!866).b_arrestin2(hr!866) -> b_arrestin2(hr) + HR(_p1~0,_p2~0,b_arrestin1,b_arrestin2) k16 #Modifiers(Hbarr2RP1)
 	R_18: HR(_p1~0,_p2~0,b_arrestin1,b_arrestin2) -> HR(_p1~0,_p2~_P2,b_arrestin1,b_arrestin2) fRate17() #Modifiers(GRK5_6)
 	R_19: HR(_p1~0,_p2~_P2,b_arrestin1,b_arrestin2) -> HR(_p1~0,_p2~0,b_arrestin1,b_arrestin2) k17 #Modifiers(HRP2)
-	R_20: b_arrestin2(hr) + HR(_p1~0,_p2~0,b_arrestin1,b_arrestin2) -> HR(_p1~0,_p2~0,b_arrestin1,b_arrestin2!63).b_arrestin2(hr!63) k19 #Modifiers(barr2, HR)
-	R_21: HR(_p1~0,_p2~0,b_arrestin1,b_arrestin2!63).b_arrestin2(hr!63) -> b_arrestin2(hr) + HR(_p1~0,_p2~0,b_arrestin1,b_arrestin2) k23 #Modifiers(HRbarr2)
-	R_22: b_arrestin2(hr) + HR(_p1~0,_p2~_P2,b_arrestin1,b_arrestin2) -> HR(_p1~0,_p2~_P2,b_arrestin1,b_arrestin2!63).b_arrestin2(hr!63) k20 #Modifiers(barr2, HRP2)
-	R_23: HR(_p1~0,_p2~_P2,b_arrestin1,b_arrestin2!63).b_arrestin2(hr!63) -> b_arrestin2(hr) + HR(_p1~0,_p2~_P2,b_arrestin1,b_arrestin2) k24 #Modifiers(Hbarr2RP2)
-	R_24: ERK(b_p~0,gp_p~0) + HR(_p1~0,_p2~0,b_arrestin1,b_arrestin2!63).b_arrestin2(hr!63) -> ERK(b_p~B_P,gp_p~0) + HR(_p1~0,_p2~0,b_arrestin1,b_arrestin2!63).b_arrestin2(hr!63) k21 #Modifiers(ERK, HRbarr2)
-	R_25: ERK(b_p~0,gp_p~0) + HR(_p1~0,_p2~_P2,b_arrestin1,b_arrestin2!63).b_arrestin2(hr!63) -> ERK(b_p~B_P,gp_p~0) + HR(_p1~0,_p2~_P2,b_arrestin1,b_arrestin2!63).b_arrestin2(hr!63) k22 #Modifiers(ERK, Hbarr2RP2)
+	R_20: b_arrestin2(hr) + HR(_p1~0,_p2~0,b_arrestin1,b_arrestin2) -> HR(_p1~0,_p2~0,b_arrestin1,b_arrestin2!866).b_arrestin2(hr!866) k19 #Modifiers(barr2, HR)
+	R_21: HR(_p1~0,_p2~0,b_arrestin1,b_arrestin2!866).b_arrestin2(hr!866) -> b_arrestin2(hr) + HR(_p1~0,_p2~0,b_arrestin1,b_arrestin2) k23 #Modifiers(HRbarr2)
+	R_22: b_arrestin2(hr) + HR(_p1~0,_p2~_P2,b_arrestin1,b_arrestin2) -> HR(_p1~0,_p2~_P2,b_arrestin1,b_arrestin2!866).b_arrestin2(hr!866) k20 #Modifiers(barr2, HRP2)
+	R_23: HR(_p1~0,_p2~_P2,b_arrestin1,b_arrestin2!866).b_arrestin2(hr!866) -> b_arrestin2(hr) + HR(_p1~0,_p2~_P2,b_arrestin1,b_arrestin2) k24 #Modifiers(Hbarr2RP2)
+	R_24: ERK(b_p~0,gp_p~0) + HR(_p1~0,_p2~0,b_arrestin1,b_arrestin2!866).b_arrestin2(hr!866) -> ERK(b_p~B_P,gp_p~0) + HR(_p1~0,_p2~0,b_arrestin1,b_arrestin2!866).b_arrestin2(hr!866) k21 #Modifiers(ERK, HRbarr2)
+	R_25: ERK(b_p~0,gp_p~0) + HR(_p1~0,_p2~_P2,b_arrestin1,b_arrestin2!866).b_arrestin2(hr!866) -> ERK(b_p~B_P,gp_p~0) + HR(_p1~0,_p2~_P2,b_arrestin1,b_arrestin2!866).b_arrestin2(hr!866) k22 #Modifiers(ERK, Hbarr2RP2)
 	R_26: ERK(b_p~B_P,gp_p~0) -> ERK(b_p~0,gp_p~0) k25 #Modifiers(bpERK)
 end reaction rules
 end model

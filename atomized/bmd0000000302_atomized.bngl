@@ -1,12 +1,12 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1101240000', 'http://identifiers.org/biomodels.db/BIOMD0000000302']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000302', 'http://identifiers.org/biomodels.db/MODEL1101240000']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/8815919']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10116']
-#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000920', 'http://identifiers.org/bto/BTO:0000601']
+#@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000601', 'http://identifiers.org/bto/BTO:0000920']
 #@BQB_HAS_VERSION:['http://identifiers.org/go/GO:0051932']
 #@creatorEmail:'lukas@ebi.ac.uk'
 #@creatorName:'Endler Lukas'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 0 molecules and 0 reactions. The translated model has 7 molecules and 7 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 0 molecules and 0 reactions. The translated model has 7 molecules and 7 rules'
 ###
 begin model
 begin parameters
@@ -58,30 +58,30 @@ begin observables
 	Species n_pre n_pre
 end observables
 begin functions
-	I_K_pre() = gK*n_pre^4*(-E_K + V_pre)
-	beta_m_pre() = 4*exp(-V_pre/18 - 10/3)
 	alpha_m_pre() = (-0.1*V_pre - 3.5)/(exp(-0.1*V_pre - 3.5) - 1)
+	beta_m_pre() = 4*exp(-V_pre/18 - 10/3)
 	m_inf_pre() = alpha_m_pre/(alpha_m_pre + beta_m_pre)
 	I_Na_pre() = gNa*h_pre*m_inf_pre^3*(-E_Na + V_pre)
 	I_L_pre() = gL*(-E_L + V_pre)
 	I_app_pre() =  if((time()>=10&&time()<=20),(2),(0))
+	I_K_pre() = gK*n_pre^4*(-E_K + V_pre)
 	arRateV_pre() = (-I_K_pre - I_L_pre - I_Na_pre + I_app_pre)/Cm
-	I_L_post() = gL*(-E_L + V_post)
-	I_K_post() = gK*n_post^4*(-E_K + V_post)
 	I_syn() = g_syn*s*(-E_syn + V_post)
-	beta_m_post() = 4*exp(-V_post/18 - 10/3)
 	alpha_m_post() = (-0.1*V_post - 3.5)/(exp(-0.1*V_post - 3.5) - 1)
+	beta_m_post() = 4*exp(-V_post/18 - 10/3)
 	m_inf_post() = alpha_m_post/(alpha_m_post + beta_m_post)
 	I_Na_post() = gNa*h_post*m_inf_post^3*(-E_Na + V_post)
+	I_L_post() = gL*(-E_L + V_post)
+	I_K_post() = gK*n_post^4*(-E_K + V_post)
 	arRateV_post() = (-I_K_post - I_L_post - I_Na_post + I_app_post - I_syn)/Cm
-	beta_n_pre() = 0.125*exp(-V_pre/80 - 11/20)
 	alpha_n_pre() = (-0.01*V_pre - 0.34)/(exp(-0.1*V_pre - 3.4) - 1)
+	beta_n_pre() = 0.125*exp(-V_pre/80 - 11/20)
 	arRaten_pre() = phi*(alpha_n_pre*(1 - n_pre) - beta_n_pre*n_pre)
 	alpha_h_pre() = 0.07*exp(-V_pre/20 - 29/10)
 	beta_h_pre() = 1/(exp(-0.1*V_pre - 2.8) + 1)
 	arRateh_pre() = phi*(alpha_h_pre*(1 - h_pre) - beta_h_pre*h_pre)
-	beta_n_post() = 0.125*exp(-V_post/80 - 11/20)
 	alpha_n_post() = (-0.01*V_post - 0.34)/(exp(-0.1*V_post - 3.4) - 1)
+	beta_n_post() = 0.125*exp(-V_post/80 - 11/20)
 	arRaten_post() = phi*(alpha_n_post*(1 - n_post) - beta_n_post*n_post)
 	beta_h_post() = 1/(exp(-0.1*V_post - 2.8) + 1)
 	alpha_h_post() = 0.07*exp(-V_post/20 - 29/10)

@@ -1,0 +1,1043 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000075_atomized">
+    <ListOfParameters>
+      <Parameter id="KMOLE" type="Constant" value="0.0016611296" expr="0.00166112956810631"/>
+      <Parameter id="PIP_basal_PIPSyn" type="Constant" value="2857" expr="2857.0"/>
+      <Parameter id="kBasalSynPIP_PIPSyn" type="Constant" value="0.0055" expr="0.0055"/>
+      <Parameter id="kStimSynPIP_PIPSyn" type="Constant" value="0.019" expr="0.019"/>
+      <Parameter id="tauPIPsyn_PIPSyn" type="Constant" value="0.05" expr="0.05"/>
+      <Parameter id="PIPsyndecay_PIPSyn" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="tau0_PLCact" type="Constant" value="0.05" expr="0.05"/>
+      <Parameter id="stimdecay_PLCact" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="kf_PIP2PH_PIP2_PH" type="Constant" value="0.12" expr="0.12"/>
+      <Parameter id="KdPIP2PH_PIP2_PH" type="Constant" value="2" expr="2.0"/>
+      <Parameter id="kStimSynPIP2_PIP2Syn" type="Constant" value="0.92" expr="0.92"/>
+      <Parameter id="tauPIP2syn_PIP2Syn" type="Constant" value="0.05" expr="0.05"/>
+      <Parameter id="PIP2syndecay_PIP2Syn" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="PIP2_basal_PIP2Syn" type="Constant" value="4000" expr="4000.0"/>
+      <Parameter id="kBasalSynPIP2_PIP2Syn" type="Constant" value="0.048" expr="0.048"/>
+      <Parameter id="kf_IP3PH_IP3_PHGFP" type="Constant" value="10" expr="10.0"/>
+      <Parameter id="KdIP3PH_IP3_PHGFP" type="Constant" value="2" expr="2.0"/>
+      <Parameter id="stim_PM" type="Constant" value="3.3455556e+23" expr="3.345555555555823e+23"/>
+      <Parameter id="stim" type="Constant" value="3.3455556e+23" expr="3.345555555555823e+23"/>
+      <Parameter id="r1_I" type="Constant" value="0" expr="0.000000"/>
+      <Parameter id="r2_I" type="Constant" value="0" expr="0.000000"/>
+      <Parameter id="r2_k_PIP2hyd" type="Constant" value="2.4" expr="2.400000"/>
+      <Parameter id="r3_I" type="Constant" value="0" expr="0.000000"/>
+      <Parameter id="r3_KfPLCact" type="Constant" value="0.0005" expr="0.000500"/>
+      <Parameter id="r3_krPLCact" type="Constant" value="0.1" expr="0.100000"/>
+      <Parameter id="r4_I" type="Constant" value="0" expr="0.000000"/>
+      <Parameter id="r4_k_PIP2PHhyd" type="Constant" value="0" expr="0.000000"/>
+      <Parameter id="r5_I" type="Constant" value="0" expr="0.000000"/>
+      <Parameter id="r6_kIP3deg" type="Constant" value="0.08" expr="0.080000"/>
+      <Parameter id="r6_IP3_basal" type="Constant" value="0.16" expr="0.160000"/>
+      <Parameter id="r7_I" type="Constant" value="0" expr="0.000000"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="DAG">
+        <ListOfComponentTypes>
+          <ComponentType id="ip3_cyt"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="IP3_Cyt">
+        <ListOfComponentTypes>
+          <ComponentType id="dag"/>
+          <ComponentType id="ph_gfp_cyt"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="PH_GFP_Cyt">
+        <ListOfComponentTypes>
+          <ComponentType id="ip3_cyt"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="PI"/>
+      <MoleculeType id="PIP"/>
+      <MoleculeType id="PLC">
+        <ListOfComponentTypes>
+          <ComponentType id="_act">
+            <ListOfAllowedStates>
+              <AllowedState id="_ACT"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+      <compartment id="Extracellular" spatialDimensions="3" size="0.277777777777778"/>
+      <compartment id="PM" spatialDimensions="2" size="0.5555555555556"/>
+      <compartment id="Cytosol" spatialDimensions="3" size="1.0"/>
+      <compartment id="NM" spatialDimensions="2" size="0.111111111111111"/>
+      <compartment id="Nucleus" spatialDimensions="3" size="0.111111111111111"/>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="4.779360300000383e+28" name="@PM::PI()" compartment="PM">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="PI" compartment="PM"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="1.3382222222223294e+27" name="@PM::DAG(ip3_cyt!1).IP3_Cyt(dag!1,ph_gfp_cyt)" compartment="PM">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="DAG" compartment="PM">
+            <ListOfComponents>
+              <Component id="S2_M1_C1" name="ip3_cyt" numberOfBonds="1"/>
+            </ListOfComponents>
+          </Molecule>
+          <Molecule id="S2_M2" name="IP3_Cyt" compartment="PM">
+            <ListOfComponents>
+              <Component id="S2_M2_C1" name="dag" numberOfBonds="1"/>
+              <Component id="S2_M2_C2" name="ph_gfp_cyt" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+        <ListOfBonds>
+          <Bond id="S2_B1" site1="S2_M1_C1" site2="S2_M2_C1"/>
+        </ListOfBonds>
+      </Species>
+      <Species id="S3"  concentration="9.558252222222988e+26" name="@PM::PIP()" compartment="PM">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="PIP" compartment="PM"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S4"  concentration="6.691111111111647e+26" name="@PM::DAG(ip3_cyt)" compartment="PM">
+        <ListOfMolecules>
+          <Molecule id="S4_M1" name="DAG" compartment="PM">
+            <ListOfComponents>
+              <Component id="S4_M1_C1" name="ip3_cyt" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S5"  concentration="3.345555555555823e+25" name="@PM::PLC(_act~0)" compartment="PM">
+        <ListOfMolecules>
+          <Molecule id="S5_M1" name="PLC" compartment="PM">
+            <ListOfComponents>
+              <Component id="S5_M1_C1" name="_act" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S6"  concentration="5.8003903999999995e+25" name="@Cytosol::IP3_Cyt(dag,ph_gfp_cyt)" compartment="Cytosol">
+        <ListOfMolecules>
+          <Molecule id="S6_M1" name="IP3_Cyt" compartment="Cytosol">
+            <ListOfComponents>
+              <Component id="S6_M1_C1" name="dag" numberOfBonds="0"/>
+              <Component id="S6_M1_C2" name="ph_gfp_cyt" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="PIPSyn_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="PI" compartment="PM"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="_rateLaw1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="PIPSyn_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="PIP" compartment="PM"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="PIP2_hyd" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="IP3_Cyt" compartment="PM">
+                <ListOfComponents>
+                  <Component id="RR3_RP1_M1_C1" name="dag" numberOfBonds="1"/>
+                  <Component id="RR3_RP1_M1_C2" name="ph_gfp_cyt" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR3_RP1_M2" name="DAG" compartment="PM">
+                <ListOfComponents>
+                  <Component id="RR3_RP1_M2_C1" name="ip3_cyt" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR3_RP1_B1" site1="RR3_RP1_M1_C1" site2="RR3_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="DAG" compartment="PM">
+                <ListOfComponents>
+                  <Component id="RR3_PP1_M1_C1" name="ip3_cyt" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR3_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP2_M1" name="IP3_Cyt" compartment="Cytosol">
+                <ListOfComponents>
+                  <Component id="RR3_PP2_M1_C1" name="dag" numberOfBonds="0"/>
+                  <Component id="RR3_PP2_M1_C2" name="ph_gfp_cyt" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="fRate1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1" targetID="RR3_PP2_M1"/>
+          <MapItem sourceID="RR3_RP1_M1_C1" targetID="RR3_PP2_M1_C1"/>
+          <MapItem sourceID="RR3_RP1_M1_C2" targetID="RR3_PP2_M1_C2"/>
+          <MapItem sourceID="RR3_RP1_M2" targetID="RR3_PP1_M1"/>
+          <MapItem sourceID="RR3_RP1_M2_C1" targetID="RR3_PP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <ChangeCompartment id="RR3_RP1_M1" source="PM" destination="Cytosol" flipOrientation="0" moveConnected="0"/>
+          <DeleteBond site1="RR3_RP1_M1_C1" site2="RR3_RP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="PLCact" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="PLC" compartment="PM">
+                <ListOfComponents>
+                  <Component id="RR4_RP1_M1_C1" name="_act" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="PLC" compartment="PM">
+                <ListOfComponents>
+                  <Component id="RR4_PP1_M1_C1" name="_act" state="_ACT" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="fRate2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1" targetID="RR4_PP1_M1"/>
+          <MapItem sourceID="RR4_RP1_M1_C1" targetID="RR4_PP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR4_RP1_M1_C1" finalState="_ACT"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="_reverse_PLCact" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR5_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP1_M1" name="PLC" compartment="PM">
+                <ListOfComponents>
+                  <Component id="RR5_RP1_M1_C1" name="_act" state="_ACT" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="PLC" compartment="PM">
+                <ListOfComponents>
+                  <Component id="RR5_PP1_M1_C1" name="_act" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="r3_krPLCact"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR5_RP1_M1" targetID="RR5_PP1_M1"/>
+          <MapItem sourceID="RR5_RP1_M1_C1" targetID="RR5_PP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR5_RP1_M1_C1" finalState="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="PIP2_PH_hyd" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR6_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_RP1_M1" name="IP3_Cyt" compartment="PM">
+                <ListOfComponents>
+                  <Component id="RR6_RP1_M1_C1" name="dag" numberOfBonds="1"/>
+                  <Component id="RR6_RP1_M1_C2" name="ph_gfp_cyt" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR6_RP1_M2" name="DAG" compartment="PM">
+                <ListOfComponents>
+                  <Component id="RR6_RP1_M2_C1" name="ip3_cyt" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR6_RP1_M3" name="PH_GFP_Cyt" compartment="PM">
+                <ListOfComponents>
+                  <Component id="RR6_RP1_M3_C1" name="ip3_cyt" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR6_RP1_B1" site1="RR6_RP1_M1_C1" site2="RR6_RP1_M2_C1"/>
+              <Bond id="RR6_RP1_B2" site1="RR6_RP1_M1_C2" site2="RR6_RP1_M3_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="PH_GFP_Cyt" compartment="Cytosol">
+                <ListOfComponents>
+                  <Component id="RR6_PP1_M1_C1" name="ip3_cyt" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR6_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP2_M1" name="IP3_Cyt" compartment="Cytosol">
+                <ListOfComponents>
+                  <Component id="RR6_PP2_M1_C1" name="dag" numberOfBonds="0"/>
+                  <Component id="RR6_PP2_M1_C2" name="ph_gfp_cyt" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR6_PP3">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP3_M1" name="DAG" compartment="PM">
+                <ListOfComponents>
+                  <Component id="RR6_PP3_M1_C1" name="ip3_cyt" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Function" name="fRate3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR6_RP1_M1" targetID="RR6_PP2_M1"/>
+          <MapItem sourceID="RR6_RP1_M1_C1" targetID="RR6_PP2_M1_C1"/>
+          <MapItem sourceID="RR6_RP1_M1_C2" targetID="RR6_PP2_M1_C2"/>
+          <MapItem sourceID="RR6_RP1_M2" targetID="RR6_PP3_M1"/>
+          <MapItem sourceID="RR6_RP1_M2_C1" targetID="RR6_PP3_M1_C1"/>
+          <MapItem sourceID="RR6_RP1_M3" targetID="RR6_PP1_M1"/>
+          <MapItem sourceID="RR6_RP1_M3_C1" targetID="RR6_PP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <ChangeCompartment id="RR6_RP1_M1" source="PM" destination="Cytosol" flipOrientation="0" moveConnected="0"/>
+          <ChangeCompartment id="RR6_RP1_M3" source="PM" destination="Cytosol" flipOrientation="0" moveConnected="0"/>
+          <DeleteBond site1="RR6_RP1_M1_C1" site2="RR6_RP1_M2_C1"/>
+          <DeleteBond site1="RR6_RP1_M1_C2" site2="RR6_RP1_M3_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="PIP2_PH" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR7_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_RP1_M1" name="PH_GFP_Cyt" compartment="Cytosol">
+                <ListOfComponents>
+                  <Component id="RR7_RP1_M1_C1" name="ip3_cyt" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR7_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR7_RP2_M1" name="IP3_Cyt" compartment="PM">
+                <ListOfComponents>
+                  <Component id="RR7_RP2_M1_C1" name="dag" numberOfBonds="1"/>
+                  <Component id="RR7_RP2_M1_C2" name="ph_gfp_cyt" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR7_RP2_M2" name="DAG" compartment="PM">
+                <ListOfComponents>
+                  <Component id="RR7_RP2_M2_C1" name="ip3_cyt" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR7_RP2_B1" site1="RR7_RP2_M1_C1" site2="RR7_RP2_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="IP3_Cyt" compartment="PM">
+                <ListOfComponents>
+                  <Component id="RR7_PP1_M1_C1" name="dag" numberOfBonds="1"/>
+                  <Component id="RR7_PP1_M1_C2" name="ph_gfp_cyt" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR7_PP1_M2" name="DAG" compartment="PM">
+                <ListOfComponents>
+                  <Component id="RR7_PP1_M2_C1" name="ip3_cyt" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR7_PP1_M3" name="PH_GFP_Cyt" compartment="PM">
+                <ListOfComponents>
+                  <Component id="RR7_PP1_M3_C1" name="ip3_cyt" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR7_PP1_B1" site1="RR7_PP1_M1_C1" site2="RR7_PP1_M2_C1"/>
+              <Bond id="RR7_PP1_B2" site1="RR7_PP1_M1_C2" site2="RR7_PP1_M3_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Function" name="fRate4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR7_RP1_M1" targetID="RR7_PP1_M3"/>
+          <MapItem sourceID="RR7_RP1_M1_C1" targetID="RR7_PP1_M3_C1"/>
+          <MapItem sourceID="RR7_RP2_M1" targetID="RR7_PP1_M1"/>
+          <MapItem sourceID="RR7_RP2_M1_C1" targetID="RR7_PP1_M1_C1"/>
+          <MapItem sourceID="RR7_RP2_M1_C2" targetID="RR7_PP1_M1_C2"/>
+          <MapItem sourceID="RR7_RP2_M2" targetID="RR7_PP1_M2"/>
+          <MapItem sourceID="RR7_RP2_M2_C1" targetID="RR7_PP1_M2_C1"/>
+        </Map>
+        <ListOfOperations>
+          <ChangeCompartment id="RR7_RP1_M1" source="Cytosol" destination="PM" flipOrientation="0" moveConnected="0"/>
+          <AddBond site1="RR7_RP2_M1_C2" site2="RR7_RP1_M1_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="_reverse_PIP2_PH" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR8_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_RP1_M1" name="IP3_Cyt" compartment="PM">
+                <ListOfComponents>
+                  <Component id="RR8_RP1_M1_C1" name="dag" numberOfBonds="1"/>
+                  <Component id="RR8_RP1_M1_C2" name="ph_gfp_cyt" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR8_RP1_M2" name="DAG" compartment="PM">
+                <ListOfComponents>
+                  <Component id="RR8_RP1_M2_C1" name="ip3_cyt" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR8_RP1_M3" name="PH_GFP_Cyt" compartment="PM">
+                <ListOfComponents>
+                  <Component id="RR8_RP1_M3_C1" name="ip3_cyt" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR8_RP1_B1" site1="RR8_RP1_M1_C1" site2="RR8_RP1_M2_C1"/>
+              <Bond id="RR8_RP1_B2" site1="RR8_RP1_M1_C2" site2="RR8_RP1_M3_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR8_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP1_M1" name="PH_GFP_Cyt" compartment="Cytosol">
+                <ListOfComponents>
+                  <Component id="RR8_PP1_M1_C1" name="ip3_cyt" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR8_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP2_M1" name="IP3_Cyt" compartment="PM">
+                <ListOfComponents>
+                  <Component id="RR8_PP2_M1_C1" name="dag" numberOfBonds="1"/>
+                  <Component id="RR8_PP2_M1_C2" name="ph_gfp_cyt" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR8_PP2_M2" name="DAG" compartment="PM">
+                <ListOfComponents>
+                  <Component id="RR8_PP2_M2_C1" name="ip3_cyt" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR8_PP2_B1" site1="RR8_PP2_M1_C1" site2="RR8_PP2_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Function" name="kr_PIP2PH_PIP2_PH" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR8_RP1_M1" targetID="RR8_PP2_M1"/>
+          <MapItem sourceID="RR8_RP1_M1_C1" targetID="RR8_PP2_M1_C1"/>
+          <MapItem sourceID="RR8_RP1_M1_C2" targetID="RR8_PP2_M1_C2"/>
+          <MapItem sourceID="RR8_RP1_M2" targetID="RR8_PP2_M2"/>
+          <MapItem sourceID="RR8_RP1_M2_C1" targetID="RR8_PP2_M2_C1"/>
+          <MapItem sourceID="RR8_RP1_M3" targetID="RR8_PP1_M1"/>
+          <MapItem sourceID="RR8_RP1_M3_C1" targetID="RR8_PP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <ChangeCompartment id="RR8_RP1_M3" source="PM" destination="Cytosol" flipOrientation="0" moveConnected="0"/>
+          <DeleteBond site1="RR8_RP1_M1_C2" site2="RR8_RP1_M3_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="IP3deg" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR9_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_RP1_M1" name="IP3_Cyt" compartment="Cytosol">
+                <ListOfComponents>
+                  <Component id="RR9_RP1_M1_C1" name="dag" numberOfBonds="0"/>
+                  <Component id="RR9_RP1_M1_C2" name="ph_gfp_cyt" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Function" name="fRate5" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR9_RP1_M1"/>
+          <MapItem sourceID="RR9_RP1_M1_C1"/>
+          <MapItem sourceID="RR9_RP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR9_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="_reverse_IP3deg" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR10_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_PP1_M1" name="IP3_Cyt" compartment="Cytosol">
+                <ListOfComponents>
+                  <Component id="RR10_PP1_M1_C1" name="dag" numberOfBonds="0"/>
+                  <Component id="RR10_PP1_M1_C2" name="ph_gfp_cyt" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Function" name="fRate5m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR10_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR11" name="PIP2Syn_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR11_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_PP1_M1" name="PIP" compartment="PM"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR11_RateLaw" type="Function" name="_rateLaw2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR11_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR12" name="PIP2Syn_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR12_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_PP1_M1" name="IP3_Cyt" compartment="PM">
+                <ListOfComponents>
+                  <Component id="RR12_PP1_M1_C1" name="dag" numberOfBonds="1"/>
+                  <Component id="RR12_PP1_M1_C2" name="ph_gfp_cyt" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR12_PP1_M2" name="DAG" compartment="PM">
+                <ListOfComponents>
+                  <Component id="RR12_PP1_M2_C1" name="ip3_cyt" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR12_PP1_B1" site1="RR12_PP1_M1_C1" site2="RR12_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR12_RateLaw" type="Function" name="fRate6" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR12_PP1_M1"/>
+          <Add id="RR12_PP1_M2"/>
+          <AddBond site1="RR12_PP1_M1_C1" site2="RR12_PP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR13" name="IP3_PHGFP" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR13_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_RP1_M1" name="IP3_Cyt" compartment="Cytosol">
+                <ListOfComponents>
+                  <Component id="RR13_RP1_M1_C1" name="dag" numberOfBonds="0"/>
+                  <Component id="RR13_RP1_M1_C2" name="ph_gfp_cyt" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR13_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR13_RP2_M1" name="PH_GFP_Cyt" compartment="Cytosol">
+                <ListOfComponents>
+                  <Component id="RR13_RP2_M1_C1" name="ip3_cyt" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR13_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_PP1_M1" name="IP3_Cyt" compartment="Cytosol">
+                <ListOfComponents>
+                  <Component id="RR13_PP1_M1_C1" name="dag" numberOfBonds="0"/>
+                  <Component id="RR13_PP1_M1_C2" name="ph_gfp_cyt" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR13_PP1_M2" name="PH_GFP_Cyt" compartment="Cytosol">
+                <ListOfComponents>
+                  <Component id="RR13_PP1_M2_C1" name="ip3_cyt" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR13_PP1_B1" site1="RR13_PP1_M1_C2" site2="RR13_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR13_RateLaw" type="Function" name="fRate7" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR13_RP1_M1" targetID="RR13_PP1_M1"/>
+          <MapItem sourceID="RR13_RP1_M1_C1" targetID="RR13_PP1_M1_C1"/>
+          <MapItem sourceID="RR13_RP1_M1_C2" targetID="RR13_PP1_M1_C2"/>
+          <MapItem sourceID="RR13_RP2_M1" targetID="RR13_PP1_M2"/>
+          <MapItem sourceID="RR13_RP2_M1_C1" targetID="RR13_PP1_M2_C1"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR13_RP1_M1_C2" site2="RR13_RP2_M1_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR14" name="_reverse_IP3_PHGFP" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR14_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_RP1_M1" name="IP3_Cyt" compartment="Cytosol">
+                <ListOfComponents>
+                  <Component id="RR14_RP1_M1_C1" name="dag" numberOfBonds="0"/>
+                  <Component id="RR14_RP1_M1_C2" name="ph_gfp_cyt" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR14_RP1_M2" name="PH_GFP_Cyt" compartment="Cytosol">
+                <ListOfComponents>
+                  <Component id="RR14_RP1_M2_C1" name="ip3_cyt" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR14_RP1_B1" site1="RR14_RP1_M1_C2" site2="RR14_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR14_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_PP1_M1" name="IP3_Cyt" compartment="Cytosol">
+                <ListOfComponents>
+                  <Component id="RR14_PP1_M1_C1" name="dag" numberOfBonds="0"/>
+                  <Component id="RR14_PP1_M1_C2" name="ph_gfp_cyt" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR14_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR14_PP2_M1" name="PH_GFP_Cyt" compartment="Cytosol">
+                <ListOfComponents>
+                  <Component id="RR14_PP2_M1_C1" name="ip3_cyt" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR14_RateLaw" type="Function" name="fRate7m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR14_RP1_M1" targetID="RR14_PP1_M1"/>
+          <MapItem sourceID="RR14_RP1_M1_C1" targetID="RR14_PP1_M1_C1"/>
+          <MapItem sourceID="RR14_RP1_M1_C2" targetID="RR14_PP1_M1_C2"/>
+          <MapItem sourceID="RR14_RP1_M2" targetID="RR14_PP2_M1"/>
+          <MapItem sourceID="RR14_RP1_M2_C1" targetID="RR14_PP2_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <DeleteBond site1="RR14_RP1_M1_C2" site2="RR14_RP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="PIP2_PHGFP_PM" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" compartment="PM" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="IP3_Cyt">
+                <ListOfComponents>
+                  <Component id="O1_P1_M1_C1" name="dag" numberOfBonds="1"/>
+                  <Component id="O1_P1_M1_C2" name="ph_gfp_cyt" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O1_P1_M2" name="DAG">
+                <ListOfComponents>
+                  <Component id="O1_P1_M2_C1" name="ip3_cyt" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O1_P1_M3" name="PH_GFP_Cyt">
+                <ListOfComponents>
+                  <Component id="O1_P1_M3_C1" name="ip3_cyt" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O1_P1_B1" site1="O1_P1_M1_C1" site2="O1_P1_M2_C1"/>
+              <Bond id="O1_P1_B2" site1="O1_P1_M1_C2" site2="O1_P1_M3_C1"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="PH_GFP_Cyt_Cytosol" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" compartment="Cytosol" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="PH_GFP_Cyt">
+                <ListOfComponents>
+                  <Component id="O2_P1_M1_C1" name="ip3_cyt" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="PI_PM" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" compartment="PM" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="PI"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="IP3_PHGFP_Cyt_Cytosol" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" compartment="Cytosol" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="IP3_Cyt">
+                <ListOfComponents>
+                  <Component id="O4_P1_M1_C1" name="dag" numberOfBonds="0"/>
+                  <Component id="O4_P1_M1_C2" name="ph_gfp_cyt" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O4_P1_M2" name="PH_GFP_Cyt">
+                <ListOfComponents>
+                  <Component id="O4_P1_M2_C1" name="ip3_cyt" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O4_P1_B1" site1="O4_P1_M1_C2" site2="O4_P1_M2_C1"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="PIP2_PM" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" compartment="PM" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="IP3_Cyt">
+                <ListOfComponents>
+                  <Component id="O5_P1_M1_C1" name="dag" numberOfBonds="1"/>
+                  <Component id="O5_P1_M1_C2" name="ph_gfp_cyt" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O5_P1_M2" name="DAG">
+                <ListOfComponents>
+                  <Component id="O5_P1_M2_C1" name="ip3_cyt" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O5_P1_B1" site1="O5_P1_M1_C1" site2="O5_P1_M2_C1"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O6" name="PIP_PM" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O6_P1" compartment="PM" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O6_P1_M1" name="PIP"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O7" name="DAG_PM" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O7_P1" compartment="PM" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O7_P1_M1" name="DAG">
+                <ListOfComponents>
+                  <Component id="O7_P1_M1_C1" name="ip3_cyt" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O8" name="PLC_PM" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O8_P1" compartment="PM" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O8_P1_M1" name="PLC">
+                <ListOfComponents>
+                  <Component id="O8_P1_M1_C1" name="_act" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O9" name="PLC_act_PM" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O9_P1" compartment="PM" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O9_P1_M1" name="PLC">
+                <ListOfComponents>
+                  <Component id="O9_P1_M1_C1" name="_act" state="_ACT" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O10" name="IP3_Cyt_Cytosol" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O10_P1" compartment="Cytosol" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O10_P1_M1" name="IP3_Cyt">
+                <ListOfComponents>
+                  <Component id="O10_P1_M1_C1" name="dag" numberOfBonds="0"/>
+                  <Component id="O10_P1_M1_C2" name="ph_gfp_cyt" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="kr_IP3PH_IP3_PHGFP">
+        <ListOfReferences>
+          <Reference name="KdIP3PH_IP3_PHGFP" type="Constant"/>
+          <Reference name="kf_IP3PH_IP3_PHGFP" type="Constant"/>
+        </ListOfReferences>
+        <Expression> KdIP3PH_IP3_PHGFP*kf_IP3PH_IP3_PHGFP </Expression>
+      </Function>
+      <Function id="Rate_PIP2SynStim_PIP2Syn">
+        <ListOfReferences>
+          <Reference name="PIP2syndecay_PIP2Syn" type="Constant"/>
+          <Reference name="kStimSynPIP2_PIP2Syn" type="Constant"/>
+          <Reference name="tauPIP2syn_PIP2Syn" type="Constant"/>
+        </ListOfReferences>
+        <Expression> if((time()&gt;tauPIP2syn_PIP2Syn),(kStimSynPIP2_PIP2Syn*exp(((-(time()-tauPIP2syn_PIP2Syn))/PIP2syndecay_PIP2Syn))),0) </Expression>
+      </Function>
+      <Function id="Rate_PIP2Synbasal_PIP2Syn">
+        <ListOfReferences>
+          <Reference name="PIP2_basal_PIP2Syn" type="Constant"/>
+          <Reference name="kBasalSynPIP2_PIP2Syn" type="Constant"/>
+          <Reference name="PIP2_PM" type="Observable"/>
+        </ListOfReferences>
+        <Expression> if((PIP2_PM&lt;PIP2_basal_PIP2Syn),((0.581*kBasalSynPIP2_PIP2Syn)*(exp((((-PIP2_PM)+PIP2_basal_PIP2Syn)/PIP2_basal_PIP2Syn))-1)),0) </Expression>
+      </Function>
+      <Function id="kr_PIP2PH_PIP2_PH">
+        <ListOfReferences>
+          <Reference name="KdPIP2PH_PIP2_PH" type="Constant"/>
+          <Reference name="kf_PIP2PH_PIP2_PH" type="Constant"/>
+        </ListOfReferences>
+        <Expression> KdPIP2PH_PIP2_PH*kf_PIP2PH_PIP2_PH </Expression>
+      </Function>
+      <Function id="signal_PLCact">
+        <ListOfReferences>
+          <Reference name="stimdecay_PLCact" type="Constant"/>
+          <Reference name="tau0_PLCact" type="Constant"/>
+        </ListOfReferences>
+        <Expression> if((time()&gt;tau0_PLCact),exp(((-(time()-tau0_PLCact))/stimdecay_PLCact)),0) </Expression>
+      </Function>
+      <Function id="Ratestim_PIPsyn_PIPSyn">
+        <ListOfReferences>
+          <Reference name="PIPsyndecay_PIPSyn" type="Constant"/>
+          <Reference name="kStimSynPIP_PIPSyn" type="Constant"/>
+          <Reference name="tauPIPsyn_PIPSyn" type="Constant"/>
+        </ListOfReferences>
+        <Expression> if((time()&gt;tauPIPsyn_PIPSyn),(kStimSynPIP_PIPSyn*exp(((-(time()-tauPIPsyn_PIPSyn))/PIPsyndecay_PIPSyn))),0) </Expression>
+      </Function>
+      <Function id="Ratebasal_PIPsyn_PIPSyn">
+        <ListOfReferences>
+          <Reference name="PIP_basal_PIPSyn" type="Constant"/>
+          <Reference name="kBasalSynPIP_PIPSyn" type="Constant"/>
+          <Reference name="PIP_PM" type="Observable"/>
+        </ListOfReferences>
+        <Expression> if((PIP_PM&lt;PIP_basal_PIPSyn),((0.581*kBasalSynPIP_PIPSyn)*(exp((((-PIP_PM)+PIP_basal_PIPSyn)/PIP_basal_PIPSyn))-1)),0) </Expression>
+      </Function>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="Ratebasal_PIPsyn_PIPSyn" type="Function"/>
+          <Reference name="Ratestim_PIPsyn_PIPSyn" type="Function"/>
+          <Reference name="PI_PM" type="Observable"/>
+        </ListOfReferences>
+        <Expression> PI_PM*(Ratebasal_PIPsyn_PIPSyn+Ratestim_PIPsyn_PIPSyn) </Expression>
+      </Function>
+      <Function id="fRate1">
+        <ListOfReferences>
+          <Reference name="PLC_act_PM" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 2.4*PLC_act_PM </Expression>
+      </Function>
+      <Function id="fRate2">
+        <ListOfReferences>
+          <Reference name="stim_PM" type="Constant"/>
+          <Reference name="signal_PLCact" type="Function"/>
+        </ListOfReferences>
+        <Expression> (0.0005*signal_PLCact)*stim_PM </Expression>
+      </Function>
+      <Function id="fRate3">
+        <ListOfReferences>
+        </ListOfReferences>
+        <Expression> 0 </Expression>
+      </Function>
+      <Function id="fRate4">
+        <ListOfReferences>
+          <Reference name="kf_PIP2PH_PIP2_PH" type="Constant"/>
+        </ListOfReferences>
+        <Expression> 0.00166112956810631*kf_PIP2PH_PIP2_PH </Expression>
+      </Function>
+      <Function id="fRate5">
+        <ListOfReferences>
+          <Reference name="KMOLE" type="Constant"/>
+        </ListOfReferences>
+        <Expression> 0.000132890365448505/KMOLE </Expression>
+      </Function>
+      <Function id="fRate5m">
+        <ListOfReferences>
+          <Reference name="KMOLE" type="Constant"/>
+        </ListOfReferences>
+        <Expression> 0.0128/KMOLE </Expression>
+      </Function>
+      <Function id="fRate6">
+        <ListOfReferences>
+          <Reference name="Rate_PIP2SynStim_PIP2Syn" type="Function"/>
+          <Reference name="Rate_PIP2Synbasal_PIP2Syn" type="Function"/>
+          <Reference name="PIP_PM" type="Observable"/>
+        </ListOfReferences>
+        <Expression> PIP_PM*(Rate_PIP2SynStim_PIP2Syn+Rate_PIP2Synbasal_PIP2Syn) </Expression>
+      </Function>
+      <Function id="fRate7">
+        <ListOfReferences>
+          <Reference name="KMOLE" type="Constant"/>
+          <Reference name="kf_IP3PH_IP3_PHGFP" type="Constant"/>
+        </ListOfReferences>
+        <Expression> (2.75935144203706e-6*kf_IP3PH_IP3_PHGFP)/KMOLE </Expression>
+      </Function>
+      <Function id="fRate7m">
+        <ListOfReferences>
+          <Reference name="KMOLE" type="Constant"/>
+          <Reference name="kr_IP3PH_IP3_PHGFP" type="Function"/>
+        </ListOfReferences>
+        <Expression> (0.00166112956810631*kr_IP3PH_IP3_PHGFP)/KMOLE </Expression>
+      </Function>
+      <Function id="_rateLaw1">
+        <ListOfReferences>
+          <Reference name="fRate0" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate0() </Expression>
+      </Function>
+      <Function id="_rateLaw2">
+        <ListOfReferences>
+          <Reference name="fRate6" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate6() </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

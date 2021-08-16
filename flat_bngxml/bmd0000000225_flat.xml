@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000225_flat">
+    <ListOfParameters>
+      <Parameter id="hGK" type="Constant" value="1.7" expr="1.7"/>
+      <Parameter id="KeqGPI" type="Constant" value="0.3" expr="0.3"/>
+      <Parameter id="Sgk" type="Constant" value="8" expr="8.0"/>
+      <Parameter id="Spfk" type="Constant" value="4" expr="4.0"/>
+      <Parameter id="Sfba" type="Constant" value="0.005" expr="0.005"/>
+      <Parameter id="Xpfk" type="Constant" value="0.01" expr="0.01"/>
+      <Parameter id="alpha" type="Constant" value="5" expr="5.0"/>
+      <Parameter id="hx" type="Constant" value="2.5" expr="2.5"/>
+      <Parameter id="hpfk" type="Constant" value="2.5" expr="2.5"/>
+      <Parameter id="hact" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="sigcorr" type="Constant" value="1.5" expr="1.5"/>
+      <Parameter id="dw_per_ml" type="Constant" value="0.3333" expr="0.3333"/>
+      <Parameter id="min_to_sec" type="Constant" value="60" expr="60.0"/>
+      <Parameter id="Vgk_min" type="Constant" value="10" expr="10.0"/>
+      <Parameter id="Vpfk_min" type="Constant" value="100" expr="100.0"/>
+      <Parameter id="Vfba_min" type="Constant" value="25" expr="25.0"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="FBP"/>
+      <MoleculeType id="G3P"/>
+      <MoleculeType id="G6P_F6P"/>
+      <MoleculeType id="GLC"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="6.022e+21" name="$GLC()" Fixed="1">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="GLC"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="2.2385460160000004e+21" name="G6P_F6P()">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="G6P_F6P"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="3.8307146400000006e+17" name="FBP()">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="FBP"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="vgk_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="GLC"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="_rateLaw1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="vgk_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="G6P_F6P"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="vpfk_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="G6P_F6P"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="_rateLaw2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="vpfk_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="FBP"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="fRate1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR4_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="vfba" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR5_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP1_M1" name="FBP"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="G3P"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Function" name="fRate2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR5_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR5_PP1_M1"/>
+          <Delete id="RR5_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="GLC" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="GLC"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="G6P_F6P" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="G6P_F6P"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="FBP" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="FBP"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="G3P" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="G3P"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="F6P_ar">
+        <ListOfReferences>
+          <Reference name="KeqGPI" type="Constant"/>
+          <Reference name="G6P_F6P" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (G6P_F6P*KeqGPI)/(KeqGPI+1) </Expression>
+      </Function>
+      <Function id="Vfba">
+        <ListOfReferences>
+          <Reference name="Vfba_min" type="Constant"/>
+          <Reference name="dw_per_ml" type="Constant"/>
+          <Reference name="min_to_sec" type="Constant"/>
+        </ListOfReferences>
+        <Expression> (Vfba_min*dw_per_ml)/min_to_sec </Expression>
+      </Function>
+      <Function id="Vpfk">
+        <ListOfReferences>
+          <Reference name="Vpfk_min" type="Constant"/>
+          <Reference name="dw_per_ml" type="Constant"/>
+          <Reference name="min_to_sec" type="Constant"/>
+        </ListOfReferences>
+        <Expression> (Vpfk_min*dw_per_ml)/min_to_sec </Expression>
+      </Function>
+      <Function id="Vgk">
+        <ListOfReferences>
+          <Reference name="Vgk_min" type="Constant"/>
+          <Reference name="dw_per_ml" type="Constant"/>
+          <Reference name="min_to_sec" type="Constant"/>
+        </ListOfReferences>
+        <Expression> (Vgk_min*dw_per_ml)/min_to_sec </Expression>
+      </Function>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="Sgk" type="Constant"/>
+          <Reference name="hGK" type="Constant"/>
+          <Reference name="Vgk" type="Function"/>
+          <Reference name="GLC" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (Vgk*((GLC/Sgk)^hGK))/(((GLC/Sgk)^hGK)+1) </Expression>
+      </Function>
+      <Function id="fRate1">
+        <ListOfReferences>
+          <Reference name="Sfba" type="Constant"/>
+          <Reference name="Spfk" type="Constant"/>
+          <Reference name="Xpfk" type="Constant"/>
+          <Reference name="alpha" type="Constant"/>
+          <Reference name="hact" type="Constant"/>
+          <Reference name="hpfk" type="Constant"/>
+          <Reference name="hx" type="Constant"/>
+          <Reference name="F6P_ar" type="Function"/>
+          <Reference name="Vpfk" type="Function"/>
+          <Reference name="FBP" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (Vpfk*((F6P_ar/Spfk)^((((-FBP)*((-hact)+hpfk))/(Sfba*((FBP/Sfba)+1)))+hpfk)))/(((F6P_ar/Spfk)^((((-FBP)*((-hact)+hpfk))/(Sfba*((FBP/Sfba)+1)))+hpfk))+((((FBP/Xpfk)^hx)+1)/(((alpha^((((-FBP)*((-hact)+hpfk))/(Sfba*((FBP/Sfba)+1)))+hpfk))*((FBP/Xpfk)^hx))+1))) </Expression>
+      </Function>
+      <Function id="fRate2">
+        <ListOfReferences>
+          <Reference name="Sfba" type="Constant"/>
+          <Reference name="Vfba" type="Function"/>
+          <Reference name="FBP" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Vfba/(FBP+Sfba) </Expression>
+      </Function>
+      <Function id="_rateLaw1">
+        <ListOfReferences>
+          <Reference name="fRate0" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate0() </Expression>
+      </Function>
+      <Function id="_rateLaw2">
+        <ListOfReferences>
+          <Reference name="fRate1" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate1() </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

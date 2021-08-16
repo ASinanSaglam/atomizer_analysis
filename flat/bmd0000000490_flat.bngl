@@ -1,14 +1,14 @@
 ###
 #@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1309160000', 'http://identifiers.org/biomodels.db/BIOMD0000000490']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/24026253']
-#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/23146124', 'http://identifiers.org/pubmed/21560018', 'http://identifiers.org/pubmed/22020181']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/22020181', 'http://identifiers.org/pubmed/21560018', 'http://identifiers.org/pubmed/23146124']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
-#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0006954', 'http://identifiers.org/go/GO:0097366']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0097366', 'http://identifiers.org/go/GO:0006954']
 #@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
 #@BQB_HAS_VERSION:['http://identifiers.org/doid/DOID:2841']
 #@creatorEmail:'viji@ebi.ac.uk'
 #@creatorName:'Chelliah Vijayalakshmi'
-#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 33 molecules and 66 reactions. The translated model has 33 molecules and 74 rules'
+#@notes:'This is a plain translation of an SBML model created on 14/08/2021. The original model has 33 molecules and 66 reactions. The translated model has 33 molecules and 74 rules'
 ###
 begin model
 begin parameters
@@ -195,39 +195,39 @@ begin compartments
 	Vd_ML 3 10.0
 end compartments
 begin molecule types
-	LTD4_aw()
-	LTC4_b()
-	EO_a_aw()
-	AA_aw()
-	LTC4_b_out()
-	ML_intes()
-	LTA4_aw()
-	LTC4_aw()
-	EO_aw()
-	EO_i_b()
-	ZF_airways()
-	EO_i_aw()
+	Hn_aw()
 	ZF_intes()
+	EO_i_b()
+	EO_aw()
+	Hn_b()
+	HETE_aw()
+	ZF_airways()
+	LTC4_aw()
 	EO_b()
-	HETE_b()
-	HPETE_aw()
-	LTE4_b()
+	IL_aw()
+	ML_intes()
+	LTA4_b()
 	EO_bm()
 	IL_bm()
-	LTA4_b()
-	IL_aw()
-	ZF_blood()
-	HPETE_b()
+	ML_blood()
+	LTA4_aw()
 	LTE4_aw()
+	AA_aw()
+	LTD4_aw()
+	LTC4_b()
+	AA_b()
+	EO_a_aw()
+	ZF_blood()
+	LTE4_b()
+	IL_b()
+	LTC4_aw_out()
+	EO_i_aw()
+	LTC4_b_out()
+	HPETE_aw()
+	HETE_b()
 	LTD4_b()
 	EO_a_b()
-	Hn_aw()
-	AA_b()
-	Hn_b()
-	LTC4_aw_out()
-	IL_b()
-	HETE_aw()
-	ML_blood()
+	HPETE_b()
 end molecule types
 begin seed species
 	@Default:AA_b() 1.7409264768e+23 # 0.2890944mol/L * 6.022e23/mol *1.0L #AA_b #AA_b
@@ -295,20 +295,20 @@ begin observables
 	Species ML_blood_Vd_ML @Vd_ML:ML_blood() #ML_blood
 end observables
 begin functions
-	OH_aw() = HETE_aw_Default + LOH_aw
-	r2() = Ca*k_red2/K_Ca2 + k_red
-	r1() = Ca*k_ox2/K_Ca2 + k_ox
-	ZF_airways_conc() = ZF_airways_Vd_AW_ZF
-	OOH_aw() = HPETE_aw_Default + LOOH_aw
-	REDOX_aw() = (r2/Ke_red + OH_aw*r1/Ke_ox + ZF_airways_conc*al*ki*(Ca/K_Ca3 + 1.0)/KdZ)/(OOH_aw*r1 + r2)
-	Ki_HPETE_AA() = Ki_AA
-	RELFLO5_aw() = (AA_aw_Default*k_lo/K_AA + HPETE_aw_Default*k3*(AA_aw_Default/Ki_AA + 1.0))/(k_3*(AA_aw_Default/Ki_HPETE_AA + 1.0) + k_lta_syn)
-	Ki_AA_AA() = Ki_AA
 	K_AA_HETE() = Ki_HETE
+	ZF_airways_conc() = ZF_airways_Vd_AW_ZF
+	Ki_HPETE_AA() = Ki_AA
+	Ki_AA_AA() = Ki_AA
+	OH_aw() = HETE_aw_Default + LOH_aw
+	r1() = Ca*k_ox2/K_Ca2 + k_ox
+	OOH_aw() = HPETE_aw_Default + LOOH_aw
+	r2() = Ca*k_red2/K_Ca2 + k_red
+	REDOX_aw() = (r2/Ke_red + OH_aw*r1/Ke_ox + ZF_airways_conc*al*ki*(Ca/K_Ca3 + 1.0)/KdZ)/(OOH_aw*r1 + r2)
+	RELFLO5_aw() = (AA_aw_Default*k_lo/K_AA + HPETE_aw_Default*k3*(AA_aw_Default/Ki_AA + 1.0))/(k_3*(AA_aw_Default/Ki_HPETE_AA + 1.0) + k_lta_syn)
 	DFLOa_aw() = (Ca/K_Ca3 + 1.0)*(AA_aw_Default*(HETE_aw_Default/K_AA_HETE + 1.0)/Ki_AA + AA_aw_Default*(AA_aw_Default/Ki_AA_AA + 1.0)/K_AA + HETE_aw_Default/Ki_HETE + REDOX_aw*(Ca/K_Ca2 + 1.0)/(Ca/K_Ca3 + 1.0) + RELFLO5_aw*(AA_aw_Default/Ki_HPETE_AA + 1.0) + 1.0 + ZF_airways_conc*al/KdZ)
-	ZF_blood_conc() = ZF_blood_Vd_ZF*fup_ZF
 	OOH_b() = HPETE_b_Default + LOOH_b
 	OH_b() = HETE_b_Default + LOH_b
+	ZF_blood_conc() = ZF_blood_Vd_ZF*fup_ZF
 	REDOX_b() = (r2/Ke_red + OH_b*r1/Ke_ox + ZF_blood_conc*al*ki*(Ca/K_Ca3 + 1.0)/KdZ)/(OOH_b*r1 + r2)
 	RELFLO5_b() = (AA_b_Default*k_lo/K_AA + HPETE_b_Default*k3*(AA_b_Default/Ki_AA + 1.0))/(k_3*(AA_b_Default/Ki_HPETE_AA + 1.0) + k_lta_syn)
 	DFLOa_b() = (Ca/K_Ca3 + 1.0)*(AA_b_Default*(HETE_b_Default/K_AA_HETE + 1.0)/Ki_AA + AA_b_Default*(AA_b_Default/Ki_AA_AA + 1.0)/K_AA + HETE_b_Default/Ki_HETE + REDOX_b*(Ca/K_Ca2 + 1.0)/(Ca/K_Ca3 + 1.0) + RELFLO5_b*(AA_b_Default/Ki_HPETE_AA + 1.0) + 1.0 + ZF_blood_conc*al/KdZ)
@@ -324,8 +324,8 @@ begin functions
 	NADPH_aw() = -NADP_aw + NP_pool_aw
 	C_hedh_aw() = (k_hedh_3*oxoETE_aw/Kd_hedh_oxoETE5 + NADP_aw*k_hedh_2/Kd_hedh_NADP)*(HETE_aw_Default/Kd_hedh_HETE5 + 1.0 + NADPH_aw/Kd_hedh_NADPH)
 	A_hedh_aw() = C_hedh_aw + (HETE_aw_Default*k_hedh_1/Kd_hedh_HETE5 + NADPH_aw*k_hedh_4/Kd_hedh_NADPH)*(1.0 + oxoETE_aw/Kd_hedh_oxoETE5 + NADP_aw/Kd_hedh_NADP)
-	GSSG_aw() = -0.5*GSH_aw + 0.5*GS_pool_aw
 	C_aw() = GSH_aw^2*HPETE_aw_Default/(Km_gpx_GSH^2*Km_gpx_HPETE5)
+	GSSG_aw() = -0.5*GSH_aw + 0.5*GS_pool_aw
 	A_aw() = C_aw + GSH_aw^2*(GSSG_aw/Kd_gpx_GSSG + 1.0)/Km_gpx_GSH^2 + HPETE_aw_Default*(HETE_aw_Default/Kd_gpx_HETE5 + 1.0)/Km_gpx_HPETE5
 	FLO3_aw() = FLOa/DFLOa_aw
 	FLO3t_aw() = FLO3_aw*(Ca/K_Ca3 + 1.0)

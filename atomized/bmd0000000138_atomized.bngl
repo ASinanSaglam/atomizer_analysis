@@ -2,11 +2,11 @@
 #@BQM_IS:['http://identifiers.org/biomodels.db/MODEL6090663405', 'http://identifiers.org/biomodels.db/BIOMD0000000138']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/17058022']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/7711']
-#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:1902211', 'http://identifiers.org/go/GO:0005267', 'http://identifiers.org/go/GO:0014046']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0014046', 'http://identifiers.org/go/GO:1902211', 'http://identifiers.org/go/GO:0005267']
 #@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
 #@creatorEmail:'enuo@caltech.edu'
 #@creatorName:'He Enuo'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 1 molecules and 1 reactions. The translated model has 4 molecules and 4 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 1 molecules and 1 reactions. The translated model has 4 molecules and 4 rules'
 ###
 begin model
 begin parameters
@@ -56,13 +56,13 @@ begin observables
 	Species h h
 end observables
 begin functions
-	ikdr() = gk*n*(V - vk)
-	phif() = 1/(exp((-V + vf)/sf) + 1)
-	ibk() = gf*phif*(V - vk)
-	phia() = 1/(exp((-V + va)/sa) + 1)
-	ia() = ga*h*phia*(V - vk)
 	cinf() = calciumconcentration^2/(calciumconcentration^2 + ks^2)
 	isk() = cinf*gsk*(V - vk)
+	ikdr() = gk*n*(V - vk)
+	phia() = 1/(exp((-V + va)/sa) + 1)
+	ia() = ga*h*phia*(V - vk)
+	phif() = 1/(exp((-V + vf)/sf) + 1)
+	ibk() = gf*phif*(V - vk)
 	ik() = ia + ibk + ikdr + isk
 	phical() = 1/(exp((-V + vm)/sm) + 1)
 	ica() = gcal*phical*(V - vca)

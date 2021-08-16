@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000145_atomized">
+    <ListOfParameters>
+      <Parameter id="Kp" type="Constant" value="4" expr="4.0"/>
+      <Parameter id="Kd" type="Constant" value="10" expr="10.0"/>
+      <Parameter id="Kr" type="Constant" value="200" expr="200.0"/>
+      <Parameter id="n" type="Constant" value="4" expr="4.0"/>
+      <Parameter id="Kg" type="Constant" value="25" expr="25.0"/>
+      <Parameter id="m" type="Constant" value="2" expr="2.0"/>
+      <Parameter id="Ks" type="Constant" value="25" expr="25.0"/>
+      <Parameter id="Kc1" type="Constant" value="1000" expr="1000.0"/>
+      <Parameter id="Kc2" type="Constant" value="2000" expr="2000.0"/>
+      <Parameter id="w" type="Constant" value="3" expr="3.0"/>
+      <Parameter id="Ker" type="Constant" value="75" expr="75.0"/>
+      <Parameter id="Cplc_total" type="Constant" value="10" expr="10.0"/>
+      <Parameter id="k0" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="k1" type="Constant" value="3.4" expr="3.4"/>
+      <Parameter id="k2" type="Constant" value="4" expr="4.0"/>
+      <Parameter id="k3" type="Constant" value="4.5" expr="4.5"/>
+      <Parameter id="k4" type="Constant" value="1.2" expr="1.2"/>
+      <Parameter id="k5" type="Constant" value="0.12" expr="0.12"/>
+      <Parameter id="k6" type="Constant" value="14" expr="14.0"/>
+      <Parameter id="k7" type="Constant" value="2" expr="2.0"/>
+      <Parameter id="k8" type="Constant" value="10500" expr="10500.0"/>
+      <Parameter id="k9" type="Constant" value="600" expr="600.0"/>
+      <Parameter id="k10" type="Constant" value="3000" expr="3000.0"/>
+      <Parameter id="k11" type="Constant" value="260" expr="260.0"/>
+      <Parameter id="PLC_Cytosol" type="Constant" value="-5.4198e+15" expr="-5.41979999999999e+15"/>
+      <Parameter id="PLC" type="Constant" value="-5.4198e+15" expr="-5.41979999999999e+15"/>
+      <Parameter id="Diacylglycerol_Cytosol" type="Constant" value="6.022e+14" expr="602200000000000.1"/>
+      <Parameter id="Diacylglycerol" type="Constant" value="6.022e+14" expr="602200000000000.1"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="APLC"/>
+      <MoleculeType id="Calcium"/>
+      <MoleculeType id="Galpha_GTP"/>
+      <MoleculeType id="IP3"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+      <compartment id="Cytosol" spatialDimensions="3" size="1.0"/>
+      <compartment id="ER" spatialDimensions="3" size="1.0"/>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="602200000000000.1" name="@Cytosol::Galpha_GTP()" compartment="Cytosol">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="Galpha_GTP" compartment="Cytosol"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="5419800000000001.0" name="@Cytosol::APLC()" compartment="Cytosol">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="APLC" compartment="Cytosol"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="602200000000000.1" name="@Cytosol::IP3()" compartment="Cytosol">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="IP3" compartment="Cytosol"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S4"  concentration="6.022000000000001e+17" name="@ER::Calcium()" compartment="ER">
+        <ListOfMolecules>
+          <Molecule id="S4_M1" name="Calcium" compartment="ER"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S5"  concentration="1.2044000000000002e+17" name="@Cytosol::Calcium()" compartment="Cytosol">
+        <ListOfMolecules>
+          <Molecule id="S5_M1" name="Calcium" compartment="Cytosol"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="R1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="Galpha_GTP" compartment="Cytosol"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k0"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="R2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="Galpha_GTP" compartment="Cytosol"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="fRate1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="R3" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="Galpha_GTP" compartment="Cytosol"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="fRate2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR3_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="R4" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="Galpha_GTP" compartment="Cytosol"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="fRate3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR4_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="R5" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="APLC" compartment="Cytosol"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Function" name="fRate4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR5_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="R6" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR6_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_RP1_M1" name="APLC" compartment="Cytosol"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k5"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR6_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR6_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="R7" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="IP3" compartment="Cytosol"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Function" name="fRate6" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR7_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="R8" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR8_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_RP1_M1" name="IP3" compartment="Cytosol"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="k7"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR8_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR8_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="R9_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR9_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP1_M1" name="Calcium" compartment="ER"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Function" name="_rateLaw1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR9_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="R9_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR10_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_PP1_M1" name="Calcium" compartment="Cytosol"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Function" name="_rateLaw2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR10_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR11" name="R10_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR11_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_PP1_M1" name="Calcium" compartment="Cytosol"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR11_RateLaw" type="Function" name="_rateLaw3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR11_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR12" name="R11_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR12_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_PP1_M1" name="Calcium" compartment="Cytosol"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR12_RateLaw" type="Function" name="_rateLaw4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR12_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="Galpha_GTP_Cytosol" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" compartment="Cytosol" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="Galpha_GTP"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="APLC_Cytosol" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" compartment="Cytosol" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="APLC"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="IP3_Cytosol" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" compartment="Cytosol" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="IP3"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="Calcium_ER" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" compartment="ER" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="Calcium"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="Calcium_Cytosol" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" compartment="Cytosol" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="Calcium"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="Diacylglycerol_ar">
+        <ListOfReferences>
+          <Reference name="IP3_Cytosol" type="Observable"/>
+        </ListOfReferences>
+        <Expression> IP3_Cytosol </Expression>
+      </Function>
+      <Function id="Rdg">
+        <ListOfReferences>
+          <Reference name="Kd" type="Constant"/>
+          <Reference name="m" type="Constant"/>
+          <Reference name="Diacylglycerol_ar" type="Function"/>
+        </ListOfReferences>
+        <Expression> (Diacylglycerol_ar^m)/((Diacylglycerol_ar^m)+(Kd^m)) </Expression>
+      </Function>
+      <Function id="Rpkc">
+        <ListOfReferences>
+          <Reference name="Kd" type="Constant"/>
+          <Reference name="Kr" type="Constant"/>
+          <Reference name="Diacylglycerol_ar" type="Function"/>
+          <Reference name="Calcium_Cytosol" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (Calcium_Cytosol*Diacylglycerol_ar)/((Calcium_Cytosol+Kr)*(Diacylglycerol_ar+Kd)) </Expression>
+      </Function>
+      <Function id="PLC_ar">
+        <ListOfReferences>
+          <Reference name="Cplc_total" type="Constant"/>
+          <Reference name="APLC_Cytosol" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (-APLC_Cytosol)+Cplc_total </Expression>
+      </Function>
+      <Function id="Rer">
+        <ListOfReferences>
+          <Reference name="Ker" type="Constant"/>
+          <Reference name="w" type="Constant"/>
+          <Reference name="Calcium_Cytosol" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (Calcium_Cytosol^w)/((Calcium_Cytosol^w)+(Ker^w)) </Expression>
+      </Function>
+      <Function id="Rcyt2">
+        <ListOfReferences>
+          <Reference name="Kc2" type="Constant"/>
+          <Reference name="Calcium_Cytosol" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Calcium_Cytosol/(Calcium_Cytosol+Kc2) </Expression>
+      </Function>
+      <Function id="Rcyt1">
+        <ListOfReferences>
+          <Reference name="Kc1" type="Constant"/>
+          <Reference name="Calcium_Cytosol" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Calcium_Cytosol/(Calcium_Cytosol+Kc1) </Expression>
+      </Function>
+      <Function id="Rip3">
+        <ListOfReferences>
+          <Reference name="Ks" type="Constant"/>
+          <Reference name="IP3_Cytosol" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (IP3_Cytosol^3)/((IP3_Cytosol^3)+(Ks^3)) </Expression>
+      </Function>
+      <Function id="Rgalpha_gtp">
+        <ListOfReferences>
+          <Reference name="Kg" type="Constant"/>
+          <Reference name="n" type="Constant"/>
+          <Reference name="Galpha_GTP_Cytosol" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (Galpha_GTP_Cytosol^n)/((Galpha_GTP_Cytosol^n)+(Kg^n)) </Expression>
+      </Function>
+      <Function id="Raplc">
+        <ListOfReferences>
+          <Reference name="Kp" type="Constant"/>
+          <Reference name="APLC_Cytosol" type="Observable"/>
+        </ListOfReferences>
+        <Expression> APLC_Cytosol/(APLC_Cytosol+Kp) </Expression>
+      </Function>
+      <Function id="fRate1">
+        <ListOfReferences>
+          <Reference name="k1" type="Constant"/>
+          <Reference name="Galpha_GTP_Cytosol" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Galpha_GTP_Cytosol*k1 </Expression>
+      </Function>
+      <Function id="fRate2">
+        <ListOfReferences>
+          <Reference name="k2" type="Constant"/>
+          <Reference name="Raplc" type="Function"/>
+        </ListOfReferences>
+        <Expression> Raplc*k2 </Expression>
+      </Function>
+      <Function id="fRate3">
+        <ListOfReferences>
+          <Reference name="k3" type="Constant"/>
+          <Reference name="Rpkc" type="Function"/>
+        </ListOfReferences>
+        <Expression> Rpkc*k3 </Expression>
+      </Function>
+      <Function id="fRate4">
+        <ListOfReferences>
+          <Reference name="PLC_Cytosol" type="Constant"/>
+          <Reference name="k4" type="Constant"/>
+          <Reference name="Rdg" type="Function"/>
+          <Reference name="Rgalpha_gtp" type="Function"/>
+        </ListOfReferences>
+        <Expression> ((PLC_Cytosol*Rdg)*Rgalpha_gtp)*k4 </Expression>
+      </Function>
+      <Function id="fRate6">
+        <ListOfReferences>
+          <Reference name="k6" type="Constant"/>
+          <Reference name="APLC_Cytosol" type="Observable"/>
+        </ListOfReferences>
+        <Expression> APLC_Cytosol*k6 </Expression>
+      </Function>
+      <Function id="fRate8">
+        <ListOfReferences>
+          <Reference name="k8" type="Constant"/>
+          <Reference name="k9" type="Constant"/>
+          <Reference name="Rcyt1" type="Function"/>
+          <Reference name="Rer" type="Function"/>
+          <Reference name="Rip3" type="Function"/>
+        </ListOfReferences>
+        <Expression> ((-Rcyt1)*k9)+((Rer*Rip3)*k8) </Expression>
+      </Function>
+      <Function id="fRate9">
+        <ListOfReferences>
+          <Reference name="k10" type="Constant"/>
+          <Reference name="Rcyt2" type="Function"/>
+        </ListOfReferences>
+        <Expression> Rcyt2*k10 </Expression>
+      </Function>
+      <Function id="fRate10">
+        <ListOfReferences>
+          <Reference name="k11" type="Constant"/>
+        </ListOfReferences>
+        <Expression> k11 </Expression>
+      </Function>
+      <Function id="_rateLaw1">
+        <ListOfReferences>
+          <Reference name="fRate8" type="Function"/>
+        </ListOfReferences>
+        <Expression> (-1*0.001)*fRate8() </Expression>
+      </Function>
+      <Function id="_rateLaw2">
+        <ListOfReferences>
+          <Reference name="fRate8" type="Function"/>
+        </ListOfReferences>
+        <Expression> 0.01*fRate8() </Expression>
+      </Function>
+      <Function id="_rateLaw3">
+        <ListOfReferences>
+          <Reference name="fRate9" type="Function"/>
+        </ListOfReferences>
+        <Expression> (-1*0.05)*fRate9() </Expression>
+      </Function>
+      <Function id="_rateLaw4">
+        <ListOfReferences>
+          <Reference name="fRate10" type="Function"/>
+        </ListOfReferences>
+        <Expression> 0.05*fRate10() </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

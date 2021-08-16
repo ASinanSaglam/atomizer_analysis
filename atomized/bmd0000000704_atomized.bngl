@@ -1,5 +1,5 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000704', 'http://identifiers.org/biomodels.db/MODEL6960055446']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL6960055446', 'http://identifiers.org/biomodels.db/BIOMD0000000704']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/10500180']
 #@BQB_HAS_PART:['http://identifiers.org/go/GO:0031572']
 #@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
@@ -7,7 +7,7 @@
 #@BQB_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/10500180']
 #@creatorEmail:'matt.maire@free.fr'
 #@creatorName:'MAIRE Matthieu'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 17 molecules and 33 reactions. The translated model has 8 molecules and 39 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 17 molecules and 33 reactions. The translated model has 8 molecules and 39 rules'
 ###
 begin model
 begin parameters
@@ -54,24 +54,24 @@ begin parameters
 	Cdc25_active_total 602200000000000.0 #original 1e-06substance/volume
 end parameters
 begin molecule types
-	#^ bqbiol:isHomologTo uniprot:P04637
-	p53()
-	#^ bqbiol:isHomologTo uniprot:P31947
-	protein14_3_3(cdc25_active)
 	#^ bqbiol:isHomologTo uniprot:P30291
 	Wee1(Wee1_phosphorylated~Wee1_phosphorylated~0)
-	#^ bqbiol:isHomologTo uniprot:P38936
-	p21(mpf)
-	#^ bqbiol:hasPart uniprot:P06493, uniprot:P14635
-	#^ bqbiol:hasProperty ncit:C45329, go:GO:0032991
-	MPF(p21,pre~PRE~0)
-	#^ bqbiol:isHomologTo uniprot:Q13535
-	Rad3_ATM()
-	#^ bqbiol:isHomologTo uniprot:O14757
-	Chk1(p~P~0)
 	#^ bqbiol:isHomologTo uniprot:P30304
 	#^ bqbiol:hasProperty ncit:C45329
 	Cdc25_active(in~IN~0,protein14_3_3,ps216~PS216~0)
+	#^ bqbiol:isHomologTo uniprot:P31947
+	protein14_3_3(cdc25_active)
+	#^ bqbiol:hasPart uniprot:P06493, uniprot:P14635
+	#^ bqbiol:hasProperty ncit:C45329, go:GO:0032991
+	MPF(p21,pre~PRE~0)
+	#^ bqbiol:isHomologTo uniprot:P04637
+	p53()
+	#^ bqbiol:isHomologTo uniprot:Q13535
+	Rad3_ATM()
+	#^ bqbiol:isHomologTo uniprot:P38936
+	p21(mpf)
+	#^ bqbiol:isHomologTo uniprot:O14757
+	Chk1(p~P~0)
 end molecule types
 begin seed species
 	Cdc25_active(in~0,protein14_3_3,ps216~0) 602200000000000.1 # (1e-06 * 0.001)mol/L * 6.022e23/mol *1.0L #Cdc25_active #Cdc25_active
@@ -79,7 +79,7 @@ begin seed species
 	Cdc25_active(in~IN,protein14_3_3,ps216~PS216) 1.2044e+16 #original 2e-05substance/volume #Cdc25Ps216_inactive #Cdc25Ps216_inactive
 	Chk1(p~P) 602200000000000.1 #original 1e-06substance/volume #Chk1P #Chk1P
 	protein14_3_3(cdc25_active) 1.2044e+21 #original 2.0substance/volume #protein14_3_3 #protein_14_3_3
-	Cdc25_active(in~IN,protein14_3_3!1,ps216~0).protein14_3_3(cdc25_active!1) 1.8066000000000002e+19 #original 0.03substance/volume #Cdc25Ps216_14_3_3_inactive #Cdc25Ps216_14_3_3_inactive
+	Cdc25_active(in~IN,protein14_3_3!806,ps216~0).protein14_3_3(cdc25_active!806) 1.8066000000000002e+19 #original 0.03substance/volume #Cdc25Ps216_14_3_3_inactive #Cdc25Ps216_14_3_3_inactive
 	MPF(p21,pre~0) 6022000000000.001 #original 1e-08substance/volume #MPF #MPF
 	MPF(p21,pre~PRE) 602200000000000.1 #original 1e-06substance/volume #preMPF #preMPF
 	Wee1(Wee1_phosphorylated~0) 6.022e+17 #original 0.001substance/volume #Wee1 #Wee1
@@ -92,11 +92,11 @@ begin observables
 	Species Cdc25Ps216_inactive Cdc25_active(in~IN,protein14_3_3,ps216~PS216) #Cdc25Ps216_inactive
 	Species Chk1P Chk1(p~P) #Chk1P
 	Species protein14_3_3 protein14_3_3(cdc25_active) #protein 14-3-3
-	Species Cdc25Ps216_14_3_3_inactive Cdc25_active(in~IN,protein14_3_3!1,ps216~0).protein14_3_3(cdc25_active!1) #Cdc25Ps216_14-3-3_inactive
+	Species Cdc25Ps216_14_3_3_inactive Cdc25_active(in~IN,protein14_3_3!806,ps216~0).protein14_3_3(cdc25_active!806) #Cdc25Ps216_14-3-3_inactive
 	Species p53 p53() #p53
 	Species p21 p21(mpf) #p21
 	Species MPF MPF(p21,pre~0) #MPF
-	Species p21_MPF MPF(p21!0,pre~0).p21(mpf!0) #p21/MPF
+	Species p21_MPF MPF(p21!805,pre~0).p21(mpf!805) #p21/MPF
 	Species preMPF MPF(p21,pre~PRE) #preMPF
 	Species Wee1 Wee1(Wee1_phosphorylated~0) #Wee1
 	Species Chk1 Chk1(p~0) #Chk1
@@ -130,16 +130,16 @@ begin reaction rules
 	R18__Cdc25Ps216_inactivation: Cdc25_active(in~0,protein14_3_3,ps216~PS216) -> Cdc25_active(in~IN,protein14_3_3,ps216~PS216) k18_0
 	R2__Cdc25_Phosphorylation_reactants_0: 0  -> Cdc25_active(in~IN,protein14_3_3,ps216~0) -1*(fRate6()) #Modifiers(Chk1P)
 	R2__Cdc25_Phosphorylation_products_0: 0  -> Cdc25_active(in~IN,protein14_3_3,ps216~PS216) fRate6() #Modifiers(Chk1P)
-	R3___Cdc25_protein_14_3_3_unbinding: Cdc25_active(in~IN,protein14_3_3!1,ps216~0).protein14_3_3(cdc25_active!1) -> protein14_3_3(cdc25_active) + Cdc25_active(in~IN,protein14_3_3,ps216~0) k_3
+	R3___Cdc25_protein_14_3_3_unbinding: Cdc25_active(in~IN,protein14_3_3!806,ps216~0).protein14_3_3(cdc25_active!806) -> protein14_3_3(cdc25_active) + Cdc25_active(in~IN,protein14_3_3,ps216~0) k_3
 	R12_14_3_3_degradation: protein14_3_3(cdc25_active) -> 0  k12
 	R13_14_3_3_synthesis: 0  -> protein14_3_3(cdc25_active) k13
 	R6_14_3_3_synthesis_mediated_by_p53: 0  -> protein14_3_3(cdc25_active) fRate10() #Modifiers(p53)
-	R3___protein_14_3_3_Cdc25_binding: protein14_3_3(cdc25_active) + Cdc25_active(in~IN,protein14_3_3,ps216~PS216) -> Cdc25_active(in~IN,protein14_3_3!1,ps216~0).protein14_3_3(cdc25_active!1) k3
+	R3___protein_14_3_3_Cdc25_binding: protein14_3_3(cdc25_active) + Cdc25_active(in~IN,protein14_3_3,ps216~PS216) -> Cdc25_active(in~IN,protein14_3_3!806,ps216~0).protein14_3_3(cdc25_active!806) k3
 	R20_p21_synthesis_mediated_by_p53: 0  -> p21(mpf) fRate12() #Modifiers(p53)
 	R21_p21_natural_synthesis: 0  -> p21(mpf) k21
 	R22_p21_degradation: p21(mpf) -> 0  k22
-	R23_p21_MPF_complex_formation: p21(mpf) + MPF(p21,pre~0) -> MPF(p21!0,pre~0).p21(mpf!0) k23
-	R23__p21_MPF_unbinding: MPF(p21!0,pre~0).p21(mpf!0) -> p21(mpf) + MPF(p21,pre~0) k_23
+	R23_p21_MPF_complex_formation: p21(mpf) + MPF(p21,pre~0) -> MPF(p21!805,pre~0).p21(mpf!805) k23
+	R23__p21_MPF_unbinding: MPF(p21!805,pre~0).p21(mpf!805) -> p21(mpf) + MPF(p21,pre~0) k_23
 	R9_MPF_activation_reactants_0: 0  -> MPF(p21,pre~PRE) -1*(fRate17()) #Modifiers(Cdc25_active, Cdc25Ps216_active)
 	R9_MPF_activation_products_0: 0  -> MPF(p21,pre~0) fRate17() #Modifiers(Cdc25_active, Cdc25Ps216_active)
 	R9__MPF_inactivation: MPF(p21,pre~0) -> MPF(p21,pre~PRE) fRate18() #Modifiers(Wee1)
@@ -156,7 +156,7 @@ begin reaction rules
 	R8_Wee1_Phosphorylation_products_0: 0  -> Wee1(Wee1_phosphorylated~Wee1_phosphorylated) fRate28() #Modifiers(MPF)
 	R8__Wee1_Dephosphorylation: Wee1(Wee1_phosphorylated~Wee1_phosphorylated) -> Wee1(Wee1_phosphorylated~0) k8_1
 	R17_Wee1P_degradation: Wee1(Wee1_phosphorylated~Wee1_phosphorylated) -> 0  k17
-	Rex_Nuclear_export_of_iCdc25Ps216_14_3_3: Cdc25_active(in~IN,protein14_3_3!1,ps216~0).protein14_3_3(cdc25_active!1) -> 0  kex
+	Rex_Nuclear_export_of_iCdc25Ps216_14_3_3: Cdc25_active(in~IN,protein14_3_3!806,ps216~0).protein14_3_3(cdc25_active!806) -> 0  kex
 	Rin_nuclear_import_of_iCdc25: 0  -> Cdc25_active(in~IN,protein14_3_3,ps216~0) kin
 end reaction rules
 end model

@@ -5,7 +5,7 @@
 #@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1907260017', 'http://identifiers.org/biomodels.db/BIOMD0000000764']
 #@creatorEmail:'jm2187@cam.ac.uk'
 #@creatorName:'Men Jinghao'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 4 molecules and 9 reactions. The translated model has 3 molecules and 9 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 4 molecules and 9 reactions. The translated model has 3 molecules and 9 rules'
 ###
 begin model
 begin parameters
@@ -24,11 +24,11 @@ begin parameters
 	r4_k1 1.000000
 end parameters
 begin molecule types
-	C()
-	#^ bqbiol:isVersionOf cl:CL:0001064
-	U(v)
 	#^ bqbiol:isVersionOf ncit:C717
 	V(u)
+	#^ bqbiol:isVersionOf cl:CL:0001064
+	U(v)
+	C()
 end molecule types
 begin seed species
 	U(v) 6.022e+20 # (1.0 * 0.001)mol/L * 6.022e23/mol *1.0L #U #U
@@ -37,14 +37,14 @@ begin seed species
 end seed species
 begin observables
 	Species U U(v) #U
-	Species I V(u!35).U(v!35) #I
+	Species I V(u!838).U(v!838) #I
 	Species V V(u) #V
 	Species C C() #C
 end observables
 begin functions
+	a() = aa/delta
 	C0() = Metabolite_3
 	f() = q/(C0*delta)
-	a() = aa/delta
 	k() = f*exp(-a*time())
 	V0() = K
 	bet() = V0*beta/delta
@@ -62,9 +62,9 @@ end functions
 begin reaction rules
 	tumor_grow_products_0: 0  -> U(v) fRate0() #Modifiers(I)
 	tumor_killing: U(v) -> 0  fRate1() #Modifiers(C)
-	tumor_infection: U(v) + V(u) -> V(u!35).U(v!35) bet
-	infected_tumor_death: V(u!35).U(v!35) -> 0  r4_k1
-	infected_tumor_killing: V(u!35).U(v!35) -> 0  fRate4() #Modifiers(C)
+	tumor_infection: U(v) + V(u) -> V(u!838).U(v!838) bet
+	infected_tumor_death: V(u!838).U(v!838) -> 0  r4_k1
+	infected_tumor_killing: V(u!838).U(v!838) -> 0  fRate4() #Modifiers(C)
 	virus_burst: 0  -> V(u) fRate5() #Modifiers(I)
 	virus_death: V(u) -> 0  y
 	drug_infusion: 0  -> C() k

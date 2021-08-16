@@ -1,13 +1,13 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL0928773489', 'http://identifiers.org/biomodels.db/BIOMD0000000059']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000059', 'http://identifiers.org/biomodels.db/MODEL0928773489']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/12644446']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10090']
 #@BQB_IS:['http://identifiers.org/kegg.pathway/map04020']
-#@BQB_HAS_PART:['http://identifiers.org/go/GO:0050848', 'http://identifiers.org/go/GO:0050796']
+#@BQB_HAS_PART:['http://identifiers.org/go/GO:0050796', 'http://identifiers.org/go/GO:0050848']
 #@BQB_OCCURS_IN:['http://identifiers.org/bto/BTO:0000783']
 #@creatorEmail:'hdharuri@cds.caltech.edu'
 #@creatorName:'Dharuri Harish'
-#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 6 molecules and 18 reactions. The translated model has 7 molecules and 22 rules'
+#@notes:'This is a plain translation of an SBML model created on 14/08/2021. The original model has 6 molecules and 18 reactions. The translated model has 7 molecules and 22 rules'
 ###
 begin model
 begin parameters
@@ -81,11 +81,11 @@ begin compartments
 	ER 3 2.8e-13 #endoplasmic reticulum
 end compartments
 begin molecule types
-	CytosolicCalcium()
-	CytosolicIP3()
 	ERCalcium()
 	CytosolicSodium()
+	CytosolicIP3()
 	CytosolicATP()
+	CytosolicCalcium()
 	n
 	V
 end molecule types
@@ -109,38 +109,38 @@ begin observables
 end observables
 begin functions
 	Vk() = TV*ln(K_ec/K_cyt)
-	I_KDr() = gmKDr*n*(V - Vk)
-	I_CaPump() = CytosolicCalcium_Cytoplasm^2*Pmcap/(CytosolicCalcium_Cytoplasm^2 + Kcap^2)
-	Vnaca() = TV*(-ln(Ca_ec/CytosolicCalcium_Cytoplasm) + 3*ln(Na_ec/CytosolicSodium_Cytoplasm))
-	I_NaCa() = CytosolicCalcium_Cytoplasm^5*gnaca*(V - Vnaca)/(CytosolicCalcium_Cytoplasm^5 + Knaca^5)
-	Vna() = TV*ln(Na_ec/CytosolicSodium_Cytoplasm)
-	pna() = 1/(exp(V/8 + 13) + 1)
-	I_Na() = gmna*pna*(V - Vna)
+	f_Ca() = CytosolicCalcium_Cytoplasm^4/(CytosolicCalcium_Cytoplasm^4 + Kkca^4)
+	I_KCa() = f_Ca*gmkca*(V - Vk)
+	CytosolicADP_ar() = 4000 - CytosolicATP_Cytoplasm
+	B2() = CytosolicADP_ar*b_2
+	F1() = CytosolicSodium_Cytoplasm^3*f_1
+	B6() = Ksup^2*b_6
+	B4() = P*b_4
+	f_5() = f5_ast*exp(V/(2*TV))
+	F5() = CytosolicATP_Cytoplasm*f_5
+	b_5() = b5_ast*exp(-V/(2*TV))
+	B3() = Na_ec^3*b_3
+	F4() = K_ec^2*f_4
+	D() = B2*B3*B4*b_1*b_5 + B2*B3*B4*b_1*f_6 + B2*B3*F5*b_1*f_6 + B2*F4*F5*b_1*f_6 + F4*F5*b_1*f_3*f_6 + F4*F5*f_2*f_3*f_6
+	I_NaK() = Pnak*(-B2*B3*B4*B6*b_1*b_5 + F1*F4*F5*f_2*f_3*f_6)/D
 	pvca() = 1/(exp((-V + Vcah)/Kcah) + 1)
 	Vca() = TV*ln(Ca_ec/CytosolicCalcium_Cytoplasm)/2
 	I_Vca() = gmvca*pvca*(V - Vca)
+	pna() = 1/(exp(V/8 + 13) + 1)
+	Vna() = TV*ln(Na_ec/CytosolicSodium_Cytoplasm)
+	I_Na() = gmna*pna*(V - Vna)
+	Vnaca() = TV*(-ln(Ca_ec/CytosolicCalcium_Cytoplasm) + 3*ln(Na_ec/CytosolicSodium_Cytoplasm))
+	I_NaCa() = CytosolicCalcium_Cytoplasm^5*gnaca*(V - Vnaca)/(CytosolicCalcium_Cytoplasm^5 + Knaca^5)
+	Okatp() = (0.02423025*CytosolicADP_ar^2/Kdd^2 + 0.0264*CytosolicADP_ar/Kdd + 0.08)/((0.165*CytosolicADP_ar/Kdd + 1)^2*(0.135*CytosolicADP_ar/Ktd + 0.05*CytosolicATP_Cytoplasm/Ktt + 1))
+	I_KATP() = Okatp*gmkatp*(V - Vk)
 	p_CRAN() = V - V_CRAN
 	f_CRAN() = -gm_CRAN/(exp(ERCalcium_ER/3 - Kcar/3) + 1)
 	I_CRAN() = f_CRAN*p_CRAN*(V - Vna)
-	f_Ca() = CytosolicCalcium_Cytoplasm^4/(CytosolicCalcium_Cytoplasm^4 + Kkca^4)
-	I_KCa() = f_Ca*gmkca*(V - Vk)
-	B3() = Na_ec^3*b_3
-	CytosolicADP_ar() = 4000 - CytosolicATP_Cytoplasm
-	B2() = CytosolicADP_ar*b_2
-	b_5() = b5_ast*exp(-V/(2*TV))
-	f_5() = f5_ast*exp(V/(2*TV))
-	F5() = CytosolicATP_Cytoplasm*f_5
-	B4() = P*b_4
-	F4() = K_ec^2*f_4
-	D() = B2*B3*B4*b_1*b_5 + B2*B3*B4*b_1*f_6 + B2*B3*F5*b_1*f_6 + B2*F4*F5*b_1*f_6 + F4*F5*b_1*f_3*f_6 + F4*F5*f_2*f_3*f_6
-	B6() = Ksup^2*b_6
-	F1() = CytosolicSodium_Cytoplasm^3*f_1
-	I_NaK() = Pnak*(-B2*B3*B4*B6*b_1*b_5 + F1*F4*F5*f_2*f_3*f_6)/D
-	Okatp() = (0.02423025*CytosolicADP_ar^2/Kdd^2 + 0.0264*CytosolicADP_ar/Kdd + 0.08)/((0.165*CytosolicADP_ar/Kdd + 1)^2*(0.135*CytosolicADP_ar/Ktd + 0.05*CytosolicATP_Cytoplasm/Ktt + 1))
-	I_KATP() = Okatp*gmkatp*(V - Vk)
+	I_CaPump() = CytosolicCalcium_Cytoplasm^2*Pmcap/(CytosolicCalcium_Cytoplasm^2 + Kcap^2)
+	I_KDr() = gmKDr*n*(V - Vk)
 	arRateV() = (-I_CRAN - I_CaPump - I_KATP - I_KCa - I_KDr - I_Na - I_NaCa - I_NaK - I_Vca)/Cm
-	n_infinity() = 1/(exp((-V + Vn)/Sn) + 1)
 	tau_n() = c/(exp((V - Vtau)/a) + exp((-V + Vtau)/b))
+	n_infinity() = 1/(exp((-V + Vn)/Sn) + 1)
 	arRaten() = (-n + n_infinity)/tau_n
 	O_infinity() = CytosolicCalcium_Cytoplasm*CytosolicIP3_Cytoplasm^3/((CytosolicCalcium_Cytoplasm + Krca)*(CytosolicIP3_Cytoplasm^3 + Kip3^3))
 	Jout() = (-CytosolicCalcium_Cytoplasm + ERCalcium_ER)*(O_infinity*Pip3 + Pleak)

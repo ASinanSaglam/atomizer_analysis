@@ -3,11 +3,11 @@
 #@BQB_IS:['http://identifiers.org/biomodels.db/MODEL1172501439']
 #@BQB_IS_VERSION_OF:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/go/GO:0055069']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/562']
-#@BQB_HAS_PROPERTY:['http://identifiers.org/ncit/C19077', 'http://identifiers.org/mamo/MAMO_0000046']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/ncit/C19077']
 #@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000966', 'http://identifiers.org/biomodels.db/MODEL1172501439']
 #@creatorEmail:'bs17b011@smail.iitm.ac.in'
 #@creatorName:'Govindarajan Prashant'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 7 molecules and 6 reactions. The translated model has 5 molecules and 6 rules'
+#@notes:'This is an atomized translation of an SBML model created on 14/08/2021. The original model has 7 molecules and 6 reactions. The translated model has 5 molecules and 6 rules'
 ###
 begin model
 begin parameters
@@ -22,9 +22,6 @@ end parameters
 begin molecule types
 	#^ bmbiol:isDerivedFrom ecogene:EG13132
 	Dw(rw)
-	#^ bmbiol:hasInstance ncit:C19398, ncit:C948, uniprot:P0AC51
-	#^ bqbiol:hasProperty ncit:C19398
-	Py(zn2)
 	#^ bqbiol:is chebi:CHEBI:29105
 	Zn2(py)
 	#^ bqbiol:is ncit:C20076
@@ -32,6 +29,9 @@ begin molecule types
 	#^ bmbiol:hasInstance ncit:C19398, uniprot:P0AC51, ncit:C449, ncit:C948
 	#^ bqbiol:isPartOf ncit:C19398
 	Qw2()
+	#^ bmbiol:hasInstance ncit:C19398, ncit:C948, uniprot:P0AC51
+	#^ bqbiol:hasProperty ncit:C19398
+	Py(zn2)
 end molecule types
 begin seed species
 	Py(zn2) 1.5055000000000002e+16 # (25.0 * 1e-09)mol/L * 6.022e23/mol *1.0L #Py #Py
@@ -41,10 +41,10 @@ begin seed species
 end seed species
 begin observables
 	Species Py Py(zn2) #Py
-	Species Py1 Zn2(py!121).Py(zn2!121) #Py1
+	Species Py1 Zn2(py!918).Py(zn2!918) #Py1
 	Species Dw Dw(rw) #Dw
 	Species Rw Rw(dw) #Rw
-	Species Qw1 Rw(dw!122).Dw(rw!122) #Qw1
+	Species Qw1 Rw(dw!919).Dw(rw!919) #Qw1
 	Species Qw2 Qw2() #Qw2
 	Species Zn2 Zn2(py) #Zn^2
 end observables
@@ -52,11 +52,11 @@ begin functions
 	fRate0() = Zn^2*r3
 end functions
 begin reaction rules
-	Formation_of_the_Zn4Zur_complex: Py(zn2) -> Zn2(py!121).Py(zn2!121) fRate0()
-	Dissociation_of_Zn4Zur_complex: Zn2(py!121).Py(zn2!121) -> Zn2(py) + Py(zn2) r4
-	Formation_of_DNA_binding_complex: Dw(rw) + Zn2(py!121).Py(zn2!121) -> Qw2() k1a
-	Disassociation_of_DNA_binding_complex: Qw2() -> Dw(rw) + Zn2(py!121).Py(zn2!121) k_1
-	Formation_of_transcription_initiation_complex: Dw(rw) + Rw(dw) -> Rw(dw!122).Dw(rw!122) k2
-	Disassociation_of_transcription_initiation_complex: Rw(dw!122).Dw(rw!122) -> Dw(rw) + Rw(dw) k_2
+	Formation_of_the_Zn4Zur_complex: Py(zn2) -> Zn2(py!918).Py(zn2!918) fRate0()
+	Dissociation_of_Zn4Zur_complex: Zn2(py!918).Py(zn2!918) -> Zn2(py) + Py(zn2) r4
+	Formation_of_DNA_binding_complex: Dw(rw) + Zn2(py!918).Py(zn2!918) -> Qw2() k1a
+	Disassociation_of_DNA_binding_complex: Qw2() -> Dw(rw) + Zn2(py!918).Py(zn2!918) k_1
+	Formation_of_transcription_initiation_complex: Dw(rw) + Rw(dw) -> Rw(dw!919).Dw(rw!919) k2
+	Disassociation_of_transcription_initiation_complex: Rw(dw!919).Dw(rw!919) -> Dw(rw) + Rw(dw) k_2
 end reaction rules
 end model

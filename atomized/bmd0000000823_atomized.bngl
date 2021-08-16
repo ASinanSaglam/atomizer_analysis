@@ -1,11 +1,11 @@
 ###
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/29330362']
-#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/ncit/C101595', 'http://identifiers.org/pw/PW:0000180']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/pw/PW:0000180', 'http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/ncit/C101595']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
 #@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1909250003', 'http://identifiers.org/biomodels.db/BIOMD0000000823']
 #@creatorEmail:'johannes.p.meyer@gmail.com'
 #@creatorName:'Meyer Johannes'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 16 molecules and 18 reactions. The translated model has 6 molecules and 20 rules'
+#@notes:'This is an atomized translation of an SBML model created on 14/08/2021. The original model has 16 molecules and 18 reactions. The translated model has 6 molecules and 20 rules'
 ###
 begin model
 begin parameters
@@ -49,18 +49,18 @@ begin parameters
 	kd18 0
 end parameters
 begin molecule types
+	#^ bqbiol:is pr:PR:000009064
+	IR(p~P~0)
 	#^ bqbiol:is ncit:C28474
 	IRS(i~I~0,p~P~0)
 	#^ bqbiol:isVersionOf ncit:C96314
 	mTORC1(deptor,p~P~0)
 	#^ bqbiol:is ncit:C101595
 	DEPTOR(mtorc1,mtorc2,p~P~0)
-	#^ bqbiol:is ncit:C96315
-	mTORC2(deptor,i~I~0,p~P~0)
-	#^ bqbiol:is pr:PR:000009064
-	IR(p~P~0)
 	#^ bqbiol:is pr:PR:000029189
 	Akt(p~P~0)
+	#^ bqbiol:is ncit:C96315
+	mTORC2(deptor,i~I~0,p~P~0)
 end molecule types
 begin seed species
 	IR(p~0) 3.0110000000000005e+22 # (50.0 * 0.001)mol/L * 6.022e23/mol *1.0L #IR #IR
@@ -83,8 +83,8 @@ begin observables
 	Species mTORC2 mTORC2(deptor,i~0,p~0) #mTORC2
 	Species pmTORC2 mTORC2(deptor,i~0,p~P) #pmTORC2
 	Species imTORC2 mTORC2(deptor,i~I,p~0) #imTORC2
-	Species mTORC1_DEPTOR DEPTOR(mtorc1!51,mtorc2,p~0).mTORC1(deptor!51,p~0) #mTORC1_DEPTOR
-	Species mTORC2_DEPTOR mTORC2(deptor!52,i~0,p~0).DEPTOR(mtorc1,mtorc2!52,p~0) #mTORC2_DEPTOR
+	Species mTORC1_DEPTOR DEPTOR(mtorc1!854,mtorc2,p~0).mTORC1(deptor!854,p~0) #mTORC1_DEPTOR
+	Species mTORC2_DEPTOR mTORC2(deptor!855,i~0,p~0).DEPTOR(mtorc1,mtorc2!855,p~0) #mTORC2_DEPTOR
 	Species DEPTOR DEPTOR(mtorc1,mtorc2,p~0) #DEPTOR
 	Species pDEPTOR DEPTOR(mtorc1,mtorc2,p~P) #pDEPTOR
 end observables
@@ -119,8 +119,8 @@ begin reaction rules
 	v11_reactants_0: 0  -> DEPTOR(mtorc1,mtorc2,p~0) -1*(fRate10()) #Modifiers(pmTORC1, pmTORC2)
 	v11_products_0: 0  -> DEPTOR(mtorc1,mtorc2,p~P) fRate10() #Modifiers(pmTORC1, pmTORC2)
 	v12: DEPTOR(mtorc1,mtorc2,p~P) -> DEPTOR(mtorc1,mtorc2,p~0) fRate11()
-	v13: mTORC1(deptor,p~0) + DEPTOR(mtorc1,mtorc2,p~0) <-> DEPTOR(mtorc1!51,mtorc2,p~0).mTORC1(deptor!51,p~0) k13f,k13r
-	v14: mTORC2(deptor,i~0,p~0) + DEPTOR(mtorc1,mtorc2,p~0) <-> mTORC2(deptor!52,i~0,p~0).DEPTOR(mtorc1,mtorc2!52,p~0) k14f,k14r
+	v13: mTORC1(deptor,p~0) + DEPTOR(mtorc1,mtorc2,p~0) <-> DEPTOR(mtorc1!854,mtorc2,p~0).mTORC1(deptor!854,p~0) k13f,k13r
+	v14: mTORC2(deptor,i~0,p~0) + DEPTOR(mtorc1,mtorc2,p~0) <-> mTORC2(deptor!855,i~0,p~0).DEPTOR(mtorc1,mtorc2!855,p~0) k14f,k14r
 	v15: IRS(i~0,p~0) -> IRS(i~I,p~0) fRate14() #Modifiers(pmTORC1)
 	v16: IRS(i~I,p~0) -> IRS(i~0,p~0) fRate15()
 	v17: 0  -> DEPTOR(mtorc1,mtorc2,p~0) ks17

@@ -1,11 +1,11 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1109270003', 'http://identifiers.org/biomodels.db/BIOMD0000000387']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000387', 'http://identifiers.org/biomodels.db/MODEL1109270003']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/22001849']
 #@BQB_ENCODES:['http://identifiers.org/obo.go/GO:0019253']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/33090']
 #@creatorEmail:'viji@ebi.ac.uk'
 #@creatorName:'Chelliah Vijayalakshmi'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 7 molecules and 4 reactions. The translated model has 6 molecules and 10 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 7 molecules and 4 reactions. The translated model has 6 molecules and 10 rules'
 ###
 begin model
 begin parameters
@@ -26,10 +26,10 @@ begin molecule types
 	RuBP()
 	#^ bqbiol:isVersionOf obo.chebi:CHEBI:16526
 	CO2()
-	#^ bqbiol:isVersionOf obo.chebi:CHEBI:25523
-	NADP()
 	#^ bqbiol:isVersionOf obo.chebi:CHEBI:17050
 	PGA()
+	#^ bqbiol:isVersionOf obo.chebi:CHEBI:25523
+	NADP()
 	#^ bqbiol:isVersionOf obo.chebi:CHEBI:15379
 	O2()
 	#^ bqbiol:isVersionOf obo.chebi:CHEBI:16474
@@ -52,9 +52,9 @@ begin observables
 	Species NADP NADP() #NADP
 end observables
 begin functions
-	Gamma() = O2/(2*exp(7.80274855657896))
 	Cst() = exp(-0.0398*a*starch)
 	J() = 0.0276923076923077*Cst*Q*alpha/sqrt(1 + 0.81*Q^2*alpha^2/Jmax^2)
+	Gamma() = O2/(2*exp(7.80274855657896))
 	Vj() = CO2*J/(4*CO2 + 8*Gamma)
 	Vp() = 3*TPU/(1 - Gamma/CO2)
 	NADP_ar() = -NADPH + Nt

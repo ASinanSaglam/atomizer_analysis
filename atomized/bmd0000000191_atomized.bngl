@@ -1,12 +1,12 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000191', 'http://identifiers.org/biomodels.db/MODEL7416883636']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL7416883636', 'http://identifiers.org/biomodels.db/BIOMD0000000191']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/17520329']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/40674']
-#@BQB_IS_PART_OF:['http://identifiers.org/kegg.pathway/map00330', 'http://identifiers.org/go/GO:0006527']
-#@BQB_HAS_VERSION:['http://identifiers.org/go/GO:0006591', 'http://identifiers.org/go/GO:0006809']
+#@BQB_IS_PART_OF:['http://identifiers.org/go/GO:0006527', 'http://identifiers.org/kegg.pathway/map00330']
+#@BQB_HAS_VERSION:['http://identifiers.org/go/GO:0006809', 'http://identifiers.org/go/GO:0006591']
 #@creatorEmail:'lukas@ebi.ac.uk'
 #@creatorName:'Endler Lukas'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 3 molecules and 5 reactions. The translated model has 3 molecules and 6 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 3 molecules and 5 reactions. The translated model has 3 molecules and 6 rules'
 ###
 begin model
 begin parameters
@@ -35,22 +35,22 @@ begin compartments
 	cytosol 3 1.0
 end compartments
 begin molecule types
-	#^ bqbiol:is chebi:CHEBI:16467, kegg.compound:C00062
-	Argininein()
 	#^ bqbiol:is chebi:CHEBI:15729, kegg.compound:C00077
 	Ornithine()
 	#^ bqbiol:is chebi:CHEBI:16467, kegg.compound:C00062
 	Arginineex()
+	#^ bqbiol:is chebi:CHEBI:16467, kegg.compound:C00062
+	Argininein()
 end molecule types
 begin seed species
-	@extracellular:$Arginineex() 1.98726e+20 # (330.0 * 1e-06)mol/L * 6.022e23/mol *1.0L #Arginineex #ARGex
-	@cytosol:Ornithine() 6.022e+17 #original 1.0/L  #Ornithine #ORN
-	@cytosol:Argininein() 6.022e+17 #original 1.0/L  #Argininein #ARGin
+	@extracellular:$Arginineex()@extracellular 1.98726e+20 # (330.0 * 1e-06)mol/L * 6.022e23/mol *1.0L #Arginineex #ARGex
+	@cytosol:Ornithine()@cytosol 6.022e+17 #original 1.0/L  #Ornithine #ORN
+	@cytosol:Argininein()@cytosol 6.022e+17 #original 1.0/L  #Argininein #ARGin
 end seed species
 begin observables
-	Species Arginineex_extracellular @extracellular:Arginineex() #Arginine ex
-	Species Ornithine_cytosol @cytosol:Ornithine() #Ornithine
-	Species Argininein_cytosol @cytosol:Argininein() #Arginine in
+	Species Arginineex_extracellular @extracellular:Arginineex()@extracellular #Arginine ex
+	Species Ornithine_cytosol @cytosol:Ornithine()@cytosol #Ornithine
+	Species Argininein_cytosol @cytosol:Argininein()@cytosol #Arginine in
 end observables
 begin functions
 	fRate0() = 110000.0/(1000.0*Argininein_cytosol + 1500.0*Ornithine_cytosol + 1500000.0)

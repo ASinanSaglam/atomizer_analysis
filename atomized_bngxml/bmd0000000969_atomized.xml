@@ -1,0 +1,1934 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000969_atomized">
+    <ListOfParameters>
+      <Parameter id="lambda_Counties_with_airports" type="Constant" value="0.41" expr="0.41"/>
+      <Parameter id="lambda_Counties_neighbouring_counties_with_airports" type="Constant" value="0.34" expr="0.34"/>
+      <Parameter id="lambda_Counties_with_highways" type="Constant" value="0.23" expr="0.23"/>
+      <Parameter id="lambda_Low_risk_counties" type="Constant" value="0.13" expr="0.13"/>
+      <Parameter id="epsilon" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="delta" type="Constant" value="0.229885" expr="0.229885"/>
+      <Parameter id="eta_Counties_with_airports" type="Constant" value="0.05" expr="0.05"/>
+      <Parameter id="eta_Counties_neighbouring_counties_with_airports" type="Constant" value="0.07" expr="0.07"/>
+      <Parameter id="eta_Counties_with_highways" type="Constant" value="0.07" expr="0.07"/>
+      <Parameter id="eta_Low_risk_counties" type="Constant" value="0.14" expr="0.14"/>
+      <Parameter id="omega_Counties_with_airports" type="Constant" value="0.04" expr="0.04"/>
+      <Parameter id="omega_Counties_neighbouring_counties_with_airports" type="Constant" value="0.06" expr="0.06"/>
+      <Parameter id="omega_Counties_with_highways" type="Constant" value="0.04" expr="0.04"/>
+      <Parameter id="omega_Low_risk_counties" type="Constant" value="0.07" expr="0.07"/>
+      <Parameter id="xi" type="Constant" value="0.06" expr="0.06"/>
+      <Parameter id="sigma" type="Constant" value="0.08" expr="0.08"/>
+      <Parameter id="mu_Counties_with_airports" type="Constant" value="0.22" expr="0.22"/>
+      <Parameter id="mu_Counties_neighbouring_counties_with_airports" type="Constant" value="0.17" expr="0.17"/>
+      <Parameter id="mu_Counties_with_highways" type="Constant" value="0.05" expr="0.05"/>
+      <Parameter id="mu_Low_risk_counties" type="Constant" value="0.25" expr="0.25"/>
+      <Parameter id="psi" type="Constant" value="0.01" expr="0.01"/>
+      <Parameter id="phi" type="Constant" value="0.04" expr="0.04"/>
+      <Parameter id="tau" type="Constant" value="0.08" expr="0.08"/>
+      <Parameter id="gamma" type="Constant" value="0.02" expr="0.02"/>
+      <Parameter id="alpha" type="Constant" value="0.03" expr="0.03"/>
+      <Parameter id="Metabolite_11" type="Constant" value="0" expr="0.0"/>
+      <Parameter id="Metabolite_13" type="Constant" value="0" expr="0.0"/>
+      <Parameter id="Metabolite_9" type="Constant" value="0" expr="0.0"/>
+      <Parameter id="Metabolite_10" type="Constant" value="0" expr="0.0"/>
+      <Parameter id="Metabolite_8" type="Constant" value="26" expr="26.0"/>
+      <Parameter id="Metabolite_12" type="Constant" value="0" expr="0.0"/>
+      <Parameter id="Metabolite_7" type="Constant" value="4431673" expr="4431673.0"/>
+      <Parameter id="Metabolite_4" type="Constant" value="0" expr="0.0"/>
+      <Parameter id="Metabolite_6" type="Constant" value="0" expr="0.0"/>
+      <Parameter id="Metabolite_2" type="Constant" value="0" expr="0.0"/>
+      <Parameter id="Metabolite_3" type="Constant" value="0" expr="0.0"/>
+      <Parameter id="Metabolite_1" type="Constant" value="30" expr="30.0"/>
+      <Parameter id="Metabolite_5" type="Constant" value="0" expr="0.0"/>
+      <Parameter id="Metabolite_0" type="Constant" value="4052876" expr="4052876.0"/>
+      <Parameter id="Metabolite_18" type="Constant" value="0" expr="0.0"/>
+      <Parameter id="Metabolite_20" type="Constant" value="0" expr="0.0"/>
+      <Parameter id="Metabolite_16" type="Constant" value="0" expr="0.0"/>
+      <Parameter id="Metabolite_17" type="Constant" value="0" expr="0.0"/>
+      <Parameter id="Metabolite_15" type="Constant" value="10" expr="10.0"/>
+      <Parameter id="Metabolite_19" type="Constant" value="0" expr="0.0"/>
+      <Parameter id="Metabolite_14" type="Constant" value="1811059" expr="1811059.0"/>
+      <Parameter id="Metabolite_25" type="Constant" value="0" expr="0.0"/>
+      <Parameter id="Metabolite_27" type="Constant" value="0" expr="0.0"/>
+      <Parameter id="Metabolite_23" type="Constant" value="0" expr="0.0"/>
+      <Parameter id="Metabolite_24" type="Constant" value="0" expr="0.0"/>
+      <Parameter id="Metabolite_22" type="Constant" value="6" expr="6.0"/>
+      <Parameter id="Metabolite_26" type="Constant" value="0" expr="0.0"/>
+      <Parameter id="Metabolite_21" type="Constant" value="1269942" expr="1269942.0"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="Deceased"/>
+      <MoleculeType id="Discharged"/>
+      <MoleculeType id="ICU"/>
+      <MoleculeType id="Infected">
+        <ListOfComponentTypes>
+          <ComponentType id="Hospitalised">
+            <ListOfAllowedStates>
+              <AllowedState id="Hospitalised"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="Recovered">
+            <ListOfAllowedStates>
+              <AllowedState id="Recovered"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="Susceptible">
+            <ListOfAllowedStates>
+              <AllowedState id="Susceptible"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+      <compartment id="Counties_with_airports" spatialDimensions="3" size="1.0"/>
+      <compartment id="Counties_neighbouring_counties_with_airports" spatialDimensions="3" size="1.0"/>
+      <compartment id="Counties_with_highways" spatialDimensions="3" size="1.0"/>
+      <compartment id="Low_risk_counties" spatialDimensions="3" size="1.0"/>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="2.4406419272000002e+30" name="@Counties_with_airports::Infected(Hospitalised~0,Recovered~0,Susceptible~Susceptible)" compartment="Counties_with_airports">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="Infected" compartment="Counties_with_airports">
+            <ListOfComponents>
+              <Component id="S1_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+              <Component id="S1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+              <Component id="S1_M1_C3" name="Susceptible" state="Susceptible" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="1.8066000000000001e+25" name="@Counties_with_airports::Infected(Hospitalised~0,Recovered~0,Susceptible~0)" compartment="Counties_with_airports">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="Infected" compartment="Counties_with_airports">
+            <ListOfComponents>
+              <Component id="S2_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+              <Component id="S2_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+              <Component id="S2_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="2.6687534806e+30" name="@Counties_neighbouring_counties_with_airports::Infected(Hospitalised~0,Recovered~0,Susceptible~Susceptible)" compartment="Counties_neighbouring_counties_with_airports">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="Infected" compartment="Counties_neighbouring_counties_with_airports">
+            <ListOfComponents>
+              <Component id="S3_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+              <Component id="S3_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+              <Component id="S3_M1_C3" name="Susceptible" state="Susceptible" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S4"  concentration="1.56572e+25" name="@Counties_neighbouring_counties_with_airports::Infected(Hospitalised~0,Recovered~0,Susceptible~0)" compartment="Counties_neighbouring_counties_with_airports">
+        <ListOfMolecules>
+          <Molecule id="S4_M1" name="Infected" compartment="Counties_neighbouring_counties_with_airports">
+            <ListOfComponents>
+              <Component id="S4_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+              <Component id="S4_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+              <Component id="S4_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S5"  concentration="1.0906197298e+30" name="@Counties_with_highways::Infected(Hospitalised~0,Recovered~0,Susceptible~Susceptible)" compartment="Counties_with_highways">
+        <ListOfMolecules>
+          <Molecule id="S5_M1" name="Infected" compartment="Counties_with_highways">
+            <ListOfComponents>
+              <Component id="S5_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+              <Component id="S5_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+              <Component id="S5_M1_C3" name="Susceptible" state="Susceptible" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S6"  concentration="6.022e+24" name="@Counties_with_highways::Infected(Hospitalised~0,Recovered~0,Susceptible~0)" compartment="Counties_with_highways">
+        <ListOfMolecules>
+          <Molecule id="S6_M1" name="Infected" compartment="Counties_with_highways">
+            <ListOfComponents>
+              <Component id="S6_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+              <Component id="S6_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+              <Component id="S6_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S7"  concentration="7.647590724000001e+29" name="@Low_risk_counties::Infected(Hospitalised~0,Recovered~0,Susceptible~Susceptible)" compartment="Low_risk_counties">
+        <ListOfMolecules>
+          <Molecule id="S7_M1" name="Infected" compartment="Low_risk_counties">
+            <ListOfComponents>
+              <Component id="S7_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+              <Component id="S7_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+              <Component id="S7_M1_C3" name="Susceptible" state="Susceptible" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S8"  concentration="3.6132e+24" name="@Low_risk_counties::Infected(Hospitalised~0,Recovered~0,Susceptible~0)" compartment="Low_risk_counties">
+        <ListOfMolecules>
+          <Molecule id="S8_M1" name="Infected" compartment="Low_risk_counties">
+            <ListOfComponents>
+              <Component id="S8_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+              <Component id="S8_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+              <Component id="S8_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="Susceptible_to_Infected_Counties_with_airports" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR1_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_RP1_M1" name="Infected" compartment="Counties_with_airports">
+                <ListOfComponents>
+                  <Component id="RR1_RP1_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_RP1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_RP1_M1_C3" name="Susceptible" state="Susceptible" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="Infected" compartment="Counties_with_airports">
+                <ListOfComponents>
+                  <Component id="RR1_PP1_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_PP1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_PP1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR1_RP1_M1" targetID="RR1_PP1_M1"/>
+          <MapItem sourceID="RR1_RP1_M1_C1" targetID="RR1_PP1_M1_C1"/>
+          <MapItem sourceID="RR1_RP1_M1_C2" targetID="RR1_PP1_M1_C2"/>
+          <MapItem sourceID="RR1_RP1_M1_C3" targetID="RR1_PP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR1_RP1_M1_C3" finalState="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="Infected_to_Hospitalised_Counties_with_airports" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="Infected" compartment="Counties_with_airports">
+                <ListOfComponents>
+                  <Component id="RR2_RP1_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+                  <Component id="RR2_RP1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="RR2_RP1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="Infected" compartment="Counties_with_airports">
+                <ListOfComponents>
+                  <Component id="RR2_PP1_M1_C1" name="Hospitalised" state="Hospitalised" numberOfBonds="0"/>
+                  <Component id="RR2_PP1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="RR2_PP1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="eta_Counties_with_airports"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1" targetID="RR2_PP1_M1"/>
+          <MapItem sourceID="RR2_RP1_M1_C1" targetID="RR2_PP1_M1_C1"/>
+          <MapItem sourceID="RR2_RP1_M1_C2" targetID="RR2_PP1_M1_C2"/>
+          <MapItem sourceID="RR2_RP1_M1_C3" targetID="RR2_PP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR2_RP1_M1_C1" finalState="Hospitalised"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="Infected_to_Deceased_Counties_with_airports" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="Infected" compartment="Counties_with_airports">
+                <ListOfComponents>
+                  <Component id="RR3_RP1_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+                  <Component id="RR3_RP1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="RR3_RP1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="Deceased" compartment="Counties_with_airports"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="psi"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1"/>
+          <MapItem sourceID="RR3_RP1_M1_C1"/>
+          <MapItem sourceID="RR3_RP1_M1_C2"/>
+          <MapItem sourceID="RR3_RP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+          <Delete id="RR3_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="Infected_to_Recovered_Counties_with_airports" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="Infected" compartment="Counties_with_airports">
+                <ListOfComponents>
+                  <Component id="RR4_RP1_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+                  <Component id="RR4_RP1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="RR4_RP1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="Infected" compartment="Counties_with_airports">
+                <ListOfComponents>
+                  <Component id="RR4_PP1_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+                  <Component id="RR4_PP1_M1_C2" name="Recovered" state="Recovered" numberOfBonds="0"/>
+                  <Component id="RR4_PP1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="delta"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1" targetID="RR4_PP1_M1"/>
+          <MapItem sourceID="RR4_RP1_M1_C1" targetID="RR4_PP1_M1_C1"/>
+          <MapItem sourceID="RR4_RP1_M1_C2" targetID="RR4_PP1_M1_C2"/>
+          <MapItem sourceID="RR4_RP1_M1_C3" targetID="RR4_PP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR4_RP1_M1_C2" finalState="Recovered"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="Hospitalised_to_ICU_Counties_with_airports" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR5_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP1_M1" name="Infected" compartment="Counties_with_airports">
+                <ListOfComponents>
+                  <Component id="RR5_RP1_M1_C1" name="Hospitalised" state="Hospitalised" numberOfBonds="0"/>
+                  <Component id="RR5_RP1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="RR5_RP1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="ICU" compartment="Counties_with_airports"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="omega_Counties_with_airports"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR5_RP1_M1"/>
+          <MapItem sourceID="RR5_RP1_M1_C1"/>
+          <MapItem sourceID="RR5_RP1_M1_C2"/>
+          <MapItem sourceID="RR5_RP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR5_PP1_M1"/>
+          <Delete id="RR5_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="Hospitalised_to_Discharged_Counties_with_airports" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR6_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_RP1_M1" name="Infected" compartment="Counties_with_airports">
+                <ListOfComponents>
+                  <Component id="RR6_RP1_M1_C1" name="Hospitalised" state="Hospitalised" numberOfBonds="0"/>
+                  <Component id="RR6_RP1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="RR6_RP1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="Discharged" compartment="Counties_with_airports"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="sigma"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR6_RP1_M1"/>
+          <MapItem sourceID="RR6_RP1_M1_C1"/>
+          <MapItem sourceID="RR6_RP1_M1_C2"/>
+          <MapItem sourceID="RR6_RP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR6_PP1_M1"/>
+          <Delete id="RR6_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="ICU_to_Hospitalised_Counties_with_airports" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR7_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_RP1_M1" name="ICU" compartment="Counties_with_airports"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="Infected" compartment="Counties_with_airports">
+                <ListOfComponents>
+                  <Component id="RR7_PP1_M1_C1" name="Hospitalised" state="Hospitalised" numberOfBonds="0"/>
+                  <Component id="RR7_PP1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="RR7_PP1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="xi"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR7_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR7_PP1_M1"/>
+          <Delete id="RR7_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="ICU_to_Deceased_Counties_with_airports" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR8_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_RP1_M1" name="ICU" compartment="Counties_with_airports"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR8_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP1_M1" name="Deceased" compartment="Counties_with_airports"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="mu_Counties_with_airports"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR8_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR8_PP1_M1"/>
+          <Delete id="RR8_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="Susceptible_to_Infected_Counties_neighbouring_counties_with_airports_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR9_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP1_M1" name="Infected" compartment="Counties_neighbouring_counties_with_airports">
+                <ListOfComponents>
+                  <Component id="RR9_PP1_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+                  <Component id="RR9_PP1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="RR9_PP1_M1_C3" name="Susceptible" state="Susceptible" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Function" name="_rateLaw1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR9_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="Susceptible_to_Infected_Counties_neighbouring_counties_with_airports_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR10_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_PP1_M1" name="Infected" compartment="Counties_neighbouring_counties_with_airports">
+                <ListOfComponents>
+                  <Component id="RR10_PP1_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+                  <Component id="RR10_PP1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="RR10_PP1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Function" name="fRate8" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR10_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR11" name="Infected_to_Hospitalised_Counties_neighbouring_counties_with_airports" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR11_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_RP1_M1" name="Infected" compartment="Counties_neighbouring_counties_with_airports">
+                <ListOfComponents>
+                  <Component id="RR11_RP1_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+                  <Component id="RR11_RP1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="RR11_RP1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR11_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_PP1_M1" name="Infected" compartment="Counties_neighbouring_counties_with_airports">
+                <ListOfComponents>
+                  <Component id="RR11_PP1_M1_C1" name="Hospitalised" state="Hospitalised" numberOfBonds="0"/>
+                  <Component id="RR11_PP1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="RR11_PP1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR11_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="eta_Counties_neighbouring_counties_with_airports"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR11_RP1_M1" targetID="RR11_PP1_M1"/>
+          <MapItem sourceID="RR11_RP1_M1_C1" targetID="RR11_PP1_M1_C1"/>
+          <MapItem sourceID="RR11_RP1_M1_C2" targetID="RR11_PP1_M1_C2"/>
+          <MapItem sourceID="RR11_RP1_M1_C3" targetID="RR11_PP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR11_RP1_M1_C1" finalState="Hospitalised"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR12" name="Infected_to_Deceased_Counties_neighbouring_counties_with_airports" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR12_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_RP1_M1" name="Infected" compartment="Counties_neighbouring_counties_with_airports">
+                <ListOfComponents>
+                  <Component id="RR12_RP1_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+                  <Component id="RR12_RP1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="RR12_RP1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR12_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_PP1_M1" name="Deceased" compartment="Counties_neighbouring_counties_with_airports"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR12_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="psi"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR12_RP1_M1"/>
+          <MapItem sourceID="RR12_RP1_M1_C1"/>
+          <MapItem sourceID="RR12_RP1_M1_C2"/>
+          <MapItem sourceID="RR12_RP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR12_PP1_M1"/>
+          <Delete id="RR12_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR13" name="Infected_to_Recovered_Counties_neighbouring_counties_with_airports" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR13_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_RP1_M1" name="Infected" compartment="Counties_neighbouring_counties_with_airports">
+                <ListOfComponents>
+                  <Component id="RR13_RP1_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+                  <Component id="RR13_RP1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="RR13_RP1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR13_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_PP1_M1" name="Infected" compartment="Counties_neighbouring_counties_with_airports">
+                <ListOfComponents>
+                  <Component id="RR13_PP1_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+                  <Component id="RR13_PP1_M1_C2" name="Recovered" state="Recovered" numberOfBonds="0"/>
+                  <Component id="RR13_PP1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR13_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="delta"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR13_RP1_M1" targetID="RR13_PP1_M1"/>
+          <MapItem sourceID="RR13_RP1_M1_C1" targetID="RR13_PP1_M1_C1"/>
+          <MapItem sourceID="RR13_RP1_M1_C2" targetID="RR13_PP1_M1_C2"/>
+          <MapItem sourceID="RR13_RP1_M1_C3" targetID="RR13_PP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR13_RP1_M1_C2" finalState="Recovered"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR14" name="Hospitalised_to_ICU_Counties_neighbouring_counties_with_airports" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR14_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_RP1_M1" name="Infected" compartment="Counties_neighbouring_counties_with_airports">
+                <ListOfComponents>
+                  <Component id="RR14_RP1_M1_C1" name="Hospitalised" state="Hospitalised" numberOfBonds="0"/>
+                  <Component id="RR14_RP1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="RR14_RP1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR14_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_PP1_M1" name="ICU" compartment="Counties_neighbouring_counties_with_airports"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR14_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="omega_Counties_neighbouring_counties_with_airports"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR14_RP1_M1"/>
+          <MapItem sourceID="RR14_RP1_M1_C1"/>
+          <MapItem sourceID="RR14_RP1_M1_C2"/>
+          <MapItem sourceID="RR14_RP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR14_PP1_M1"/>
+          <Delete id="RR14_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR15" name="Hospitalised_to_Discharged_Counties_neighbouring_counties_with_airports" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR15_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR15_RP1_M1" name="Infected" compartment="Counties_neighbouring_counties_with_airports">
+                <ListOfComponents>
+                  <Component id="RR15_RP1_M1_C1" name="Hospitalised" state="Hospitalised" numberOfBonds="0"/>
+                  <Component id="RR15_RP1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="RR15_RP1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR15_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR15_PP1_M1" name="Discharged" compartment="Counties_neighbouring_counties_with_airports"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR15_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="sigma"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR15_RP1_M1"/>
+          <MapItem sourceID="RR15_RP1_M1_C1"/>
+          <MapItem sourceID="RR15_RP1_M1_C2"/>
+          <MapItem sourceID="RR15_RP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR15_PP1_M1"/>
+          <Delete id="RR15_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR16" name="ICU_to_Hospitalised_Counties_neighbouring_counties_with_airports" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR16_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR16_RP1_M1" name="ICU" compartment="Counties_neighbouring_counties_with_airports"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR16_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR16_PP1_M1" name="Infected" compartment="Counties_neighbouring_counties_with_airports">
+                <ListOfComponents>
+                  <Component id="RR16_PP1_M1_C1" name="Hospitalised" state="Hospitalised" numberOfBonds="0"/>
+                  <Component id="RR16_PP1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="RR16_PP1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR16_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="xi"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR16_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR16_PP1_M1"/>
+          <Delete id="RR16_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR17" name="ICU_to_Deceased_Counties_neighbouring_counties_with_airports" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR17_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR17_RP1_M1" name="ICU" compartment="Counties_neighbouring_counties_with_airports"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR17_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR17_PP1_M1" name="Deceased" compartment="Counties_neighbouring_counties_with_airports"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR17_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="mu_Counties_neighbouring_counties_with_airports"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR17_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR17_PP1_M1"/>
+          <Delete id="RR17_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR18" name="Susceptible_to_Infected_Counties_with_highways_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR18_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR18_PP1_M1" name="Infected" compartment="Counties_with_highways">
+                <ListOfComponents>
+                  <Component id="RR18_PP1_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+                  <Component id="RR18_PP1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="RR18_PP1_M1_C3" name="Susceptible" state="Susceptible" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR18_RateLaw" type="Function" name="_rateLaw2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR18_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR19" name="Susceptible_to_Infected_Counties_with_highways_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR19_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR19_PP1_M1" name="Infected" compartment="Counties_with_highways">
+                <ListOfComponents>
+                  <Component id="RR19_PP1_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+                  <Component id="RR19_PP1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="RR19_PP1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR19_RateLaw" type="Function" name="fRate16" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR19_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR20" name="Infected_to_Hospitalised_Counties_with_highways" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR20_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR20_RP1_M1" name="Infected" compartment="Counties_with_highways">
+                <ListOfComponents>
+                  <Component id="RR20_RP1_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+                  <Component id="RR20_RP1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="RR20_RP1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR20_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR20_PP1_M1" name="Infected" compartment="Counties_with_highways">
+                <ListOfComponents>
+                  <Component id="RR20_PP1_M1_C1" name="Hospitalised" state="Hospitalised" numberOfBonds="0"/>
+                  <Component id="RR20_PP1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="RR20_PP1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR20_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="eta_Counties_with_highways"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR20_RP1_M1" targetID="RR20_PP1_M1"/>
+          <MapItem sourceID="RR20_RP1_M1_C1" targetID="RR20_PP1_M1_C1"/>
+          <MapItem sourceID="RR20_RP1_M1_C2" targetID="RR20_PP1_M1_C2"/>
+          <MapItem sourceID="RR20_RP1_M1_C3" targetID="RR20_PP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR20_RP1_M1_C1" finalState="Hospitalised"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR21" name="Infected_to_Deceased_Counties_with_highways" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR21_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR21_RP1_M1" name="Infected" compartment="Counties_with_highways">
+                <ListOfComponents>
+                  <Component id="RR21_RP1_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+                  <Component id="RR21_RP1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="RR21_RP1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR21_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR21_PP1_M1" name="Deceased" compartment="Counties_with_highways"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR21_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="psi"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR21_RP1_M1"/>
+          <MapItem sourceID="RR21_RP1_M1_C1"/>
+          <MapItem sourceID="RR21_RP1_M1_C2"/>
+          <MapItem sourceID="RR21_RP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR21_PP1_M1"/>
+          <Delete id="RR21_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR22" name="Infected_to_Recovered_Counties_with_highways" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR22_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR22_RP1_M1" name="Infected" compartment="Counties_with_highways">
+                <ListOfComponents>
+                  <Component id="RR22_RP1_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+                  <Component id="RR22_RP1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="RR22_RP1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR22_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR22_PP1_M1" name="Infected" compartment="Counties_with_highways">
+                <ListOfComponents>
+                  <Component id="RR22_PP1_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+                  <Component id="RR22_PP1_M1_C2" name="Recovered" state="Recovered" numberOfBonds="0"/>
+                  <Component id="RR22_PP1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR22_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="delta"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR22_RP1_M1" targetID="RR22_PP1_M1"/>
+          <MapItem sourceID="RR22_RP1_M1_C1" targetID="RR22_PP1_M1_C1"/>
+          <MapItem sourceID="RR22_RP1_M1_C2" targetID="RR22_PP1_M1_C2"/>
+          <MapItem sourceID="RR22_RP1_M1_C3" targetID="RR22_PP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR22_RP1_M1_C2" finalState="Recovered"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR23" name="Hospitalised_to_ICU_Counties_with_highways" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR23_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR23_RP1_M1" name="Infected" compartment="Counties_with_highways">
+                <ListOfComponents>
+                  <Component id="RR23_RP1_M1_C1" name="Hospitalised" state="Hospitalised" numberOfBonds="0"/>
+                  <Component id="RR23_RP1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="RR23_RP1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR23_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR23_PP1_M1" name="ICU" compartment="Counties_with_highways"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR23_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="omega_Counties_with_highways"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR23_RP1_M1"/>
+          <MapItem sourceID="RR23_RP1_M1_C1"/>
+          <MapItem sourceID="RR23_RP1_M1_C2"/>
+          <MapItem sourceID="RR23_RP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR23_PP1_M1"/>
+          <Delete id="RR23_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR24" name="Hospitalised_to_Discharged_Counties_with_highways" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR24_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR24_RP1_M1" name="Infected" compartment="Counties_with_highways">
+                <ListOfComponents>
+                  <Component id="RR24_RP1_M1_C1" name="Hospitalised" state="Hospitalised" numberOfBonds="0"/>
+                  <Component id="RR24_RP1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="RR24_RP1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR24_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR24_PP1_M1" name="Discharged" compartment="Counties_with_highways"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR24_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="sigma"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR24_RP1_M1"/>
+          <MapItem sourceID="RR24_RP1_M1_C1"/>
+          <MapItem sourceID="RR24_RP1_M1_C2"/>
+          <MapItem sourceID="RR24_RP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR24_PP1_M1"/>
+          <Delete id="RR24_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR25" name="ICU_to_Hospitalised_Counties_with_highways" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR25_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR25_RP1_M1" name="ICU" compartment="Counties_with_highways"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR25_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR25_PP1_M1" name="Infected" compartment="Counties_with_highways">
+                <ListOfComponents>
+                  <Component id="RR25_PP1_M1_C1" name="Hospitalised" state="Hospitalised" numberOfBonds="0"/>
+                  <Component id="RR25_PP1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="RR25_PP1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR25_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="xi"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR25_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR25_PP1_M1"/>
+          <Delete id="RR25_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR26" name="ICU_to_Deceased_Counties_with_highways" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR26_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR26_RP1_M1" name="ICU" compartment="Counties_with_highways"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR26_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR26_PP1_M1" name="Deceased" compartment="Counties_with_highways"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR26_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="mu_Counties_with_highways"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR26_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR26_PP1_M1"/>
+          <Delete id="RR26_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR27" name="Susceptible_to_Infected_Low_risk_counties_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR27_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR27_PP1_M1" name="Infected" compartment="Low_risk_counties">
+                <ListOfComponents>
+                  <Component id="RR27_PP1_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+                  <Component id="RR27_PP1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="RR27_PP1_M1_C3" name="Susceptible" state="Susceptible" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR27_RateLaw" type="Function" name="_rateLaw3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR27_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR28" name="Susceptible_to_Infected_Low_risk_counties_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR28_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR28_PP1_M1" name="Infected" compartment="Low_risk_counties">
+                <ListOfComponents>
+                  <Component id="RR28_PP1_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+                  <Component id="RR28_PP1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="RR28_PP1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR28_RateLaw" type="Function" name="fRate24" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR28_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR29" name="Infected_to_Hospitalised_Low_risk_counties" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR29_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR29_RP1_M1" name="Infected" compartment="Low_risk_counties">
+                <ListOfComponents>
+                  <Component id="RR29_RP1_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+                  <Component id="RR29_RP1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="RR29_RP1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR29_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR29_PP1_M1" name="Infected" compartment="Low_risk_counties">
+                <ListOfComponents>
+                  <Component id="RR29_PP1_M1_C1" name="Hospitalised" state="Hospitalised" numberOfBonds="0"/>
+                  <Component id="RR29_PP1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="RR29_PP1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR29_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="eta_Low_risk_counties"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR29_RP1_M1" targetID="RR29_PP1_M1"/>
+          <MapItem sourceID="RR29_RP1_M1_C1" targetID="RR29_PP1_M1_C1"/>
+          <MapItem sourceID="RR29_RP1_M1_C2" targetID="RR29_PP1_M1_C2"/>
+          <MapItem sourceID="RR29_RP1_M1_C3" targetID="RR29_PP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR29_RP1_M1_C1" finalState="Hospitalised"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR30" name="Infected_to_Deceased_Low_risk_counties" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR30_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR30_RP1_M1" name="Infected" compartment="Low_risk_counties">
+                <ListOfComponents>
+                  <Component id="RR30_RP1_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+                  <Component id="RR30_RP1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="RR30_RP1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR30_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR30_PP1_M1" name="Deceased" compartment="Low_risk_counties"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR30_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="psi"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR30_RP1_M1"/>
+          <MapItem sourceID="RR30_RP1_M1_C1"/>
+          <MapItem sourceID="RR30_RP1_M1_C2"/>
+          <MapItem sourceID="RR30_RP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR30_PP1_M1"/>
+          <Delete id="RR30_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR31" name="Infected_to_Recovered_Low_risk_counties" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR31_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR31_RP1_M1" name="Infected" compartment="Low_risk_counties">
+                <ListOfComponents>
+                  <Component id="RR31_RP1_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+                  <Component id="RR31_RP1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="RR31_RP1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR31_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR31_PP1_M1" name="Infected" compartment="Low_risk_counties">
+                <ListOfComponents>
+                  <Component id="RR31_PP1_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+                  <Component id="RR31_PP1_M1_C2" name="Recovered" state="Recovered" numberOfBonds="0"/>
+                  <Component id="RR31_PP1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR31_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="delta"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR31_RP1_M1" targetID="RR31_PP1_M1"/>
+          <MapItem sourceID="RR31_RP1_M1_C1" targetID="RR31_PP1_M1_C1"/>
+          <MapItem sourceID="RR31_RP1_M1_C2" targetID="RR31_PP1_M1_C2"/>
+          <MapItem sourceID="RR31_RP1_M1_C3" targetID="RR31_PP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR31_RP1_M1_C2" finalState="Recovered"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR32" name="Hospitalised_to_ICU_Low_risk_counties" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR32_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR32_RP1_M1" name="Infected" compartment="Low_risk_counties">
+                <ListOfComponents>
+                  <Component id="RR32_RP1_M1_C1" name="Hospitalised" state="Hospitalised" numberOfBonds="0"/>
+                  <Component id="RR32_RP1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="RR32_RP1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR32_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR32_PP1_M1" name="ICU" compartment="Low_risk_counties"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR32_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="omega_Low_risk_counties"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR32_RP1_M1"/>
+          <MapItem sourceID="RR32_RP1_M1_C1"/>
+          <MapItem sourceID="RR32_RP1_M1_C2"/>
+          <MapItem sourceID="RR32_RP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR32_PP1_M1"/>
+          <Delete id="RR32_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR33" name="Hospitalised_to_Discharged_Low_risk_counties" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR33_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR33_RP1_M1" name="Infected" compartment="Low_risk_counties">
+                <ListOfComponents>
+                  <Component id="RR33_RP1_M1_C1" name="Hospitalised" state="Hospitalised" numberOfBonds="0"/>
+                  <Component id="RR33_RP1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="RR33_RP1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR33_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR33_PP1_M1" name="Discharged" compartment="Low_risk_counties"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR33_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="sigma"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR33_RP1_M1"/>
+          <MapItem sourceID="RR33_RP1_M1_C1"/>
+          <MapItem sourceID="RR33_RP1_M1_C2"/>
+          <MapItem sourceID="RR33_RP1_M1_C3"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR33_PP1_M1"/>
+          <Delete id="RR33_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR34" name="ICU_to_Hospitalised_Low_risk_counties" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR34_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR34_RP1_M1" name="ICU" compartment="Low_risk_counties"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR34_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR34_PP1_M1" name="Infected" compartment="Low_risk_counties">
+                <ListOfComponents>
+                  <Component id="RR34_PP1_M1_C1" name="Hospitalised" state="Hospitalised" numberOfBonds="0"/>
+                  <Component id="RR34_PP1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="RR34_PP1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR34_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="xi"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR34_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR34_PP1_M1"/>
+          <Delete id="RR34_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR35" name="ICU_to_Deceased_Low_risk_counties" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR35_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR35_RP1_M1" name="ICU" compartment="Low_risk_counties"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR35_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR35_PP1_M1" name="Deceased" compartment="Low_risk_counties"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR35_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="mu_Low_risk_counties"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR35_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR35_PP1_M1"/>
+          <Delete id="RR35_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="Susceptible_Counties_with_airports" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" compartment="Counties_with_airports" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="Infected">
+                <ListOfComponents>
+                  <Component id="O1_P1_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+                  <Component id="O1_P1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="O1_P1_M1_C3" name="Susceptible" state="Susceptible" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="Infected_Counties_with_airports" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" compartment="Counties_with_airports" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="Infected">
+                <ListOfComponents>
+                  <Component id="O2_P1_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+                  <Component id="O2_P1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="O2_P1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="Hospitalised_Counties_with_airports" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" compartment="Counties_with_airports" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="Infected">
+                <ListOfComponents>
+                  <Component id="O3_P1_M1_C1" name="Hospitalised" state="Hospitalised" numberOfBonds="0"/>
+                  <Component id="O3_P1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="O3_P1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="ICU_Counties_with_airports" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" compartment="Counties_with_airports" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="ICU"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="Deceased_Counties_with_airports" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" compartment="Counties_with_airports" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="Deceased"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O6" name="Recovered_Counties_with_airports" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O6_P1" compartment="Counties_with_airports" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O6_P1_M1" name="Infected">
+                <ListOfComponents>
+                  <Component id="O6_P1_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+                  <Component id="O6_P1_M1_C2" name="Recovered" state="Recovered" numberOfBonds="0"/>
+                  <Component id="O6_P1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O7" name="Discharged_Counties_with_airports" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O7_P1" compartment="Counties_with_airports" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O7_P1_M1" name="Discharged"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O8" name="Susceptible_Counties_neighbouring_counties_with_airports" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O8_P1" compartment="Counties_neighbouring_counties_with_airports" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O8_P1_M1" name="Infected">
+                <ListOfComponents>
+                  <Component id="O8_P1_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+                  <Component id="O8_P1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="O8_P1_M1_C3" name="Susceptible" state="Susceptible" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O9" name="Infected_Counties_neighbouring_counties_with_airports" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O9_P1" compartment="Counties_neighbouring_counties_with_airports" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O9_P1_M1" name="Infected">
+                <ListOfComponents>
+                  <Component id="O9_P1_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+                  <Component id="O9_P1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="O9_P1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O10" name="Hospitalised_Counties_neighbouring_counties_with_airports" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O10_P1" compartment="Counties_neighbouring_counties_with_airports" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O10_P1_M1" name="Infected">
+                <ListOfComponents>
+                  <Component id="O10_P1_M1_C1" name="Hospitalised" state="Hospitalised" numberOfBonds="0"/>
+                  <Component id="O10_P1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="O10_P1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O11" name="ICU_Counties_neighbouring_counties_with_airports" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O11_P1" compartment="Counties_neighbouring_counties_with_airports" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O11_P1_M1" name="ICU"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O12" name="Deceased_Counties_neighbouring_counties_with_airports" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O12_P1" compartment="Counties_neighbouring_counties_with_airports" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O12_P1_M1" name="Deceased"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O13" name="Recovered_Counties_neighbouring_counties_with_airports" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O13_P1" compartment="Counties_neighbouring_counties_with_airports" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O13_P1_M1" name="Infected">
+                <ListOfComponents>
+                  <Component id="O13_P1_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+                  <Component id="O13_P1_M1_C2" name="Recovered" state="Recovered" numberOfBonds="0"/>
+                  <Component id="O13_P1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O14" name="Discharged_Counties_neighbouring_counties_with_airports" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O14_P1" compartment="Counties_neighbouring_counties_with_airports" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O14_P1_M1" name="Discharged"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O15" name="Susceptible_Counties_with_highways" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O15_P1" compartment="Counties_with_highways" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O15_P1_M1" name="Infected">
+                <ListOfComponents>
+                  <Component id="O15_P1_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+                  <Component id="O15_P1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="O15_P1_M1_C3" name="Susceptible" state="Susceptible" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O16" name="Infected_Counties_with_highways" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O16_P1" compartment="Counties_with_highways" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O16_P1_M1" name="Infected">
+                <ListOfComponents>
+                  <Component id="O16_P1_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+                  <Component id="O16_P1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="O16_P1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O17" name="Hospitalised_Counties_with_highways" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O17_P1" compartment="Counties_with_highways" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O17_P1_M1" name="Infected">
+                <ListOfComponents>
+                  <Component id="O17_P1_M1_C1" name="Hospitalised" state="Hospitalised" numberOfBonds="0"/>
+                  <Component id="O17_P1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="O17_P1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O18" name="ICU_Counties_with_highways" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O18_P1" compartment="Counties_with_highways" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O18_P1_M1" name="ICU"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O19" name="Deceased_Counties_with_highways" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O19_P1" compartment="Counties_with_highways" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O19_P1_M1" name="Deceased"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O20" name="Recovered_Counties_with_highways" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O20_P1" compartment="Counties_with_highways" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O20_P1_M1" name="Infected">
+                <ListOfComponents>
+                  <Component id="O20_P1_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+                  <Component id="O20_P1_M1_C2" name="Recovered" state="Recovered" numberOfBonds="0"/>
+                  <Component id="O20_P1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O21" name="Discharged_Counties_with_highways" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O21_P1" compartment="Counties_with_highways" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O21_P1_M1" name="Discharged"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O22" name="Susceptible_Low_risk_counties" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O22_P1" compartment="Low_risk_counties" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O22_P1_M1" name="Infected">
+                <ListOfComponents>
+                  <Component id="O22_P1_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+                  <Component id="O22_P1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="O22_P1_M1_C3" name="Susceptible" state="Susceptible" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O23" name="Infected_Low_risk_counties" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O23_P1" compartment="Low_risk_counties" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O23_P1_M1" name="Infected">
+                <ListOfComponents>
+                  <Component id="O23_P1_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+                  <Component id="O23_P1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="O23_P1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O24" name="Hospitalised_Low_risk_counties" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O24_P1" compartment="Low_risk_counties" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O24_P1_M1" name="Infected">
+                <ListOfComponents>
+                  <Component id="O24_P1_M1_C1" name="Hospitalised" state="Hospitalised" numberOfBonds="0"/>
+                  <Component id="O24_P1_M1_C2" name="Recovered" state="0" numberOfBonds="0"/>
+                  <Component id="O24_P1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O25" name="ICU_Low_risk_counties" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O25_P1" compartment="Low_risk_counties" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O25_P1_M1" name="ICU"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O26" name="Deceased_Low_risk_counties" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O26_P1" compartment="Low_risk_counties" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O26_P1_M1" name="Deceased"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O27" name="Recovered_Low_risk_counties" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O27_P1" compartment="Low_risk_counties" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O27_P1_M1" name="Infected">
+                <ListOfComponents>
+                  <Component id="O27_P1_M1_C1" name="Hospitalised" state="0" numberOfBonds="0"/>
+                  <Component id="O27_P1_M1_C2" name="Recovered" state="Recovered" numberOfBonds="0"/>
+                  <Component id="O27_P1_M1_C3" name="Susceptible" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O28" name="Discharged_Low_risk_counties" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O28_P1" compartment="Low_risk_counties" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O28_P1_M1" name="Discharged"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="Cumulative_cases_Counties_neighbouring_counties_with_airports">
+        <ListOfReferences>
+          <Reference name="Deceased_Low_risk_counties" type="Observable"/>
+          <Reference name="Discharged_Low_risk_counties" type="Observable"/>
+          <Reference name="Infected_Low_risk_counties" type="Observable"/>
+          <Reference name="Recovered_Low_risk_counties" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((Deceased_Low_risk_counties+Discharged_Low_risk_counties)+Infected_Low_risk_counties)+Recovered_Low_risk_counties </Expression>
+      </Function>
+      <Function id="Cumulative_cases_Counties_with_airports">
+        <ListOfReferences>
+          <Reference name="Deceased_Low_risk_counties" type="Observable"/>
+          <Reference name="Discharged_Low_risk_counties" type="Observable"/>
+          <Reference name="Infected_Low_risk_counties" type="Observable"/>
+          <Reference name="Recovered_Low_risk_counties" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((Deceased_Low_risk_counties+Discharged_Low_risk_counties)+Infected_Low_risk_counties)+Recovered_Low_risk_counties </Expression>
+      </Function>
+      <Function id="Cumulative_cases_Counties_with_highways">
+        <ListOfReferences>
+          <Reference name="Deceased_Low_risk_counties" type="Observable"/>
+          <Reference name="Discharged_Low_risk_counties" type="Observable"/>
+          <Reference name="Infected_Low_risk_counties" type="Observable"/>
+          <Reference name="Recovered_Low_risk_counties" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((Deceased_Low_risk_counties+Discharged_Low_risk_counties)+Infected_Low_risk_counties)+Recovered_Low_risk_counties </Expression>
+      </Function>
+      <Function id="Cumulative_cases_Low_risk_counties">
+        <ListOfReferences>
+          <Reference name="Deceased_Low_risk_counties" type="Observable"/>
+          <Reference name="Discharged_Low_risk_counties" type="Observable"/>
+          <Reference name="Infected_Low_risk_counties" type="Observable"/>
+          <Reference name="Recovered_Low_risk_counties" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((Deceased_Low_risk_counties+Discharged_Low_risk_counties)+Infected_Low_risk_counties)+Recovered_Low_risk_counties </Expression>
+      </Function>
+      <Function id="Total_cumulative_cases">
+        <ListOfReferences>
+          <Reference name="Cumulative_cases_Counties_neighbouring_counties_with_airports" type="Function"/>
+          <Reference name="Cumulative_cases_Counties_with_airports" type="Function"/>
+          <Reference name="Cumulative_cases_Counties_with_highways" type="Function"/>
+          <Reference name="Cumulative_cases_Low_risk_counties" type="Function"/>
+        </ListOfReferences>
+        <Expression> ((Cumulative_cases_Counties_neighbouring_counties_with_airports+Cumulative_cases_Counties_with_airports)+Cumulative_cases_Counties_with_highways)+Cumulative_cases_Low_risk_counties </Expression>
+      </Function>
+      <Function id="Total_deaths">
+        <ListOfReferences>
+          <Reference name="Deceased_Low_risk_counties" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 4*Deceased_Low_risk_counties </Expression>
+      </Function>
+      <Function id="Total_hospitalisations">
+        <ListOfReferences>
+          <Reference name="Deceased_Low_risk_counties" type="Observable"/>
+          <Reference name="Discharged_Low_risk_counties" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (4*Deceased_Low_risk_counties)+(4*Discharged_Low_risk_counties) </Expression>
+      </Function>
+      <Function id="Population_Counties_neighbouring_counties_with_airports">
+        <ListOfReferences>
+          <Reference name="Metabolite_10" type="Constant"/>
+          <Reference name="Metabolite_11" type="Constant"/>
+          <Reference name="Metabolite_12" type="Constant"/>
+          <Reference name="Metabolite_13" type="Constant"/>
+          <Reference name="Metabolite_7" type="Constant"/>
+          <Reference name="Metabolite_8" type="Constant"/>
+          <Reference name="Metabolite_9" type="Constant"/>
+        </ListOfReferences>
+        <Expression> (((((Metabolite_10+Metabolite_11)+Metabolite_12)+Metabolite_13)+Metabolite_7)+Metabolite_8)+Metabolite_9 </Expression>
+      </Function>
+      <Function id="Population_Low_risk_counties">
+        <ListOfReferences>
+          <Reference name="Metabolite_21" type="Constant"/>
+          <Reference name="Metabolite_22" type="Constant"/>
+          <Reference name="Metabolite_23" type="Constant"/>
+          <Reference name="Metabolite_24" type="Constant"/>
+          <Reference name="Metabolite_25" type="Constant"/>
+          <Reference name="Metabolite_26" type="Constant"/>
+          <Reference name="Metabolite_27" type="Constant"/>
+        </ListOfReferences>
+        <Expression> (((((Metabolite_21+Metabolite_22)+Metabolite_23)+Metabolite_24)+Metabolite_25)+Metabolite_26)+Metabolite_27 </Expression>
+      </Function>
+      <Function id="Population_Counties_with_highways">
+        <ListOfReferences>
+          <Reference name="Metabolite_14" type="Constant"/>
+          <Reference name="Metabolite_15" type="Constant"/>
+          <Reference name="Metabolite_16" type="Constant"/>
+          <Reference name="Metabolite_17" type="Constant"/>
+          <Reference name="Metabolite_18" type="Constant"/>
+          <Reference name="Metabolite_19" type="Constant"/>
+          <Reference name="Metabolite_20" type="Constant"/>
+        </ListOfReferences>
+        <Expression> (((((Metabolite_14+Metabolite_15)+Metabolite_16)+Metabolite_17)+Metabolite_18)+Metabolite_19)+Metabolite_20 </Expression>
+      </Function>
+      <Function id="Population_Counties_with_airports">
+        <ListOfReferences>
+          <Reference name="Metabolite_0" type="Constant"/>
+          <Reference name="Metabolite_1" type="Constant"/>
+          <Reference name="Metabolite_2" type="Constant"/>
+          <Reference name="Metabolite_3" type="Constant"/>
+          <Reference name="Metabolite_4" type="Constant"/>
+          <Reference name="Metabolite_5" type="Constant"/>
+          <Reference name="Metabolite_6" type="Constant"/>
+        </ListOfReferences>
+        <Expression> (((((Metabolite_0+Metabolite_1)+Metabolite_2)+Metabolite_3)+Metabolite_4)+Metabolite_5)+Metabolite_6 </Expression>
+      </Function>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="epsilon" type="Constant"/>
+          <Reference name="lambda_Counties_with_airports" type="Constant"/>
+          <Reference name="Population_Counties_with_airports" type="Function"/>
+          <Reference name="Infected_Low_risk_counties" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((Infected_Low_risk_counties*epsilon)*lambda_Counties_with_airports)/Population_Counties_with_airports </Expression>
+      </Function>
+      <Function id="fRate8">
+        <ListOfReferences>
+          <Reference name="epsilon" type="Constant"/>
+          <Reference name="lambda_Counties_neighbouring_counties_with_airports" type="Constant"/>
+          <Reference name="phi" type="Constant"/>
+          <Reference name="Population_Counties_neighbouring_counties_with_airports" type="Function"/>
+          <Reference name="Population_Counties_with_airports" type="Function"/>
+          <Reference name="Infected_Low_risk_counties" type="Observable"/>
+          <Reference name="Susceptible_Low_risk_counties" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Susceptible_Low_risk_counties*(((Infected_Low_risk_counties*phi)/Population_Counties_with_airports)+(((Infected_Low_risk_counties*epsilon)*lambda_Counties_neighbouring_counties_with_airports)/Population_Counties_neighbouring_counties_with_airports)) </Expression>
+      </Function>
+      <Function id="fRate16">
+        <ListOfReferences>
+          <Reference name="epsilon" type="Constant"/>
+          <Reference name="lambda_Counties_with_highways" type="Constant"/>
+          <Reference name="tau" type="Constant"/>
+          <Reference name="Population_Counties_neighbouring_counties_with_airports" type="Function"/>
+          <Reference name="Population_Counties_with_highways" type="Function"/>
+          <Reference name="Infected_Low_risk_counties" type="Observable"/>
+          <Reference name="Susceptible_Low_risk_counties" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Susceptible_Low_risk_counties*((((Infected_Low_risk_counties*epsilon)*lambda_Counties_with_highways)/Population_Counties_with_highways)+((Infected_Low_risk_counties*tau)/Population_Counties_neighbouring_counties_with_airports)) </Expression>
+      </Function>
+      <Function id="fRate24">
+        <ListOfReferences>
+          <Reference name="alpha" type="Constant"/>
+          <Reference name="epsilon" type="Constant"/>
+          <Reference name="gamma" type="Constant"/>
+          <Reference name="lambda_Low_risk_counties" type="Constant"/>
+          <Reference name="Population_Counties_neighbouring_counties_with_airports" type="Function"/>
+          <Reference name="Population_Counties_with_highways" type="Function"/>
+          <Reference name="Population_Low_risk_counties" type="Function"/>
+          <Reference name="Infected_Low_risk_counties" type="Observable"/>
+          <Reference name="Susceptible_Low_risk_counties" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Susceptible_Low_risk_counties*(((((Infected_Low_risk_counties*epsilon)*lambda_Low_risk_counties)/Population_Low_risk_counties)+((Infected_Low_risk_counties*alpha)/Population_Counties_with_highways))+((Infected_Low_risk_counties*gamma)/Population_Counties_neighbouring_counties_with_airports)) </Expression>
+      </Function>
+      <Function id="_rateLaw1">
+        <ListOfReferences>
+          <Reference name="fRate8" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate8() </Expression>
+      </Function>
+      <Function id="_rateLaw2">
+        <ListOfReferences>
+          <Reference name="fRate16" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate16() </Expression>
+      </Function>
+      <Function id="_rateLaw3">
+        <ListOfReferences>
+          <Reference name="fRate24" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate24() </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

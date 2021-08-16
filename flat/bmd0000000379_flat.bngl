@@ -1,12 +1,12 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000379', 'http://identifiers.org/biomodels.db/MODEL1110030000']
+#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1110030000', 'http://identifiers.org/biomodels.db/BIOMD0000000379']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/17926672']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
 #@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0061178']
 #@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:9351']
 #@creatorEmail:'ajmera@ebi.ac.uk'
 #@creatorName:'Ajmera Ishan'
-#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 12 molecules and 0 reactions. The translated model has 12 molecules and 12 rules'
+#@notes:'This is a plain translation of an SBML model created on 14/08/2021. The original model has 12 molecules and 0 reactions. The translated model has 12 molecules and 12 rules'
 ###
 begin model
 begin parameters
@@ -52,18 +52,18 @@ begin parameters
 	D 78000.0
 end parameters
 begin molecule types
-	I_1()
-	I_l()
-	Q_gut()
 	I_po()
-	I_p()
-	G_p()
-	Q_sto2()
-	G_t()
+	Q_gut()
+	I_l()
+	I_1()
 	Q_sto1()
 	I_d()
 	X()
 	Y()
+	G_t()
+	G_p()
+	Q_sto2()
+	I_p()
 end molecule types
 begin seed species
 	G_p() 178.0 #G_p #G_p
@@ -90,14 +90,14 @@ begin observables
 	Species Q_sto2 Q_sto2() #Q_sto2
 end observables
 begin functions
-	Ra() = Q_gut*f*k_abs/BW
 	E() = 0
+	Ra() = Q_gut*f*k_abs/BW
 	EGP() = -G_p*k_p2 - I_d*k_p3 - I_po*k_p4 + k_p1
 	arRateG_p() = -E + EGP - G_p*k_1 + G_t*k_2 + Ra - U_ii
 	S_po() = K*(-E + EGP - G_p*k_1 + G_t*k_2 + Ra - U_ii)/V_G + S_b + Y
-	aa() = 5/(2*D*(1 - b))
-	Q_sto() = Q_sto1 + Q_sto2
 	cc() = 5/(2*D*d)
+	Q_sto() = Q_sto1 + Q_sto2
+	aa() = 5/(2*D*(1 - b))
 	k_empt() = k_min + (k_max/2 - k_min/2)*(tanh(aa*(-D*b + Q_sto)) - tanh(cc*(-D*d + Q_sto)) + 2)
 	S() = I_po*gamma
 	HE() = -S*m_5 + m_6

@@ -1,0 +1,595 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000855_atomized">
+    <ListOfParameters>
+      <Parameter id="kpn" type="Constant" value="35.03" expr="35.03"/>
+      <Parameter id="kpm" type="Constant" value="34.8" expr="34.8"/>
+      <Parameter id="Ninf" type="Constant" value="0.11" expr="0.11"/>
+      <Parameter id="kptn" type="Constant" value="2.03" expr="2.03"/>
+      <Parameter id="kptm" type="Constant" value="3.16" expr="3.16"/>
+      <Parameter id="mupt" type="Constant" value="0.37" expr="0.37"/>
+      <Parameter id="knp" type="Constant" value="17.58" expr="17.58"/>
+      <Parameter id="knpt" type="Constant" value="2.97" expr="2.97"/>
+      <Parameter id="snr" type="Constant" value="0.38" expr="0.38"/>
+      <Parameter id="munr" type="Constant" value="3.3" expr="3.3"/>
+      <Parameter id="mun" type="Constant" value="1.02" expr="1.02"/>
+      <Parameter id="knm" type="Constant" value="6.42" expr="6.42"/>
+      <Parameter id="kmp" type="Constant" value="18.52" expr="18.52"/>
+      <Parameter id="kmm" type="Constant" value="0.06" expr="0.06"/>
+      <Parameter id="kmn" type="Constant" value="10.58" expr="10.58"/>
+      <Parameter id="kmpt" type="Constant" value="41.5" expr="41.5"/>
+      <Parameter id="smr" type="Constant" value="0.17" expr="0.17"/>
+      <Parameter id="mumr" type="Constant" value="0.54" expr="0.54"/>
+      <Parameter id="mum" type="Constant" value="0.5" expr="0.5"/>
+      <Parameter id="ENinf" type="Constant" value="6.8" expr="6.8"/>
+      <Parameter id="ken" type="Constant" value="5.37" expr="5.37"/>
+      <Parameter id="EMinf" type="Constant" value="5" expr="5.0"/>
+      <Parameter id="kem" type="Constant" value="4.97" expr="4.97"/>
+      <Parameter id="Cn" type="Constant" value="175.72" expr="175.72"/>
+      <Parameter id="Cm1" type="Constant" value="72.84" expr="72.84"/>
+      <Parameter id="Cm2" type="Constant" value="13.06" expr="13.06"/>
+      <Parameter id="kpg" type="Constant" value="14.4" expr="14.4"/>
+      <Parameter id="pinf" type="Constant" value="20" expr="20.0"/>
+      <Parameter id="kbp" type="Constant" value="0.2" expr="0.2"/>
+      <Parameter id="sb" type="Constant" value="0.12" expr="0.12"/>
+      <Parameter id="mub" type="Constant" value="0.048" expr="0.048"/>
+      <Parameter id="kpb" type="Constant" value="14.4" expr="14.4"/>
+      <Parameter id="C" type="Constant" value="0" expr="0"/>
+      <Parameter id="E" type="Constant" value="0" expr="0"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="M"/>
+      <MoleculeType id="N">
+        <ListOfComponentTypes>
+          <ComponentType id="Pt">
+            <ListOfAllowedStates>
+              <AllowedState id="Pt"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="P"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="6.022000000000001e+22" name="P()">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="P"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="1.2044e+24" name="N(Pt~Pt)">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="N">
+            <ListOfComponents>
+              <Component id="S2_M1_C1" name="Pt" state="Pt" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="6.022000000000001e+22" name="N(Pt~0)">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="N">
+            <ListOfComponents>
+              <Component id="S3_M1_C1" name="Pt" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="Pathogen_Growth" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="P"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="_reverse_Pathogen_Growth" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="P"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="fRate0m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR2_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="Pathogen_Destruction_Background_Response" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="P"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="fRate1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR3_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="Pathogen_Destruction_Neutrophils_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="P"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="_rateLaw1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR4_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="Pathogen_Destruction_Macrophages_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="P"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Function" name="_rateLaw2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR5_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="Debris_Destruction_Neutrophils_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="N">
+                <ListOfComponents>
+                  <Component id="RR6_PP1_M1_C1" name="Pt" state="Pt" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Function" name="_rateLaw3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR6_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="Debris_Destruction_Macrophages_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="N">
+                <ListOfComponents>
+                  <Component id="RR7_PP1_M1_C1" name="Pt" state="Pt" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Function" name="_rateLaw4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR7_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="Debris_Neutrophil_Decay" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR8_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_RP1_M1" name="N">
+                <ListOfComponents>
+                  <Component id="RR8_RP1_M1_C1" name="Pt" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR8_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP1_M1" name="N">
+                <ListOfComponents>
+                  <Component id="RR8_PP1_M1_C1" name="Pt" state="Pt" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="mun"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR8_RP1_M1" targetID="RR8_PP1_M1"/>
+          <MapItem sourceID="RR8_RP1_M1_C1" targetID="RR8_PP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR8_RP1_M1_C1" finalState="Pt"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="Debris_Decay_Intrinsic" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR9_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_RP1_M1" name="N">
+                <ListOfComponents>
+                  <Component id="RR9_RP1_M1_C1" name="Pt" state="Pt" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="mupt"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR9_RP1_M1"/>
+          <MapItem sourceID="RR9_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR9_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="Macrophage_Recruitment" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR10_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_PP1_M1" name="M"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Function" name="fRate8" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR10_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR11" name="Macrophage_Activation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR11_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_RP1_M1" name="M"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR11_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="mum"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR11_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR11_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR12" name="Neutrophil_Activation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR12_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_PP1_M1" name="N">
+                <ListOfComponents>
+                  <Component id="RR12_PP1_M1_C1" name="Pt" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR12_RateLaw" type="Function" name="fEN" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR12_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR13" name="Neutrophil_Destruction_Macrophage" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR13_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_RP1_M1" name="N">
+                <ListOfComponents>
+                  <Component id="RR13_RP1_M1_C1" name="Pt" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR13_RateLaw" type="Function" name="fRate11" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR13_RP1_M1"/>
+          <MapItem sourceID="RR13_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR13_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="P" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="P"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="Pt" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="N">
+                <ListOfComponents>
+                  <Component id="O2_P1_M1_C1" name="Pt" state="Pt" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="M" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="M"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="N" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="N">
+                <ListOfComponents>
+                  <Component id="O4_P1_M1_C1" name="Pt" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="R2">
+        <ListOfReferences>
+          <Reference name="C" type="Constant"/>
+          <Reference name="Cn" type="Constant"/>
+          <Reference name="knp" type="Constant"/>
+          <Reference name="knpt" type="Constant"/>
+          <Reference name="P" type="Observable"/>
+          <Reference name="Pt" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((P*knp)+(Pt*knpt))/(((C^2)/(Cn^2))+1) </Expression>
+      </Function>
+      <Function id="fEN">
+        <ListOfReferences>
+          <Reference name="E" type="Constant"/>
+          <Reference name="ENinf" type="Constant"/>
+          <Reference name="munr" type="Constant"/>
+          <Reference name="snr" type="Constant"/>
+          <Reference name="R2" type="Function"/>
+        </ListOfReferences>
+        <Expression> (R2*snr)/((R2+munr)*(((E^2)/(ENinf^2))+1)) </Expression>
+      </Function>
+      <Function id="fEM_Kmm_E">
+        <ListOfReferences>
+          <Reference name="E" type="Constant"/>
+          <Reference name="EMinf" type="Constant"/>
+          <Reference name="kmm" type="Constant"/>
+        </ListOfReferences>
+        <Expression> kmm/(((E^2)/(EMinf^2))+1) </Expression>
+      </Function>
+      <Function id="R1">
+        <ListOfReferences>
+          <Reference name="C" type="Constant"/>
+          <Reference name="Cm2" type="Constant"/>
+          <Reference name="kmn" type="Constant"/>
+          <Reference name="kmp" type="Constant"/>
+          <Reference name="kmpt" type="Constant"/>
+          <Reference name="fEM_Kmm_E" type="Function"/>
+          <Reference name="M" type="Observable"/>
+          <Reference name="N" type="Observable"/>
+          <Reference name="P" type="Observable"/>
+          <Reference name="Pt" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((((M*fEM_Kmm_E)+(N*kmn))+(P*kmp))+(Pt*kmpt))/(((C^2)/(Cm2^2))+1) </Expression>
+      </Function>
+      <Function id="fi2">
+        <ListOfReferences>
+          <Reference name="C" type="Constant"/>
+          <Reference name="Cm1" type="Constant"/>
+          <Reference name="Ninf" type="Constant"/>
+          <Reference name="M" type="Observable"/>
+          <Reference name="N" type="Observable"/>
+        </ListOfReferences>
+        <Expression> M/((((C^2)/(Cm1^2))+((N^2)/(Ninf^2)))+1) </Expression>
+      </Function>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="kpg" type="Constant"/>
+          <Reference name="P" type="Observable"/>
+        </ListOfReferences>
+        <Expression> P*kpg </Expression>
+      </Function>
+      <Function id="fRate0m">
+        <ListOfReferences>
+          <Reference name="kpg" type="Constant"/>
+          <Reference name="pinf" type="Constant"/>
+          <Reference name="P" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (P*kpg)/pinf </Expression>
+      </Function>
+      <Function id="fRate1">
+        <ListOfReferences>
+          <Reference name="kbp" type="Constant"/>
+          <Reference name="kpb" type="Constant"/>
+          <Reference name="mub" type="Constant"/>
+          <Reference name="sb" type="Constant"/>
+          <Reference name="P" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (kpb*sb)/((P*kbp)+mub) </Expression>
+      </Function>
+      <Function id="fRate2">
+        <ListOfReferences>
+          <Reference name="E" type="Constant"/>
+          <Reference name="ken" type="Constant"/>
+          <Reference name="kpn" type="Constant"/>
+          <Reference name="N" type="Observable"/>
+          <Reference name="P" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((N*P)*kpn)*((E*ken)+1) </Expression>
+      </Function>
+      <Function id="fRate3">
+        <ListOfReferences>
+          <Reference name="E" type="Constant"/>
+          <Reference name="kem" type="Constant"/>
+          <Reference name="kpm" type="Constant"/>
+          <Reference name="fi2" type="Function"/>
+          <Reference name="P" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((P*fi2)*kpm)*((E*kem)+1) </Expression>
+      </Function>
+      <Function id="fRate4">
+        <ListOfReferences>
+          <Reference name="ken" type="Constant"/>
+          <Reference name="kptn" type="Constant"/>
+          <Reference name="N" type="Observable"/>
+          <Reference name="Pt" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((N*Pt)*kptn)*((N*ken)+1) </Expression>
+      </Function>
+      <Function id="fRate5">
+        <ListOfReferences>
+          <Reference name="E" type="Constant"/>
+          <Reference name="kem" type="Constant"/>
+          <Reference name="kptm" type="Constant"/>
+          <Reference name="fi2" type="Function"/>
+          <Reference name="Pt" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((Pt*fi2)*kptm)*((E*kem)+1) </Expression>
+      </Function>
+      <Function id="fRate8">
+        <ListOfReferences>
+          <Reference name="mumr" type="Constant"/>
+          <Reference name="smr" type="Constant"/>
+          <Reference name="R1" type="Function"/>
+        </ListOfReferences>
+        <Expression> (R1*smr)/(R1+mumr) </Expression>
+      </Function>
+      <Function id="fRate11">
+        <ListOfReferences>
+          <Reference name="knm" type="Constant"/>
+          <Reference name="fi2" type="Function"/>
+        </ListOfReferences>
+        <Expression> fi2*knm </Expression>
+      </Function>
+      <Function id="_rateLaw1">
+        <ListOfReferences>
+          <Reference name="fRate2" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate2() </Expression>
+      </Function>
+      <Function id="_rateLaw2">
+        <ListOfReferences>
+          <Reference name="fRate3" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate3() </Expression>
+      </Function>
+      <Function id="_rateLaw3">
+        <ListOfReferences>
+          <Reference name="fRate4" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate4() </Expression>
+      </Function>
+      <Function id="_rateLaw4">
+        <ListOfReferences>
+          <Reference name="fRate5" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate5() </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

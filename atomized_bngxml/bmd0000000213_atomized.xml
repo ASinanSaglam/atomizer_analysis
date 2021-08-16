@@ -1,0 +1,952 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000213_atomized">
+    <ListOfParameters>
+      <Parameter id="NE_k1" type="Constant" value="0.15" expr="0.15"/>
+      <Parameter id="NE_k2" type="Constant" value="12" expr="12.0"/>
+      <Parameter id="MS_Vmax" type="Constant" value="500" expr="500.0"/>
+      <Parameter id="MS_Km_5mTHF" type="Constant" value="25" expr="25.0"/>
+      <Parameter id="MS_Km_Hcy" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="MS_Kd" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="MTHFR_Vmax" type="Constant" value="6000" expr="6000.0"/>
+      <Parameter id="MTHFR_Km_NADPH" type="Constant" value="16" expr="16.0"/>
+      <Parameter id="MTHFR_Km_5_10_CH2THF" type="Constant" value="50" expr="50.0"/>
+      <Parameter id="FTD_Vmax" type="Constant" value="14000" expr="14000.0"/>
+      <Parameter id="FTD_Km_10fTHF" type="Constant" value="20" expr="20.0"/>
+      <Parameter id="FTS_Vmax" type="Constant" value="2000" expr="2000.0"/>
+      <Parameter id="FTS_Km_HCOOH" type="Constant" value="43" expr="43.0"/>
+      <Parameter id="FTS_Km_THF" type="Constant" value="3" expr="3.0"/>
+      <Parameter id="AICART_Vmax" type="Constant" value="45000" expr="45000.0"/>
+      <Parameter id="AICART_Km_AICAR" type="Constant" value="100" expr="100.0"/>
+      <Parameter id="AICART_Km_10fTHF" type="Constant" value="5.9" expr="5.9"/>
+      <Parameter id="PGT_Vmax" type="Constant" value="16200" expr="16200.0"/>
+      <Parameter id="PGT_Km_GAR" type="Constant" value="520" expr="520.0"/>
+      <Parameter id="PGT_Km_10fTHF" type="Constant" value="4.9" expr="4.9"/>
+      <Parameter id="TS_Vmax" type="Constant" value="50" expr="50.0"/>
+      <Parameter id="TS_Km_dUMP" type="Constant" value="6.3" expr="6.3"/>
+      <Parameter id="TS_Km_5_10_CH2THF" type="Constant" value="14" expr="14.0"/>
+      <Parameter id="DHFR_Vmax" type="Constant" value="50" expr="50.0"/>
+      <Parameter id="DHFR_Km_NADPH" type="Constant" value="4" expr="4.0"/>
+      <Parameter id="DHFR_Km_DHF" type="Constant" value="0.5" expr="0.5"/>
+      <Parameter id="MTCH_VmaxF" type="Constant" value="800000" expr="800000.0"/>
+      <Parameter id="MTCH_Km_5_10_CHTHF" type="Constant" value="250" expr="250.0"/>
+      <Parameter id="MTCH_VmaxR" type="Constant" value="20000" expr="20000.0"/>
+      <Parameter id="MTCH_Km_10fTHF" type="Constant" value="100" expr="100.0"/>
+      <Parameter id="SHMT_VmaxF" type="Constant" value="40000" expr="40000.0"/>
+      <Parameter id="SHMT_Km_Ser" type="Constant" value="600" expr="600.0"/>
+      <Parameter id="SHMT_Km_THF" type="Constant" value="50" expr="50.0"/>
+      <Parameter id="SHMT_VmaxR" type="Constant" value="25000" expr="25000.0"/>
+      <Parameter id="MTD_VmaxF" type="Constant" value="200000" expr="200000.0"/>
+      <Parameter id="MTD_Km_5_10_CH2THF" type="Constant" value="2" expr="2.0"/>
+      <Parameter id="MTD_VmaxR" type="Constant" value="594000" expr="594000.0"/>
+      <Parameter id="MTD_Km_5_10_CHTHF" type="Constant" value="10" expr="10.0"/>
+      <Parameter id="Ser" type="Constant" value="2.818296e+26" expr="2.818296e+26"/>
+      <Parameter id="Gly" type="Constant" value="1.11407e+27" expr="1.1140700000000001e+27"/>
+      <Parameter id="dUMP" type="Constant" value="1.2044e+25" expr="1.2044e+25"/>
+      <Parameter id="GAR" type="Constant" value="6.022e+24" expr="6.022e+24"/>
+      <Parameter id="AICAR" type="Constant" value="1.26462e+24" expr="1.26462e+24"/>
+      <Parameter id="HCOOH" type="Constant" value="5.4198e+26" expr="5.4198000000000005e+26"/>
+      <Parameter id="NADPH" type="Constant" value="3.011e+25" expr="3.011e+25"/>
+      <Parameter id="Hcy" type="Constant" value="6.022e+23" expr="6.022e+23"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="DHF"/>
+      <MoleculeType id="THF">
+        <ListOfComponentTypes>
+          <ComponentType id="_10f">
+            <ListOfAllowedStates>
+              <AllowedState id="10F"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="_5m">
+            <ListOfAllowedStates>
+              <AllowedState id="5M"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="_10fTHF">
+            <ListOfAllowedStates>
+              <AllowedState id="_10fTHF"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="_5mTHF">
+            <ListOfAllowedStates>
+              <AllowedState id="_5mTHF"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="_5_10_CH2THF"/>
+      <MoleculeType id="_5_10_CHTHF"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="3.107352e+24" name="THF(_10f~0,_10fTHF~0,_5m~5M,_5mTHF~_5mTHF)">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="THF">
+            <ListOfComponents>
+              <Component id="S1_M1_C1" name="_10f" state="0" numberOfBonds="0"/>
+              <Component id="S1_M1_C2" name="_10fTHF" state="0" numberOfBonds="0"/>
+              <Component id="S1_M1_C3" name="_5m" state="5M" numberOfBonds="0"/>
+              <Component id="S1_M1_C4" name="_5mTHF" state="_5mTHF" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="4.0528060000000005e+24" name="THF(_10f~0,_10fTHF~0,_5m~0,_5mTHF~0)">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="THF">
+            <ListOfComponents>
+              <Component id="S2_M1_C1" name="_10f" state="0" numberOfBonds="0"/>
+              <Component id="S2_M1_C2" name="_10fTHF" state="0" numberOfBonds="0"/>
+              <Component id="S2_M1_C3" name="_5m" state="0" numberOfBonds="0"/>
+              <Component id="S2_M1_C4" name="_5mTHF" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="1.62594e+22" name="DHF()">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="DHF"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S4"  concentration="5.66068e+23" name="_5_10_CH2THF()">
+        <ListOfMolecules>
+          <Molecule id="S4_M1" name="_5_10_CH2THF"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S5"  concentration="6.943366000000001e+23" name="_5_10_CHTHF()">
+        <ListOfMolecules>
+          <Molecule id="S5_M1" name="_5_10_CHTHF"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S6"  concentration="3.6071780000000005e+24" name="THF(_10f~10F,_10fTHF~_10fTHF,_5m~0,_5mTHF~0)">
+        <ListOfMolecules>
+          <Molecule id="S6_M1" name="THF">
+            <ListOfComponents>
+              <Component id="S6_M1_C1" name="_10f" state="10F" numberOfBonds="0"/>
+              <Component id="S6_M1_C2" name="_10fTHF" state="_10fTHF" numberOfBonds="0"/>
+              <Component id="S6_M1_C3" name="_5m" state="0" numberOfBonds="0"/>
+              <Component id="S6_M1_C4" name="_5mTHF" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="V_NE" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR1_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_RP1_M1" name="THF">
+                <ListOfComponents>
+                  <Component id="RR1_RP1_M1_C1" name="_10f" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_RP1_M1_C2" name="_5m" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_RP1_M1_C3" name="_10fTHF" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_RP1_M1_C4" name="_5mTHF" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="_5_10_CH2THF"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR1_RP1_M1"/>
+          <MapItem sourceID="RR1_RP1_M1_C1"/>
+          <MapItem sourceID="RR1_RP1_M1_C2"/>
+          <MapItem sourceID="RR1_RP1_M1_C3"/>
+          <MapItem sourceID="RR1_RP1_M1_C4"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+          <Delete id="RR1_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="_reverse_V_NE" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="_5_10_CH2THF"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="THF">
+                <ListOfComponents>
+                  <Component id="RR2_PP1_M1_C1" name="_10f" state="0" numberOfBonds="0"/>
+                  <Component id="RR2_PP1_M1_C2" name="_5m" state="0" numberOfBonds="0"/>
+                  <Component id="RR2_PP1_M1_C3" name="_10fTHF" state="0" numberOfBonds="0"/>
+                  <Component id="RR2_PP1_M1_C4" name="_5mTHF" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="NE_k2"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+          <Delete id="RR2_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="V_MS" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="THF">
+                <ListOfComponents>
+                  <Component id="RR3_RP1_M1_C1" name="_10f" state="0" numberOfBonds="0"/>
+                  <Component id="RR3_RP1_M1_C2" name="_5m" state="5M" numberOfBonds="0"/>
+                  <Component id="RR3_RP1_M1_C3" name="_10fTHF" state="0" numberOfBonds="0"/>
+                  <Component id="RR3_RP1_M1_C4" name="_5mTHF" state="_5mTHF" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="THF">
+                <ListOfComponents>
+                  <Component id="RR3_PP1_M1_C1" name="_10f" state="0" numberOfBonds="0"/>
+                  <Component id="RR3_PP1_M1_C2" name="_5m" state="0" numberOfBonds="0"/>
+                  <Component id="RR3_PP1_M1_C3" name="_10fTHF" state="0" numberOfBonds="0"/>
+                  <Component id="RR3_PP1_M1_C4" name="_5mTHF" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="fRate1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1" targetID="RR3_PP1_M1"/>
+          <MapItem sourceID="RR3_RP1_M1_C1" targetID="RR3_PP1_M1_C1"/>
+          <MapItem sourceID="RR3_RP1_M1_C2" targetID="RR3_PP1_M1_C2"/>
+          <MapItem sourceID="RR3_RP1_M1_C3" targetID="RR3_PP1_M1_C3"/>
+          <MapItem sourceID="RR3_RP1_M1_C4" targetID="RR3_PP1_M1_C4"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR3_RP1_M1_C2" finalState="0"/>
+          <StateChange site="RR3_RP1_M1_C4" finalState="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="V_MTHFR" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="_5_10_CH2THF"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="THF">
+                <ListOfComponents>
+                  <Component id="RR4_PP1_M1_C1" name="_10f" state="0" numberOfBonds="0"/>
+                  <Component id="RR4_PP1_M1_C2" name="_5m" state="5M" numberOfBonds="0"/>
+                  <Component id="RR4_PP1_M1_C3" name="_10fTHF" state="0" numberOfBonds="0"/>
+                  <Component id="RR4_PP1_M1_C4" name="_5mTHF" state="_5mTHF" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="fRate2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR4_PP1_M1"/>
+          <Delete id="RR4_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="V_FTD" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR5_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP1_M1" name="THF">
+                <ListOfComponents>
+                  <Component id="RR5_RP1_M1_C1" name="_10f" state="10F" numberOfBonds="0"/>
+                  <Component id="RR5_RP1_M1_C2" name="_5m" state="0" numberOfBonds="0"/>
+                  <Component id="RR5_RP1_M1_C3" name="_10fTHF" state="_10fTHF" numberOfBonds="0"/>
+                  <Component id="RR5_RP1_M1_C4" name="_5mTHF" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="THF">
+                <ListOfComponents>
+                  <Component id="RR5_PP1_M1_C1" name="_10f" state="0" numberOfBonds="0"/>
+                  <Component id="RR5_PP1_M1_C2" name="_5m" state="0" numberOfBonds="0"/>
+                  <Component id="RR5_PP1_M1_C3" name="_10fTHF" state="0" numberOfBonds="0"/>
+                  <Component id="RR5_PP1_M1_C4" name="_5mTHF" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Function" name="fRate3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR5_RP1_M1" targetID="RR5_PP1_M1"/>
+          <MapItem sourceID="RR5_RP1_M1_C1" targetID="RR5_PP1_M1_C1"/>
+          <MapItem sourceID="RR5_RP1_M1_C2" targetID="RR5_PP1_M1_C2"/>
+          <MapItem sourceID="RR5_RP1_M1_C3" targetID="RR5_PP1_M1_C3"/>
+          <MapItem sourceID="RR5_RP1_M1_C4" targetID="RR5_PP1_M1_C4"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR5_RP1_M1_C1" finalState="0"/>
+          <StateChange site="RR5_RP1_M1_C3" finalState="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="V_FTS" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR6_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_RP1_M1" name="THF">
+                <ListOfComponents>
+                  <Component id="RR6_RP1_M1_C1" name="_10f" state="0" numberOfBonds="0"/>
+                  <Component id="RR6_RP1_M1_C2" name="_5m" state="0" numberOfBonds="0"/>
+                  <Component id="RR6_RP1_M1_C3" name="_10fTHF" state="0" numberOfBonds="0"/>
+                  <Component id="RR6_RP1_M1_C4" name="_5mTHF" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="THF">
+                <ListOfComponents>
+                  <Component id="RR6_PP1_M1_C1" name="_10f" state="10F" numberOfBonds="0"/>
+                  <Component id="RR6_PP1_M1_C2" name="_5m" state="0" numberOfBonds="0"/>
+                  <Component id="RR6_PP1_M1_C3" name="_10fTHF" state="_10fTHF" numberOfBonds="0"/>
+                  <Component id="RR6_PP1_M1_C4" name="_5mTHF" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Function" name="fRate4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR6_RP1_M1" targetID="RR6_PP1_M1"/>
+          <MapItem sourceID="RR6_RP1_M1_C1" targetID="RR6_PP1_M1_C1"/>
+          <MapItem sourceID="RR6_RP1_M1_C2" targetID="RR6_PP1_M1_C2"/>
+          <MapItem sourceID="RR6_RP1_M1_C3" targetID="RR6_PP1_M1_C3"/>
+          <MapItem sourceID="RR6_RP1_M1_C4" targetID="RR6_PP1_M1_C4"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR6_RP1_M1_C1" finalState="10F"/>
+          <StateChange site="RR6_RP1_M1_C3" finalState="_10fTHF"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="V_AICART" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR7_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_RP1_M1" name="THF">
+                <ListOfComponents>
+                  <Component id="RR7_RP1_M1_C1" name="_10f" state="10F" numberOfBonds="0"/>
+                  <Component id="RR7_RP1_M1_C2" name="_5m" state="0" numberOfBonds="0"/>
+                  <Component id="RR7_RP1_M1_C3" name="_10fTHF" state="_10fTHF" numberOfBonds="0"/>
+                  <Component id="RR7_RP1_M1_C4" name="_5mTHF" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="THF">
+                <ListOfComponents>
+                  <Component id="RR7_PP1_M1_C1" name="_10f" state="0" numberOfBonds="0"/>
+                  <Component id="RR7_PP1_M1_C2" name="_5m" state="0" numberOfBonds="0"/>
+                  <Component id="RR7_PP1_M1_C3" name="_10fTHF" state="0" numberOfBonds="0"/>
+                  <Component id="RR7_PP1_M1_C4" name="_5mTHF" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Function" name="fRate5" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR7_RP1_M1" targetID="RR7_PP1_M1"/>
+          <MapItem sourceID="RR7_RP1_M1_C1" targetID="RR7_PP1_M1_C1"/>
+          <MapItem sourceID="RR7_RP1_M1_C2" targetID="RR7_PP1_M1_C2"/>
+          <MapItem sourceID="RR7_RP1_M1_C3" targetID="RR7_PP1_M1_C3"/>
+          <MapItem sourceID="RR7_RP1_M1_C4" targetID="RR7_PP1_M1_C4"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR7_RP1_M1_C1" finalState="0"/>
+          <StateChange site="RR7_RP1_M1_C3" finalState="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="V_PGT" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR8_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_RP1_M1" name="THF">
+                <ListOfComponents>
+                  <Component id="RR8_RP1_M1_C1" name="_10f" state="10F" numberOfBonds="0"/>
+                  <Component id="RR8_RP1_M1_C2" name="_5m" state="0" numberOfBonds="0"/>
+                  <Component id="RR8_RP1_M1_C3" name="_10fTHF" state="_10fTHF" numberOfBonds="0"/>
+                  <Component id="RR8_RP1_M1_C4" name="_5mTHF" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR8_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP1_M1" name="THF">
+                <ListOfComponents>
+                  <Component id="RR8_PP1_M1_C1" name="_10f" state="0" numberOfBonds="0"/>
+                  <Component id="RR8_PP1_M1_C2" name="_5m" state="0" numberOfBonds="0"/>
+                  <Component id="RR8_PP1_M1_C3" name="_10fTHF" state="0" numberOfBonds="0"/>
+                  <Component id="RR8_PP1_M1_C4" name="_5mTHF" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Function" name="fRate6" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR8_RP1_M1" targetID="RR8_PP1_M1"/>
+          <MapItem sourceID="RR8_RP1_M1_C1" targetID="RR8_PP1_M1_C1"/>
+          <MapItem sourceID="RR8_RP1_M1_C2" targetID="RR8_PP1_M1_C2"/>
+          <MapItem sourceID="RR8_RP1_M1_C3" targetID="RR8_PP1_M1_C3"/>
+          <MapItem sourceID="RR8_RP1_M1_C4" targetID="RR8_PP1_M1_C4"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR8_RP1_M1_C1" finalState="0"/>
+          <StateChange site="RR8_RP1_M1_C3" finalState="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="V_TS" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR9_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_RP1_M1" name="_5_10_CH2THF"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR9_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP1_M1" name="DHF"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Function" name="fRate7" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR9_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR9_PP1_M1"/>
+          <Delete id="RR9_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="V_DHFR" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR10_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_RP1_M1" name="DHF"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR10_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_PP1_M1" name="THF">
+                <ListOfComponents>
+                  <Component id="RR10_PP1_M1_C1" name="_10f" state="0" numberOfBonds="0"/>
+                  <Component id="RR10_PP1_M1_C2" name="_5m" state="0" numberOfBonds="0"/>
+                  <Component id="RR10_PP1_M1_C3" name="_10fTHF" state="0" numberOfBonds="0"/>
+                  <Component id="RR10_PP1_M1_C4" name="_5mTHF" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Function" name="fRate8" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR10_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR10_PP1_M1"/>
+          <Delete id="RR10_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR11" name="V_MTCH" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR11_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_RP1_M1" name="_5_10_CHTHF"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR11_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_PP1_M1" name="THF">
+                <ListOfComponents>
+                  <Component id="RR11_PP1_M1_C1" name="_10f" state="10F" numberOfBonds="0"/>
+                  <Component id="RR11_PP1_M1_C2" name="_5m" state="0" numberOfBonds="0"/>
+                  <Component id="RR11_PP1_M1_C3" name="_10fTHF" state="_10fTHF" numberOfBonds="0"/>
+                  <Component id="RR11_PP1_M1_C4" name="_5mTHF" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR11_RateLaw" type="Function" name="fRate9" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR11_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR11_PP1_M1"/>
+          <Delete id="RR11_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR12" name="_reverse_V_MTCH" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR12_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_RP1_M1" name="THF">
+                <ListOfComponents>
+                  <Component id="RR12_RP1_M1_C1" name="_10f" state="10F" numberOfBonds="0"/>
+                  <Component id="RR12_RP1_M1_C2" name="_5m" state="0" numberOfBonds="0"/>
+                  <Component id="RR12_RP1_M1_C3" name="_10fTHF" state="_10fTHF" numberOfBonds="0"/>
+                  <Component id="RR12_RP1_M1_C4" name="_5mTHF" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR12_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_PP1_M1" name="_5_10_CHTHF"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR12_RateLaw" type="Function" name="fRate9m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR12_RP1_M1"/>
+          <MapItem sourceID="RR12_RP1_M1_C1"/>
+          <MapItem sourceID="RR12_RP1_M1_C2"/>
+          <MapItem sourceID="RR12_RP1_M1_C3"/>
+          <MapItem sourceID="RR12_RP1_M1_C4"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR12_PP1_M1"/>
+          <Delete id="RR12_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR13" name="V_SHMT" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR13_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_RP1_M1" name="THF">
+                <ListOfComponents>
+                  <Component id="RR13_RP1_M1_C1" name="_10f" state="0" numberOfBonds="0"/>
+                  <Component id="RR13_RP1_M1_C2" name="_5m" state="0" numberOfBonds="0"/>
+                  <Component id="RR13_RP1_M1_C3" name="_10fTHF" state="0" numberOfBonds="0"/>
+                  <Component id="RR13_RP1_M1_C4" name="_5mTHF" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR13_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_PP1_M1" name="_5_10_CH2THF"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR13_RateLaw" type="Function" name="fRate10" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR13_RP1_M1"/>
+          <MapItem sourceID="RR13_RP1_M1_C1"/>
+          <MapItem sourceID="RR13_RP1_M1_C2"/>
+          <MapItem sourceID="RR13_RP1_M1_C3"/>
+          <MapItem sourceID="RR13_RP1_M1_C4"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR13_PP1_M1"/>
+          <Delete id="RR13_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR14" name="_reverse_V_SHMT" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR14_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_RP1_M1" name="_5_10_CH2THF"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR14_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_PP1_M1" name="THF">
+                <ListOfComponents>
+                  <Component id="RR14_PP1_M1_C1" name="_10f" state="0" numberOfBonds="0"/>
+                  <Component id="RR14_PP1_M1_C2" name="_5m" state="0" numberOfBonds="0"/>
+                  <Component id="RR14_PP1_M1_C3" name="_10fTHF" state="0" numberOfBonds="0"/>
+                  <Component id="RR14_PP1_M1_C4" name="_5mTHF" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR14_RateLaw" type="Function" name="fRate10m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR14_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR14_PP1_M1"/>
+          <Delete id="RR14_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR15" name="V_MTD" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR15_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR15_RP1_M1" name="_5_10_CH2THF"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR15_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR15_PP1_M1" name="_5_10_CHTHF"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR15_RateLaw" type="Function" name="fRate11" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR15_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR15_PP1_M1"/>
+          <Delete id="RR15_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR16" name="_reverse_V_MTD" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR16_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR16_RP1_M1" name="_5_10_CHTHF"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR16_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR16_PP1_M1" name="_5_10_CH2THF"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR16_RateLaw" type="Function" name="fRate11m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR16_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR16_PP1_M1"/>
+          <Delete id="RR16_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="_5mTHF" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="THF">
+                <ListOfComponents>
+                  <Component id="O1_P1_M1_C1" name="_10f" state="0" numberOfBonds="0"/>
+                  <Component id="O1_P1_M1_C2" name="_5m" state="5M" numberOfBonds="0"/>
+                  <Component id="O1_P1_M1_C3" name="_10fTHF" state="0" numberOfBonds="0"/>
+                  <Component id="O1_P1_M1_C4" name="_5mTHF" state="_5mTHF" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="THF" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="THF">
+                <ListOfComponents>
+                  <Component id="O2_P1_M1_C1" name="_10f" state="0" numberOfBonds="0"/>
+                  <Component id="O2_P1_M1_C2" name="_5m" state="0" numberOfBonds="0"/>
+                  <Component id="O2_P1_M1_C3" name="_10fTHF" state="0" numberOfBonds="0"/>
+                  <Component id="O2_P1_M1_C4" name="_5mTHF" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="DHF" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="DHF"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="_5_10_CH2THF" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="_5_10_CH2THF"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="_5_10_CHTHF" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="_5_10_CHTHF"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O6" name="_10fTHF" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O6_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O6_P1_M1" name="THF">
+                <ListOfComponents>
+                  <Component id="O6_P1_M1_C1" name="_10f" state="10F" numberOfBonds="0"/>
+                  <Component id="O6_P1_M1_C2" name="_5m" state="0" numberOfBonds="0"/>
+                  <Component id="O6_P1_M1_C3" name="_10fTHF" state="_10fTHF" numberOfBonds="0"/>
+                  <Component id="O6_P1_M1_C4" name="_5mTHF" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="HCOOH" type="Constant"/>
+          <Reference name="NE_k1" type="Constant"/>
+        </ListOfReferences>
+        <Expression> HCOOH*NE_k1 </Expression>
+      </Function>
+      <Function id="fRate1">
+        <ListOfReferences>
+          <Reference name="Hcy" type="Constant"/>
+          <Reference name="MS_Kd" type="Constant"/>
+          <Reference name="MS_Km_5mTHF" type="Constant"/>
+          <Reference name="MS_Km_Hcy" type="Constant"/>
+          <Reference name="MS_Vmax" type="Constant"/>
+          <Reference name="_5mTHF" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (Hcy*MS_Vmax)/((((Hcy*MS_Km_5mTHF)+(Hcy*_5mTHF))+(MS_Kd*MS_Km_Hcy))+(MS_Km_Hcy*_5mTHF)) </Expression>
+      </Function>
+      <Function id="fRate2">
+        <ListOfReferences>
+          <Reference name="MTHFR_Km_5_10_CH2THF" type="Constant"/>
+          <Reference name="MTHFR_Km_NADPH" type="Constant"/>
+          <Reference name="MTHFR_Vmax" type="Constant"/>
+          <Reference name="NADPH" type="Constant"/>
+          <Reference name="_5_10_CH2THF" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (MTHFR_Vmax*NADPH)/((((MTHFR_Km_5_10_CH2THF*MTHFR_Km_NADPH)+(MTHFR_Km_5_10_CH2THF*NADPH))+(MTHFR_Km_NADPH*_5_10_CH2THF))+(NADPH*_5_10_CH2THF)) </Expression>
+      </Function>
+      <Function id="fRate3">
+        <ListOfReferences>
+          <Reference name="FTD_Km_10fTHF" type="Constant"/>
+          <Reference name="FTD_Vmax" type="Constant"/>
+          <Reference name="_10fTHF" type="Observable"/>
+        </ListOfReferences>
+        <Expression> FTD_Vmax/(FTD_Km_10fTHF+_10fTHF) </Expression>
+      </Function>
+      <Function id="fRate4">
+        <ListOfReferences>
+          <Reference name="FTS_Km_HCOOH" type="Constant"/>
+          <Reference name="FTS_Km_THF" type="Constant"/>
+          <Reference name="FTS_Vmax" type="Constant"/>
+          <Reference name="HCOOH" type="Constant"/>
+          <Reference name="THF" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (FTS_Vmax*HCOOH)/((((FTS_Km_HCOOH*FTS_Km_THF)+(FTS_Km_HCOOH*THF))+(FTS_Km_THF*HCOOH))+(HCOOH*THF)) </Expression>
+      </Function>
+      <Function id="fRate5">
+        <ListOfReferences>
+          <Reference name="AICAR" type="Constant"/>
+          <Reference name="AICART_Km_10fTHF" type="Constant"/>
+          <Reference name="AICART_Km_AICAR" type="Constant"/>
+          <Reference name="AICART_Vmax" type="Constant"/>
+          <Reference name="_10fTHF" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (AICAR*AICART_Vmax)/((((AICAR*AICART_Km_10fTHF)+(AICAR*_10fTHF))+(AICART_Km_10fTHF*AICART_Km_AICAR))+(AICART_Km_AICAR*_10fTHF)) </Expression>
+      </Function>
+      <Function id="fRate6">
+        <ListOfReferences>
+          <Reference name="GAR" type="Constant"/>
+          <Reference name="PGT_Km_10fTHF" type="Constant"/>
+          <Reference name="PGT_Km_GAR" type="Constant"/>
+          <Reference name="PGT_Vmax" type="Constant"/>
+          <Reference name="_10fTHF" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (GAR*PGT_Vmax)/((((GAR*PGT_Km_10fTHF)+(GAR*_10fTHF))+(PGT_Km_10fTHF*PGT_Km_GAR))+(PGT_Km_GAR*_10fTHF)) </Expression>
+      </Function>
+      <Function id="fRate7">
+        <ListOfReferences>
+          <Reference name="TS_Km_5_10_CH2THF" type="Constant"/>
+          <Reference name="TS_Km_dUMP" type="Constant"/>
+          <Reference name="TS_Vmax" type="Constant"/>
+          <Reference name="dUMP" type="Constant"/>
+          <Reference name="_5_10_CH2THF" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (TS_Vmax*dUMP)/((((TS_Km_5_10_CH2THF*TS_Km_dUMP)+(TS_Km_5_10_CH2THF*dUMP))+(TS_Km_dUMP*_5_10_CH2THF))+(_5_10_CH2THF*dUMP)) </Expression>
+      </Function>
+      <Function id="fRate8">
+        <ListOfReferences>
+          <Reference name="DHFR_Km_DHF" type="Constant"/>
+          <Reference name="DHFR_Km_NADPH" type="Constant"/>
+          <Reference name="DHFR_Vmax" type="Constant"/>
+          <Reference name="NADPH" type="Constant"/>
+          <Reference name="DHF" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (DHFR_Vmax*NADPH)/((((DHF*DHFR_Km_NADPH)+(DHF*NADPH))+(DHFR_Km_DHF*DHFR_Km_NADPH))+(DHFR_Km_DHF*NADPH)) </Expression>
+      </Function>
+      <Function id="fRate9">
+        <ListOfReferences>
+          <Reference name="MTCH_Km_5_10_CHTHF" type="Constant"/>
+          <Reference name="MTCH_VmaxF" type="Constant"/>
+          <Reference name="_5_10_CHTHF" type="Observable"/>
+        </ListOfReferences>
+        <Expression> MTCH_VmaxF/(MTCH_Km_5_10_CHTHF+_5_10_CHTHF) </Expression>
+      </Function>
+      <Function id="fRate9m">
+        <ListOfReferences>
+          <Reference name="MTCH_Km_10fTHF" type="Constant"/>
+          <Reference name="MTCH_VmaxR" type="Constant"/>
+          <Reference name="_10fTHF" type="Observable"/>
+        </ListOfReferences>
+        <Expression> MTCH_VmaxR/(MTCH_Km_10fTHF+_10fTHF) </Expression>
+      </Function>
+      <Function id="fRate10">
+        <ListOfReferences>
+          <Reference name="SHMT_Km_Ser" type="Constant"/>
+          <Reference name="SHMT_Km_THF" type="Constant"/>
+          <Reference name="SHMT_VmaxF" type="Constant"/>
+          <Reference name="Ser" type="Constant"/>
+          <Reference name="THF" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (SHMT_VmaxF*Ser)/((((SHMT_Km_Ser*SHMT_Km_THF)+(SHMT_Km_Ser*THF))+(SHMT_Km_THF*Ser))+(Ser*THF)) </Expression>
+      </Function>
+      <Function id="fRate10m">
+        <ListOfReferences>
+          <Reference name="Gly" type="Constant"/>
+          <Reference name="SHMT_Km_Ser" type="Constant"/>
+          <Reference name="SHMT_Km_THF" type="Constant"/>
+          <Reference name="SHMT_VmaxR" type="Constant"/>
+          <Reference name="_5_10_CH2THF" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (Gly*SHMT_VmaxR)/((((Gly*SHMT_Km_THF)+(Gly*_5_10_CH2THF))+(SHMT_Km_Ser*SHMT_Km_THF))+(SHMT_Km_Ser*_5_10_CH2THF)) </Expression>
+      </Function>
+      <Function id="fRate11">
+        <ListOfReferences>
+          <Reference name="MTD_Km_5_10_CH2THF" type="Constant"/>
+          <Reference name="MTD_VmaxF" type="Constant"/>
+          <Reference name="_5_10_CH2THF" type="Observable"/>
+        </ListOfReferences>
+        <Expression> MTD_VmaxF/(MTD_Km_5_10_CH2THF+_5_10_CH2THF) </Expression>
+      </Function>
+      <Function id="fRate11m">
+        <ListOfReferences>
+          <Reference name="MTD_Km_5_10_CHTHF" type="Constant"/>
+          <Reference name="MTD_VmaxR" type="Constant"/>
+          <Reference name="_5_10_CHTHF" type="Observable"/>
+        </ListOfReferences>
+        <Expression> MTD_VmaxR/(MTD_Km_5_10_CHTHF+_5_10_CHTHF) </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

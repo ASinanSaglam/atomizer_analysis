@@ -7,7 +7,7 @@
 #@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
 #@creatorEmail:'j.schaber@web.de'
 #@creatorName:'Schaber Joerg'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 9 molecules and 14 reactions. The translated model has 6 molecules and 15 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 9 molecules and 14 reactions. The translated model has 6 molecules and 15 rules'
 ###
 begin model
 begin parameters
@@ -50,30 +50,30 @@ begin parameters
 	r11_k1 0.234805
 end parameters
 begin molecule types
-	DNADamageS()
-	DNADamageC()
 	#^ bqbiol:isVersionOf uniprot:P24864
 	CycE(cdk2)
-	#^ bqbiol:isVersionOf uniprot:P38936
-	p21()
-	#^ bqbiol:isVersionOf uniprot:P24941
-	Cdk2(a~A~0,cyce)
+	DNADamageS()
+	DNADamageC()
 	#^ bqbiol:isVersionOf uniprot:P04637
 	p53()
+	#^ bqbiol:isVersionOf uniprot:P24941
+	Cdk2(a~A~0,cyce)
+	#^ bqbiol:isVersionOf uniprot:P38936
+	p21()
 end molecule types
 begin seed species
 	p21() 6.022e+17 #original 1.0substance/volume #p21 #p21
 	p53() 6.022e+17 #original 1.0substance/volume #p53 #p53
 	CycE(cdk2) (9.2179813538304) #CycE
 	Cdk2(a~0,cyce) (0.0166736) #Cdk2
-	Cdk2(a~0,cyce!240).CycE(cdk2!240) (1.36697471606784) #CycECdk2
-	Cdk2(a~A,cyce!240).CycE(cdk2!240) (2.28154) #CycECdk2a
+	Cdk2(a~0,cyce!338).CycE(cdk2!338) (1.36697471606784) #CycECdk2
+	Cdk2(a~A,cyce!338).CycE(cdk2!338) (2.28154) #CycECdk2a
 end seed species
 begin observables
 	Species CycE CycE(cdk2) #CycE
 	Species Cdk2 Cdk2(a~0,cyce) #Cdk2
-	Species CycECdk2 Cdk2(a~0,cyce!240).CycE(cdk2!240) #CycECdk2
-	Species CycECdk2a Cdk2(a~A,cyce!240).CycE(cdk2!240) #CycECdk2a
+	Species CycECdk2 Cdk2(a~0,cyce!338).CycE(cdk2!338) #CycECdk2
+	Species CycECdk2a Cdk2(a~A,cyce!338).CycE(cdk2!338) #CycECdk2a
 	Species p21 p21() #p21
 	Species DNADamageC DNADamageC() #DNADamageC
 	Species DNADamageS DNADamageS() #DNADamageS
@@ -98,11 +98,11 @@ begin reaction rules
 	vb6: CycE(cdk2) -> 0  k6b #Modifiers(CycE)
 	vb3: 0  -> Cdk2(a~0,cyce) vb3_v_0
 	vb4: Cdk2(a~0,cyce) -> 0  k4b #Modifiers(Cdk2)
-	vb7: CycE(cdk2) + Cdk2(a~0,cyce) -> Cdk2(a~0,cyce!240).CycE(cdk2!240) vb7_k1_0 #Modifiers(CycE, Cdk2)
-	vb8: Cdk2(a~0,cyce!240).CycE(cdk2!240) -> CycE(cdk2) + Cdk2(a~0,cyce) k8b #Modifiers(CycECdk2)
-	vb1_reactants_0: 0  -> Cdk2(a~0,cyce!240).CycE(cdk2!240) -1*(fRate6()) #Modifiers(p21, CycECdk2, p21, CycECdk2a)
-	vb1_products_0: 0  -> Cdk2(a~A,cyce!240).CycE(cdk2!240) fRate6() #Modifiers(p21, CycECdk2, p21, CycECdk2a)
-	vb2: Cdk2(a~A,cyce!240).CycE(cdk2!240) -> Cdk2(a~0,cyce!240).CycE(cdk2!240) k2b #Modifiers(CycECdk2a)
+	vb7: CycE(cdk2) + Cdk2(a~0,cyce) -> Cdk2(a~0,cyce!338).CycE(cdk2!338) vb7_k1_0 #Modifiers(CycE, Cdk2)
+	vb8: Cdk2(a~0,cyce!338).CycE(cdk2!338) -> CycE(cdk2) + Cdk2(a~0,cyce) k8b #Modifiers(CycECdk2)
+	vb1_reactants_0: 0  -> Cdk2(a~0,cyce!338).CycE(cdk2!338) -1*(fRate6()) #Modifiers(p21, CycECdk2, p21, CycECdk2a)
+	vb1_products_0: 0  -> Cdk2(a~A,cyce!338).CycE(cdk2!338) fRate6() #Modifiers(p21, CycECdk2, p21, CycECdk2a)
+	vb2: Cdk2(a~A,cyce!338).CycE(cdk2!338) -> Cdk2(a~0,cyce!338).CycE(cdk2!338) k2b #Modifiers(CycECdk2a)
 	va3: 0  -> p53() fRate8() #Modifiers(DDR, DDR)
 	va2: DNADamageC() -> 0  r10_k1 #Modifiers(DNADamageC)
 	va1: DNADamageS() -> 0  r11_k1 #Modifiers(DNADamageS)

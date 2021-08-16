@@ -1,13 +1,13 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1309060000', 'http://identifiers.org/biomodels.db/BIOMD0000000478']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000478', 'http://identifiers.org/biomodels.db/MODEL1309060000']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/22818197']
-#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/18023904', 'http://identifiers.org/pubmed/21741466']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/pubmed/21741466', 'http://identifiers.org/pubmed/18023904']
 #@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/4932']
-#@BQB_HAS_PART:['http://identifiers.org/pw/PW:0000543', 'http://identifiers.org/go/GO:0010737', 'http://identifiers.org/go/GO:0019933']
+#@BQB_HAS_PART:['http://identifiers.org/go/GO:0010737', 'http://identifiers.org/pw/PW:0000543', 'http://identifiers.org/go/GO:0019933']
 #@creatorEmail:'viji@ebi.ac.uk'
 #@creatorName:'Chelliah Vijayalakshmi'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 33 molecules and 39 reactions. The translated model has 17 molecules and 40 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 33 molecules and 39 reactions. The translated model has 17 molecules and 40 rules'
 ###
 begin model
 begin parameters
@@ -52,48 +52,48 @@ begin parameters
 	K38 10.0 #units:per_second
 end parameters
 begin molecule types
-	#^ bqbiol:hasPart chebi:CHEBI:17489, uniprot:P07278
-	R_2cAMP()
+	#^ bqbiol:isVersionOf chebi:CHEBI:17552
+	GDP()
+	#^ bqbiol:isVersionOf chebi:CHEBI:15422
+	ATP()
 	#^ bqbiol:isVersionOf ec-code:2.7.11.11
 	PKA(camp,camp,camp,camp)
-	#^ bqbiol:isVersionOf chebi:CHEBI:17489
-	cAMP(pde1,pde2,pka)
-	#^ bqbiol:isVersionOf uniprot:P06776
-	Pde2(camp)
 	#^ bqbiol:hasPart chebi:CHEBI:17552, uniprot:P04821, uniprot:P01120
 	Ras2_GDP_Cdc25()
+	#^ bqbiol:isVersionOf uniprot:P22434
+	Pde1(camp,f~F~0)
+	#^ bqbiol:hasPart chebi:CHEBI:17552, uniprot:P01120
+	Ras2_GDP(Ras2_Cdc25~Ras2_Cdc25~0,Ras2_GTP~Ras2_GTP~0,cdc25,cyr1,ira2)
+	#^ bqbiol:isVersionOf chebi:CHEBI:15996
+	GTP()
+	#^ bqbiol:isVersionOf uniprot:P19158
+	Ira2(p~P~0,ras2_gdp)
+	#^ bqbiol:isVersionOf chebi:CHEBI:16027
+	AMP()
+	#^ bqbiol:isVersionOf chebi:CHEBI:17489
+	cAMP(pde1,pde2,pka)
+	#^ bqbiol:isVersionOf uniprot:P04821
+	Cdc25(f~F~0,ras2_gdp)
 	#^ bqbiol:hasPart uniprot:P05986, uniprot:P06245, uniprot:P06244
 	C(r)
 	#^ bqbiol:isVersionOf uniprot:P28239
 	PPA2()
-	#^ bqbiol:isVersionOf chebi:CHEBI:15996
-	GTP()
-	#^ bqbiol:isVersionOf uniprot:P22434
-	Pde1(camp,f~F~0)
-	#^ bqbiol:hasPart chebi:CHEBI:15996, uniprot:P01120
-	Ras2_GTP(Ras2_Cdc25~Ras2_Cdc25~0,Ras2_GDP~Ras2_GDP~0,cdc25,cyr1,ira2)
-	#^ bqbiol:isVersionOf uniprot:P04821
-	Cdc25(f~F~0,ras2_gtp)
-	#^ bqbiol:isVersionOf uniprot:P19158
-	Ira2(p~P~0,ras2_gtp)
-	#^ bqbiol:isVersionOf chebi:CHEBI:15422
-	ATP()
+	#^ bqbiol:isVersionOf uniprot:P06776
+	Pde2(camp)
 	#^ bqbiol:isVersionOf uniprot:P08678
-	CYR1(ras2_gtp)
-	#^ bqbiol:isVersionOf chebi:CHEBI:17552
-	GDP()
-	#^ bqbiol:isVersionOf chebi:CHEBI:16027
-	AMP()
+	CYR1(ras2_gdp)
+	#^ bqbiol:hasPart chebi:CHEBI:17489, uniprot:P07278
+	R_2cAMP()
 	#^ bqbiol:isVersionOf uniprot:P07278
 	R(c)
 end molecule types
 begin seed species
-	Ras2_GTP(Ras2_Cdc25~0,Ras2_GDP~Ras2_GDP,cdc25,cyr1,ira2) 20000.0 #Ras2_GDP #Ras2_GDP
-	Cdc25(f~0,ras2_gtp) 300.0 #Cdc25 #Cdc25
+	Ras2_GDP(Ras2_Cdc25~0,Ras2_GTP~0,cdc25,cyr1,ira2) 20000.0 #Ras2_GDP #Ras2_GDP
+	Cdc25(f~0,ras2_gdp) 300.0 #Cdc25 #Cdc25
 	$GDP() 1500000.0 #GDP #GDP
 	$GTP() 5000000.0 #GTP #GTP
-	Ira2(p~0,ras2_gtp) 200.0 #Ira2 #Ira2
-	CYR1(ras2_gtp) 200.0 #CYR1 #CYR1
+	Ira2(p~0,ras2_gdp) 200.0 #Ira2 #Ira2
+	CYR1(ras2_gdp) 200.0 #CYR1 #CYR1
 	$ATP() 24000000.0 #ATP #ATP
 	PKA(camp,camp,camp,camp) 2500.0 #PKA #PKA
 	Pde1(camp,f~0) 1400.0 #Pde1 #Pde1
@@ -101,83 +101,83 @@ begin seed species
 	Pde2(camp) 6500.0 #Pde2 #Pde2
 end seed species
 begin observables
-	Species Ras2_GDP Ras2_GTP(Ras2_Cdc25~0,Ras2_GDP~Ras2_GDP,cdc25,cyr1,ira2) #Ras2_GDP
-	Species Cdc25 Cdc25(f~0,ras2_gtp) #Cdc25
+	Species Ras2_GDP Ras2_GDP(Ras2_Cdc25~0,Ras2_GTP~0,cdc25,cyr1,ira2) #Ras2_GDP
+	Species Cdc25 Cdc25(f~0,ras2_gdp) #Cdc25
 	Species Ras2_GDP_Cdc25 Ras2_GDP_Cdc25() #Ras2_GDP_Cdc25
-	Species Ras2_Cdc25 Ras2_GTP(Ras2_Cdc25~Ras2_Cdc25,Ras2_GDP~0,cdc25,cyr1,ira2) #Ras2_Cdc25
+	Species Ras2_Cdc25 Ras2_GDP(Ras2_Cdc25~Ras2_Cdc25,Ras2_GTP~0,cdc25,cyr1,ira2) #Ras2_Cdc25
 	Species GDP GDP() #GDP
 	Species GTP GTP() #GTP
-	Species Ras2_GTP_Cdc25 Ras2_GTP(Ras2_Cdc25~0,Ras2_GDP~0,cdc25!914,cyr1,ira2).Cdc25(f~0,ras2_gtp!914) #Ras2_GTP_Cdc25
-	Species Ras2_GTP Ras2_GTP(Ras2_Cdc25~0,Ras2_GDP~0,cdc25,cyr1,ira2) #Ras2_GTP
-	Species Ira2 Ira2(p~0,ras2_gtp) #Ira2
-	Species Ras2_GTP_Ira2 Ras2_GTP(Ras2_Cdc25~0,Ras2_GDP~0,cdc25,cyr1,ira2!912).Ira2(p~0,ras2_gtp!912) #Ras2_GTP_Ira2
-	Species CYR1 CYR1(ras2_gtp) #CYR1
-	Species Ras2_GTP_CYR1 Ras2_GTP(Ras2_Cdc25~0,Ras2_GDP~0,cdc25,cyr1!913,ira2).CYR1(ras2_gtp!913) #Ras2_GTP_CYR1
+	Species Ras2_GTP_Cdc25 Ras2_GDP(Ras2_Cdc25~0,Ras2_GTP~Ras2_GTP,cdc25!910,cyr1,ira2).Cdc25(f~0,ras2_gdp!910) #Ras2_GTP_Cdc25
+	Species Ras2_GTP Ras2_GDP(Ras2_Cdc25~0,Ras2_GTP~Ras2_GTP,cdc25,cyr1,ira2) #Ras2_GTP
+	Species Ira2 Ira2(p~0,ras2_gdp) #Ira2
+	Species Ras2_GTP_Ira2 Ras2_GDP(Ras2_Cdc25~0,Ras2_GTP~Ras2_GTP,cdc25,cyr1,ira2!908).Ira2(p~0,ras2_gdp!908) #Ras2_GTP_Ira2
+	Species CYR1 CYR1(ras2_gdp) #CYR1
+	Species Ras2_GTP_CYR1 Ras2_GDP(Ras2_Cdc25~0,Ras2_GTP~Ras2_GTP,cdc25,cyr1!909,ira2).CYR1(ras2_gdp!909) #Ras2_GTP_CYR1
 	Species ATP ATP() #ATP
 	Species cAMP cAMP(pde1,pde2,pka) #cAMP
 	Species PKA PKA(camp,camp,camp,camp) #PKA
-	Species cAMP_PKA PKA(camp!910,camp,camp,camp).cAMP(pde1,pde2,pka!910) #cAMP_PKA
-	Species IIcAMP_PKA PKA(camp!910,camp!916,camp,camp).cAMP(pde1,pde2,pka!910).cAMP(pde1,pde2,pka!916) #IIcAMP_PKA
-	Species IIIcAMP_PKA PKA(camp!910,camp!916,camp!917,camp).cAMP(pde1,pde2,pka!910).cAMP(pde1,pde2,pka!916).cAMP(pde1,pde2,pka!917) #IIIcAMP_PKA
-	Species IVcAMP_PKA PKA(camp!910,camp!916,camp!917,camp!918).cAMP(pde1,pde2,pka!910).cAMP(pde1,pde2,pka!916).cAMP(pde1,pde2,pka!917).cAMP(pde1,pde2,pka!918) #IVcAMP_PKA
+	Species cAMP_PKA PKA(camp!905,camp,camp,camp).cAMP(pde1,pde2,pka!905) #cAMP_PKA
+	Species IIcAMP_PKA PKA(camp!905,camp!911,camp,camp).cAMP(pde1,pde2,pka!905).cAMP(pde1,pde2,pka!911) #IIcAMP_PKA
+	Species IIIcAMP_PKA PKA(camp!905,camp!911,camp!912,camp).cAMP(pde1,pde2,pka!905).cAMP(pde1,pde2,pka!911).cAMP(pde1,pde2,pka!912) #IIIcAMP_PKA
+	Species IVcAMP_PKA PKA(camp!905,camp!911,camp!912,camp!913).cAMP(pde1,pde2,pka!905).cAMP(pde1,pde2,pka!911).cAMP(pde1,pde2,pka!912).cAMP(pde1,pde2,pka!913) #IVcAMP_PKA
 	Species C C(r) #C
 	Species R_2cAMP R_2cAMP() #R_2cAMP
 	Species R R(c) #R
-	Species R_C R(c!909).C(r!909) #R_C
+	Species R_C R(c!904).C(r!904) #R_C
 	Species Pde1 Pde1(camp,f~0) #Pde1
 	Species Pde1f Pde1(camp,f~F) #Pde1f
-	Species cAMP_Pde1f cAMP(pde1!915,pde2,pka).Pde1(camp!915,f~F) #cAMP_Pde1f
+	Species cAMP_Pde1f cAMP(pde1!907,pde2,pka).Pde1(camp!907,f~F) #cAMP_Pde1f
 	Species AMP AMP() #AMP
 	Species PPA2 PPA2() #PPA2
 	Species Pde2 Pde2(camp) #Pde2
-	Species cAMP_Pde2 cAMP(pde1,pde2!911,pka).Pde2(camp!911) #cAMP_Pde2
-	Species Cdc25f Cdc25(f~F,ras2_gtp) #Cdc25f
-	Species Ira2P Ira2(p~P,ras2_gtp) #Ira2P
-	Species Ras2_GTP_Ira2P Ras2_GTP(Ras2_Cdc25~0,Ras2_GDP~0,cdc25,cyr1,ira2!912).Ira2(p~P,ras2_gtp!912) #Ras2_GTP_Ira2P
+	Species cAMP_Pde2 cAMP(pde1,pde2!906,pka).Pde2(camp!906) #cAMP_Pde2
+	Species Cdc25f Cdc25(f~F,ras2_gdp) #Cdc25f
+	Species Ira2P Ira2(p~P,ras2_gdp) #Ira2P
+	Species Ras2_GTP_Ira2P Ras2_GDP(Ras2_Cdc25~0,Ras2_GTP~Ras2_GTP,cdc25,cyr1,ira2!908).Ira2(p~P,ras2_gdp!908) #Ras2_GTP_Ira2P
 end observables
 begin functions
 	fRate24() = K24*R_C*(R_C - 1)/2
 end functions
 begin reaction rules
-	R0: Ras2_GTP(Ras2_Cdc25~0,Ras2_GDP~Ras2_GDP,cdc25,cyr1,ira2) + Cdc25(f~0,ras2_gtp) -> Ras2_GDP_Cdc25() K0 #Modifiers(Ras2_GDP, Cdc25)
-	R1: Ras2_GDP_Cdc25() -> Ras2_GTP(Ras2_Cdc25~0,Ras2_GDP~Ras2_GDP,cdc25,cyr1,ira2) + Cdc25(f~0,ras2_gtp) K1 #Modifiers(Ras2_GDP_Cdc25)
-	R2: Ras2_GDP_Cdc25() -> Ras2_GTP(Ras2_Cdc25~Ras2_Cdc25,Ras2_GDP~0,cdc25,cyr1,ira2) + GDP() K2 #Modifiers(Ras2_GDP_Cdc25)
-	R3: Ras2_GTP(Ras2_Cdc25~Ras2_Cdc25,Ras2_GDP~0,cdc25,cyr1,ira2) + GDP() -> Ras2_GDP_Cdc25() K3 #Modifiers(Ras2_Cdc25, GDP)
-	R4: Ras2_GTP(Ras2_Cdc25~Ras2_Cdc25,Ras2_GDP~0,cdc25,cyr1,ira2) + GTP() -> Ras2_GTP(Ras2_Cdc25~0,Ras2_GDP~0,cdc25!914,cyr1,ira2).Cdc25(f~0,ras2_gtp!914) K4 #Modifiers(Ras2_Cdc25, GTP)
-	R5: Ras2_GTP(Ras2_Cdc25~0,Ras2_GDP~0,cdc25!914,cyr1,ira2).Cdc25(f~0,ras2_gtp!914) -> Ras2_GTP(Ras2_Cdc25~Ras2_Cdc25,Ras2_GDP~0,cdc25,cyr1,ira2) + GTP() K5 #Modifiers(Ras2_GTP_Cdc25)
-	R6: Ras2_GTP(Ras2_Cdc25~0,Ras2_GDP~0,cdc25!914,cyr1,ira2).Cdc25(f~0,ras2_gtp!914) -> Cdc25(f~0,ras2_gtp) + Ras2_GTP(Ras2_Cdc25~0,Ras2_GDP~0,cdc25,cyr1,ira2) K6 #Modifiers(Ras2_GTP_Cdc25)
-	R7: Cdc25(f~0,ras2_gtp) + Ras2_GTP(Ras2_Cdc25~0,Ras2_GDP~0,cdc25,cyr1,ira2) -> Ras2_GTP(Ras2_Cdc25~0,Ras2_GDP~0,cdc25!914,cyr1,ira2).Cdc25(f~0,ras2_gtp!914) K7 #Modifiers(Cdc25, Ras2_GTP)
-	R8: Ras2_GTP(Ras2_Cdc25~0,Ras2_GDP~0,cdc25,cyr1,ira2) + Ira2(p~0,ras2_gtp) -> Ras2_GTP(Ras2_Cdc25~0,Ras2_GDP~0,cdc25,cyr1,ira2!912).Ira2(p~0,ras2_gtp!912) K8 #Modifiers(Ras2_GTP, Ira2)
-	R9: Ras2_GTP(Ras2_Cdc25~0,Ras2_GDP~0,cdc25,cyr1,ira2!912).Ira2(p~0,ras2_gtp!912) -> Ras2_GTP(Ras2_Cdc25~0,Ras2_GDP~Ras2_GDP,cdc25,cyr1,ira2) + Ira2(p~0,ras2_gtp) K9 #Modifiers(Ras2_GTP_Ira2)
-	R10: Ras2_GTP(Ras2_Cdc25~0,Ras2_GDP~0,cdc25,cyr1,ira2) + CYR1(ras2_gtp) -> Ras2_GTP(Ras2_Cdc25~0,Ras2_GDP~0,cdc25,cyr1!913,ira2).CYR1(ras2_gtp!913) K10 #Modifiers(Ras2_GTP, CYR1)
-	R11: Ras2_GTP(Ras2_Cdc25~0,Ras2_GDP~0,cdc25,cyr1!913,ira2).CYR1(ras2_gtp!913) + ATP() -> Ras2_GTP(Ras2_Cdc25~0,Ras2_GDP~0,cdc25,cyr1!913,ira2).CYR1(ras2_gtp!913) + cAMP(pde1,pde2,pka) K11 #Modifiers(Ras2_GTP_CYR1, ATP)
-	R12: Ira2(p~0,ras2_gtp) + Ras2_GTP(Ras2_Cdc25~0,Ras2_GDP~0,cdc25,cyr1!913,ira2).CYR1(ras2_gtp!913) -> Ras2_GTP(Ras2_Cdc25~0,Ras2_GDP~Ras2_GDP,cdc25,cyr1,ira2) + Ira2(p~0,ras2_gtp) + CYR1(ras2_gtp) K12 #Modifiers(Ira2, Ras2_GTP_CYR1)
-	R13: cAMP(pde1,pde2,pka) + PKA(camp,camp,camp,camp) -> PKA(camp!910,camp,camp,camp).cAMP(pde1,pde2,pka!910) K13 #Modifiers(cAMP, PKA)
-	R14: cAMP(pde1,pde2,pka) + PKA(camp!910,camp,camp,camp).cAMP(pde1,pde2,pka!910) -> PKA(camp!910,camp!916,camp,camp).cAMP(pde1,pde2,pka!910).cAMP(pde1,pde2,pka!916) K14 #Modifiers(cAMP, cAMP_PKA)
-	R15: cAMP(pde1,pde2,pka) + PKA(camp!910,camp!916,camp,camp).cAMP(pde1,pde2,pka!910).cAMP(pde1,pde2,pka!916) -> PKA(camp!910,camp!916,camp!917,camp).cAMP(pde1,pde2,pka!910).cAMP(pde1,pde2,pka!916).cAMP(pde1,pde2,pka!917) K15 #Modifiers(cAMP, IIcAMP_PKA)
-	R16: cAMP(pde1,pde2,pka) + PKA(camp!910,camp!916,camp!917,camp).cAMP(pde1,pde2,pka!910).cAMP(pde1,pde2,pka!916).cAMP(pde1,pde2,pka!917) -> PKA(camp!910,camp!916,camp!917,camp!918).cAMP(pde1,pde2,pka!910).cAMP(pde1,pde2,pka!916).cAMP(pde1,pde2,pka!917).cAMP(pde1,pde2,pka!918) K16 #Modifiers(cAMP, IIIcAMP_PKA)
-	R17: PKA(camp!910,camp!916,camp!917,camp!918).cAMP(pde1,pde2,pka!910).cAMP(pde1,pde2,pka!916).cAMP(pde1,pde2,pka!917).cAMP(pde1,pde2,pka!918) -> cAMP(pde1,pde2,pka) + PKA(camp!910,camp!916,camp!917,camp).cAMP(pde1,pde2,pka!910).cAMP(pde1,pde2,pka!916).cAMP(pde1,pde2,pka!917) K17 #Modifiers(IVcAMP_PKA)
-	R18: PKA(camp!910,camp!916,camp!917,camp).cAMP(pde1,pde2,pka!910).cAMP(pde1,pde2,pka!916).cAMP(pde1,pde2,pka!917) -> cAMP(pde1,pde2,pka) + PKA(camp!910,camp!916,camp,camp).cAMP(pde1,pde2,pka!910).cAMP(pde1,pde2,pka!916) K18 #Modifiers(IIIcAMP_PKA)
-	R19: PKA(camp!910,camp!916,camp,camp).cAMP(pde1,pde2,pka!910).cAMP(pde1,pde2,pka!916) -> cAMP(pde1,pde2,pka) + PKA(camp!910,camp,camp,camp).cAMP(pde1,pde2,pka!910) K19 #Modifiers(IIcAMP_PKA)
-	R20: PKA(camp!910,camp,camp,camp).cAMP(pde1,pde2,pka!910) -> cAMP(pde1,pde2,pka) + PKA(camp,camp,camp,camp) K20 #Modifiers(cAMP_PKA)
-	R21: PKA(camp!910,camp!916,camp!917,camp!918).cAMP(pde1,pde2,pka!910).cAMP(pde1,pde2,pka!916).cAMP(pde1,pde2,pka!917).cAMP(pde1,pde2,pka!918) -> C(r) + C(r) + R_2cAMP() + R_2cAMP() K21 #Modifiers(IVcAMP_PKA)
+	R0: Ras2_GDP(Ras2_Cdc25~0,Ras2_GTP~0,cdc25,cyr1,ira2) + Cdc25(f~0,ras2_gdp) -> Ras2_GDP_Cdc25() K0 #Modifiers(Ras2_GDP, Cdc25)
+	R1: Ras2_GDP_Cdc25() -> Ras2_GDP(Ras2_Cdc25~0,Ras2_GTP~0,cdc25,cyr1,ira2) + Cdc25(f~0,ras2_gdp) K1 #Modifiers(Ras2_GDP_Cdc25)
+	R2: Ras2_GDP_Cdc25() -> Ras2_GDP(Ras2_Cdc25~Ras2_Cdc25,Ras2_GTP~0,cdc25,cyr1,ira2) + GDP() K2 #Modifiers(Ras2_GDP_Cdc25)
+	R3: Ras2_GDP(Ras2_Cdc25~Ras2_Cdc25,Ras2_GTP~0,cdc25,cyr1,ira2) + GDP() -> Ras2_GDP_Cdc25() K3 #Modifiers(Ras2_Cdc25, GDP)
+	R4: Ras2_GDP(Ras2_Cdc25~Ras2_Cdc25,Ras2_GTP~0,cdc25,cyr1,ira2) + GTP() -> Ras2_GDP(Ras2_Cdc25~0,Ras2_GTP~Ras2_GTP,cdc25!910,cyr1,ira2).Cdc25(f~0,ras2_gdp!910) K4 #Modifiers(Ras2_Cdc25, GTP)
+	R5: Ras2_GDP(Ras2_Cdc25~0,Ras2_GTP~Ras2_GTP,cdc25!910,cyr1,ira2).Cdc25(f~0,ras2_gdp!910) -> Ras2_GDP(Ras2_Cdc25~Ras2_Cdc25,Ras2_GTP~0,cdc25,cyr1,ira2) + GTP() K5 #Modifiers(Ras2_GTP_Cdc25)
+	R6: Ras2_GDP(Ras2_Cdc25~0,Ras2_GTP~Ras2_GTP,cdc25!910,cyr1,ira2).Cdc25(f~0,ras2_gdp!910) -> Cdc25(f~0,ras2_gdp) + Ras2_GDP(Ras2_Cdc25~0,Ras2_GTP~Ras2_GTP,cdc25,cyr1,ira2) K6 #Modifiers(Ras2_GTP_Cdc25)
+	R7: Cdc25(f~0,ras2_gdp) + Ras2_GDP(Ras2_Cdc25~0,Ras2_GTP~Ras2_GTP,cdc25,cyr1,ira2) -> Ras2_GDP(Ras2_Cdc25~0,Ras2_GTP~Ras2_GTP,cdc25!910,cyr1,ira2).Cdc25(f~0,ras2_gdp!910) K7 #Modifiers(Cdc25, Ras2_GTP)
+	R8: Ras2_GDP(Ras2_Cdc25~0,Ras2_GTP~Ras2_GTP,cdc25,cyr1,ira2) + Ira2(p~0,ras2_gdp) -> Ras2_GDP(Ras2_Cdc25~0,Ras2_GTP~Ras2_GTP,cdc25,cyr1,ira2!908).Ira2(p~0,ras2_gdp!908) K8 #Modifiers(Ras2_GTP, Ira2)
+	R9: Ras2_GDP(Ras2_Cdc25~0,Ras2_GTP~Ras2_GTP,cdc25,cyr1,ira2!908).Ira2(p~0,ras2_gdp!908) -> Ras2_GDP(Ras2_Cdc25~0,Ras2_GTP~0,cdc25,cyr1,ira2) + Ira2(p~0,ras2_gdp) K9 #Modifiers(Ras2_GTP_Ira2)
+	R10: Ras2_GDP(Ras2_Cdc25~0,Ras2_GTP~Ras2_GTP,cdc25,cyr1,ira2) + CYR1(ras2_gdp) -> Ras2_GDP(Ras2_Cdc25~0,Ras2_GTP~Ras2_GTP,cdc25,cyr1!909,ira2).CYR1(ras2_gdp!909) K10 #Modifiers(Ras2_GTP, CYR1)
+	R11: Ras2_GDP(Ras2_Cdc25~0,Ras2_GTP~Ras2_GTP,cdc25,cyr1!909,ira2).CYR1(ras2_gdp!909) + ATP() -> Ras2_GDP(Ras2_Cdc25~0,Ras2_GTP~Ras2_GTP,cdc25,cyr1!909,ira2).CYR1(ras2_gdp!909) + cAMP(pde1,pde2,pka) K11 #Modifiers(Ras2_GTP_CYR1, ATP)
+	R12: Ira2(p~0,ras2_gdp) + Ras2_GDP(Ras2_Cdc25~0,Ras2_GTP~Ras2_GTP,cdc25,cyr1!909,ira2).CYR1(ras2_gdp!909) -> Ras2_GDP(Ras2_Cdc25~0,Ras2_GTP~0,cdc25,cyr1,ira2) + Ira2(p~0,ras2_gdp) + CYR1(ras2_gdp) K12 #Modifiers(Ira2, Ras2_GTP_CYR1)
+	R13: cAMP(pde1,pde2,pka) + PKA(camp,camp,camp,camp) -> PKA(camp!905,camp,camp,camp).cAMP(pde1,pde2,pka!905) K13 #Modifiers(cAMP, PKA)
+	R14: cAMP(pde1,pde2,pka) + PKA(camp!905,camp,camp,camp).cAMP(pde1,pde2,pka!905) -> PKA(camp!905,camp!911,camp,camp).cAMP(pde1,pde2,pka!905).cAMP(pde1,pde2,pka!911) K14 #Modifiers(cAMP, cAMP_PKA)
+	R15: cAMP(pde1,pde2,pka) + PKA(camp!905,camp!911,camp,camp).cAMP(pde1,pde2,pka!905).cAMP(pde1,pde2,pka!911) -> PKA(camp!905,camp!911,camp!912,camp).cAMP(pde1,pde2,pka!905).cAMP(pde1,pde2,pka!911).cAMP(pde1,pde2,pka!912) K15 #Modifiers(cAMP, IIcAMP_PKA)
+	R16: cAMP(pde1,pde2,pka) + PKA(camp!905,camp!911,camp!912,camp).cAMP(pde1,pde2,pka!905).cAMP(pde1,pde2,pka!911).cAMP(pde1,pde2,pka!912) -> PKA(camp!905,camp!911,camp!912,camp!913).cAMP(pde1,pde2,pka!905).cAMP(pde1,pde2,pka!911).cAMP(pde1,pde2,pka!912).cAMP(pde1,pde2,pka!913) K16 #Modifiers(cAMP, IIIcAMP_PKA)
+	R17: PKA(camp!905,camp!911,camp!912,camp!913).cAMP(pde1,pde2,pka!905).cAMP(pde1,pde2,pka!911).cAMP(pde1,pde2,pka!912).cAMP(pde1,pde2,pka!913) -> cAMP(pde1,pde2,pka) + PKA(camp!905,camp!911,camp!912,camp).cAMP(pde1,pde2,pka!905).cAMP(pde1,pde2,pka!911).cAMP(pde1,pde2,pka!912) K17 #Modifiers(IVcAMP_PKA)
+	R18: PKA(camp!905,camp!911,camp!912,camp).cAMP(pde1,pde2,pka!905).cAMP(pde1,pde2,pka!911).cAMP(pde1,pde2,pka!912) -> cAMP(pde1,pde2,pka) + PKA(camp!905,camp!911,camp,camp).cAMP(pde1,pde2,pka!905).cAMP(pde1,pde2,pka!911) K18 #Modifiers(IIIcAMP_PKA)
+	R19: PKA(camp!905,camp!911,camp,camp).cAMP(pde1,pde2,pka!905).cAMP(pde1,pde2,pka!911) -> cAMP(pde1,pde2,pka) + PKA(camp!905,camp,camp,camp).cAMP(pde1,pde2,pka!905) K19 #Modifiers(IIcAMP_PKA)
+	R20: PKA(camp!905,camp,camp,camp).cAMP(pde1,pde2,pka!905) -> cAMP(pde1,pde2,pka) + PKA(camp,camp,camp,camp) K20 #Modifiers(cAMP_PKA)
+	R21: PKA(camp!905,camp!911,camp!912,camp!913).cAMP(pde1,pde2,pka!905).cAMP(pde1,pde2,pka!911).cAMP(pde1,pde2,pka!912).cAMP(pde1,pde2,pka!913) -> C(r) + C(r) + R_2cAMP() + R_2cAMP() K21 #Modifiers(IVcAMP_PKA)
 	R22: R_2cAMP() -> cAMP(pde1,pde2,pka) + cAMP(pde1,pde2,pka) + R(c) K22 #Modifiers(R_2cAMP)
-	R23: C(r) + R(c) -> R(c!909).C(r!909) K23 #Modifiers(C, R)
-	R24_reactants_0: 0  -> R(c!909).C(r!909) -1*2.0*(fRate24()) #Modifiers(R_C)
+	R23: C(r) + R(c) -> R(c!904).C(r!904) K23 #Modifiers(C, R)
+	R24_reactants_0: 0  -> R(c!904).C(r!904) -1*2.0*(fRate24()) #Modifiers(R_C)
 	R24_products_0: 0  -> PKA(camp,camp,camp,camp) fRate24() #Modifiers(R_C)
 	R25: C(r) + Pde1(camp,f~0) -> C(r) + Pde1(camp,f~F) K25 #Modifiers(C, Pde1)
-	R26: cAMP(pde1,pde2,pka) + Pde1(camp,f~F) -> cAMP(pde1!915,pde2,pka).Pde1(camp!915,f~F) K26 #Modifiers(cAMP, Pde1f)
-	R27: cAMP(pde1!915,pde2,pka).Pde1(camp!915,f~F) -> cAMP(pde1,pde2,pka) + Pde1(camp,f~F) K27 #Modifiers(cAMP_Pde1f)
-	R28: cAMP(pde1!915,pde2,pka).Pde1(camp!915,f~F) -> Pde1(camp,f~F) + AMP() K28 #Modifiers(cAMP_Pde1f)
+	R26: cAMP(pde1,pde2,pka) + Pde1(camp,f~F) -> cAMP(pde1!907,pde2,pka).Pde1(camp!907,f~F) K26 #Modifiers(cAMP, Pde1f)
+	R27: cAMP(pde1!907,pde2,pka).Pde1(camp!907,f~F) -> cAMP(pde1,pde2,pka) + Pde1(camp,f~F) K27 #Modifiers(cAMP_Pde1f)
+	R28: cAMP(pde1!907,pde2,pka).Pde1(camp!907,f~F) -> Pde1(camp,f~F) + AMP() K28 #Modifiers(cAMP_Pde1f)
 	R29: Pde1(camp,f~F) + PPA2() -> Pde1(camp,f~0) + PPA2() K29 #Modifiers(Pde1f, PPA2)
-	R30: cAMP(pde1,pde2,pka) + Pde2(camp) -> cAMP(pde1,pde2!911,pka).Pde2(camp!911) K30 #Modifiers(cAMP, Pde2)
-	R31: cAMP(pde1,pde2!911,pka).Pde2(camp!911) -> cAMP(pde1,pde2,pka) + Pde2(camp) K31 #Modifiers(cAMP_Pde2)
-	R32: cAMP(pde1,pde2!911,pka).Pde2(camp!911) -> AMP() + Pde2(camp) K32 #Modifiers(cAMP_Pde2)
-	R33: Cdc25(f~0,ras2_gtp) + C(r) -> C(r) + Cdc25(f~F,ras2_gtp) K33 #Modifiers(Cdc25, C)
-	R34: PPA2() + Cdc25(f~F,ras2_gtp) -> Cdc25(f~0,ras2_gtp) + PPA2() K34 #Modifiers(PPA2, Cdc25f)
-	R35: Ira2(p~0,ras2_gtp) + C(r) -> C(r) + Ira2(p~P,ras2_gtp) K35 #Modifiers(Ira2, C)
-	R36: Ras2_GTP(Ras2_Cdc25~0,Ras2_GDP~0,cdc25,cyr1,ira2) + Ira2(p~P,ras2_gtp) -> Ras2_GTP(Ras2_Cdc25~0,Ras2_GDP~0,cdc25,cyr1,ira2!912).Ira2(p~P,ras2_gtp!912) K36 #Modifiers(Ras2_GTP, Ira2P)
-	R37: Ras2_GTP(Ras2_Cdc25~0,Ras2_GDP~0,cdc25,cyr1,ira2!912).Ira2(p~P,ras2_gtp!912) -> Ras2_GTP(Ras2_Cdc25~0,Ras2_GDP~Ras2_GDP,cdc25,cyr1,ira2) + Ira2(p~P,ras2_gtp) K37 #Modifiers(Ras2_GTP_Ira2P)
-	R38: Ira2(p~P,ras2_gtp) -> Ira2(p~0,ras2_gtp) K38 #Modifiers(Ira2P)
+	R30: cAMP(pde1,pde2,pka) + Pde2(camp) -> cAMP(pde1,pde2!906,pka).Pde2(camp!906) K30 #Modifiers(cAMP, Pde2)
+	R31: cAMP(pde1,pde2!906,pka).Pde2(camp!906) -> cAMP(pde1,pde2,pka) + Pde2(camp) K31 #Modifiers(cAMP_Pde2)
+	R32: cAMP(pde1,pde2!906,pka).Pde2(camp!906) -> AMP() + Pde2(camp) K32 #Modifiers(cAMP_Pde2)
+	R33: Cdc25(f~0,ras2_gdp) + C(r) -> C(r) + Cdc25(f~F,ras2_gdp) K33 #Modifiers(Cdc25, C)
+	R34: PPA2() + Cdc25(f~F,ras2_gdp) -> Cdc25(f~0,ras2_gdp) + PPA2() K34 #Modifiers(PPA2, Cdc25f)
+	R35: Ira2(p~0,ras2_gdp) + C(r) -> C(r) + Ira2(p~P,ras2_gdp) K35 #Modifiers(Ira2, C)
+	R36: Ras2_GDP(Ras2_Cdc25~0,Ras2_GTP~Ras2_GTP,cdc25,cyr1,ira2) + Ira2(p~P,ras2_gdp) -> Ras2_GDP(Ras2_Cdc25~0,Ras2_GTP~Ras2_GTP,cdc25,cyr1,ira2!908).Ira2(p~P,ras2_gdp!908) K36 #Modifiers(Ras2_GTP, Ira2P)
+	R37: Ras2_GDP(Ras2_Cdc25~0,Ras2_GTP~Ras2_GTP,cdc25,cyr1,ira2!908).Ira2(p~P,ras2_gdp!908) -> Ras2_GDP(Ras2_Cdc25~0,Ras2_GTP~0,cdc25,cyr1,ira2) + Ira2(p~P,ras2_gdp) K37 #Modifiers(Ras2_GTP_Ira2P)
+	R38: Ira2(p~P,ras2_gdp) -> Ira2(p~0,ras2_gdp) K38 #Modifiers(Ira2P)
 end reaction rules
 end model

@@ -1,0 +1,674 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000390_flat">
+    <ListOfParameters>
+      <Parameter id="V6" type="Constant" value="5.8801286" expr="5.8801285588795"/>
+      <Parameter id="P_0" type="Constant" value="16" expr="16.0"/>
+      <Parameter id="RuBisCo_chloroplast" type="Constant" value="2.143832e+21" expr="2.1438320000000003e+21"/>
+      <Parameter id="RuBisCo" type="Constant" value="2.143832e+21" expr="2.1438320000000003e+21"/>
+      <Parameter id="r1_k" type="Constant" value="0.504" expr="0.504000"/>
+      <Parameter id="r1_K" type="Constant" value="0.04" expr="0.040000"/>
+      <Parameter id="r2_Vm" type="Constant" value="3.49" expr="3.490000"/>
+      <Parameter id="r2_k" type="Constant" value="14" expr="14.000000"/>
+      <Parameter id="r2_K1" type="Constant" value="1" expr="1.000000"/>
+      <Parameter id="r2_K2" type="Constant" value="1" expr="1.000000"/>
+      <Parameter id="r3_Vm" type="Constant" value="1.06" expr="1.060000"/>
+      <Parameter id="r3_K" type="Constant" value="0.4" expr="0.400000"/>
+      <Parameter id="r4_Vm" type="Constant" value="4.81" expr="4.810000"/>
+      <Parameter id="r4_K1" type="Constant" value="0.05" expr="0.050000"/>
+      <Parameter id="r4_K2" type="Constant" value="0.5" expr="0.500000"/>
+      <Parameter id="r4_K3" type="Constant" value="0.05" expr="0.050000"/>
+      <Parameter id="r5_K2" type="Constant" value="0.25" expr="0.250000"/>
+      <Parameter id="r5_K1" type="Constant" value="0.08" expr="0.080000"/>
+      <Parameter id="r5_Vm" type="Constant" value="3.3" expr="3.300000"/>
+      <Parameter id="r6_K1" type="Constant" value="0.08" expr="0.080000"/>
+      <Parameter id="r6_K2" type="Constant" value="0.5" expr="0.500000"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="ADP"/>
+      <MoleculeType id="ATP"/>
+      <MoleculeType id="PGA"/>
+      <MoleculeType id="Pi"/>
+      <MoleculeType id="Pic"/>
+      <MoleculeType id="Ru5P"/>
+      <MoleculeType id="RuBP"/>
+      <MoleculeType id="TP"/>
+      <MoleculeType id="TPc"/>
+      <MoleculeType id="totRuBP"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+      <compartment id="chloroplast" spatialDimensions="3" size="1.0"/>
+      <compartment id="cytosol" spatialDimensions="3" size="1.0"/>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="1.2044e+21" name="@chloroplast::RuBP()" compartment="chloroplast">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="RuBP" compartment="chloroplast"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="1.44528e+21" name="@chloroplast::PGA()" compartment="chloroplast">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="PGA" compartment="chloroplast"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="3.011e+20" name="@chloroplast::TP()" compartment="chloroplast">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="TP" compartment="chloroplast"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S4"  concentration="3.0155007473841558e+19" name="@chloroplast::Ru5P()" compartment="chloroplast">
+        <ListOfMolecules>
+          <Molecule id="S4_M1" name="Ru5P" compartment="chloroplast"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S5"  concentration="3.011e+21" name="@chloroplast::Pi()" compartment="chloroplast">
+        <ListOfMolecules>
+          <Molecule id="S5_M1" name="Pi" compartment="chloroplast"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S6"  concentration="4.0949600000000007e+20" name="@chloroplast::ATP()" compartment="chloroplast">
+        <ListOfMolecules>
+          <Molecule id="S6_M1" name="ATP" compartment="chloroplast"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S7"  concentration="4.93804e+20" name="@chloroplast::ADP()" compartment="chloroplast">
+        <ListOfMolecules>
+          <Molecule id="S7_M1" name="ADP" compartment="chloroplast"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S8"  concentration="-2.59851550373692e+21" name="@chloroplast::totRuBP()" compartment="chloroplast">
+        <ListOfMolecules>
+          <Molecule id="S8_M1" name="totRuBP" compartment="chloroplast"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S9"  concentration="1.2044000000000002e+20" name="@cytosol::$TPc()" compartment="cytosol" Fixed="1">
+        <ListOfMolecules>
+          <Molecule id="S9_M1" name="TPc" compartment="cytosol"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S10"  concentration="8.4308e+20" name="@cytosol::$Pic()" compartment="cytosol" Fixed="1">
+        <ListOfMolecules>
+          <Molecule id="S10_M1" name="Pic" compartment="cytosol"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="RuBisCO_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="totRuBP" compartment="chloroplast"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="_rateLaw1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="RuBisCO_reactants_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="RuBP" compartment="chloroplast"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="_rateLaw2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="RuBisCO_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="PGA" compartment="chloroplast"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="_rateLaw3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="PGA_red" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="PGA" compartment="chloroplast"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR4_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP2_M1" name="ATP" compartment="chloroplast"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="ADP" compartment="chloroplast"/>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR4_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP2_M1" name="TP" compartment="chloroplast"/>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR4_PP3">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP3_M1" name="Pi" compartment="chloroplast"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="fRate1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1"/>
+          <MapItem sourceID="RR4_RP2_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR4_PP1_M1"/>
+          <Add id="RR4_PP2_M1"/>
+          <Add id="RR4_PP3_M1"/>
+          <Delete id="RR4_RP1" DeleteMolecules="0"/>
+          <Delete id="RR4_RP2" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="_reverse_PGA_red" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR5_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP1_M1" name="ADP" compartment="chloroplast"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR5_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP2_M1" name="TP" compartment="chloroplast"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR5_RP3">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP3_M1" name="Pi" compartment="chloroplast"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="PGA" compartment="chloroplast"/>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR5_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP2_M1" name="ATP" compartment="chloroplast"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Function" name="fRate1m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR5_RP1_M1"/>
+          <MapItem sourceID="RR5_RP2_M1"/>
+          <MapItem sourceID="RR5_RP3_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR5_PP1_M1"/>
+          <Add id="RR5_PP2_M1"/>
+          <Delete id="RR5_RP1" DeleteMolecules="0"/>
+          <Delete id="RR5_RP2" DeleteMolecules="0"/>
+          <Delete id="RR5_RP3" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="TP_red_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="TP" compartment="chloroplast"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Function" name="_rateLaw4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR6_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="TP_red_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="Ru5P" compartment="chloroplast"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Function" name="_rateLaw5" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR7_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="TP_red_products_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR8_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP1_M1" name="Pi" compartment="chloroplast"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Function" name="_rateLaw6" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR8_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="RuBP_reg" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR9_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_RP1_M1" name="Ru5P" compartment="chloroplast"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR9_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR9_RP2_M1" name="ATP" compartment="chloroplast"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR9_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP1_M1" name="RuBP" compartment="chloroplast"/>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR9_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP2_M1" name="ADP" compartment="chloroplast"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Function" name="fRate3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR9_RP1_M1"/>
+          <MapItem sourceID="RR9_RP2_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR9_PP1_M1"/>
+          <Add id="RR9_PP2_M1"/>
+          <Delete id="RR9_RP1" DeleteMolecules="0"/>
+          <Delete id="RR9_RP2" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="TPT" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR10_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_RP1_M1" name="TP" compartment="chloroplast"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR10_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR10_RP2_M1" name="Pic" compartment="cytosol"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR10_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_PP1_M1" name="TPc" compartment="cytosol"/>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR10_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR10_PP2_M1" name="Pi" compartment="chloroplast"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Function" name="fRate4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR10_RP1_M1"/>
+          <MapItem sourceID="RR10_RP2_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR10_PP1_M1"/>
+          <Add id="RR10_PP2_M1"/>
+          <Delete id="RR10_RP1" DeleteMolecules="0"/>
+          <Delete id="RR10_RP2" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR11" name="_reverse_TPT" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR11_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_RP1_M1" name="TPc" compartment="cytosol"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR11_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR11_RP2_M1" name="Pi" compartment="chloroplast"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR11_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_PP1_M1" name="TP" compartment="chloroplast"/>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR11_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR11_PP2_M1" name="Pic" compartment="cytosol"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR11_RateLaw" type="Function" name="fRate4m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR11_RP1_M1"/>
+          <MapItem sourceID="RR11_RP2_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR11_PP1_M1"/>
+          <Add id="RR11_PP2_M1"/>
+          <Delete id="RR11_RP1" DeleteMolecules="0"/>
+          <Delete id="RR11_RP2" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR12" name="ATP_S" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR12_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_RP1_M1" name="ADP" compartment="chloroplast"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR12_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR12_RP2_M1" name="Pi" compartment="chloroplast"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR12_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_PP1_M1" name="ATP" compartment="chloroplast"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR12_RateLaw" type="Function" name="fRate5" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR12_RP1_M1"/>
+          <MapItem sourceID="RR12_RP2_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR12_PP1_M1"/>
+          <Delete id="RR12_RP1" DeleteMolecules="0"/>
+          <Delete id="RR12_RP2" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="RuBP_chloroplast" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" compartment="chloroplast" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="RuBP"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="PGA_chloroplast" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" compartment="chloroplast" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="PGA"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="TP_chloroplast" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" compartment="chloroplast" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="TP"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="Ru5P_chloroplast" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" compartment="chloroplast" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="Ru5P"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="Pi_chloroplast" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" compartment="chloroplast" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="Pi"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O6" name="ATP_chloroplast" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O6_P1" compartment="chloroplast" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O6_P1_M1" name="ATP"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O7" name="ADP_chloroplast" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O7_P1" compartment="chloroplast" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O7_P1_M1" name="ADP"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O8" name="totRuBP_chloroplast" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O8_P1" compartment="chloroplast" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O8_P1_M1" name="totRuBP"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O9" name="TPc_cytosol" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O9_P1" compartment="cytosol" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O9_P1_M1" name="TPc"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O10" name="Pic_cytosol" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O10_P1" compartment="cytosol" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O10_P1_M1" name="Pic"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="totRuBP_ar">
+        <ListOfReferences>
+          <Reference name="P_0" type="Constant"/>
+          <Reference name="ATP_chloroplast" type="Observable"/>
+          <Reference name="PGA_chloroplast" type="Observable"/>
+          <Reference name="Pi_chloroplast" type="Observable"/>
+          <Reference name="Ru5P_chloroplast" type="Observable"/>
+          <Reference name="TP_chloroplast" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((((((-ATP_chloroplast)/2)-(PGA_chloroplast/2))+(P_0/2))-(Pi_chloroplast/2))-(Ru5P_chloroplast/2))-(TP_chloroplast/2) </Expression>
+      </Function>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="RuBisCo_chloroplast" type="Constant"/>
+          <Reference name="totRuBP_chloroplast" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((0.252*RuBisCo_chloroplast)+(0.252*totRuBP_chloroplast))-(0.252*sqrt((((-4*RuBisCo_chloroplast)*totRuBP_chloroplast)+(((RuBisCo_chloroplast+totRuBP_chloroplast)+0.04)^2)))))+0.01008 </Expression>
+      </Function>
+      <Function id="fRate1">
+        <ListOfReferences>
+          <Reference name="ADP_chloroplast" type="Observable"/>
+          <Reference name="ATP_chloroplast" type="Observable"/>
+          <Reference name="PGA_chloroplast" type="Observable"/>
+          <Reference name="Pi_chloroplast" type="Observable"/>
+          <Reference name="TP_chloroplast" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 48.86/(((((1.0*ADP_chloroplast)*Pi_chloroplast)*TP_chloroplast)+((14.0*ATP_chloroplast)*PGA_chloroplast))+14.0) </Expression>
+      </Function>
+      <Function id="fRate1m">
+        <ListOfReferences>
+          <Reference name="ADP_chloroplast" type="Observable"/>
+          <Reference name="ATP_chloroplast" type="Observable"/>
+          <Reference name="PGA_chloroplast" type="Observable"/>
+          <Reference name="Pi_chloroplast" type="Observable"/>
+          <Reference name="TP_chloroplast" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 3.49/(((((1.0*ADP_chloroplast)*Pi_chloroplast)*TP_chloroplast)+((14.0*ATP_chloroplast)*PGA_chloroplast))+14.0) </Expression>
+      </Function>
+      <Function id="fRate2">
+        <ListOfReferences>
+          <Reference name="TP_chloroplast" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (1.06*TP_chloroplast)/(TP_chloroplast+0.4) </Expression>
+      </Function>
+      <Function id="fRate3">
+        <ListOfReferences>
+          <Reference name="ATP_chloroplast" type="Observable"/>
+          <Reference name="Pi_chloroplast" type="Observable"/>
+          <Reference name="Ru5P_chloroplast" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 4.81/((((ATP_chloroplast*Ru5P_chloroplast)+(0.5*ATP_chloroplast))+(0.05*Pi_chloroplast))+0.025) </Expression>
+      </Function>
+      <Function id="fRate4">
+        <ListOfReferences>
+          <Reference name="Pi_chloroplast" type="Observable"/>
+          <Reference name="Pic_cytosol" type="Observable"/>
+          <Reference name="TP_chloroplast" type="Observable"/>
+          <Reference name="TPc_cytosol" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 0.066/(((((((((0.0064*Pi_chloroplast)*Pic_cytosol)+((0.02*Pi_chloroplast)*TPc_cytosol))+(0.0016*Pi_chloroplast))+((0.02*Pic_cytosol)*TP_chloroplast))+(0.0016*Pic_cytosol))+((0.0625*TP_chloroplast)*TPc_cytosol))+(0.005*TP_chloroplast))+(0.005*TPc_cytosol)) </Expression>
+      </Function>
+      <Function id="fRate4m">
+        <ListOfReferences>
+          <Reference name="Pi_chloroplast" type="Observable"/>
+          <Reference name="Pic_cytosol" type="Observable"/>
+          <Reference name="TP_chloroplast" type="Observable"/>
+          <Reference name="TPc_cytosol" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 0.066/(((((((((0.0064*Pi_chloroplast)*Pic_cytosol)+((0.02*Pi_chloroplast)*TPc_cytosol))+(0.0016*Pi_chloroplast))+((0.02*Pic_cytosol)*TP_chloroplast))+(0.0016*Pic_cytosol))+((0.0625*TP_chloroplast)*TPc_cytosol))+(0.005*TP_chloroplast))+(0.005*TPc_cytosol)) </Expression>
+      </Function>
+      <Function id="fRate5">
+        <ListOfReferences>
+          <Reference name="V6" type="Constant"/>
+          <Reference name="ADP_chloroplast" type="Observable"/>
+          <Reference name="Pi_chloroplast" type="Observable"/>
+        </ListOfReferences>
+        <Expression> V6/((((ADP_chloroplast*Pi_chloroplast)+(0.5*ADP_chloroplast))+(0.08*Pi_chloroplast))+0.04) </Expression>
+      </Function>
+      <Function id="_rateLaw1">
+        <ListOfReferences>
+          <Reference name="fRate0" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate0() </Expression>
+      </Function>
+      <Function id="_rateLaw2">
+        <ListOfReferences>
+          <Reference name="fRate0" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate0() </Expression>
+      </Function>
+      <Function id="_rateLaw3">
+        <ListOfReferences>
+          <Reference name="fRate0" type="Function"/>
+        </ListOfReferences>
+        <Expression> 2.0*fRate0() </Expression>
+      </Function>
+      <Function id="_rateLaw4">
+        <ListOfReferences>
+          <Reference name="fRate2" type="Function"/>
+        </ListOfReferences>
+        <Expression> (-1*5.0)*fRate2() </Expression>
+      </Function>
+      <Function id="_rateLaw5">
+        <ListOfReferences>
+          <Reference name="fRate2" type="Function"/>
+        </ListOfReferences>
+        <Expression> 3.0*fRate2() </Expression>
+      </Function>
+      <Function id="_rateLaw6">
+        <ListOfReferences>
+          <Reference name="fRate2" type="Function"/>
+        </ListOfReferences>
+        <Expression> 2.0*fRate2() </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

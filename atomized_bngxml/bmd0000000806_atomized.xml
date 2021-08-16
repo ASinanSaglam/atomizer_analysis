@@ -1,0 +1,949 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000806_atomized">
+    <ListOfParameters>
+      <Parameter id="r" type="Constant" value="0.924" expr="0.924"/>
+      <Parameter id="K" type="Constant" value="3.3e+9" expr="3300000000.0"/>
+      <Parameter id="d_v" type="Constant" value="0.011" expr="0.011"/>
+      <Parameter id="v_h_u" type="Constant" value="100000" expr="100000.0"/>
+      <Parameter id="d_u" type="Constant" value="0.44" expr="0.44"/>
+      <Parameter id="h_e" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="d_m1" type="Constant" value="0.01" expr="0.01"/>
+      <Parameter id="h_m" type="Constant" value="1000" expr="1000.0"/>
+      <Parameter id="d_m2" type="Constant" value="0.4" expr="0.4"/>
+      <Parameter id="delta_i" type="Constant" value="0.475" expr="0.475"/>
+      <Parameter id="b" type="Constant" value="2500" expr="2500.0"/>
+      <Parameter id="v_d_u" type="Constant" value="4.4" expr="4.4"/>
+      <Parameter id="v_d_m1" type="Constant" value="1.5" expr="1.5"/>
+      <Parameter id="omega" type="Constant" value="2" expr="2.0"/>
+      <Parameter id="d_em1" type="Constant" value="0.2" expr="0.2"/>
+      <Parameter id="v_a_1" type="Constant" value="1e-6" expr="1e-06"/>
+      <Parameter id="u_a_1" type="Constant" value="3e-6" expr="3e-06"/>
+      <Parameter id="p_m1" type="Constant" value="0.22" expr="0.22"/>
+      <Parameter id="M" type="Constant" value="1e+8" expr="100000000.0"/>
+      <Parameter id="o_r_m1" type="Constant" value="0.001" expr="0.001"/>
+      <Parameter id="o_r_m2" type="Constant" value="0.001" expr="0.001"/>
+      <Parameter id="u_r_m1" type="Constant" value="4" expr="4.0"/>
+      <Parameter id="v_r_m2" type="Constant" value="0.5" expr="0.5"/>
+      <Parameter id="p_m2" type="Constant" value="0.22" expr="0.22"/>
+      <Parameter id="h_u" type="Constant" value="5e+9" expr="5000000000.0"/>
+      <Parameter id="h_v" type="Constant" value="0.105636" expr="0.105636"/>
+      <Parameter id="d_em2" type="Constant" value="0.2" expr="0.2"/>
+      <Parameter id="u_a_2" type="Constant" value="4e-8" expr="4e-08"/>
+      <Parameter id="d_ee" type="Constant" value="0.4" expr="0.4"/>
+      <Parameter id="p_e" type="Constant" value="2070" expr="2070.0"/>
+      <Parameter id="d_t" type="Constant" value="1e-10" expr="1e-10"/>
+      <Parameter id="H" type="Constant" value="0" expr="0"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="Effector_Cytotoxic_CD8_TCells__Xe__"/>
+      <MoleculeType id="Infected_Tumour_Cells__Xi__">
+        <ListOfComponentTypes>
+          <ComponentType id="UnInfected_Tumour_Cells__Xu__">
+            <ListOfAllowedStates>
+              <AllowedState id="UnInfected_Tumour_Cells__Xu__"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="M1_Macrophage__Xm1__"/>
+      <MoleculeType id="M2_Macrophage__Xm2__"/>
+      <MoleculeType id="Virus__Xv__"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="3.0110000000000003e+26" name="Infected_Tumour_Cells__Xi__(UnInfected_Tumour_Cells__Xu__~UnInfected_Tumour_Cells__Xu__)">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="Infected_Tumour_Cells__Xi__">
+            <ListOfComponents>
+              <Component id="S1_M1_C1" name="UnInfected_Tumour_Cells__Xu__" state="UnInfected_Tumour_Cells__Xu__" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="Uninfected_tumour_cell_logistic_growth" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="Infected_Tumour_Cells__Xi__">
+                <ListOfComponents>
+                  <Component id="RR1_PP1_M1_C1" name="UnInfected_Tumour_Cells__Xu__" state="UnInfected_Tumour_Cells__Xu__" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="_reverse_Uninfected_tumour_cell_logistic_growth" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="Infected_Tumour_Cells__Xi__">
+                <ListOfComponents>
+                  <Component id="RR2_RP1_M1_C1" name="UnInfected_Tumour_Cells__Xu__" state="UnInfected_Tumour_Cells__Xu__" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="fRate0m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1"/>
+          <MapItem sourceID="RR2_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR2_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="Uninfected_tumour_cell_infection" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="Infected_Tumour_Cells__Xi__">
+                <ListOfComponents>
+                  <Component id="RR3_RP1_M1_C1" name="UnInfected_Tumour_Cells__Xu__" state="UnInfected_Tumour_Cells__Xu__" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="Infected_Tumour_Cells__Xi__">
+                <ListOfComponents>
+                  <Component id="RR3_PP1_M1_C1" name="UnInfected_Tumour_Cells__Xu__" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="fRate1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1" targetID="RR3_PP1_M1"/>
+          <MapItem sourceID="RR3_RP1_M1_C1" targetID="RR3_PP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR3_RP1_M1_C1" finalState="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="Uninfected_tumour_cell_elimination_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="Infected_Tumour_Cells__Xi__">
+                <ListOfComponents>
+                  <Component id="RR4_RP1_M1_C1" name="UnInfected_Tumour_Cells__Xu__" state="UnInfected_Tumour_Cells__Xu__" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="fRate2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1"/>
+          <MapItem sourceID="RR4_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR4_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="Uninfected_tumour_cell_elimination_2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR5_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP1_M1" name="Infected_Tumour_Cells__Xi__">
+                <ListOfComponents>
+                  <Component id="RR5_RP1_M1_C1" name="UnInfected_Tumour_Cells__Xu__" state="UnInfected_Tumour_Cells__Xu__" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Function" name="fRate3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR5_RP1_M1"/>
+          <MapItem sourceID="RR5_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR5_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="Uninfected_tumour_cell_growth_M2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="Infected_Tumour_Cells__Xi__">
+                <ListOfComponents>
+                  <Component id="RR6_PP1_M1_C1" name="UnInfected_Tumour_Cells__Xu__" state="UnInfected_Tumour_Cells__Xu__" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Function" name="fRate4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR6_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="Infected_tumour_cell_death" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR7_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_RP1_M1" name="Infected_Tumour_Cells__Xi__">
+                <ListOfComponents>
+                  <Component id="RR7_RP1_M1_C1" name="UnInfected_Tumour_Cells__Xu__" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="delta_i"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR7_RP1_M1"/>
+          <MapItem sourceID="RR7_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR7_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="virus_growth" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR8_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP1_M1" name="Virus__Xv__"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Function" name="fRate6" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR8_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="Infected_tumour_cell_elimination_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR9_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_RP1_M1" name="Infected_Tumour_Cells__Xi__">
+                <ListOfComponents>
+                  <Component id="RR9_RP1_M1_C1" name="UnInfected_Tumour_Cells__Xu__" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Function" name="fRate7" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR9_RP1_M1"/>
+          <MapItem sourceID="RR9_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR9_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="Infected_tumour_cell_elimination_2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR10_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_RP1_M1" name="Infected_Tumour_Cells__Xi__">
+                <ListOfComponents>
+                  <Component id="RR10_RP1_M1_C1" name="UnInfected_Tumour_Cells__Xu__" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Function" name="fRate8" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR10_RP1_M1"/>
+          <MapItem sourceID="RR10_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR10_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR11" name="virus_injection" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR11_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_PP1_M1" name="Virus__Xv__"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR11_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="H"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR11_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR12" name="virus_death" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR12_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_RP1_M1" name="Virus__Xv__"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR12_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="omega"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR12_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR12_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR13" name="virus_clearance_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR13_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_RP1_M1" name="Virus__Xv__"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR13_RateLaw" type="Function" name="fRate11" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR13_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR13_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR14" name="virus_clearance_2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR14_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_RP1_M1" name="Virus__Xv__"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR14_RateLaw" type="Function" name="fRate12" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR14_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR14_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR15" name="M1_activation_1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR15_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR15_PP1_M1" name="M1_Macrophage__Xm1__"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR15_RateLaw" type="Function" name="fRate13" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR15_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR16" name="M1_activation_2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR16_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR16_PP1_M1" name="M1_Macrophage__Xm1__"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR16_RateLaw" type="Function" name="fRate14" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR16_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR17" name="M1_recruitment_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR17_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR17_PP1_M1" name="M1_Macrophage__Xm1__"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR17_RateLaw" type="Function" name="fRate15" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR17_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR18" name="M1_to_M2_repolarisation_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR18_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR18_PP1_M1" name="M1_Macrophage__Xm1__"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR18_RateLaw" type="Function" name="_rateLaw1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR18_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR19" name="M1_to_M2_repolarisation_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR19_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR19_PP1_M1" name="M2_Macrophage__Xm2__"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR19_RateLaw" type="Function" name="fRate16" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR19_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR20" name="M2_to_M1_repolarisation_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR20_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR20_PP1_M1" name="M2_Macrophage__Xm2__"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR20_RateLaw" type="Function" name="_rateLaw2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR20_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR21" name="M2_to_M1_repolarisation_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR21_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR21_PP1_M1" name="M1_Macrophage__Xm1__"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR21_RateLaw" type="Function" name="fRate17" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR21_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR22" name="M1_death" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR22_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR22_RP1_M1" name="M1_Macrophage__Xm1__"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR22_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="d_em1"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR22_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR22_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR23" name="M2_activation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR23_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR23_PP1_M1" name="M2_Macrophage__Xm2__"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR23_RateLaw" type="Function" name="fRate19" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR23_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR24" name="M2_growth_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR24_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR24_PP1_M1" name="M2_Macrophage__Xm2__"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR24_RateLaw" type="Function" name="fRate20" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR24_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR25" name="M2_death" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR25_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR25_RP1_M1" name="M2_Macrophage__Xm2__"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR25_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="d_em2"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR25_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR25_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR26" name="T_cells_activation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR26_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR26_PP1_M1" name="Effector_Cytotoxic_CD8_TCells__Xe__"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR26_RateLaw" type="Function" name="fRate22" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR26_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR27" name="T_cells_death" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR27_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR27_RP1_M1" name="Effector_Cytotoxic_CD8_TCells__Xe__"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR27_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="d_ee"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR27_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR27_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR28" name="T_cells_inactivation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR28_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR28_RP1_M1" name="Effector_Cytotoxic_CD8_TCells__Xe__"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR28_RateLaw" type="Function" name="fRate24" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR28_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR28_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="UnInfected_Tumour_Cells__Xu__" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="Infected_Tumour_Cells__Xi__">
+                <ListOfComponents>
+                  <Component id="O1_P1_M1_C1" name="UnInfected_Tumour_Cells__Xu__" state="UnInfected_Tumour_Cells__Xu__" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="Infected_Tumour_Cells__Xi__" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="Infected_Tumour_Cells__Xi__">
+                <ListOfComponents>
+                  <Component id="O2_P1_M1_C1" name="UnInfected_Tumour_Cells__Xu__" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="Virus__Xv__" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="Virus__Xv__"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="Effector_Cytotoxic_CD8_TCells__Xe__" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="Effector_Cytotoxic_CD8_TCells__Xe__"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="M1_Macrophage__Xm1__" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="M1_Macrophage__Xm1__"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O6" name="M2_Macrophage__Xm2__" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O6_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O6_P1_M1" name="M2_Macrophage__Xm2__"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="r" type="Constant"/>
+          <Reference name="UnInfected_Tumour_Cells__Xu__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> UnInfected_Tumour_Cells__Xu__*r </Expression>
+      </Function>
+      <Function id="fRate0m">
+        <ListOfReferences>
+          <Reference name="K" type="Constant"/>
+          <Reference name="r" type="Constant"/>
+          <Reference name="UnInfected_Tumour_Cells__Xu__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (UnInfected_Tumour_Cells__Xu__*r)/K </Expression>
+      </Function>
+      <Function id="fRate1">
+        <ListOfReferences>
+          <Reference name="d_v" type="Constant"/>
+          <Reference name="v_h_u" type="Constant"/>
+          <Reference name="UnInfected_Tumour_Cells__Xu__" type="Observable"/>
+          <Reference name="Virus__Xv__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (Virus__Xv__*d_v)/(UnInfected_Tumour_Cells__Xu__+v_h_u) </Expression>
+      </Function>
+      <Function id="fRate2">
+        <ListOfReferences>
+          <Reference name="d_u" type="Constant"/>
+          <Reference name="h_e" type="Constant"/>
+          <Reference name="Effector_Cytotoxic_CD8_TCells__Xe__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (Effector_Cytotoxic_CD8_TCells__Xe__*d_u)/(Effector_Cytotoxic_CD8_TCells__Xe__+h_e) </Expression>
+      </Function>
+      <Function id="fRate3">
+        <ListOfReferences>
+          <Reference name="d_m1" type="Constant"/>
+          <Reference name="h_m" type="Constant"/>
+          <Reference name="M1_Macrophage__Xm1__" type="Observable"/>
+          <Reference name="M2_Macrophage__Xm2__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (M1_Macrophage__Xm1__*d_m1)/(M2_Macrophage__Xm2__+h_m) </Expression>
+      </Function>
+      <Function id="fRate4">
+        <ListOfReferences>
+          <Reference name="d_m2" type="Constant"/>
+          <Reference name="h_m" type="Constant"/>
+          <Reference name="M2_Macrophage__Xm2__" type="Observable"/>
+          <Reference name="UnInfected_Tumour_Cells__Xu__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((M2_Macrophage__Xm2__*UnInfected_Tumour_Cells__Xu__)*d_m2)/(M2_Macrophage__Xm2__+h_m) </Expression>
+      </Function>
+      <Function id="fRate6">
+        <ListOfReferences>
+          <Reference name="b" type="Constant"/>
+          <Reference name="delta_i" type="Constant"/>
+          <Reference name="Infected_Tumour_Cells__Xi__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (Infected_Tumour_Cells__Xi__*b)*delta_i </Expression>
+      </Function>
+      <Function id="fRate7">
+        <ListOfReferences>
+          <Reference name="h_e" type="Constant"/>
+          <Reference name="v_d_u" type="Constant"/>
+          <Reference name="Effector_Cytotoxic_CD8_TCells__Xe__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (Effector_Cytotoxic_CD8_TCells__Xe__*v_d_u)/(Effector_Cytotoxic_CD8_TCells__Xe__+h_e) </Expression>
+      </Function>
+      <Function id="fRate8">
+        <ListOfReferences>
+          <Reference name="h_m" type="Constant"/>
+          <Reference name="v_d_m1" type="Constant"/>
+          <Reference name="M1_Macrophage__Xm1__" type="Observable"/>
+          <Reference name="M2_Macrophage__Xm2__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (M1_Macrophage__Xm1__*v_d_m1)/(M2_Macrophage__Xm2__+h_m) </Expression>
+      </Function>
+      <Function id="fRate11">
+        <ListOfReferences>
+          <Reference name="h_m" type="Constant"/>
+          <Reference name="v_d_m1" type="Constant"/>
+          <Reference name="M1_Macrophage__Xm1__" type="Observable"/>
+          <Reference name="M2_Macrophage__Xm2__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (M1_Macrophage__Xm1__*v_d_m1)/(M2_Macrophage__Xm2__+h_m) </Expression>
+      </Function>
+      <Function id="fRate12">
+        <ListOfReferences>
+          <Reference name="h_e" type="Constant"/>
+          <Reference name="v_d_u" type="Constant"/>
+          <Reference name="Effector_Cytotoxic_CD8_TCells__Xe__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (Effector_Cytotoxic_CD8_TCells__Xe__*v_d_u)/(Effector_Cytotoxic_CD8_TCells__Xe__+h_e) </Expression>
+      </Function>
+      <Function id="fRate13">
+        <ListOfReferences>
+          <Reference name="v_a_1" type="Constant"/>
+          <Reference name="Infected_Tumour_Cells__Xi__" type="Observable"/>
+          <Reference name="Virus__Xv__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> v_a_1*(Infected_Tumour_Cells__Xi__+Virus__Xv__) </Expression>
+      </Function>
+      <Function id="fRate14">
+        <ListOfReferences>
+          <Reference name="u_a_1" type="Constant"/>
+          <Reference name="UnInfected_Tumour_Cells__Xu__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> UnInfected_Tumour_Cells__Xu__*u_a_1 </Expression>
+      </Function>
+      <Function id="fRate15">
+        <ListOfReferences>
+          <Reference name="M" type="Constant"/>
+          <Reference name="p_m1" type="Constant"/>
+          <Reference name="M1_Macrophage__Xm1__" type="Observable"/>
+          <Reference name="M2_Macrophage__Xm2__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (M1_Macrophage__Xm1__*p_m1)*(1-((M1_Macrophage__Xm1__+M2_Macrophage__Xm2__)/M)) </Expression>
+      </Function>
+      <Function id="fRate16">
+        <ListOfReferences>
+          <Reference name="h_u" type="Constant"/>
+          <Reference name="o_r_m1" type="Constant"/>
+          <Reference name="u_r_m1" type="Constant"/>
+          <Reference name="M1_Macrophage__Xm1__" type="Observable"/>
+          <Reference name="UnInfected_Tumour_Cells__Xu__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> M1_Macrophage__Xm1__*(((UnInfected_Tumour_Cells__Xu__*u_r_m1)/(UnInfected_Tumour_Cells__Xu__+h_u))+o_r_m1) </Expression>
+      </Function>
+      <Function id="fRate17">
+        <ListOfReferences>
+          <Reference name="h_v" type="Constant"/>
+          <Reference name="o_r_m2" type="Constant"/>
+          <Reference name="v_r_m2" type="Constant"/>
+          <Reference name="M2_Macrophage__Xm2__" type="Observable"/>
+          <Reference name="Virus__Xv__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> M2_Macrophage__Xm2__*(((Virus__Xv__*v_r_m2)/(Virus__Xv__+h_v))+o_r_m2) </Expression>
+      </Function>
+      <Function id="fRate19">
+        <ListOfReferences>
+          <Reference name="u_a_2" type="Constant"/>
+          <Reference name="UnInfected_Tumour_Cells__Xu__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> UnInfected_Tumour_Cells__Xu__*u_a_2 </Expression>
+      </Function>
+      <Function id="fRate20">
+        <ListOfReferences>
+          <Reference name="M" type="Constant"/>
+          <Reference name="p_m2" type="Constant"/>
+          <Reference name="M1_Macrophage__Xm1__" type="Observable"/>
+          <Reference name="M2_Macrophage__Xm2__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (M2_Macrophage__Xm2__*p_m2)*(1-((M1_Macrophage__Xm1__+M2_Macrophage__Xm2__)/M)) </Expression>
+      </Function>
+      <Function id="fRate22">
+        <ListOfReferences>
+          <Reference name="h_m" type="Constant"/>
+          <Reference name="p_e" type="Constant"/>
+          <Reference name="M1_Macrophage__Xm1__" type="Observable"/>
+          <Reference name="M2_Macrophage__Xm2__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (M1_Macrophage__Xm1__*p_e)/(M2_Macrophage__Xm2__+h_m) </Expression>
+      </Function>
+      <Function id="fRate24">
+        <ListOfReferences>
+          <Reference name="d_t" type="Constant"/>
+          <Reference name="UnInfected_Tumour_Cells__Xu__" type="Observable"/>
+        </ListOfReferences>
+        <Expression> UnInfected_Tumour_Cells__Xu__*d_t </Expression>
+      </Function>
+      <Function id="_rateLaw1">
+        <ListOfReferences>
+          <Reference name="fRate16" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate16() </Expression>
+      </Function>
+      <Function id="_rateLaw2">
+        <ListOfReferences>
+          <Reference name="fRate17" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate17() </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

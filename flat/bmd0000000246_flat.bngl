@@ -1,13 +1,13 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1004080000', 'http://identifiers.org/biomodels.db/BIOMD0000000246']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000246', 'http://identifiers.org/biomodels.db/MODEL1004080000']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/20300645']
-#@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/BIOMD0000000074', 'http://identifiers.org/biomodels.db/BIOMD0000000073', 'http://identifiers.org/biomodels.db/BIOMD0000000078', 'http://identifiers.org/biomodels.db/BIOMD0000000083', 'http://identifiers.org/pubmed/11316338']
+#@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/BIOMD0000000083', 'http://identifiers.org/biomodels.db/BIOMD0000000074', 'http://identifiers.org/pubmed/11316338', 'http://identifiers.org/biomodels.db/BIOMD0000000078', 'http://identifiers.org/biomodels.db/BIOMD0000000073']
 #@BQB_OCCURS_IN:['http://identifiers.org/fma/FMA:67883']
 #@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0042752']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/40674']
 #@creatorEmail:'lukas@ebi.ac.uk'
 #@creatorName:'Endler Lukas'
-#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 29 molecules and 41 reactions. The translated model has 20 molecules and 44 rules'
+#@notes:'This is a plain translation of an SBML model created on 14/08/2021. The original model has 29 molecules and 41 reactions. The translated model has 20 molecules and 44 rules'
 ###
 begin model
 begin parameters
@@ -164,26 +164,26 @@ begin compartments
 	nucleus 3 1.0
 end compartments
 begin molecule types
-	PC_C()
 	M_B()
-	M_P()
-	PC_NP()
-	M_C()
-	B_N()
-	P_CP()
-	Ca_in()
-	B_C()
-	P_C()
-	VIP()
-	PC_N()
-	Ca()
-	PC_CP()
-	I_N()
 	B_NP()
-	CB()
-	C_C()
-	B_CP()
+	P_C()
+	I_N()
 	C_CP()
+	Ca()
+	VIP()
+	M_C()
+	P_CP()
+	PC_CP()
+	CB()
+	PC_N()
+	PC_C()
+	B_N()
+	C_C()
+	PC_NP()
+	Ca_in()
+	B_CP()
+	M_P()
+	B_C()
 end molecule types
 begin seed species
 	@cytoplasm:Ca_in() 60220000000000.016 # (0.1 * 1e-09)mol/L * 6.022e23/mol *1.0L #Ca_in #Ca_in
@@ -229,31 +229,31 @@ begin observables
 	Species VIP_cytoplasm @cytoplasm:VIP() #VIP
 end observables
 begin functions
-	g_Ca() = M_P_cytoplasm^n_Ca*v_Ca/(K_Ca + M_P_cytoplasm^n_Ca)
-	E_Na() = E_Na_0*(T + T_abs)/(T_abs + T_room)
-	theta_Na() = exp(E_Na/(1000*k_q*(T + T_abs)))
-	Na_in_ar() = Na_ex_extra/theta_Na
+	GABA_ar() = GABA_o_cytoplasm + VIP_cytoplasm*v_GABA/(K_GABA + VIP_cytoplasm)
+	Cl_in() = Cl_o_cytoplasm + GABA_ar^n_Cl*v_Cl2/(GABA_ar^n_Cl + K_Cl2) + M_P_cytoplasm*v_Cl1/(K_Cl1 + M_P_cytoplasm)
 	E_K() = E_K_0*(T + T_abs)/(T_abs + T_room)
 	theta_K() = exp(E_K/(1000*k_q*(T + T_abs)))
 	K_in_ar() = K_ex_extra/theta_K
 	P_K() = B_C_cytoplasm^n_PK*v_PK/(B_C_cytoplasm^n_PK + K_PK)
-	alpha() = Ca_in_cytoplasm*P_Ca/250 + Cl_ex_extra*P_Cl + K_in_ar*P_K + Na_in_ar*P_Na
-	GABA_ar() = GABA_o_cytoplasm + VIP_cytoplasm*v_GABA/(K_GABA + VIP_cytoplasm)
-	Cl_in() = Cl_o_cytoplasm + GABA_ar^n_Cl*v_Cl2/(GABA_ar^n_Cl + K_Cl2) + M_P_cytoplasm*v_Cl1/(K_Cl1 + M_P_cytoplasm)
-	c() = -Ca_ex_extra*P_Ca/250 - Cl_in*P_Cl - K_ex_extra*P_K - Na_ex_extra*P_Na
+	E_Na() = E_Na_0*(T + T_abs)/(T_abs + T_room)
+	theta_Na() = exp(E_Na/(1000*k_q*(T + T_abs)))
+	Na_in_ar() = Na_ex_extra/theta_Na
 	beta_a() = Cl_ex_extra*P_Cl - Cl_in*P_Cl - K_ex_extra*P_K + K_in_ar*P_K - Na_ex_extra*P_Na + Na_in_ar*P_Na
+	c() = -Ca_ex_extra*P_Ca/250 - Cl_in*P_Cl - K_ex_extra*P_K - Na_ex_extra*P_Na
+	alpha() = Ca_in_cytoplasm*P_Ca/250 + Cl_ex_extra*P_Cl + K_in_ar*P_K + Na_in_ar*P_Na
 	psi() = (-beta_a + sqrt(-4*alpha*c + beta_a^2))/(2*alpha)
 	V_rest() = 1000*R_g*(T + T_abs)*ln(psi)/Faraday
-	R() = V_R*V_rest/(K_R + V_rest)
-	g_L() = 1/R
-	E_inhib() = -1000*k_q*(T + T_abs)*ln(Cl_ex_extra/Cl_in)
-	g_K() = M_P_cytoplasm*v_gk/(K_gk + M_P_cytoplasm) + g_K_0
-	E_Ca() = 500*k_q*(T + T_abs)*ln(Ca_ex_extra/Ca_in_cytoplasm)
-	gK_Ca() = C_C_cytoplasm^n_KCa*VK_Ca/(C_C_cytoplasm^n_KCa + K_KCa)
-	E_L() = E_L_0*(T + T_abs)/(T_abs + T_room)
 	I_Na() = g_Na*(-E_Na + V_rest)
 	I_Na_abs() = sqrt(I_Na^2)
 	g_ex() = Ca_in_cytoplasm^n_ex2*V_ex2/(Ca_in_cytoplasm^n_ex2 + K_ex2) + I_Na_abs^n_ex1*V_ex1/(I_Na_abs^n_ex1 + K_ex1)
+	R() = V_R*V_rest/(K_R + V_rest)
+	g_L() = 1/R
+	g_Ca() = M_P_cytoplasm^n_Ca*v_Ca/(K_Ca + M_P_cytoplasm^n_Ca)
+	gK_Ca() = C_C_cytoplasm^n_KCa*VK_Ca/(C_C_cytoplasm^n_KCa + K_KCa)
+	g_K() = M_P_cytoplasm*v_gk/(K_gk + M_P_cytoplasm) + g_K_0
+	E_L() = E_L_0*(T + T_abs)/(T_abs + T_room)
+	E_inhib() = -1000*k_q*(T + T_abs)*ln(Cl_ex_extra/Cl_in)
+	E_Ca() = 500*k_q*(T + T_abs)*ln(Ca_ex_extra/Ca_in_cytoplasm)
 	I_star() = E_Ca*g_Ca + E_K*gK_Ca + E_K*g_K + E_L*g_L + E_Na*g_Na - E_ex*g_ex - E_inhib*g_inhib
 	R_star() = 1/(gK_Ca + g_Ca + g_K + g_L + g_Na - g_ex - g_inhib)
 	V_reset() = V_rest + 4

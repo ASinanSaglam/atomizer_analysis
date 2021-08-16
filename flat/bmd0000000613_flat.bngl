@@ -2,11 +2,11 @@
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/19732857']
 #@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0046849', 'http://identifiers.org/go/GO:0055074', 'http://identifiers.org/go/GO:2000828']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
-#@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:13543', 'http://identifiers.org/doid/DOID:11199', 'http://identifiers.org/mamo/MAMO_0000046']
-#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1604270004', 'http://identifiers.org/biomodels.db/BIOMD0000000613']
+#@BQB_HAS_PROPERTY:['http://identifiers.org/mamo/MAMO_0000046', 'http://identifiers.org/doid/DOID:13543', 'http://identifiers.org/doid/DOID:11199']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000613', 'http://identifiers.org/biomodels.db/MODEL1604270004']
 #@creatorEmail:'viji@ebi.ac.uk'
 #@creatorName:'Chelliah Vijayalakshmi'
-#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 31 molecules and 58 reactions. The translated model has 30 molecules and 68 rules'
+#@notes:'This is a plain translation of an SBML model created on 14/08/2021. The original model has 31 molecules and 58 reactions. The translated model has 30 molecules and 68 rules'
 ###
 begin model
 begin parameters
@@ -151,36 +151,36 @@ begin compartments
 	Osteoblast_Intracellular 3 1.0
 end compartments
 begin molecule types
+	T()
+	IntraPO()
 	ECCPhos()
-	ROB1()
-	CREB()
-	TGFBact()
-	OC()
+	R()
+	SC()
+	HAp()
+	O()
+	S()
+	N()
 	B()
-	PTmax()
+	CREB()
+	M()
 	PhosGut()
 	PTH()
-	IntraPO()
-	N()
-	S()
-	Qbone()
-	P()
-	O()
-	OBslow()
-	M()
-	SC()
 	TGFB()
-	OBfast()
-	L()
+	OC()
 	RNK()
-	R()
-	TERISC()
-	RX2()
-	HAp()
-	A()
-	Q()
+	OBslow()
+	TGFBact()
+	ROB1()
 	BCL2()
-	T()
+	L()
+	A()
+	TERISC()
+	Q()
+	P()
+	OBfast()
+	RX2()
+	PTmax()
+	Qbone()
 end molecule types
 begin seed species
 	@Vasculature:PTH() 3.2458579999999998e+22 # (53.9 * 0.001)mol/L * 6.022e23/mol *1.0L #PTH #PTH
@@ -245,46 +245,46 @@ begin observables
 	Species N_Bone @Bone:N() #N
 end observables
 begin functions
-	EmaxPicOBkb() = FracPic0kb*Pic0
 	E0PicOBkb() = MultPicOBkb*Pic0
+	EmaxPicOBkb() = FracPic0kb*Pic0
 	EC50PicOBparenKb() = TGFBact0^PicOBgamkb*(E0PicOBkb - EmaxPicOBkb)/(E0PicOBkb - Pic0) - TGFBact0^PicOBgamkb
 	EC50PicOBkb() = exp(ln(EC50PicOBparenKb)/PicOBgamkb)
 	PicOBkb() = E0PicOBkb - TGFBact_Bone^PicOBgamkb*(E0PicOBkb - EmaxPicOBkb)/(EC50PicOBkb^PicOBgamkb + TGFBact_Bone^PicOBgamkb)
 	PicOBkbEff() = PicOBkb/Pic0
-	RUNX2() =  if((BCL2_Osteoblast_Intracellular>105),(BCL2_Osteoblast_Intracellular-90),(10))
 	E0RUNX2kbEff() = E0RUNX2kbEffFACT*kb
 	RUNkbMax() = E0RUNX2kbEff*RUNkbMaxFact
 	INparen() = RUNX20^RUNkbGAM*RUNkbMax/(E0RUNX2kbEff - kb) - RUNX20^RUNkbGAM
 	RUNkb50() = exp(ln(INparen)/RUNkbGAM)
+	RUNX2() =  if((BCL2_Osteoblast_Intracellular>105),(BCL2_Osteoblast_Intracellular-90),(10))
 	RUNX2kbPrimeEff() = RUNX2^RUNkbGAM*RUNkbMax/(RUNX2^RUNkbGAM + RUNkb50^RUNkbGAM)
 	kbprime() = E0RUNX2kbEff*PicOBkbEff - RUNX2kbPrimeEff
+	C1() = P_Vasculature/V1
 	ReabsMax() = (0.3*GFR - 0.0638285106382979)*(Reabs50 + 2.35)
 	T17() = 3.85*T16 - 3.85
 	C4() = PTH_Vasculature/V1
 	ReabsPTHeff() = C4*T16/(C4 + T17)
-	C1() = P_Vasculature/V1
 	CaReabsActive() = C1*ReabsMax*ReabsPTHeff/(C1 + Reabs50)
+	T66() = 3.85^(-AlphOHgam)*(3.85^AlphOHgam + T67^AlphOHgam)
 	C2() = ECCPhos_Vasculature/V1
 	PO4inhPTH() = (0.833333333333333*C2)^PO4inhPTHgam
-	T66() = 3.85^(-AlphOHgam)*(3.85^AlphOHgam + T67^AlphOHgam)
 	T68() = C4^AlphOHgam*T66/(C4^AlphOHgam + PO4inhPTH*T67^AlphOHgam)
-	crebKin0() = CREB0*crebKout
 	EC50PTHcreb() = 3.85*EmaxPTHcreb/(1 - E0crebKin) - 3.85
+	crebKin0() = CREB0*crebKout
 	PTHconc() = C4
 	crebKin() = crebKin0*(E0crebKin + EmaxPTHcreb*PTHconc/(EC50PTHcreb + PTHconc))
-	D() = ROB1_Bone
 	pObase() = OPG0*kO
+	D() = ROB1_Bone
 	pO() = D*pObase*(D*opgPTH50/ROB0 + PTHconc)/(2*PTHconc*ROB0) + IO
 	Osteoblast() = OBfast_Bone + OBslow_Bone
 	OsteoEffect() = (Osteoblast/OB0)^OsteoEffectGam
-	kinLbase() = RANKL0*koutL
 	PTH50() = 3.85*EmaxLpth - 3.85
 	LpthEff() = EmaxLpth*PTHconc/(OsteoEffect^TESTPOWER*PTH50 + PTHconc)
+	kinLbase() = RANKL0*koutL
 	kinL() = LpthEff*OsteoEffect*kinLbase
 	FCTD() = 2.0*PTmax_PTH_Gland*S_PTH_Gland
+	CaConc() = P_Vasculature/14
 	INparenCa() = -2.35^T59 + 2.35^T59*(T58 - T61)/(T58 - 385)
 	T60() = exp(ln(INparenCa)/T59)
-	CaConc() = P_Vasculature/14
 	T63() = -CaConc^T59*(T58 - T61)/(CaConc^T59 + T60^T59) + T58
 	EPTH() = FCTD*T63
 	IPTH() = IPTHinf + 0.693*SC_Vasculature
@@ -312,37 +312,37 @@ begin functions
 	J27a() = T20*(2 - T10)
 	PhosEffect() =  if((C2>1.2),(PhosEff),(1))
 	SE() = PhosEffect*T65*T68
-	PhosEffBot() = 1.2^PhosEffGam*PhosEff0
 	PhosEffTop() = (1.2^PhosEffGam + PhosEff50^PhosEffGam)*(PhosEff0 - 1)
+	PhosEffBot() = 1.2^PhosEffGam*PhosEff0
 	PhosEffMax() = PhosEffTop/PhosEffBot
 	PhosEff() = -C2^PhosEffGam*PhosEff0*PhosEffMax/(C2^PhosEffGam + PhosEff50^PhosEffGam) + PhosEff0
 	EC50PTHRX2x() = 3.85*EmaxPTHRX2x/(-E0rx2Kout + RX2Kout0) - 3.85
 	RX2Kout() = E0rx2Kout + EmaxPTHRX2x*PTHconc/(EC50PTHRX2x + PTHconc)
-	E0PicOC() = FracPicOC*Pic0
-	EC50PicOCparen() = EmaxPicOC*TGFBact0^PicOCgam/(-E0PicOC + Pic0) - TGFBact0^PicOCgam
-	EC50PicOC() = exp(ln(EC50PicOCparen)/PicOCgam)
-	PicOC() = E0PicOC + EmaxPicOC*TGFBact_Bone^PicOCgam/(EC50PicOC^PicOCgam + TGFBact_Bone^PicOCgam)
 	PiL0() = RANKL0*k3/k4
 	EC50survInPar() = -PiL0^LsurvOCgam + PiL0^LsurvOCgam*(E0RANKL - EmaxL)/(E0RANKL - 1)
 	EC50surv() = exp(ln(EC50survInPar)/LsurvOCgam)
 	PiL() = M_Bone/10
 	LsurvOC() = E0RANKL - PiL^LsurvOCgam*(E0RANKL - EmaxL)/(EC50surv^LsurvOCgam + PiL^LsurvOCgam)
+	E0PicOC() = FracPicOC*Pic0
+	EC50PicOCparen() = EmaxPicOC*TGFBact0^PicOCgam/(-E0PicOC + Pic0) - TGFBact0^PicOCgam
+	EC50PicOC() = exp(ln(EC50PicOCparen)/PicOCgam)
+	PicOC() = E0PicOC + EmaxPicOC*TGFBact_Bone^PicOCgam/(EC50PicOC^PicOCgam + TGFBact_Bone^PicOCgam)
 	KLSoc() = Da*LsurvOC*PicOC
 	EC50MeffOC() = exp(ln(EmaxMeffOC*M0^kinOCgam/(1 - E0Meff) - M0^kinOCgam)/kinOCgam)
 	MeffOC() = E0Meff + EmaxMeffOC*M_Bone^kinOCgam/(EC50MeffOC^kinOCgam + M_Bone^kinOCgam)
 	PicOCkin() = Pic0
 	kinOC2() = Da*MeffOC*OC0*PicOCkin
+	bigDb() = OB0*Pic0*kb/ROB0
 	E0PicOB() = FracPicOB*Pic0
 	EC50PicOBparen() = EmaxPicOB*TGFBact0^PicOBgam/(-E0PicOB + Pic0) - TGFBact0^PicOBgam
 	EC50PicOB() = exp(ln(EC50PicOBparen)/PicOBgam)
 	PicOB() = E0PicOB + EmaxPicOB*TGFBact_Bone^PicOBgam/(EC50PicOB^PicOBgam + TGFBact_Bone^PicOBgam)
-	bigDb() = OB0*Pic0*kb/ROB0
 	KPT() = bigDb/PicOB
-	Dr() = OB0*kb/Pic0
 	E0PicROB() = FracPicROB*Pic0
 	EC50PicROBparen() = EmaxPicROB*TGFBact0^PicROBgam/(-E0PicROB + Pic0) - TGFBact0^PicROBgam
 	EC50PicROB() = exp(ln(EC50PicROBparen)/PicROBgam)
 	PicROB() = E0PicROB + EmaxPicROB*TGFBact_Bone^PicROBgam/(EC50PicROB^PicROBgam + TGFBact_Bone^PicROBgam)
+	Dr() = OB0*kb/Pic0
 	ROBin2() = Dr*PicROB
 	Osteoclast() = OC_Bone
 	koutTGF() = koutTGF0

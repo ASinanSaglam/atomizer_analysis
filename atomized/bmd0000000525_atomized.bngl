@@ -7,7 +7,7 @@
 #@BQB_IS_VERSION_OF:['http://identifiers.org/go/GO:0006915']
 #@creatorEmail:'viji@ebi.ac.uk'
 #@creatorName:'Chelliah Vijayalakshmi'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 18 molecules and 19 reactions. The translated model has 9 molecules and 28 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 18 molecules and 19 reactions. The translated model has 9 molecules and 28 rules'
 ###
 begin model
 begin parameters
@@ -29,40 +29,40 @@ begin parameters
 	CD95L 9.99652e+24 #original 16.6mol/L
 end parameters
 begin molecule types
-	#^ bqbiol:isVersionOf uniprot:Q13158
-	FADD(DISC~DISC~0,p18,p55free)
-	#^ bqbiol:isVersionOf uniprot:P42212
-	mGFP(prer)
-	p43()
-	#^ bqbiol:isVersionOf uniprot:P55957
-	Bid()
-	#^ bqbiol:isVersionOf uniprot:Q9U6Y8
-	mCherry()
-	#^ bqbiol:hasPart uniprot:P55957, go:GO:0097345
-	tBid()
-	#^ bqbiol:hasPart chebi:CHEBI:50406, uniprot:P27824
-	PrER(PrNES~PrNES~0,PrNES_mCherry~PrNES_mCherry~0,mgfp)
-	#^ bqbiol:isPartOf uniprot:Q14790
-	p18(fadd,p18inactive~p18inactive~0)
 	#^ bqbiol:isEncodedBy ensembl:ENSG00000064012
 	p55free(fadd)
+	#^ bqbiol:isPartOf uniprot:Q14790
+	p18(fadd,p18inactive~p18inactive~0)
+	#^ bqbiol:isVersionOf uniprot:P42212
+	mGFP(prer)
+	#^ bqbiol:isVersionOf uniprot:Q13158
+	FADD(DISC~DISC~0,p18,p55free)
+	#^ bqbiol:hasPart chebi:CHEBI:50406, uniprot:P27824
+	PrER(PrNES~PrNES~0,PrNES_mCherry~PrNES_mCherry~0,mgfp)
+	#^ bqbiol:isVersionOf uniprot:Q9U6Y8
+	mCherry()
+	p43()
+	#^ bqbiol:hasPart uniprot:P55957, go:GO:0097345
+	tBid()
+	#^ bqbiol:isVersionOf uniprot:P55957
+	Bid()
 end molecule types
 begin seed species
 	FADD(DISC~0,p18,p55free) 5.60046e+25 #original 93.0mol/L #FADD #FADD
 	p55free(fadd) 9.334100000000001e+25 #original 155.0mol/L #p55free #p55free
 	Bid() 1.4211920000000001e+26 #original 236.0mol/L #Bid #Bid
 	PrER(PrNES~0,PrNES_mCherry~PrNES_mCherry,mgfp) 5.8594060000000006e+26 #original 973.0mol/L #PrNES_mCherry #PrNES_mCherry
-	PrER(PrNES~0,PrNES_mCherry~0,mgfp!975).mGFP(prer!975) 3.1181916e+27 #original 5178.0mol/L #PrER_mGFP #PrER_mGFP
+	PrER(PrNES~0,PrNES_mCherry~0,mgfp!66).mGFP(prer!66) 3.1181916e+27 #original 5178.0mol/L #PrER_mGFP #PrER_mGFP
 end seed species
 begin observables
 	Species FADD FADD(DISC~0,p18,p55free) #FADD
 	Species p55free p55free(fadd) #p55free
 	Species Bid Bid() #Bid
 	Species PrNES_mCherry PrER(PrNES~0,PrNES_mCherry~PrNES_mCherry,mgfp) #PrNES_mCherry
-	Species PrER_mGFP PrER(PrNES~0,PrNES_mCherry~0,mgfp!975).mGFP(prer!975) #PrER_mGFP
+	Species PrER_mGFP PrER(PrNES~0,PrNES_mCherry~0,mgfp!66).mGFP(prer!66) #PrER_mGFP
 	Species DISC FADD(DISC~DISC,p18,p55free) #DISC
-	Species DISCp55 FADD(DISC~DISC,p18,p55free!977).p55free(fadd!977) #DISCp55
-	Species p30 FADD(DISC~DISC,p18!976,p55free).p18(fadd!976,p18inactive~0) #p30
+	Species DISCp55 FADD(DISC~DISC,p18,p55free!68).p55free(fadd!68) #DISCp55
+	Species p30 FADD(DISC~DISC,p18!67,p55free).p18(fadd!67,p18inactive~0) #p30
 	Species p43 p43() #p43
 	Species p18 p18(fadd,p18inactive~0) #p18
 	Species p18inactive p18(fadd,p18inactive~p18inactive) #p18inactive
@@ -90,31 +90,31 @@ end functions
 begin reaction rules
 	reaction_1: FADD(DISC~0,p18,p55free) -> FADD(DISC~DISC,p18,p55free) fRate0() #Modifiers(FADD)
 	reaction_2: FADD(DISC~DISC,p18,p55free) -> FADD(DISC~0,p18,p55free) koff_FADD #Modifiers(DISC)
-	reaction_3: p55free(fadd) + FADD(DISC~DISC,p18,p55free) -> FADD(DISC~DISC,p18,p55free!977).p55free(fadd!977) kDISC #Modifiers(p55free, DISC)
-	reaction_4: FADD(DISC~DISC,p18,p55free!977).p55free(fadd!977) -> FADD(DISC~DISC,p18!976,p55free).p18(fadd!976,p18inactive~0) kD216 #Modifiers(DISCp55)
-	reaction_5_reactants_0: 0  -> FADD(DISC~DISC,p18,p55free!977).p55free(fadd!977) -1*(fRate4()) #Modifiers(DISCp55, p30, DISCp55, p30)
-	reaction_5_products_0: 0  -> FADD(DISC~DISC,p18!976,p55free).p18(fadd!976,p18inactive~0) fRate4() #Modifiers(DISCp55, p30, DISCp55, p30)
-	reaction_6: FADD(DISC~DISC,p18,p55free!977).p55free(fadd!977) -> FADD(DISC~DISC,p18!976,p55free).p18(fadd!976,p18inactive~0) fRate5() #Modifiers(p43, DISCp55, p43)
+	reaction_3: p55free(fadd) + FADD(DISC~DISC,p18,p55free) -> FADD(DISC~DISC,p18,p55free!68).p55free(fadd!68) kDISC #Modifiers(p55free, DISC)
+	reaction_4: FADD(DISC~DISC,p18,p55free!68).p55free(fadd!68) -> FADD(DISC~DISC,p18!67,p55free).p18(fadd!67,p18inactive~0) kD216 #Modifiers(DISCp55)
+	reaction_5_reactants_0: 0  -> FADD(DISC~DISC,p18,p55free!68).p55free(fadd!68) -1*(fRate4()) #Modifiers(DISCp55, p30, DISCp55, p30)
+	reaction_5_products_0: 0  -> FADD(DISC~DISC,p18!67,p55free).p18(fadd!67,p18inactive~0) fRate4() #Modifiers(DISCp55, p30, DISCp55, p30)
+	reaction_6: FADD(DISC~DISC,p18,p55free!68).p55free(fadd!68) -> FADD(DISC~DISC,p18!67,p55free).p18(fadd!67,p18inactive~0) fRate5() #Modifiers(p43, DISCp55, p43)
 	reaction_7: p43() -> p18(fadd,p18inactive~0) + FADD(DISC~DISC,p18,p55free) kD216 #Modifiers(p43)
 	reaction_8_reactants_0: 0  -> p43() -1*(fRate7()) #Modifiers(DISCp55, p30, p43, DISCp55, p30)
 	reaction_8_products_0: 0  -> p18(fadd,p18inactive~0) fRate7() #Modifiers(DISCp55, p30, p43, DISCp55, p30)
 	reaction_8_products_1: 0  -> FADD(DISC~DISC,p18,p55free) fRate7() #Modifiers(DISCp55, p30, p43, DISCp55, p30)
 	reaction_9: p43() -> p18(fadd,p18inactive~0) + FADD(DISC~DISC,p18,p55free) fRate8() #Modifiers(p43, p43)
-	reaction_10: FADD(DISC~DISC,p18,p55free!977).p55free(fadd!977) -> p43() kD374 #Modifiers(DISCp55)
-	reaction_11_reactants_0: 0  -> FADD(DISC~DISC,p18,p55free!977).p55free(fadd!977) -1*(fRate10()) #Modifiers(DISCp55, p30, DISCp55, p30)
+	reaction_10: FADD(DISC~DISC,p18,p55free!68).p55free(fadd!68) -> p43() kD374 #Modifiers(DISCp55)
+	reaction_11_reactants_0: 0  -> FADD(DISC~DISC,p18,p55free!68).p55free(fadd!68) -1*(fRate10()) #Modifiers(DISCp55, p30, DISCp55, p30)
 	reaction_11_products_0: 0  -> p43() fRate10() #Modifiers(DISCp55, p30, DISCp55, p30)
-	reaction_12: FADD(DISC~DISC,p18,p55free!977).p55free(fadd!977) -> p43() fRate11() #Modifiers(p43, DISCp55, p43)
-	reaction_13: FADD(DISC~DISC,p18!976,p55free).p18(fadd!976,p18inactive~0) -> p18(fadd,p18inactive~0) + FADD(DISC~DISC,p18,p55free) kD374 #Modifiers(p30)
-	reaction_14_reactants_0: 0  -> FADD(DISC~DISC,p18!976,p55free).p18(fadd!976,p18inactive~0) -1*(fRate13()) #Modifiers(DISCp55, p30, p30, DISCp55)
+	reaction_12: FADD(DISC~DISC,p18,p55free!68).p55free(fadd!68) -> p43() fRate11() #Modifiers(p43, DISCp55, p43)
+	reaction_13: FADD(DISC~DISC,p18!67,p55free).p18(fadd!67,p18inactive~0) -> p18(fadd,p18inactive~0) + FADD(DISC~DISC,p18,p55free) kD374 #Modifiers(p30)
+	reaction_14_reactants_0: 0  -> FADD(DISC~DISC,p18!67,p55free).p18(fadd!67,p18inactive~0) -1*(fRate13()) #Modifiers(DISCp55, p30, p30, DISCp55)
 	reaction_14_products_0: 0  -> p18(fadd,p18inactive~0) fRate13() #Modifiers(DISCp55, p30, p30, DISCp55)
 	reaction_14_products_1: 0  -> FADD(DISC~DISC,p18,p55free) fRate13() #Modifiers(DISCp55, p30, p30, DISCp55)
-	reaction_15: FADD(DISC~DISC,p18!976,p55free).p18(fadd!976,p18inactive~0) -> p18(fadd,p18inactive~0) + FADD(DISC~DISC,p18,p55free) fRate14() #Modifiers(p43, p30, p43)
+	reaction_15: FADD(DISC~DISC,p18!67,p55free).p18(fadd!67,p18inactive~0) -> p18(fadd,p18inactive~0) + FADD(DISC~DISC,p18,p55free) fRate14() #Modifiers(p43, p30, p43)
 	reaction_16: p18(fadd,p18inactive~0) -> p18(fadd,p18inactive~p18inactive) kdiss_p18 #Modifiers(p18)
 	reaction_17_reactants_0: 0  -> Bid() -1*(fRate16()) #Modifiers(p43, p18, Bid, p43, p18)
 	reaction_17_products_0: 0  -> tBid() fRate16() #Modifiers(p43, p18, Bid, p43, p18)
 	reaction_18_reactants_0: 0  -> PrER(PrNES~0,PrNES_mCherry~PrNES_mCherry,mgfp) -1*(fRate17()) #Modifiers(p43, p18, PrNES_mCherry, p43, p18)
 	reaction_18_products_0: 0  -> PrER(PrNES~PrNES,PrNES_mCherry~0,mgfp) fRate17() #Modifiers(p43, p18, PrNES_mCherry, p43, p18)
 	reaction_18_products_1: 0  -> mCherry() fRate17() #Modifiers(p43, p18, PrNES_mCherry, p43, p18)
-	reaction_19: PrER(PrNES~0,PrNES_mCherry~0,mgfp!975).mGFP(prer!975) -> PrER(PrNES~0,PrNES_mCherry~0,mgfp) + mGFP(prer) fRate18() #Modifiers(p18, PrER_mGFP, p18)
+	reaction_19: PrER(PrNES~0,PrNES_mCherry~0,mgfp!66).mGFP(prer!66) -> PrER(PrNES~0,PrNES_mCherry~0,mgfp) + mGFP(prer) fRate18() #Modifiers(p18, PrER_mGFP, p18)
 end reaction rules
 end model

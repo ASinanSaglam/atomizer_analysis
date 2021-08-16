@@ -1,5 +1,5 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL1006230109', 'http://identifiers.org/biomodels.db/BIOMD0000000372']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000372', 'http://identifiers.org/biomodels.db/MODEL1006230109']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/11082306']
 #@BQM_IS_DERIVED_FROM:['http://identifiers.org/biomodels.db/BIOMD0000000382']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/9606']
@@ -8,7 +8,7 @@
 #@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:9351']
 #@creatorEmail:'ajmera@ebi.ac.uk'
 #@creatorName:'Ajmera Ishan'
-#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 6 molecules and 0 reactions. The translated model has 6 molecules and 6 rules'
+#@notes:'This is a plain translation of an SBML model created on 14/08/2021. The original model has 6 molecules and 0 reactions. The translated model has 6 molecules and 6 rules'
 ###
 begin model
 begin parameters
@@ -35,12 +35,12 @@ begin parameters
 	alpha 0.29
 end parameters
 begin molecule types
-	x2()
 	x3()
-	Ip()
 	Ii()
-	G()
 	x1()
+	G()
+	x2()
+	Ip()
 end molecule types
 begin seed species
 	x1() 110.420253 #x1 #x1
@@ -60,9 +60,9 @@ begin observables
 end observables
 begin functions
 	f4_Ii() = U0 + (-U0 + Um)/(exp(-beta*ln(Ii*(1/Vi + 1/(E*ti))/C4)) + 1)
-	f2_G() = Ub*(1 - exp(-G/(C2*Vg)))
-	f3_G() = G/(C3*Vg)
 	f5_x3() = Rg/(exp(alpha*(-C5 + x3/Vp)) + 1)
+	f3_G() = G/(C3*Vg)
+	f2_G() = Ub*(1 - exp(-G/(C2*Vg)))
 	arRateG() = Gin - f2_G - f3_G*f4_Ii + f5_x3
 	f1_G() = Rm/(exp((C1 - G/Vg)/a1) + 1)
 	arRateIp() = -E*(-Ii/Vi + Ip/Vp) - Ip/tp + f1_G

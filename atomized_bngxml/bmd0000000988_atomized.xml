@@ -1,0 +1,1332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000988_atomized">
+    <ListOfParameters>
+      <Parameter id="Testing_Randome" type="Constant" value="0.0008" expr="0.0008"/>
+      <Parameter id="Normal_death_rate_constant_0" type="Constant" value="3.29e-5" expr="3.29e-05"/>
+      <Parameter id="Corona_death_rate_constant" type="Constant" value="0.002" expr="0.002"/>
+      <Parameter id="Birth_rate" type="Constant" value="3.29e-5" expr="3.29e-05"/>
+      <Parameter id="Testing_for_Symptoms" type="Constant" value="500" expr="500.0"/>
+      <Parameter id="Corona_recover" type="Constant" value="0.067" expr="0.067"/>
+      <Parameter id="Symptoms_appear" type="Constant" value="0.30165" expr="0.30165"/>
+      <Parameter id="Infection_from_non_tested_no_symptoms_0" type="Constant" value="0.508" expr="0.508"/>
+      <Parameter id="Infection_from_non_tested_symptoms" type="Constant" value="0.25" expr="0.25"/>
+      <Parameter id="Infection_from_tested_no_symptoms_0" type="Constant" value="0.025" expr="0.025"/>
+      <Parameter id="Infection_from_tested_symptoms" type="Constant" value="0.025" expr="0.025"/>
+      <Parameter id="Time_government_action_0" type="Constant" value="15" expr="15.0"/>
+      <Parameter id="lockdown_duration" type="Constant" value="7" expr="7.0"/>
+      <Parameter id="lockdownPause_duration_0" type="Constant" value="7" expr="7.0"/>
+      <Parameter id="timeFraction_lockdown_0" type="Constant" value="0.55" expr="0.55"/>
+      <Parameter id="symptomatic_numberTolerance_0" type="Constant" value="141" expr="141.0"/>
+      <Parameter id="social_distancing_factor" type="Constant" value="10" expr="10.0"/>
+      <Parameter id="Social_Distance_base" type="Constant" value="534700" expr="534700.0"/>
+      <Parameter id="n_pauses" type="Constant" value="0" expr="0"/>
+      <Parameter id="number_cutoff" type="Constant" value="0" expr="0"/>
+      <Parameter id="governmentResponseFactorToDiagnosedInfected_0" type="Constant" value="0" expr="0"/>
+      <Parameter id="total_population" type="Constant" value="3.7938781e+29" expr="3.793878066e+29"/>
+      <Parameter id="registered_corona" type="Constant" value="6.022e+23" expr="6.022e+23"/>
+      <Parameter id="infected_tested_div10" type="Constant" value="6.022e+22" expr="6.022e+22"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="dead_noncorona"/>
+      <MoleculeType id="infected_tested">
+        <ListOfComponentTypes>
+          <ComponentType id="dead_corona_tested">
+            <ListOfAllowedStates>
+              <AllowedState id="dead_corona_tested"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="non">
+            <ListOfAllowedStates>
+              <AllowedState id="NON"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="recovered_nontested">
+            <ListOfAllowedStates>
+              <AllowedState id="recovered_nontested"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="recovered_tested">
+            <ListOfAllowedStates>
+              <AllowedState id="recovered_tested"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="symptoms_tested">
+            <ListOfAllowedStates>
+              <AllowedState id="symptoms_tested"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="un">
+            <ListOfAllowedStates>
+              <AllowedState id="UN"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="susceptible"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="1.2044e+24" name="infected_tested(dead_corona_tested~0,non~NON,recovered_nontested~0,recovered_tested~0,symptoms_tested~0,un~0)">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="infected_tested">
+            <ListOfComponents>
+              <Component id="S1_M1_C1" name="dead_corona_tested" state="0" numberOfBonds="0"/>
+              <Component id="S1_M1_C2" name="non" state="NON" numberOfBonds="0"/>
+              <Component id="S1_M1_C3" name="recovered_nontested" state="0" numberOfBonds="0"/>
+              <Component id="S1_M1_C4" name="recovered_tested" state="0" numberOfBonds="0"/>
+              <Component id="S1_M1_C5" name="symptoms_tested" state="0" numberOfBonds="0"/>
+              <Component id="S1_M1_C6" name="un" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="6.022e+23" name="infected_tested(dead_corona_tested~0,non~0,recovered_nontested~0,recovered_tested~0,symptoms_tested~0,un~0)">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="infected_tested">
+            <ListOfComponents>
+              <Component id="S2_M1_C1" name="dead_corona_tested" state="0" numberOfBonds="0"/>
+              <Component id="S2_M1_C2" name="non" state="0" numberOfBonds="0"/>
+              <Component id="S2_M1_C3" name="recovered_nontested" state="0" numberOfBonds="0"/>
+              <Component id="S2_M1_C4" name="recovered_tested" state="0" numberOfBonds="0"/>
+              <Component id="S2_M1_C5" name="symptoms_tested" state="0" numberOfBonds="0"/>
+              <Component id="S2_M1_C6" name="un" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="3.7938600000000004e+29" name="infected_tested(dead_corona_tested~0,non~NON,recovered_nontested~0,recovered_tested~0,symptoms_tested~0,un~UN)">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="infected_tested">
+            <ListOfComponents>
+              <Component id="S3_M1_C1" name="dead_corona_tested" state="0" numberOfBonds="0"/>
+              <Component id="S3_M1_C2" name="non" state="NON" numberOfBonds="0"/>
+              <Component id="S3_M1_C3" name="recovered_nontested" state="0" numberOfBonds="0"/>
+              <Component id="S3_M1_C4" name="recovered_tested" state="0" numberOfBonds="0"/>
+              <Component id="S3_M1_C5" name="symptoms_tested" state="0" numberOfBonds="0"/>
+              <Component id="S3_M1_C6" name="un" state="UN" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S4"  concentration="6.022e+23" name="$susceptible()" Fixed="1">
+        <ListOfMolecules>
+          <Molecule id="S4_M1" name="susceptible"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="re1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR1_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_RP1_M1" name="infected_tested">
+                <ListOfComponents>
+                  <Component id="RR1_RP1_M1_C1" name="dead_corona_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_RP1_M1_C2" name="non" state="NON" numberOfBonds="0"/>
+                  <Component id="RR1_RP1_M1_C3" name="recovered_nontested" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_RP1_M1_C4" name="recovered_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_RP1_M1_C5" name="symptoms_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_RP1_M1_C6" name="un" state="UN" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="infected_tested">
+                <ListOfComponents>
+                  <Component id="RR1_PP1_M1_C1" name="dead_corona_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_PP1_M1_C2" name="non" state="NON" numberOfBonds="0"/>
+                  <Component id="RR1_PP1_M1_C3" name="recovered_nontested" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_PP1_M1_C4" name="recovered_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_PP1_M1_C5" name="symptoms_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_PP1_M1_C6" name="un" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="Total_Infection_coefficient" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR1_RP1_M1" targetID="RR1_PP1_M1"/>
+          <MapItem sourceID="RR1_RP1_M1_C1" targetID="RR1_PP1_M1_C1"/>
+          <MapItem sourceID="RR1_RP1_M1_C2" targetID="RR1_PP1_M1_C2"/>
+          <MapItem sourceID="RR1_RP1_M1_C3" targetID="RR1_PP1_M1_C3"/>
+          <MapItem sourceID="RR1_RP1_M1_C4" targetID="RR1_PP1_M1_C4"/>
+          <MapItem sourceID="RR1_RP1_M1_C5" targetID="RR1_PP1_M1_C5"/>
+          <MapItem sourceID="RR1_RP1_M1_C6" targetID="RR1_PP1_M1_C6"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR1_RP1_M1_C6" finalState="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="re2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="infected_tested">
+                <ListOfComponents>
+                  <Component id="RR2_RP1_M1_C1" name="dead_corona_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR2_RP1_M1_C2" name="non" state="NON" numberOfBonds="0"/>
+                  <Component id="RR2_RP1_M1_C3" name="recovered_nontested" state="0" numberOfBonds="0"/>
+                  <Component id="RR2_RP1_M1_C4" name="recovered_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR2_RP1_M1_C5" name="symptoms_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR2_RP1_M1_C6" name="un" state="UN" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="infected_tested">
+                <ListOfComponents>
+                  <Component id="RR2_PP1_M1_C1" name="dead_corona_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR2_PP1_M1_C2" name="non" state="0" numberOfBonds="0"/>
+                  <Component id="RR2_PP1_M1_C3" name="recovered_nontested" state="0" numberOfBonds="0"/>
+                  <Component id="RR2_PP1_M1_C4" name="recovered_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR2_PP1_M1_C5" name="symptoms_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR2_PP1_M1_C6" name="un" state="UN" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="Testing_Randome"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1" targetID="RR2_PP1_M1"/>
+          <MapItem sourceID="RR2_RP1_M1_C1" targetID="RR2_PP1_M1_C1"/>
+          <MapItem sourceID="RR2_RP1_M1_C2" targetID="RR2_PP1_M1_C2"/>
+          <MapItem sourceID="RR2_RP1_M1_C3" targetID="RR2_PP1_M1_C3"/>
+          <MapItem sourceID="RR2_RP1_M1_C4" targetID="RR2_PP1_M1_C4"/>
+          <MapItem sourceID="RR2_RP1_M1_C5" targetID="RR2_PP1_M1_C5"/>
+          <MapItem sourceID="RR2_RP1_M1_C6" targetID="RR2_PP1_M1_C6"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR2_RP1_M1_C2" finalState="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="re3" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="infected_tested">
+                <ListOfComponents>
+                  <Component id="RR3_RP1_M1_C1" name="dead_corona_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR3_RP1_M1_C2" name="non" state="0" numberOfBonds="0"/>
+                  <Component id="RR3_RP1_M1_C3" name="recovered_nontested" state="0" numberOfBonds="0"/>
+                  <Component id="RR3_RP1_M1_C4" name="recovered_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR3_RP1_M1_C5" name="symptoms_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR3_RP1_M1_C6" name="un" state="UN" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="infected_tested">
+                <ListOfComponents>
+                  <Component id="RR3_PP1_M1_C1" name="dead_corona_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR3_PP1_M1_C2" name="non" state="NON" numberOfBonds="0"/>
+                  <Component id="RR3_PP1_M1_C3" name="recovered_nontested" state="0" numberOfBonds="0"/>
+                  <Component id="RR3_PP1_M1_C4" name="recovered_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR3_PP1_M1_C5" name="symptoms_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR3_PP1_M1_C6" name="un" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="Total_Infection_coefficient" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1" targetID="RR3_PP1_M1"/>
+          <MapItem sourceID="RR3_RP1_M1_C1" targetID="RR3_PP1_M1_C1"/>
+          <MapItem sourceID="RR3_RP1_M1_C2" targetID="RR3_PP1_M1_C2"/>
+          <MapItem sourceID="RR3_RP1_M1_C3" targetID="RR3_PP1_M1_C3"/>
+          <MapItem sourceID="RR3_RP1_M1_C4" targetID="RR3_PP1_M1_C4"/>
+          <MapItem sourceID="RR3_RP1_M1_C5" targetID="RR3_PP1_M1_C5"/>
+          <MapItem sourceID="RR3_RP1_M1_C6" targetID="RR3_PP1_M1_C6"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR3_RP1_M1_C2" finalState="NON"/>
+          <StateChange site="RR3_RP1_M1_C6" finalState="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="re4" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="infected_tested">
+                <ListOfComponents>
+                  <Component id="RR4_RP1_M1_C1" name="dead_corona_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR4_RP1_M1_C2" name="non" state="NON" numberOfBonds="0"/>
+                  <Component id="RR4_RP1_M1_C3" name="recovered_nontested" state="0" numberOfBonds="0"/>
+                  <Component id="RR4_RP1_M1_C4" name="recovered_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR4_RP1_M1_C5" name="symptoms_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR4_RP1_M1_C6" name="un" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="infected_tested">
+                <ListOfComponents>
+                  <Component id="RR4_PP1_M1_C1" name="dead_corona_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR4_PP1_M1_C2" name="non" state="0" numberOfBonds="0"/>
+                  <Component id="RR4_PP1_M1_C3" name="recovered_nontested" state="0" numberOfBonds="0"/>
+                  <Component id="RR4_PP1_M1_C4" name="recovered_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR4_PP1_M1_C5" name="symptoms_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR4_PP1_M1_C6" name="un" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="Testing_Randome"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1" targetID="RR4_PP1_M1"/>
+          <MapItem sourceID="RR4_RP1_M1_C1" targetID="RR4_PP1_M1_C1"/>
+          <MapItem sourceID="RR4_RP1_M1_C2" targetID="RR4_PP1_M1_C2"/>
+          <MapItem sourceID="RR4_RP1_M1_C3" targetID="RR4_PP1_M1_C3"/>
+          <MapItem sourceID="RR4_RP1_M1_C4" targetID="RR4_PP1_M1_C4"/>
+          <MapItem sourceID="RR4_RP1_M1_C5" targetID="RR4_PP1_M1_C5"/>
+          <MapItem sourceID="RR4_RP1_M1_C6" targetID="RR4_PP1_M1_C6"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR4_RP1_M1_C2" finalState="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="re5" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR5_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP1_M1" name="infected_tested">
+                <ListOfComponents>
+                  <Component id="RR5_RP1_M1_C1" name="dead_corona_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR5_RP1_M1_C2" name="non" state="NON" numberOfBonds="0"/>
+                  <Component id="RR5_RP1_M1_C3" name="recovered_nontested" state="0" numberOfBonds="0"/>
+                  <Component id="RR5_RP1_M1_C4" name="recovered_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR5_RP1_M1_C5" name="symptoms_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR5_RP1_M1_C6" name="un" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="infected_tested">
+                <ListOfComponents>
+                  <Component id="RR5_PP1_M1_C1" name="dead_corona_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR5_PP1_M1_C2" name="non" state="NON" numberOfBonds="0"/>
+                  <Component id="RR5_PP1_M1_C3" name="recovered_nontested" state="0" numberOfBonds="0"/>
+                  <Component id="RR5_PP1_M1_C4" name="recovered_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR5_PP1_M1_C5" name="symptoms_tested" state="symptoms_tested" numberOfBonds="0"/>
+                  <Component id="RR5_PP1_M1_C6" name="un" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="Symptoms_appear"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR5_RP1_M1" targetID="RR5_PP1_M1"/>
+          <MapItem sourceID="RR5_RP1_M1_C1" targetID="RR5_PP1_M1_C1"/>
+          <MapItem sourceID="RR5_RP1_M1_C2" targetID="RR5_PP1_M1_C2"/>
+          <MapItem sourceID="RR5_RP1_M1_C3" targetID="RR5_PP1_M1_C3"/>
+          <MapItem sourceID="RR5_RP1_M1_C4" targetID="RR5_PP1_M1_C4"/>
+          <MapItem sourceID="RR5_RP1_M1_C5" targetID="RR5_PP1_M1_C5"/>
+          <MapItem sourceID="RR5_RP1_M1_C6" targetID="RR5_PP1_M1_C6"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR5_RP1_M1_C5" finalState="symptoms_tested"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="re6" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR6_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_RP1_M1" name="infected_tested">
+                <ListOfComponents>
+                  <Component id="RR6_RP1_M1_C1" name="dead_corona_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR6_RP1_M1_C2" name="non" state="0" numberOfBonds="0"/>
+                  <Component id="RR6_RP1_M1_C3" name="recovered_nontested" state="0" numberOfBonds="0"/>
+                  <Component id="RR6_RP1_M1_C4" name="recovered_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR6_RP1_M1_C5" name="symptoms_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR6_RP1_M1_C6" name="un" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="infected_tested">
+                <ListOfComponents>
+                  <Component id="RR6_PP1_M1_C1" name="dead_corona_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR6_PP1_M1_C2" name="non" state="0" numberOfBonds="0"/>
+                  <Component id="RR6_PP1_M1_C3" name="recovered_nontested" state="0" numberOfBonds="0"/>
+                  <Component id="RR6_PP1_M1_C4" name="recovered_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR6_PP1_M1_C5" name="symptoms_tested" state="symptoms_tested" numberOfBonds="0"/>
+                  <Component id="RR6_PP1_M1_C6" name="un" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="Symptoms_appear"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR6_RP1_M1" targetID="RR6_PP1_M1"/>
+          <MapItem sourceID="RR6_RP1_M1_C1" targetID="RR6_PP1_M1_C1"/>
+          <MapItem sourceID="RR6_RP1_M1_C2" targetID="RR6_PP1_M1_C2"/>
+          <MapItem sourceID="RR6_RP1_M1_C3" targetID="RR6_PP1_M1_C3"/>
+          <MapItem sourceID="RR6_RP1_M1_C4" targetID="RR6_PP1_M1_C4"/>
+          <MapItem sourceID="RR6_RP1_M1_C5" targetID="RR6_PP1_M1_C5"/>
+          <MapItem sourceID="RR6_RP1_M1_C6" targetID="RR6_PP1_M1_C6"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR6_RP1_M1_C5" finalState="symptoms_tested"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="re7" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR7_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_RP1_M1" name="infected_tested">
+                <ListOfComponents>
+                  <Component id="RR7_RP1_M1_C1" name="dead_corona_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR7_RP1_M1_C2" name="non" state="NON" numberOfBonds="0"/>
+                  <Component id="RR7_RP1_M1_C3" name="recovered_nontested" state="0" numberOfBonds="0"/>
+                  <Component id="RR7_RP1_M1_C4" name="recovered_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR7_RP1_M1_C5" name="symptoms_tested" state="symptoms_tested" numberOfBonds="0"/>
+                  <Component id="RR7_RP1_M1_C6" name="un" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="infected_tested">
+                <ListOfComponents>
+                  <Component id="RR7_PP1_M1_C1" name="dead_corona_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR7_PP1_M1_C2" name="non" state="0" numberOfBonds="0"/>
+                  <Component id="RR7_PP1_M1_C3" name="recovered_nontested" state="0" numberOfBonds="0"/>
+                  <Component id="RR7_PP1_M1_C4" name="recovered_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR7_PP1_M1_C5" name="symptoms_tested" state="symptoms_tested" numberOfBonds="0"/>
+                  <Component id="RR7_PP1_M1_C6" name="un" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="Testing_for_Symptoms"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR7_RP1_M1" targetID="RR7_PP1_M1"/>
+          <MapItem sourceID="RR7_RP1_M1_C1" targetID="RR7_PP1_M1_C1"/>
+          <MapItem sourceID="RR7_RP1_M1_C2" targetID="RR7_PP1_M1_C2"/>
+          <MapItem sourceID="RR7_RP1_M1_C3" targetID="RR7_PP1_M1_C3"/>
+          <MapItem sourceID="RR7_RP1_M1_C4" targetID="RR7_PP1_M1_C4"/>
+          <MapItem sourceID="RR7_RP1_M1_C5" targetID="RR7_PP1_M1_C5"/>
+          <MapItem sourceID="RR7_RP1_M1_C6" targetID="RR7_PP1_M1_C6"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR7_RP1_M1_C2" finalState="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="re8" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR8_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_RP1_M1" name="infected_tested">
+                <ListOfComponents>
+                  <Component id="RR8_RP1_M1_C1" name="dead_corona_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR8_RP1_M1_C2" name="non" state="0" numberOfBonds="0"/>
+                  <Component id="RR8_RP1_M1_C3" name="recovered_nontested" state="0" numberOfBonds="0"/>
+                  <Component id="RR8_RP1_M1_C4" name="recovered_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR8_RP1_M1_C5" name="symptoms_tested" state="symptoms_tested" numberOfBonds="0"/>
+                  <Component id="RR8_RP1_M1_C6" name="un" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR8_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP1_M1" name="infected_tested">
+                <ListOfComponents>
+                  <Component id="RR8_PP1_M1_C1" name="dead_corona_tested" state="dead_corona_tested" numberOfBonds="0"/>
+                  <Component id="RR8_PP1_M1_C2" name="non" state="0" numberOfBonds="0"/>
+                  <Component id="RR8_PP1_M1_C3" name="recovered_nontested" state="0" numberOfBonds="0"/>
+                  <Component id="RR8_PP1_M1_C4" name="recovered_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR8_PP1_M1_C5" name="symptoms_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR8_PP1_M1_C6" name="un" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="Corona_death_rate_constant"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR8_RP1_M1" targetID="RR8_PP1_M1"/>
+          <MapItem sourceID="RR8_RP1_M1_C1" targetID="RR8_PP1_M1_C1"/>
+          <MapItem sourceID="RR8_RP1_M1_C2" targetID="RR8_PP1_M1_C2"/>
+          <MapItem sourceID="RR8_RP1_M1_C3" targetID="RR8_PP1_M1_C3"/>
+          <MapItem sourceID="RR8_RP1_M1_C4" targetID="RR8_PP1_M1_C4"/>
+          <MapItem sourceID="RR8_RP1_M1_C5" targetID="RR8_PP1_M1_C5"/>
+          <MapItem sourceID="RR8_RP1_M1_C6" targetID="RR8_PP1_M1_C6"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR8_RP1_M1_C1" finalState="dead_corona_tested"/>
+          <StateChange site="RR8_RP1_M1_C5" finalState="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="re9" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR9_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_RP1_M1" name="infected_tested">
+                <ListOfComponents>
+                  <Component id="RR9_RP1_M1_C1" name="dead_corona_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR9_RP1_M1_C2" name="non" state="0" numberOfBonds="0"/>
+                  <Component id="RR9_RP1_M1_C3" name="recovered_nontested" state="0" numberOfBonds="0"/>
+                  <Component id="RR9_RP1_M1_C4" name="recovered_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR9_RP1_M1_C5" name="symptoms_tested" state="symptoms_tested" numberOfBonds="0"/>
+                  <Component id="RR9_RP1_M1_C6" name="un" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR9_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP1_M1" name="infected_tested">
+                <ListOfComponents>
+                  <Component id="RR9_PP1_M1_C1" name="dead_corona_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR9_PP1_M1_C2" name="non" state="0" numberOfBonds="0"/>
+                  <Component id="RR9_PP1_M1_C3" name="recovered_nontested" state="0" numberOfBonds="0"/>
+                  <Component id="RR9_PP1_M1_C4" name="recovered_tested" state="recovered_tested" numberOfBonds="0"/>
+                  <Component id="RR9_PP1_M1_C5" name="symptoms_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR9_PP1_M1_C6" name="un" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="Corona_recover"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR9_RP1_M1" targetID="RR9_PP1_M1"/>
+          <MapItem sourceID="RR9_RP1_M1_C1" targetID="RR9_PP1_M1_C1"/>
+          <MapItem sourceID="RR9_RP1_M1_C2" targetID="RR9_PP1_M1_C2"/>
+          <MapItem sourceID="RR9_RP1_M1_C3" targetID="RR9_PP1_M1_C3"/>
+          <MapItem sourceID="RR9_RP1_M1_C4" targetID="RR9_PP1_M1_C4"/>
+          <MapItem sourceID="RR9_RP1_M1_C5" targetID="RR9_PP1_M1_C5"/>
+          <MapItem sourceID="RR9_RP1_M1_C6" targetID="RR9_PP1_M1_C6"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR9_RP1_M1_C4" finalState="recovered_tested"/>
+          <StateChange site="RR9_RP1_M1_C5" finalState="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="re10" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR10_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_RP1_M1" name="infected_tested">
+                <ListOfComponents>
+                  <Component id="RR10_RP1_M1_C1" name="dead_corona_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR10_RP1_M1_C2" name="non" state="NON" numberOfBonds="0"/>
+                  <Component id="RR10_RP1_M1_C3" name="recovered_nontested" state="0" numberOfBonds="0"/>
+                  <Component id="RR10_RP1_M1_C4" name="recovered_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR10_RP1_M1_C5" name="symptoms_tested" state="symptoms_tested" numberOfBonds="0"/>
+                  <Component id="RR10_RP1_M1_C6" name="un" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR10_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_PP1_M1" name="infected_tested">
+                <ListOfComponents>
+                  <Component id="RR10_PP1_M1_C1" name="dead_corona_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR10_PP1_M1_C2" name="non" state="NON" numberOfBonds="0"/>
+                  <Component id="RR10_PP1_M1_C3" name="recovered_nontested" state="recovered_nontested" numberOfBonds="0"/>
+                  <Component id="RR10_PP1_M1_C4" name="recovered_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR10_PP1_M1_C5" name="symptoms_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR10_PP1_M1_C6" name="un" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="Corona_recover"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR10_RP1_M1" targetID="RR10_PP1_M1"/>
+          <MapItem sourceID="RR10_RP1_M1_C1" targetID="RR10_PP1_M1_C1"/>
+          <MapItem sourceID="RR10_RP1_M1_C2" targetID="RR10_PP1_M1_C2"/>
+          <MapItem sourceID="RR10_RP1_M1_C3" targetID="RR10_PP1_M1_C3"/>
+          <MapItem sourceID="RR10_RP1_M1_C4" targetID="RR10_PP1_M1_C4"/>
+          <MapItem sourceID="RR10_RP1_M1_C5" targetID="RR10_PP1_M1_C5"/>
+          <MapItem sourceID="RR10_RP1_M1_C6" targetID="RR10_PP1_M1_C6"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR10_RP1_M1_C3" finalState="recovered_nontested"/>
+          <StateChange site="RR10_RP1_M1_C5" finalState="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR11" name="re11" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR11_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_RP1_M1" name="susceptible"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR11_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_PP1_M1" name="infected_tested">
+                <ListOfComponents>
+                  <Component id="RR11_PP1_M1_C1" name="dead_corona_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR11_PP1_M1_C2" name="non" state="NON" numberOfBonds="0"/>
+                  <Component id="RR11_PP1_M1_C3" name="recovered_nontested" state="0" numberOfBonds="0"/>
+                  <Component id="RR11_PP1_M1_C4" name="recovered_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR11_PP1_M1_C5" name="symptoms_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR11_PP1_M1_C6" name="un" state="UN" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR11_RateLaw" type="Function" name="fRate10" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR11_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR11_PP1_M1"/>
+          <Delete id="RR11_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR12" name="re12" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR12_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_RP1_M1" name="infected_tested">
+                <ListOfComponents>
+                  <Component id="RR12_RP1_M1_C1" name="dead_corona_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR12_RP1_M1_C2" name="non" state="NON" numberOfBonds="0"/>
+                  <Component id="RR12_RP1_M1_C3" name="recovered_nontested" state="0" numberOfBonds="0"/>
+                  <Component id="RR12_RP1_M1_C4" name="recovered_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR12_RP1_M1_C5" name="symptoms_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR12_RP1_M1_C6" name="un" state="UN" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR12_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_PP1_M1" name="dead_noncorona"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR12_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="Normal_death_rate_constant_0"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR12_RP1_M1"/>
+          <MapItem sourceID="RR12_RP1_M1_C1"/>
+          <MapItem sourceID="RR12_RP1_M1_C2"/>
+          <MapItem sourceID="RR12_RP1_M1_C3"/>
+          <MapItem sourceID="RR12_RP1_M1_C4"/>
+          <MapItem sourceID="RR12_RP1_M1_C5"/>
+          <MapItem sourceID="RR12_RP1_M1_C6"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR12_PP1_M1"/>
+          <Delete id="RR12_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR13" name="re13" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR13_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_RP1_M1" name="infected_tested">
+                <ListOfComponents>
+                  <Component id="RR13_RP1_M1_C1" name="dead_corona_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR13_RP1_M1_C2" name="non" state="0" numberOfBonds="0"/>
+                  <Component id="RR13_RP1_M1_C3" name="recovered_nontested" state="0" numberOfBonds="0"/>
+                  <Component id="RR13_RP1_M1_C4" name="recovered_tested" state="recovered_tested" numberOfBonds="0"/>
+                  <Component id="RR13_RP1_M1_C5" name="symptoms_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR13_RP1_M1_C6" name="un" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR13_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_PP1_M1" name="dead_noncorona"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR13_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="Normal_death_rate_constant_0"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR13_RP1_M1"/>
+          <MapItem sourceID="RR13_RP1_M1_C1"/>
+          <MapItem sourceID="RR13_RP1_M1_C2"/>
+          <MapItem sourceID="RR13_RP1_M1_C3"/>
+          <MapItem sourceID="RR13_RP1_M1_C4"/>
+          <MapItem sourceID="RR13_RP1_M1_C5"/>
+          <MapItem sourceID="RR13_RP1_M1_C6"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR13_PP1_M1"/>
+          <Delete id="RR13_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR14" name="re14" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR14_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_RP1_M1" name="infected_tested">
+                <ListOfComponents>
+                  <Component id="RR14_RP1_M1_C1" name="dead_corona_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR14_RP1_M1_C2" name="non" state="NON" numberOfBonds="0"/>
+                  <Component id="RR14_RP1_M1_C3" name="recovered_nontested" state="recovered_nontested" numberOfBonds="0"/>
+                  <Component id="RR14_RP1_M1_C4" name="recovered_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR14_RP1_M1_C5" name="symptoms_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR14_RP1_M1_C6" name="un" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR14_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_PP1_M1" name="dead_noncorona"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR14_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="Normal_death_rate_constant_0"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR14_RP1_M1"/>
+          <MapItem sourceID="RR14_RP1_M1_C1"/>
+          <MapItem sourceID="RR14_RP1_M1_C2"/>
+          <MapItem sourceID="RR14_RP1_M1_C3"/>
+          <MapItem sourceID="RR14_RP1_M1_C4"/>
+          <MapItem sourceID="RR14_RP1_M1_C5"/>
+          <MapItem sourceID="RR14_RP1_M1_C6"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR14_PP1_M1"/>
+          <Delete id="RR14_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR15" name="re15" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR15_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR15_RP1_M1" name="infected_tested">
+                <ListOfComponents>
+                  <Component id="RR15_RP1_M1_C1" name="dead_corona_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR15_RP1_M1_C2" name="non" state="0" numberOfBonds="0"/>
+                  <Component id="RR15_RP1_M1_C3" name="recovered_nontested" state="0" numberOfBonds="0"/>
+                  <Component id="RR15_RP1_M1_C4" name="recovered_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR15_RP1_M1_C5" name="symptoms_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR15_RP1_M1_C6" name="un" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR15_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR15_PP1_M1" name="infected_tested">
+                <ListOfComponents>
+                  <Component id="RR15_PP1_M1_C1" name="dead_corona_tested" state="dead_corona_tested" numberOfBonds="0"/>
+                  <Component id="RR15_PP1_M1_C2" name="non" state="0" numberOfBonds="0"/>
+                  <Component id="RR15_PP1_M1_C3" name="recovered_nontested" state="0" numberOfBonds="0"/>
+                  <Component id="RR15_PP1_M1_C4" name="recovered_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR15_PP1_M1_C5" name="symptoms_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR15_PP1_M1_C6" name="un" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR15_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="Corona_death_rate_constant"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR15_RP1_M1" targetID="RR15_PP1_M1"/>
+          <MapItem sourceID="RR15_RP1_M1_C1" targetID="RR15_PP1_M1_C1"/>
+          <MapItem sourceID="RR15_RP1_M1_C2" targetID="RR15_PP1_M1_C2"/>
+          <MapItem sourceID="RR15_RP1_M1_C3" targetID="RR15_PP1_M1_C3"/>
+          <MapItem sourceID="RR15_RP1_M1_C4" targetID="RR15_PP1_M1_C4"/>
+          <MapItem sourceID="RR15_RP1_M1_C5" targetID="RR15_PP1_M1_C5"/>
+          <MapItem sourceID="RR15_RP1_M1_C6" targetID="RR15_PP1_M1_C6"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR15_RP1_M1_C1" finalState="dead_corona_tested"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR16" name="re16" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR16_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR16_RP1_M1" name="infected_tested">
+                <ListOfComponents>
+                  <Component id="RR16_RP1_M1_C1" name="dead_corona_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR16_RP1_M1_C2" name="non" state="NON" numberOfBonds="0"/>
+                  <Component id="RR16_RP1_M1_C3" name="recovered_nontested" state="0" numberOfBonds="0"/>
+                  <Component id="RR16_RP1_M1_C4" name="recovered_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR16_RP1_M1_C5" name="symptoms_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR16_RP1_M1_C6" name="un" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR16_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR16_PP1_M1" name="infected_tested">
+                <ListOfComponents>
+                  <Component id="RR16_PP1_M1_C1" name="dead_corona_tested" state="dead_corona_tested" numberOfBonds="0"/>
+                  <Component id="RR16_PP1_M1_C2" name="non" state="NON" numberOfBonds="0"/>
+                  <Component id="RR16_PP1_M1_C3" name="recovered_nontested" state="0" numberOfBonds="0"/>
+                  <Component id="RR16_PP1_M1_C4" name="recovered_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR16_PP1_M1_C5" name="symptoms_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR16_PP1_M1_C6" name="un" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR16_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="Corona_death_rate_constant"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR16_RP1_M1" targetID="RR16_PP1_M1"/>
+          <MapItem sourceID="RR16_RP1_M1_C1" targetID="RR16_PP1_M1_C1"/>
+          <MapItem sourceID="RR16_RP1_M1_C2" targetID="RR16_PP1_M1_C2"/>
+          <MapItem sourceID="RR16_RP1_M1_C3" targetID="RR16_PP1_M1_C3"/>
+          <MapItem sourceID="RR16_RP1_M1_C4" targetID="RR16_PP1_M1_C4"/>
+          <MapItem sourceID="RR16_RP1_M1_C5" targetID="RR16_PP1_M1_C5"/>
+          <MapItem sourceID="RR16_RP1_M1_C6" targetID="RR16_PP1_M1_C6"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR16_RP1_M1_C1" finalState="dead_corona_tested"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR17" name="re17" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR17_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR17_RP1_M1" name="infected_tested">
+                <ListOfComponents>
+                  <Component id="RR17_RP1_M1_C1" name="dead_corona_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR17_RP1_M1_C2" name="non" state="0" numberOfBonds="0"/>
+                  <Component id="RR17_RP1_M1_C3" name="recovered_nontested" state="0" numberOfBonds="0"/>
+                  <Component id="RR17_RP1_M1_C4" name="recovered_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR17_RP1_M1_C5" name="symptoms_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR17_RP1_M1_C6" name="un" state="UN" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR17_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR17_PP1_M1" name="dead_noncorona"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR17_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="Normal_death_rate_constant_0"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR17_RP1_M1"/>
+          <MapItem sourceID="RR17_RP1_M1_C1"/>
+          <MapItem sourceID="RR17_RP1_M1_C2"/>
+          <MapItem sourceID="RR17_RP1_M1_C3"/>
+          <MapItem sourceID="RR17_RP1_M1_C4"/>
+          <MapItem sourceID="RR17_RP1_M1_C5"/>
+          <MapItem sourceID="RR17_RP1_M1_C6"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR17_PP1_M1"/>
+          <Delete id="RR17_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR18" name="re18" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR18_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR18_RP1_M1" name="infected_tested">
+                <ListOfComponents>
+                  <Component id="RR18_RP1_M1_C1" name="dead_corona_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR18_RP1_M1_C2" name="non" state="NON" numberOfBonds="0"/>
+                  <Component id="RR18_RP1_M1_C3" name="recovered_nontested" state="0" numberOfBonds="0"/>
+                  <Component id="RR18_RP1_M1_C4" name="recovered_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR18_RP1_M1_C5" name="symptoms_tested" state="symptoms_tested" numberOfBonds="0"/>
+                  <Component id="RR18_RP1_M1_C6" name="un" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR18_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR18_PP1_M1" name="infected_tested">
+                <ListOfComponents>
+                  <Component id="RR18_PP1_M1_C1" name="dead_corona_tested" state="dead_corona_tested" numberOfBonds="0"/>
+                  <Component id="RR18_PP1_M1_C2" name="non" state="NON" numberOfBonds="0"/>
+                  <Component id="RR18_PP1_M1_C3" name="recovered_nontested" state="0" numberOfBonds="0"/>
+                  <Component id="RR18_PP1_M1_C4" name="recovered_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR18_PP1_M1_C5" name="symptoms_tested" state="0" numberOfBonds="0"/>
+                  <Component id="RR18_PP1_M1_C6" name="un" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR18_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="Corona_death_rate_constant"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR18_RP1_M1" targetID="RR18_PP1_M1"/>
+          <MapItem sourceID="RR18_RP1_M1_C1" targetID="RR18_PP1_M1_C1"/>
+          <MapItem sourceID="RR18_RP1_M1_C2" targetID="RR18_PP1_M1_C2"/>
+          <MapItem sourceID="RR18_RP1_M1_C3" targetID="RR18_PP1_M1_C3"/>
+          <MapItem sourceID="RR18_RP1_M1_C4" targetID="RR18_PP1_M1_C4"/>
+          <MapItem sourceID="RR18_RP1_M1_C5" targetID="RR18_PP1_M1_C5"/>
+          <MapItem sourceID="RR18_RP1_M1_C6" targetID="RR18_PP1_M1_C6"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR18_RP1_M1_C1" finalState="dead_corona_tested"/>
+          <StateChange site="RR18_RP1_M1_C5" finalState="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="infected_nontested" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="infected_tested">
+                <ListOfComponents>
+                  <Component id="O1_P1_M1_C1" name="dead_corona_tested" state="0" numberOfBonds="0"/>
+                  <Component id="O1_P1_M1_C2" name="non" state="NON" numberOfBonds="0"/>
+                  <Component id="O1_P1_M1_C3" name="recovered_nontested" state="0" numberOfBonds="0"/>
+                  <Component id="O1_P1_M1_C4" name="recovered_tested" state="0" numberOfBonds="0"/>
+                  <Component id="O1_P1_M1_C5" name="symptoms_tested" state="0" numberOfBonds="0"/>
+                  <Component id="O1_P1_M1_C6" name="un" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="infected_tested" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="infected_tested">
+                <ListOfComponents>
+                  <Component id="O2_P1_M1_C1" name="dead_corona_tested" state="0" numberOfBonds="0"/>
+                  <Component id="O2_P1_M1_C2" name="non" state="0" numberOfBonds="0"/>
+                  <Component id="O2_P1_M1_C3" name="recovered_nontested" state="0" numberOfBonds="0"/>
+                  <Component id="O2_P1_M1_C4" name="recovered_tested" state="0" numberOfBonds="0"/>
+                  <Component id="O2_P1_M1_C5" name="symptoms_tested" state="0" numberOfBonds="0"/>
+                  <Component id="O2_P1_M1_C6" name="un" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="uninfected_nontested" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="infected_tested">
+                <ListOfComponents>
+                  <Component id="O3_P1_M1_C1" name="dead_corona_tested" state="0" numberOfBonds="0"/>
+                  <Component id="O3_P1_M1_C2" name="non" state="NON" numberOfBonds="0"/>
+                  <Component id="O3_P1_M1_C3" name="recovered_nontested" state="0" numberOfBonds="0"/>
+                  <Component id="O3_P1_M1_C4" name="recovered_tested" state="0" numberOfBonds="0"/>
+                  <Component id="O3_P1_M1_C5" name="symptoms_tested" state="0" numberOfBonds="0"/>
+                  <Component id="O3_P1_M1_C6" name="un" state="UN" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="uninfected_tested" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="infected_tested">
+                <ListOfComponents>
+                  <Component id="O4_P1_M1_C1" name="dead_corona_tested" state="0" numberOfBonds="0"/>
+                  <Component id="O4_P1_M1_C2" name="non" state="0" numberOfBonds="0"/>
+                  <Component id="O4_P1_M1_C3" name="recovered_nontested" state="0" numberOfBonds="0"/>
+                  <Component id="O4_P1_M1_C4" name="recovered_tested" state="0" numberOfBonds="0"/>
+                  <Component id="O4_P1_M1_C5" name="symptoms_tested" state="0" numberOfBonds="0"/>
+                  <Component id="O4_P1_M1_C6" name="un" state="UN" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="symptoms_tested" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="infected_tested">
+                <ListOfComponents>
+                  <Component id="O5_P1_M1_C1" name="dead_corona_tested" state="0" numberOfBonds="0"/>
+                  <Component id="O5_P1_M1_C2" name="non" state="0" numberOfBonds="0"/>
+                  <Component id="O5_P1_M1_C3" name="recovered_nontested" state="0" numberOfBonds="0"/>
+                  <Component id="O5_P1_M1_C4" name="recovered_tested" state="0" numberOfBonds="0"/>
+                  <Component id="O5_P1_M1_C5" name="symptoms_tested" state="symptoms_tested" numberOfBonds="0"/>
+                  <Component id="O5_P1_M1_C6" name="un" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O6" name="symptoms_nontested" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O6_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O6_P1_M1" name="infected_tested">
+                <ListOfComponents>
+                  <Component id="O6_P1_M1_C1" name="dead_corona_tested" state="0" numberOfBonds="0"/>
+                  <Component id="O6_P1_M1_C2" name="non" state="NON" numberOfBonds="0"/>
+                  <Component id="O6_P1_M1_C3" name="recovered_nontested" state="0" numberOfBonds="0"/>
+                  <Component id="O6_P1_M1_C4" name="recovered_tested" state="0" numberOfBonds="0"/>
+                  <Component id="O6_P1_M1_C5" name="symptoms_tested" state="symptoms_tested" numberOfBonds="0"/>
+                  <Component id="O6_P1_M1_C6" name="un" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O7" name="recovered_tested" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O7_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O7_P1_M1" name="infected_tested">
+                <ListOfComponents>
+                  <Component id="O7_P1_M1_C1" name="dead_corona_tested" state="0" numberOfBonds="0"/>
+                  <Component id="O7_P1_M1_C2" name="non" state="0" numberOfBonds="0"/>
+                  <Component id="O7_P1_M1_C3" name="recovered_nontested" state="0" numberOfBonds="0"/>
+                  <Component id="O7_P1_M1_C4" name="recovered_tested" state="recovered_tested" numberOfBonds="0"/>
+                  <Component id="O7_P1_M1_C5" name="symptoms_tested" state="0" numberOfBonds="0"/>
+                  <Component id="O7_P1_M1_C6" name="un" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O8" name="recovered_nontested" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O8_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O8_P1_M1" name="infected_tested">
+                <ListOfComponents>
+                  <Component id="O8_P1_M1_C1" name="dead_corona_tested" state="0" numberOfBonds="0"/>
+                  <Component id="O8_P1_M1_C2" name="non" state="NON" numberOfBonds="0"/>
+                  <Component id="O8_P1_M1_C3" name="recovered_nontested" state="recovered_nontested" numberOfBonds="0"/>
+                  <Component id="O8_P1_M1_C4" name="recovered_tested" state="0" numberOfBonds="0"/>
+                  <Component id="O8_P1_M1_C5" name="symptoms_tested" state="0" numberOfBonds="0"/>
+                  <Component id="O8_P1_M1_C6" name="un" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O9" name="susceptible" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O9_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O9_P1_M1" name="susceptible"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O10" name="dead_corona_tested" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O10_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O10_P1_M1" name="infected_tested">
+                <ListOfComponents>
+                  <Component id="O10_P1_M1_C1" name="dead_corona_tested" state="dead_corona_tested" numberOfBonds="0"/>
+                  <Component id="O10_P1_M1_C2" name="non" state="0" numberOfBonds="0"/>
+                  <Component id="O10_P1_M1_C3" name="recovered_nontested" state="0" numberOfBonds="0"/>
+                  <Component id="O10_P1_M1_C4" name="recovered_tested" state="0" numberOfBonds="0"/>
+                  <Component id="O10_P1_M1_C5" name="symptoms_tested" state="0" numberOfBonds="0"/>
+                  <Component id="O10_P1_M1_C6" name="un" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O11" name="dead_corona_nontested" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O11_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O11_P1_M1" name="infected_tested">
+                <ListOfComponents>
+                  <Component id="O11_P1_M1_C1" name="dead_corona_tested" state="dead_corona_tested" numberOfBonds="0"/>
+                  <Component id="O11_P1_M1_C2" name="non" state="NON" numberOfBonds="0"/>
+                  <Component id="O11_P1_M1_C3" name="recovered_nontested" state="0" numberOfBonds="0"/>
+                  <Component id="O11_P1_M1_C4" name="recovered_tested" state="0" numberOfBonds="0"/>
+                  <Component id="O11_P1_M1_C5" name="symptoms_tested" state="0" numberOfBonds="0"/>
+                  <Component id="O11_P1_M1_C6" name="un" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O12" name="dead_noncorona" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O12_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O12_P1_M1" name="dead_noncorona"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="intermittent_time">
+        <ListOfReferences>
+          <Reference name="lockdownPause_duration_0" type="Constant"/>
+          <Reference name="lockdown_duration" type="Constant"/>
+          <Reference name="n_pauses" type="Constant"/>
+          <Reference name="n_lockdowns" type="Function"/>
+        </ListOfReferences>
+        <Expression> (((-lockdownPause_duration_0)*n_pauses)-(lockdown_duration*n_lockdowns))+time() </Expression>
+      </Function>
+      <Function id="Government_induced_isolation_factor_0">
+        <ListOfReferences>
+          <Reference name="Time_government_action_0" type="Constant"/>
+          <Reference name="governmentResponseFactorToDiagnosedInfected_0" type="Constant"/>
+          <Reference name="social_distancing_factor" type="Constant"/>
+          <Reference name="symptomatic_numberTolerance_0" type="Constant"/>
+          <Reference name="symptoms_tested" type="Observable"/>
+        </ListOfReferences>
+        <Expression> social_distancing_factor*(1+(((2.5*symptoms_tested)*if((time()&lt;Time_government_action_0),0,governmentResponseFactorToDiagnosedInfected_0))/symptomatic_numberTolerance_0)) </Expression>
+      </Function>
+      <Function id="Social_Distance">
+        <ListOfReferences>
+          <Reference name="Social_Distance_base" type="Constant"/>
+          <Reference name="Time_government_action_0" type="Constant"/>
+          <Reference name="lockdown_duration" type="Constant"/>
+          <Reference name="timeFraction_lockdown_0" type="Constant"/>
+          <Reference name="Government_induced_isolation_factor_0" type="Function"/>
+          <Reference name="intermittent_time" type="Function"/>
+        </ListOfReferences>
+        <Expression> if(((time()&gt;Time_government_action_0)and(intermittent_time&lt;(Time_government_action_0-(lockdown_duration*(1-timeFraction_lockdown_0))))),(Government_induced_isolation_factor_0*Social_Distance_base),Social_Distance_base) </Expression>
+      </Function>
+      <Function id="epidemic_extinguished_bool_ar">
+        <ListOfReferences>
+          <Reference name="number_cutoff" type="Constant"/>
+          <Reference name="infected_nontested" type="Observable"/>
+          <Reference name="infected_tested" type="Observable"/>
+          <Reference name="symptoms_nontested" type="Observable"/>
+          <Reference name="symptoms_tested" type="Observable"/>
+        </ListOfReferences>
+        <Expression> if(((((infected_nontested+infected_tested)+symptoms_nontested)+symptoms_tested)&lt;number_cutoff),1,0) </Expression>
+      </Function>
+      <Function id="Total_Infection_coefficient">
+        <ListOfReferences>
+          <Reference name="Infection_from_non_tested_no_symptoms_0" type="Constant"/>
+          <Reference name="Infection_from_non_tested_symptoms" type="Constant"/>
+          <Reference name="Infection_from_tested_no_symptoms_0" type="Constant"/>
+          <Reference name="Infection_from_tested_symptoms" type="Constant"/>
+          <Reference name="Social_Distance" type="Function"/>
+          <Reference name="epidemic_extinguished_bool_ar" type="Function"/>
+          <Reference name="infected_nontested" type="Observable"/>
+          <Reference name="infected_tested" type="Observable"/>
+          <Reference name="symptoms_nontested" type="Observable"/>
+          <Reference name="symptoms_tested" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((1-epidemic_extinguished_bool_ar)*((((Infection_from_non_tested_no_symptoms_0*infected_nontested)+(Infection_from_non_tested_symptoms*symptoms_nontested))+(Infection_from_tested_no_symptoms_0*infected_tested))+(Infection_from_tested_symptoms*symptoms_tested)))/Social_Distance </Expression>
+      </Function>
+      <Function id="total_population_ar">
+        <ListOfReferences>
+          <Reference name="infected_nontested" type="Observable"/>
+          <Reference name="infected_tested" type="Observable"/>
+          <Reference name="recovered_nontested" type="Observable"/>
+          <Reference name="recovered_tested" type="Observable"/>
+          <Reference name="symptoms_nontested" type="Observable"/>
+          <Reference name="symptoms_tested" type="Observable"/>
+          <Reference name="uninfected_nontested" type="Observable"/>
+          <Reference name="uninfected_tested" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((((((infected_nontested+infected_tested)+recovered_nontested)+recovered_tested)+symptoms_nontested)+symptoms_tested)+uninfected_nontested)+uninfected_tested </Expression>
+      </Function>
+      <Function id="dead_corona_perc_ar">
+        <ListOfReferences>
+          <Reference name="total_population_ar" type="Function"/>
+          <Reference name="dead_corona_nontested" type="Observable"/>
+          <Reference name="dead_corona_tested" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((100*dead_corona_nontested)+(100*dead_corona_tested))/total_population_ar </Expression>
+      </Function>
+      <Function id="dead_noncorona_perc_ar">
+        <ListOfReferences>
+          <Reference name="total_population_ar" type="Function"/>
+          <Reference name="dead_noncorona" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (100*dead_noncorona)/total_population_ar </Expression>
+      </Function>
+      <Function id="frac_coronaDeadOfAllDead_ar">
+        <ListOfReferences>
+          <Reference name="dead_corona_perc_ar" type="Function"/>
+          <Reference name="dead_noncorona_perc_ar" type="Function"/>
+        </ListOfReferences>
+        <Expression> (100*dead_corona_perc_ar)/(dead_corona_perc_ar+dead_noncorona_perc_ar) </Expression>
+      </Function>
+      <Function id="n_lockdowns">
+        <ListOfReferences>
+          <Reference name="Time_government_action_0" type="Constant"/>
+          <Reference name="lockdown_duration" type="Constant"/>
+        </ListOfReferences>
+        <Expression> ((((((((((((((((((((((((((((((((((((((((((((((((((if((((-Time_government_action_0)+time())&gt;0),1,0)+if((((-Time_government_action_0)+time())&gt;lockdown_duration),1,0))+if((((-Time_government_action_0)+time())&gt;(2*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(3*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(4*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(5*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(6*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(7*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(8*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(9*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(10*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(11*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(12*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(13*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(14*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(15*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(16*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(17*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(18*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(19*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(20*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(21*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(22*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(23*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(24*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(25*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(26*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(27*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(28*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(29*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(30*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(31*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(32*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(33*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(34*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(35*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(36*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(37*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(38*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(39*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(40*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(41*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(42*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(43*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(44*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(45*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(46*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(47*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(48*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(49*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(50*lockdown_duration)),1,0))+if((((-Time_government_action_0)+time())&gt;(51*lockdown_duration)),1,0) </Expression>
+      </Function>
+      <Function id="recovered_corona_perc_ar">
+        <ListOfReferences>
+          <Reference name="total_population_ar" type="Function"/>
+          <Reference name="recovered_nontested" type="Observable"/>
+          <Reference name="recovered_tested" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((100*recovered_nontested)+(100*recovered_tested))/total_population_ar </Expression>
+      </Function>
+      <Function id="registered_corona_ar">
+        <ListOfReferences>
+          <Reference name="dead_corona_tested" type="Observable"/>
+          <Reference name="infected_tested" type="Observable"/>
+          <Reference name="recovered_tested" type="Observable"/>
+          <Reference name="symptoms_tested" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((dead_corona_tested+infected_tested)+recovered_tested)+symptoms_tested </Expression>
+      </Function>
+      <Function id="infected_tested_div10_ar">
+        <ListOfReferences>
+          <Reference name="infected_tested" type="Observable"/>
+        </ListOfReferences>
+        <Expression> 0.1*infected_tested </Expression>
+      </Function>
+      <Function id="fRate10">
+        <ListOfReferences>
+          <Reference name="Birth_rate" type="Constant"/>
+          <Reference name="total_population_ar" type="Function"/>
+        </ListOfReferences>
+        <Expression> Birth_rate*total_population_ar </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

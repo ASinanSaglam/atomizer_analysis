@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000402_flat">
+    <ListOfParameters>
+      <Parameter id="alpha1" type="Constant" value="3" expr="3.0"/>
+      <Parameter id="beta1" type="Constant" value="0.2" expr="0.2"/>
+      <Parameter id="alpha2" type="Constant" value="4" expr="4.0"/>
+      <Parameter id="beta2" type="Constant" value="0.02" expr="0.02"/>
+      <Parameter id="k1" type="Constant" value="0.0748" expr="0.0748"/>
+      <Parameter id="k2" type="Constant" value="0.0006395" expr="0.0006395"/>
+      <Parameter id="g11" type="Constant" value="1.1" expr="1.1"/>
+      <Parameter id="g21" type="Constant" value="-0.5" expr="-0.5"/>
+      <Parameter id="g12" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="gammaT" type="Constant" value="0.005" expr="0.005"/>
+      <Parameter id="LT" type="Constant" value="100" expr="100.0"/>
+      <Parameter id="r11" type="Constant" value="0.005" expr="0.005"/>
+      <Parameter id="r22" type="Constant" value="0.2" expr="0.2"/>
+      <Parameter id="g22" type="Constant" value="0" expr="0"/>
+      <Parameter id="r21" type="Constant" value="0" expr="0"/>
+      <Parameter id="r12" type="Constant" value="0" expr="0"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="BoneMass"/>
+      <MoleculeType id="Osteoblasts"/>
+      <MoleculeType id="Osteoclasts"/>
+      <MoleculeType id="Tumour"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="9.033000000000001e+24" name="Osteoclasts()">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="Osteoclasts"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="1.9029520000000002e+26" name="Osteoblasts()">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="Osteoblasts"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="6.022e+25" name="BoneMass()">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="BoneMass"/>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S4"  concentration="6.022e+23" name="Tumour()">
+        <ListOfMolecules>
+          <Molecule id="S4_M1" name="Tumour"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="_R1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="Osteoclasts"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="arRateC" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="_R2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="Osteoblasts"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="arRateB" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="_R3" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="BoneMass"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="arRatez" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="_R4" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="Tumour"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="arRateTumour" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR4_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="Osteoclasts" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="Osteoclasts"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="Osteoblasts" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="Osteoblasts"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="BoneMass" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="BoneMass"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="Tumour" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="Tumour"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="C_bar">
+        <ListOfReferences>
+          <Reference name="alpha1" type="Constant"/>
+          <Reference name="alpha2" type="Constant"/>
+          <Reference name="beta1" type="Constant"/>
+          <Reference name="beta2" type="Constant"/>
+          <Reference name="g21" type="Constant"/>
+          <Reference name="g22" type="Constant"/>
+          <Reference name="r21" type="Constant"/>
+          <Reference name="r22" type="Constant"/>
+          <Reference name="gamma" type="Function"/>
+        </ListOfReferences>
+        <Expression> ((beta1/alpha1)^((((-g22)+r22)+1)/gamma))*((beta2/alpha2)^((g21*(r21+1))/gamma)) </Expression>
+      </Function>
+      <Function id="y1">
+        <ListOfReferences>
+          <Reference name="C_bar" type="Function"/>
+          <Reference name="Osteoclasts" type="Observable"/>
+        </ListOfReferences>
+        <Expression> if((Osteoclasts&gt;C_bar),(Osteoclasts-C_bar),0) </Expression>
+      </Function>
+      <Function id="B_bar">
+        <ListOfReferences>
+          <Reference name="alpha1" type="Constant"/>
+          <Reference name="alpha2" type="Constant"/>
+          <Reference name="beta1" type="Constant"/>
+          <Reference name="beta2" type="Constant"/>
+          <Reference name="g11" type="Constant"/>
+          <Reference name="g12" type="Constant"/>
+          <Reference name="r11" type="Constant"/>
+          <Reference name="r12" type="Constant"/>
+          <Reference name="gamma" type="Function"/>
+        </ListOfReferences>
+        <Expression> ((beta1/alpha1)^(g12/(gamma*(r12+1))))*((beta2/alpha2)^((((-g11)*(r11+1))+1)/gamma)) </Expression>
+      </Function>
+      <Function id="y2">
+        <ListOfReferences>
+          <Reference name="B_bar" type="Function"/>
+          <Reference name="Osteoblasts" type="Observable"/>
+        </ListOfReferences>
+        <Expression> if((Osteoblasts&gt;B_bar),(Osteoblasts-B_bar),0) </Expression>
+      </Function>
+      <Function id="arRatez">
+        <ListOfReferences>
+          <Reference name="k1" type="Constant"/>
+          <Reference name="k2" type="Constant"/>
+          <Reference name="y1" type="Function"/>
+          <Reference name="y2" type="Function"/>
+        </ListOfReferences>
+        <Expression> ((-k1)*y1)+(k2*y2) </Expression>
+      </Function>
+      <Function id="gamma">
+        <ListOfReferences>
+          <Reference name="g11" type="Constant"/>
+          <Reference name="g12" type="Constant"/>
+          <Reference name="g21" type="Constant"/>
+          <Reference name="g22" type="Constant"/>
+          <Reference name="r11" type="Constant"/>
+          <Reference name="r12" type="Constant"/>
+          <Reference name="r21" type="Constant"/>
+          <Reference name="r22" type="Constant"/>
+        </ListOfReferences>
+        <Expression> (((g12*g21)*(r21+1))/(r12+1))-((((-g11)*(r11+1))+1)*(((-g22)+r22)+1)) </Expression>
+      </Function>
+      <Function id="arRateTumour">
+        <ListOfReferences>
+          <Reference name="LT" type="Constant"/>
+          <Reference name="gammaT" type="Constant"/>
+          <Reference name="Tumour" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (Tumour*gammaT)*ln((LT/Tumour)) </Expression>
+      </Function>
+      <Function id="arRateB">
+        <ListOfReferences>
+          <Reference name="LT" type="Constant"/>
+          <Reference name="alpha2" type="Constant"/>
+          <Reference name="beta2" type="Constant"/>
+          <Reference name="g12" type="Constant"/>
+          <Reference name="g22" type="Constant"/>
+          <Reference name="r12" type="Constant"/>
+          <Reference name="r22" type="Constant"/>
+          <Reference name="Osteoblasts" type="Observable"/>
+          <Reference name="Osteoclasts" type="Observable"/>
+          <Reference name="Tumour" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((-Osteoblasts)*beta2)+(((Osteoblasts^(g22-((Tumour*r22)/LT)))*(Osteoclasts^(g12/(1+((Tumour*r12)/LT)))))*alpha2) </Expression>
+      </Function>
+      <Function id="arRateC">
+        <ListOfReferences>
+          <Reference name="LT" type="Constant"/>
+          <Reference name="alpha1" type="Constant"/>
+          <Reference name="beta1" type="Constant"/>
+          <Reference name="g11" type="Constant"/>
+          <Reference name="g21" type="Constant"/>
+          <Reference name="r11" type="Constant"/>
+          <Reference name="r21" type="Constant"/>
+          <Reference name="Osteoblasts" type="Observable"/>
+          <Reference name="Osteoclasts" type="Observable"/>
+          <Reference name="Tumour" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (((Osteoblasts^(g21*(1+((Tumour*r21)/LT))))*(Osteoclasts^(g11*(1+((Tumour*r11)/LT)))))*alpha1)-(Osteoclasts*beta1) </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

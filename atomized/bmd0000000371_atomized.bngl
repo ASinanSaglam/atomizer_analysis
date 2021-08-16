@@ -8,7 +8,7 @@
 #@BQB_HAS_PROPERTY:['http://identifiers.org/doid/DOID:9351']
 #@creatorEmail:'ajmera@ebi.ac.uk'
 #@creatorName:'Ajmera Ishan'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 3 molecules and 0 reactions. The translated model has 3 molecules and 3 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 3 molecules and 0 reactions. The translated model has 3 molecules and 3 rules'
 ###
 begin model
 begin parameters
@@ -31,9 +31,9 @@ begin parameters
 	p 0.5
 end parameters
 begin molecule types
-	n()
 	s()
 	V_membrane()
+	n()
 end molecule types
 begin seed species
 	n() 0.05 #n #n
@@ -45,11 +45,11 @@ begin observables
 	Species s s() #s
 end observables
 begin functions
-	i_K_ATP() = g_K_ATP*p*(-V_K + V_membrane)
-	i_K() = g_K*n*(-V_K + V_membrane)
+	i_s() = g_s*s*(-V_K + V_membrane)
 	m_infinity() = 1/(exp((V_m - V_membrane)/theta_m) + 1)
 	i_Ca() = g_Ca*m_infinity*(-V_Ca + V_membrane)
-	i_s() = g_s*s*(-V_K + V_membrane)
+	i_K() = g_K*n*(-V_K + V_membrane)
+	i_K_ATP() = g_K_ATP*p*(-V_K + V_membrane)
 	arRateV_membrane() = (-i_Ca - i_K - i_K_ATP - i_s)/tau_membrane
 	s_infinity() = 1/(exp((-V_membrane + V_s)/theta_s) + 1)
 	arRates() = (-s + s_infinity)/tau_s

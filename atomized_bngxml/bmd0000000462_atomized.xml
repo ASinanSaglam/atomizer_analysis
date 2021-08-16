@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000462_atomized">
+    <ListOfParameters>
+      <Parameter id="kprod" type="Constant" value="1.86e-5" expr="1.86e-05"/>
+      <Parameter id="kdeg" type="Constant" value="2.1e-5" expr="2.1e-05"/>
+      <Parameter id="kdimer" type="Constant" value="1.1783e-7" expr="1.1783e-07"/>
+      <Parameter id="kdedimer" type="Constant" value="8.4655e-6" expr="8.4655e-06"/>
+      <Parameter id="kdisagg" type="Constant" value="5.4357e-5" expr="5.4357e-05"/>
+      <Parameter id="kpf" type="Constant" value="2.785e-6" expr="2.785e-06"/>
+      <Parameter id="kpg" type="Constant" value="0.00574" expr="0.00574"/>
+      <Parameter id="kpghalf" type="Constant" value="4" expr="4.0"/>
+      <Parameter id="kdegNep" type="Constant" value="1.8e-10" expr="1.8e-10"/>
+      <Parameter id="Source" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="Sink" type="Constant" value="1" expr="1.0"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="AbetaPlaque">
+        <ListOfComponentTypes>
+          <ComponentType id="AbetaMonomer">
+            <ListOfAllowedStates>
+              <AllowedState id="AbetaMonomer"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="abetaplaque"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="Neprilysin"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="1000.0" name="Neprilysin()">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="Neprilysin"/>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="Abetaproduction" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="AbetaPlaque">
+                <ListOfComponents>
+                  <Component id="RR1_PP1_M1_C1" name="AbetaMonomer" state="AbetaMonomer" numberOfBonds="0"/>
+                  <Component id="RR1_PP1_M1_C2" name="abetaplaque" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="AbetaDegradation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="AbetaPlaque">
+                <ListOfComponents>
+                  <Component id="RR2_RP1_M1_C1" name="AbetaMonomer" state="AbetaMonomer" numberOfBonds="0"/>
+                  <Component id="RR2_RP1_M1_C2" name="abetaplaque" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR2_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP2_M1" name="Neprilysin"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="Neprilysin"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="fRate1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1"/>
+          <MapItem sourceID="RR2_RP1_M1_C1"/>
+          <MapItem sourceID="RR2_RP1_M1_C2"/>
+          <MapItem sourceID="RR2_RP2_M1" targetID="RR2_PP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR2_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="AbetaDimerisation_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="AbetaPlaque">
+                <ListOfComponents>
+                  <Component id="RR3_PP1_M1_C1" name="AbetaMonomer" state="AbetaMonomer" numberOfBonds="0"/>
+                  <Component id="RR3_PP1_M1_C2" name="abetaplaque" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="_rateLaw1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="AbetaDimerisation_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="AbetaPlaque">
+                <ListOfComponents>
+                  <Component id="RR4_PP1_M1_C1" name="AbetaMonomer" state="AbetaMonomer" numberOfBonds="0"/>
+                  <Component id="RR4_PP1_M1_C2" name="abetaplaque" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR4_PP1_M2" name="AbetaPlaque">
+                <ListOfComponents>
+                  <Component id="RR4_PP1_M2_C1" name="AbetaMonomer" state="AbetaMonomer" numberOfBonds="0"/>
+                  <Component id="RR4_PP1_M2_C2" name="abetaplaque" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR4_PP1_B1" site1="RR4_PP1_M1_C2" site2="RR4_PP1_M2_C2"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="fRate2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR4_PP1_M1"/>
+          <Add id="RR4_PP1_M2"/>
+          <AddBond site1="RR4_PP1_M1_C2" site2="RR4_PP1_M2_C2"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="AbetaDedimerisation" symmetry_factor="0.5">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR5_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP1_M1" name="AbetaPlaque">
+                <ListOfComponents>
+                  <Component id="RR5_RP1_M1_C1" name="AbetaMonomer" state="AbetaMonomer" numberOfBonds="0"/>
+                  <Component id="RR5_RP1_M1_C2" name="abetaplaque" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR5_RP1_M2" name="AbetaPlaque">
+                <ListOfComponents>
+                  <Component id="RR5_RP1_M2_C1" name="AbetaMonomer" state="AbetaMonomer" numberOfBonds="0"/>
+                  <Component id="RR5_RP1_M2_C2" name="abetaplaque" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR5_RP1_B1" site1="RR5_RP1_M1_C2" site2="RR5_RP1_M2_C2"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="AbetaPlaque">
+                <ListOfComponents>
+                  <Component id="RR5_PP1_M1_C1" name="AbetaMonomer" state="AbetaMonomer" numberOfBonds="0"/>
+                  <Component id="RR5_PP1_M1_C2" name="abetaplaque" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR5_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP2_M1" name="AbetaPlaque">
+                <ListOfComponents>
+                  <Component id="RR5_PP2_M1_C1" name="AbetaMonomer" state="AbetaMonomer" numberOfBonds="0"/>
+                  <Component id="RR5_PP2_M1_C2" name="abetaplaque" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kdedimer"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR5_RP1_M1" targetID="RR5_PP1_M1"/>
+          <MapItem sourceID="RR5_RP1_M1_C1" targetID="RR5_PP1_M1_C1"/>
+          <MapItem sourceID="RR5_RP1_M1_C2" targetID="RR5_PP1_M1_C2"/>
+          <MapItem sourceID="RR5_RP1_M2" targetID="RR5_PP2_M1"/>
+          <MapItem sourceID="RR5_RP1_M2_C1" targetID="RR5_PP2_M1_C1"/>
+          <MapItem sourceID="RR5_RP1_M2_C2" targetID="RR5_PP2_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <DeleteBond site1="RR5_RP1_M1_C2" site2="RR5_RP1_M2_C2"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="AbetaPlaqueFormation_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="AbetaPlaque">
+                <ListOfComponents>
+                  <Component id="RR6_PP1_M1_C1" name="AbetaMonomer" state="AbetaMonomer" numberOfBonds="0"/>
+                  <Component id="RR6_PP1_M1_C2" name="abetaplaque" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR6_PP1_M2" name="AbetaPlaque">
+                <ListOfComponents>
+                  <Component id="RR6_PP1_M2_C1" name="AbetaMonomer" state="AbetaMonomer" numberOfBonds="0"/>
+                  <Component id="RR6_PP1_M2_C2" name="abetaplaque" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR6_PP1_B1" site1="RR6_PP1_M1_C2" site2="RR6_PP1_M2_C2"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Function" name="_rateLaw2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR6_PP1_M1"/>
+          <Add id="RR6_PP1_M2"/>
+          <AddBond site1="RR6_PP1_M1_C2" site2="RR6_PP1_M2_C2"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="AbetaPlaqueFormation_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="AbetaPlaque">
+                <ListOfComponents>
+                  <Component id="RR7_PP1_M1_C1" name="AbetaMonomer" state="0" numberOfBonds="0"/>
+                  <Component id="RR7_PP1_M1_C2" name="abetaplaque" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Function" name="_rateLaw3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR7_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="AbetaPlaqueGrowth" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR8_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_RP1_M1" name="AbetaPlaque">
+                <ListOfComponents>
+                  <Component id="RR8_RP1_M1_C1" name="AbetaMonomer" state="AbetaMonomer" numberOfBonds="0"/>
+                  <Component id="RR8_RP1_M1_C2" name="abetaplaque" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR8_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR8_RP2_M1" name="AbetaPlaque">
+                <ListOfComponents>
+                  <Component id="RR8_RP2_M1_C1" name="AbetaMonomer" state="0" numberOfBonds="0"/>
+                  <Component id="RR8_RP2_M1_C2" name="abetaplaque" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR8_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP1_M1" name="AbetaPlaque">
+                <ListOfComponents>
+                  <Component id="RR8_PP1_M1_C1" name="AbetaMonomer" state="0" numberOfBonds="0"/>
+                  <Component id="RR8_PP1_M1_C2" name="abetaplaque" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR8_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP2_M1" name="AbetaPlaque">
+                <ListOfComponents>
+                  <Component id="RR8_PP2_M1_C1" name="AbetaMonomer" state="0" numberOfBonds="0"/>
+                  <Component id="RR8_PP2_M1_C2" name="abetaplaque" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Function" name="fRate5" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR8_RP1_M1" targetID="RR8_PP1_M1"/>
+          <MapItem sourceID="RR8_RP1_M1_C1" targetID="RR8_PP1_M1_C1"/>
+          <MapItem sourceID="RR8_RP1_M1_C2" targetID="RR8_PP1_M1_C2"/>
+          <MapItem sourceID="RR8_RP2_M1" targetID="RR8_PP2_M1"/>
+          <MapItem sourceID="RR8_RP2_M1_C1" targetID="RR8_PP2_M1_C1"/>
+          <MapItem sourceID="RR8_RP2_M1_C2" targetID="RR8_PP2_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR8_RP1_M1_C1" finalState="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="AbetaDisaggregation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR9_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_RP1_M1" name="AbetaPlaque">
+                <ListOfComponents>
+                  <Component id="RR9_RP1_M1_C1" name="AbetaMonomer" state="0" numberOfBonds="0"/>
+                  <Component id="RR9_RP1_M1_C2" name="abetaplaque" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR9_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP1_M1" name="AbetaPlaque">
+                <ListOfComponents>
+                  <Component id="RR9_PP1_M1_C1" name="AbetaMonomer" state="AbetaMonomer" numberOfBonds="0"/>
+                  <Component id="RR9_PP1_M1_C2" name="abetaplaque" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kdisagg"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR9_RP1_M1" targetID="RR9_PP1_M1"/>
+          <MapItem sourceID="RR9_RP1_M1_C1" targetID="RR9_PP1_M1_C1"/>
+          <MapItem sourceID="RR9_RP1_M1_C2" targetID="RR9_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR9_RP1_M1_C1" finalState="AbetaMonomer"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="NepDegradation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR10_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_RP1_M1" name="Neprilysin"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kdegNep"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR10_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR10_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="AbetaMonomer" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="AbetaPlaque">
+                <ListOfComponents>
+                  <Component id="O1_P1_M1_C1" name="AbetaMonomer" state="AbetaMonomer" numberOfBonds="0"/>
+                  <Component id="O1_P1_M1_C2" name="abetaplaque" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="AbetaDimer" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="AbetaPlaque">
+                <ListOfComponents>
+                  <Component id="O2_P1_M1_C1" name="AbetaMonomer" state="AbetaMonomer" numberOfBonds="0"/>
+                  <Component id="O2_P1_M1_C2" name="abetaplaque" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O2_P1_M2" name="AbetaPlaque">
+                <ListOfComponents>
+                  <Component id="O2_P1_M2_C1" name="AbetaMonomer" state="AbetaMonomer" numberOfBonds="0"/>
+                  <Component id="O2_P1_M2_C2" name="abetaplaque" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O2_P1_B1" site1="O2_P1_M1_C2" site2="O2_P1_M2_C2"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="AbetaPlaque" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="AbetaPlaque">
+                <ListOfComponents>
+                  <Component id="O3_P1_M1_C1" name="AbetaMonomer" state="0" numberOfBonds="0"/>
+                  <Component id="O3_P1_M1_C2" name="abetaplaque" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="Neprilysin" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="Neprilysin"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="Source" type="Constant"/>
+          <Reference name="kprod" type="Constant"/>
+        </ListOfReferences>
+        <Expression> Source*kprod </Expression>
+      </Function>
+      <Function id="fRate1">
+        <ListOfReferences>
+          <Reference name="kdeg" type="Constant"/>
+        </ListOfReferences>
+        <Expression> 0.001*kdeg </Expression>
+      </Function>
+      <Function id="fRate2">
+        <ListOfReferences>
+          <Reference name="kdimer" type="Constant"/>
+          <Reference name="AbetaMonomer" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((0.5*AbetaMonomer)*kdimer)*(AbetaMonomer-1) </Expression>
+      </Function>
+      <Function id="fRate4">
+        <ListOfReferences>
+          <Reference name="kpf" type="Constant"/>
+          <Reference name="AbetaDimer" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((0.5*AbetaDimer)*kpf)*(AbetaDimer-1) </Expression>
+      </Function>
+      <Function id="fRate5">
+        <ListOfReferences>
+          <Reference name="kpg" type="Constant"/>
+          <Reference name="kpghalf" type="Constant"/>
+          <Reference name="AbetaPlaque" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (AbetaPlaque*kpg)/((AbetaPlaque^2)+(kpghalf^2)) </Expression>
+      </Function>
+      <Function id="_rateLaw1">
+        <ListOfReferences>
+          <Reference name="fRate2" type="Function"/>
+        </ListOfReferences>
+        <Expression> (-1*2.0)*fRate2() </Expression>
+      </Function>
+      <Function id="_rateLaw2">
+        <ListOfReferences>
+          <Reference name="fRate4" type="Function"/>
+        </ListOfReferences>
+        <Expression> (-1*2.0)*fRate4() </Expression>
+      </Function>
+      <Function id="_rateLaw3">
+        <ListOfReferences>
+          <Reference name="fRate4" type="Function"/>
+        </ListOfReferences>
+        <Expression> 4.0*fRate4() </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

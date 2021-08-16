@@ -1,0 +1,1751 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000646_atomized">
+    <ListOfParameters>
+      <Parameter id="kscyce" type="Constant" value="0.003" expr="0.003"/>
+      <Parameter id="kdcyce" type="Constant" value="0.001" expr="0.001"/>
+      <Parameter id="kdcycee" type="Constant" value="0.0001" expr="0.0001"/>
+      <Parameter id="kdcycea" type="Constant" value="0.03" expr="0.03"/>
+      <Parameter id="kasse" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="kdise" type="Constant" value="0.02" expr="0.02"/>
+      <Parameter id="kscyca" type="Constant" value="0.0025" expr="0.0025"/>
+      <Parameter id="kdcyca" type="Constant" value="0.002" expr="0.002"/>
+      <Parameter id="kdcycac1" type="Constant" value="0.4" expr="0.4"/>
+      <Parameter id="kassa" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="kdisa" type="Constant" value="0.02" expr="0.02"/>
+      <Parameter id="ks27" type="Constant" value="0.008" expr="0.008"/>
+      <Parameter id="kd27" type="Constant" value="0.004" expr="0.004"/>
+      <Parameter id="kd27e" type="Constant" value="2" expr="2.0"/>
+      <Parameter id="kd27a" type="Constant" value="2" expr="2.0"/>
+      <Parameter id="ksemi1" type="Constant" value="0.003" expr="0.003"/>
+      <Parameter id="kdemi1" type="Constant" value="0.001" expr="0.001"/>
+      <Parameter id="kacdh1" type="Constant" value="0.02" expr="0.02"/>
+      <Parameter id="kicdh1e" type="Constant" value="0.07" expr="0.07"/>
+      <Parameter id="kicdh1a" type="Constant" value="0.2" expr="0.2"/>
+      <Parameter id="kasec" type="Constant" value="2" expr="2.0"/>
+      <Parameter id="kdiec" type="Constant" value="0.02" expr="0.02"/>
+      <Parameter id="ksskp2" type="Constant" value="0.004" expr="0.004"/>
+      <Parameter id="kdskp2" type="Constant" value="0.002" expr="0.002"/>
+      <Parameter id="kdskp2c1" type="Constant" value="0.2" expr="0.2"/>
+      <Parameter id="Inhibitor" type="Constant" value="0" expr="0"/>
+      <Parameter id="Cdh1dp" type="Constant" value="6.022e+20" expr="6.022e+20"/>
+      <Parameter id="Cdh1T" type="Constant" value="6.022e+20" expr="6.022e+20"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="Cdh1">
+        <ListOfComponentTypes>
+          <ComponentType id="emi1"/>
+          <ComponentType id="p">
+            <ListOfAllowedStates>
+              <AllowedState id="P"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="CycA">
+        <ListOfComponentTypes>
+          <ComponentType id="p27"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="CycE">
+        <ListOfComponentTypes>
+          <ComponentType id="p27"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="Emi1">
+        <ListOfComponentTypes>
+          <ComponentType id="cdh1"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="Skp2"/>
+      <MoleculeType id="p27">
+        <ListOfComponentTypes>
+          <ComponentType id="cyca"/>
+          <ComponentType id="cyce"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="6.022e+20" name="Cdh1(emi1,p~0)">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="Cdh1">
+            <ListOfComponents>
+              <Component id="S1_M1_C1" name="emi1" numberOfBonds="0"/>
+              <Component id="S1_M1_C2" name="p" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="CycE_Synthesis" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="CycE">
+                <ListOfComponents>
+                  <Component id="RR1_PP1_M1_C1" name="p27" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kscyce"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR1_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="CycE_degradation_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="CycE">
+                <ListOfComponents>
+                  <Component id="RR2_PP1_M1_C1" name="p27" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="_rateLaw1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR2_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="CycA_synthesis" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="CycA">
+                <ListOfComponents>
+                  <Component id="RR3_PP1_M1_C1" name="p27" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kscyca"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="CycA_degradation_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="CycA">
+                <ListOfComponents>
+                  <Component id="RR4_PP1_M1_C1" name="p27" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="_rateLaw2" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR4_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="p27_Synthesis" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="p27">
+                <ListOfComponents>
+                  <Component id="RR5_PP1_M1_C1" name="cyca" numberOfBonds="0"/>
+                  <Component id="RR5_PP1_M1_C2" name="cyce" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="ks27"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR5_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="p27_degradation_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="p27">
+                <ListOfComponents>
+                  <Component id="RR6_PP1_M1_C1" name="cyca" numberOfBonds="0"/>
+                  <Component id="RR6_PP1_M1_C2" name="cyce" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Function" name="_rateLaw3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR6_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="CycE_p27_Binding" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR7_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_RP1_M1" name="CycE">
+                <ListOfComponents>
+                  <Component id="RR7_RP1_M1_C1" name="p27" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR7_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR7_RP2_M1" name="p27">
+                <ListOfComponents>
+                  <Component id="RR7_RP2_M1_C1" name="cyca" numberOfBonds="0"/>
+                  <Component id="RR7_RP2_M1_C2" name="cyce" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="p27">
+                <ListOfComponents>
+                  <Component id="RR7_PP1_M1_C1" name="cyca" numberOfBonds="0"/>
+                  <Component id="RR7_PP1_M1_C2" name="cyce" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR7_PP1_M2" name="CycE">
+                <ListOfComponents>
+                  <Component id="RR7_PP1_M2_C1" name="p27" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR7_PP1_B1" site1="RR7_PP1_M1_C2" site2="RR7_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kasse"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR7_RP1_M1" targetID="RR7_PP1_M2"/>
+          <MapItem sourceID="RR7_RP1_M1_C1" targetID="RR7_PP1_M2_C1"/>
+          <MapItem sourceID="RR7_RP2_M1" targetID="RR7_PP1_M1"/>
+          <MapItem sourceID="RR7_RP2_M1_C1" targetID="RR7_PP1_M1_C1"/>
+          <MapItem sourceID="RR7_RP2_M1_C2" targetID="RR7_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR7_RP2_M1_C2" site2="RR7_RP1_M1_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="_reverse_CycE_p27_Binding" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR8_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_RP1_M1" name="p27">
+                <ListOfComponents>
+                  <Component id="RR8_RP1_M1_C1" name="cyca" numberOfBonds="0"/>
+                  <Component id="RR8_RP1_M1_C2" name="cyce" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR8_RP1_M2" name="CycE">
+                <ListOfComponents>
+                  <Component id="RR8_RP1_M2_C1" name="p27" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR8_RP1_B1" site1="RR8_RP1_M1_C2" site2="RR8_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR8_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP1_M1" name="CycE">
+                <ListOfComponents>
+                  <Component id="RR8_PP1_M1_C1" name="p27" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR8_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP2_M1" name="p27">
+                <ListOfComponents>
+                  <Component id="RR8_PP2_M1_C1" name="cyca" numberOfBonds="0"/>
+                  <Component id="RR8_PP2_M1_C2" name="cyce" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kdise"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR8_RP1_M1" targetID="RR8_PP2_M1"/>
+          <MapItem sourceID="RR8_RP1_M1_C1" targetID="RR8_PP2_M1_C1"/>
+          <MapItem sourceID="RR8_RP1_M1_C2" targetID="RR8_PP2_M1_C2"/>
+          <MapItem sourceID="RR8_RP1_M2" targetID="RR8_PP1_M1"/>
+          <MapItem sourceID="RR8_RP1_M2_C1" targetID="RR8_PP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <DeleteBond site1="RR8_RP1_M1_C2" site2="RR8_RP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="CycA_p27_Binding" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR9_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_RP1_M1" name="CycA">
+                <ListOfComponents>
+                  <Component id="RR9_RP1_M1_C1" name="p27" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR9_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR9_RP2_M1" name="p27">
+                <ListOfComponents>
+                  <Component id="RR9_RP2_M1_C1" name="cyca" numberOfBonds="0"/>
+                  <Component id="RR9_RP2_M1_C2" name="cyce" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR9_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP1_M1" name="p27">
+                <ListOfComponents>
+                  <Component id="RR9_PP1_M1_C1" name="cyca" numberOfBonds="1"/>
+                  <Component id="RR9_PP1_M1_C2" name="cyce" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR9_PP1_M2" name="CycA">
+                <ListOfComponents>
+                  <Component id="RR9_PP1_M2_C1" name="p27" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR9_PP1_B1" site1="RR9_PP1_M1_C1" site2="RR9_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kassa"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR9_RP1_M1" targetID="RR9_PP1_M2"/>
+          <MapItem sourceID="RR9_RP1_M1_C1" targetID="RR9_PP1_M2_C1"/>
+          <MapItem sourceID="RR9_RP2_M1" targetID="RR9_PP1_M1"/>
+          <MapItem sourceID="RR9_RP2_M1_C1" targetID="RR9_PP1_M1_C1"/>
+          <MapItem sourceID="RR9_RP2_M1_C2" targetID="RR9_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR9_RP2_M1_C1" site2="RR9_RP1_M1_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="_reverse_CycA_p27_Binding" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR10_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_RP1_M1" name="p27">
+                <ListOfComponents>
+                  <Component id="RR10_RP1_M1_C1" name="cyca" numberOfBonds="1"/>
+                  <Component id="RR10_RP1_M1_C2" name="cyce" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR10_RP1_M2" name="CycA">
+                <ListOfComponents>
+                  <Component id="RR10_RP1_M2_C1" name="p27" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR10_RP1_B1" site1="RR10_RP1_M1_C1" site2="RR10_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR10_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_PP1_M1" name="CycA">
+                <ListOfComponents>
+                  <Component id="RR10_PP1_M1_C1" name="p27" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR10_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR10_PP2_M1" name="p27">
+                <ListOfComponents>
+                  <Component id="RR10_PP2_M1_C1" name="cyca" numberOfBonds="0"/>
+                  <Component id="RR10_PP2_M1_C2" name="cyce" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kdisa"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR10_RP1_M1" targetID="RR10_PP2_M1"/>
+          <MapItem sourceID="RR10_RP1_M1_C1" targetID="RR10_PP2_M1_C1"/>
+          <MapItem sourceID="RR10_RP1_M1_C2" targetID="RR10_PP2_M1_C2"/>
+          <MapItem sourceID="RR10_RP1_M2" targetID="RR10_PP1_M1"/>
+          <MapItem sourceID="RR10_RP1_M2_C1" targetID="RR10_PP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <DeleteBond site1="RR10_RP1_M1_C1" site2="RR10_RP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR11" name="CycA_degradation_from_CycA_p27_complexes_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR11_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_PP1_M1" name="p27">
+                <ListOfComponents>
+                  <Component id="RR11_PP1_M1_C1" name="cyca" numberOfBonds="1"/>
+                  <Component id="RR11_PP1_M1_C2" name="cyce" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR11_PP1_M2" name="CycA">
+                <ListOfComponents>
+                  <Component id="RR11_PP1_M2_C1" name="p27" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR11_PP1_B1" site1="RR11_PP1_M1_C1" site2="RR11_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR11_RateLaw" type="Function" name="_rateLaw4" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR11_PP1_M1"/>
+          <Add id="RR11_PP1_M2"/>
+          <AddBond site1="RR11_PP1_M1_C1" site2="RR11_PP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR12" name="CycA_degradation_from_CycA_p27_complexes_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR12_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_PP1_M1" name="p27">
+                <ListOfComponents>
+                  <Component id="RR12_PP1_M1_C1" name="cyca" numberOfBonds="0"/>
+                  <Component id="RR12_PP1_M1_C2" name="cyce" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR12_RateLaw" type="Function" name="fRate8" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR12_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR13" name="p27_degradation_from_CycA_p27_complexes_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR13_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_PP1_M1" name="p27">
+                <ListOfComponents>
+                  <Component id="RR13_PP1_M1_C1" name="cyca" numberOfBonds="1"/>
+                  <Component id="RR13_PP1_M1_C2" name="cyce" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR13_PP1_M2" name="CycA">
+                <ListOfComponents>
+                  <Component id="RR13_PP1_M2_C1" name="p27" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR13_PP1_B1" site1="RR13_PP1_M1_C1" site2="RR13_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR13_RateLaw" type="Function" name="_rateLaw5" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR13_PP1_M1"/>
+          <Add id="RR13_PP1_M2"/>
+          <AddBond site1="RR13_PP1_M1_C1" site2="RR13_PP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR14" name="p27_degradation_from_CycA_p27_complexes_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR14_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_PP1_M1" name="CycA">
+                <ListOfComponents>
+                  <Component id="RR14_PP1_M1_C1" name="p27" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR14_RateLaw" type="Function" name="fRate9" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR14_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR15" name="CycE_degradation_from_CycE_p27_complexes_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR15_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR15_PP1_M1" name="p27">
+                <ListOfComponents>
+                  <Component id="RR15_PP1_M1_C1" name="cyca" numberOfBonds="0"/>
+                  <Component id="RR15_PP1_M1_C2" name="cyce" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR15_PP1_M2" name="CycE">
+                <ListOfComponents>
+                  <Component id="RR15_PP1_M2_C1" name="p27" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR15_PP1_B1" site1="RR15_PP1_M1_C2" site2="RR15_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR15_RateLaw" type="Function" name="_rateLaw6" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR15_PP1_M1"/>
+          <Add id="RR15_PP1_M2"/>
+          <AddBond site1="RR15_PP1_M1_C2" site2="RR15_PP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR16" name="CycE_degradation_from_CycE_p27_complexes_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR16_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR16_PP1_M1" name="p27">
+                <ListOfComponents>
+                  <Component id="RR16_PP1_M1_C1" name="cyca" numberOfBonds="0"/>
+                  <Component id="RR16_PP1_M1_C2" name="cyce" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR16_RateLaw" type="Function" name="fRate10" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR16_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR17" name="p27_degradation_from_CycE_p27_complexes_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR17_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR17_PP1_M1" name="p27">
+                <ListOfComponents>
+                  <Component id="RR17_PP1_M1_C1" name="cyca" numberOfBonds="0"/>
+                  <Component id="RR17_PP1_M1_C2" name="cyce" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR17_PP1_M2" name="CycE">
+                <ListOfComponents>
+                  <Component id="RR17_PP1_M2_C1" name="p27" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR17_PP1_B1" site1="RR17_PP1_M1_C2" site2="RR17_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR17_RateLaw" type="Function" name="_rateLaw7" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR17_PP1_M1"/>
+          <Add id="RR17_PP1_M2"/>
+          <AddBond site1="RR17_PP1_M1_C2" site2="RR17_PP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR18" name="p27_degradation_from_CycE_p27_complexes_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR18_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR18_PP1_M1" name="CycE">
+                <ListOfComponents>
+                  <Component id="RR18_PP1_M1_C1" name="p27" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR18_RateLaw" type="Function" name="fRate11" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR18_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR19" name="Skp2_synthesis" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR19_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR19_PP1_M1" name="Skp2"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR19_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="ksskp2"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR19_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR20" name="Skp2_degradation_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR20_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR20_PP1_M1" name="Skp2"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR20_RateLaw" type="Function" name="_rateLaw8" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR20_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR21" name="Cdh1_phosphorylation_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR21_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR21_PP1_M1" name="Cdh1">
+                <ListOfComponents>
+                  <Component id="RR21_PP1_M1_C1" name="emi1" numberOfBonds="0"/>
+                  <Component id="RR21_PP1_M1_C2" name="p" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR21_RateLaw" type="Function" name="_rateLaw9" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR21_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR22" name="Cdh1_phosphorylation_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR22_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR22_PP1_M1" name="Cdh1">
+                <ListOfComponents>
+                  <Component id="RR22_PP1_M1_C1" name="emi1" numberOfBonds="0"/>
+                  <Component id="RR22_PP1_M1_C2" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR22_RateLaw" type="Function" name="fRate14" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR22_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR23" name="Cdh1_dephosphorylation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR23_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR23_RP1_M1" name="Cdh1">
+                <ListOfComponents>
+                  <Component id="RR23_RP1_M1_C1" name="emi1" numberOfBonds="0"/>
+                  <Component id="RR23_RP1_M1_C2" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR23_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR23_PP1_M1" name="Cdh1">
+                <ListOfComponents>
+                  <Component id="RR23_PP1_M1_C1" name="emi1" numberOfBonds="0"/>
+                  <Component id="RR23_PP1_M1_C2" name="p" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR23_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kacdh1"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR23_RP1_M1" targetID="RR23_PP1_M1"/>
+          <MapItem sourceID="RR23_RP1_M1_C1" targetID="RR23_PP1_M1_C1"/>
+          <MapItem sourceID="RR23_RP1_M1_C2" targetID="RR23_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR23_RP1_M1_C2" finalState="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR24" name="Cdh1_Emi1_binding" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR24_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR24_RP1_M1" name="Cdh1">
+                <ListOfComponents>
+                  <Component id="RR24_RP1_M1_C1" name="emi1" numberOfBonds="0"/>
+                  <Component id="RR24_RP1_M1_C2" name="p" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR24_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR24_RP2_M1" name="Emi1">
+                <ListOfComponents>
+                  <Component id="RR24_RP2_M1_C1" name="cdh1" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR24_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR24_PP1_M1" name="Cdh1">
+                <ListOfComponents>
+                  <Component id="RR24_PP1_M1_C1" name="emi1" numberOfBonds="1"/>
+                  <Component id="RR24_PP1_M1_C2" name="p" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR24_PP1_M2" name="Emi1">
+                <ListOfComponents>
+                  <Component id="RR24_PP1_M2_C1" name="cdh1" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR24_PP1_B1" site1="RR24_PP1_M1_C1" site2="RR24_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR24_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kasec"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR24_RP1_M1" targetID="RR24_PP1_M1"/>
+          <MapItem sourceID="RR24_RP1_M1_C1" targetID="RR24_PP1_M1_C1"/>
+          <MapItem sourceID="RR24_RP1_M1_C2" targetID="RR24_PP1_M1_C2"/>
+          <MapItem sourceID="RR24_RP2_M1" targetID="RR24_PP1_M2"/>
+          <MapItem sourceID="RR24_RP2_M1_C1" targetID="RR24_PP1_M2_C1"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR24_RP1_M1_C1" site2="RR24_RP2_M1_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR25" name="_reverse_Cdh1_Emi1_binding" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR25_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR25_RP1_M1" name="Cdh1">
+                <ListOfComponents>
+                  <Component id="RR25_RP1_M1_C1" name="emi1" numberOfBonds="1"/>
+                  <Component id="RR25_RP1_M1_C2" name="p" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR25_RP1_M2" name="Emi1">
+                <ListOfComponents>
+                  <Component id="RR25_RP1_M2_C1" name="cdh1" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR25_RP1_B1" site1="RR25_RP1_M1_C1" site2="RR25_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR25_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR25_PP1_M1" name="Cdh1">
+                <ListOfComponents>
+                  <Component id="RR25_PP1_M1_C1" name="emi1" numberOfBonds="0"/>
+                  <Component id="RR25_PP1_M1_C2" name="p" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR25_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR25_PP2_M1" name="Emi1">
+                <ListOfComponents>
+                  <Component id="RR25_PP2_M1_C1" name="cdh1" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR25_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kdiec"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR25_RP1_M1" targetID="RR25_PP1_M1"/>
+          <MapItem sourceID="RR25_RP1_M1_C1" targetID="RR25_PP1_M1_C1"/>
+          <MapItem sourceID="RR25_RP1_M1_C2" targetID="RR25_PP1_M1_C2"/>
+          <MapItem sourceID="RR25_RP1_M2" targetID="RR25_PP2_M1"/>
+          <MapItem sourceID="RR25_RP1_M2_C1" targetID="RR25_PP2_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <DeleteBond site1="RR25_RP1_M1_C1" site2="RR25_RP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR26" name="Emi1_degradation_from_Cdh1_Emi1_complexes" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR26_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR26_RP1_M1" name="Cdh1">
+                <ListOfComponents>
+                  <Component id="RR26_RP1_M1_C1" name="emi1" numberOfBonds="1"/>
+                  <Component id="RR26_RP1_M1_C2" name="p" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR26_RP1_M2" name="Emi1">
+                <ListOfComponents>
+                  <Component id="RR26_RP1_M2_C1" name="cdh1" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR26_RP1_B1" site1="RR26_RP1_M1_C1" site2="RR26_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR26_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR26_PP1_M1" name="Cdh1">
+                <ListOfComponents>
+                  <Component id="RR26_PP1_M1_C1" name="emi1" numberOfBonds="0"/>
+                  <Component id="RR26_PP1_M1_C2" name="p" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR26_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kdemi1"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR26_RP1_M1" targetID="RR26_PP1_M1"/>
+          <MapItem sourceID="RR26_RP1_M1_C1" targetID="RR26_PP1_M1_C1"/>
+          <MapItem sourceID="RR26_RP1_M1_C2" targetID="RR26_PP1_M1_C2"/>
+          <MapItem sourceID="RR26_RP1_M2"/>
+          <MapItem sourceID="RR26_RP1_M2_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR26_RP1_M2" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR27" name="Emi1_synthesis" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR27_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR27_PP1_M1" name="Emi1">
+                <ListOfComponents>
+                  <Component id="RR27_PP1_M1_C1" name="cdh1" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR27_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="ksemi1"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR27_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR28" name="Cdh1p_Emi1_binding" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR28_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR28_RP1_M1" name="Cdh1">
+                <ListOfComponents>
+                  <Component id="RR28_RP1_M1_C1" name="emi1" numberOfBonds="0"/>
+                  <Component id="RR28_RP1_M1_C2" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR28_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR28_RP2_M1" name="Emi1">
+                <ListOfComponents>
+                  <Component id="RR28_RP2_M1_C1" name="cdh1" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR28_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR28_PP1_M1" name="Cdh1">
+                <ListOfComponents>
+                  <Component id="RR28_PP1_M1_C1" name="emi1" numberOfBonds="1"/>
+                  <Component id="RR28_PP1_M1_C2" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR28_PP1_M2" name="Emi1">
+                <ListOfComponents>
+                  <Component id="RR28_PP1_M2_C1" name="cdh1" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR28_PP1_B1" site1="RR28_PP1_M1_C1" site2="RR28_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR28_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kasec"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR28_RP1_M1" targetID="RR28_PP1_M1"/>
+          <MapItem sourceID="RR28_RP1_M1_C1" targetID="RR28_PP1_M1_C1"/>
+          <MapItem sourceID="RR28_RP1_M1_C2" targetID="RR28_PP1_M1_C2"/>
+          <MapItem sourceID="RR28_RP2_M1" targetID="RR28_PP1_M2"/>
+          <MapItem sourceID="RR28_RP2_M1_C1" targetID="RR28_PP1_M2_C1"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR28_RP1_M1_C1" site2="RR28_RP2_M1_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR29" name="_reverse_Cdh1p_Emi1_binding" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR29_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR29_RP1_M1" name="Cdh1">
+                <ListOfComponents>
+                  <Component id="RR29_RP1_M1_C1" name="emi1" numberOfBonds="1"/>
+                  <Component id="RR29_RP1_M1_C2" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR29_RP1_M2" name="Emi1">
+                <ListOfComponents>
+                  <Component id="RR29_RP1_M2_C1" name="cdh1" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR29_RP1_B1" site1="RR29_RP1_M1_C1" site2="RR29_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR29_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR29_PP1_M1" name="Cdh1">
+                <ListOfComponents>
+                  <Component id="RR29_PP1_M1_C1" name="emi1" numberOfBonds="0"/>
+                  <Component id="RR29_PP1_M1_C2" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR29_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR29_PP2_M1" name="Emi1">
+                <ListOfComponents>
+                  <Component id="RR29_PP2_M1_C1" name="cdh1" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR29_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kdiec"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR29_RP1_M1" targetID="RR29_PP1_M1"/>
+          <MapItem sourceID="RR29_RP1_M1_C1" targetID="RR29_PP1_M1_C1"/>
+          <MapItem sourceID="RR29_RP1_M1_C2" targetID="RR29_PP1_M1_C2"/>
+          <MapItem sourceID="RR29_RP1_M2" targetID="RR29_PP2_M1"/>
+          <MapItem sourceID="RR29_RP1_M2_C1" targetID="RR29_PP2_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <DeleteBond site1="RR29_RP1_M1_C1" site2="RR29_RP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR30" name="Cdh1_Emi1_phosphorylation_reactants_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR30_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR30_PP1_M1" name="Cdh1">
+                <ListOfComponents>
+                  <Component id="RR30_PP1_M1_C1" name="emi1" numberOfBonds="1"/>
+                  <Component id="RR30_PP1_M1_C2" name="p" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR30_PP1_M2" name="Emi1">
+                <ListOfComponents>
+                  <Component id="RR30_PP1_M2_C1" name="cdh1" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR30_PP1_B1" site1="RR30_PP1_M1_C1" site2="RR30_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR30_RateLaw" type="Function" name="_rateLaw10" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR30_PP1_M1"/>
+          <Add id="RR30_PP1_M2"/>
+          <AddBond site1="RR30_PP1_M1_C1" site2="RR30_PP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR31" name="Cdh1_Emi1_phosphorylation_products_0" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR31_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR31_PP1_M1" name="Cdh1">
+                <ListOfComponents>
+                  <Component id="RR31_PP1_M1_C1" name="emi1" numberOfBonds="1"/>
+                  <Component id="RR31_PP1_M1_C2" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR31_PP1_M2" name="Emi1">
+                <ListOfComponents>
+                  <Component id="RR31_PP1_M2_C1" name="cdh1" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR31_PP1_B1" site1="RR31_PP1_M1_C1" site2="RR31_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR31_RateLaw" type="Function" name="fRate20" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR31_PP1_M1"/>
+          <Add id="RR31_PP1_M2"/>
+          <AddBond site1="RR31_PP1_M1_C1" site2="RR31_PP1_M2_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR32" name="Cdh1p_Emi1_dephosphorylation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR32_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR32_RP1_M1" name="Cdh1">
+                <ListOfComponents>
+                  <Component id="RR32_RP1_M1_C1" name="emi1" numberOfBonds="1"/>
+                  <Component id="RR32_RP1_M1_C2" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR32_RP1_M2" name="Emi1">
+                <ListOfComponents>
+                  <Component id="RR32_RP1_M2_C1" name="cdh1" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR32_RP1_B1" site1="RR32_RP1_M1_C1" site2="RR32_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR32_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR32_PP1_M1" name="Cdh1">
+                <ListOfComponents>
+                  <Component id="RR32_PP1_M1_C1" name="emi1" numberOfBonds="1"/>
+                  <Component id="RR32_PP1_M1_C2" name="p" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR32_PP1_M2" name="Emi1">
+                <ListOfComponents>
+                  <Component id="RR32_PP1_M2_C1" name="cdh1" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR32_PP1_B1" site1="RR32_PP1_M1_C1" site2="RR32_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR32_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kacdh1"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR32_RP1_M1" targetID="RR32_PP1_M1"/>
+          <MapItem sourceID="RR32_RP1_M1_C1" targetID="RR32_PP1_M1_C1"/>
+          <MapItem sourceID="RR32_RP1_M1_C2" targetID="RR32_PP1_M1_C2"/>
+          <MapItem sourceID="RR32_RP1_M2" targetID="RR32_PP1_M2"/>
+          <MapItem sourceID="RR32_RP1_M2_C1" targetID="RR32_PP1_M2_C1"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR32_RP1_M1_C2" finalState="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR33" name="Emi1_degradation_from_Cdh1p_Emi1_complexes" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR33_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR33_RP1_M1" name="Cdh1">
+                <ListOfComponents>
+                  <Component id="RR33_RP1_M1_C1" name="emi1" numberOfBonds="1"/>
+                  <Component id="RR33_RP1_M1_C2" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR33_RP1_M2" name="Emi1">
+                <ListOfComponents>
+                  <Component id="RR33_RP1_M2_C1" name="cdh1" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR33_RP1_B1" site1="RR33_RP1_M1_C1" site2="RR33_RP1_M2_C1"/>
+            </ListOfBonds>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR33_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR33_PP1_M1" name="Cdh1">
+                <ListOfComponents>
+                  <Component id="RR33_PP1_M1_C1" name="emi1" numberOfBonds="0"/>
+                  <Component id="RR33_PP1_M1_C2" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR33_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kdemi1"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR33_RP1_M1" targetID="RR33_PP1_M1"/>
+          <MapItem sourceID="RR33_RP1_M1_C1" targetID="RR33_PP1_M1_C1"/>
+          <MapItem sourceID="RR33_RP1_M1_C2" targetID="RR33_PP1_M1_C2"/>
+          <MapItem sourceID="RR33_RP1_M2"/>
+          <MapItem sourceID="RR33_RP1_M2_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR33_RP1_M2" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR34" name="Emi1_degradation" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR34_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR34_RP1_M1" name="Emi1">
+                <ListOfComponents>
+                  <Component id="RR34_RP1_M1_C1" name="cdh1" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR34_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="kdemi1"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR34_RP1_M1"/>
+          <MapItem sourceID="RR34_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR34_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="CycE" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="CycE">
+                <ListOfComponents>
+                  <Component id="O1_P1_M1_C1" name="p27" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="CycA" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="CycA">
+                <ListOfComponents>
+                  <Component id="O2_P1_M1_C1" name="p27" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="CycEp27" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="p27">
+                <ListOfComponents>
+                  <Component id="O3_P1_M1_C1" name="cyca" numberOfBonds="0"/>
+                  <Component id="O3_P1_M1_C2" name="cyce" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O3_P1_M2" name="CycE">
+                <ListOfComponents>
+                  <Component id="O3_P1_M2_C1" name="p27" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O3_P1_B1" site1="O3_P1_M1_C2" site2="O3_P1_M2_C1"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="CycAp27" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="p27">
+                <ListOfComponents>
+                  <Component id="O4_P1_M1_C1" name="cyca" numberOfBonds="1"/>
+                  <Component id="O4_P1_M1_C2" name="cyce" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O4_P1_M2" name="CycA">
+                <ListOfComponents>
+                  <Component id="O4_P1_M2_C1" name="p27" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O4_P1_B1" site1="O4_P1_M1_C1" site2="O4_P1_M2_C1"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="Skp2" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="Skp2"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O6" name="Cdh1p" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O6_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O6_P1_M1" name="Cdh1">
+                <ListOfComponents>
+                  <Component id="O6_P1_M1_C1" name="emi1" numberOfBonds="0"/>
+                  <Component id="O6_P1_M1_C2" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O7" name="Emi1" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O7_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O7_P1_M1" name="Emi1">
+                <ListOfComponents>
+                  <Component id="O7_P1_M1_C1" name="cdh1" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O8" name="p27" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O8_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O8_P1_M1" name="p27">
+                <ListOfComponents>
+                  <Component id="O8_P1_M1_C1" name="cyca" numberOfBonds="0"/>
+                  <Component id="O8_P1_M1_C2" name="cyce" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O9" name="Cdh1" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O9_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O9_P1_M1" name="Cdh1">
+                <ListOfComponents>
+                  <Component id="O9_P1_M1_C1" name="emi1" numberOfBonds="0"/>
+                  <Component id="O9_P1_M1_C2" name="p" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O10" name="Emi1Cdh1" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O10_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O10_P1_M1" name="Cdh1">
+                <ListOfComponents>
+                  <Component id="O10_P1_M1_C1" name="emi1" numberOfBonds="1"/>
+                  <Component id="O10_P1_M1_C2" name="p" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O10_P1_M2" name="Emi1">
+                <ListOfComponents>
+                  <Component id="O10_P1_M2_C1" name="cdh1" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O10_P1_B1" site1="O10_P1_M1_C1" site2="O10_P1_M2_C1"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O11" name="Emi1Cdh1p" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O11_P1" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O11_P1_M1" name="Cdh1">
+                <ListOfComponents>
+                  <Component id="O11_P1_M1_C1" name="emi1" numberOfBonds="1"/>
+                  <Component id="O11_P1_M1_C2" name="p" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O11_P1_M2" name="Emi1">
+                <ListOfComponents>
+                  <Component id="O11_P1_M2_C1" name="cdh1" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O11_P1_B1" site1="O11_P1_M1_C1" site2="O11_P1_M2_C1"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="Cdh1T_ar">
+        <ListOfReferences>
+          <Reference name="Cdh1" type="Observable"/>
+          <Reference name="Cdh1p" type="Observable"/>
+          <Reference name="Emi1Cdh1" type="Observable"/>
+          <Reference name="Emi1Cdh1p" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((Cdh1+Cdh1p)+Emi1Cdh1)+Emi1Cdh1p </Expression>
+      </Function>
+      <Function id="Cdh1dp_ar">
+        <ListOfReferences>
+          <Reference name="Cdh1" type="Observable"/>
+          <Reference name="Emi1Cdh1" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Cdh1+Emi1Cdh1 </Expression>
+      </Function>
+      <Function id="Emi1T_ar">
+        <ListOfReferences>
+          <Reference name="Emi1" type="Observable"/>
+          <Reference name="Emi1Cdh1" type="Observable"/>
+          <Reference name="Emi1Cdh1p" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (Emi1+Emi1Cdh1)+Emi1Cdh1p </Expression>
+      </Function>
+      <Function id="EmiC_ar">
+        <ListOfReferences>
+          <Reference name="Emi1Cdh1" type="Observable"/>
+          <Reference name="Emi1Cdh1p" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Emi1Cdh1+Emi1Cdh1p </Expression>
+      </Function>
+      <Function id="p27T_ar">
+        <ListOfReferences>
+          <Reference name="CycAp27" type="Observable"/>
+          <Reference name="CycEp27" type="Observable"/>
+          <Reference name="p27" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (CycAp27+CycEp27)+p27 </Expression>
+      </Function>
+      <Function id="CycAT_ar">
+        <ListOfReferences>
+          <Reference name="CycA" type="Observable"/>
+          <Reference name="CycAp27" type="Observable"/>
+        </ListOfReferences>
+        <Expression> CycA+CycAp27 </Expression>
+      </Function>
+      <Function id="CycET_ar">
+        <ListOfReferences>
+          <Reference name="CycE" type="Observable"/>
+          <Reference name="CycEp27" type="Observable"/>
+        </ListOfReferences>
+        <Expression> CycE+CycEp27 </Expression>
+      </Function>
+      <Function id="fRate1">
+        <ListOfReferences>
+          <Reference name="Inhibitor" type="Constant"/>
+          <Reference name="kdcyce" type="Constant"/>
+          <Reference name="kdcycea" type="Constant"/>
+          <Reference name="kdcycee" type="Constant"/>
+          <Reference name="CycA" type="Observable"/>
+          <Reference name="CycE" type="Observable"/>
+        </ListOfReferences>
+        <Expression> CycE*((((CycA*kdcycea)/(Inhibitor+1))+((CycE*kdcycee)/(Inhibitor+1)))+kdcyce) </Expression>
+      </Function>
+      <Function id="fRate3">
+        <ListOfReferences>
+          <Reference name="kdcyca" type="Constant"/>
+          <Reference name="kdcycac1" type="Constant"/>
+          <Reference name="Cdh1" type="Observable"/>
+          <Reference name="CycA" type="Observable"/>
+        </ListOfReferences>
+        <Expression> CycA*((Cdh1*kdcycac1)+kdcyca) </Expression>
+      </Function>
+      <Function id="fRate5">
+        <ListOfReferences>
+          <Reference name="Inhibitor" type="Constant"/>
+          <Reference name="kd27" type="Constant"/>
+          <Reference name="kd27a" type="Constant"/>
+          <Reference name="kd27e" type="Constant"/>
+          <Reference name="CycA" type="Observable"/>
+          <Reference name="CycE" type="Observable"/>
+          <Reference name="Skp2" type="Observable"/>
+          <Reference name="p27" type="Observable"/>
+        </ListOfReferences>
+        <Expression> p27*((Skp2*(((CycA*kd27a)/(Inhibitor+1))+((CycE*kd27e)/(Inhibitor+1))))+kd27) </Expression>
+      </Function>
+      <Function id="fRate8">
+        <ListOfReferences>
+          <Reference name="kdcyca" type="Constant"/>
+          <Reference name="kdcycac1" type="Constant"/>
+          <Reference name="Cdh1" type="Observable"/>
+          <Reference name="CycAp27" type="Observable"/>
+        </ListOfReferences>
+        <Expression> CycAp27*((Cdh1*kdcycac1)+kdcyca) </Expression>
+      </Function>
+      <Function id="fRate9">
+        <ListOfReferences>
+          <Reference name="Inhibitor" type="Constant"/>
+          <Reference name="kd27" type="Constant"/>
+          <Reference name="kd27a" type="Constant"/>
+          <Reference name="kd27e" type="Constant"/>
+          <Reference name="CycA" type="Observable"/>
+          <Reference name="CycAp27" type="Observable"/>
+          <Reference name="CycE" type="Observable"/>
+          <Reference name="Skp2" type="Observable"/>
+        </ListOfReferences>
+        <Expression> CycAp27*((Skp2*(((CycA*kd27a)/(Inhibitor+1))+((CycE*kd27e)/(Inhibitor+1))))+kd27) </Expression>
+      </Function>
+      <Function id="fRate10">
+        <ListOfReferences>
+          <Reference name="Inhibitor" type="Constant"/>
+          <Reference name="kdcyce" type="Constant"/>
+          <Reference name="kdcycea" type="Constant"/>
+          <Reference name="kdcycee" type="Constant"/>
+          <Reference name="CycA" type="Observable"/>
+          <Reference name="CycE" type="Observable"/>
+          <Reference name="CycEp27" type="Observable"/>
+        </ListOfReferences>
+        <Expression> CycEp27*((((CycA*kdcycea)/(Inhibitor+1))+((CycE*kdcycee)/(Inhibitor+1)))+kdcyce) </Expression>
+      </Function>
+      <Function id="fRate11">
+        <ListOfReferences>
+          <Reference name="Inhibitor" type="Constant"/>
+          <Reference name="kd27" type="Constant"/>
+          <Reference name="kd27a" type="Constant"/>
+          <Reference name="kd27e" type="Constant"/>
+          <Reference name="CycA" type="Observable"/>
+          <Reference name="CycE" type="Observable"/>
+          <Reference name="CycEp27" type="Observable"/>
+          <Reference name="Skp2" type="Observable"/>
+        </ListOfReferences>
+        <Expression> CycEp27*((Skp2*(((CycA*kd27a)/(Inhibitor+1))+((CycE*kd27e)/(Inhibitor+1))))+kd27) </Expression>
+      </Function>
+      <Function id="fRate13">
+        <ListOfReferences>
+          <Reference name="kdskp2" type="Constant"/>
+          <Reference name="kdskp2c1" type="Constant"/>
+          <Reference name="Cdh1" type="Observable"/>
+          <Reference name="Skp2" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Skp2*((Cdh1*kdskp2c1)+kdskp2) </Expression>
+      </Function>
+      <Function id="fRate14">
+        <ListOfReferences>
+          <Reference name="Inhibitor" type="Constant"/>
+          <Reference name="kicdh1a" type="Constant"/>
+          <Reference name="kicdh1e" type="Constant"/>
+          <Reference name="Cdh1" type="Observable"/>
+          <Reference name="CycA" type="Observable"/>
+          <Reference name="CycE" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Cdh1*(((CycA*kicdh1a)/(Inhibitor+1))+((CycE*kicdh1e)/(Inhibitor+1))) </Expression>
+      </Function>
+      <Function id="fRate20">
+        <ListOfReferences>
+          <Reference name="Inhibitor" type="Constant"/>
+          <Reference name="kicdh1a" type="Constant"/>
+          <Reference name="kicdh1e" type="Constant"/>
+          <Reference name="CycA" type="Observable"/>
+          <Reference name="CycE" type="Observable"/>
+          <Reference name="Emi1Cdh1" type="Observable"/>
+        </ListOfReferences>
+        <Expression> Emi1Cdh1*(((CycA*kicdh1a)/(Inhibitor+1))+((CycE*kicdh1e)/(Inhibitor+1))) </Expression>
+      </Function>
+      <Function id="_rateLaw1">
+        <ListOfReferences>
+          <Reference name="fRate1" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate1() </Expression>
+      </Function>
+      <Function id="_rateLaw2">
+        <ListOfReferences>
+          <Reference name="fRate3" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate3() </Expression>
+      </Function>
+      <Function id="_rateLaw3">
+        <ListOfReferences>
+          <Reference name="fRate5" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate5() </Expression>
+      </Function>
+      <Function id="_rateLaw4">
+        <ListOfReferences>
+          <Reference name="fRate8" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate8() </Expression>
+      </Function>
+      <Function id="_rateLaw5">
+        <ListOfReferences>
+          <Reference name="fRate9" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate9() </Expression>
+      </Function>
+      <Function id="_rateLaw6">
+        <ListOfReferences>
+          <Reference name="fRate10" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate10() </Expression>
+      </Function>
+      <Function id="_rateLaw7">
+        <ListOfReferences>
+          <Reference name="fRate11" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate11() </Expression>
+      </Function>
+      <Function id="_rateLaw8">
+        <ListOfReferences>
+          <Reference name="fRate13" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate13() </Expression>
+      </Function>
+      <Function id="_rateLaw9">
+        <ListOfReferences>
+          <Reference name="fRate14" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate14() </Expression>
+      </Function>
+      <Function id="_rateLaw10">
+        <ListOfReferences>
+          <Reference name="fRate20" type="Function"/>
+        </ListOfReferences>
+        <Expression> -1*fRate20() </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

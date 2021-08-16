@@ -7,7 +7,7 @@
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/4932']
 #@creatorEmail:'hdharuri@cds.caltech.edu'
 #@creatorName:'Dharuri Harish'
-#@notes:'This is a plain translation of an SBML model created on 13/08/2021. The original model has 54 molecules and 94 reactions. The translated model has 40 molecules and 96 rules'
+#@notes:'This is a plain translation of an SBML model created on 14/08/2021. The original model has 54 molecules and 94 reactions. The translated model has 40 molecules and 96 rules'
 ###
 begin model
 begin parameters
@@ -164,46 +164,46 @@ begin parameters
 	r55_k 1.000000
 end parameters
 begin molecule types
-	F5P()
-	SIC1P()
-	CDC6()
-	F5()
-	IE()
-	SPN()
-	C2P()
-	SWI5P()
-	CLB2()
-	CDH1i()
-	CLB5()
-	ORI()
-	PPX()
-	NET1P()
-	F2P()
-	IEP()
-	MASS()
-	F2()
-	NET1()
 	TEM1GDP()
-	CDC15()
-	C5()
 	SIC1()
-	CDC20()
 	PE()
-	BUD()
-	CDC20i()
-	CDC6P()
-	CDH1()
-	RENT()
-	CDC14()
-	C2()
-	CDC15i()
-	CLN2()
-	RENTP()
-	ESP1()
-	SWI5()
-	C5P()
-	PDS1()
+	C5()
+	IEP()
+	CDH1i()
+	CDC6()
+	F2()
+	CDC15()
+	MASS()
+	NET1()
+	SPN()
+	PPX()
+	CLB2()
 	TEM1GTP()
+	SWI5P()
+	CDC20()
+	F2P()
+	NET1P()
+	RENTP()
+	RENT()
+	CDH1()
+	CDC6P()
+	ORI()
+	SIC1P()
+	F5()
+	BUD()
+	CLB5()
+	C2()
+	CDC14()
+	CLN2()
+	F5P()
+	PDS1()
+	CDC20i()
+	C2P()
+	SWI5()
+	ESP1()
+	C5P()
+	CDC15i()
+	IE()
 end molecule types
 begin seed species
 	BUD() 0.008473 #BUD #BUD
@@ -286,11 +286,11 @@ begin observables
 	Species TEM1GTP TEM1GTP() #TEM1GTP
 end observables
 begin functions
-	SIC1T_ar() = C2 + C2P + C5 + C5P + SIC1 + SIC1P
 	CDC6T_ar() = CDC6 + CDC6P + F2 + F2P + F5 + F5P
+	SIC1T_ar() = C2 + C2P + C5 + C5P + SIC1 + SIC1P
 	CKIT_ar() = CDC6T_ar + SIC1T_ar
-	BCK2_ar() = MASS*b0
 	CLN3_ar() = C0*Dn3*MASS/(Dn3*MASS + Jn3)
+	BCK2_ar() = MASS*b0
 	Vd2f6() = kd2f6*(BCK2_ar*ef6k2 + CLB2*ef6b2 + CLB5*ef6b5 + CLN2*ef6n2 + CLN3_ar*ef6n3)
 	Vd2c1() = kd2c1*(BCK2_ar*ec1k2 + CLB2*ec1b2 + CLB5*ec1b5 + CLN2*ec1n2 + CLN3_ar*ec1n3)
 	mu() = ln(2)/mdt

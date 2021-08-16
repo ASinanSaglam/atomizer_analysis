@@ -2,10 +2,10 @@
 #@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000117', 'http://identifiers.org/biomodels.db/MODEL0466937756']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/1647878']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/131567']
-#@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0019722', 'http://identifiers.org/obo.go/GO:0048763']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0048763', 'http://identifiers.org/obo.go/GO:0019722']
 #@creatorEmail:'enuo@caltech.edu'
 #@creatorName:'He Enuo'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 2 molecules and 6 reactions. The translated model has 1 molecules and 8 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 2 molecules and 6 reactions. The translated model has 1 molecules and 8 rules'
 ###
 begin model
 begin parameters
@@ -35,12 +35,12 @@ begin molecule types
 	Cainthecytosol(CaintheInsP3_insensitivepool~CaintheInsP3_insensitivepool~0)
 end molecule types
 begin seed species
-	@Cytosol:Cainthecytosol(CaintheInsP3_insensitivepool~0) 6.022e+16 # (0.1 * 1e-06)mol/L * 6.022e23/mol *1.0L #Cainthecytosol #z
-	@intracellular_Ca_storepool:Cainthecytosol(CaintheInsP3_insensitivepool~CaintheInsP3_insensitivepool) 8.4308e+17 #original 1.4microM/L #CaintheInsP3_insensitivepool #y
+	@Cytosol:Cainthecytosol(CaintheInsP3_insensitivepool~0)@Cytosol 6.022e+16 # (0.1 * 1e-06)mol/L * 6.022e23/mol *1.0L #Cainthecytosol #z
+	@intracellular_Ca_storepool:Cainthecytosol(CaintheInsP3_insensitivepool~CaintheInsP3_insensitivepool)@intracellular_Ca_storepool 8.4308e+17 #original 1.4microM/L #CaintheInsP3_insensitivepool #y
 end seed species
 begin observables
-	Species Cainthecytosol_Cytosol @Cytosol:Cainthecytosol(CaintheInsP3_insensitivepool~0) #Ca in the cytosol
-	Species CaintheInsP3_insensitivepool_intracellular_Ca_storepool @intracellular_Ca_storepool:Cainthecytosol(CaintheInsP3_insensitivepool~CaintheInsP3_insensitivepool) #Ca in the InsP3-insensitive pool
+	Species Cainthecytosol_Cytosol @Cytosol:Cainthecytosol(CaintheInsP3_insensitivepool~0)@Cytosol #Ca in the cytosol
+	Species CaintheInsP3_insensitivepool_intracellular_Ca_storepool @intracellular_Ca_storepool:Cainthecytosol(CaintheInsP3_insensitivepool~CaintheInsP3_insensitivepool)@intracellular_Ca_storepool #Ca in the InsP3-insensitive pool
 end observables
 begin functions
 	beta() = 0.96*flag*exp(0.2*tstim - 0.2*time())

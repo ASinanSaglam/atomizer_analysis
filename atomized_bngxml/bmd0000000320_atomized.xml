@@ -1,0 +1,932 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.6.0  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="bmd0000000320_atomized">
+    <ListOfParameters>
+      <Parameter id="F_G" type="Constant" value="1" expr="1.0"/>
+      <Parameter id="Q" type="Constant" value="0.828" expr="0.828"/>
+      <Parameter id="f_H" type="Constant" value="0.13" expr="0.13"/>
+      <Parameter id="f_AADC" type="Constant" value="0.69" expr="0.69"/>
+      <Parameter id="f_COMT" type="Constant" value="0.1" expr="0.1"/>
+      <Parameter id="ki" type="Constant" value="0.00246" expr="0.00246"/>
+      <Parameter id="CL_dopa0" type="Constant" value="0.823" expr="0.823"/>
+      <Parameter id="ka_c" type="Constant" value="1.29" expr="1.29"/>
+      <Parameter id="ka_M" type="Constant" value="2.47" expr="2.47"/>
+      <Parameter id="ka_B" type="Constant" value="0.94" expr="0.94"/>
+      <Parameter id="F_B" type="Constant" value="0.022" expr="0.022"/>
+      <Parameter id="CL_OMD" type="Constant" value="0.00895" expr="0.00895"/>
+      <Parameter id="CL_B" type="Constant" value="1.67" expr="1.67"/>
+      <Parameter id="fm" type="Constant" value="0.15" expr="0.15"/>
+      <Parameter id="CL_M" type="Constant" value="4.29" expr="4.29"/>
+      <Parameter id="CL_dB" type="Constant" value="0.072" expr="0.072"/>
+      <Parameter id="CL_dM" type="Constant" value="1.06" expr="1.06"/>
+      <Parameter id="L_Dopa_per_kg_rat" type="Constant" value="404" expr="404.0"/>
+      <Parameter id="Benserazide_per_kg_rat" type="Constant" value="78" expr="78.0"/>
+      <Parameter id="rat_body_mass" type="Constant" value="0.25" expr="0.25"/>
+      <Parameter id="B_M_frac" type="Constant" value="0.07" expr="0.07"/>
+      <Parameter id="A_bens_tot" type="Constant" value="19.5" expr="78.0*0.25"/>
+      <Parameter id="_InitialConc1" type="Constant" value="101" expr="404.0*0.25"/>
+      <Parameter id="_InitialConc2" type="Constant" value="0" expr="0*(1-0.07)"/>
+      <Parameter id="_InitialConc3" type="Constant" value="0" expr="0*0.07"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="A_B">
+        <ListOfComponentTypes>
+          <ComponentType id="C1_B">
+            <ListOfAllowedStates>
+              <AllowedState id="C1_B"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="C2_B">
+            <ListOfAllowedStates>
+              <AllowedState id="C2_B"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="A_M">
+        <ListOfComponentTypes>
+          <ComponentType id="C1_M">
+            <ListOfAllowedStates>
+              <AllowedState id="C1_M"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="C2_M">
+            <ListOfAllowedStates>
+              <AllowedState id="C2_M"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="A_dopa">
+        <ListOfComponentTypes>
+          <ComponentType id="C_dopa">
+            <ListOfAllowedStates>
+              <AllowedState id="C_dopa"/>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="C_3_OMD"/>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+      <compartment id="gut" spatialDimensions="3" size="1.0"/>
+      <compartment id="Vdopa" spatialDimensions="3" size="0.496"/>
+      <compartment id="V_3_OMD" spatialDimensions="3" size="0.128"/>
+      <compartment id="V1_B" spatialDimensions="3" size="0.202"/>
+      <compartment id="V2_B" spatialDimensions="3" size="0.127"/>
+      <compartment id="V1_M" spatialDimensions="3" size="0.0691"/>
+      <compartment id="V2_M" spatialDimensions="3" size="3.2"/>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="_InitialConc1" name="@gut::A_dopa(C_dopa~0)" compartment="gut">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="A_dopa" compartment="gut">
+            <ListOfComponents>
+              <Component id="S1_M1_C1" name="C_dopa" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="_InitialConc2" name="@gut::A_B(C1_B~0,C2_B~0)" compartment="gut">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="A_B" compartment="gut">
+            <ListOfComponents>
+              <Component id="S2_M1_C1" name="C1_B" state="0" numberOfBonds="0"/>
+              <Component id="S2_M1_C2" name="C2_B" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S3"  concentration="_InitialConc3" name="@gut::A_M(C1_M~0,C2_M~0)" compartment="gut">
+        <ListOfMolecules>
+          <Molecule id="S3_M1" name="A_M" compartment="gut">
+            <ListOfComponents>
+              <Component id="S3_M1_C1" name="C1_M" state="0" numberOfBonds="0"/>
+              <Component id="S3_M1_C2" name="C2_M" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="l_dopa_absorption" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR1_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_RP1_M1" name="A_dopa" compartment="gut">
+                <ListOfComponents>
+                  <Component id="RR1_RP1_M1_C1" name="C_dopa" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="A_dopa" compartment="Vdopa">
+                <ListOfComponents>
+                  <Component id="RR1_PP1_M1_C1" name="C_dopa" state="C_dopa" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="fRate0" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR1_RP1_M1" targetID="RR1_PP1_M1"/>
+          <MapItem sourceID="RR1_RP1_M1_C1" targetID="RR1_PP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR1_RP1_M1_C1" finalState="C_dopa"/>
+          <ChangeCompartment id="RR1_RP1_M1" source="gut" destination="Vdopa" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="l_dopa_blood_hepa_clearance" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="A_dopa" compartment="gut">
+                <ListOfComponents>
+                  <Component id="RR2_RP1_M1_C1" name="C_dopa" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="ka_c"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1"/>
+          <MapItem sourceID="RR2_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR2_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="_reverse_l_dopa_blood_hepa_clearance" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="A_dopa" compartment="gut">
+                <ListOfComponents>
+                  <Component id="RR3_PP1_M1_C1" name="C_dopa" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="fRate1m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR3_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="ro_04_5127_absorption" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="A_M" compartment="gut">
+                <ListOfComponents>
+                  <Component id="RR4_RP1_M1_C1" name="C1_M" state="0" numberOfBonds="0"/>
+                  <Component id="RR4_RP1_M1_C2" name="C2_M" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="A_M" compartment="V1_M">
+                <ListOfComponents>
+                  <Component id="RR4_PP1_M1_C1" name="C1_M" state="C1_M" numberOfBonds="0"/>
+                  <Component id="RR4_PP1_M1_C2" name="C2_M" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="ka_M"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1" targetID="RR4_PP1_M1"/>
+          <MapItem sourceID="RR4_RP1_M1_C1" targetID="RR4_PP1_M1_C1"/>
+          <MapItem sourceID="RR4_RP1_M1_C2" targetID="RR4_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR4_RP1_M1_C1" finalState="C1_M"/>
+          <ChangeCompartment id="RR4_RP1_M1" source="gut" destination="V1_M" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="benserazide_absorption" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR5_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP1_M1" name="A_B" compartment="gut">
+                <ListOfComponents>
+                  <Component id="RR5_RP1_M1_C1" name="C1_B" state="0" numberOfBonds="0"/>
+                  <Component id="RR5_RP1_M1_C2" name="C2_B" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="A_B" compartment="V1_B">
+                <ListOfComponents>
+                  <Component id="RR5_PP1_M1_C1" name="C1_B" state="C1_B" numberOfBonds="0"/>
+                  <Component id="RR5_PP1_M1_C2" name="C2_B" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Function" name="fRate3" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR5_RP1_M1" targetID="RR5_PP1_M1"/>
+          <MapItem sourceID="RR5_RP1_M1_C1" targetID="RR5_PP1_M1_C1"/>
+          <MapItem sourceID="RR5_RP1_M1_C2" targetID="RR5_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR5_RP1_M1_C1" finalState="C1_B"/>
+          <ChangeCompartment id="RR5_RP1_M1" source="gut" destination="V1_B" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="benserazide_gut_clearance" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR6_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR6_RP1_M1" name="A_B" compartment="gut">
+                <ListOfComponents>
+                  <Component id="RR6_RP1_M1_C1" name="C1_B" state="0" numberOfBonds="0"/>
+                  <Component id="RR6_RP1_M1_C2" name="C2_B" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="ka_B"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR6_RP1_M1"/>
+          <MapItem sourceID="RR6_RP1_M1_C1"/>
+          <MapItem sourceID="RR6_RP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR6_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="_reverse_benserazide_gut_clearance" symmetry_factor="1">
+        <ListOfReactantPatterns>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="A_B" compartment="gut">
+                <ListOfComponents>
+                  <Component id="RR7_PP1_M1_C1" name="C1_B" state="0" numberOfBonds="0"/>
+                  <Component id="RR7_PP1_M1_C2" name="C2_B" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Function" name="fRate4m" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR7_PP1_M1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="AADC_clearance" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR8_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR8_RP1_M1" name="A_dopa" compartment="Vdopa">
+                <ListOfComponents>
+                  <Component id="RR8_RP1_M1_C1" name="C_dopa" state="C_dopa" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Function" name="CL_AADC" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR8_RP1_M1"/>
+          <MapItem sourceID="RR8_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR8_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="COMT_clearance" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR9_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_RP1_M1" name="A_dopa" compartment="Vdopa">
+                <ListOfComponents>
+                  <Component id="RR9_RP1_M1_C1" name="C_dopa" state="C_dopa" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR9_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP1_M1" name="C_3_OMD" compartment="V_3_OMD"/>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Function" name="CL_COMT" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR9_RP1_M1"/>
+          <MapItem sourceID="RR9_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR9_PP1_M1"/>
+          <Delete id="RR9_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="rest_clearance" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR10_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR10_RP1_M1" name="A_dopa" compartment="Vdopa">
+                <ListOfComponents>
+                  <Component id="RR10_RP1_M1_C1" name="C_dopa" state="C_dopa" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Function" name="CL_rest" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR10_RP1_M1"/>
+          <MapItem sourceID="RR10_RP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR10_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR11" name="_3_OMD_clearance" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR11_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR11_RP1_M1" name="C_3_OMD" compartment="V_3_OMD"/>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR11_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="CL_OMD"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR11_RP1_M1"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR11_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR12" name="bens_clearance" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR12_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR12_RP1_M1" name="A_B" compartment="V1_B">
+                <ListOfComponents>
+                  <Component id="RR12_RP1_M1_C1" name="C1_B" state="C1_B" numberOfBonds="0"/>
+                  <Component id="RR12_RP1_M1_C2" name="C2_B" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR12_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="CL_B"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR12_RP1_M1"/>
+          <MapItem sourceID="RR12_RP1_M1_C1"/>
+          <MapItem sourceID="RR12_RP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR12_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR13" name="bens_metabolism" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR13_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_RP1_M1" name="A_B" compartment="V1_B">
+                <ListOfComponents>
+                  <Component id="RR13_RP1_M1_C1" name="C1_B" state="C1_B" numberOfBonds="0"/>
+                  <Component id="RR13_RP1_M1_C2" name="C2_B" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR13_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_PP1_M1" name="A_M" compartment="V1_M">
+                <ListOfComponents>
+                  <Component id="RR13_PP1_M1_C1" name="C1_M" state="C1_M" numberOfBonds="0"/>
+                  <Component id="RR13_PP1_M1_C2" name="C2_M" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR13_RateLaw" type="Function" name="fRate10" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR13_RP1_M1"/>
+          <MapItem sourceID="RR13_RP1_M1_C1"/>
+          <MapItem sourceID="RR13_RP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <Add id="RR13_PP1_M1"/>
+          <Delete id="RR13_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR14" name="ro_clearance" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR14_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR14_RP1_M1" name="A_M" compartment="V1_M">
+                <ListOfComponents>
+                  <Component id="RR14_RP1_M1_C1" name="C1_M" state="C1_M" numberOfBonds="0"/>
+                  <Component id="RR14_RP1_M1_C2" name="C2_M" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+        </ListOfProductPatterns>
+        <RateLaw id="RR14_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="CL_M"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR14_RP1_M1"/>
+          <MapItem sourceID="RR14_RP1_M1_C1"/>
+          <MapItem sourceID="RR14_RP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <Delete id="RR14_RP1" DeleteMolecules="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR15" name="bens_distribution" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR15_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR15_RP1_M1" name="A_B" compartment="V1_B">
+                <ListOfComponents>
+                  <Component id="RR15_RP1_M1_C1" name="C1_B" state="C1_B" numberOfBonds="0"/>
+                  <Component id="RR15_RP1_M1_C2" name="C2_B" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR15_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR15_PP1_M1" name="A_B" compartment="V2_B">
+                <ListOfComponents>
+                  <Component id="RR15_PP1_M1_C1" name="C1_B" state="0" numberOfBonds="0"/>
+                  <Component id="RR15_PP1_M1_C2" name="C2_B" state="C2_B" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR15_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="CL_dB"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR15_RP1_M1" targetID="RR15_PP1_M1"/>
+          <MapItem sourceID="RR15_RP1_M1_C1" targetID="RR15_PP1_M1_C1"/>
+          <MapItem sourceID="RR15_RP1_M1_C2" targetID="RR15_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR15_RP1_M1_C1" finalState="0"/>
+          <StateChange site="RR15_RP1_M1_C2" finalState="C2_B"/>
+          <ChangeCompartment id="RR15_RP1_M1" source="V1_B" destination="V2_B" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR16" name="_reverse_bens_distribution" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR16_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR16_RP1_M1" name="A_B" compartment="V2_B">
+                <ListOfComponents>
+                  <Component id="RR16_RP1_M1_C1" name="C1_B" state="0" numberOfBonds="0"/>
+                  <Component id="RR16_RP1_M1_C2" name="C2_B" state="C2_B" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR16_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR16_PP1_M1" name="A_B" compartment="V1_B">
+                <ListOfComponents>
+                  <Component id="RR16_PP1_M1_C1" name="C1_B" state="C1_B" numberOfBonds="0"/>
+                  <Component id="RR16_PP1_M1_C2" name="C2_B" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR16_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="CL_dB"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR16_RP1_M1" targetID="RR16_PP1_M1"/>
+          <MapItem sourceID="RR16_RP1_M1_C1" targetID="RR16_PP1_M1_C1"/>
+          <MapItem sourceID="RR16_RP1_M1_C2" targetID="RR16_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR16_RP1_M1_C1" finalState="C1_B"/>
+          <StateChange site="RR16_RP1_M1_C2" finalState="0"/>
+          <ChangeCompartment id="RR16_RP1_M1" source="V2_B" destination="V1_B" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR17" name="ro_distribution" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR17_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR17_RP1_M1" name="A_M" compartment="V1_M">
+                <ListOfComponents>
+                  <Component id="RR17_RP1_M1_C1" name="C1_M" state="C1_M" numberOfBonds="0"/>
+                  <Component id="RR17_RP1_M1_C2" name="C2_M" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR17_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR17_PP1_M1" name="A_M" compartment="V2_M">
+                <ListOfComponents>
+                  <Component id="RR17_PP1_M1_C1" name="C1_M" state="0" numberOfBonds="0"/>
+                  <Component id="RR17_PP1_M1_C2" name="C2_M" state="C2_M" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR17_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="CL_dM"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR17_RP1_M1" targetID="RR17_PP1_M1"/>
+          <MapItem sourceID="RR17_RP1_M1_C1" targetID="RR17_PP1_M1_C1"/>
+          <MapItem sourceID="RR17_RP1_M1_C2" targetID="RR17_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR17_RP1_M1_C1" finalState="0"/>
+          <StateChange site="RR17_RP1_M1_C2" finalState="C2_M"/>
+          <ChangeCompartment id="RR17_RP1_M1" source="V1_M" destination="V2_M" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR18" name="_reverse_ro_distribution" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR18_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR18_RP1_M1" name="A_M" compartment="V2_M">
+                <ListOfComponents>
+                  <Component id="RR18_RP1_M1_C1" name="C1_M" state="0" numberOfBonds="0"/>
+                  <Component id="RR18_RP1_M1_C2" name="C2_M" state="C2_M" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR18_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR18_PP1_M1" name="A_M" compartment="V1_M">
+                <ListOfComponents>
+                  <Component id="RR18_PP1_M1_C1" name="C1_M" state="C1_M" numberOfBonds="0"/>
+                  <Component id="RR18_PP1_M1_C2" name="C2_M" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR18_RateLaw" type="Ele" totalrate="0">
+          <ListOfRateConstants>
+            <RateConstant value="CL_dM"/>
+          </ListOfRateConstants>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR18_RP1_M1" targetID="RR18_PP1_M1"/>
+          <MapItem sourceID="RR18_RP1_M1_C1" targetID="RR18_PP1_M1_C1"/>
+          <MapItem sourceID="RR18_RP1_M1_C2" targetID="RR18_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR18_RP1_M1_C1" finalState="C1_M"/>
+          <StateChange site="RR18_RP1_M1_C2" finalState="0"/>
+          <ChangeCompartment id="RR18_RP1_M1" source="V2_M" destination="V1_M" flipOrientation="0" moveConnected="0"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="A_dopa_gut" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O1_P1" compartment="gut" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="A_dopa">
+                <ListOfComponents>
+                  <Component id="O1_P1_M1_C1" name="C_dopa" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="A_B_gut" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O2_P1" compartment="gut" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="A_B">
+                <ListOfComponents>
+                  <Component id="O2_P1_M1_C1" name="C1_B" state="0" numberOfBonds="0"/>
+                  <Component id="O2_P1_M1_C2" name="C2_B" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="A_M_gut" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O3_P1" compartment="gut" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="A_M">
+                <ListOfComponents>
+                  <Component id="O3_P1_M1_C1" name="C1_M" state="0" numberOfBonds="0"/>
+                  <Component id="O3_P1_M1_C2" name="C2_M" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="C_dopa_Vdopa" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O4_P1" compartment="Vdopa" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="A_dopa">
+                <ListOfComponents>
+                  <Component id="O4_P1_M1_C1" name="C_dopa" state="C_dopa" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="C_3_OMD_V_3_OMD" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O5_P1" compartment="V_3_OMD" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="C_3_OMD"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O6" name="C1_M_V1_M" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O6_P1" compartment="V1_M" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O6_P1_M1" name="A_M">
+                <ListOfComponents>
+                  <Component id="O6_P1_M1_C1" name="C1_M" state="C1_M" numberOfBonds="0"/>
+                  <Component id="O6_P1_M1_C2" name="C2_M" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O7" name="C2_M_V2_M" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O7_P1" compartment="V2_M" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O7_P1_M1" name="A_M">
+                <ListOfComponents>
+                  <Component id="O7_P1_M1_C1" name="C1_M" state="0" numberOfBonds="0"/>
+                  <Component id="O7_P1_M1_C2" name="C2_M" state="C2_M" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O8" name="C1_B_V1_B" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O8_P1" compartment="V1_B" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O8_P1_M1" name="A_B">
+                <ListOfComponents>
+                  <Component id="O8_P1_M1_C1" name="C1_B" state="C1_B" numberOfBonds="0"/>
+                  <Component id="O8_P1_M1_C2" name="C2_B" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O9" name="C2_B_V2_B" type="Species">
+        <ListOfPatterns>
+          <Pattern id="O9_P1" compartment="V2_B" matchOnce="1">
+            <ListOfMolecules>
+              <Molecule id="O9_P1_M1" name="A_B">
+                <ListOfComponents>
+                  <Component id="O9_P1_M1_C1" name="C1_B" state="0" numberOfBonds="0"/>
+                  <Component id="O9_P1_M1_C2" name="C2_B" state="C2_B" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="CL_AADC0">
+        <ListOfReferences>
+          <Reference name="CL_dopa0" type="Constant"/>
+          <Reference name="f_AADC" type="Constant"/>
+        </ListOfReferences>
+        <Expression> CL_dopa0*f_AADC </Expression>
+      </Function>
+      <Function id="CL_AADC">
+        <ListOfReferences>
+          <Reference name="ki" type="Constant"/>
+          <Reference name="CL_AADC0" type="Function"/>
+          <Reference name="C1_M_V1_M" type="Observable"/>
+        </ListOfReferences>
+        <Expression> CL_AADC0/((C1_M_V1_M/ki)+1) </Expression>
+      </Function>
+      <Function id="f_rest">
+        <ListOfReferences>
+          <Reference name="f_AADC" type="Constant"/>
+          <Reference name="f_COMT" type="Constant"/>
+        </ListOfReferences>
+        <Expression> ((-f_AADC)-f_COMT)+1 </Expression>
+      </Function>
+      <Function id="CL_rest">
+        <ListOfReferences>
+          <Reference name="CL_dopa0" type="Constant"/>
+          <Reference name="f_rest" type="Function"/>
+        </ListOfReferences>
+        <Expression> CL_dopa0*f_rest </Expression>
+      </Function>
+      <Function id="CL_COMT">
+        <ListOfReferences>
+          <Reference name="CL_dopa0" type="Constant"/>
+          <Reference name="f_COMT" type="Constant"/>
+        </ListOfReferences>
+        <Expression> CL_dopa0*f_COMT </Expression>
+      </Function>
+      <Function id="CL_dopa">
+        <ListOfReferences>
+          <Reference name="CL_AADC" type="Function"/>
+          <Reference name="CL_COMT" type="Function"/>
+          <Reference name="CL_rest" type="Function"/>
+        </ListOfReferences>
+        <Expression> (CL_AADC+CL_COMT)+CL_rest </Expression>
+      </Function>
+      <Function id="CL_H">
+        <ListOfReferences>
+          <Reference name="f_H" type="Constant"/>
+          <Reference name="CL_dopa" type="Function"/>
+        </ListOfReferences>
+        <Expression> CL_dopa*f_H </Expression>
+      </Function>
+      <Function id="F_H">
+        <ListOfReferences>
+          <Reference name="Q" type="Constant"/>
+          <Reference name="CL_H" type="Function"/>
+        </ListOfReferences>
+        <Expression> ((-CL_H)/Q)+1 </Expression>
+      </Function>
+      <Function id="F_c">
+        <ListOfReferences>
+          <Reference name="F_G" type="Constant"/>
+          <Reference name="F_H" type="Function"/>
+        </ListOfReferences>
+        <Expression> F_G*F_H </Expression>
+      </Function>
+      <Function id="fRate0">
+        <ListOfReferences>
+          <Reference name="ka_c" type="Constant"/>
+          <Reference name="F_c" type="Function"/>
+        </ListOfReferences>
+        <Expression> F_c*ka_c </Expression>
+      </Function>
+      <Function id="fRate1m">
+        <ListOfReferences>
+          <Reference name="ka_c" type="Constant"/>
+          <Reference name="F_c" type="Function"/>
+          <Reference name="A_dopa_gut" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (A_dopa_gut*F_c)*ka_c </Expression>
+      </Function>
+      <Function id="fRate3">
+        <ListOfReferences>
+          <Reference name="F_B" type="Constant"/>
+          <Reference name="ka_B" type="Constant"/>
+        </ListOfReferences>
+        <Expression> F_B*ka_B </Expression>
+      </Function>
+      <Function id="fRate4m">
+        <ListOfReferences>
+          <Reference name="F_B" type="Constant"/>
+          <Reference name="ka_B" type="Constant"/>
+          <Reference name="A_B_gut" type="Observable"/>
+        </ListOfReferences>
+        <Expression> (A_B_gut*F_B)*ka_B </Expression>
+      </Function>
+      <Function id="fRate10">
+        <ListOfReferences>
+          <Reference name="CL_B" type="Constant"/>
+          <Reference name="fm" type="Constant"/>
+        </ListOfReferences>
+        <Expression> ((-CL_B)*fm)/(fm-1.0) </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

@@ -1,12 +1,12 @@
 ###
-#@BQM_IS:['http://identifiers.org/biomodels.db/MODEL6623009547', 'http://identifiers.org/biomodels.db/BIOMD0000000045']
+#@BQM_IS:['http://identifiers.org/biomodels.db/BIOMD0000000045', 'http://identifiers.org/biomodels.db/MODEL6623009547']
 #@BQM_IS_DESCRIBED_BY:['http://identifiers.org/pubmed/17029867']
-#@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0019722', 'http://identifiers.org/obo.go/GO:0048016']
+#@BQB_IS_VERSION_OF:['http://identifiers.org/obo.go/GO:0048016', 'http://identifiers.org/obo.go/GO:0019722']
 #@BQB_HAS_TAXON:['http://identifiers.org/taxonomy/10114']
 #@BQB_IS:['http://identifiers.org/kegg.pathway/rno04020']
 #@creatorEmail:'lenov@ebi.ac.uk'
 #@creatorName:'Le Novère Nicolas'
-#@notes:'This is an atomized translation of an SBML model created on 12/08/2021. The original model has 4 molecules and 8 reactions. The translated model has 1 molecules and 9 rules'
+#@notes:'This is an atomized translation of an SBML model created on 13/08/2021. The original model has 4 molecules and 8 reactions. The translated model has 1 molecules and 9 rules'
 ###
 begin model
 begin parameters
@@ -38,13 +38,13 @@ begin molecule types
 	X(EC~EC~0,Y~Y~0,Z~Z~0)
 end molecule types
 begin seed species
-	@intravesicular1:X(EC~0,Y~0,Z~0) 3.011e+17 # (0.5 * 1e-06)mol/L * 6.022e23/mol *1.0L #X #X
+	@intravesicular1:X(EC~0,Y~0,Z~0)@intravesicular1 3.011e+17 # (0.5 * 1e-06)mol/L * 6.022e23/mol *1.0L #X #X
 end seed species
 begin observables
-	Species EC_extracellular @extracellular:X(EC~EC,Y~0,Z~0) #EC
-	Species Z_cytosol @cytosol:X(EC~0,Y~0,Z~Z) #Z
-	Species Y_intravesicular2 @intravesicular2:X(EC~0,Y~Y,Z~0) #Y
-	Species X_intravesicular1 @intravesicular1:X(EC~0,Y~0,Z~0) #X
+	Species EC_extracellular @extracellular:X(EC~EC,Y~0,Z~0)@extracellular #EC
+	Species Z_cytosol @cytosol:X(EC~0,Y~0,Z~Z)@cytosol #Z
+	Species Y_intravesicular2 @intravesicular2:X(EC~0,Y~Y,Z~0)@intravesicular2 #Y
+	Species X_intravesicular1 @intravesicular1:X(EC~0,Y~0,Z~0)@intravesicular1 #X
 end observables
 begin functions
 	fRate0() = 0.012*beta + 0.015
