@@ -1,10 +1,15 @@
-from sqlite3.dbapi2 import DatabaseError, OperationalError
-import bionetgen, os, time, math, sys, requests, re, contextlib, io, importlib
+from sqlite3.dbapi2 import Error, OperationalError
+import bionetgen, os, time, math, sys, requests, re, contextlib, io
+from numpy.core.numeric import False_
 import sqlite3 as sl
 import urllib.request
 import pandas as pd
 import subprocess as sb
 import xml.etree.ElementTree as ET
+import numpy as np
+import matplotlib.pyplot as plt
+from difflib import SequenceMatcher
+from bs4 import BeautifulSoup as BS
 from bionetgen.atomizer.atomizeTool import AtomizeTool
 
 
@@ -25,14 +30,19 @@ class AtomizerDatabase:
         self.RESULT_SUCC_STANDARD = 1
         self.RESULT_SUCC_VALIDATION = 3
         self.RESULT_UNATTEMPTED = 0
+        # need to correctly initialize tables
+        self.add_translation_table()
+        self.add_model_table()
+        self.add_results_table()
 
     def get_path(self, test_no):
         query = "SELECT PATH FROM MODELS WHERE id=?"
         q = self.dbase_con.execute(query, (test_no,))
         paths = q.fetchall()
         if len(paths) > 0:
-            return paths[0][0]
-            # return bytes.fromhex(paths[0][0]).decode("utf-8")
+             if paths[0][0] is not None:
+                path = bytes.fromhex(paths[0][0]).decode("utf-8")
+                return path
         else:
             return None
 
@@ -46,6 +56,17 @@ class AtomizerDatabase:
         except Exception as e:
             print(e)
             return False
+    
+    def divine_path(self, test_no):
+        # we will try to find a path for a SBML model
+        suggested_path = os.path.join("curated","bmd{:010d}.xml".format(test_no))
+        suggested_path = os.path.abspath(suggested_path)
+        if os.path.isfile(suggested_path):
+            # we got a model
+            self.set_path(test_no, suggested_path)
+            return suggested_path
+        else:
+            return None
 
     def get_sbml(self, test_no):
         query = "SELECT SBML FROM MODELS WHERE id=?"
@@ -315,9 +336,10 @@ class AtomizerDatabase:
         q = self.dbase_con.execute(query, (test_no,))
         srs = q.fetchall()
         if len(srs) > 0:
-            return bytes.fromhex(srs[0][0]).decode("utf-8")
-        else:
-            return None
+            if srs[0][0] is not None:
+                # return bytes.fromhex(srs[0][0]).decode("utf-8")
+                return srs[0][0]
+        return None
 
     def set_trans_struct_rat(self, test_no, value):
         query = "UPDATE TRANSLATION SET STRUCT_RAT = ? WHERE id=?"
@@ -433,9 +455,16 @@ class AtomizerDatabase:
                     ID INT PRIMARY KEY NOT NULL,
                     T_END INT NOT NULL,
                     N_STEPS INT NOT NULL,
-                    CUR_KEYS TEXT,
                     ATOM_VAL_RATIO REAL,
-                    FLAT_VAL_RATIO REAL
+                    FLAT_VAL_RATIO REAL,
+                    COPASI_LOG TEXT,
+                    BNG_ATOM_LOG TEXT,
+                    BNG_FLAT_LOG TEXT,
+                    VALIDATING_SERIES TEXT,
+                    FAILING_SERIES TEXT,
+                    CUR_KEYS TEXT,
+                    ATOM_STATUS INT,
+                    FLAT_STATUS INT
                 );
             """
             )
@@ -577,6 +606,106 @@ class AtomizerDatabase:
             print(e)
             return False
 
+    def set_result_validating_series(self, test_no, value):
+        value = value.encode("utf-8").hex()
+        query = "UPDATE RESULTS SET VALIDATING_SERIES = ? WHERE id=?"
+        try:
+            q = self.dbase_con.execute(query, (value, test_no))
+            self.dbase_con.commit()  # is this necessary?
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
+    def get_result_validating_series(self, test_no):
+        query = "SELECT VALIDATING_SERIES FROM RESULTS WHERE id=?"
+        q = self.dbase_con.execute(query, (test_no,))
+        srs = q.fetchall()
+        if len(srs) > 0:
+            if srs[0][0] is not None:
+                return bytes.fromhex(srs[0][0]).decode("utf-8")
+        return None
+    
+    def set_result_failing_series(self, test_no, value):
+        value = value.encode("utf-8").hex()
+        query = "UPDATE RESULTS SET FAILING_SERIES = ? WHERE id=?"
+        try:
+            q = self.dbase_con.execute(query, (value, test_no))
+            self.dbase_con.commit()  # is this necessary?
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
+    def get_result_failing_series(self, test_no):
+        query = "SELECT FAILING_SERIES FROM RESULTS WHERE id=?"
+        q = self.dbase_con.execute(query, (test_no,))
+        srs = q.fetchall()
+        if len(srs) > 0:
+            if srs[0][0] is not None:
+                return bytes.fromhex(srs[0][0]).decode("utf-8")
+        return None
+
+    def set_result_copasi_log(self, test_no, value):
+        value = value.encode("utf-8").hex()
+        query = "UPDATE RESULTS SET COPASI_LOG = ? WHERE id=?"
+        try:
+            q = self.dbase_con.execute(query, (value, test_no))
+            self.dbase_con.commit()  # is this necessary?
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
+    def get_result_copasi_log(self, test_no):
+        query = "SELECT COPASI_LOG FROM RESULTS WHERE id=?"
+        q = self.dbase_con.execute(query, (test_no,))
+        srs = q.fetchall()
+        if len(srs) > 0:
+            if srs[0][0] is not None:
+                return bytes.fromhex(srs[0][0]).decode("utf-8")
+        return None
+    
+    def set_result_bng_atom_log(self, test_no, value):
+        value = value.encode("utf-8").hex()
+        query = "UPDATE RESULTS SET BNG_ATOM_LOG = ? WHERE id=?"
+        try:
+            q = self.dbase_con.execute(query, (value, test_no))
+            self.dbase_con.commit()  # is this necessary?
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
+    def get_result_bng_atom_log(self, test_no):
+        query = "SELECT BNG_ATOM_LOG FROM RESULTS WHERE id=?"
+        q = self.dbase_con.execute(query, (test_no,))
+        srs = q.fetchall()
+        if len(srs) > 0:
+            if srs[0][0] is not None:
+                return bytes.fromhex(srs[0][0]).decode("utf-8")
+        return None
+
+    def set_result_bng_flat_log(self, test_no, value):
+        value = value.encode("utf-8").hex()
+        query = "UPDATE RESULTS SET BNG_FLAT_LOG = ? WHERE id=?"
+        try:
+            q = self.dbase_con.execute(query, (value, test_no))
+            self.dbase_con.commit()  # is this necessary?
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
+    def get_result_bng_flat_log(self, test_no):
+        query = "SELECT BNG_FLAT_LOG FROM RESULTS WHERE id=?"
+        q = self.dbase_con.execute(query, (test_no,))
+        srs = q.fetchall()
+        if len(srs) > 0:
+            if srs[0][0] is not None:
+                return bytes.fromhex(srs[0][0]).decode("utf-8")
+        return None
+
     def print_atomized_translation_status(self, detailed=False):
         succ = self.dbase_con.execute(
             "SELECT ID FROM TRANSLATION WHERE ATOM_STATUS = ?",
@@ -641,6 +770,209 @@ class AtomizerDatabase:
         print("## Flat tranlation results: ")
         self.print_flat_translation_status(detailed=detailed)
 
+    def print_results_summary(self, detailed=False):
+        self.print_results_summary_atom(detailed=detailed)
+        self.print_results_summary_flat(detailed=detailed)
+
+    def print_results_summary_atom(self, detailed=False):
+        print("## Summary of atomized results:")
+        # successful ones
+        succ_std = self.dbase_con.execute(
+            "SELECT ID FROM RESULTS WHERE ATOM_STATUS = ?",
+            (self.RESULT_SUCC_STANDARD,),
+        )
+        succ_std = succ_std.fetchall()
+        succ_bng = self.dbase_con.execute(
+            "SELECT ID FROM RESULTS WHERE ATOM_STATUS = ?",
+            (self.RESULT_SUCC_BNGL,),
+        )
+        succ_bng = succ_bng.fetchall()
+        succ_val = self.dbase_con.execute(
+            "SELECT ID FROM RESULTS WHERE ATOM_STATUS = ?",
+            (self.RESULT_SUCC_VALIDATION,),
+        )
+        succ_val = succ_val.fetchall()
+        # failed ones
+        fail_std = self.dbase_con.execute(
+            "SELECT ID FROM RESULTS WHERE ATOM_STATUS = ?",
+            (self.RESULT_FAIL_STANDARD,),
+        )
+        fail_std = fail_std.fetchall()
+        fail_bng = self.dbase_con.execute(
+            "SELECT ID FROM RESULTS WHERE ATOM_STATUS = ?",
+            (self.RESULT_FAIL_BNGL,),
+        )
+        fail_bng = fail_bng.fetchall()
+        fail_val = self.dbase_con.execute(
+            "SELECT ID FROM RESULTS WHERE ATOM_STATUS = ?",
+            (self.RESULT_FAIL_VALIDATION,),
+        )
+        fail_val = fail_val.fetchall()
+        unatmpt = self.dbase_con.execute(
+            "SELECT ID FROM RESULTS WHERE ATOM_STATUS = ?",
+            (self.RESULT_UNATTEMPTED,),
+        )
+        unatmpt = unatmpt.fetchall()
+        # now we get validation stuff
+        full_valid = self.dbase_con.execute(
+            "SELECT ID FROM RESULTS WHERE ATOM_VAL_RATIO = ?",
+            (1.0,),
+        )
+        full_valid = full_valid.fetchall()
+        high_valid = self.dbase_con.execute(
+            "SELECT ID FROM RESULTS WHERE ATOM_VAL_RATIO > ?",
+            (0.7,),
+        )
+        high_valid = high_valid.fetchall()
+        med_valid = self.dbase_con.execute(
+            "SELECT ID FROM RESULTS WHERE ATOM_VAL_RATIO > ?",
+            (0.5,),
+        )
+        med_valid = med_valid.fetchall()
+        low_valid = self.dbase_con.execute(
+            "SELECT ID FROM RESULTS WHERE ATOM_VAL_RATIO <= ?",
+            (0.5,),
+        )
+        low_valid = low_valid.fetchall()
+        in_valid = self.dbase_con.execute(
+            "SELECT ID FROM RESULTS WHERE ATOM_VAL_RATIO = ?",
+            (0.0,),
+        )
+        in_valid = in_valid.fetchall()
+
+        print("## Atomized validation status")
+        print(f"Successful standard data acquisition: {len(succ_std)}")
+        print(f"Successful bng data acquisition: {len(succ_bng)}")
+        print(f"Successful validation calculation: {len(succ_val)}")
+        print(f"Failed standard data acquisition: {len(fail_std)}")
+        print(f"Failed bng data acquisition: {len(fail_bng)}")
+        print(f"Failed validation calculation: {len(fail_val)}")
+        print(f"Unattempted: {len(unatmpt)}")
+        print("## Atomized validation values report")
+        print(f"Fully validating (=1.0): {len(full_valid)}")
+        print(f"High VR (>0.7): {len(high_valid)}")
+        print(f"Med VR (>0.5): {len(med_valid)}")
+        print(f"Low VR (<=0.5 & !=0.0): {len(low_valid)-len(in_valid)}")
+        print(f"Invalid VR (=0.0): {len(in_valid)}")
+        print("## Structured molecule ratio")
+        succ_trans = self.dbase_con.execute(
+            "SELECT ID FROM TRANSLATION WHERE ATOM_STATUS = ?",
+            (self.TRANSLATION_SUCCESS,),
+        )
+        succ_trans = succ_trans.fetchall()
+        all_struct_rat = np.array([self.get_trans_struct_rat(i[0]) for i in succ_trans])
+        # import IPython;IPython.embed()
+        print(f"Total average: {np.average(all_struct_rat)}")
+        print(f"High VR average: {np.average([self.get_trans_struct_rat(i[0]) for i in high_valid])}")
+        print(f"Med VR average: {np.average([self.get_trans_struct_rat(i[0]) for i in med_valid])}")
+        print(f"Low VR average: {np.average([self.get_trans_struct_rat(i[0]) for i in low_valid])}")
+        print(f"Invalid average: {np.average([self.get_trans_struct_rat(i[0]) for i in in_valid])}")
+        print(f"Full SR count: {sum(all_struct_rat==1.0)}")
+        print(f"High SR (>0.7) count: {sum(all_struct_rat>0.7)}")
+        print(f"Med SR (>0.5) count: {sum(all_struct_rat>0.5)}")
+        print(f"Low SR (<=0.5 & != 0) count: {sum(all_struct_rat<=0.5)-sum(all_struct_rat==0.0)}")
+        print(f"Zero SR (=0.0) count: {sum(all_struct_rat==0.0)}")
+
+
+        if detailed:
+            print(f"Successful standard data acquisition: {[i[0] for i in succ_std]}")
+            print(f"Successful bng data acquisition: {[i[0] for i in succ_bng]}")
+            print(f"Successful validation calculation: {[i[0] for i in succ_val]}")
+            print(f"Failed standard data acquisition: {[i[0] for i in fail_std]}")
+            print(f"Failed bng data acquisition: {[i[0] for i in fail_bng]}")
+            print(f"Failed validation calculation: {[i[0] for i in fail_val]}")
+            print(f"Unattempted: {[i[0] for i in unatmpt]}")
+
+    def print_results_summary_flat(self, detailed=False):
+        print("## Summary of flat results:")
+        # successful ones
+        succ_std = self.dbase_con.execute(
+            "SELECT ID FROM RESULTS WHERE FLAT_STATUS = ?",
+            (self.RESULT_SUCC_STANDARD,),
+        )
+        succ_std = succ_std.fetchall()
+        succ_bng = self.dbase_con.execute(
+            "SELECT ID FROM RESULTS WHERE FLAT_STATUS = ?",
+            (self.RESULT_SUCC_BNGL,),
+        )
+        succ_bng = succ_bng.fetchall()
+        succ_val = self.dbase_con.execute(
+            "SELECT ID FROM RESULTS WHERE FLAT_STATUS = ?",
+            (self.RESULT_SUCC_VALIDATION,),
+        )
+        succ_val = succ_val.fetchall()
+        # failed ones
+        fail_std = self.dbase_con.execute(
+            "SELECT ID FROM RESULTS WHERE FLAT_STATUS = ?",
+            (self.RESULT_FAIL_STANDARD,),
+        )
+        fail_std = fail_std.fetchall()
+        fail_bng = self.dbase_con.execute(
+            "SELECT ID FROM RESULTS WHERE FLAT_STATUS = ?",
+            (self.RESULT_FAIL_BNGL,),
+        )
+        fail_bng = fail_bng.fetchall()
+        fail_val = self.dbase_con.execute(
+            "SELECT ID FROM RESULTS WHERE FLAT_STATUS = ?",
+            (self.RESULT_FAIL_VALIDATION,),
+        )
+        fail_val = fail_val.fetchall()
+        unatmpt = self.dbase_con.execute(
+            "SELECT ID FROM RESULTS WHERE FLAT_STATUS = ?",
+            (self.RESULT_UNATTEMPTED,),
+        )
+        unatmpt = unatmpt.fetchall()
+        # now we get validation stuff
+        full_valid = self.dbase_con.execute(
+            "SELECT ID FROM RESULTS WHERE FLAT_VAL_RATIO = ?",
+            (1.0,),
+        )
+        full_valid = full_valid.fetchall()
+        high_valid = self.dbase_con.execute(
+            "SELECT ID FROM RESULTS WHERE FLAT_VAL_RATIO > ?",
+            (0.7,),
+        )
+        high_valid = high_valid.fetchall()
+        med_valid = self.dbase_con.execute(
+            "SELECT ID FROM RESULTS WHERE FLAT_VAL_RATIO > ?",
+            (0.5,),
+        )
+        med_valid = med_valid.fetchall()
+        low_valid = self.dbase_con.execute(
+            "SELECT ID FROM RESULTS WHERE FLAT_VAL_RATIO <= ?",
+            (0.5,),
+        )
+        low_valid = low_valid.fetchall()
+        in_valid = self.dbase_con.execute(
+            "SELECT ID FROM RESULTS WHERE FLAT_VAL_RATIO = ?",
+            (0.0,),
+        )
+        in_valid = in_valid.fetchall()
+        
+        print("## Flat validation status")
+        print(f"Successful standard data acquisition: {len(succ_std)}")
+        print(f"Successful bng data acquisition: {len(succ_bng)}")
+        print(f"Successful validation calculation: {len(succ_val)}")
+        print(f"Failed standard data acquisition: {len(fail_std)}")
+        print(f"Failed bng data acquisition: {len(fail_bng)}")
+        print(f"Failed validation calculation: {len(fail_val)}")
+        print(f"Unattempted: {len(unatmpt)}")
+        print("## Flat validation values report")
+        print(f"Fully validating (=1.0): {len(full_valid)}")
+        print(f"High VR (>0.7): {len(high_valid)}")
+        print(f"Med VR (>0.5): {len(med_valid)}")
+        print(f"Low VR (<=0.5): {len(low_valid)}")
+        print(f"Invalid VR (=0.0): {len(in_valid)}")
+        
+        if detailed:
+            print(f"Successful standard data acquisition: {[i[0] for i in succ_std]}")
+            print(f"Successful bng data acquisition: {[i[0] for i in succ_bng]}")
+            print(f"Successful validation calculation: {[i[0] for i in succ_val]}")
+            print(f"Failed standard data acquisition: {[i[0] for i in fail_std]}")
+            print(f"Failed bng data acquisition: {[i[0] for i in fail_bng]}")
+            print(f"Failed validation calculation: {[i[0] for i in fail_val]}")
+            print(f"Unattempted: {[i[0] for i in unatmpt]}")
+
     def get_sim_param(self, test_no):
         t_end = self.get_result_tend(test_no)
         n_steps = self.get_result_nsteps(test_no)
@@ -651,25 +983,28 @@ class AtomizerDatabase:
             n_steps = self.get_result_nsteps(test_no)
         return t_end, n_steps
 
-    def get_models(self):
+    def add_model_table(self):
         try:
             self.dbase_con.execute(
                 """
                 CREATE TABLE MODELS (
                     ID INT PRIMARY KEY NOT NULL,
-                    TSTAMP INT NOT NULL,
-                    PATH TEXT NOT NULL,
-                    SBML TEXT NOT NULL,
+                    TSTAMP INT,
+                    PATH TEXT,
+                    SBML TEXT,
                     NAME TEXT,
                     BNGL_FLAT TEXT,
                     BNGL_ATOM TEXT,
-                    BNGXML TEXT
+                    FLAT_BNGXML TEXT,
+                    ATOM_BNGXML TEXT
                 );
             """
             )
         except OperationalError as oe:
             print("Model table already exits")
             print(oe)
+
+    def get_models(self):
         # get list of models already in database
         existing_models = self.dbase_con.execute("SELECT ID FROM MODELS")
         existing_models = existing_models.fetchall()
@@ -710,6 +1045,7 @@ class AtomizerAnalyzer:
         self.database = database
         self.copasi_path = copasi_path
         self.set_stdIO_context()
+        self.base_dir = os.path.abspath(os.getcwd())
 
     def set_stdIO_context(self):
         self.sde = io.StringIO()
@@ -725,7 +1061,6 @@ class AtomizerAnalyzer:
 
     def translate(self, test_no, bid=False, atomize=True, overwrite=False):
         # check to see if we got a translation first
-        # import ipdb;ipdb.set_trace()
         if not overwrite:
             if atomize:
                 translation = self.database.get_bngl_atom(test_no)
@@ -755,6 +1090,25 @@ class AtomizerAnalyzer:
         # TODO: at some point make it so that atomizer can just
         # take in some string instead of a file
         infile = self.database.get_path(test_no)
+        if infile is None:
+            # we don't have a path to a model, let's see if we can divine one
+            infile = self.database.divine_path(test_no)
+            # import IPython;IPython.embed()
+            if infile is None:
+                # we can't divine a path
+                print(f"We can't divine a path for model {test_no}")
+                e = RuntimeError(f"We can't divine a path for model {test_no}")
+                if atomize:
+                    self.database.set_trans_atom_note(test_no, str(e))
+                    self.database.set_trans_atom_status(
+                        test_no, self.database.TRANSLATION_FAIL
+                    )
+                else:
+                    self.database.set_trans_flat_note(test_no, str(e))
+                    self.database.set_trans_flat_status(
+                        test_no, self.database.TRANSLATION_FAIL
+                    )
+                return None
         filename = f"bmd{test_no:010}_{ext}.bngl"
         outfile = os.path.join(outfold, filename)
         opt = {
@@ -762,6 +1116,7 @@ class AtomizerAnalyzer:
             "output": outfile,
             "atomize": atomize,
             "molecule_id": bid,
+            "pathwaycommons": True
         }
         a = AtomizeTool(options_dict=opt)
         try:
@@ -776,7 +1131,6 @@ class AtomizerAnalyzer:
             stderr = self.sde.getvalue()
             print(f"our sdterr was: {stderr[:100]}")
             self.reset_stdIO()
-            # import IPython;IPython.embed()
             # now we can update the database too
             if atomize:
                 self.database.set_trans_struct_rat(test_no, struct_rat)
@@ -785,6 +1139,7 @@ class AtomizerAnalyzer:
                 self.database.set_trans_atom_status(
                     test_no, self.database.TRANSLATION_SUCCESS
                 )
+                # TODO: doesn't corectly move the file
                 bngxml = filename.replace(".bngl", ".xml")
                 if os.path.isfile(bngxml):
                     with open(bngxml, "r") as f:
@@ -796,6 +1151,7 @@ class AtomizerAnalyzer:
                 self.database.set_trans_flat_status(
                     test_no, self.database.TRANSLATION_SUCCESS
                 )
+                # TODO: doesn't corectly move the file
                 bngxml = filename.replace(".bngl", ".xml")
                 if os.path.isfile(bngxml):
                     with open(bngxml, "r") as f:
@@ -814,7 +1170,7 @@ class AtomizerAnalyzer:
                     test_no, self.database.TRANSLATION_FAIL
                 )
             return None
-
+    
     def run_and_load_test_standard(self, test_no, sim="copasi", overwrite=False):
         # sim options: copasi or librr
         if sim.lower() == "copasi":
@@ -855,17 +1211,19 @@ class AtomizerAnalyzer:
         path = os.path.abspath(self.database.get_path(test_no))
         print("Running copasi on {}".format(path))
         # First we need to get the cps file, go into copasi folder
-        curr_dir = os.getcwd()
+        os.chdir(self.base_dir)
         if not os.path.isdir("copasi"):
             os.mkdir("copasi")
         os.chdir("copasi")
         cps_file = "{:05d}.cps".format(test_no)
-        if not os.path.isfile(cps_file):
+        if (not os.path.isfile("{:05d}_tc.dat".format(test_no))) or overwrite:
             cmds = [self.copasi_path,
                     "-i", path,
                     "-s", cps_file]
-            ret = sb.run(cmds)
-            if ret.returncode == 0:
+            ret = sb.run(cmds, capture_output=True)
+            if ret.returncode != 0:
+                log_str = f"STDO: {ret.stdout} -- STDE: {ret.stderr}"
+                self.database.set_result_copasi_log(test_no, log_str)
                 return None, None
             # Now we need to load it in and edit timeCourse
             # task to enable it and change the output file
@@ -917,7 +1275,6 @@ class AtomizerAnalyzer:
                 lines = f.readlines()
             updated_lines = []
             print("looping over lines to adjust manually")
-            # import IPython;IPython.embed()
             step_size = float(t_end)/(n_steps)
             for iline, line in enumerate(lines):
                 # timeCourse only appears in one line, so we can do this
@@ -949,13 +1306,27 @@ class AtomizerAnalyzer:
             # Now that we have the cps file correct, we run it
             print("Running Copasi")
             cmds = [self.copasi_path, cps_file]
-            ret = sb.run(cmds)
-            if ret.returncode == 0:
+            ret = sb.run(cmds, capture_output=True)
+            # save copasi log here
+            o = ret.stdout.decode("utf-8")
+            e = ret.stderr.decode("utf-8")
+            log_str = f"STDO: {o} -- STDE: {e}"
+            self.database.set_result_copasi_log(test_no, log_str)
+            # done saving copasi log
+            if ret.returncode != 0:
                 return None,None
         # And this gives us the result from copasi
         # let's load and return
         result, names = self.copasi_load("{:05d}_tc.dat".format(test_no))
-        os.chdir(curr_dir)
+        try:
+            result = result.set_index("time")
+        except:
+            pass
+        try:
+            result = result.set_index("Time")
+        except:
+            pass
+        os.chdir(self.base_dir)
         return result, names
 
     def run_librr_and_load(self, test_no):
@@ -971,24 +1342,236 @@ class AtomizerAnalyzer:
         sim = rr.RoadRunner(sbml)
         result = sim.simulate(0, t_end, n_steps)
         names = result.colnames
-        return result, names
+        lpd = pd.DataFrame(result)
+        try:
+            lpd = lpd.set_index("time")
+        except:
+            pass
+        try:
+            lpd = lpd.set_index("Time")
+        except:
+            pass
+        return lpd, list(lpd.columns)
     
     def run_and_load_bngl_res(self, test_no, atomize=True):
+        print(f"## Running bngl, atomization status: {atomize}")
         if atomize:
             bng_path = os.path.abspath(f"atomized/bmd{test_no:010}_atomized.bngl")
         else:
             bng_path = os.path.abspath(f"flat/bmd{test_no:010}_flat.bngl")
         t_end, n_steps = self.database.get_sim_param(test_no)
-        with open(bng_path, "a") as f:
-            sim_str = '\nsimulate({'
-            sim_str += f'method=>"ode",t_end=>{t_end},n_steps=>{n_steps}'
-            sim_str += '})'
-            f.write(sim_str)
-        r = bionetgen.run(bng_path)
-        return r[0],list(r[0].dtype.names)
+        with open(bng_path, "r") as f:
+            lines = f.readlines()
+        new_lines = []
+        for line in lines:
+            new_lines.append(line)
+            if line.find("end model") >= 0:
+                break
+        sim_str = '\nsimulate({'
+        sim_str += f'method=>"ode",t_end=>{t_end},n_steps=>{n_steps},print_functions=>1,atol=>1e-12,rtol=>1e-6'
+        sim_str += '})'
+        new_lines.append(sim_str)
+        with open(bng_path, "w") as f:
+            f.writelines(new_lines)
+        ## 
+        r = bionetgen.run(bng_path, timeout=120)
+        log_str = f"STDO: {r.output.stdout} -- STDE: {r.output.stderr}"
+        if atomize:
+            self.database.set_result_bng_atom_log(test_no, log_str)
+        else:
+            self.database.set_result_bng_flat_log(test_no, log_str)
+        ## 
+        rpd = pd.DataFrame(r[0])
+        try:
+            rpd = rpd.set_index("time")
+        except:
+            pass
+        try:
+            rpd = rpd.set_index("Time")
+        except:
+            pass
+        return rpd,list(rpd.columns)
 
-    def calculate_validation(self, standard_tpl, bngl_tpl):
-        return 0.0
+    def get_curation_keys(self, test_no):
+        # We also want to get relevant keys using modeller
+        # defined species. Include this in results for plotting
+        # UNCOMMENT FOR CURATION KEYS
+        try:
+            URL = "https://www.ebi.ac.uk/biomodels/BIOMD{:010d}#Components".format(test_no)
+            # without these headers we get HTMLError 415, unsupported media type
+            headers = {'accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8'}
+            # Get the website
+            r = requests.get(URL, headers=headers)
+            # Load it into beautiful soup (HTML parser) so we can pull images out
+            parsed = BS(r.content, 'lxml')
+        except:
+            pass
+        # Now find curation section_ends = self.t_endsn
+        cur_keys = None
+        # UNCOMMENT FOR CURATION KEYS
+        try:
+            if(parsed):
+                rtable = None
+                tables = parsed.findAll(lambda tag: tag.name=='table')
+                for table in tables:
+                    ths = table.findAll(lambda tag: tag.name=="th")
+                    for th in ths:
+                        if th.contents[0].strip() == "Species":
+                            rtable = table
+                    if rtable:
+                        break
+                if rtable:
+                    rows = rtable.findAll("span",{"class":"legend-green"})
+                    cur_keys = [row.contents[0] for row in rows]
+        except:
+            pass
+        return cur_keys
+
+    def get_ratio(self, s1, s2):
+        return SequenceMatcher(None, s1, s2).ratio()
+
+    def get_keys(self, std_names, bng_names, cur_keys=None):
+        # TODO: Use cur_keys if given, I'm just going to skip it
+        # for now at least because I know it doesn't work well
+        skeys_used = []
+        bkeys_used = []
+        skeys = std_names
+        bkeys = bng_names
+        slen = len(skeys)
+        blen = len(bkeys)
+        # to determine this properly we need to
+        # check the similarty for every key to
+        # every other key
+        ratio_matrix = np.zeros((slen,blen))
+        for i in range(slen):
+            for j in range(blen):
+                bkey_transform = bkeys[j].replace("__","")
+                ratio_matrix[i][j] = self.get_ratio(skeys[i],bkey_transform)
+        # we need the max in a column to also be the max in a row
+        # we pull each one that's like that and leave the rest?
+        # we will also ignore matches that are < 0.5
+        ratio_matrix[ratio_matrix<0.5] = 0.0
+        key_pairs = []
+        for i in range(slen):
+            stob = ratio_matrix[i,:].max()
+            bkey_ind = np.where(ratio_matrix[i,:] == stob)[0][0]
+            btos = ratio_matrix[:,bkey_ind].max()
+            if stob == btos and stob != 0:
+                skey_ind = np.where(ratio_matrix[:,bkey_ind] == btos)[0][0]
+                skey = skeys[skey_ind]
+                bkey = bkeys[bkey_ind]
+                if skey not in skeys_used:
+                    if bkey not in bkeys_used:
+                        key_pairs.append((skey,bkey))
+                        skeys_used.append(skey)
+                        bkeys_used.append(bkey)
+        return key_pairs
+
+    def calc_rmsd(self, arr1, arr2):
+        return np.sqrt( ( (arr2-arr1)**2).mean() )
+
+    def calculate_validation(self, test_no, standard_tpl, bngl_tpl, use_cur_keys=False, plot=True, atomize=True):
+        std_dat, std_names = standard_tpl
+        bng_dat, bng_names = bngl_tpl
+        # try to get the species from website (optional)
+        if use_cur_keys:
+            cur_keys = self.get_curation_keys(test_no)
+        else:
+            cur_keys = None
+        # get key pairs we will be using
+        key_pairs = self.get_keys(std_names, bng_names, cur_keys)
+        keys_used = []
+        validates = []
+        fails = []
+        rmsds = {}
+        for key_pair in key_pairs:
+            skey, bkey = key_pair
+            # Get guaranteed single dataset for sample
+            if len(std_dat[skey].values.shape) > 1:
+                if std_dat[skey].values.shape[1] > 1:
+                    print("we have one too many datasets for the same key")
+                    sdata = std_dat[skey].iloc[:,0]
+                else:
+                    sdata = std_dat[skey].values
+            else:
+                sdata = std_dat[skey].values
+            # And for BNGL result
+            if len(bng_dat[bkey].values.shape) > 1:
+                if bng_dat[bkey].values.shape[1] > 1:
+                    print("we have one too many datasets for the same key")
+                    bdata = bng_dat[bkey].iloc[:,0]
+                else:
+                    bdata = bng_dat[bkey].values
+            else:
+                bdata = bng_dat[bkey].values
+            if len(sdata) == 0:
+                continue
+            if len(bdata) == 0:
+                continue
+            print("we used BNG key {} and SBML key {}".format(bkey, skey))
+            # we can finally actually calculate RMSD
+            validation_per = 0
+            # Calculate RMSD
+            rmsds[bkey] = self.calc_rmsd(sdata, bdata)
+            norm_tolerance = 1e-1
+            if abs(sdata.max()) != 0:
+                norm_tolerance = norm_tolerance * sdata.max()
+            if rmsds[bkey] < (norm_tolerance) or rmsds[bkey] < 1e-10:
+                validates.append(bkey)
+                validation_per += 1
+            else:
+                fails.append(bkey)
+                print("{} won't validate".format(skey))
+            keys_used.append((skey,bkey))
+        total = float(len(validates) + len(fails))
+        if total > 0:
+            validation_per = len(validates)/total
+        else:
+            validation_per = None
+        print("Keys used: {}".format(keys_used))
+        validating_str = ", ".join(validates)
+        failing_str = ", ".join(fails)
+        print(f"Validating series: {validating_str}")
+        print(f"Failing series: {failing_str}")
+        # TODO: we need a flat and atomized versions of these
+        self.database.set_result_validating_series(test_no, validating_str)
+        self.database.set_result_failing_series(test_no, failing_str)
+        print("val per {}".format(validation_per))
+        self.plot_results(test_no, std_dat, bng_dat, keys=keys_used, rmsds=rmsds, atomize=atomize)
+        return validation_per
+
+    def plot_results(self, test_no, sdat, bdat, keys=None, rmsds=None, legend=True, save_fig=True, xlim=None, ylim=None, atomize=True):
+        # plot both
+        sd, bd, keys = sdat, bdat, keys
+        fig, ax = plt.subplots(1,2)
+        fig.tight_layout()
+
+        for ik, ks in enumerate(keys):
+            skey, bkey = ks
+            if rmsds is not None:
+                label = "{0:.10}: {1:.3E}".format(bkey,rmsds[bkey])
+            else:
+                label = f"{bkey}"
+            ax[0].plot(sd.index, sd[skey], label=label)
+            ax[1].plot(bd.index, bd[bkey], label=label)
+        if legend:
+            plt.legend(frameon=False)
+        if xlim is not None:
+            ax[0].set_xlim(xlim)
+            ax[1].set_xlim(xlim)
+        if ylim is not None:
+            ax[0].set_ylim(ylim)
+            ax[1].set_ylim(ylim)
+        if save_fig:            
+            if atomize:
+                if not os.path.isdir("plots_atom"):
+                    os.mkdir("plots_atom")
+                plt.savefig(os.path.join("plots_atom", "{:05d}_results.png".format(test_no)), dpi=300)
+            else:
+                if not os.path.isdir("plots_flat"):
+                    os.mkdir("plots_flat")
+                plt.savefig(os.path.join("plots_flat", "{:05d}_results.png".format(test_no)), dpi=300)
+            plt.close()
 
 
 if __name__ == "__main__":
@@ -1003,88 +1586,130 @@ if __name__ == "__main__":
 
     # Initialize analyzer tool
     aa = AtomizerAnalyzer(a, copasi_path="/home/monoid/apps/copasi/4.27/bin/CopasiSE")
-
-    ## ATOMIZED TRANSLATION
-    # these are atomized translation problems
-    # known_translation_issues = [599, # key error "C4Beii"
-    #     480, # key error "TotalDC"
-    #     749, # key error "0"
-    #     607,610,983, # Index error, 'list index out of range'
-    #     649,694,992,993, # TypeError('expected str, bytes or os.PathLike object, not NoneType')
-    #     766,789, # re.error('missing ), unterminated subpattern at position 6')
-    #     833 # Expected W:(-ABC...), found '_'  (at char 30), (line:1, col:31)
+    # models_to_check = [
+    #     394,398,396,223,262,399,250,452,453,251,
+    #     263,264,594,595,562,826,427,827,477,656,
+    #     648,653,655,654,652
     # ]
-    # too_long = [473,474,496,497,503,506,574,863] # too long? re-run later
-    # too_much_memory = [542,554,703]
-    # doesnt_translate = [70,183,247,255,426]
-    # too_much = too_long + too_much_memory + doesnt_translate
+    # for i in sorted(models_to_check):
+    #     print(f"\n\n### PRINTING INFORMATION ON MODEL {i:05} ###\n")
+    #     # print(f"## TRANSLATION LOG ##\n")
+    #     # print(aa.database.get_trans_atom_log(i))
+    #     # print("\n\n")
+    #     # print(f"## COPASI LOG ##\n")
+    #     # print(aa.database.get_result_copasi_log(i))
+    #     # print("\n\n")
+    #     # print(f"## BNGL LOG ##\n")
+    #     # print(aa.database.get_result_bng_log(i))
+    #     # print("\n\n")
+    #     print(f"## VALIDATION ##\n")
+    #     print("# Validating series: ", aa.database.get_result_validating_series(i))
+    #     print("# Failing series: ", aa.database.get_result_failing_series(i))
+    #     print(f"# Validation ratio: {aa.database.get_result_atomized_valratio(i)}")
+    # sys.exit()
+    import IPython;IPython.embed();sys.exit()
+    
+    # ATOMIZED TRANSLATION
+    # these are atomized translation problems
+    known_translation_issues = [599, # key error "C4Beii"
+        480, # key error "TotalDC"
+        749, # key error "0"
+        607,610,983, # Index error, 'list index out of range'
+        649,694,992,993, # TypeError('expected str, bytes or os.PathLike object, not NoneType')
+        766,789, # re.error('missing ), unterminated subpattern at position 6')
+        833 # Expected W:(-ABC...), found '_'  (at char 30), (line:1, col:31)
+    ]
+    too_long = [470,471,472,473,474,496,497,503,506,574,863] # too long? re-run later
+    too_much_memory = [542,554,703]
+    doesnt_translate = [70,183,247,255,426]
+    too_much = too_long + too_much_memory + doesnt_translate
 
-    ## FLAT TRANSLATION
+    # FLAT TRANSLATION
     # if we have problems in flat translations add here
     # fails: 480, 607, 610, 649, 691, 694, 766, 789, 811,
     # 983, 992, 993
-
+    # import IPython;IPython.embed();sys.exit()
     # MAIN TRANSLATION LOOP
     atomize = True
-    # for i in range(1,aa.database.current_max_models+1):
-    #     # if i < 480:
-    #     #     continue
-    #     # ensure we have the model
-    #     if not (aa.database.check_model(i, TABLE="TRANSLATION")):
-    #         print(f"model {i} not found in translation table, adding model")
-    #         try:
-    #             aa.database.insert_model(i, TABLE="TRANSLATION")
-    #             print(f"model {i} added to translation table")
-    #         except Exception as e:
-    #             print(e)
-    #             import IPython;IPython.embed()
-    #             sys.exit()
-    #     else:
-    #         print(f"model {i} found in translation table")
-    #     print(f"Working on translating model: {i}")
+    overwrite = True
+    for i in range(1,aa.database.current_max_models+1):
+        if not aa.database.check_model(i):
+            aa.database.insert_model(i)
+        # if i > 1:
+        #     break
+        # if i <= 473:
+        #     continue
+        # if i != 48:
+        #     continue
+        # ensure we have the model
+        if not (aa.database.check_model(i, TABLE="TRANSLATION")):
+            print(f"model {i} not found in translation table, adding model")
+            try:
+                aa.database.insert_model(i, TABLE="TRANSLATION")
+                print(f"model {i} added to translation table")
+            except Exception as e:
+                print(e)
+                if atomize:
+                    aa.database.set_trans_atom_status(i, aa.database.TRANSLATION_MAJOR_ERROR)
+                else:
+                    aa.database.set_trans_flat_status(i, aa.database.TRANSLATION_MAJOR_ERROR)
+                continue
+        else:
+            print(f"model {i} found in translation table")
+        print(f"Working on translating model: {i}")
 
-    #     if i in too_much:
-    #         if atomize:
-    #             aa.database.set_trans_atom_status(i, aa.database.TRANSLATION_MAJOR_ERROR)
-    #         else:
-    #             aa.database.set_trans_flat_status(i, aa.database.TRANSLATION_MAJOR_ERROR)
-    #         continue
-    #     # select the type of translation here
-    #     translation = aa.translate(i, overwrite=True, atomize=atomize)
-    #     # import IPython;IPython.embed()
-    #     if translation is None:
-    #         print(f"We failed translating model: {i}")
-    #         # import IPython;IPython.embed()
+        if i in too_much:
+            if atomize:
+                aa.database.set_trans_atom_status(i, aa.database.TRANSLATION_MAJOR_ERROR)
+            else:
+                aa.database.set_trans_flat_status(i, aa.database.TRANSLATION_MAJOR_ERROR)
+            continue
+        # select the type of translation here
+        translation = aa.translate(i, overwrite=overwrite, atomize=atomize)
+        if translation is None:
+            print(f"We failed translating model: {i}")
+        # sys.exit()
+        # import IPython;IPython.embed();sys.exit()
 
-    # import IPython;IPython.embed()
-    # sys.exit()
-
-    ## MAIN VALIDATION LOOP
+    # MAIN VALIDATION LOOP
+    # atomize = False
+    # overwrite = False
     # first get successfully translated models
     succ = aa.database.dbase_con.execute(
         "SELECT ID FROM TRANSLATION WHERE ATOM_STATUS = ?",
         (aa.database.TRANSLATION_SUCCESS,),
     )
     succ = succ.fetchall()
-    succ = [i[0] for i in succ]
+    succ = sorted([i[0] for i in succ])
     for i in succ:
+        # if i > 1:
+        #     break
+        # if i not in [15, 541, 826, 827]:
+            # continue
         print(f"Working on validating model: {i}")
-        #
         standard = None
         bngl_res = None
+        ## RUNNING COPASI
         try:
-            standard = aa.run_and_load_test_standard(i, sim="copasi", overwrite=False)
-            aa.database.set_result_atom_status(i,aa.database.RESULT_SUCC_STANDARD)
-            aa.database.set_result_flat_status(i,aa.database.RESULT_SUCC_STANDARD)
+            standard = aa.run_and_load_test_standard(i, sim="copasi", overwrite=overwrite)
+            os.chdir(aa.base_dir)
+            if atomize:
+                aa.database.set_result_atom_status(i,aa.database.RESULT_SUCC_STANDARD)
+            else:
+                aa.database.set_result_flat_status(i,aa.database.RESULT_SUCC_STANDARD)
         except Exception as e:
             print(f"Failed running/loading standard for model {i}")
             print(e)
-            aa.database.set_result_atom_status(i,aa.database.RESULT_FAIL_STANDARD)
-            aa.database.set_result_flat_status(i,aa.database.RESULT_FAIL_STANDARD)
+            if atomize:
+                aa.database.set_result_atom_status(i,aa.database.RESULT_FAIL_STANDARD)
+            else:
+                aa.database.set_result_flat_status(i,aa.database.RESULT_FAIL_STANDARD)
             continue
-
+        
+        ## RUNNING BIONETGEN
         try:
             bngl_res = aa.run_and_load_bngl_res(i, atomize=atomize)
+            os.chdir(aa.base_dir)
             if atomize:
                 aa.database.set_result_atom_status(i,aa.database.RESULT_SUCC_BNGL)
             else:
@@ -1097,9 +1722,10 @@ if __name__ == "__main__":
             print(f"Failed running/loading bngl result for model {i}")
             print(e)
             continue
-
+        ## CALCULATING VALIDATION AND PLOTTING
         try:
-            val_rat = aa.calculate_validation(standard, bngl_res)
+            val_rat = aa.calculate_validation(i, standard, bngl_res, plot=True, atomize=atomize)
+            os.chdir(aa.base_dir)
             if atomize:
                 aa.database.set_result_atomized_valratio(i, val_rat)
                 aa.database.set_result_atom_status(i,aa.database.RESULT_SUCC_VALIDATION)
@@ -1114,371 +1740,34 @@ if __name__ == "__main__":
             print(f"Failed running/loading bngl result for model {i}")
             print(e)
 
-
-#     def get_ratio(self, s1, s2):
-#         return SequenceMatcher(None, s1, s2).ratio()
-
-#     def run_single_test(self, test_no, t_end=1000, n_steps=200, bid=False, tolerance=1e-1, atol="1E-10", rtol="1E-10", atomize=True, meta=None, manual_bngl=None):
-#         '''
-#         Convenience function to run a single test
-#         '''
-#         print("Running test {:05d}".format(test_no))
-#         # First let's get the RR results
-#         try:
-#             self.sample_data, names = self.run_test_data(test_no, t_end=t_end, n_steps=n_steps)
-#         except:
-#             if meta:
-#                 meta[test_no]["copasi_run"] = False
-#             return False
-#         if meta:
-#             meta[test_no]["copasi_run"] = True
-#         self.sample_data = pd.DataFrame(self.sample_data, columns=names)
-#         # If we have "time" as a dataset, use it as an index
-#         print("Got test results")
-#         try:
-#             self.sample_data = self.sample_data.set_index("time")
-#         except:
-#             pass
-#         try:
-#             self.sample_data = self.sample_data.set_index("Time")
-#         except:
-#             pass
-#         # Run translation
-#         # TODO: Check if translation is succesful and stop if not
-#         if manual_bngl is None:
-#             if not self.run_translation(test_no, bid=bid, atomize=atomize):
-#                 if meta:
-#                     meta[test_no]["translate"] = False
-#                 return False
-#             else:
-#                 if meta:
-#                     meta[test_no]["translate"] = True
-#             # Add simulate command
-#             with open("{:05d}.bngl".format(test_no),'a') as f:
-#                 f.write("\n")
-#                 f.write("generate_network({overwrite=>1})")
-#                 f.write("\n")
-#                 opts = 'method=>"ode",print_functions=>1,t_end=>%f,n_steps=>%i'%(t_end,n_steps)# -1)
-#                 if atol:
-#                     opts += ",atol=>%s"%(atol)
-#                 if rtol:
-#                     opts += ",rtol=>%s"%(rtol)
-#                 f.write('simulate({%s})'%(opts))
-#         # Now simulate the thing
-#         if not self.run_and_load_simulation(test_no):
-#             if meta:
-#                 meta[test_no]["runnable"] = False
-#             return False
-#         else:
-#             if meta:
-#                 meta[test_no]["runnable"] = True
-#         #if test_no not in self.all_results.keys():
-
-#         # We also want to get relevant keys using modeller
-#         # defined species. Include this in results for plotting
-#         # UNCOMMENT FOR CURATION KEYS
-#         # try:
-#         #     URL = "https://www.ebi.ac.uk/biomodels/BIOMD{:010d}#Components".format(test_no)
-#         #     # without these headers we get HTMLError 415, unsupported media type
-#         #     headers = {'accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8'}
-#         #     # Get the website
-#         #     r = requests.get(URL, headers=headers)
-#         #     # Load it into beautiful soup (HTML parser) so we can pull images out
-#         #     parsed = BS(r.content, 'lxml')
-#         # except:
-#         #     pass
-#         # # Now find curation sectiot_ends = self.t_endsn
-#         # cur_keys = None
-#         # # UNCOMMENT FOR CURATION KEYS
-#         # try:
-#         #     if(parsed):
-#         #         if meta:
-#         #             meta[test_no]["curation_keys"] = True
-#         #         rtable = None
-#         #         tables = parsed.findAll(lambda tag: tag.name=='table')
-#         #         for table in tables:
-#         #             ths = table.findAll(lambda tag: tag.name=="th")
-#         #             for th in ths:
-#         #                 if th.contents[0].strip() == "Species":
-#         #                     rtable = table
-#         #             if rtable:
-#         #                 break
-#         #         if rtable:
-#         #             rows = rtable.findAll("span",{"class":"legend-green"})
-#         #             cur_keys = [row.contents[0] for row in rows]
-#         #     else:
-#         #         if meta:
-#         #             meta[test_no]["curation_keys"] = False
-#         #     # We want to only match the cur_keys and discard the
-#         #     # rest for validation purposes
-#         #     print("curation keys: {}".format(cur_keys))
-#         # except:
-#         #     cur_keys = list(self.sample_data.keys())
-#         rmsd = {}
-#         validation_per = 0
-
-#         skeys_used = []
-#         bkeys_used = []
-#         skeys = list(self.sample_data.keys())
-#         bkeys = list(self.bngl_data.keys())
-#         slen = len(skeys)
-#         blen = len(bkeys)
-#         # to determine this properly we need to
-#         # check the similarty for every key to
-#         # every other key
-#         ratio_matrix = np.zeros((slen,blen))
-#         for i in range(slen):
-#             for j in range(blen):
-#                 bkey_transform = bkeys[j].replace("__","")
-#                 ratio_matrix[i][j] = self.get_ratio(skeys[i],bkey_transform)
-
-#         # we need the max in a column to also be the max in a row
-#         # we pull each one that's like that and leave the rest?
-#         # we will also ignore matches that are < 0.5
-#         ratio_matrix[ratio_matrix<0.5] = 0.0
-#         key_pairs = []
-#         for i in range(slen):
-#             stob = ratio_matrix[i,:].max()
-#             bkey_ind = np.where(ratio_matrix[i,:] == stob)[0][0]
-#             btos = ratio_matrix[:,bkey_ind].max()
-#             if stob == btos and stob != 0:
-#                 skey_ind = np.where(ratio_matrix[:,bkey_ind] == btos)[0][0]
-#                 skey = skeys[skey_ind]
-#                 bkey = bkeys[bkey_ind]
-#                 if skey not in skeys_used:
-#                     if bkey not in bkeys_used:
-#                         key_pairs.append((skey,bkey))
-#                         skeys_used.append(skey)
-#                         bkeys_used.append(bkey)
-
-#         keys_used = []
-#         for key_pair in key_pairs:
-#             skey, bkey = key_pair
-#             # Get guaranteed single dataset for sample
-#             if len(self.sample_data[skey].values.shape) > 1:
-#                 if self.sample_data[skey].values.shape[1] > 1:
-#                     print("we have one too many datasets for the same key")
-#                     sdata = self.sample_data[skey].iloc[:,0]
-#                 else:
-#                     sdata = self.sample_data[skey].values
-#             else:
-#                 sdata = self.sample_data[skey].values
-#             # And for BNGL result
-#             if len(self.bngl_data[bkey].values.shape) > 1:
-#                 if self.bngl_data[bkey].values.shape[1] > 1:
-#                     print("we have one too many datasets for the same key")
-#                     bdata = self.bngl_data[bkey].iloc[:,0]
-#                 else:
-#                     bdata = self.bngl_data[bkey].values
-#             else:
-#                 bdata = self.bngl_data[bkey].values
-#             if len(sdata) == 0:
-#                 continue
-#             if len(bdata) == 0:
-#                 continue
-#             print("we used BNG key {} and SBML key {}".format(bkey, skey))
-#             # Calculate RMSD
-#             rmsd[bkey] = calc_rmsd(sdata, bdata)
-
-#             norm_tolerance = 1e-1
-#             if abs(sdata.max()) != 0:
-#                 norm_tolerance = norm_tolerance * sdata.max()
-#             # norm_tolerance = max(sdata) * tolerance
-#             if rmsd[bkey] < (norm_tolerance) or rmsd[bkey] < 1e-10:
-#                 validation_per += 1
-#             else:
-#                 print("{} won't validate".format(skey))
-#             skeys_used.append(skey)
-#             bkeys_used.append(bkey)
-#             keys_used.append((skey,bkey))
-
-#         # if cur_keys:
-#         #     validation_div = len(cur_keys)
-#         #     # get subset from interwebs
-#         #     # by the end we need an RMSD value and if it validates
-#         #     # or not
-#         #     keys_used = []
-#         #     bkeys_used = []
-#         #     skeys_used = []
-#         #     # import ipdb;ipdb.set_trace()
-#         #     for ck in cur_keys:
-#         #         # Sometimes there are more curation keys
-#         #         # than datasets in Copasi results
-#         #         if len(self.sample_data.keys()) == len(skeys_used):
-#         #             break
-#         #         # Get keys
-#         #         ck_sk_ratios = sorted(list(map(lambda y: (y, self.get_ratio(ck, y)), [i for i in self.sample_data.keys() if i not in skeys_used])), key=lambda z: z[1])
-#         #         skey = ck_sk_ratios[-1][0]
-#         #         # now we need to determine if we should rely on CK to determine
-#         #         # the bkey to select
-#         #         ck_bk_ratios = sorted(list(map(lambda y: (y, self.get_ratio(ck, y)), [i for i in self.bngl_data.keys() if i not in bkeys_used])), key=lambda z: z[1])
-#         #         sk_bk_ratios = sorted(list(map(lambda y: (y, self.get_ratio(skey, y)), [i for i in self.bngl_data.keys() if i not in bkeys_used])), key=lambda z: z[1])
-#         #         # decide on the key to use
-#         #         # TODO: We might also need to check what happens when
-#         #         # we remove the last value after an "_" because that's
-#         #         # frequently the compartment which can lead to mismatches
-#         #         if ck_bk_ratios[-1][1] > sk_bk_ratios[-1][1]:
-#         #             bkey = ck_bk_ratios[-1][0]
-#         #         else:
-#         #             bkey = sk_bk_ratios[-1][0]
-#         #         # Get guaranteed single dataset for sample
-#         #         if len(self.sample_data[skey].values.shape) > 1:
-#         #             if self.sample_data[skey].values.shape[1] > 1:
-#         #                 print("we have one too many datasets for the same key")
-#         #                 sdata = self.sample_data[skey].iloc[:,0]
-#         #             else:
-#         #                 sdata = self.sample_data[skey].values
-#         #         else:
-#         #             sdata = self.sample_data[skey].values
-#         #         # And for BNGL result
-#         #         if len(self.bngl_data[bkey].values.shape) > 1:
-#         #             if self.bngl_data[bkey].values.shape[1] > 1:
-#         #                 print("we have one too many datasets for the same key")
-#         #                 bdata = self.bngl_data[bkey].iloc[:,0]
-#         #             else:
-#         #                 bdata = self.bngl_data[bkey].values
-#         #         else:
-#         #             bdata = self.bngl_data[bkey].values
-#         #         if len(sdata) == 0:
-#         #             continue
-#         #         if len(bdata) == 0:
-#         #             continue
-#         #         print("for key {} we used BNG key {} and SBML key {}".format(ck, bkey, skey))
-#         #         # Calculate RMSD
-#         #         # Let's get normalization factors
-#         #         # sdata_norm = sdata[int(sdata.shape[0]/2):]
-#         #         # sdata_norm = sdata.max()
-#         #         # # bdata_norm = bdata[int(bdata.shape[0]/2):]
-#         #         # bdata_norm = bdata.max()
-#         #         # sdat_rmsd = sdata/sdata_norm if sdata_norm != 0 else sdata
-#         #         # bdat_rmsd = bdata/bdata_norm if bdata_norm != 0 else bdata
-#         #         rmsd[ck] = calc_rmsd(sdata, bdata)
-
-#         #         norm_tolerance = 1e-1
-#         #         if abs(sdata.max()) != 0:
-#         #             norm_tolerance = norm_tolerance * sdata.max()
-#         #         # IPython.embed()
-#         #         # norm_tolerance = max(sdata) * tolerance
-#         #         if rmsd[ck] < (norm_tolerance) or rmsd[ck] < 1e-10:
-#         #             validation_per += 1
-#         #         else:
-#         #             print("{} won't match".format(skey))
-#         #         skeys_used.append(skey)
-#         #         bkeys_used.append(bkey)
-#         #         keys_used.append((skey,bkey,ck))
-#         # else:
-#         #     # do the normal spiel
-#         #     skeys = set(self.sample_data.keys())
-#         #     bkeys = set(self.bngl_data.keys())
-#         #     bkey_map = {}
-#         #     for bkey in bkeys:
-#         #         bkey_splt = bkey.split("_")
-#         #         if len(bkey_splt) > 1:
-#         #             nkey = "".join(bkey_splt[:-1])
-#         #         else:
-#         #             nkey = bkey
-#         #         bkey_map[nkey] = bkey
-
-#         #     keys_used = []
-#         #     validation_div = len(skeys)
-#         #     for skey in skeys:
-#         #         ratios = sorted(list(map(lambda y: (y, self.get_ratio(skey, y)), bkey_map.keys())), key=lambda z: z[1])
-#         #         key_to_use = bkey_map[ratios[-1][0]]
-#         #         print("matched keys are sbml: {} and bngl: {}".format(skey, key_to_use))
-#         #         keys_used.append((skey, key_to_use))
-#         #         # Get guaranteed single dataset
-#         #         if len(self.sample_data[skey].values.shape) > 1:
-#         #             if self.sample_data[skey].values.shape[1] > 1:
-#         #                 print("we have one too many datasets for the same key")
-#         #                 sdata = self.sample_data[skey].iloc[:,0]
-#         #             else:
-#         #                 sdata = self.sample_data[skey].values
-#         #         else:
-#         #             sdata = self.sample_data[skey].values
-#         #         if len(self.bngl_data[key_to_use].values.shape) > 1:
-#         #             if self.bngl_data[key_to_use].values.shape[1] > 1:
-#         #                 print("we have one too many datasets for the same key")
-#         #                 bdata = self.bngl_data[key_to_use].iloc[:,0]
-#         #             else:
-#         #                 bdata = self.bngl_data[key_to_use].values
-#         #         else:
-#         #             bdata = self.bngl_data[key_to_use].values
-
-#         #         # Let's get normalization factors
-#         #         # sdata_norm = sdata[int(sdata.shape[0]/2):]
-#         #         # sdata_norm = sdata.max()
-#         #         # # bdata_norm = bdata[int(bdata.shape[0]/2):]
-#         #         # bdata_norm = bdata.max()
-#         #         # sdat_rmsd = sdata/sdata_norm if sdata_norm != 0 else sdata
-#         #         # bdat_rmsd = bdata/bdata_norm if bdata_norm != 0 else bdata
-#         #         #
-#         #         rmsd[skey] = calc_rmsd(sdata, bdata)
-
-#         #         norm_tolerance = 1e-1
-#         #         if abs(sdata.max()) != 0:
-#         #             norm_tolerance = norm_tolerance * sdata.max()
-
-#         #         if rmsd[skey] < (norm_tolerance) or rmsd[skey] < 1e-10:
-#         #             validation_per +=1
-#         #         else:
-#         #             print("{} won't match".format(skey))
-#         validation_div = len(keys_used)
-#         if validation_div > 0:
-#             validation_per = validation_per/float(validation_div)
-#         else:
-#             validation_per = None
-#         print("Keys used: {}".format(keys_used))
-#         print("val per {}".format(validation_per))
-#         self.all_results[test_no] = (self.sample_data, self.bngl_data, rmsd, validation_per, keys_used)
-#         return True
-
-#     def plot_results(self, test_no, legend=True, save_fig=False, xlim=None, ylim=None):
-#         # Now do some comparison
-#         if not self.all_results[test_no][0] is None:
-#             # plot both
-#             sd, bd, _, _, keys = self.all_results[test_no]
-#             fig, ax = plt.subplots(1,2)
-#             fig.tight_layout()
-
-#             for ik, ks in enumerate(keys):
-#                 skey, bkey = ks
-#                 label = "{0:.10}: {1:.3E}".format(bkey,self.all_results[test_no][2][bkey])
-#                 # if len(ks) == 2:
-#                 #     skey, bkey = ks
-#                 #     ck = None
-#                 # else:
-#                 #     skey, bkey, ck = ks
-#                 # try:
-#                 #     if ck:
-#                 #         label = "{0:.10}: {1:.3E}".format(bkey,self.all_results[test_no][2][ck])
-#                 #     else:
-#                 #         label = "{0:.10}: {1:.3E}".format(bkey,self.all_results[test_no][2][skey])
-#                 # except KeyError:
-#                 #     label = "ind"
-#                 ax[0].plot(sd.index, sd[skey], label=label)
-#                 ax[1].plot(bd.index, bd[bkey], label=label)
-#             #for ind in sd.keys():
-#             #    ax[0].plot(sd.index, sd[ind], label=label)
-#             if legend:
-#                 plt.legend(frameon=False)
-#             if xlim is not None:
-#                 ax[0].set_xlim(xlim)
-#                 ax[1].set_xlim(xlim)
-#             if ylim is not None:
-#                 ax[0].set_ylim(ylim)
-#                 ax[1].set_ylim(ylim)
-#             #for ind in bd.keys():
-#             #    #ax[1].plot(bd.index, bd[ind], label="bngl {}".format(ind))
-#             #    ax[1].plot(bd.index, bd[ind])
-#         else:
-#             for ind in self.bngl_data.keys():
-#                 plt.plot(self.bngl_data.index, self.bngl_data[ind], label="bngl {}".format(ind))
-#         if legend:
-#             plt.legend(frameon=False)
-#         if xlim is not None:
-#             plt.xlim(xlim[0], xlim[1])
-#         if ylim is not None:
-#             plt.ylim(ylim[0], ylim[1])
-#         if save_fig:
-#             plt.savefig("{:05d}-bngl_results.png".format(test_no), dpi=300)
-#             plt.close()
+    # bng_fail_list = aa.database.dbase_con.execute("SELECT ID FROM RESULTS WHERE ATOM_STATUS = ?", (aa.database.RESULT_FAIL_BNGL,)).fetchall()
+    # bng_fail_list = [i[0] for i in bng_fail_list]
+    # cvode_errs = []
+    # for i in bng_fail_list:
+        # s = aa.database.get_result_bng_log(i)
+        # if s is not None:
+            # if s.find("CVODE") >= 0:
+                # cvode_errs.append(i)
+    # 
+    # import IPython;IPython.embed();sys.exit()
+     
+    # # testing setup
+    # atomize = True
+    # bid = False
+    # i = 6
+    # # config
+    # infile = aa.database.get_path(i)
+    # outfile = "test.bngl"
+    # opt = {
+    #   "input": infile,
+    #   "output": outfile,
+    #   "atomize": atomize,
+    #   "molecule_id": bid,
+    # }
+    # # manually translate
+    # a = AtomizeTool(options_dict=opt)
+    # translation = a.run()
+    # # run validation
+    # standard = aa.run_and_load_test_standard(i, sim="copasi", overwrite=False)
+    # bngl_res = aa.run_and_load_bngl_res(i, atomize=atomize)
+    # val_rat = aa.calculate_validation(i, standard, bngl_res, plot=True, atomize=atomize)

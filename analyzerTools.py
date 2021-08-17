@@ -1,16 +1,13 @@
 # %matplotlib notebook
-import os, re, sys, urllib, requests, base64, IPython, io
+import os, re, sys, requests, base64
 import numpy as np
 import subprocess as sb
 import pandas as pd
 import matplotlib.pyplot as plt
-import matplotlib.image as mpimg
 import roadrunner
 import xml.etree.ElementTree as ET
 from difflib import SequenceMatcher
 from bs4 import BeautifulSoup as BS
-from IPython.display import Image, display
-from matplotlib import rcParams
 
 def read_gdat(file):
     f = open(file)
